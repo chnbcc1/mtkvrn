@@ -1,24 +1,21 @@
-# Matematik Evreni – Dedenin Evi (v36 deneme)
-Bu klasör, **ilk sahnenin bağımsız oynanabilir prototipidir**. Mevcut v35 oyunu ve öğretmen onayına sunulan soru havuzu değiştirilmedi.
+# Matematik Evreni – Dedenin Evi v39
 
-## Yapabildikleri
-- Dedenin evinin yeni sinematik arka planında dolaşma
-- iPhone ve klavyede hareket: ◀ ▶ / sol-sağ / A-D
-- Zıplama: ekran düğmesi veya Boşluk
-- Etkileşim: İNCELE veya E
-- Piko'nun yönlendirmesi
-- Bahçe kapısı, çalışma kulübesi, çalışma odası penceresindeki üç izi bulma
-- Üç iz tamamlanınca eve girerek dedenin defterini okuma
-- Cihazda yalnızca demo ilerleme bilgisini saklama
+Bu klasördeki sürüm yalnızca **ücretsiz iPhone/web denemesidir**. Asıl Matematik Evreni oyunu `/` konumunda değişmeden korunur.
 
-## Ücretsiz geliştirme
-- Oyun: sade HTML/CSS/Canvas/JavaScript (ücretsiz, harici motor/CDN yok)
-- Görseller: proje için hazırlanan özgün görseller ve bunlardan oluşturulan prototip varlıkları
-- Barındırma: GitHub Pages (herkese açık depo ücretsiz kullanım şartları kapsamında)
-- Gelecek çalışma: Phaser (MIT) / Blender / Krita; ücretli paket yok
+## Yeni hikâye
+- Kahramanın adı **Erdem**; papağan **Çiko** Erdem'i zaten tanır.
+- Açılış: “Çiko, dedem nerede?” — “Ben de seni bekliyordum. Dedeni dünden beri görmedim.”
+- Profesör dede oyun oynamıyor; ortadan kaybolmuş ve fırsat buldukça yazılı izler bırakmış.
+- Üç not keşfedilerek deftere ve ilk harita parçasına ulaşılır.
+- İkinci bölümün adı **Ormanın Eski Patikası** (henüz oynanabilir değil).
 
-## Sınırlar
-Görsel prototiptir. Karakter sprite'larının ayrıntıları, Piko'nun gerçek kanat/kafa animasyonları ve iPhone gerçek cihaz performansı henüz nihai değil. Buraya matematik sorusu eklenmedi; onaylı öğretmen soru havuzu sonrasında eklenir.
+## Etkileşim ve kontroller
+- Uzak nesneler önceden işaretlenmez. Yaklaşınca nesnede hafif ışık halkası ve dokunulabilir **İNCELE** belirir.
+- Sağ alttaki sabit İncele düğmesi kaldırıldı.
+- Diyalog kutusu aşağı indirildi ve Erdem/Çiko konuşmaları ayrıldı.
+- Erdem %19 büyütüldü. Mevcut altı karelik yürüyüş ve uçuş animasyonları hafif geçişlerle yumuşatıldı; nihai animasyon filmi kalitesi için daha fazla kare gerekiyor.
+- v38 kayıt anahtarı **korundu**. Bulunan izler ve ilk giriş bilgisi kaybolmaz. Yeni Oyun yalnızca kullanıcı açıkça seçerse sıfırlar.
 
-Deneme: https://chnbcc1.github.io/mtkvrn/deneme-v36/
-Ana oyun v35: https://chnbcc1.github.io/mtkvrn/
+**Henüz gerçek iPhone'da test tamamlanmadı.** Tarayıcının yerel erişimine test ortamı tarafından kısıtlama getirildi. Node.js mantık testlerinde 7/7 senaryo geçti.
+
+Onay bekleyen matematik soruları değişmedi.
