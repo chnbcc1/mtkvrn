@@ -1,21 +1,18 @@
-# Matematik Evreni – Dedenin Evi v39
+# Matematik Evreni v40 – Dedenin gizemi
 
-Bu klasördeki sürüm yalnızca **ücretsiz iPhone/web denemesidir**. Asıl Matematik Evreni oyunu `/` konumunda değişmeden korunur.
+**v40 deneme sürümü**: keşif hikâyesinin temel mekaniği değiştirildi.
 
-## Yeni hikâye
-- Kahramanın adı **Erdem**; papağan **Çiko** Erdem'i zaten tanır.
-- Açılış: “Çiko, dedem nerede?” — “Ben de seni bekliyordum. Dedeni dünden beri görmedim.”
-- Profesör dede oyun oynamıyor; ortadan kaybolmuş ve fırsat buldukça yazılı izler bırakmış.
-- Üç not keşfedilerek deftere ve ilk harita parçasına ulaşılır.
-- İkinci bölümün adı **Ormanın Eski Patikası** (henüz oynanabilir değil).
+- Sabit üç ipucu, 3/3 sayaç ve profesörün birbirini tarif eden notları kaldırıldı.
+- Erdem her yeri istediği sırayla araştırabilir; çalışma odasına girmek için önce başka nesneleri toplaması gerekmez.
+- Bahçe kapısı gözlemi isteğe bağlıdır. Alet çantası ve penceredeki mavi toz, çalışma odasının araştırma kaydıyla birlikte anlam kazanır.
+- Profesörün defteri Erdem'e yazılmış bir yol tarifi değil, yarım kalan bir araştırma kaydıdır.
+- Erdem, bulguları birleştirip eski atlas üzerinde olası araştırma yerini seçer; yanlış tercih oyunu tamamlamaz.
+- Dedenin neden veya nasıl ortadan kaybolduğu henüz açıklanmaz.
+- Çiko cevap ya da bir sonraki nesneyi söylemez.
+- Matematik görevleri önceki öğretmen PDF onayından bağımsız olarak eklenmedi.
+- Yerel kayıt anahtarı: `mathverse-v40-investigation`. Önceki v39 kaydı korunur.
+- Tüm oyun dosyaları tek HTML içinde ve ücretsizdir.
 
-## Etkileşim ve kontroller
-- Uzak nesneler önceden işaretlenmez. Yaklaşınca nesnede hafif ışık halkası ve dokunulabilir **İNCELE** belirir.
-- Sağ alttaki sabit İncele düğmesi kaldırıldı.
-- Diyalog kutusu aşağı indirildi ve Erdem/Çiko konuşmaları ayrıldı.
-- Erdem %19 büyütüldü. Mevcut altı karelik yürüyüş ve uçuş animasyonları hafif geçişlerle yumuşatıldı; nihai animasyon filmi kalitesi için daha fazla kare gerekiyor.
-- v38 kayıt anahtarı **korundu**. Bulunan izler ve ilk giriş bilgisi kaybolmaz. Yeni Oyun yalnızca kullanıcı açıkça seçerse sıfırlar.
+**Yayın:** https://chnbcc1.github.io/mtkvrn/deneme-v36/
 
-**Henüz gerçek iPhone'da test tamamlanmadı.** Tarayıcının yerel erişimine test ortamı tarafından kısıtlama getirildi. Node.js mantık testlerinde 7/7 senaryo geçti.
-
-Onay bekleyen matematik soruları değişmedi.
+**Not:** İç mekân ve atlas halen birer etkileşimli metin panelidir; yeni 3D/2.5D sahneler ayrıca tasarlanacaktır. Gerçek iPhone hareket testleri kullanıcı doğrulaması gerektirir.
