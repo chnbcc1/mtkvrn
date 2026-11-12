@@ -1,16 +1,17 @@
-# Matematik Evreni – Kazanım Macerası v34
+# Matematik Evreni — v34 Kazanım Macerası
 
-TÜBİTAK 4006-A matematik öğretimi oyun prototipi.
+TÜBİTAK 4006-A için hazırlanmakta olan oyun prototipi. GitHub Pages: https://chnbcc1.github.io/mtkvrn/
 
-## Bu sürümün kapsamı
+## Öğretim kapsamı
+- 9. sınıf **MAT.9.1.1**, gerçek sayıların üslü ve köklü gösterimleriyle yapılan işlemlere ilişkin muhakeme
+- **Temel / Orta / İleri** seçeneklerinin her birinde 27 farklı zorunlu görev tipi (en az 15 kuralının üzerinde)
+- Üslü ifadelerde çarpma, bölme, toplama ve çıkarma, kuvvetlerin özellikleri; köklü ifadelerde işlemler ve sadeleştirme; eşlenik, bilimsel gösterim ve birleşik problemler
+- Son aşamalarda birden fazla özelliğin birlikte kullanıldığı problemler
 
-- 9. sınıf, MAT.9.1.1: Üslü ve köklü gösterimlerle işlemler üzerine muhakeme
-- Temel, Orta ve İleri: Her düzeyde **20 farklı görev tipi**
-- Her görev tamamlanmadan sonraki görev görünmez ve geçit açılamaz
-- Ara işlem ve sonuç birlikte doğrulanır; yalnızca bir + düğmesine basılarak cevap aranamaz
-- Hata veya ipucu sonrası aynı soru tipinden yeni verilerle pekiştirme zorunludur
-- Son görevler birden fazla özelliği aynı problemde birleştirir
+## Öğrenci oynanışı
+Her görev kapısına kadar yürünür; sonraki soru önceden görünmez. **Ara işlem ve sonuç ikisi de doğru girilmeden kapı açılmaz.** +/− tıklayarak doğru cevabı arama yoktur. Yanlış cevap veya ipucu sonrası aynı beceriden yeni verilerle pekiştirme gerekir. Öğrencinin v34b ilerlemesi tarayıcıda yerel olarak saklanır.
 
-Pilot sürümdür. Öğrenme çıktıları ve soruların öğretmen değerlendirmesi sürmektedir; MEB tarafından resmi onaylanmış ürün değildir.
+## iPhone
+Safari'de siteyi açın → Paylaş → Ana Ekrana Ekle. Güncellemeler için önce çevrimiçi açın. Çevrimdışı modun gerçek iPhone testi henüz yapılmamıştır.
 
-iPhone: https://chnbcc1.github.io/mtkvrn/ adresini Safari'de açın → Paylaş → Ana Ekrana Ekle. İlk açılış çevrimiçi yapılmalıdır. Yerel v34 ilerleme kayıtları cihazınızda saklanır.
+Bu proje **geliştirme aşamasındadır**, resmî MEB onaylı ürün değildir. Soruların öğretmen ve öğrenci pilot incelemesi tamamlanmamıştır.

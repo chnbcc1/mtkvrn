@@ -1,6 +1,6 @@
-# MAT.9.1.1 – Soru tipi kapsamı
+# MAT.9.1.1 – Öğrenme çıktısı soru kapsamı
 
-Her zorluk düzeyinde en az 15 soru zorunludur. Pilot v34'te **20 ana görev** ve yardım/yanlış sonrası **20 alternatif pekiştirme** tanımlıdır. Son 4 görev karma işlem ve birden çok özelliği birlikte kullanma odaklıdır.
+**Temel, Orta, İleri:** Her düzeyde 27 ana görev, yanlış cevap veya ipucu sonrası aynı beceriye ait 27 alternatif pekiştirme. Bir sonraki göreve geçiş, işlem adımı ve sonucun birlikte doğrulanmasına bağlıdır.
 
 1. Üsleri çarpma
 2. Üslü ifadelerde bölme
@@ -18,7 +18,16 @@ Her zorluk düzeyinde en az 15 soru zorunludur. Pilot v34'te **20 ana görev** v
 14. Köklü ifadelerde çarpma
 15. Köklü ifadelerde bölme
 16. Köklü ifadelerde toplama
-17. Kesirli üs ve kök
-18. Üs ve kökü birleştirme
-19. Üç işlemli enerji yolu
-20. Bölüm sonu sentez görevi
+17. Kök dışına çıkarma
+18. Benzer köklü ifadeleri toplama
+19. Benzer köklü ifadeleri çıkarma
+20. Eşlenikle rasyonelleştirme
+21. Bilimsel gösterimde bölme
+22. Bilimsel gösterimde toplama
+23. Yanlış genellemeye karşı örnek
+24. Kesirli üs ve kök
+25. Üs ve kökü birleştirme
+26. Üç işlemli enerji yolu
+27. Bölüm sonu sentez görevi
+
+Bu özgün pilot soru bankası MEB öğretim programı doğrultusunda geliştirilmektedir; pedagojik onay ve pilot uygulama değerlendirmesi henüz tamamlanmamıştır.
