@@ -1,18 +1,18 @@
-# Matematik Evreni v40 – Dedenin gizemi
+# Matematik Evreni – Erdem ve Çiko (v41 deneme)
 
-**v40 deneme sürümü**: keşif hikâyesinin temel mekaniği değiştirildi.
+Dedenin Evi için 100% ücretsiz, tek HTML mobil keşif prototipi.
 
-- Sabit üç ipucu, 3/3 sayaç ve profesörün birbirini tarif eden notları kaldırıldı.
-- Erdem her yeri istediği sırayla araştırabilir; çalışma odasına girmek için önce başka nesneleri toplaması gerekmez.
-- Bahçe kapısı gözlemi isteğe bağlıdır. Alet çantası ve penceredeki mavi toz, çalışma odasının araştırma kaydıyla birlikte anlam kazanır.
-- Profesörün defteri Erdem'e yazılmış bir yol tarifi değil, yarım kalan bir araştırma kaydıdır.
-- Erdem, bulguları birleştirip eski atlas üzerinde olası araştırma yerini seçer; yanlış tercih oyunu tamamlamaz.
-- Dedenin neden veya nasıl ortadan kaybolduğu henüz açıklanmaz.
-- Çiko cevap ya da bir sonraki nesneyi söylemez.
-- Matematik görevleri önceki öğretmen PDF onayından bağımsız olarak eklenmedi.
-- Yerel kayıt anahtarı: `mathverse-v40-investigation`. Önceki v39 kaydı korunur.
-- Tüm oyun dosyaları tek HTML içinde ve ücretsizdir.
+## v41 yenilikleri
+- Erdem'in başlangıcı çiçekli ön plandan toprak yola alındı; ayak hizası güncellendi
+- Konuşma portresinde tam boy sprite yerine yüz kadrajı kullanıldı
+- Erdem ve Çiko için 6 ana poz + 6 ara hareket pozu: 12 karelik animasyon döngüsü
+- Dokunmatik/yön tuşlarına yumuşak hızlanma ve yavaşlama
+- Çiko'nun takip hareketinde yay-sönümleme, yumuşak dönüş ve uçuş yönü
+- Doğal, kısa açılış konuşmaları ve kanıtlara dayalı araştırma metinleri
+- İlk gözlemler ve açık çalışma odası, sabit not zinciri olmadan serbestçe keşfedilebilir
 
-**Yayın:** https://chnbcc1.github.io/mtkvrn/deneme-v36/
+Yerel kayıt anahtarı **mathverse-v40-investigation** aynıdır. v40 ilerlemesi v41'de kullanılmaya devam edilir.
 
-**Not:** İç mekân ve atlas halen birer etkileşimli metin panelidir; yeni 3D/2.5D sahneler ayrıca tasarlanacaktır. Gerçek iPhone hareket testleri kullanıcı doğrulaması gerektirir.
+**Pilot uyarısı:** Öğretmen onayındaki matematik soruları henüz oyun içine alınmamıştır. Animasyonlar yeniden üretilmiş 12 karelik 2D hareketlerdir; tam 3D karakter rig animasyonları değildir.
+
+https://chnbcc1.github.io/mtkvrn/deneme-v36/
