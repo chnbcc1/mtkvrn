@@ -1,15 +1,15 @@
 {
   "id": "./",
-  "name": "Matematik Evreni – Kazanım Macerası",
+  "name": "Matematik Evreni – Işığı Geri Getir",
   "short_name": "Matematik Evreni",
-  "description": "MAT.9.1.1 – Her zorluk seviyesinde 27 zorunlu görev içeren matematik macerası",
+  "description": "27 görevli 9. sınıf matematik macerası. Üslü ve köklü işlemler.",
   "lang": "tr",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#091d38",
-  "theme_color": "#091d38",
+  "background_color": "#07172e",
+  "theme_color": "#07172e",
   "icons": [
     {
       "src": "./icons/icon-192.png",

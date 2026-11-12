@@ -1,17 +1,16 @@
-# Matematik Evreni — v34 Kazanım Macerası
+# Matematik Evreni – Işığı Geri Getir (v35)
+TÜBİTAK 4006-A için tasarlanan 9. sınıf matematik macera oyunu. Bu sürüm öğretmen değerlendirmesine açık prototiptir.
 
-TÜBİTAK 4006-A için hazırlanmakta olan oyun prototipi. GitHub Pages: https://chnbcc1.github.io/mtkvrn/
+## Oynanış
+- Tek öğrenme çıktısı: **MAT.9.1.1** – üslü ve köklü işlemler üzerine muhakeme
+- Temel / Orta / İleri: her birinde **27 zorunlu görev**
+- Üs Ormanı (12 görev), Kristal Mağarası (8 görev), Yıldız İstasyonu (7 görev)
+- Hesap adımı + sonuç kontrolü; yanlış cevap veya yardım sonrasında alternatif pekiştirme
+- Üslü biçimler ekranda üst simgeli gösterilir (2³, 2⁵); oyun içi matematik tuşları
+- Büyük mobil yön tuşları, ana ekrana eklenebilir iPhone oyunu, yerel ilerleme kaydı
 
-## Öğretim kapsamı
-- 9. sınıf **MAT.9.1.1**, gerçek sayıların üslü ve köklü gösterimleriyle yapılan işlemlere ilişkin muhakeme
-- **Temel / Orta / İleri** seçeneklerinin her birinde 27 farklı zorunlu görev tipi (en az 15 kuralının üzerinde)
-- Üslü ifadelerde çarpma, bölme, toplama ve çıkarma, kuvvetlerin özellikleri; köklü ifadelerde işlemler ve sadeleştirme; eşlenik, bilimsel gösterim ve birleşik problemler
-- Son aşamalarda birden fazla özelliğin birlikte kullanıldığı problemler
+https://chnbcc1.github.io/mtkvrn/
 
-## Öğrenci oynanışı
-Her görev kapısına kadar yürünür; sonraki soru önceden görünmez. **Ara işlem ve sonuç ikisi de doğru girilmeden kapı açılmaz.** +/− tıklayarak doğru cevabı arama yoktur. Yanlış cevap veya ipucu sonrası aynı beceriden yeni verilerle pekiştirme gerekir. Öğrencinin v34b ilerlemesi tarayıcıda yerel olarak saklanır.
-
-## iPhone
-Safari'de siteyi açın → Paylaş → Ana Ekrana Ekle. Güncellemeler için önce çevrimiçi açın. Çevrimdışı modun gerçek iPhone testi henüz yapılmamıştır.
-
-Bu proje **geliştirme aşamasındadır**, resmî MEB onaylı ürün değildir. Soruların öğretmen ve öğrenci pilot incelemesi tamamlanmamıştır.
+Safari'de çevrimiçi açtıktan sonra Paylaş → Ana Ekrana Ekle.
+Not: Sürüm değiştiği için önceki v34 ilerleme kaydı v35'e otomatik aktarılmaz.
+Kişisel öğrenci verilerini herkese açık depoya eklemeyin.

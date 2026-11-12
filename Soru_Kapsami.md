@@ -1,33 +1,33 @@
-# MAT.9.1.1 – Öğrenme çıktısı soru kapsamı
+# MAT.9.1.1 – v35 görev kapsamı
 
-**Temel, Orta, İleri:** Her düzeyde 27 ana görev, yanlış cevap veya ipucu sonrası aynı beceriye ait 27 alternatif pekiştirme. Bir sonraki göreve geçiş, işlem adımı ve sonucun birlikte doğrulanmasına bağlıdır.
+**Tek öğrenme çıktısı** ve her zorluk düzeyinde 27 zorunlu görev.
 
-1. Üsleri çarpma
-2. Üslü ifadelerde bölme
-3. Kuvvetin kuvveti
-4. Çarpımın kuvveti
-5. Bölümün kuvveti
-6. Sıfırıncı kuvvet
-7. Negatif üs
-8. İşaret ve parantez
-9. Üslü ifadelerde toplama
-10. Üslü ifadelerde çıkarma
-11. Ortak tabanda yazma
-12. Üslü büyüklükleri karşılaştırma
-13. Karekök ile uzunluk
-14. Köklü ifadelerde çarpma
-15. Köklü ifadelerde bölme
-16. Köklü ifadelerde toplama
-17. Kök dışına çıkarma
-18. Benzer köklü ifadeleri toplama
-19. Benzer köklü ifadeleri çıkarma
-20. Eşlenikle rasyonelleştirme
-21. Bilimsel gösterimde bölme
-22. Bilimsel gösterimde toplama
-23. Yanlış genellemeye karşı örnek
-24. Kesirli üs ve kök
-25. Üs ve kökü birleştirme
-26. Üç işlemli enerji yolu
-27. Bölüm sonu sentez görevi
+01. Üs Ormanı — İki güç kutusu
+02. Üs Ormanı — Paylaşım kapısı
+03. Üs Ormanı — Çoğalan kristaller
+04. Üs Ormanı — Işık karesi
+05. Üs Ormanı — Üçe bölünen güç
+06. Üs Ormanı — Sıfırın sırrı
+07. Üs Ormanı — Tersine çalışan kutu
+08. Üs Ormanı — Eksi işaretinin oyunu
+09. Üs Ormanı — Birleşen ışıklar
+10. Üs Ormanı — Azalan enerji
+11. Üs Ormanı — Gizli taban
+12. Üs Ormanı — İki motorun yarışı
+13. Kristal Mağarası — Kare taşlar
+14. Kristal Mağarası — Kristal çarpanı
+15. Kristal Mağarası — Cam köprü
+16. Kristal Mağarası — Uzayan merdiven
+17. Kristal Mağarası — Kökü sadeleştir
+18. Kristal Mağarası — İki ışığı birleştir
+19. Kristal Mağarası — Eksilen kristal
+20. Kristal Mağarası — Eşlenik anahtar
+21. Yıldız İstasyonu — Uzay ölçümü
+22. Yıldız İstasyonu — İstasyon raporu
+23. Yıldız İstasyonu — Doğru mu, yanlış mı?
+24. Yıldız İstasyonu — Kökten üsse
+25. Yıldız İstasyonu — Çift güç
+26. Yıldız İstasyonu — Üç kapılı geçit
+27. Yıldız İstasyonu — Büyük ışık çekirdeği
 
-Bu özgün pilot soru bankası MEB öğretim programı doğrultusunda geliştirilmektedir; pedagojik onay ve pilot uygulama değerlendirmesi henüz tamamlanmamıştır.
+Not: Yanlış cevap veya ipucu sonrasında farklı verilerle pekiştirme görevi açılabilir.
