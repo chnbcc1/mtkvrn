@@ -1,15 +1,15 @@
 {
   "id": "./",
-  "name": "Matematik Evreni – Enerji ve Işık Macerası",
+  "name": "Matematik Evreni – Kazanım Macerası",
   "short_name": "Matematik Evreni",
-  "description": "9. sınıf matematikle ilerlenen iki bölümlük etkileşimli oyun pilotu",
+  "description": "MAT.9.1.1 – Her zorluk seviyesinde 20 görevli matematik macerası",
   "lang": "tr",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#0b1e3b",
-  "theme_color": "#0b1e3b",
+  "background_color": "#091d38",
+  "theme_color": "#091d38",
   "icons": [
     {
       "src": "./icons/icon-192.png",
