@@ -1,4 +1,16 @@
-# Matematik Evreni – Erdem ve Çiko (v61 deneme)
+# Matematik Evreni – Erdem ve Çiko (v62 deneme)
+
+## v62 (14 Kasım 2026) — Harita, kaldığın yerden devam ve yeni orman
+
+- **Devam sistemi:** `index.html` içindeki “KALDIĞIN YERDEN DEVAM” butonu kayıtlı `chapter2.stage='forest-path'` alanına bakar. En son aktif bölge `forest-path` ise doğrudan `forest-v62.html` sahnesine, `home` ise Dedenin Evi'ne döner.
+- **Macera Haritası:** [map-v62.html](./map-v62.html) içinde Dedenin Evi → Orman Patikası → Gözlemevi Girişi → Gözlemevi İç Mekânı doğrusal rotası gösterilir. Tamamlanan / mevcut / kilitli duraklar ayırt edilir. Sadece açılmış duraklara gidilebilir; haritada bölüm değişikliği kayıt edilir.
+- Oyun içeriğinde **“atlas” yerine “harita”**, “Atlası incele” yerine **“Haritaya bak”** kullanılır. Animasyon atlasları teknik dosya adlarında aynı kalır.
+- **Yeni orman:** [forest-v62.html](./forest-v62.html) yeni çizilmiş sahne arka planını [forest-v62-bg.js](./forest-v62-bg.js) içindeki sıkıştırılmış AVIF görselle yükler; yedek olarak prosedürel fon kullanılır. Yeni orman arka planı ilk görsel iyileştirme olup daha fazla Retina detaylandırması sonraki sürümde yapılabilir.
+- **Görünür köprü engeli:** Derin dere ve iki kırık köprü ucu doğrudan sahnede görünür. Geçiş öncesinde Erdem'in ilerlemesi durdurulur; doğru matematik çözümünün ardından tahtalar yaklaşık 2 saniyede yerine oturur ve yol fiziksel olarak geçilebilir hâle gelir.
+- **9. sınıf kazanımı:** Köprü soruları MEB TYMM 9. sınıf Nicelikler ve Değişimler temasının **MAT.9.2.3** (doğrusal denklem ve eşitsizliklerle problem çözme) çıktısına göre kolay/orta/zor biçiminde düzenlendi. Soru metni, matematik modeli, kısa ipucu ve çözüm gösteriliyor. Kaynak: https://tymm.meb.gov.tr/matematik-dersi/unite/23
+- **Kayıtlar:** `mathverse-v40-investigation` anahtarı ve evdeki ipuçları korunur. `activeScene`, `chapter2.x`, `chapter2.puzzleSolved`, `chapter2.reachedGate`, `chapter2.difficulty` alanları güncel ve geriye uyumlu saklanır.
+- **iPhone kontrolü:** Uzun basmada iOS metin seçimini engelleyen `user-select`/`touch-callout` CSS eklendi.
+- **Durum:** GitHub kaynak dosyaları ve JavaScript sözdizimi kontrol edildi. Gerçek iPhone'daki görsel/dokunmatik sonuç henüz doğrulanmadı. Gözlemevinin iç mekânı henüz oynanabilir değildir.
 
 ## v61 (13 Kasım 2026) — Orman Patikası oynanabilir ilk sahne
 - [Oynanabilir orman patikası](./forest-v61.html) bölüm 1 atlasındaki **Eski gözlemevine git** eylemine bağlandı. Eski metin paneli yerine yeni bir oyun ekranı açılır.
