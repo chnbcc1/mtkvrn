@@ -1,4 +1,15 @@
-# Matematik Evreni – Erdem ve Çiko (v55 deneme)
+# Matematik Evreni – Erdem ve Çiko (v56 deneme)
+
+## v56 (13 Kasım 2026)
+- Erdem'in kullanıcı tarafından oluşturulan **18 yeni 3D karakter sprite görseli** oyuna bağlandı: 8 yürüyüş karesi (sağ-sol adımlar), 6 zıplama aşaması ve 4 yön değiştirme pozu.
+- Görseller tek bir AVIF atlası olarak `erdem-v56-atlas.js` içinde dağıtılıyor. 4 sütun x 5 satırlık düzen; her kare eşit kaynak dikdörtgeninden çizilir.
+- Yürüyüş döngüsü, saniyeye sabitlenmek yerine karakterin ilerlediği mesafeye bağlıdır: 27 dünya biriminde bir kare, 252 birim/saniye hızda yaklaşık 1,17 tam yürüyüş döngüsü/saniye ve yaklaşık 2,3 adım/saniye.
+- Ayak tabanı şeffaf görselde ölçülerek her yürüyüş pozunda aynı zemine hizalanır. Hareket sırasında karakterin eni değiştirilmez.
+- Zıplama yükseliş, zirve ve iniş durumuna göre altı ayrı görseli kullanır.
+- Yön değiştirmede dört dönüş pozu kullanılır; iki yöne dönerken animasyon aynalanır, geçiş sırasında yatay sıkıştırma yapılmaz.
+- Çiko'nun v55 uçuş görselleri, ön/arka geçişleri ve uçuş temposu korunur; oyuncunun kayıtlı ilerlemesi silinmez.
+- Yeni Erdem görselleri yüklenemezse eski tam-vücut 3D sprite'larına otomatik geri dönüş uygulanır.
+- **Doğrulama:** GitHub içerik ve JavaScript sözdizimi kontrolü yapıldı. Telefon üzerinde gerçek zamanlı görüntüleme ile son kalite henüz doğrulanmadı.
 
 ## v55 (13 Kasım 2026)
 - Çiko'nun kullanıcı tarafından üretilen **18 yeni sprite görseli** oyuna entegre edildi: sekiz kanat çırpma, altı dikey uçuş, dört yön değiştirme karesi.
