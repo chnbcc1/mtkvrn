@@ -1,4 +1,11 @@
-# Matematik Evreni – Erdem ve Çiko (v46 deneme)
+# Matematik Evreni – Erdem ve Çiko (v47 deneme)
+
+## v47 (13 Kasım 2026)
+- Erdem'in farklı pozlarına uygulanan değişken kırpma alanları kaldırıldı; altı yürüyüş karesi ortak 220 × 343 piksel kaynak çerçevesiyle çiziliyor.
+- Yatay sıkışma/genişleme sorununun ana nedeni giderildi; kafa ve gövde aynı ölçekte kalıyor, yalnızca uzuvların pozları değişiyor.
+- Çiko'nun altı kanat karesi de ortak sabit kaynak çerçevesiyle çiziliyor.
+- v46'daki yavaşlatılmış yürüyüş ve okunabilir mobil üst bilgi alanları korundu.
+
 
 Dedenin Evi için 100% ücretsiz, tek HTML mobil keşif prototipi.
 
