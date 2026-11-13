@@ -543,14 +543,15 @@ function draw(){
   ctx.beginPath();ctx.arc(x,y,Math.max(1,p.r*baseScale),0,Math.PI*2);ctx.fill();
  }
  ctx.shadowBlur=0;ctx.globalAlpha=1;
- // Rear flight passes behind Erdem; front flight is drawn after him.
- if(!chiko.foreground)drawChiko(sx,sy,baseScale);
+ // Inspectable places are part of the scenery, always behind BOTH characters.
+ // Their position is fixed in world coordinates, even while Erdem and Çiko move.
  const inspection=inspectableNearby();
  if(inspection){
   const m=inspectScreenPosition(inspection);
-  // The marker is drawn before Erdem and Çiko: it never overlays their faces.
   paintInspectMagnifier(m.x,m.y);
  }
+ // Rear flight passes behind Erdem; front flight is drawn after him.
+ if(!chiko.foreground)drawChiko(sx,sy,baseScale);
  // Erdem: 12-phase two-step gait, fixed torso size, grounded feet and pause-before-turn.
  const hy=sy(hero.y),hx=sx(hero.x),heroH=259*baseScale,heroW=259*(BOY_FRAME_BOX.w/BOY_FRAME_BOX.h)*baseScale;
  const airborne=hero.y<ground-.4||Math.abs(hero.dy)>1;
