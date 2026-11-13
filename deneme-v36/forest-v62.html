@@ -9,7 +9,7 @@
 :root{--cream:#ffedcb;--gold:#f4cd77;--dark:#092536;--ink:#4b321f}
 *{box-sizing:border-box}
 html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0b2630;color:#fff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
-button{font:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button{font:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3px}
 #scene{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
 .tint{position:fixed;inset:0;pointer-events:none;background:linear-gradient(180deg,#0a262a66,transparent 27%,transparent 72%,#06281922)}
@@ -185,6 +185,7 @@ function hold(dir,on,id){
 }
 for(const [id,dir] of [['left',-1],['right',1]]){
  const btn=$('#'+id);
+ btn.addEventListener('contextmenu',e=>e.preventDefault());
  btn.addEventListener('pointerdown',e=>{e.preventDefault();if(modalOpen||!started)return;btn.setPointerCapture(e.pointerId);hold(dir,true,e.pointerId)});
  for(const type of ['pointerup','pointercancel','lostpointercapture'])btn.addEventListener(type,e=>hold(dir,false,e.pointerId));
 }
