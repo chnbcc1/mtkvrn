@@ -1,4 +1,16 @@
-# Matematik Evreni – Erdem ve Çiko (v57 deneme)
+# Matematik Evreni – Erdem ve Çiko (v58 deneme)
+
+## v58 (13 Kasım 2026) — sabit büyüteçli keşif
+- Hareket ederek karakterlerin önüne geçen **“İNCELE”** yazısı kaldırıldı.
+- İncelenebilir nesneye yaklaşınca onun dünya koordinatına bağlı küçük, dokunulabilir bir **büyüteç** belirir.
+- Büyütece dokunmak mevcut inceleme penceresini açar; klavyede E tuşuyla inceleme desteği korunur.
+- Büyüteç HTML üzerinde dolaşmaz, oyun sahnesine çizilir; kamera ilerlediğinde nesneye bağlı olarak hareket eder.
+- Büyüteç Erdem ve Çiko'dan **önce** çizildiği için karakterlerin üzerini kapatmaz.
+- Büyütecin merkezi sabittir; dikkat çekmek için yalnızca küçük bir ışık halkası nabız gibi parlar. Azaltılmış hareket tercihinde parlama sabit kalır.
+- v57 yüksek çözünürlüklü Erdem/Çiko animasyonları ve kayıtlı oyun ilerlemesi korunmuştur.
+- Kontrol: GitHub'a yazma, okunabilirlik ve JavaScript sözdizimi doğrulandı. iPhone üzerinde dokunma testi ayrıca yapılmalıdır.
+
+
 
 ## v57 (13 Kasım 2026) — yüksek çözünürlüklü animasyonlar
 - Mobil videoda Erdem ve Çiko'nun arka plana kıyasla bulanık görünmesinin kaynağı belirlendi: eski Erdem atlasının 140×218 kareleri aşırı sıkıştırılmış, Çiko atlası ise yalnızca 64×64 karelerden oluşuyordu.
