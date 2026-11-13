@@ -1,4 +1,14 @@
-# Matematik Evreni – Erdem ve Çiko (v50 deneme)
+# Matematik Evreni – Erdem ve Çiko (v51 deneme)
+
+## v51 (13 Kasım 2026)
+- Hatalı tek-bacak yürüyüş görsellerinin ve ters çevrilmiş alt-gövde hilesinin yerine, oyun açılırken şeffaf kanvasta oluşturulan **12 yeni yürüyüş karesi** devreye alındı.
+- Erdem'in tanınan yüzü, saçı, gözlüğü, kıyafeti ve çantası mevcut orijinal görsel kaynaktan korunurken, sağ/sol bacak ve botlar ayrı, zıt fazlarda hareket ettirildi.
+- Kalkış, yükselme, tepe ve iniş için 4 yeni zıplama pozu oluşturuldu; adım atış hızına bağlı ilerleme ve ortak ayak taban çizgisi kullanıldı.
+- Önceki Çiko ön/arka serbest uçuşu, okunabilir HUD ve kullanıcı ilerlemesi korunmuştur.
+- Bunlar yüksek çözünürlüklü 3D yeniden render değil; program tarafından orijinal üst gövde ve çizim katmanlarıyla oluşturulan yeni 2D raster animasyon kareleridir.
+- **Kontrol:** GitHub kod bütünlüğü ve JavaScript sözdizimi doğrulandı; mobil cihazdaki görsel sonuç ayrıca test edilmelidir.
+
+
 
 ## v50 (13 Kasım 2026)
 - Çiko'nun Erdem'in kafasına sabitlendiği hareket kaldırıldı: yumuşak takipli, yavaş döngülü sağ-sol ve yukarı-aşağı serbest uçuş eklendi.
