@@ -1,8 +1,14 @@
-# Matematik Evreni – Erdem ve Çiko (v41 deneme)
+# Matematik Evreni – Erdem ve Çiko (v46 deneme)
 
 Dedenin Evi için 100% ücretsiz, tek HTML mobil keşif prototipi.
 
-## v41 yenilikleri
+## v46 (13 Kasım 2026)
+- Mobil ekranda üst bilgi ve yönlendirme alanları güvenli bölgeye indirildi, kontrastları artırıldı.
+- Erdem'in altı kareli yürüyüş döngüsü yaklaşık 22'den 8 kare değişimi/saniyeye düşürüldü (252 birim/sn hızda).
+- Yürüme, zıplama ve yere inişte yatay esneme kaldırılarak karakterin genişliği sabitlendi.
+- Çiko ve önceki oyun ilerlemesi sistemi korundu.
+
+## Önceki v41 yenilikleri
 - Erdem'in başlangıcı çiçekli ön plandan toprak yola alındı; ayak hizası güncellendi
 - Konuşma portresinde tam boy sprite yerine yüz kadrajı kullanıldı
 - Erdem ve Çiko için 6 ana poz + 6 ara hareket pozu: 12 karelik animasyon döngüsü
