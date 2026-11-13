@@ -1,4 +1,15 @@
-# Matematik Evreni – Erdem ve Çiko (v60 deneme)
+# Matematik Evreni – Erdem ve Çiko (v61 deneme)
+
+## v61 (13 Kasım 2026) — Orman Patikası oynanabilir ilk sahne
+- [Oynanabilir orman patikası](./forest-v61.html) bölüm 1 atlasındaki **Eski gözlemevine git** eylemine bağlandı. Eski metin paneli yerine yeni bir oyun ekranı açılır.
+- Erdem sağa/sola yürüyebilir ve zıplayabilir; Çiko ayrı uçuş hareketini sürdürür. Her iki karakterin v57 yüksek çözünürlüklü animasyon atlasları kullanılır.
+- Parallax tepeler, ağaçlar, dere, tahta geçişi, patika ve gözlemevi girişini gösteren kodla çizilmiş ilk **oynanabilir orman taslağı** hazırlandı. Nihai yüksek detaylı arka plan resimleri henüz tamamlanmış değildir.
+- Dere üzerindeki geçiş **ölçme problemiyle** açılır. Kolay, orta ve zor seçeneklerinde farklı matematik soruları; yanlış cevapta yeniden deneme ve kısa ipucu desteği vardır.
+- Oyuncu problemi çözmeden köprüyü geçemez. Doğru cevapla köprü çizilir, yola devam edilir ve gözlemevi kapısına ulaşılabilir. Kapıda sabit büyüteçli kısa inceleme bulunur.
+- Oyun kayıtları aynı `mathverse-v40-investigation` anahtarı altında korunur. Bölüm 2 için `chapter2.stage`, `x`, `difficulty`, `puzzleSolved`, `reachedGate` alanları eklenmiştir.
+- **Yeni araştırma başlat** bölüm 2 ilerlemesini de temizler; bölüm 1 kayıtları normal kullanımda korunur.
+- Bölüm 2 kapısının arkası, ana salon ve gözlem odası sonraki sürümlerde oynanabilir hâle getirilecektir.
+- JavaScript sözdizimi, sahneye geçiş bağı, yanıt anahtarları, kayıt mantığı kontrol edilmiştir. Telefon üzerinde canlı görsel ve dokunmatik test ayrıca gereklidir.
 
 ## v60 (13 Kasım 2026) — sadeleştirilmiş notlar ve Bölüm 2 hazırlığı
 - "Açılış konuşmasını yeniden dinle" düğmesi ve ilişkili tekrar oynatma kodu kaldırıldı. İlk açılış konuşması ilk ziyaretinde hâlâ çalışır.
