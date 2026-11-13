@@ -243,13 +243,14 @@ const OPENING_LINES=[
 $('#start').onclick=()=>{
  // Resume saved playable chapter rather than forcing the user back to the house.
  const goHome=new URLSearchParams(location.search).get('scene')==='home';
- let saveStage=null;
- try{saveStage=(JSON.parse(localStorage.getItem(SAVE_KEY)||'{}')||{}).chapter2||null}catch(e){}
- if(!goHome&&gameOver&&chapter2EntrySeen&&saveStage&&saveStage.stage==='forest-path'){
+ let saveStage=null,latestState={};
+ try{latestState=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}')||{};saveStage=latestState.chapter2||null}catch(e){}
+ if(!goHome&&gameOver&&chapter2EntrySeen&&saveStage&&saveStage.stage==='forest-path'&&latestState.activeScene!=='home'){
   location.assign('./forest-v62.html?v=62&resume=1');
   return;
  }
  const firstVisit=!introSeen&&!found.size&&!visitedStudy&&!gameOver;
+ if(goHome){try{latestState.activeScene='home';localStorage.setItem(SAVE_KEY,JSON.stringify(latestState))}catch(e){}}
  started=true;introSeen=true;persist();$('#intro').hidden=true;
  refreshUI();clearHold();if(firstVisit)announce(OPENING_LINES);
 };
