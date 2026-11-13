@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#091c33"><meta name="apple-mobile-web-app-capable" content="yes"><title>v61 · Matematik Evreni · Erdem ve Çiko</title>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#091c33"><meta name="apple-mobile-web-app-capable" content="yes"><title>v62 · Matematik Evreni · Erdem ve Çiko</title>
 <style>
 :root{--gold:#ffdd86;--cream:#fff4d9;--line:rgba(255,234,181,.37);--wood:#704527;--dark:#0a233a}*{box-sizing:border-box}html,body{height:100%;margin:0;background:#07182a;color:#fff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;overflow:hidden}button{font:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipulation;cursor:pointer}button:focus-visible{outline:3px solid #ffe79c;outline-offset:3px}#game{position:fixed;inset:0;overflow:hidden}#scene{width:100%;height:100%;display:block;touch-action:none;background:linear-gradient(#b3daee 40%,#a6c579)}.film{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(3,21,35,.22),transparent 23%,transparent 72%,rgba(0,25,25,.28));box-shadow:inset 0 0 70px #13293750}.hud{position:absolute;z-index:4;left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right));top:max(12px,env(safe-area-inset-top));display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.chip{background:#102a41bb;border:1px solid #ffe4b564;box-shadow:0 10px 26px #0b1c2c55,inset 0 1px #fff3;border-radius:15px;padding:10px 13px;backdrop-filter:blur(8px);text-shadow:0 2px 5px #0008}.chapter b{display:block;font-size:13px;letter-spacing:.3px}.chapter span{display:block;font-size:11px;color:#f7e6c7;margin-top:3px}.rightBtns{display:flex;align-items:center;gap:7px}.round{width:45px;height:45px;border:1px solid #ffe4b570;border-radius:14px;background:#10283bcc;color:#ffefc7;font-size:20px;box-shadow:0 4px 16px #0617245c}.clues{font-size:13px;font-weight:900;white-space:nowrap}.clues small{font-size:10px;font-weight:500;display:block;color:#ffecb8}.tip{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(122px + env(safe-area-inset-bottom));z-index:3;border-radius:30px;padding:10px 16px;background:linear-gradient(135deg,#fff0c7,#ffd98e);color:#543210;font-weight:900;letter-spacing:.2px;box-shadow:0 8px 18px #08211975;white-space:nowrap;pointer-events:none;max-width:93%;overflow:hidden;text-overflow:ellipsis;font-size:13px;transition:opacity .2s}.tip[hidden]{display:none}.controls{position:absolute;z-index:5;left:max(15px,env(safe-area-inset-left));right:max(15px,env(safe-area-inset-right));bottom:max(15px,env(safe-area-inset-bottom));display:flex;justify-content:space-between;gap:12px;align-items:flex-end;pointer-events:none}.move{display:flex;gap:10px}.controls button{pointer-events:auto;min-width:72px;height:73px;padding:8px 14px;border-radius:21px;color:#fff0c9;font-weight:1000;font-size:22px;background:linear-gradient(165deg,#224b64e8,#0b2e43e8);border:2px solid #ffedb278;box-shadow:0 6px 0 #082b35bb,0 10px 25px #071d29a8;user-select:none;-webkit-user-select:none}.controls button.pressed,.controls button:active{background:#4c8e94;transform:translateY(3px);box-shadow:0 3px 0 #06242ca9}.actions{display:flex;gap:9px;align-items:center}.controls .actionBtn{width:98px;min-width:82px;font-size:13px}.controls .interact{background:linear-gradient(#fce5a8,#ffc26e);color:#5b3b18;border-color:#fff0b9}.controls .interact:disabled{opacity:.65;filter:grayscale(.6)}.veil{position:absolute;inset:0;z-index:9;background:#08192cab;display:grid;place-items:center;overflow:auto;padding:max(15px,env(safe-area-inset-top)) 14px max(15px,env(safe-area-inset-bottom));backdrop-filter:blur(8px)}.veil[hidden]{display:none}.panel{width:min(100%,530px);max-height:calc(100dvh - 32px);overflow:auto;border:1px solid #ffde976b;border-radius:28px;padding:clamp(19px,4vw,30px);background:linear-gradient(152deg,rgba(37,77,90,.96),rgba(13,40,57,.97) 70%);box-shadow:0 25px 80px #051b32ac,inset 0 1px #fff3;text-align:center}.eyebrow{display:block;color:#f4d59f;font-size:11px;letter-spacing:2px;font-weight:900}.panel h1{font-family:Georgia,serif;font-weight:900;line-height:1;margin:13px 0;color:#ffe3a0;font-size:clamp(40px,10vw,67px);text-shadow:0 4px #482c3f,0 7px 15px #07172c}.panel h1 em{display:block;font-size:.5em;font-style:normal;margin-top:9px;color:#fff5df}.panel p{font-size:15px;color:#e7f4e9;line-height:1.6;margin:17px 0}.start{width:100%;min-height:58px;border-radius:14px;border:2px solid #fff1b8;background:linear-gradient(#ffeaa5,#ffba68);color:#5e3b18;box-shadow:0 5px #ac7138;font-weight:1000;font-size:17px}.start:active{transform:translateY(3px);box-shadow:0 2px #ac7138}.points{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}.points span{border-radius:20px;background:#173a4aba;border:1px solid #bde6bf56;padding:8px 11px;font-size:11px;font-weight:700;color:#e1f4e8}.subtle{font-size:12px!important;color:#d2e5d8!important}.dialogue{position:absolute;z-index:7;left:50%;transform:translateX(-50%);bottom:calc(121px + env(safe-area-inset-bottom));width:min(650px,calc(100% - 24px));border-radius:22px;background:linear-gradient(155deg,rgba(253,243,213,.99),rgba(255,219,156,.99));color:#45311e;border:2px solid #a77a3f;box-shadow:0 9px 35px #071824a8;display:flex;align-items:center;gap:10px;padding:15px 15px 15px 12px}.dialogue[hidden]{display:none}.talkAvatar{width:57px;height:57px;background:#efe4b0;border:3px solid #bd9250;border-radius:50%;display:grid;place-items:center;font-size:32px;flex-shrink:0}.say{flex:1;min-width:0}.say b{font-size:12px;color:#85501b;letter-spacing:1px}.say p{font-size:14px;margin:5px 0 0;line-height:1.36}.advance{width:45px;min-width:45px;height:44px;border:1px solid #a88347;border-radius:12px;background:#8b6132;color:white;font-size:22px}.modalPanel{width:min(100%,520px);max-height:calc(100dvh - 40px);overflow:auto;background:linear-gradient(145deg,#f8e7bd,#e1c18a);color:#47301f;border:7px ridge #966939;border-radius:20px;box-shadow:0 22px 95px #06182aad;padding:24px 19px;text-align:left}.modalPanel h2{font-family:Georgia,serif;margin:0 0 12px;font-size:29px}.modalPanel p{line-height:1.6}.note{font-family:Georgia,serif;background:#fff7decc;border-left:5px solid #b68a4d;padding:15px 16px;line-height:1.6;border-radius:5px;white-space:pre-line}.modalClose{background:#2a5d56;color:#fff3df;border:0;border-radius:12px;padding:13px 17px;font-weight:900;width:100%;min-height:48px;margin-top:18px}.guide{padding:10px 13px;border-radius:13px;background:#153449c7;color:#fff3c9;font-weight:700;font-size:13px;max-width:min(550px,calc(100% - 25px));position:absolute;z-index:3;top:calc(78px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);text-align:center;pointer-events:none;opacity:.92}.guide[hidden]{display:none}.soundIcon{font-size:14px}.copyright{font-size:10px;color:#d2e6d6;opacity:.85;margin:13px 0 0}.credits{display:block;text-align:center;margin-top:10px;font-size:11px;color:#d5dfd5}@media (max-width:460px){.hud{gap:5px}.chip{padding:8px 9px}.chapter b{font-size:11px}.chapter span{font-size:10px}.rightBtns{gap:5px}.round{width:42px;height:42px;font-size:18px}.clues{font-size:11px}.controls button{min-width:61px;height:65px;border-radius:18px}.controls .actionBtn{width:75px;min-width:69px;font-size:11px}.dialogue{gap:7px;padding:12px 10px}.talkAvatar{width:44px;height:44px;font-size:25px}.say p{font-size:12px}.advance{width:39px;min-width:39px}.guide{top:calc(75px + env(safe-area-inset-top));font-size:11px;padding:8px}}@media (max-height:520px){.panel{padding:12px 24px}.panel h1{font-size:40px}.panel p{margin:8px 0}.points{display:none}.dialogue{bottom:90px}.controls button{height:56px;min-width:58px}.tip{bottom:96px}.guide{display:none}}
 
@@ -184,17 +184,17 @@ function persist(){
 }
 function guidance(){
  if(gameOver)return 'Erdem sıradaki durağın eski gözlemevi olduğuna karar verdi.';
- if(visitedStudy)return 'Dedenin açık defteri ve masadaki atlası incele.';
+ if(visitedStudy)return 'Dedenin açık defteri ve masadaki haritaya bak.';
  return 'Dede evde yok. Gözüne takılan ayrıntılara yaklaşıp incele.';
 }
 function refreshUI(){
  $('#score').textContent=gameOver?'YENİ YOL':visitedStudy?'BAĞLANTI ARA':found.size>0?'İNCELEME':'BAŞLANGIÇ';
  $('#guide').textContent=guidance();
  const resumed=introSeen||found.size>0||visitedStudy||gameOver;
- $('#start').textContent=gameOver?'ARAŞTIRMAYA DÖN ▶':resumed?'KALDIĞIN YERDEN DEVAM ▶':'MACERAYA BAŞLA ▶';
+ $('#start').textContent=gameOver?'KALDIĞIN YERDEN DEVAM ▶':resumed?'KALDIĞIN YERDEN DEVAM ▶':'MACERAYA BAŞLA ▶';
  $('#newGame').hidden=!resumed;
  const description=$('#intro').querySelector('.panel > p:not(.subtle)');
- if(description)description.textContent=gameOver?'Erdem atlasın üzerindeki üç halkayı gördü ve eski gözlemevine gitmeye karar verdi.':resumed?'Topladığın ipuçları seni bir sonuca yaklaştırıyor. Araştırmaya devam edebilirsin.':'Erdem yaz tatili için geldi ama dedesi evde yok. Çiko da onu dünden beri görmemiş.';
+ if(description)description.textContent=gameOver?'Erdem haritanın üzerindeki üç halkayı gördü ve eski gözlemevine gitmeye karar verdi.':resumed?'Topladığın ipuçları seni bir sonuca yaklaştırıyor. Araştırmaya devam edebilirsin.':'Erdem yaz tatili için geldi ama dedesi evde yok. Çiko da onu dünden beri görmemiş.';
 }
 function resetGame(){
  if(!confirm('Bulduğun izler silinsin ve macera en baştan başlasın mı?'))return;
@@ -241,6 +241,14 @@ const OPENING_LINES=[
  {who:'Erdem',text:'Önce etrafa bakalım. Belki nerede olduğunu gösteren bir iz vardır.'}
 ];
 $('#start').onclick=()=>{
+ // Resume saved playable chapter rather than forcing the user back to the house.
+ const goHome=new URLSearchParams(location.search).get('scene')==='home';
+ let saveStage=null;
+ try{saveStage=(JSON.parse(localStorage.getItem(SAVE_KEY)||'{}')||{}).chapter2||null}catch(e){}
+ if(!goHome&&gameOver&&chapter2EntrySeen&&saveStage&&saveStage.stage==='forest-path'){
+  location.assign('./forest-v62.html?v=62&resume=1');
+  return;
+ }
  const firstVisit=!introSeen&&!found.size&&!visitedStudy&&!gameOver;
  started=true;introSeen=true;persist();$('#intro').hidden=true;
  refreshUI();clearHold();if(firstVisit)announce(OPENING_LINES);
@@ -263,16 +271,17 @@ const reviewText=()=>{
  const seen=points.filter(p=>found.has(p.id));
  const evidence=seen.length?seen.map(p=>`<div class="evidence"><strong>${p.name}</strong><div>${p.text}</div>${thoughtMarkup(p.thought)}</div>`).join(''):'<p>Henüz kaydettiğin bir gözlem yok.</p>';
  const research=visitedStudy?`<div class="evidence"><strong>Profesörün açık araştırma defteri</strong><div>${RESEARCH_TEXT}</div></div>`:'';
- const next=gameOver?`<div class="evidence"><strong>🔭 Sıradaki durak: Eski gözlemevi</strong><div>Atlasın kenarındaki üç halka işaretini gördükten sonra Erdem oraya gitmeye karar verdi.</div></div><button id="openChapterTwo" class="deduceBtn" type="button">🔭 Eski gözlemevine git</button>`:'';
- return `<p>Bulduğun ipuçları:</p>${evidence}${research}${next}${visitedStudy&&!gameOver?'<button id="openMap" class="deduceBtn" type="button">🔎 Atlası incele</button>':''}<button id="resetProgress" type="button">↺ Yeni araştırma başlat</button>`;
+ const next=gameOver?`<div class="evidence"><strong>🔭 Sıradaki durak: Eski gözlemevi</strong><div>Haritanın kenarındaki üç halka işaretini gördükten sonra Erdem oraya gitmeye karar verdi.</div></div><button id="openChapterTwo" class="deduceBtn" type="button">🔭 Eski gözlemevine git</button>`:'';
+ return `<p>Bulduğun ipuçları:</p>${evidence}${research}${next}${visitedStudy&&!gameOver?'<button id="openMap" class="deduceBtn" type="button">🔎 Haritaya bak</button>':''}<button id="openJourneyMap" class="deduceBtn" type="button">🗺️ Macera haritasını aç</button><button id="resetProgress" type="button">↺ Yeni araştırma başlat</button>`;
 };
 $('#journalBtn').onclick=()=>{if(!started)return;openInfo('Erdem’in notları',reviewText())};
 $('#modalText').addEventListener('click',event=>{
  const reset=event.target.closest('#resetProgress'), nextChapter=event.target.closest('#openChapterTwo');
- const map=event.target.closest('#openMap');
+ const map=event.target.closest('#openMap'),journey=event.target.closest('#openJourneyMap');
  if(reset){resetGame();return;}
  if(nextChapter){openObservatoryEntry();return;}
  if(map){openMap();return;}
+ if(journey){location.assign('./map-v62.html?from=home');return;}
 });
 $('#closeModal').onclick=closeModal;$('#nextTalk').onclick=advanceTalk;
 function jump(){
@@ -305,7 +314,7 @@ function openObservatoryEntry(){
  if(!gameOver)return;
  chapter2EntrySeen=true;persist();refreshUI();
  // Open the playable v61 forest route rather than the old text-only placeholder.
- location.assign('./forest-v61.html?v=61');
+ location.assign('./forest-v62.html?v=62&resume=1');
 }
 function openMap(){
  // One authored discovery scene — there are no alternate destinations to select.
@@ -313,7 +322,7 @@ function openMap(){
  const threeRingsKnown=found.has('shed');
  gameOver=true;persist();refreshUI();
  const reaction=threeRingsKnown?'Az önce gördüğüm üç halkayla ilgili olabilir mi?':'Üç halka... Bu işaretin anlamı ne olabilir?';
- openInfo('Eski atlas',`<p>Erdem eski atlasın sayfalarını çevirirken gözlemevinin yanındaki küçük bir işareti fark etti.</p>
+ openInfo('Eski harita',`<p>Erdem eski haritanın sayfalarını çevirirken gözlemevinin yanındaki küçük bir işareti fark etti.</p>
   <div class="atlasFind" role="img" aria-label="Eski gözlemevinin yanında üç halka işareti">
    <span>🔭 Eski gözlemevi</span><span class="threeRings" aria-hidden="true"><i></i><i></i><i></i></span>
   </div>
@@ -331,8 +340,8 @@ function interact(){
    <div class="note">${RESEARCH_TEXT}
 
 Yazı burada kesilmiş.</div>
-   <p>Defterin köşesine üç halka çizilmiş. Masada da açık bir atlas var.</p>
-   <button class="deduceBtn" id="openMap" type="button">🔎 Atlası incele</button>`);
+   <p>Defterin köşesine üç halka çizilmiş. Masada da açık bir harita var.</p>
+   <button class="deduceBtn" id="openMap" type="button">🔎 Haritaya bak</button>`);
   return;
  }
  const first=!found.has(obj.id);
