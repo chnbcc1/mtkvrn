@@ -1,4 +1,18 @@
-# Matematik Evreni – Erdem ve Çiko (v58 deneme)
+# Matematik Evreni – Erdem ve Çiko (v59 deneme)
+
+## v59 (13 Kasım 2026) — ipucu düşünceleri ve tek yönlü atlas keşfi
+- İncelenen ipuçlarındaki tekrar eden “Erdem bu ayrıntıyı aklında tutuyor.” cümlesi kaldırıldı; her ipucunun altında küçük bir **💭 Erdem** düşüncesi gösteriliyor.
+- Bahçe kapısının metni “Kapı aralık. Anahtar da üzerinde duruyor.” oldu. Erdem “Dedem anahtarı almadan kapıyı açık bırakmazdı.” diye düşünüyor.
+- Alet çantasının bilgi metni korundu; Erdem “Bu işareti daha önce hiç görmemiştim.” diyor.
+- Pencere pervazının bilgi metni korundu; Erdem yalnızca “İlginç...” diyor.
+- Çalışma odasında “Bu işaret başka bir yerde daha karşına çıkmış olabilir.” yönlendirmesi kaldırıldı.
+- Atlas artık köy meydanı/nehir kıyısı/gözlemevi şeklinde yanlış yön seçimine izin vermiyor; **eski gözlemevinin yanındaki üç halka** işaretini gösterip Erdem’in gözlemevine gitme kararını anlatıyor.
+- Alet çantası önceden incelendiyse düşünce “Az önce gördüğüm üç halkayla ilgili olabilir mi?”; henüz bulunmadıysa Erdem bilmediği bir izi hatırlamış gibi davranmıyor.
+- “Erdem’in notları” ekranında ipuçları ve düşünceler birlikte gösteriliyor; atlas incelendiyse sıradaki durak eski gözlemevi olarak kaydediliyor.
+- v58 sabit büyüteç, v57 yüksek çözünürlüklü Erdem/Çiko animasyonları ve mevcut kayıt anahtarı korundu. Tamamlanan atlas keşfi kayıtlardan tekrar okunabiliyor.
+- Kod sözdizimi ve GitHub kaynak doğrulaması yapıldı. iPhone’da gerçek dokunma ve ekran testi ayrıca gereklidir.
+
+
 
 ## v58 (13 Kasım 2026) — sabit büyüteçli keşif
 - Hareket ederek karakterlerin önüne geçen **“İNCELE”** yazısı kaldırıldı.
