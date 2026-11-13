@@ -1,4 +1,14 @@
-# Matematik Evreni – Erdem ve Çiko (v53 deneme)
+# Matematik Evreni – Erdem ve Çiko (v55 deneme)
+
+## v55 (13 Kasım 2026)
+- Çiko'nun kullanıcı tarafından üretilen **18 yeni sprite görseli** oyuna entegre edildi: sekiz kanat çırpma, altı dikey uçuş, dört yön değiştirme karesi.
+- Bu görseller 6 sütun x 3 satırdan oluşan tek bir şeffaf, sıkıştırılmış AVIF atlasında yayımlandı (`chiko-v55-atlas.js`).
+- Oyun kanat çırpma, yükselme ve dönüş durumuna göre ayrı kareler seçer; tüm kareler aynı ölçekte çizilir.
+- Kanat çırpma temposu normal hareket sırasında yaklaşık 1,9 döngü/s, dururken 1,5 döngü/s, yükselirken 2,35 döngü/s olarak ayarlandı.
+- Çiko Erdem'in önünden ve arkasından uçmaya devam eder; kuş görselleri yüklenmezse eski sprite'lara geri döner.
+- Kullanıcı kayıtları korunur. Kod bütünlüğü ve JavaScript sözdizimi doğrulandı; canlı cihazda görsel kontrol hâlâ gereklidir.
+
+
 
 ## v53 (13 Kasım 2026)
 - v52 video incelemesi: Çubuk bacak sorunu giderilmiş, ancak geniş adımlar, yerden kopan botlar ve bazı karelerde çift/soluk karakter görüntüsü devam ediyor.
