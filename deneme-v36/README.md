@@ -1,4 +1,16 @@
-# Matematik Evreni – Erdem ve Çiko (v49 deneme)
+# Matematik Evreni – Erdem ve Çiko (v50 deneme)
+
+## v50 (13 Kasım 2026)
+- Çiko'nun Erdem'in kafasına sabitlendiği hareket kaldırıldı: yumuşak takipli, yavaş döngülü sağ-sol ve yukarı-aşağı serbest uçuş eklendi.
+- Çiko önde uçarken Erdem'in ön katmanında, arkaya geçtiğinde arka katmanda çizilir. Sadece yanında değil, önünden ve arkasından geçebilir.
+- Çiko yön değiştirebilir ve kanat çırpışına ilave hafif kanat hareketi ve yatış eklendi; gövdesi yatay esnetilmez.
+- İncele balonu, Çiko'ya çok yaklaştığında yana/aşağı taşınır.
+- Erdem'in yürüyüş kare değişimi yavaşlatıldı, yön dönüşünde küçük ağırlık aktarma ve zıplamada kalkış/yükselme/tepe/iniş ayrımı eklendi.
+- Kaydedilmiş oyun ilerlemesi korunur.
+
+**Animasyon notu:** Erdem'in mevcut 6 kaynak yürüyüş resmi tek bacak ağırlıklı olduğundan doğal karşıt bacak ve kol hareketinin tam çözümü için gerçek ikinci adım görselleri gerekir. Bu sürüm mevcut görsellerin çizim ve zamanlamasını iyileştirir.
+
+
 
 ## v49 (13 Kasım 2026)
 - Erdem'in yürüyüşü 12 adımlık sağ-sol bacak döngüsüne dönüştürüldü (alt gövde ikinci yarım döngüde karşıt pozda çizilir).
