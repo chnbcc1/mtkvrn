@@ -50,7 +50,7 @@ const forestUnlocked=homeDone;
 const gateUnlocked=forestUnlocked&&Boolean(stage.reachedGate);
 const gateCurrent=gateUnlocked;
 const forestCurrent=forestUnlocked&&!gateUnlocked;
-const current=!forestUnlocked?'home':gateCurrent?'gate':'forest';
+const current=!forestUnlocked?'home':state.activeScene==='home'?'home':gateCurrent?'gate':'forest';
 const dest={
  home:'./?v=62&scene=home',
  forest:'./forest-v62.html?v=62&resume=1',
@@ -62,12 +62,12 @@ function setStop(id,status,label,locked){
  el.disabled=Boolean(locked);
  el.setAttribute('aria-current',status==='current'?'step':'false');
  document.getElementById(id+'Status').textContent=label;
- el.onclick=()=>{if(!locked)location.assign(dest[id])};
+ el.onclick=()=>{if(!locked){try{const latest=JSON.parse(localStorage.getItem(STORE)||'{}')||{};latest.activeScene=id==='home'?'home':'forest-path';localStorage.setItem(STORE,JSON.stringify(latest))}catch(e){}location.assign(dest[id])}};
 }
 setStop('home',current==='home'?'current':'done',homeDone?'İpuçları tamamlandı · İstersen tekrar ziyaret et':'İlk macera · İpuçlarını araştır',false);
 setStop('forest',current==='forest'?'current':forestUnlocked?'done':'locked',forestUnlocked?(stage.puzzleSolved?'Köprü tamamlandı · Yol açık':'Köprüye doğru devam et'):'Dedenin evindeki harita keşfedilince açılır',!forestUnlocked);
-setStop('gate',current==='gate'?'current':'locked',gateUnlocked?'Kapıya ulaşıldı · İncelemeye devam et':'Orman patikası tamamlanınca açılır',!gateUnlocked);
+setStop('gate',current==='gate'?'current':gateUnlocked?'done':'locked',gateUnlocked?'Kapıya ulaşıldı · İncelemeye devam et':'Orman patikası tamamlanınca açılır',!gateUnlocked);
 setStop('inside','locked','Gözlemevi girişi tamamlandıktan sonra açılacak',true);
-document.querySelector('#back').onclick=()=>location.assign(from==='forest'&&forestUnlocked?dest.forest:dest.home);
+document.querySelector('#back').onclick=()=>{const id=from==='forest'&&forestUnlocked?'forest':'home';document.querySelector('#'+id).click()};
 document.querySelector('#summary').textContent=current==='home'?'Şu an Dedenin Evi macerasındasın.':current==='forest'?'Şu an Orman Patikası macerasındasın. Köprü görevi: '+(stage.puzzleSolved?'çözüldü.':'bekliyor.'):'Şu an Gözlemevi Girişi durağındasın. Kapıyı inceleyebilirsin.';
 </script></body></html>
