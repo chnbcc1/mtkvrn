@@ -1,4 +1,15 @@
-# Matematik Evreni – Erdem ve Çiko (v56 deneme)
+# Matematik Evreni – Erdem ve Çiko (v57 deneme)
+
+## v57 (13 Kasım 2026) — yüksek çözünürlüklü animasyonlar
+- Mobil videoda Erdem ve Çiko'nun arka plana kıyasla bulanık görünmesinin kaynağı belirlendi: eski Erdem atlasının 140×218 kareleri aşırı sıkıştırılmış, Çiko atlası ise yalnızca 64×64 karelerden oluşuyordu.
+- **Erdem:** Orijinal üretim görsellerinden şeffaf 1.040×2.025 atlas (18 kare, her biri 260×405 px) hazırlandı. Kaynak AVIF 280.902 bayt; v56'daki 140×218 / düşük kalite atlasın yerini alır.
+- **Çiko:** Orijinal görsellerden 1.152×576 atlas (18 kare, her biri 192×192 px) hazırlandı. Kaynak AVIF 106.464 bayt; 64px eski karelerin yerini alır.
+- Eski animasyonlar yalnızca yeni HD görsellerin çözülememesi durumunda geri dönüş olarak tutulur.
+- Çizim çözünürlüğü Retina ekranlar için en fazla 3× cihaz piksel oranına yükseltildi. Karakterlerin oyun içindeki fiziksel boyutları ve hızları değiştirilmedi.
+- Çiko'nun ön/arka uçuşu, Erdem'in yürüme/zıplama/dönüş kareleri ve oyun kayıtları korunur.
+- Kayıt anahtarı değişmedi. Kod sözdizimi ve kaynak dosya bütünlüğü kontrol edildi; iPhone'daki görsel performans ayrıca doğrulanmalıdır.
+
+
 
 ## v56 (13 Kasım 2026)
 - Erdem'in kullanıcı tarafından oluşturulan **18 yeni 3D karakter sprite görseli** oyuna bağlandı: 8 yürüyüş karesi (sağ-sol adımlar), 6 zıplama aşaması ve 4 yön değiştirme pozu.
