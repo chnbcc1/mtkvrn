@@ -2,14 +2,14 @@
   "id": "./",
   "name": "Matematik Evreni – Işığı Geri Getir",
   "short_name": "Matematik Evreni",
-  "description": "27 görevli 9. sınıf matematik macerası. Üslü ve köklü işlemler.",
+  "description": "TÜBİTAK matematik macerası v44: Erdem ve Çiko.",
   "lang": "tr",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#07172e",
-  "theme_color": "#07172e",
+  "background_color": "#091c33",
+  "theme_color": "#091c33",
   "icons": [
     {
       "src": "./icons/icon-192.png",
