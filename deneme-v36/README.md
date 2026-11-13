@@ -1,4 +1,14 @@
-# Matematik Evreni – Erdem ve Çiko (v52 deneme)
+# Matematik Evreni – Erdem ve Çiko (v53 deneme)
+
+## v53 (13 Kasım 2026)
+- v52 video incelemesi: Çubuk bacak sorunu giderilmiş, ancak geniş adımlar, yerden kopan botlar ve bazı karelerde çift/soluk karakter görüntüsü devam ediyor.
+- İki farklı tam-vücut kareyi yarı şeffaf üst üste koyan geçişler kaldırıldı; karakter artık net, tek tam-vücut 3D görüntüsüyle çiziliyor.
+- Ayak tabanları her sprite'ın görünür son pikselinden ölçülerek zemin çizgisine göre hizalanıyor.
+- Yürüyüş karelerinin oynatım hızı yeniden düzenlendi.
+- İnceleme düğmesi hem Çiko hem de Erdem ile çakışmadan konumlandırılıyor.
+- Çiko'nun Erdem'in önünden/arkasından geçen serbest uçuşu ve oyuncu kayıtları korunuyor.
+- **Bilinen eksik:** Mevcut altı 3D yürüyüş görseli doğal sağ-sol bacak döngüsü için yeterli değil. Yeni, tutarlı sağ/sol pozlu 3D görseller olmadan bu sorun tam çözülmüş sayılmamalıdır.
+- GitHub kod/sözdizimi kontrolleri tamamlandı; gerçek telefonda görsel doğrulama gereklidir.
 
 ## v52 (13 Kasım 2026)
 - **Acil görsel düzeltme:** v51'de Erdem'e yapıştırılmış çubuk bacak, çizilmiş bot ve kesilmiş üst gövde yöntemi tamamen kaldırıldı.
