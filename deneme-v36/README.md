@@ -1,4 +1,10 @@
-# Matematik Evreni – Erdem ve Çiko (v47 deneme)
+# Matematik Evreni – Erdem ve Çiko (v48 deneme)
+
+## v48 (13 Kasım 2026)
+- Çiko'nun yerleşimi Erdem'in başının tam üstüne sabitlendi; yatay takip gecikmesi ve yana kaçma kaldırıldı.
+- Yürüyüş, yön değiştirme ve zıplama sırasında baş üstü mesafesi korunuyor; yalnızca hafif uçuş salınımı var.
+- Yerel oyun ilerlemesi ve önceki animasyon/kontrol düzenlemeleri korundu.
+
 
 ## v47 (13 Kasım 2026)
 - Erdem'in farklı pozlarına uygulanan değişken kırpma alanları kaldırıldı; altı yürüyüş karesi ortak 220 × 343 piksel kaynak çerçevesiyle çiziliyor.
