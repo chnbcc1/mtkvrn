@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#0b2732">
+<title>v61 · Orman Patikası · Matematik Evreni</title>
+<style>
+:root{--cream:#ffedcb;--gold:#f4cd77;--dark:#092536;--ink:#4b321f}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0b2630;color:#fff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+button{font:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3px}
+#scene{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.tint{position:fixed;inset:0;pointer-events:none;background:linear-gradient(180deg,#0a262a66,transparent 27%,transparent 72%,#06281922)}
+.hud{position:fixed;z-index:3;top:calc(max(12px,env(safe-area-inset-top)) + 20px);left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right));display:flex;gap:9px;align-items:start;justify-content:space-between;pointer-events:none}
+.chip,.iconBtn{background:#092738df;border:1px solid #f9e6b87a;border-radius:17px;box-shadow:0 7px 25px #001d2388,inset 0 1px #ffffff2a;backdrop-filter:blur(6px);color:#fff9ed}
+.chip{padding:10px 12px;max-width:65%;line-height:1.25;font-size:13px;font-weight:850;text-shadow:0 2px 6px #0008}
+.chip small{display:block;color:#f8dfab;font-size:11px;font-weight:500;margin-top:3px}
+.hudRight{display:flex;gap:7px;pointer-events:auto}.iconBtn{width:48px;height:48px;font-size:19px}
+.hint{position:fixed;z-index:2;left:50%;transform:translateX(-50%);top:calc(max(12px,env(safe-area-inset-top)) + 103px);max-width:min(440px,calc(100vw - 34px));background:#092b38da;border:1px solid #e4cea07f;border-radius:18px;padding:10px 15px;text-align:center;font-weight:700;font-size:13px;text-shadow:0 2px 5px #0019;pointer-events:none}
+.hint[hidden]{display:none}
+.controls{position:fixed;z-index:4;left:max(14px,env(safe-area-inset-left));right:max(14px,env(safe-area-inset-right));bottom:max(22px,env(safe-area-inset-bottom));display:flex;justify-content:space-between;align-items:end;pointer-events:none}
+.moves{display:flex;gap:12px}.ctrl{pointer-events:auto;min-width:72px;height:77px;border:2px solid #e5d1a37a;border-radius:24px;background:#143a50d9;color:#fff0c9;font-size:24px;font-weight:900;box-shadow:0 9px 22px #071b2388}
+.ctrl:active,.ctrl.pressed{background:#34657b}
+#jump{min-width:110px;font-size:15px}
+.screen{position:fixed;z-index:9;inset:0;background:#0717229e;backdrop-filter:blur(10px);display:grid;place-items:center;padding:max(20px,env(safe-area-inset-top)) 16px max(24px,env(safe-area-inset-bottom))}
+.screen[hidden]{display:none}
+.paper{width:min(530px,100%);max-height:min(84dvh,790px);overflow:auto;background:linear-gradient(156deg,#f7e7bb,#e9ca8f);border:5px solid #bf8548;outline:2px solid #523725;border-radius:27px;box-shadow:0 22px 70px #08171dcc;padding:22px 19px;color:var(--ink)}
+.paper h2{margin:0 0 12px;font-family:Georgia,serif;font-size:clamp(28px,7vw,38px);line-height:1.1}
+.paper h3{margin:14px 0 8px;font-size:17px}.paper p{line-height:1.55;margin:12px 0}
+.eyebrow{font-size:11px;letter-spacing:1.3px;font-weight:900;color:#926131}
+.statement{background:#fff4d6d6;border-left:5px solid #b28b4c;padding:14px;border-radius:11px;font-weight:650;line-height:1.5}
+.actions{display:grid;gap:9px;margin-top:15px}
+.primary,.answer,.secondary{width:100%;padding:14px;border-radius:14px;border:2px solid #b18a53;background:#fff2d0;color:#533724;font-weight:850;text-align:left;min-height:50px}
+.primary{background:#235e53;color:#fff;border-color:#347e6e;text-align:center}
+.secondary{text-align:center;background:#e1e8da}
+.answer:active{background:#e9d1a4}
+.answer[disabled]{opacity:.6;cursor:default}
+.feedback{min-height:30px;margin-top:12px;font-weight:750;color:#664026}
+.thought{border:1px solid #d2b27c;background:#fff5debd;border-radius:13px;padding:11px;margin:12px 0;font-size:14px}
+.footerNote{color:#684e33;font-size:12px;margin-top:12px}
+@media(max-height:590px){.hud{top:calc(max(5px,env(safe-area-inset-top)) + 4px)}.hint{top:80px}.ctrl{height:60px;min-width:60px}#jump{min-width:85px}.paper{max-height:90dvh}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="scene" aria-label="Erdem ve Çiko ile oynanabilir orman patikası"></canvas><div class="tint"></div>
+<div class="hud">
+ <div class="chip">🌲 BÖLÜM 2 · ORMAN PATİKASI<small id="progress">Eski gözlemevine doğru</small></div>
+ <div class="hudRight"><button class="iconBtn" id="journal" aria-label="Bölüm notlarını göster">📜</button><button class="iconBtn" id="home" aria-label="Dedenin evine dön">⌂</button></div>
+</div>
+<div class="hint" id="hint">Patikada ilerle; parlayan büyüteçleri incele.</div>
+<div class="controls">
+ <div class="moves"><button class="ctrl" id="left" aria-label="Sola yürü">◀</button><button class="ctrl" id="right" aria-label="Sağa yürü">▶</button></div>
+ <button class="ctrl" id="jump" aria-label="Zıpla">ZIPLA ↑</button>
+</div>
+<section class="screen" id="modal" hidden aria-modal="true" role="dialog">
+ <div class="paper">
+  <span class="eyebrow" id="eyebrow">MACERA</span>
+  <h2 id="modalTitle">Orman Patikası</h2>
+  <div id="modalContent"></div>
+  <div class="actions" id="modalActions"></div>
+  <div class="feedback" id="feedback" aria-live="polite"></div>
+ </div>
+</section>
+<script src="./erdem-v57-hd-atlas.js?v=57"></script>
+<script src="./chiko-v57-hd-atlas.js?v=57"></script>
+<script>
+'use strict';
+const SAVE_KEY='mathverse-v40-investigation';
+const W=3320,H=941,GROUND=728,BRIDGE_X=1640,GATE_X=3070;
+const canvas=document.querySelector('#scene'),ctx=canvas.getContext('2d',{alpha:false});
+const $=s=>document.querySelector(s);
+const erdem=new Image(),chiko=new Image();
+if(window.ERDEM_V57_HD_ATLAS)erdem.src=window.ERDEM_V57_HD_ATLAS;
+if(window.CHIKO_V57_HD_ATLAS)chiko.src=window.CHIKO_V57_HD_ATLAS;
+let backing={},approved=false,solved=false,reachedGate=false,difficulty='orta',heroX=360,heroY=GROUND,vy=0,travel=0,face=1,requested=0,activePointers=new Map(),camera=0,camReady=false,scale=1,vw=innerWidth,vh=innerHeight,dpr=1,last=0,clock=0,flyingX=365,flyingY=420,flyingFace=1,modalOpen=false,started=false,saveLastX=360,saveTimer=0,nearMarker=null,seenMarker=false;
+try{
+ backing=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}')||{};
+ approved=Boolean(backing.complete&&backing.visitedStudy);
+ const stage=backing.chapter2||{};
+ solved=Boolean(stage.puzzleSolved);
+ reachedGate=Boolean(stage.reachedGate);
+ difficulty=['kolay','orta','zor'].includes(stage.difficulty)?stage.difficulty:'orta';
+ heroX=Math.min(GATE_X+10,Math.max(310,Number(stage.x)||360));
+}catch(e){backing={};approved=false;}
+const QUESTIONS={
+ kolay:{text:'Dere üzerindeki açıklık 4 metredir. Elimizde 1,5 metre ve 1 metre uzunluğunda iki tahta var. Eksik uzunluk kaç metredir?',options:['1 metre','1,5 metre','2 metre','2,5 metre'],correct:1,hint:'Önce 1,5 + 1 işlemini yap, sonra toplamı 4 metreden çıkar.',why:'1,5 + 1 = 2,5 metre. 4 − 2,5 = 1,5 metre daha gerekli.'},
+ orta:{text:'Köprü için toplam 5,4 metrelik tahta gerekiyor. Elimizde 2,25 metre ve 1,4 metre uzunluğunda iki tahta var. Üçüncü tahta en az kaç metre olmalı?',options:['1,25 metre','1,65 metre','1,75 metre','2,15 metre'],correct:2,hint:'2,25 ile 1,40’ı topla. 5,40’tan bulduğun sonucu çıkar.',why:'2,25 + 1,40 = 3,65. 5,40 − 3,65 = 1,75 metre.'},
+ zor:{text:'Erdem’in haritasında eski köprünün uzunluğu 7,2 cm gösterilmiş. Ölçek 1:2500 ise köprünün gerçek uzunluğu kaç metredir?',options:['18 metre','72 metre','180 metre','1800 metre'],correct:2,hint:'Haritadaki 7,2 cm’yi 2500 ile çarp; santimetreyi metreye çevirmek için 100’e böl.',why:'7,2 × 2500 = 18.000 cm = 180 metredir.'}
+};
+function save(force=false){
+ if(!approved)return;
+ if(!force&&Math.abs(saveLastX-heroX)<35&&saveTimer<2)return;
+ saveLastX=heroX;saveTimer=0;
+ try{
+  const latest=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}')||{};
+  latest.chapter2EntrySeen=true;
+  latest.chapter2={...(latest.chapter2||{}),stage:'forest-path',x:Math.round(heroX),difficulty,puzzleSolved:solved,reachedGate};
+  localStorage.setItem(SAVE_KEY,JSON.stringify(latest));
+ }catch(e){}
+}
+function resize(){vw=innerWidth;vh=innerHeight;dpr=Math.min(devicePixelRatio||1,3);scale=Math.max(vh/H,vw/1450);canvas.width=Math.round(vw*dpr);canvas.height=Math.round(vh*dpr);canvas.style.width=vw+'px';canvas.style.height=vh+'px';camReady=false}
+addEventListener('resize',resize);resize();
+function openModal(title,content,eyebrow='BÖLÜM 2'){modalOpen=true;requested=0;activePointers.clear();updatePress();$('#modalTitle').textContent=title;$('#modalContent').innerHTML=content;$('#eyebrow').textContent=eyebrow;$('#modalActions').replaceChildren();$('#feedback').textContent='';$('#modal').hidden=false}
+function closeModal(){modalOpen=false;$('#modal').hidden=true;$('#modalActions').replaceChildren();$('#feedback').textContent='';last=0}
+function action(label,fn,variant='primary'){const b=document.createElement('button');b.type='button';b.className=variant;b.textContent=label;b.onclick=fn;$('#modalActions').appendChild(b);return b}
+function story(){
+ openModal('Orman Patikası','<p>Erdem atlası çantasına yerleştirdi. Çiko, tepeye uzanan patikanın üzerinde uçuyordu.</p><div class="thought">💭 <b>Erdem:</b> “Eski gözlemevine giden yol bu olmalı.”</div><p>Yürüyerek ilerle, gerekirse zıpla. Yol üzerinde karşılaşacağın sorunu ölçerek çöz.</p>');
+ action('Patikaya çık ▶',()=>{started=true;closeModal();save(true)});
+}
+function home(){save(true);location.assign('./?v=61&return=chapter1')}
+function journal(){
+ const title=reachedGate?'Gözlemevi kapısı':solved?'Köprü tamamlandı':'Orman patikası';
+ const note=reachedGate?'Erdem ve Çiko gözlemevinin girişine ulaştı.':solved?'Köprüyü ölçerek geçebilecekleri uzunluğu buldular.':'Erdem ve Çiko dere üzerindeki köprüyü incelemeye gidiyor.';
+ openModal('Erdem’in yol notları','<p><strong>'+title+'</strong></p><p>'+note+'</p><p>Köprü görevi: '+(solved?'Tamamlandı':'Henüz çözülmedi')+'</p>');
+ action('Yola dön',closeModal);
+ if(reachedGate)action('Gözlemevi kapısını incele',()=>{closeModal();reachGate()},'secondary');
+}
+function puzzle(showChoice=true){
+ if(solved){openModal('Köprü hazır','<p>Ölçüler tamamlandı. Erdem ve Çiko dereyi güvenle geçebilir.</p>');action('Yola devam et',closeModal);return}
+ const question=QUESTIONS[difficulty];
+ openModal('Tahta köprü','<p>Dere üzerindeki geçiş eksik. Çiko, kalan tahtaları gösterdi.</p><div class="thought">💭 <b>Erdem:</b> “Önce gereken uzunluğu hesaplamalıyım.”</div>');
+ const area=$('#modalContent');
+ const tabs=document.createElement('div');tabs.className='actions';tabs.style.gridTemplateColumns='repeat(3,1fr)';
+ for(const [id,label] of [['kolay','Kolay'],['orta','Orta'],['zor','Zor']]){
+  const b=document.createElement('button');b.className=id===difficulty?'primary':'secondary';b.textContent=label;b.style.minHeight='43px';b.style.padding='7px';b.onclick=()=>{difficulty=id;save(true);puzzle(false)};tabs.appendChild(b);
+ }
+ area.appendChild(tabs);
+ const statement=document.createElement('div');statement.className='statement';statement.style.marginTop='15px';statement.textContent=question.text;area.appendChild(statement);
+ const answers=document.createElement('div');answers.className='actions';area.appendChild(answers);
+ question.options.forEach((choice,i)=>{
+  const b=document.createElement('button');b.className='answer';b.textContent=choice;
+  b.onclick=()=>{
+   if(i!==question.correct){$('#feedback').textContent='Henüz değil. Tahtaların toplam uzunluğunu yeniden kontrol et.';return}
+   solved=true;save(true);
+   area.innerHTML='<p><strong>Doğru!</strong> '+question.why+'</p><p>Erdem gereken ölçüyü buldu; Çiko da geçişe yardım etti.</p><div class="thought">💭 <b>Erdem:</b> “Şimdi yolumuza devam edebiliriz.”</div>';
+   $('#modalTitle').textContent='Köprü tamamlandı';$('#feedback').textContent='';
+   $('#modalActions').replaceChildren();action('Karşıya geç ▶',closeModal);
+  };
+  answers.appendChild(b);
+ });
+ action('Kısa ipucu göster',()=>{$('#feedback').textContent=question.hint},'secondary');
+ action('Patikaya dön',closeModal,'secondary');
+}
+function reachGate(){
+ if(!reachedGate){reachedGate=true;save(true)}
+ openModal('Gözlemevi Kapısı','<p>Patika bitti. Erdem ve Çiko yüksek taş duvarların ardındaki eski gözlemevinin girişine ulaştı.</p><div class="thought">💭 <b>Erdem:</b> “Atlasta gördüğüm üç halka burada da var.”</div><p>Giriş kapısındaki işaret incelenmeyi bekliyor.</p>');
+ action('Gözlemevini dışarıdan incele',()=>{
+  $('#modalTitle').textContent='Üç halka işareti';
+  $('#modalContent').innerHTML='<p>Taş kapının üzerine yan yana üç halka oyulmuş. İşaretin altında soluk bir ölçü çizgisi var.</p><div class="thought">💭 <b>Erdem:</b> “Bu çizgiler bir ölçüyü gösteriyor olabilir.”</div>';
+  $('#modalActions').replaceChildren();action('Patikaya dön',closeModal);
+ },'secondary');
+ action('Patikaya dön',closeModal);
+}
+function updatePress(){for(const [id,dir] of [['left',-1],['right',1]])$('#'+id).classList.toggle('pressed',requested===dir)}
+function hold(dir,on,id){
+ if(on)activePointers.set(id,dir);else activePointers.delete(id);
+ requested=0;for(const v of activePointers.values())requested+=v;
+ requested=Math.max(-1,Math.min(1,requested));updatePress();
+}
+for(const [id,dir] of [['left',-1],['right',1]]){
+ const btn=$('#'+id);
+ btn.addEventListener('pointerdown',e=>{e.preventDefault();if(modalOpen||!started)return;btn.setPointerCapture(e.pointerId);hold(dir,true,e.pointerId)});
+ for(const type of ['pointerup','pointercancel','lostpointercapture'])btn.addEventListener(type,e=>hold(dir,false,e.pointerId));
+}
+function jump(){if(!started||modalOpen||heroY<GROUND-.2)return;vy=-520}
+$('#jump').addEventListener('pointerdown',e=>{e.preventDefault();jump()});
+$('#home').onclick=home;$('#journal').onclick=journal;
+addEventListener('keydown',e=>{
+ if(['ArrowLeft','ArrowRight','ArrowUp',' ','e','E','a','d','A','D'].includes(e.key))e.preventDefault();
+ if(e.key==='Escape'&&modalOpen){closeModal();return}
+ if(!started||modalOpen)return;
+ if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')hold(-1,true,'keyLeft');
+ if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')hold(1,true,'keyRight');
+ if((e.key==='ArrowUp'||e.key===' ')&&!e.repeat)jump();
+ if(e.key.toLowerCase()==='e')interact();
+});
+addEventListener('keyup',e=>{if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')hold(-1,false,'keyLeft');if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')hold(1,false,'keyRight')});
+addEventListener('blur',()=>{requested=0;activePointers.clear();updatePress()});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){requested=0;activePointers.clear();updatePress();save(true)}last=0});
+function available(){if(modalOpen||!started||heroY<GROUND-50)return null;if(!solved&&Math.abs(heroX-1510)<175)return 'bridge';if(Math.abs(heroX-3000)<155)return 'gate';return null}
+function interact(){if(available()==='bridge')puzzle();else if(available()==='gate')reachGate()}
+let down=null;
+canvas.addEventListener('pointerdown',e=>{down={id:e.pointerId,x:e.clientX,y:e.clientY}});
+canvas.addEventListener('pointercancel',()=>{down=null});
+canvas.addEventListener('pointerup',e=>{
+ if(!down||down.id!==e.pointerId||Math.hypot(down.x-e.clientX,down.y-e.clientY)>25){down=null;return}
+ down=null;const m=available();if(!m)return;
+ const x=m==='bridge'?1510:3000,y=m==='bridge'?580:540;
+ const sx=(x-camera)*scale,sy=y*scale+offsetY();
+ const px=e.clientX-canvas.getBoundingClientRect().left,py=e.clientY-canvas.getBoundingClientRect().top;
+ if(Math.hypot(sx-px,sy-py)<43){e.preventDefault();interact()}
+});
+function offsetY(){return Math.max(-6,(vh-H*scale)/2)}
+function worldX(x){return(x-camera)*scale}
+function worldY(y){return y*scale+offsetY()}
+function tree(x,base,rad,foreground=false){
+ const xx=worldX(x),yy=worldY(base),k=scale;
+ if(xx<-220||xx>vw+220)return;
+ ctx.save();
+ if(foreground){ctx.globalAlpha=.75}
+ const trunk=ctx.createLinearGradient(xx-rad*k,0,xx+rad*k,0);
+ trunk.addColorStop(0,'#3a2d21');trunk.addColorStop(.55,'#75583b');trunk.addColorStop(1,'#2b3324');
+ ctx.fillStyle=trunk;ctx.beginPath();ctx.moveTo(xx-rad*.14*k,yy);ctx.quadraticCurveTo(xx-rad*.1*k,yy-145*k,xx-rad*.23*k,yy-240*k);ctx.lineTo(xx+rad*.06*k,yy-240*k);ctx.lineTo(xx+rad*.23*k,yy);ctx.closePath();ctx.fill();
+ for(let row=0;row<3;row++){
+  const y=yy-(150+row*80)*k,rr=(rad*(1.1-row*.18))*k;
+  const cg=ctx.createRadialGradient(xx-rr*.3,y-rr*.4,rr*.12,xx,y,rr);
+  cg.addColorStop(0,foreground?'#477f45':'#78a95a');
+  cg.addColorStop(.58,foreground?'#214e36':'#3c774a');
+  cg.addColorStop(1,foreground?'#12332b':'#285a38');
+  ctx.fillStyle=cg;ctx.beginPath();ctx.ellipse(xx+(row%2?20:-8)*k,y,rr,rr*.63,0,0,Math.PI*2);ctx.fill();
+ }
+ ctx.restore();
+}
+function background(){
+ const sky=ctx.createLinearGradient(0,0,0,vh);sky.addColorStop(0,'#82c0d0');sky.addColorStop(.42,'#c1dfd6');sky.addColorStop(1,'#9dc6a1');ctx.fillStyle=sky;ctx.fillRect(0,0,vw,vh);
+ const sunX=worldX(530)-camera*.08*scale,sunY=worldY(140);
+ const glow=ctx.createRadialGradient(sunX,sunY,10,sunX,sunY,230*scale);glow.addColorStop(0,'#fff6c9aa');glow.addColorStop(1,'#fff6c900');ctx.fillStyle=glow;ctx.fillRect(0,0,vw,vh);
+ const hill=(color,base,amp,shift)=>{
+  ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(0,vh);
+  for(let px=0;px<=vw+20;px+=18){const wx=px/scale+camera*shift;ctx.lineTo(px,worldY(base+Math.sin(wx*.003)*amp+Math.sin(wx*.009)*amp*.23))}
+  ctx.lineTo(vw,vh);ctx.fill();
+ };
+ hill('#8aaf8c',510,78,.15);hill('#5e9985',560,62,.32);hill('#337c68',630,40,.52);
+ for(let x=-200;x<W+250;x+=180)tree(x,664,86,false);
+ // Green floor with worn dirt path at a constant character ground line.
+ const groundGrad=ctx.createLinearGradient(0,worldY(668),0,vh);
+ groundGrad.addColorStop(0,'#7fbd62');groundGrad.addColorStop(.4,'#468f51');groundGrad.addColorStop(1,'#174c38');
+ ctx.fillStyle=groundGrad;ctx.fillRect(0,worldY(690),vw,vh-worldY(690));
+ ctx.fillStyle='#d0aa72';ctx.beginPath();ctx.moveTo(0,worldY(735));
+ for(let px=0;px<=vw+18;px+=18){const wx=px/scale+camera;ctx.lineTo(px,worldY(734+5*Math.sin(wx*.02)))}
+ ctx.lineTo(vw,worldY(848));ctx.lineTo(0,worldY(848));ctx.closePath();ctx.fill();
+ ctx.fillStyle='#b08a5d';
+ for(let i=0;i<65;i++){
+  const x=170+i*52,y=758+(i*19)%65;
+  const sx=worldX(x);if(sx<0||sx>vw)continue;
+  ctx.beginPath();ctx.ellipse(sx,worldY(y),((i%4)+2)*scale,1.8*scale,0,0,Math.PI*2);ctx.fill();
+ }
+ // A ravine: the crossing requires completing the measured wooden bridge.
+ const left=worldX(1715),right=worldX(2050),yy=worldY(738);
+ ctx.fillStyle='#244e5d';ctx.fillRect(left,yy,right-left,vh-yy);
+ ctx.fillStyle='#6b9ea4';ctx.fillRect(left,worldY(864),right-left,24*scale);
+ if(solved){
+  ctx.fillStyle='#675138';ctx.fillRect(left-12*scale,yy-9*scale,right-left+24*scale,18*scale);
+  for(let x=1718;x<2050;x+=33){const sx=worldX(x);ctx.fillStyle=(x%2?'#bc9563':'#c5a16d');ctx.fillRect(sx,yy-12*scale,30*scale,24*scale);ctx.strokeStyle='#71543a';ctx.lineWidth=2*scale;ctx.strokeRect(sx,yy-12*scale,30*scale,24*scale)}
+  ctx.strokeStyle='#5d4837';ctx.lineWidth=4*scale;ctx.beginPath();ctx.moveTo(left,yy-48*scale);ctx.lineTo(right,yy-48*scale);ctx.stroke();
+ }else{
+  ctx.fillStyle='#7e6547';ctx.fillRect(left-8*scale,yy-5*scale,50*scale,13*scale);
+  ctx.fillStyle='#c3a172';ctx.fillRect(left-8*scale,yy-9*scale,50*scale,6*scale);
+ }
+ // Observatory silhouette and stone gateway at end of trail.
+ const gx=worldX(3025),gy=worldY(728);
+ if(gx>-320&&gx<vw+350){
+  ctx.fillStyle='#a0a7a0';ctx.fillRect(gx-135*scale,gy-240*scale,270*scale,240*scale);
+  ctx.fillStyle='#657d77';ctx.beginPath();ctx.arc(gx,gy-236*scale,139*scale,Math.PI,0);ctx.lineTo(gx+140*scale,gy-225*scale);ctx.closePath();ctx.fill();
+  ctx.fillStyle='#425953';ctx.fillRect(gx-50*scale,gy-130*scale,100*scale,130*scale);
+  ctx.strokeStyle='#e5cd89';ctx.lineWidth=5*scale;
+  for(let i=-1;i<=1;i++){ctx.beginPath();ctx.arc(gx+i*19*scale,gy-167*scale,11*scale,0,Math.PI*2);ctx.stroke()}
+  ctx.fillStyle='#d9cba5';ctx.fillRect(gx-150*scale,gy-15*scale,300*scale,19*scale);
+ }
+ // Grass and flowers at the near edge.
+ for(let i=0;i<95;i++){
+  const x=(i*71+83)%W,sx=worldX(x);if(sx<0||sx>vw)continue;
+  const y=867+(i%6)*11;ctx.strokeStyle=i%3?'#2c7a4f':'#5e9e51';ctx.lineWidth=2*scale;
+  ctx.beginPath();ctx.moveTo(sx,worldY(y));ctx.lineTo(sx-5*scale,worldY(y-16-(i%4)*4));ctx.stroke();
+  if(i%5===0){ctx.fillStyle=i%2?'#f3d2dd':'#fff1c3';ctx.beginPath();ctx.arc(sx,worldY(y-17),3.5*scale,0,Math.PI*2);ctx.fill()}
+ }
+}
+function marker(x,y,label){
+ const xx=worldX(x),yy=worldY(y),wave=(Math.sin(clock*3)+1)/2;
+ ctx.save();ctx.strokeStyle='#fff4b7';ctx.lineWidth=2;
+ ctx.globalAlpha=.3+wave*.45;ctx.beginPath();ctx.arc(xx,yy,(24+wave*4)*scale,0,Math.PI*2);ctx.stroke();ctx.globalAlpha=1;
+ ctx.fillStyle='#113948';ctx.beginPath();ctx.arc(xx,yy,21*scale,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#fff1c5';ctx.lineWidth=2.3*scale;ctx.stroke();
+ ctx.beginPath();ctx.arc(xx-4*scale,yy-5*scale,7*scale,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.moveTo(xx+1*scale,yy+1*scale);ctx.lineTo(xx+10*scale,yy+11*scale);ctx.stroke();
+ ctx.restore();
+}
+function heroSprite(){
+ const y=worldY(heroY),x=worldX(heroX),height=257*scale,width=165*scale;
+ const jumping=heroY<GROUND-2;
+ let frame=0;
+ if(jumping)frame=vy< -200?9:vy<80?11:13;
+ else if(Math.abs(requested)>0)frame=Math.floor(travel/27)%8;
+ else frame=14;
+ const imageReady=erdem.complete&&erdem.naturalWidth>=1040&&erdem.naturalHeight>=2025;
+ ctx.save();ctx.translate(x,y);ctx.scale(face,1);
+ if(imageReady){ctx.drawImage(erdem,(frame%4)*260,Math.floor(frame/4)*405,260,405,-width/2,-height,width,height)}
+ else {ctx.fillStyle='#c5946e';ctx.beginPath();ctx.arc(0,-height*.75,25*scale,0,Math.PI*2);ctx.fill();ctx.fillStyle='#537989';ctx.fillRect(-25*scale,-height*.65,50*scale,155*scale)}
+ ctx.restore();
+}
+function birdSprite(){
+ const dx=heroX+Math.sin(clock*1.0)*69,dy=heroY-305+Math.cos(clock*1.17)*21;
+ const follow=.15;flyingX+=(dx-flyingX)*follow;flyingY+=(dy-flyingY)*follow;
+ const dir=Math.cos(clock*1)>0?1:-1;
+ flyingFace=dir;
+ const frame=Math.floor(clock*14.8)%8;
+ const x=worldX(flyingX),y=worldY(flyingY),size=99*scale;
+ const ready=chiko.complete&&chiko.naturalWidth>=1152&&chiko.naturalHeight>=576;
+ ctx.save();ctx.translate(x,y);ctx.scale(flyingFace,1);
+ if(ready)ctx.drawImage(chiko,(frame%6)*192,Math.floor(frame/6)*192,192,192,-size/2,-size/2,size,size);
+ else{ctx.fillStyle='#ffbc4d';ctx.beginPath();ctx.ellipse(0,0,25*scale,35*scale,0,0,Math.PI*2);ctx.fill()}
+ ctx.restore();
+}
+function render(){
+ ctx.setTransform(dpr,0,0,dpr,0,0);ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
+ const maxCam=Math.max(0,W-vw/scale),desired=Math.max(0,Math.min(maxCam,heroX-vw/scale*.44));
+ if(!camReady){camera=desired;camReady=true}else camera+=(desired-camera)*.11;
+ background();
+ const availableNow=available();
+ // A fixed marker lives in the scenery; characters are always drawn above it.
+ if(availableNow==='bridge')marker(1510,580);
+ if(availableNow==='gate')marker(3000,540);
+ const inFront=Math.cos(clock*1)>0;
+ if(!inFront)birdSprite();
+ ctx.fillStyle='rgba(14,35,26,.28)';ctx.beginPath();ctx.ellipse(worldX(heroX),worldY(GROUND+4),45*scale,8*scale,0,0,Math.PI*2);ctx.fill();
+ heroSprite();
+ if(inFront)birdSprite();
+}
+function update(dt){
+ if(!started||modalOpen)return;
+ const old=heroX;
+ heroX=Math.min(solved?GATE_X+10:BRIDGE_X,Math.max(270,heroX+requested*245*dt));
+ if(!solved&&heroX>=BRIDGE_X&&requested>0){heroX=BRIDGE_X}
+ if(Math.abs(heroX-old)>.01){face=requested>=0?1:-1;travel+=Math.abs(heroX-old)}
+ if(heroY<GROUND||vy!==0){vy+=1150*dt;heroY=Math.min(GROUND,heroY+vy*dt);if(heroY>=GROUND){heroY=GROUND;vy=0}}
+ saveTimer+=dt;if(saveTimer>2&&Math.abs(heroX-saveLastX)>35)save();
+ const m=available();
+ $('#hint').hidden=false;
+ $('#hint').textContent=m==='bridge'?'🔎 Büyütece dokun: köprünün ölçüsünü tamamla':m==='gate'?'🔎 Gözlemevi kapısını incele':!solved?'Ormanda ilerle. Önce geçişteki ölçü sorununu çöz.':'Köprü tamamlandı. Gözlemevine doğru devam et.';
+ $('#progress').textContent=reachedGate?'Gözlemevi kapısındasın':solved?'Köprü geçildi · Gözlemevine ilerle':'Köprüye doğru ilerle';
+}
+function loop(ts){const dt=Math.min(.036,(last?(ts-last):16)/1000);last=ts;clock+=dt;update(dt);render();requestAnimationFrame(loop)}
+if(!approved){
+ openModal('Önce Dedenin Evi','<p>Orman patikası, atlas üzerindeki üç halka işareti keşfedildikten sonra açılır.</p>');
+ action('Dedenin evine dön',home);
+}else{
+ started=true;story();
+}
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>
