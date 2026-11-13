@@ -1,4 +1,16 @@
-# Matematik Evreni – Erdem ve Çiko (v48 deneme)
+# Matematik Evreni – Erdem ve Çiko (v49 deneme)
+
+## v49 (13 Kasım 2026)
+- Erdem'in yürüyüşü 12 adımlık sağ-sol bacak döngüsüne dönüştürüldü (alt gövde ikinci yarım döngüde karşıt pozda çizilir).
+- Yürüme karelerinin ayak uçları ortak zemin çizgisine hizalandı; fazladan yapay yukarı-aşağı sallanma kaldırıldı.
+- Yön değiştirmede kısa yavaşlama/dönüş geçişi eklendi; karakteri yatay sıkıştırmadan çevrilir.
+- Çiko'nun baş üzerindeki yatay konumu sabitlendi. Yöne göre sağ-sol ters çevrilmesi kaldırıldı.
+- Kanat hareketleri ileri-geri kare sıralamasıyla yumuşatıldı, hareket hızı düşürüldü.
+- Önceki kullanıcı ilerlemesi ve v46 mobil üst ekran düzeni korunmuştur.
+
+Not: Bunlar mevcut 2B sprite'larla uygulanan hareket düzeltmeleridir; yeni 3B rig veya elle çizilmiş karşıt kol pozları içermez.
+
+
 
 ## v48 (13 Kasım 2026)
 - Çiko'nun yerleşimi Erdem'in başının tam üstüne sabitlendi; yatay takip gecikmesi ve yana kaçma kaldırıldı.
