@@ -1,4 +1,13 @@
-# Matematik Evreni – Erdem ve Çiko (v59 deneme)
+# Matematik Evreni – Erdem ve Çiko (v60 deneme)
+
+## v60 (13 Kasım 2026) — sadeleştirilmiş notlar ve Bölüm 2 hazırlığı
+- "Açılış konuşmasını yeniden dinle" düğmesi ve ilişkili tekrar oynatma kodu kaldırıldı. İlk açılış konuşması ilk ziyaretinde hâlâ çalışır.
+- "Dedesinin orada olup olmadığını henüz bilmiyor." ifadesi atlas, notlar ve başlangıç açıklamasından çıkarıldı.
+- Atlas sonuna ve Erdem'in notlarına **"Eski gözlemevine git"** eylemi eklendi.
+- Bu eylem **Bölüm 2 · Eski Gözlemevi** giriş anlatısını açar; `chapter2EntrySeen` ilerlemesi mevcut kayıt içinde saklanır, sıfırlamada temizlenir.
+- Oynanabilir yeni mekân henüz oluşturulmadı. Bölüm 2 sahnelerinin kimlikleri ve iş planı [Bölüm 2 taslağı](./BOLUM-2-ESKI-GOZLEMEVI-PLAN.md) dosyasında hazırlandı.
+- v59 karakter düşünceleri, v58 nesneye sabit büyüteçler ve v57 yüksek çözünürlüklü Erdem/Çiko animasyonları korundu.
+- Kod sözdizimi kontrol edildi; iPhone üzerinde gözle görülür son kullanıcı testi ayrıca gereklidir.
 
 ## v59 (13 Kasım 2026) — ipucu düşünceleri ve tek yönlü atlas keşfi
 - İncelenen ipuçlarındaki tekrar eden “Erdem bu ayrıntıyı aklında tutuyor.” cümlesi kaldırıldı; her ipucunun altında küçük bir **💭 Erdem** düşüncesi gösteriliyor.
