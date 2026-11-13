@@ -1,20 +1,21 @@
-# Matematik Evreni – Işığı Geri Getir (v44)
+# Matematik Evreni – Erdem ve Çiko (v45)
 
-TÜBİTAK 4006 için hazırlanmış Türkçe matematik macera oyunu.
+TÜBİTAK 4006 matematik macera oyunu.
 
 **Oyna:** https://chnbcc1.github.io/mtkvrn/
 
-## v44 — 13 Kasım 2026
-- Erdem'in yürürken yatay genişleyip daralması giderildi: sabit en-boy oranı ve ayak tabanı hizası.
-- Yürürken zıplama, zıplarken yön kontrolü ve iki parmaklı mobil kontrol düzeltildi.
-- Çiko'nun Erdem'in başı üzerinde ve arkasında kalması için takip konumu ve hızı ayarlandı.
-- Kaynak sprite kareleri değişmedi; yeni sağ/sol adım ve özel zıplama görselleri daha sonra hazırlanabilir.
-- v44 görselleri sayfaya gömülüdür; ek PNG yüklemeye gerek yoktur.
+## v45 – 13 Kasım 2026
+- Erdem için yeni, eşit 512 × 512 hücreli altı kare yürüyüş animasyonu.
+- Çiko için yeni, eşit 512 × 512 hücreli altı kare kanat çırpma animasyonu.
+- Yatay genişleme/daralmayı önlemek için her kare sabit referans dikdörtgeninden çizilir.
+- Yeni görseller kaliteyi koruyacak şekilde WebP sıkıştırmasıyla sayfaya gömülüdür.
+- Daha önceki yönlü zıplama ve Çiko takip düzeni korunmuştur.
+- Yeni kareler gerçek cihazda görsel kalite ve akıcılık testine açıktır.
 
 ## Kullanım
-GitHub Pages bağlantısını iPhone Safari veya başka tarayıcıda açın. İsterseniz Safari **Paylaş → Ana Ekrana Ekle** ile kısayol oluşturabilirsiniz. Eski sürüm görülürse sayfayı yenileyin.
+Safari veya diğer tarayıcılarda üstteki oyun adresini açın. Gerekirse eski sürüm önbelleği için sayfayı yenileyin.
 
 ## Arşiv
-Önceki v35 ana sayfasının yedeği: [archive/v35-index.html](archive/v35-index.html).
+[v35 kaynak sayfa](archive/v35-index.html)
 
-Öğrenci kişisel verilerini herkese açık GitHub deposuna eklemeyin.
+Öğrenci kişisel verilerini herkese açık GitHub'a eklemeyin.
