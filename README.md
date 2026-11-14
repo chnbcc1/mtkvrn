@@ -1,31 +1,37 @@
-# Matematik Evreni – Erdem ve Çiko
+# Matematik Evreni — Erdem ve Çiko
 
 TÜBİTAK 4006 matematik macera oyunu.
 
 **Ana oyun:** https://chnbcc1.github.io/mtkvrn/  
-**v64 soru denemesi:** https://chnbcc1.github.io/mtkvrn/deneme-v36/forest-v64-question-lab.html?v=64  
-**Orman sahnesi (v62):** https://chnbcc1.github.io/mtkvrn/deneme-v36/forest-v62.html?v=62
+**Dört şıklı soru denemesi (v65 / güncel 630 soru):** https://chnbcc1.github.io/mtkvrn/deneme-v36/forest-v65-mcq.html?v=66  
+**Yüksek çözünürlüklü orman (v66):** https://chnbcc1.github.io/mtkvrn/deneme-v36/forest-v66.html?v=66  
+**Güncel macera haritası:** https://chnbcc1.github.io/mtkvrn/deneme-v36/map-v66.html?v=66
 
-## v64 – 14 Kasım 2026
+## 14 Kasım 2026 — v65 / v66
 
-- MAT.9.1.1 için 21 engel × 3 zorluk × 10 soru = **630 ayrı soru kimliği** olan JSON kaynak dosyası depoya aktarıldı: `deneme-v36/forest-questions-v63.json`.
-- **21 engelli soru deneme ekranı** eklendi: `deneme-v36/forest-v64-question-lab.html`.
-- Macera başında tek seferlik zorluk seçimi, soru havuzundan seçim, tekrar oynama geçmişi, aynı soruya kaldığı yerden dönme ve çözülen engelde isteğe bağlı benzer soru çözme eklendi.
-- Kırık köprüde dört kökü sadeleştirmeden doğru tahta çifti kabul edilmiyor; eşleştirme görevinde dört çift ve iki yazılı işlem alanı bulunuyor.
-- Soru ekranı ilerleme için **ayrı** `mathverse-v64-forest-question-run` ve `mathverse-v64-forest-question-history` kayıtlarını kullanıyor. Var olan `mathverse-v40-investigation` kaydını değiştirmiyor.
+- `deneme-v36/forest-questions-v66.json`: 21 engel × 3 zorluk × 10 varyasyon = **630 farklı soru metni ve kimliği**.
+- Gerçek zorluk ayrımı: **kolay** tek matematiksel kural, **orta** iki bağlantılı işlem, **zor** üç veya daha fazla bağlantılı adım/muhakeme.
+- `deneme-v36/forest-v65-mcq.html`: A–D düğmeleriyle yanıt verme; sayı veya üs klavyesi gerekmez.
+- Üslü ifadeler görsel üst simge olarak yazılır (ör. 3⁸), ham `3^8` biçimiyle bırakılmaz.
+- 1. yanlışta ipucu; 2. yanlışta çözümlü benzer örnek; 3. yanlışta sorunun çözümü ve benzer soruyla yeniden sınama.
+- F08 kırık köprü görevi: dört tahtanın kökleri tek tek sadeleştirilir, ardından uygun iki tahta seçilir. F21 eşleştirme: dört ayrı eşleştirme ve iki kural seçimi.
+- Gidilen engel, yanlış deneme ve soru geçmişi tarayıcıda korunur; ana oyunun önceki `mathverse-v40-investigation` kaydı etkilenmez.
+- `deneme-v36/forest-v66-hd.svg`: eski 640×360 piksellik görüntü yerine **vektör çözünürlüğünde çizilen** orman arka planı.
+- `deneme-v36/forest-v66.html` ve `deneme-v36/map-v66.html`: yeni orman resmi, mevcut hareket, zıplama, kaydetme ve harita bağlantıları korunarak ayrılmış sürüm.
 
-### Açık kalan işler ve doğrulama
+### Test durumu / sınırlar
 
-- Bu, **soru motoru/arayüz denemesidir**; 21 engelin tamamı henüz mevcut orman platform sahnesine fiziksel olarak yerleştirilmedi.
-- Soru bankasında 630 ayrı kimlik fakat **492 farklı soru metni** bulunuyor; farklı zorluk düzeyleri arasındaki 138 tekrar redaksiyon gerektiriyor.
-- Yazılı matematiksel gerekçeler otomatik olarak tam doğrulanmıyor; bu cevapların öğretmen incelemesi gerekiyor.
-- JavaScript sözdizimi kontrol edildi; GitHub Pages iş akışı başarıyla tamamlandı. Gerçek iPhone dokunmatik uçtan uca testi yapılmadı.
+- 630 soru kimliği ve metni benzersiz; her zorlukta 210 soru bulunuyor.
+- F08 için 30/30 kök sadeleştirme ve eşsiz doğru tahta çifti denetlendi.
+- Soru seçeneklerinin dört farklı şık üretmesi, doğru seçeneğin bulunması ve üs yazımının HTML üst simgesi olması kod üzerinden denetlendi.
+- **Gerçek iPhone üzerinde tüm engellerin oynanış ve erişilebilirlik testi yapılmadı.**
+- Mevcut büyük orman sahnesinde **21 fiziksel engelin tümü henüz yerleştirilmedi**. Soru motoru ayrı deneme ekranındadır.
+- Bazı çok aşamalı soruların pedagojik ve dil açısından öğretmen incelemesi devam etmelidir.
+- Yeni HD orman SVG bir çizimdir; fotoğrafik dokuların birebir kopyası değildir.
 
-## Önceki sürümler
+## Önceki geliştirmeler
+- v63: 21 engel/630 soru tasarımı.
+- v62: Kırık köprü, kamera ve macera haritası.
+- v45: Erdem ve Çiko sprite atlasları ve yürüyüş.
 
-- **v63:** 21 engel ve soru havuzu tasarımı.
-- **v62:** Yüksek çözünürlüklü orman arka planı, kırık köprü, kaydedilen konum, macera haritası, iOS uzun basma düzeltmesi.
-- **v45:** Erdem ve Çiko için yürüyüş / kanat çırpma atlasları, sabit çizim boyutları ve yönlü zıplama.
-- [v35 arşiv sayfası](archive/v35-index.html).
-
-Öğrenci kişisel verilerini herkese açık GitHub deposuna eklemeyin.
+Öğrencilerin kişisel verilerini herkese açık GitHub deposuna eklemeyin.
