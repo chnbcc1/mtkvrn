@@ -2,6 +2,22 @@
 
 TÜBİTAK 4006 matematik macera oyunu.
 
+## v71 — Doğal orman ve belirgin zıplama engelleri (15 Kasım 2026)
+
+**Oyunu aç:** https://chnbcc1.github.io/mtkvrn/deneme-v36/?v=71  
+**Ormana doğrudan gir:** https://chnbcc1.github.io/mtkvrn/deneme-v36/forest-v71-full.html?preview=1&v=71  
+**Macera haritası:** https://chnbcc1.github.io/mtkvrn/deneme-v36/map-v71.html?v=71
+
+- Ormanın her ikinci panelinde oluşan simetri/ayna yansıması kaldırıldı; görsel akışı yatay ve tek yönlü.
+- Mevcut sinematik orman görselinin panelleri 300 px yumuşak geçişle birleştirildi; orta eksende yapay ağaç yansımaları kalmaz.
+- Taş, kütük, toprak boşluğu, ağaç kökü ve mantar gibi 5 engel türü yerden belirgin yükselen, gölgeli ön plan objeleri olarak yeniden çizildi.
+- Engellerin görünür en ve yüksekliği ile çarpışma ölçüleri eşleştirildi. Yön tuşuna basarken zıplama korunur; dikey hız mini engellere uyarlanmıştır.
+- 21 ana matematik engeli ve 29 mini engel korunur. Önceki oyun ve soru ilerlemesi için yerel kayıt anahtarları değiştirilmedi.
+- 29 mini engelin sıçrama simülasyonu ve sahne-kaynak JavaScript sözdizimi denetlendi.
+- **Sınırlama:** Gerçek iPhone üzerinde baştan sona 21 engelin görsel ve dokunmatik testi henüz yapılmadı; farklı cihaz boyutlarında kontrol gereklidir.
+
+---
+
 ## v70 — Tam orman macerası (14 Kasım 2026)
 
 **Ana oyun:** https://chnbcc1.github.io/mtkvrn/deneme-v36/?v=70  
