@@ -106,7 +106,7 @@ function enrich(original){
   const n=i+1,a=3*n,b=4*n,right=7*n,left=5*n;
   if(!h)return go("Yazıtta √("+pow(a,2)+"+"+pow(b,2)+")=√"+pow(a,2)+"+√"+pow(b,2)+" yazıyor. Sağ taraf, sol taraftan kaç fazladır?",right-left,"Sol="+left+", sağ="+right+"; fark "+(right-left)+".","Karekök, toplama işlemi üzerine dağıtılmaz.");
   const added=n+2;
-  return go("Yazıttaki √("+pow(a,2)+"+"+pow(b,2)+")=√"+pow(a,2)+"+√"+pow(b,2)+" iddiasını incele. Yanlış sağ taraftan "+added+" birim daha eksiltilse bile düzeltilmesi gereken fark kaç birim olur?",right-added-left,"Sol="+left+", sağ="+right+"; sağdan "+added+" çıkarılırsa "+(right-added)+" olur; iki tarafın farkı "+Math.abs(right-added-left)+".","Sol ve sağı ayrı hesaplayıp yapılan düzeltmeden sonra kalan farkı bul.");
+  return go("Yazıttaki √("+pow(a,2)+"+"+pow(b,2)+")=√"+pow(a,2)+"+√"+pow(b,2)+" iddiasını incele. Yanlış sağ taraftan "+added+" birim daha eksiltilse bile iki taraf arasındaki farkın mutlak değeri kaç birim olur?",Math.abs(right-added-left),"Sol="+left+", sağ="+right+"; sağdan "+added+" çıkarılırsa "+(right-added)+" olur; iki tarafın farkı "+Math.abs(right-added-left)+".","Sol ve sağı ayrı hesaplayıp yapılan düzeltmeden sonra kalan farkı bul.");
  }
  case "F17":{
   const a=2+i%3,b=3+i%4,expo=3+i%2,raw=a*b;
