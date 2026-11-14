@@ -204,7 +204,7 @@ function resetGame(){
  chiko.x=hero.x;chiko.y=ground-325;chiko.dir=1;chiko.wingTime=0;chiko.bank=0;chiko.flightPhase=3.0;chiko.foreground=false;chiko.flap=0;chiko.turnTime=0;chiko.vy=0;
  camReady=false;started=false;$('#intro').hidden=false;
  // A new research run really starts fresh, including the forest puzzle.
- try{localStorage.removeItem(SAVE_KEY)}catch(e){}
+ try{localStorage.removeItem(SAVE_KEY);localStorage.removeItem('mathverse-v68-forest-full')}catch(e){}
  persist();refreshUI();
 }
 refreshUI();
