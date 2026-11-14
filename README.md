@@ -2,6 +2,32 @@
 
 TÜBİTAK 4006 matematik macera oyunu.
 
+## v72 — Keşif haritası ve organik engeller (15 Kasım 2026)
+
+**Ana oyun:** https://chnbcc1.github.io/mtkvrn/deneme-v36/?v=72  
+**Oyun dünyası haritası:** https://chnbcc1.github.io/mtkvrn/deneme-v36/map-v72.html?v=72  
+**Orman bölümü (önizleme):** https://chnbcc1.github.io/mtkvrn/deneme-v36/forest-v72-full.html?preview=1&v=72
+
+### Harita
+- Kart listesi kaldırılarak coğrafi yollar, dağlar, orman, dere, göl, ev ve gözlemevi olan kaydırmadan görülebilir bir oyun dünya haritası oluşturuldu.
+- Keşfedilmeyen alanların üzerine sis yerleştirildi. Bölge isimleri, konum düğmeleri ve yollar, ilgili keşif yapılana kadar gizli kalır.
+- İlk açılış yalnız Dedenin Evi; evin ipuçları tamamlanınca Orman Patikası; 21 orman engeli ve varış tamamlanınca Gözlemevi Girişi; gözlemevi girişindeki üç halka incelenince Gözlemevi İç Mekânı haritada görünür.
+- **Gözlemevi İç Mekânı'nın oynanabilir sahnesi henüz yoktur.** Haritada keşfedilirse görünür fakat butonu devre dışıdır.
+
+### Orman
+- Beş farklı mini engel ayrı doğal dokulu SVG sprite olarak oluşturuldu: `assets/obstacle-v72-rock.svg`, `-log.svg`, `-mushroom.svg`, `-root.svg`, `-gap.svg`.
+- Mini engellerin aynı çevreyle uyumlu düzensiz siluetleri, gölgeleri ve yaprak/yosun dokuları var; sahnede genişlik/yükseklikleri önceki çarpışma sistemiyle eşleşiyor.
+- Görsel yüklenemezse önceki çizim otomatik olarak devreye girer; öğrencinin oyuna devam etmesi engellenmez.
+- 21 ana matematik engeli, 29 mini zıplama engeli ve `mathverse-v68-forest-full` ilerleme kayıt anahtarı korunur.
+- Mevcut 630 soruluk soru bankası ve oyun içi üç aşamalı yardım sistemi değiştirilmedi.
+
+### Kontrol durumu
+- Harita açılma koşulları 4 farklı yerel kayıt durumunda doğrulandı.
+- Ana oyun → orman → harita bağlantıları ve JavaScript sözdizimi kontrol edildi.
+- Gerçek iPhone üzerinde görsel, erişilebilirlik ve 21 engellik uçtan uca oynanış henüz ayrıca doğrulanmadı.
+
+---
+
 ## v71 — Doğal orman ve belirgin zıplama engelleri (15 Kasım 2026)
 
 **Oyunu aç:** https://chnbcc1.github.io/mtkvrn/deneme-v36/?v=71  
