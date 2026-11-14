@@ -121,7 +121,7 @@
   <button class="start" id="start">▶ OYUNA BAŞLA</button>
   <button id="newGame" class="newGame" hidden>↻ YENİ OYUN</button>
  </div>
- <div class="introQuick"><a class="introLink" href="./map-v71.html?v=71">🗺️ Macera Haritası</a>
+ <div class="introQuick"><a class="introLink" href="./map-v72.html?v=72">🗺️ Macera Haritası</a>
  <details class="introHelp"><summary>🎮 Nasıl Oynanır?</summary><p>Yön tuşlarıyla yürü, ZIPLA ile taşları ve küçük boşlukları aş. 🔎 İNCELE ile matematik engelini çöz. İlerlemen cihazında kaydedilir.</p></details></div>
  <div class="copyright">TÜBİTAK 4006 · Matematik macerası · Reklam ve üyelik yok</div>
  </div></div>
@@ -295,7 +295,7 @@ $('#start').onclick=()=>{
  let saveStage=null,latestState={};
  try{latestState=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}')||{};saveStage=latestState.chapter2||null}catch(e){}
  if(!goHome&&gameOver&&chapter2EntrySeen&&saveStage&&saveStage.stage==='forest-path'&&latestState.activeScene!=='home'){
-  location.assign('./forest-v71-full.html?v=71&resume=1');
+  location.assign('./forest-v72-full.html?v=72&resume=1');
   return;
  }
  const firstVisit=!introSeen&&!found.size&&!visitedStudy&&!gameOver;
@@ -331,7 +331,7 @@ $('#modalText').addEventListener('click',event=>{
  if(reset){resetGame();return;}
  if(nextChapter){openObservatoryEntry();return;}
  if(map){openMap();return;}
- if(journey){location.assign('./map-v71.html?from=home');return;}
+ if(journey){location.assign('./map-v72.html?from=home');return;}
 });
 $('#closeModal').onclick=closeModal;$('#nextTalk').onclick=advanceTalk;
 function jump(){
@@ -364,7 +364,7 @@ function openObservatoryEntry(){
  if(!gameOver)return;
  chapter2EntrySeen=true;persist();refreshUI();
  // Open the playable v61 forest route rather than the old text-only placeholder.
- location.assign('./forest-v71-full.html?v=71&resume=1');
+ location.assign('./forest-v72-full.html?v=72&resume=1');
 }
 function openMap(){
  // One authored discovery scene — there are no alternate destinations to select.
