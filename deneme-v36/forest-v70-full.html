@@ -432,7 +432,7 @@ const LABELS=["Sarmaşık duvarı","Işıklı taş basamaklar","Sis türbini","K
 const ICONS=["🌿","✦","☁","✧","◆","🍄","◼","🌉","♧","▰","💧","↔","⬡","⚙","⇄","◇","✎","✿","⌁","⊞","◎"];
 const GATES=ORDER.map((id,i)=>({id,label:LABELS[i],icon:ICONS[i],index:i,x:820+i*2240,stop:id==="F08"?RAVINE_LEFT-68:820+i*2240-155}));
 const PALETTE=["#39764b","#80d2ed","#779bb9","#aa8de9","#b4f3ff","#ce984e","#7ed6cf","#a6754f","#ba9b63","#98bddd","#5fc8e1","#e3c876","#8e9f9d","#c3b888","#9dc7c1","#d7e5db","#e7b88e","#87accf","#a2b7c7","#e6c384","#e0bd77"];
-const HAZARDS=[{x:505,w:64,type:"rock",height:43}];
+const HAZARDS=[{x:450,w:64,type:"rock",height:43}];
 for(let i=0;i<GATES.length-1;i++){
  if(i===6)continue; // Keep approach to the ravine clear.
  const start=GATES[i].x;
