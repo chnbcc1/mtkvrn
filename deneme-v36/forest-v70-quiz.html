@@ -137,10 +137,10 @@ function decoys(answer,q){
  const exp=a.match(/^(\d+)\^(\(?[−\d/]+\)?)$/);
  if(exp){let b=Number(exp[1]),power=exp[2];let p=Number(power.replace(/[()]/g,""));return uniq4(a,[b+"^"+(p+1),b+"^"+Math.max(0,p-1),(b+1)+"^"+power],q.id)}
  const radical=a.match(/^(-?\d+)?√(\d+)(?:\/(\d+))?$/);
- if(radical){const coeff=Number(radical[1]||1),base=radical[2],den=radical[3]?"/"+radical[3]:"";return uniq4(a,[(coeff+1)+"√"+base+den,Math.max(1,coeff-1)+"√"+base+den,coeff+"√"+(Number(base)+1)+den],q.id);}
+ if(radical){const coeff=Number(radical[1]||1),base=Number(radical[2]),den=radical[3]?"/"+radical[3]:"";const fmt=(x,b)=>(x===1?"":String(x))+"√"+b+den;return uniq4(a,[fmt(coeff+1,base),fmt(coeff===1?coeff+2:coeff-1,base),fmt(coeff,base+1),fmt(coeff+3,base)],q.id);}
  if(/^-?\d+(?:[,.]\d+)?$/.test(a)){
-  const n=Number(a.replace(",",".")),shift=Math.max(1,Math.round(Math.abs(n)*.1)),v=[n+shift,n-shift,n*2,n/2,n+1,n-1];
-  return uniq4(a,v.filter(x=>Number.isFinite(x)&&x>=0&&Number.isInteger(x)).map(String),q.id);
+  const n=Number(a.replace(",",".")),shift=Math.max(1,Math.round(Math.abs(n)*.1)),v=[n+shift,n-shift,n+1,n+2,n+3,n-1,n-2,n*2,n/2];
+  return uniq4(a,v.filter(x=>Number.isFinite(x)&&Number.isInteger(x)&&(n<0||x>=0)).map(String),q.id);
  }
  const rational=a.match(/^(.+)\/(\d+)$/);
  if(rational)return uniq4(a,[rational[1]+"/"+(Number(rational[2])+1),rational[1]+"/"+Math.max(1,Number(rational[2])-1),rational[1]+"×"+rational[2]],q.id);
