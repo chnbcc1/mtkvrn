@@ -691,6 +691,7 @@ render=function(){
 };
 function nextBlocked(oldX,target){
  if(target<=oldX)return target;
+ if(solved&&bridgeProgress<1&&oldX<=RAVINE_LEFT-55&&target>RAVINE_LEFT-55){hitMessage="Köprü onarılıyor…";hitTimer=clock+1.2;return RAVINE_LEFT-55;}
  for(const g of GATES){
   if(!SOLVED.has(g.id)&&oldX<=g.stop&&target>g.stop){hitMessage="🔎 "+g.label+" · büyütece dokun";hitTimer=clock+1.5;return g.stop}
  }
@@ -700,10 +701,10 @@ function nextHazard(oldX,target){
  if(Math.abs(target-oldX)<.05)return target;
  for(const h of HAZARDS){
   const start=h.x-27,end=h.x+h.w+24;
-  if(target>oldX&&oldX<=start&&target>start&&heroY>GROUND-h.height-18){
+  if(target>oldX&&target>start&&target<end&&heroY>GROUND-h.height-18){
    hitMessage=h.type==="gap"?"Küçük boşluk! Zıpla ↑":"Önünde engel var! Zıpla ↑";hitTimer=clock+1.7;flashObstacle=clock+.25;return start-2;
   }
-  if(target<oldX&&oldX>=end&&target<end&&heroY>GROUND-h.height-18){
+  if(target<oldX&&target<end&&target>start&&heroY>GROUND-h.height-18){
    hitMessage="Geri geçmek için zıpla ↑";hitTimer=clock+1.7;return end+2;
   }
  }
