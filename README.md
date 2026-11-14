@@ -2,10 +2,28 @@
 
 TÜBİTAK 4006 matematik macera oyunu.
 
-**Ana oyun:** https://chnbcc1.github.io/mtkvrn/  
-**Dört şıklı soru denemesi (v65 / güncel 630 soru):** https://chnbcc1.github.io/mtkvrn/deneme-v36/forest-v65-mcq.html?v=66  
-**Yüksek çözünürlüklü orman (v67):** https://chnbcc1.github.io/mtkvrn/deneme-v36/forest-v67.html?v=67  
-**Güncel macera haritası:** https://chnbcc1.github.io/mtkvrn/deneme-v36/map-v67.html?v=67
+## Oyna — Tam Orman Patikası v68
+
+**Ana oyun (Dedenin Evi → Orman Patikası):** https://chnbcc1.github.io/mtkvrn/deneme-v36/?v=68  
+**Tam 21 engelli orman:** https://chnbcc1.github.io/mtkvrn/deneme-v36/forest-v68-full.html?v=68  
+**Macera haritası:** https://chnbcc1.github.io/mtkvrn/deneme-v36/map-v68.html?v=68  
+**Soru ekranı (doğrudan test):** https://chnbcc1.github.io/mtkvrn/deneme-v36/forest-v68-quiz.html  
+**Geliştirme ve yerleşim belgesi:** [Orman Patikası Tam Bölüm v68](deneme-v36/ORMAN_PATIKASI_TAM_BOLUM_V68_YERLESIM.md)
+
+### 14 Kasım 2026 — v68 geliştirmeleri
+
+- 21 matematik engelini kesintisiz uzun orman sahnesine yerleştiren oynanabilir bölüm.
+- Aralarda 29 fiziksel mini engel: 6 kaya, 6 kütük, 6 kısa boşluk, 6 mantar ve 5 ağaç kökü.
+- Yön tuşuna basarken zıplama; kısa sıçrayışlı geçitlerde çarpışma kilidi ve ipuçları.
+- Erdem'in yürüyüş ve zıplama atlaslarında yere basma referansını alfa sınırı üzerinden hizalama; dinamik gölge.
+- Kırık köprünün ahşap kalas, çivi, halat, korkuluk ve onarım animasyonu ile yeniden çizimi.
+- Her fiziksel ana engelde uygulama içinde açılan A–D matematik sorusu; üç aşamalı hata yardımı ve pekiştirme.
+- Önceden hazırlanmış 630 farklı üslü/köklü soru korunur; kolay/orta/zor başlangıçta seçilir.
+- Kayıt anahtarı `mathverse-v68-forest-full`; orijinal `mathverse-v40-investigation` verisini değiştirmeden çalışır.
+
+**Durum:** Kaynaklar GitHub'a aktarıldı ve yerleşim/zıplama simülasyonları kontrol edildi; gerçek iPhone üzerinde baştan sona oynanış testinin yapılması gerekiyor.
+
+---
 
 ## 14 Kasım 2026 — v65 / v66 / v67
 
