@@ -8,6 +8,7 @@ function enrich(original){
  if(e){ 
   // The original easy items remain single-rule, with a targeted clarification of the instruction.
   if(q.obstacleId==="F12")q.prompt+=" Uzunlukların karelerini hesaplayarak karar ver.";
+  if(q.obstacleId==="F15"){const a=2+i,b=2+i%3;q.prompt="Eşlenik aynaların üzerindeki ("+a+"+√"+b+") ve ("+a+"−√"+b+") değerlerini çarparsak sonuç kaç olur?";q.correctAnswer=String(a*a-b);q.solution="("+a+"+√"+b+")("+a+"−√"+b+")="+a+"²−"+b+"="+(a*a-b);q.hint="Eşleniklerin çarpımı iki karenin farkıdır.";q.inputType="number";q.interaction={};}
   return q;
  }
  const go=(prompt,answer,solution,help,type)=>{
@@ -29,19 +30,19 @@ function enrich(original){
   return go("Geçitte "+x+sup(a)+" sıra ve her sırada "+x+sup(b)+" taş var. Girişe ayrıca "+x+sup(a)+" taş ekleniyor, arızada "+x+sup(c)+" taş sönüyor. Son durumda yanan taş sayısı kaçtır?",res,x+sup(a+b)+"+"+x+sup(a)+"−"+x+sup(c)+"="+res,"Kuvvetlerin çarpımını toplayıp eklenen ve sönen taşları sırayla değerlendir.");
  }
  case "F03":{
-  const x=2+i%2,a=5+i%3,b=2+i%2,total=pow(x,a-b);
+  const x=2+i%2,a=5+i,b=2+i%2,total=pow(x,a-b);
   if(!h)return go("Sis türbininin enerjisi "+x+sup(a)+" birimdir. Her darbe "+x+sup(b)+" birim harcar. İlk iki darbeden sonra kaç darbe daha yapılabilir?",total-2,x+sup(a)+"÷"+x+sup(b)+"="+total+"; "+total+"−2="+(total-2),"Toplam darbe sayısını üsleri çıkararak bul, kullanılan iki darbeyi düş.");
   const wasted=pow(x,a-2),usable=pow(x,a)-wasted,answer=usable/pow(x,b);
   return go("Türbin "+x+sup(a)+" enerjiyle başlıyor. Enerjinin "+pow(x,a-2)+" birimi boşa harcanıyor. Kalan her "+x+sup(b)+" enerji birimi bir darbeyi çalıştırıyor. Kaç tam darbe yapılabilir?",answer,"("+pow(x,a)+"−"+wasted+")÷"+pow(x,b)+"="+answer,"Önce kaybı çıkar, ardından darbe başına enerjiye böl.");
  }
  case "F04":{
-  const x=2+i%2,stages=2+i%3,arms=1+i%3,total=pow(x,stages*arms),closed=pow(x,arms);
+  const x=2+i%2,stages=3+i%2,arms=2+i%2,total=pow(x,stages*arms),closed=i+1;
   if(!h)return go("Işık geçidinde "+stages+" ardışık aşamanın her birinde "+x+sup(arms)+" seçenek bulunuyor. Oluşan yollardan "+closed+" tanesi kapanıyor. Açık yol sayısı kaçtır?",total-closed,"("+x+sup(arms)+")"+sup(stages)+"−"+closed+"="+total+"−"+closed+"="+(total-closed),"Kuvvetin kuvvetinde üsleri çarp, ardından kapanan yolları çıkar.");
-  const extra=pow(x,stages*arms),removed=pow(x,arms+1),ans=2*extra-removed;
+  const extra=pow(x,stages*arms),removed=i+1,ans=2*extra-removed;
   return go("Geçitte birbirinin aynısı iki kanat var. Her kanatta "+stages+" aşama bulunuyor ve her aşama "+x+sup(arms)+" seçeneğe ayrılıyor. Kanatların toplam "+removed+" yolu kapatılıyor. Kaç açık yol kalır?",ans,"2×("+x+sup(arms)+")"+sup(stages)+"−"+removed+"="+ans,"Önce bir kanadın tüm yol sayısını hesapla, iki kanadı topla ve kapananları çıkar.");
  }
  case "F05":{
-  const base=2+i%2,init=pow(base,3+i%3),neg=2,plus=3,net=init*pow(base,plus-neg);
+  const base=2+i%2,init=pow(base,3+i%3)*(i+1),neg=2,plus=3,net=init*pow(base,plus-neg);
   if(!h)return go("Fener "+init+" enerjiyle yanıyor. İlk kristal enerjiyi "+base+sup(-neg)+" ile, ikinci kristal "+base+sup(plus)+" ile çarpıyor. Son enerji kaçtır?",net,init+"×"+base+sup(-neg)+"×"+base+sup(plus)+"="+net,"Negatif üs bölme etkisi yapar; iki katsayının çarpımını hesapla.");
   const extra=pow(base,2),result=init*pow(base,-3)*pow(base,4)-extra;
   return go("Fenerin ilk enerjisi "+init+" birimdir. Art arda "+base+sup(-3)+" ve "+base+sup(4)+" etkileri uygulanıyor. Ardından "+extra+" birim enerji kayboluyor. Son enerji kaçtır?",result,init+"×"+base+sup(-3)+"×"+base+sup(4)+"−"+extra+"="+result,"Üslerin toplamını bul, başlangıç enerjisiyle çarp ve kaybı çıkar.");
@@ -92,7 +93,7 @@ function enrich(original){
   return go("Bir küpün hacmi "+pow(a,3)+" dm³, diğerinin "+pow(b,3)+" dm³'tür. Birinci küpün hacmi 8 katına çıkarılıyor. Yeni kenar ile ikinci küpün kenarı arasındaki fark kaç desimetre olur?",2*a-b,"∛(8×"+pow(a,3)+")−∛"+pow(b,3)+"="+2*a+"−"+b+"="+(2*a-b),"Hacim 8 katına çıkarsa kenar 2 katına çıkar; ikinci küpün kenarını çıkar.");
  }
  case "F14":{
-  const a=2+i%5;
+  const a=2+i;
   if(!h)return go("Dişli çarkın dönüş kodu ("+a+sup(2)+")"+sup("3/2")+" şeklinde. Kodun değeri bulunuyor ve "+a+" kademe çıkarılıyor. Kaç kademe kalır?",pow(a,3)-a,"("+a+sup(2)+")"+sup("3/2")+"="+a+sup(3)+"="+pow(a,3)+"; "+pow(a,3)+"−"+a+"="+(pow(a,3)-a),"Önce kesirli üssü karekökle ilişkilendir; ardından çıkar.");
   return go("Dişli çarkın ayarı ("+a+sup(3)+")"+sup("2/3")+"×"+a+sup(-1)+"×"+a+sup(2)+" olarak gösteriliyor. Kaç kademe çalışır?",pow(a,3),"("+a+sup(3)+")"+sup("2/3")+"="+a+sup(2)+"; "+a+sup("2−1+2")+"="+a+sup(3)+"="+pow(a,3),"Önce küpkök ve kareyi uygula, sonra negatif üssü diğer üslerle birleştir.");
  }
@@ -111,9 +112,9 @@ function enrich(original){
  case "F17":{
   const a=2+i%3,b=3+i%4,expo=3+i%2,raw=a*b;
   const fmt=(x,y)=>sci(x*Math.pow(10,y));
-  if(!h){const val=raw*Math.pow(10,2-expo);return go("Her yaprakta "+a+"×10"+sup(-expo)+" g toz var. "+b+"×10"+sup(2)+" yaprağın tozları birleştiriliyor. Toplam kütle hangi bilimsel gösterimdir?",fmt(raw,2-expo),sci(raw*Math.pow(10,2-expo)),"Katsayıları çarp, 10'un üslerini topla ve katsayıyı [1,10) aralığına getir.","scientific");}
-  const val=a*b*Math.pow(10,2-expo)/2;
-  return go("Her yaprakta "+a+"×10"+sup(-expo)+" g mavi toz var. "+b+"×10"+sup(2)+" yaprağın tozu toplanıyor. Toplanan miktarın yarısı deneyde harcanıyor. Kalanı bilimsel gösterimle yaz.",sci(val),"Önce toplam "+sci(2*val)+" g; yarısı harcanınca "+sci(val)+" g kalır.","Önce çarpımı bilimsel gösterime dönüştür, ardından ikiye böl.","scientific");
+  if(!h){const val=raw*Math.pow(10,2-expo)/2;return go("Her yaprakta "+a+"×10"+sup(-expo)+" g toz var. "+b+"×10"+sup(2)+" yaprak toplanıyor. Toplam tozun yarısı deneyde kullanılıyor. Kalan kütle hangi bilimsel gösterimdir?",sci(val),"Toplam "+sci(2*val)+" g; yarısı "+sci(val)+" g kalır.","Önce bilimsel gösterimle çarp, sonra ikiye böl.","scientific");}
+  const val=a*b*Math.pow(10,2-expo)/4;
+  return go("Her yaprakta "+a+"×10"+sup(-expo)+" g mavi toz var. "+b+"×10"+sup(2)+" yaprağın tozu toplanıyor. Tozun dörtte biri dökülüyor; kalan miktar üç eşit deneye paylaştırılıyor. Bir deneyde kaç gram toz bulunur? Bilimsel gösterimle yaz.",sci(val),"Toplam "+sci(4*val)+" g; dörtte üçü korunur, üçe bölününce "+sci(val)+" g kalır.","Önce tozların toplamını hesapla; dörtte üçünü bul ve üçe böl.","scientific");
  }
  case "F18":{
   const a=2+i%4,b=a,ex=6+i%3;
