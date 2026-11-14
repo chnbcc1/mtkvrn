@@ -522,7 +522,7 @@ interact=function(){
 };
 $("#examine").addEventListener("pointerdown",e=>{e.preventDefault();interact()});
 $("#examine").addEventListener("click",e=>{if(e.detail===0)interact()});
-home=function(){save(true);location.assign("./map-v70.html?from=forest")};
+home=function(){save(true);location.assign("./map-v71.html?from=forest")};
 journal=function(){
  const done=campaignProgress();
  openModal("Erdem'in yol notları","<p><strong>"+done+"/21 matematik engeli tamamlandı.</strong></p><p>Yürürken taşları, ağaç kütüklerini ve küçük toprak boşluklarını zıplayarak geç. Parlayan büyüteçte matematik sorusunu çöz.</p><p>Yanlış cevapta ipucu, ikinci yanlışta çözümlü benzer örnek, üçüncü yanlışta çözüm ve yeni soru gösterilir.</p>");
