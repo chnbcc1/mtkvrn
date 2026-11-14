@@ -2,6 +2,34 @@
 
 TÜBİTAK 4006 matematik macera oyunu.
 
+## v70 — Tam orman macerası (14 Kasım 2026)
+
+**Ana oyun:** https://chnbcc1.github.io/mtkvrn/deneme-v36/?v=70  
+**Doğrudan Orman Patikası testi:** https://chnbcc1.github.io/mtkvrn/deneme-v36/forest-v70-full.html?preview=1&v=70  
+**Macera haritası:** https://chnbcc1.github.io/mtkvrn/deneme-v36/map-v70.html?v=70  
+**Soru motoru:** https://chnbcc1.github.io/mtkvrn/deneme-v36/forest-v70-quiz.html?v=70
+
+### v70'te düzeltilenler
+- Açılış ekranı daha sinematik tam ekran orman görüntüsüne ve orijinal Erdem–Çiko sprite portresine kavuştu; kayıtlı oyun için **Devam Et** ve **Yeni Oyun** ayrı.
+- Tek kapsül üst menü ve ince ilerleme çubuğu; gereksiz bilgi kutusu kaldırıldı.
+- 21 ana engel arası 560'tan 2240 dünya birimine (**4 kat**) çıkarıldı; 29 mini zıplama engeli korundu.
+- Ormana daha uygun ayrıntılı oyun nesneleri atlası ve mini engel dokuları; eski yüksek çözünürlüklü orman arka planı korundu.
+- 240 köklü, köprü, küp ve ölçü sorusu yeniden kuruldu; soru metinlerinde dört basamaklı sayılar ya da 2^15 benzeri yüksek kuvvetler yok.
+- 630 farklı soru metni, kolay/orta/zor seviyeleri; dört şıklı seçim, ipucu → çözümlü benzer örnek → çözüm ve tekrar sınama korunuyor.
+- **Önemli düzeltme:** v69 soru bankasını eski kurallarla yanlışlıkla tekrar dönüştürme hatası giderildi; yayımlanmış v70 soru içeriği olduğu gibi kullanılır.
+- Eşdeğer köklü seçenekler ve "Seçenek 3" türü boş dolgu şıkları kaldırıldı.
+
+### Doğrulama ve sınırlar
+- 630 farklı soru kimliği ve metni, 910 çoktan seçmeli cevap aşaması; her aşamada dört ayrı şık ve doğru cevabın varlığı kodla doğrulandı.
+- 30 köprü eşleştirmesinin her birinde tek doğru tahta çifti; 10 zor köprü görevinde 6 aşamalı düşünme akışı doğrulandı.
+- 21 ana engel, 29 mini engel konum kontrolü ve dört kat mekânsal aralık doğrulandı.
+- JavaScript sözdizimi kontrol edildi; GitHub Pages dağıtımı başarılı.
+- **Gerçek iPhone üzerinde tüm ormanın baştan sona oynanışı, dokunma erişilebilirliği, kare hızı ve pedagojik dil uzmanı incelemesi hâlâ gereklidir.** Kod testleri bu testlerin yerine geçmez.
+- Kaydı koruma: `mathverse-v68-forest-full` devam eder; Dedenin Evi verisi `mathverse-v40-investigation` korunur. Soru testinin yeni sürümünde önceki yarım cevaplar taşınmaz.
+
+[Önceki v68 tam bölüm yerleşim planı](deneme-v36/ORMAN_PATIKASI_TAM_BOLUM_V68_YERLESIM.md)
+
+---
 ## Oyna — Tam Orman Patikası v68
 
 **Ana oyun (Dedenin Evi → Orman Patikası):** https://chnbcc1.github.io/mtkvrn/deneme-v36/?v=68  
