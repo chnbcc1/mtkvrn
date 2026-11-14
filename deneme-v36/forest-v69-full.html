@@ -340,7 +340,7 @@ function background(){
   ctx.fillStyle='#c3a172';ctx.fillRect(left-8*scale,yy-9*scale,50*scale,6*scale);
  }
  // Observatory silhouette and stone gateway at end of trail.
- const gx=worldX(12555),gy=worldY(728);
+ const gx=worldX(GATE_X-25),gy=worldY(728);
  if(gx>-320&&gx<vw+350){
   ctx.fillStyle='#a0a7a0';ctx.fillRect(gx-135*scale,gy-240*scale,270*scale,240*scale);
   ctx.fillStyle='#657d77';ctx.beginPath();ctx.arc(gx,gy-236*scale,139*scale,Math.PI,0);ctx.lineTo(gx+140*scale,gy-225*scale);ctx.closePath();ctx.fill();
