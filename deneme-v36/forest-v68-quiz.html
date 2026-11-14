@@ -62,8 +62,9 @@ sup{font-size:.7em;line-height:0;vertical-align:super}
 const EMBED=new URLSearchParams(location.search).get("embedded")==="1";
 const FORCED=new URLSearchParams(location.search).get("obstacle")||"";
 const FORCED_DIFFICULTY=new URLSearchParams(location.search).get("difficulty")||"orta";
+const CAMPAIGN_SESSION=new URLSearchParams(location.search).get("session")||"direct-preview";
 const BANK_URL="./forest-questions-v66.json?v=66";
-const RUN_KEY=EMBED?"mathverse-v68-quiz-"+FORCED+"-"+FORCED_DIFFICULTY:"mathverse-v65-choice-run",HISTORY_KEY="mathverse-v65-choice-history";
+const RUN_KEY=EMBED?"mathverse-v68-quiz-"+CAMPAIGN_SESSION+"-"+FORCED+"-"+FORCED_DIFFICULTY:"mathverse-v65-choice-run",HISTORY_KEY="mathverse-v65-choice-history";
 const OLD_SAVE_KEY="mathverse-v40-investigation";
 let bank=null,run=null,history={used:{},last:{},seenPrompts:{}};
 const app=document.querySelector("#app"),step=document.querySelector("#step"),bar=document.querySelector("#bar"),fill=document.querySelector("#fill");
