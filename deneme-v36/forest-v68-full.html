@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#0b2732">
+<title>v68 · 21 Engelli Orman Patikası · Matematik Evreni</title>
+<style>
+:root{--cream:#ffedcb;--gold:#f4cd77;--dark:#092536;--ink:#4b321f}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0b2630;color:#fff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+button{font:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3px}
+#scene{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.tint{position:fixed;inset:0;pointer-events:none;background:linear-gradient(180deg,#0a262a66,transparent 27%,transparent 72%,#06281922)}
+.hud{position:fixed;z-index:3;top:calc(max(12px,env(safe-area-inset-top)) + 20px);left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right));display:flex;gap:9px;align-items:start;justify-content:space-between;pointer-events:none}
+.chip,.iconBtn{background:#092738df;border:1px solid #f9e6b87a;border-radius:17px;box-shadow:0 7px 25px #001d2388,inset 0 1px #ffffff2a;backdrop-filter:blur(6px);color:#fff9ed}
+.chip{padding:10px 12px;max-width:65%;line-height:1.25;font-size:13px;font-weight:850;text-shadow:0 2px 6px #0008}
+.chip small{display:block;color:#f8dfab;font-size:11px;font-weight:500;margin-top:3px}
+.hudRight{display:flex;gap:7px;pointer-events:auto}.iconBtn{width:48px;height:48px;font-size:19px}
+.hint{position:fixed;z-index:2;left:50%;transform:translateX(-50%);top:calc(max(12px,env(safe-area-inset-top)) + 103px);max-width:min(440px,calc(100vw - 34px));background:#092b38da;border:1px solid #e4cea07f;border-radius:18px;padding:10px 15px;text-align:center;font-weight:700;font-size:13px;text-shadow:0 2px 5px #0019;pointer-events:none}
+.hint[hidden]{display:none}
+.controls{position:fixed;z-index:4;left:max(14px,env(safe-area-inset-left));right:max(14px,env(safe-area-inset-right));bottom:max(22px,env(safe-area-inset-bottom));display:flex;justify-content:space-between;align-items:end;pointer-events:none}
+.moves{display:flex;gap:12px}.ctrl{pointer-events:auto;min-width:72px;height:77px;border:2px solid #e5d1a37a;border-radius:24px;background:#143a50d9;color:#fff0c9;font-size:24px;font-weight:900;box-shadow:0 9px 22px #071b2388}
+.ctrl:active,.ctrl.pressed{background:#34657b}
+#jump{min-width:110px;font-size:15px}
+.screen{position:fixed;z-index:9;inset:0;background:#0717229e;backdrop-filter:blur(10px);display:grid;place-items:center;padding:max(20px,env(safe-area-inset-top)) 16px max(24px,env(safe-area-inset-bottom))}
+.screen[hidden]{display:none}
+.paper{width:min(530px,100%);max-height:min(84dvh,790px);overflow:auto;background:linear-gradient(156deg,#f7e7bb,#e9ca8f);border:5px solid #bf8548;outline:2px solid #523725;border-radius:27px;box-shadow:0 22px 70px #08171dcc;padding:22px 19px;color:var(--ink)}
+.paper h2{margin:0 0 12px;font-family:Georgia,serif;font-size:clamp(28px,7vw,38px);line-height:1.1}
+.paper h3{margin:14px 0 8px;font-size:17px}.paper p{line-height:1.55;margin:12px 0}
+.eyebrow{font-size:11px;letter-spacing:1.3px;font-weight:900;color:#926131}
+.statement{background:#fff4d6d6;border-left:5px solid #b28b4c;padding:14px;border-radius:11px;font-weight:650;line-height:1.5}
+.actions{display:grid;gap:9px;margin-top:15px}
+.primary,.answer,.secondary{width:100%;padding:14px;border-radius:14px;border:2px solid #b18a53;background:#fff2d0;color:#533724;font-weight:850;text-align:left;min-height:50px}
+.primary{background:#235e53;color:#fff;border-color:#347e6e;text-align:center}
+.secondary{text-align:center;background:#e1e8da}
+.answer:active{background:#e9d1a4}
+.answer[disabled]{opacity:.6;cursor:default}
+.feedback{min-height:30px;margin-top:12px;font-weight:750;color:#664026}
+.thought{border:1px solid #d2b27c;background:#fff5debd;border-radius:13px;padding:11px;margin:12px 0;font-size:14px}
+.footerNote{color:#684e33;font-size:12px;margin-top:12px}
+@media(max-height:590px){.hud{top:calc(max(5px,env(safe-area-inset-top)) + 4px)}.hint{top:80px}.ctrl{height:60px;min-width:60px}#jump{min-width:85px}.paper{max-height:90dvh}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+#examine{min-width:105px;max-width:120px;font-size:13px;background:#8b5c31ef;border-color:#f8d28a;box-shadow:0 0 20px #f5bd6966}
+#examine[hidden]{display:none!important}
+#campaignHud{position:fixed;z-index:3;top:calc(max(15px,env(safe-area-inset-top)) + 106px);left:15px;color:#fff9dc;background:#0d352fc9;border:1px solid #e3cb8a88;border-radius:14px;padding:7px 11px;font-size:12px;font-weight:800;pointer-events:none}
+#quizOverlay{z-index:12;background:#071e24e5;padding: max(12px,env(safe-area-inset-top)) 8px max(12px,env(safe-area-inset-bottom))}
+#quizOverlay .quizWrap{display:flex;flex-direction:column;width:min(680px,100%);height:min(92dvh,850px);background:linear-gradient(155deg,#143b37,#153034);border:2px solid #a9b78d;border-radius:20px;overflow:hidden;box-shadow:0 20px 56px #000b}
+#quizOverlay .quizBar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 13px;background:#16443c;color:#fff2ce;font-size:13px;font-weight:900}
+#quizOverlay iframe{display:block;border:0;flex:1;min-height:0;width:100%;background:transparent}
+#quizOverlay .quizClose{font-size:13px;border:1px solid #e7d3a4;border-radius:10px;padding:8px 11px;background:#29483b;color:#fff3d7;font-weight:800}
+@media(max-width:430px){#campaignHud{top:calc(max(12px,env(safe-area-inset-top)) + 91px)}.controls{gap:6px}.moves{gap:6px}.ctrl{min-width:62px;width:63px;height:67px;border-radius:18px}#jump{min-width:82px;width:82px;font-size:12px}#examine{min-width:81px;width:90px;font-size:11px}}
+
+</style>
+</head>
+<body>
+<canvas id="scene" aria-label="Erdem ve Çiko ile oynanabilir orman patikası"></canvas><div class="tint"></div>
+<div class="hud">
+ <div class="chip">🌲 BÖLÜM 2 · ORMAN PATİKASI<small id="progress">Eski gözlemevine doğru</small></div>
+ <div class="hudRight"><button class="iconBtn" id="journal" aria-label="Bölüm notlarını göster">📜</button><button class="iconBtn" id="home" aria-label="Macera haritasını aç">🗺️</button></div>
+</div>
+<div class="hint" id="hint">Patikada ilerle; parlayan büyüteçleri incele.</div>
+<div class="controls">
+ <div class="moves"><button class="ctrl" id="left" aria-label="Sola yürü">◀</button><button class="ctrl" id="right" aria-label="Sağa yürü">▶</button></div>
+ <button class="ctrl" id="examine" aria-label="Engeli incele" hidden>🔎 İNCELE</button><button class="ctrl" id="jump" aria-label="Zıpla">ZIPLA ↑</button>
+</div>
+<section class="screen" id="modal" hidden aria-modal="true" role="dialog">
+ <div class="paper">
+  <span class="eyebrow" id="eyebrow">MACERA</span>
+  <h2 id="modalTitle">Orman Patikası</h2>
+  <div id="modalContent"></div>
+  <div class="actions" id="modalActions"></div>
+  <div class="feedback" id="feedback" aria-live="polite"></div>
+ </div>
+</section>
+
+
+<div id="campaignHud" aria-live="polite">🌿 0/21 engel</div>
+<section class="screen" id="quizOverlay" hidden role="dialog" aria-modal="true" aria-label="Matematik engeli">
+ <div class="quizWrap">
+  <div class="quizBar"><span id="quizTitle">Matematik engeli</span><button class="quizClose" id="quizClose" type="button">✕ Patikaya dön</button></div>
+  <iframe id="quizFrame" title="Engel sorusu" loading="eager"></iframe>
+ </div>
+</section>
+
+<script src="./forest-hd-v67-asset.js?v=67"></script>
+<script src="./erdem-v57-hd-atlas.js?v=57"></script>
+<script src="./chiko-v57-hd-atlas.js?v=57"></script>
+<script>
+'use strict';
+const SAVE_KEY='mathverse-v40-investigation';
+const W=13040,H=941,GROUND=728,RAVINE_LEFT=4658,RAVINE_RIGHT=4873,BRIDGE_X=4593,GATE_X=12580;
+const canvas=document.querySelector('#scene'),ctx=canvas.getContext('2d',{alpha:false});
+const $=s=>document.querySelector(s);
+const erdem=new Image(),chiko=new Image(),forestPhoto=new Image();
+forestPhoto.src=window.FOREST_HD_V67||'./forest-v66-hd.svg?v=66';
+if(window.ERDEM_V57_HD_ATLAS)erdem.src=window.ERDEM_V57_HD_ATLAS;
+if(window.CHIKO_V57_HD_ATLAS)chiko.src=window.CHIKO_V57_HD_ATLAS;
+let backing={},approved=false,solved=false,reachedGate=false,resumed=false,bridgeProgress=0,bridgeBuildStart=0,difficulty='orta',heroX=360,heroY=GROUND,vy=0,travel=0,face=1,requested=0,activePointers=new Map(),camera=0,camReady=false,scale=1,vw=innerWidth,vh=innerHeight,dpr=1,last=0,clock=0,flyingX=365,flyingY=420,flyingFace=1,modalOpen=false,started=false,saveLastX=360,saveTimer=0,nearMarker=null,seenMarker=false;
+try{
+ backing=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}')||{};
+ approved=Boolean(backing.complete&&backing.visitedStudy);
+ const stage=backing.chapter2||{};
+ resumed=stage.stage==='forest-path';
+ solved=Boolean(stage.puzzleSolved);
+ bridgeProgress=solved?1:0;
+ reachedGate=Boolean(stage.reachedGate);
+ difficulty=['kolay','orta','zor'].includes(stage.difficulty)?stage.difficulty:'orta';
+ heroX=Math.min(solved?GATE_X+10:BRIDGE_X,Math.max(310,Number(stage.x)||360));
+ if(new URLSearchParams(location.search).get('focus')==='gate'&&reachedGate)heroX=GATE_X-105;
+}catch(e){backing={};approved=false;}
+const QUESTIONS={
+ kolay:{
+  text:'Kırık köprünün açıklığını kapatmak için x metre uzunluğunda iki eş tahta ve 1 metrelik sabit destek kullanılacak. Toplam uzunluk 6 metre olduğuna göre bir tahta kaç metre olmalı?',
+  relation:'2x + 1 = 6',options:['2 metre','2,5 metre','3 metre','3,5 metre'],correct:1,
+  hint:'İki tahtanın toplamı 6 − 1 = 5 metredir. 2x = 5 eşitliğini çöz.',
+  why:'2x + 1 = 6 ⇒ 2x = 5 ⇒ x = 2,5 metre.'
+ },
+ orta:{
+  text:'Köprüye x metre uzunluğunda üç eş tahta ve toplam 0,6 metrelik sabit destek yerleştirilecek. Geçiş 7,8 metre olmalı. Her tahta kaç metre uzunluğunda olmalı?',
+  relation:'3x + 0,6 = 7,8',options:['2,2 metre','2,4 metre','2,6 metre','3 metre'],correct:1,
+  hint:'Önce 7,8 − 0,6 işlemini yap. Kalan uzunluk üç eş tahtaya bölünüyor.',
+  why:'3x + 0,6 = 7,8 ⇒ 3x = 7,2 ⇒ x = 2,4 metre.'
+ },
+ zor:{
+  text:'Her tahta 1,5 metre güvenli geçiş sağlar. Başlangıç platformu 0,8 metredir. En az 6,5 metrelik güvenli yol için kaç tam tahta gerekir?',
+  relation:'1,5n + 0,8 ≥ 6,5',options:['3 tahta','4 tahta','5 tahta','6 tahta'],correct:1,
+  hint:'1,5n ≥ 5,7. Her iki tarafı 1,5’e böl, sonucu tam tahta sayısına yuvarla.',
+  why:'1,5n + 0,8 ≥ 6,5 ⇒ n ≥ 3,8. En az 4 tam tahta gerekir.'
+ }
+};
+function save(force=false){
+ if(!approved)return;
+ if(!force&&Math.abs(saveLastX-heroX)<35&&saveTimer<2)return;
+ saveLastX=heroX;saveTimer=0;
+ try{
+  const latest=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}')||{};
+  latest.chapter2EntrySeen=true;
+  latest.activeScene='forest-path';
+  latest.chapter2={...(latest.chapter2||{}),stage:'forest-path',x:Math.round(heroX),difficulty,puzzleSolved:solved,reachedGate};
+  localStorage.setItem(SAVE_KEY,JSON.stringify(latest));
+ }catch(e){}
+}
+function resize(){vw=innerWidth;vh=innerHeight;dpr=Math.min(devicePixelRatio||1,3);scale=Math.max(vh/H,vw/1450);canvas.width=Math.round(vw*dpr);canvas.height=Math.round(vh*dpr);canvas.style.width=vw+'px';canvas.style.height=vh+'px';camReady=false}
+addEventListener('resize',resize);resize();
+function openModal(title,content,eyebrow='BÖLÜM 2'){modalOpen=true;requested=0;activePointers.clear();updatePress();$('#modalTitle').textContent=title;$('#modalContent').innerHTML=content;$('#eyebrow').textContent=eyebrow;$('#modalActions').replaceChildren();$('#feedback').textContent='';$('#modal').hidden=false}
+function closeModal(){modalOpen=false;$('#modal').hidden=true;$('#modalActions').replaceChildren();$('#feedback').textContent='';last=0}
+function action(label,fn,variant='primary'){const b=document.createElement('button');b.type='button';b.className=variant;b.textContent=label;b.onclick=fn;$('#modalActions').appendChild(b);return b}
+function story(){
+ openModal('Orman Patikası','<p>Erdem haritayı çantasına yerleştirdi. Çiko, tepeye uzanan patikanın üzerinde uçuyordu.</p><div class="thought">💭 <b>Erdem:</b> “Eski gözlemevine giden yol bu olmalı.”</div><p>Yürüyerek ilerle, gerekirse zıpla. Yol üzerinde karşılaşacağın sorunu ölçerek çöz.</p>');
+ action('Patikaya çık ▶',()=>{started=true;closeModal();save(true)});
+}
+function home(){save(true);location.assign('./map-v62.html?from=forest')}
+function journal(){
+ const title=reachedGate?'Gözlemevi kapısı':solved?'Köprü tamamlandı':'Orman patikası';
+ const note=reachedGate?'Erdem ve Çiko gözlemevinin girişine ulaştı.':solved?'Köprüyü ölçerek geçebilecekleri uzunluğu buldular.':'Erdem ve Çiko dere üzerindeki köprüyü incelemeye gidiyor.';
+ openModal('Erdem’in yol notları','<p><strong>'+title+'</strong></p><p>'+note+'</p><p>Köprü görevi: '+(solved?'Tamamlandı':'Henüz çözülmedi')+'</p>');
+ action('Yola dön',closeModal);
+ action('🗺️ Macera haritasına bak',home,'secondary');
+ if(reachedGate)action('Gözlemevi kapısını incele',()=>{closeModal();reachGate()},'secondary');
+}
+function puzzle(showChoice=true){
+ if(solved){openModal('Köprü hazır','<p>Ölçüler tamamlandı. Erdem ve Çiko dereyi güvenle geçebilir.</p>');action('Yola devam et',closeModal);return}
+ const question=QUESTIONS[difficulty];
+ openModal('Kırık köprü','<p>Tahtalar kırıldığı için dereden geçilemiyor. Eksik parçalar yerine konmadan yol açılmayacak.</p><div class="thought">💭 <b>Erdem:</b> “Önce doğrusal denklemle ölçüyü bulmalıyım.”</div><p class="footerNote">9. sınıf · MAT.9.2.3 · Doğrusal denklem ve eşitsizlikler</p>');
+ const area=$('#modalContent');
+ const tabs=document.createElement('div');tabs.className='actions';tabs.style.gridTemplateColumns='repeat(3,1fr)';
+ for(const [id,label] of [['kolay','Kolay'],['orta','Orta'],['zor','Zor']]){
+  const b=document.createElement('button');b.className=id===difficulty?'primary':'secondary';b.textContent=label;b.style.minHeight='43px';b.style.padding='7px';b.onclick=()=>{difficulty=id;save(true);puzzle(false)};tabs.appendChild(b);
+ }
+ area.appendChild(tabs);
+ const statement=document.createElement('div');statement.className='statement';statement.style.marginTop='15px';statement.textContent=question.text;area.appendChild(statement);
+ const model=document.createElement('div');model.className='statement';model.style.marginTop='9px';model.style.textAlign='center';model.style.fontSize='22px';model.style.letterSpacing='.4px';model.textContent=question.relation;area.appendChild(model);
+ const answers=document.createElement('div');answers.className='actions';area.appendChild(answers);
+ question.options.forEach((choice,i)=>{
+  const b=document.createElement('button');b.className='answer';b.textContent=choice;
+  b.onclick=()=>{
+   if(i!==question.correct){$('#feedback').textContent='Henüz değil. Denklemi veya eşitsizliği yeniden kontrol et.';return}
+   solved=true;bridgeProgress=0;bridgeBuildStart=clock;save(true);
+   area.innerHTML='<p><strong>Doğru!</strong> '+question.why+'</p><p>Erdem doğru ilişkiyi kurdu. Çiko, eksik tahtaların yerleşmesine yardım etti. Köprü birkaç saniye içinde tamamlanacak.</p><div class="thought">💭 <b>Erdem:</b> “Şimdi yolumuza devam edebiliriz.”</div>';
+   $('#modalTitle').textContent='Köprü tamamlandı';$('#feedback').textContent='';
+   $('#modalActions').replaceChildren();action('Karşıya geç ▶',closeModal);
+  };
+  answers.appendChild(b);
+ });
+ action('Kısa ipucu göster',()=>{$('#feedback').textContent=question.hint},'secondary');
+ action('Patikaya dön',closeModal,'secondary');
+}
+function reachGate(){
+ if(!reachedGate){reachedGate=true;save(true)}
+ openModal('Gözlemevi Kapısı','<p>Patika bitti. Erdem ve Çiko yüksek taş duvarların ardındaki eski gözlemevinin girişine ulaştı.</p><div class="thought">💭 <b>Erdem:</b> “Haritada gördüğüm üç halka burada da var.”</div><p>Giriş kapısındaki işaret incelenmeyi bekliyor.</p>');
+ action('Gözlemevini dışarıdan incele',()=>{
+  $('#modalTitle').textContent='Üç halka işareti';
+  $('#modalContent').innerHTML='<p>Taş kapının üzerine yan yana üç halka oyulmuş. İşaretin altında soluk bir ölçü çizgisi var.</p><div class="thought">💭 <b>Erdem:</b> “Bu çizgiler bir ölçüyü gösteriyor olabilir.”</div>';
+  $('#modalActions').replaceChildren();action('Patikaya dön',closeModal);
+ },'secondary');
+ action('Patikaya dön',closeModal);
+}
+function updatePress(){for(const [id,dir] of [['left',-1],['right',1]])$('#'+id).classList.toggle('pressed',requested===dir)}
+function hold(dir,on,id){
+ if(on)activePointers.set(id,dir);else activePointers.delete(id);
+ requested=0;for(const v of activePointers.values())requested+=v;
+ requested=Math.max(-1,Math.min(1,requested));updatePress();
+}
+for(const [id,dir] of [['left',-1],['right',1]]){
+ const btn=$('#'+id);
+ btn.addEventListener('contextmenu',e=>e.preventDefault());
+ btn.addEventListener('pointerdown',e=>{e.preventDefault();if(modalOpen||!started)return;btn.setPointerCapture(e.pointerId);hold(dir,true,e.pointerId)});
+ for(const type of ['pointerup','pointercancel','lostpointercapture'])btn.addEventListener(type,e=>hold(dir,false,e.pointerId));
+}
+function jump(){if(!started||modalOpen||heroY<GROUND-.2)return;vy=-590}
+$('#jump').addEventListener('pointerdown',e=>{e.preventDefault();jump()});
+$('#home').onclick=home;$('#journal').onclick=journal;
+addEventListener('keydown',e=>{
+ if(['ArrowLeft','ArrowRight','ArrowUp',' ','e','E','a','d','A','D'].includes(e.key))e.preventDefault();
+ if(e.key==='Escape'&&modalOpen){closeModal();return}
+ if(!started||modalOpen)return;
+ if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')hold(-1,true,'keyLeft');
+ if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')hold(1,true,'keyRight');
+ if((e.key==='ArrowUp'||e.key===' ')&&!e.repeat)jump();
+ if(e.key.toLowerCase()==='e')interact();
+});
+addEventListener('keyup',e=>{if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')hold(-1,false,'keyLeft');if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')hold(1,false,'keyRight')});
+addEventListener('blur',()=>{requested=0;activePointers.clear();updatePress()});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){requested=0;activePointers.clear();updatePress();save(true)}last=0});
+function available(){if(modalOpen||!started||heroY<GROUND-50)return null;if(!solved&&Math.abs(heroX-1560)<175)return 'bridge';if(Math.abs(heroX-3000)<155)return 'gate';return null}
+function interact(){if(available()==='bridge')puzzle();else if(available()==='gate')reachGate()}
+let down=null;
+canvas.addEventListener('pointerdown',e=>{down={id:e.pointerId,x:e.clientX,y:e.clientY}});
+canvas.addEventListener('pointercancel',()=>{down=null});
+canvas.addEventListener('pointerup',e=>{
+ if(!down||down.id!==e.pointerId||Math.hypot(down.x-e.clientX,down.y-e.clientY)>25){down=null;return}
+ down=null;const m=available();if(!m)return;
+ const mp=campaignMarker(m);const x=mp.x,y=mp.y;
+ const sx=(x-camera)*scale,sy=y*scale+offsetY();
+ const px=e.clientX-canvas.getBoundingClientRect().left,py=e.clientY-canvas.getBoundingClientRect().top;
+ if(Math.hypot(sx-px,sy-py)<64){e.preventDefault();interact()}
+});
+function offsetY(){return Math.max(-6,(vh-H*scale)/2)}
+function worldX(x){return(x-camera)*scale}
+function worldY(y){return y*scale+offsetY()}
+function tree(x,base,rad,foreground=false){
+ const xx=worldX(x),yy=worldY(base),k=scale;
+ if(xx<-220||xx>vw+220)return;
+ ctx.save();
+ if(foreground){ctx.globalAlpha=.75}
+ const trunk=ctx.createLinearGradient(xx-rad*k,0,xx+rad*k,0);
+ trunk.addColorStop(0,'#3a2d21');trunk.addColorStop(.55,'#75583b');trunk.addColorStop(1,'#2b3324');
+ ctx.fillStyle=trunk;ctx.beginPath();ctx.moveTo(xx-rad*.14*k,yy);ctx.quadraticCurveTo(xx-rad*.1*k,yy-145*k,xx-rad*.23*k,yy-240*k);ctx.lineTo(xx+rad*.06*k,yy-240*k);ctx.lineTo(xx+rad*.23*k,yy);ctx.closePath();ctx.fill();
+ for(let row=0;row<3;row++){
+  const y=yy-(150+row*80)*k,rr=(rad*(1.1-row*.18))*k;
+  const cg=ctx.createRadialGradient(xx-rr*.3,y-rr*.4,rr*.12,xx,y,rr);
+  cg.addColorStop(0,foreground?'#477f45':'#78a95a');
+  cg.addColorStop(.58,foreground?'#214e36':'#3c774a');
+  cg.addColorStop(1,foreground?'#12332b':'#285a38');
+  ctx.fillStyle=cg;ctx.beginPath();ctx.ellipse(xx+(row%2?20:-8)*k,y,rr,rr*.63,0,0,Math.PI*2);ctx.fill();
+ }
+ ctx.restore();
+}
+
+const FOREST_PHOTO_READY=()=>forestPhoto.complete&&forestPhoto.naturalWidth>=1600;
+function background(){
+ const photoReady=FOREST_PHOTO_READY();
+ if(photoReady){
+  // Render the optimized 1672x941 cinematic HD forest on native-resolution canvas; mirrored panorama avoids visible seams.
+  for(let j=0;j<Math.ceil(W/1672);j++){
+   const at=j*1672,sx=worldX(at);
+   if(sx>vw+4||sx+1672*scale< -4)continue;
+   ctx.save();
+   if(j%2){ctx.translate(worldX(at+1672),0);ctx.scale(-1,1);ctx.drawImage(forestPhoto,0,offsetY(),1672*scale,H*scale)}
+   else ctx.drawImage(forestPhoto,sx,offsetY(),1672*scale,H*scale);
+   ctx.restore();
+  }
+  const mist=ctx.createLinearGradient(0,worldY(330),0,worldY(710));
+  mist.addColorStop(0,'#dae6c100');mist.addColorStop(.64,'#d3efc814');mist.addColorStop(1,'#122d1600');
+  ctx.fillStyle=mist;ctx.fillRect(0,worldY(330),vw,worldY(710)-worldY(330));
+ }else{
+
+ const sky=ctx.createLinearGradient(0,0,0,vh);sky.addColorStop(0,'#82c0d0');sky.addColorStop(.42,'#c1dfd6');sky.addColorStop(1,'#9dc6a1');ctx.fillStyle=sky;ctx.fillRect(0,0,vw,vh);
+ const sunX=worldX(530)-camera*.08*scale,sunY=worldY(140);
+ const glow=ctx.createRadialGradient(sunX,sunY,10,sunX,sunY,230*scale);glow.addColorStop(0,'#fff6c9aa');glow.addColorStop(1,'#fff6c900');ctx.fillStyle=glow;ctx.fillRect(0,0,vw,vh);
+ const hill=(color,base,amp,shift)=>{
+  ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(0,vh);
+  for(let px=0;px<=vw+20;px+=18){const wx=px/scale+camera*shift;ctx.lineTo(px,worldY(base+Math.sin(wx*.003)*amp+Math.sin(wx*.009)*amp*.23))}
+  ctx.lineTo(vw,vh);ctx.fill();
+ };
+ hill('#8aaf8c',510,78,.15);hill('#5e9985',560,62,.32);hill('#337c68',630,40,.52);
+ for(let x=-200;x<W+250;x+=180)tree(x,664,86,false);
+ // Green floor with worn dirt path at a constant character ground line.
+ const groundGrad=ctx.createLinearGradient(0,worldY(668),0,vh);
+ groundGrad.addColorStop(0,'#7fbd62');groundGrad.addColorStop(.4,'#468f51');groundGrad.addColorStop(1,'#174c38');
+ ctx.fillStyle=groundGrad;ctx.fillRect(0,worldY(690),vw,vh-worldY(690));
+ ctx.fillStyle='#d0aa72';ctx.beginPath();ctx.moveTo(0,worldY(735));
+ for(let px=0;px<=vw+18;px+=18){const wx=px/scale+camera;ctx.lineTo(px,worldY(734+5*Math.sin(wx*.02)))}
+ ctx.lineTo(vw,worldY(848));ctx.lineTo(0,worldY(848));ctx.closePath();ctx.fill();
+ ctx.fillStyle='#b08a5d';
+ for(let i=0;i<65;i++){
+  const x=170+i*52,y=758+(i*19)%65;
+  const sx=worldX(x);if(sx<0||sx>vw)continue;
+  ctx.beginPath();ctx.ellipse(sx,worldY(y),((i%4)+2)*scale,1.8*scale,0,0,Math.PI*2);ctx.fill();
+ }
+
+ }
+ // A ravine: the crossing requires completing the measured wooden bridge.
+ const left=worldX(RAVINE_LEFT),right=worldX(RAVINE_RIGHT),yy=worldY(738);
+ ctx.fillStyle='#244e5d';ctx.fillRect(left,yy,right-left,vh-yy);
+ ctx.fillStyle='#6b9ea4';ctx.fillRect(left,worldY(864),right-left,24*scale);
+ if(solved){
+  ctx.save();ctx.beginPath();ctx.rect(left,yy-90*scale,(right-left)*bridgeProgress+2,150*scale);ctx.clip();
+  ctx.fillStyle='#675138';ctx.fillRect(left-12*scale,yy-9*scale,right-left+24*scale,18*scale);
+  for(let x=RAVINE_LEFT;x<RAVINE_RIGHT;x+=33){const sx=worldX(x);ctx.fillStyle=(x%2?'#bc9563':'#c5a16d');ctx.fillRect(sx,yy-12*scale,30*scale,24*scale);ctx.strokeStyle='#71543a';ctx.lineWidth=2*scale;ctx.strokeRect(sx,yy-12*scale,30*scale,24*scale)}
+  ctx.strokeStyle='#5d4837';ctx.lineWidth=4*scale;ctx.beginPath();ctx.moveTo(left,yy-48*scale);ctx.lineTo(right,yy-48*scale);ctx.stroke();ctx.restore();
+ }else{
+  // Two snapped halves make the impassable ravine obvious even on narrow phones.
+  ctx.save();ctx.translate(left+28*scale,yy);ctx.rotate(-.18);ctx.fillStyle='#7b5539';ctx.fillRect(-30*scale,-8*scale,82*scale,22*scale);ctx.restore();
+  ctx.save();ctx.translate(right-20*scale,yy);ctx.rotate(.14);ctx.fillStyle='#8b6241';ctx.fillRect(-58*scale,-8*scale,84*scale,22*scale);ctx.restore();
+  ctx.strokeStyle='#f6d987';ctx.lineWidth=4*scale;ctx.beginPath();ctx.moveTo(left,yy-50*scale);ctx.lineTo(left+28*scale,yy-21*scale);ctx.stroke();
+  ctx.fillStyle='#f5d27c';ctx.font=`${Math.max(13,22)*scale}px sans-serif`;ctx.fillText('⚠',left-42*scale,yy-40*scale);
+  ctx.fillStyle='#7e6547';ctx.fillRect(left-8*scale,yy-5*scale,50*scale,13*scale);
+  ctx.fillStyle='#c3a172';ctx.fillRect(left-8*scale,yy-9*scale,50*scale,6*scale);
+ }
+ // Observatory silhouette and stone gateway at end of trail.
+ const gx=worldX(12555),gy=worldY(728);
+ if(gx>-320&&gx<vw+350){
+  ctx.fillStyle='#a0a7a0';ctx.fillRect(gx-135*scale,gy-240*scale,270*scale,240*scale);
+  ctx.fillStyle='#657d77';ctx.beginPath();ctx.arc(gx,gy-236*scale,139*scale,Math.PI,0);ctx.lineTo(gx+140*scale,gy-225*scale);ctx.closePath();ctx.fill();
+  ctx.fillStyle='#425953';ctx.fillRect(gx-50*scale,gy-130*scale,100*scale,130*scale);
+  ctx.strokeStyle='#e5cd89';ctx.lineWidth=5*scale;
+  for(let i=-1;i<=1;i++){ctx.beginPath();ctx.arc(gx+i*19*scale,gy-167*scale,11*scale,0,Math.PI*2);ctx.stroke()}
+  ctx.fillStyle='#d9cba5';ctx.fillRect(gx-150*scale,gy-15*scale,300*scale,19*scale);
+ }
+ // Grass and flowers at the near edge.
+ for(let i=0;i<95;i++){
+  const x=(i*71+83)%W,sx=worldX(x);if(sx<0||sx>vw)continue;
+  const y=867+(i%6)*11;ctx.strokeStyle=i%3?'#2c7a4f':'#5e9e51';ctx.lineWidth=2*scale;
+  ctx.beginPath();ctx.moveTo(sx,worldY(y));ctx.lineTo(sx-5*scale,worldY(y-16-(i%4)*4));ctx.stroke();
+  if(i%5===0){ctx.fillStyle=i%2?'#f3d2dd':'#fff1c3';ctx.beginPath();ctx.arc(sx,worldY(y-17),3.5*scale,0,Math.PI*2);ctx.fill()}
+ }
+}
+function marker(x,y,label){
+ const xx=worldX(x),yy=worldY(y),wave=(Math.sin(clock*3)+1)/2;
+ ctx.save();ctx.strokeStyle='#fff4b7';ctx.lineWidth=2;
+ ctx.globalAlpha=.3+wave*.45;ctx.beginPath();ctx.arc(xx,yy,(24+wave*4)*scale,0,Math.PI*2);ctx.stroke();ctx.globalAlpha=1;
+ ctx.fillStyle='#113948';ctx.beginPath();ctx.arc(xx,yy,21*scale,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#fff1c5';ctx.lineWidth=2.3*scale;ctx.stroke();
+ ctx.beginPath();ctx.arc(xx-4*scale,yy-5*scale,7*scale,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.moveTo(xx+1*scale,yy+1*scale);ctx.lineTo(xx+10*scale,yy+11*scale);ctx.stroke();
+ ctx.restore();
+}
+function heroSprite(){
+ const y=worldY(heroY),x=worldX(heroX),height=257*scale,width=165*scale;
+ const jumping=heroY<GROUND-2;
+ let frame=0;
+ if(jumping)frame=vy< -200?9:vy<80?11:13;
+ else if(Math.abs(requested)>0)frame=Math.floor(travel/27)%8;
+ else frame=14;
+ const imageReady=erdem.complete&&erdem.naturalWidth>=1040&&erdem.naturalHeight>=2025;
+ ctx.save();ctx.translate(x,y);ctx.scale(face,1);
+ if(imageReady){ctx.drawImage(erdem,(frame%4)*260,Math.floor(frame/4)*405,260,405,-width/2,-height,width,height)}
+ else {ctx.fillStyle='#c5946e';ctx.beginPath();ctx.arc(0,-height*.75,25*scale,0,Math.PI*2);ctx.fill();ctx.fillStyle='#537989';ctx.fillRect(-25*scale,-height*.65,50*scale,155*scale)}
+ ctx.restore();
+}
+function birdSprite(){
+ const dx=heroX+Math.sin(clock*1.0)*69,dy=heroY-305+Math.cos(clock*1.17)*21;
+ const follow=.15;flyingX+=(dx-flyingX)*follow;flyingY+=(dy-flyingY)*follow;
+ const dir=Math.cos(clock*1)>0?1:-1;
+ flyingFace=dir;
+ const frame=Math.floor(clock*14.8)%8;
+ const x=worldX(flyingX),y=worldY(flyingY),size=99*scale;
+ const ready=chiko.complete&&chiko.naturalWidth>=1152&&chiko.naturalHeight>=576;
+ ctx.save();ctx.translate(x,y);ctx.scale(flyingFace,1);
+ if(ready)ctx.drawImage(chiko,(frame%6)*192,Math.floor(frame/6)*192,192,192,-size/2,-size/2,size,size);
+ else{ctx.fillStyle='#ffbc4d';ctx.beginPath();ctx.ellipse(0,0,25*scale,35*scale,0,0,Math.PI*2);ctx.fill()}
+ ctx.restore();
+}
+function render(){
+ ctx.setTransform(dpr,0,0,dpr,0,0);ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
+ const maxCam=Math.max(0,W-vw/scale),desired=Math.max(0,Math.min(maxCam,heroX-vw/scale*.44));
+ if(!camReady){camera=desired;camReady=true}else camera+=(desired-camera)*.11;
+ background();
+ const availableNow=available();
+ // A fixed marker lives in the scenery; characters are always drawn above it.
+ if(availableNow==='bridge')marker(1560,580);
+ if(availableNow==='gate')marker(3000,540);
+ const inFront=Math.cos(clock*1)>0;
+ if(!inFront)birdSprite();
+ ctx.fillStyle='rgba(14,35,26,.28)';ctx.beginPath();ctx.ellipse(worldX(heroX),worldY(GROUND+4),45*scale,8*scale,0,0,Math.PI*2);ctx.fill();
+ heroSprite();
+ if(inFront)birdSprite();
+}
+function update(dt){
+ if(!started||modalOpen)return;
+ const old=heroX;
+ heroX=Math.min(solved&&bridgeProgress>=1?GATE_X+10:BRIDGE_X,Math.max(270,heroX+requested*245*dt));
+ if(!solved&&heroX>=BRIDGE_X&&requested>0){heroX=BRIDGE_X}
+ if(Math.abs(heroX-old)>.01){face=requested>=0?1:-1;travel+=Math.abs(heroX-old)}
+ if(heroY<GROUND||vy!==0){vy+=1150*dt;heroY=Math.min(GROUND,heroY+vy*dt);if(heroY>=GROUND){heroY=GROUND;vy=0}}
+ if(solved&&bridgeProgress<1)bridgeProgress=Math.min(1,(clock-bridgeBuildStart)/2.1);
+ saveTimer+=dt;if(saveTimer>2&&Math.abs(heroX-saveLastX)>35)save();
+ const m=available();
+ $('#hint').hidden=false;
+ $('#hint').textContent=m==='bridge'?'🔎 Büyütece dokun: köprünün ölçüsünü tamamla':m==='gate'?'🔎 Gözlemevi kapısını incele':!solved?'Ormanda ilerle. Önce geçişteki ölçü sorununu çöz.':(solved&&bridgeProgress<1?'Tahtalar yerleşiyor, köprü kuruluyor...':'Köprü tamamlandı. Gözlemevine doğru devam et.');
+ $('#progress').textContent=reachedGate?'Gözlemevi kapısındasın':solved?'Köprü geçildi · Gözlemevine ilerle':'Köprüye doğru ilerle';
+}
+function loop(ts){const dt=Math.min(.036,(last?(ts-last):16)/1000);last=ts;clock+=dt;update(dt);render();requestAnimationFrame(loop)}
+
+// v68 : 21-stage playable forest campaign with platform hazards.
+const CAMPAIGN_KEY="mathverse-v68-forest-full";
+const ORDER=["F01","F02","F03","F04","F05","F06","F07","F08","F09","F10","F11","F12","F13","F14","F21","F15","F16","F17","F18","F19","F20"];
+const LABELS=["Sarmaşık duvarı","Işıklı taş basamaklar","Sis türbini","Katmanlı ışık geçidi","Ters güç kristalleri","Mantar adaları","Kare taş platform","Kırık köprü","Kopmuş halat","Işıklı dikdörtgen platform","Şelale kapakları","İkiye ayrılan patika","Küp biçimli taş kilit","Dişli çark","Üslü-köklü gösterim geçidi","Eşlenik aynalar","Yanıltıcı yazıt","Mavi toz istasyonu","Sinyal tekrarlayıcısı","Taş platform desteği","Gözlemevinin üç halkalı kapısı"];
+const ICONS=["🌿","✦","☁","✧","◆","🍄","◼","🌉","♧","▰","💧","↔","⬡","⚙","⇄","◇","✎","✿","⌁","⊞","◎"];
+const GATES=ORDER.map((id,i)=>({id,label:LABELS[i],icon:ICONS[i],index:i,x:820+i*560,stop:id==="F08"?RAVINE_LEFT-66:820+i*560-83}));
+const PALETTE=["#39764b","#80d2ed","#779bb9","#aa8de9","#b4f3ff","#ce984e","#7ed6cf","#a6754f","#ba9b63","#98bddd","#5fc8e1","#e3c876","#8e9f9d","#c3b888","#9dc7c1","#d7e5db","#e7b88e","#87accf","#a2b7c7","#e6c384","#e0bd77"];
+const HAZARDS=[{x:505,w:64,type:"rock",height:43}];
+for(let i=0;i<GATES.length-1;i++){
+ if(i===6)continue; // Keep approach to the ravine clear.
+ const start=GATES[i].x;
+ const types=["log","rock","gap","root","mushroom"];
+ HAZARDS.push({x:start+198,w:46+((i*11)%30),type:types[i%5],height:37+(i%3)*9});
+ if(i%2===0&&i!==7)HAZARDS.push({x:start+355,w:48+(i%4)*8,type:types[(i+2)%5],height:39+(i%2)*8});
+}
+const SOLVED=new Set();
+let introDone=false,quizActiveId=null,hitMessage="",hitTimer=0,groundOffset=15,flashObstacle=0,finishShown=false;
+function savedCampaign(){try{return JSON.parse(localStorage.getItem(CAMPAIGN_KEY)||"null")}catch(e){return null}}
+const initial=savedCampaign();
+if(initial&&Array.isArray(initial.solvedIds)){
+ for(const id of initial.solvedIds)if(ORDER.includes(id))SOLVED.add(id);
+ difficulty=["kolay","orta","zor"].includes(initial.difficulty)?initial.difficulty:"orta";
+ heroX=Math.max(315,Math.min(GATE_X-45,Number(initial.x)||350));
+ introDone=true;reachedGate=Boolean(initial.reachedGate);resumed=true;
+}else{heroX=330;reachedGate=false;resumed=false;}
+heroY=GROUND;vy=0;solved=SOLVED.has("F08");bridgeProgress=solved?1:0;
+const campaignProgress=()=>SOLVED.size;
+function persistCampaign(){
+ try{localStorage.setItem(CAMPAIGN_KEY,JSON.stringify({version:68,x:Math.round(heroX),difficulty,solvedIds:[...SOLVED],reachedGate,updatedAt:new Date().toISOString()}))}catch(e){}
+}
+save=function(force=false){
+ if(!force&&Math.abs(saveLastX-heroX)<32&&saveTimer<2)return;
+ saveLastX=heroX;saveTimer=0;persistCampaign();
+};
+function nearestGate(){
+ for(const gate of GATES){if(SOLVED.has(gate.id))continue;
+   if(Math.abs(heroX-gate.stop)<155&&heroY>GROUND-65)return gate;
+ }
+ return null;
+}
+function campaignMarker(id){
+ if(id==="FINISH")return {x:12515,y:GROUND-142};
+ const gate=GATES.find(g=>g.id===id);
+ return gate?{x:gate.stop+15,y:GROUND-146}:{x:heroX,y:GROUND-135};
+}
+available=function(){
+ if(modalOpen||!started||heroY<GROUND-62)return null;
+ const gate=nearestGate();if(gate)return gate.id;
+ if(campaignProgress()===21&&Math.abs(heroX-12510)<220)return "FINISH";
+ return null;
+};
+function openQuiz(id){
+ const gate=GATES.find(g=>g.id===id);if(!gate||SOLVED.has(id))return;
+ const qs=new URLSearchParams({embedded:"1",obstacle:id,difficulty});
+ quizActiveId=id;requested=0;activePointers.clear();updatePress();modalOpen=true;
+ $("#quizTitle").textContent=gate.icon+" · "+(gate.index+1)+"/21 · "+gate.label;
+ $("#quizFrame").src="./forest-v68-quiz.html?"+qs;
+ $("#quizOverlay").hidden=false;$("#examine").hidden=true;
+}
+function closeQuiz(){
+ if($("#quizOverlay").hidden)return;
+ $("#quizOverlay").hidden=true;$("#quizFrame").src="about:blank";quizActiveId=null;
+ modalOpen=false;requested=0;activePointers.clear();updatePress();last=0;save(true);
+}
+$("#quizClose").onclick=closeQuiz;
+window.addEventListener("message",e=>{
+ if(e.origin!==location.origin||e.source!==$("#quizFrame").contentWindow)return;
+ const d=e.data;if(!d||d.source!=="mathverse-v68-quiz"||d.event!=="solved"||d.obstacle!==quizActiveId||d.difficulty!==difficulty)return;
+ const gate=GATES.find(g=>g.id===d.obstacle);if(!gate)return;
+ SOLVED.add(gate.id);if(gate.id==="F08"){solved=true;bridgeProgress=0;bridgeBuildStart=clock}
+ closeQuiz();hitMessage=gate.icon+" "+gate.label+" açıldı!";hitTimer=clock+4;save(true);
+});
+interact=function(){
+ const a=available();if(!a)return;
+ if(a==="FINISH")reachGate();else openQuiz(a);
+};
+$("#examine").addEventListener("pointerdown",e=>{e.preventDefault();interact()});
+home=function(){save(true);location.assign("./map-v68.html?from=forest")};
+journal=function(){
+ const done=campaignProgress();
+ openModal("Erdem'in yol notları","<p><strong>"+done+"/21 matematik engeli tamamlandı.</strong></p><p>Yürürken taşları, ağaç kütüklerini ve küçük toprak boşluklarını zıplayarak geç. Parlayan büyüteçte matematik sorusunu çöz.</p><p>Yanlış cevapta ipucu, ikinci yanlışta çözümlü benzer örnek, üçüncü yanlışta çözüm ve yeni soru gösterilir.</p>");
+ action("Macera haritası",home,"secondary");action("Devam et",closeModal);
+};
+story=function(){
+ openModal("Orman Patikası · Tam Bölüm","<p>Çiko, ormanın içindeki <b>21 mühürlü engeli</b> keşfetti. Erdem engelleri matematikle açacak, aralarındaki küçük kayaları, kütükleri ve boşlukları zıplayarak aşacak.</p><p>Oyun boyunca zorluk seviyen sabit kalacak. Hangisini seçiyorsun?</p>");
+ for(const [d,label] of [["kolay","🌱 Kolay · Tek kural"],["orta","🌿 Orta · Bağlantılı işlem"],["zor","🌳 Zor · Çok adım"]]){
+  action(label,()=>{difficulty=d;introDone=true;started=true;save(true);closeModal()});
+ }
+};
+reachGate=function(){
+ if(campaignProgress()<21)return;
+ reachedGate=true;save(true);
+ openModal("🎉 Orman Patikası Tamamlandı","<p>Erdem ve Çiko, 21 matematik engelini açtı; küçük zıplama engellerini ve köprüyü aşarak gözlemevinin kapısına ulaştı.</p><div class='thought'><b>Çiko:</b> “Matematikle bütün mühürler açıldı!”</div><p>İlerleme kaydedildi. Haritadan tamamlanan engellere geri dönebilirsin.</p>");
+ action("Haritayı aç",home);
+ action("Ormanda gezmeye devam et",closeModal,"secondary");
+};
+const footBottom=new Array(15).fill(405);
+function inspectFootAtlas(){
+ if(!erdem.complete||erdem.naturalWidth<1040)return;
+ try{
+  const cv=document.createElement("canvas");cv.width=260;cv.height=405;
+  const c=cv.getContext("2d",{willReadFrequently:true});
+  for(let f=0;f<15;f++){
+   c.clearRect(0,0,260,405);
+   c.drawImage(erdem,(f%4)*260,Math.floor(f/4)*405,260,405,0,0,260,405);
+   const data=c.getImageData(0,0,260,405).data;
+   let bottom=404;
+   for(let y=404;y>=295;y--){let found=false;
+    for(let x=30;x<230;x+=2)if(data[(y*260+x)*4+3]>90){found=true;break}
+    if(found){bottom=y;break}
+   }
+   footBottom[f]=bottom;
+  }
+ }catch(e){}
+}
+erdem.addEventListener("load",inspectFootAtlas);if(erdem.complete)inspectFootAtlas();
+heroSprite=function(){
+ const px=worldX(heroX),py=worldY(heroY+groundOffset),height=257*scale,width=165*scale;
+ const jumping=heroY<GROUND-2;
+ let frame=jumping?(vy< -200?9:vy<80?11:13):Math.abs(requested)>0?Math.floor(travel/27)%8:14;
+ const ready=erdem.complete&&erdem.naturalWidth>=1040&&erdem.naturalHeight>=2025;
+ ctx.save();ctx.translate(px,py);ctx.scale(face,1);
+ if(ready){
+  const bottom=footBottom[frame]||405;
+  ctx.drawImage(erdem,(frame%4)*260,Math.floor(frame/4)*405,260,405,-width/2,-height*bottom/405,width,height);
+ }else{
+  ctx.fillStyle="#b88c68";ctx.beginPath();ctx.arc(0,-height*.74,25*scale,0,Math.PI*2);ctx.fill();ctx.fillStyle="#4e7790";ctx.fillRect(-25*scale,-height*.68,50*scale,height*.68);
+ }
+ ctx.restore();
+};
+function worldObject(x,y,fn){
+ const sx=worldX(x);if(sx< -240*scale||sx>vw+240*scale)return;
+ ctx.save();ctx.translate(sx,worldY(y));ctx.scale(scale,scale);fn();ctx.restore();
+}
+function roundRect(x,y,w,h,r,col){
+ ctx.fillStyle=col;ctx.beginPath();ctx.roundRect(x,y,w,h,r);ctx.fill();
+}
+function plank(x,y,w,h,base){
+ roundRect(x,y,w,h,3,base);
+ ctx.strokeStyle="#e9c38b";ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(x+4,y+4);ctx.lineTo(x+w-5,y+4);ctx.stroke();
+ ctx.strokeStyle="#63472d";ctx.beginPath();ctx.moveTo(x+9,y+11);ctx.lineTo(x+w-9,y+11);ctx.stroke();
+ ctx.fillStyle="#4e3a2b";for(const xx of [x+6,x+w-6]){ctx.beginPath();ctx.arc(xx,y+h/2,1.7,0,Math.PI*2);ctx.fill()}
+}
+function drawBridgeDetailed(){
+ worldObject(RAVINE_LEFT,GROUND,()=>{
+  const ww=RAVINE_RIGHT-RAVINE_LEFT,progress=SOLVED.has("F08")?Math.max(bridgeProgress,.02):0;
+  ctx.fillStyle="#183942";ctx.beginPath();ctx.moveTo(-27,-14);ctx.lineTo(ww+30,-14);ctx.lineTo(ww+20,196);ctx.lineTo(-21,196);ctx.closePath();ctx.fill();
+  ctx.fillStyle="#29474a";ctx.beginPath();ctx.moveTo(-17,6);ctx.lineTo(ww+20,6);ctx.lineTo(ww+8,192);ctx.lineTo(-5,192);ctx.closePath();ctx.fill();
+  for(let i=0;i<6;i++){
+   const y=40+i*26;ctx.strokeStyle=i%2?"#5f9d9a":"#84c5bd";ctx.lineWidth=3.2;
+   ctx.beginPath();ctx.moveTo(0,y);ctx.bezierCurveTo(ww*.26,y-7,ww*.53,y+8,ww,y);ctx.stroke();
+  }
+  for(const x of [-25,ww+9]){
+   ctx.fillStyle="#6e5a3d";ctx.beginPath();ctx.moveTo(x,-14);ctx.lineTo(x+17,-31);ctx.lineTo(x+31,21);ctx.lineTo(x+9,42);ctx.closePath();ctx.fill();
+   ctx.strokeStyle="#9e8256";ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(x-7,23);ctx.lineTo(x+14,-22);ctx.stroke();
+  }
+  for(let x=-12;x<=ww+8;x+=Math.max(21,28)){
+   if(x<0||x>ww)continue;
+   const visible=x/ww<=progress;
+   if(visible){
+    plank(x,-7,25,17,x%3===0?"#cca473":"#a57b4e");
+    ctx.fillStyle="#d9b681";ctx.fillRect(x+2,-11,21,2);
+   }else if(x<56||x>ww-55){
+    ctx.save();ctx.translate(x,2);ctx.rotate(x<ww/2?-.17:.22);plank(0,-8,25,17,"#816141");ctx.restore();
+   }
+  }
+  for(const x of [0,ww]){
+   roundRect(x-17,-88,22,91,4,"#6d5037");roundRect(x-19,-90,25,11,3,"#ad8654");
+   ctx.fillStyle="#3c2b22";ctx.beginPath();ctx.arc(x-8,-82,4,0,Math.PI*2);ctx.fill();
+  }
+  if(progress>.94){
+   ctx.strokeStyle="#ccb38b";ctx.lineWidth=6;
+   for(const y of [-68,-43]){
+    ctx.beginPath();ctx.moveTo(1,y);ctx.quadraticCurveTo(ww/2,y+23,ww,y);ctx.stroke();
+   }
+   for(let x=0;x<=ww;x+=28){
+    ctx.strokeStyle="#95754e";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(x,-13);ctx.lineTo(x,-46-18*Math.sin(Math.PI*x/ww));ctx.stroke();
+   }
+  }else{
+   ctx.strokeStyle="#c29e69";ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(-3,-50);ctx.quadraticCurveTo(28,-24,58,8);ctx.stroke();
+   ctx.beginPath();ctx.moveTo(ww+2,-50);ctx.quadraticCurveTo(ww-25,-25,ww-57,10);ctx.stroke();
+  }
+  ctx.fillStyle="#dab978";ctx.font="bold 12px system-ui";ctx.fillText(progress>.94?"ONARILDI":"KIRIK KÖPRÜ",ww/2-43,-100);
+ });
+}
+function drawMini(h){
+ worldObject(h.x,GROUND,()=>{
+  const w=h.w;
+  if(h.type==="gap"){
+   ctx.fillStyle="#21373b";ctx.beginPath();ctx.moveTo(-7,-2);ctx.lineTo(w+10,-2);ctx.lineTo(w+6,86);ctx.lineTo(-10,86);ctx.closePath();ctx.fill();
+   ctx.fillStyle="#446766";ctx.fillRect(-3,33,w+3,15);
+   ctx.strokeStyle="#61afb5";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(0,39);ctx.quadraticCurveTo(w/2,31,w,39);ctx.stroke();
+   for(const p of [-13,w+2]){ctx.fillStyle="#795b42";ctx.beginPath();ctx.moveTo(p,-3);ctx.lineTo(p+11,-16);ctx.lineTo(p+16,0);ctx.closePath();ctx.fill()}
+  }else if(h.type==="rock"){
+   for(let i=0;i<3;i++){const x=i*w/3+4,r=18+(i%2)*9;
+    ctx.fillStyle=i%2?"#6d837f":"#81968a";ctx.beginPath();ctx.moveTo(x-r/2,0);ctx.lineTo(x-r/3,-r*1.4);ctx.quadraticCurveTo(x,-r*1.8,x+r*.65,-r*.85);ctx.lineTo(x+r/1.2,0);ctx.closePath();ctx.fill();
+    ctx.strokeStyle="#a8b4a0";ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x-r/4,-r*.65);ctx.lineTo(x,-r*1.3);ctx.stroke();
+   }
+  }else if(h.type==="log"){
+   roundRect(0,-34,w,35,13,"#714d2a");ctx.fillStyle="#ae7a49";ctx.beginPath();ctx.ellipse(w-2,-17,9,16,0,0,Math.PI*2);ctx.fill();
+   ctx.strokeStyle="#e0ac70";ctx.lineWidth=2;for(let j=0;j<3;j++){ctx.beginPath();ctx.moveTo(6,-28+j*10);ctx.bezierCurveTo(w/2,-21+j*12,w*.7,-31+j*10,w-9,-26+j*9);ctx.stroke()}
+   ctx.strokeStyle="#3f763d";ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(10,-34);ctx.lineTo(3,-45);ctx.stroke();
+  }else if(h.type==="root"){
+   ctx.strokeStyle="#64452f";ctx.lineWidth=13;ctx.lineCap="round";
+   for(let i=0;i<3;i++){ctx.beginPath();ctx.moveTo(i*w/2,-1);ctx.quadraticCurveTo(w/2,-54-i*4,w,0);ctx.stroke()}
+   ctx.strokeStyle="#ac7650";ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,-2);ctx.quadraticCurveTo(w/2,-65,w,0);ctx.stroke();
+  }else{
+   for(let i=0;i<3;i++){const x=i*w/2,s=13+(i%2)*6;
+    roundRect(x+2,-29,7,30,3,"#f7ddb0");
+    ctx.fillStyle=i%2?"#ad3a28":"#cc7340";ctx.beginPath();ctx.ellipse(x+4,-29,s,s*.65,0,Math.PI,Math.PI*2);ctx.fill();
+    ctx.fillStyle="#fff4ce";ctx.beginPath();ctx.arc(x-2,-35,2,0,Math.PI*2);ctx.arc(x+12,-37,2,0,Math.PI*2);ctx.fill();
+   }
+  }
+ });
+}
+function drawMain(g){
+ if(g.id==="F08")return;
+ const unlocked=SOLVED.has(g.id),idx=g.index,w=PALETTE[idx];
+ worldObject(g.x,GROUND,()=>{
+  if(unlocked){ctx.globalAlpha=.67}
+  ctx.fillStyle="#061f20aa";ctx.beginPath();ctx.ellipse(0,6,61,13,0,0,Math.PI*2);ctx.fill();
+  const left=-50,right=50,top=-160;
+  if(idx%5===0){
+   // Vines, roots and hanging leaves.
+   for(let j=0;j<5;j++){
+    const x=-45+j*22;ctx.strokeStyle=unlocked?"#567647":"#266b3e";ctx.lineWidth=unlocked?5:12;ctx.beginPath();ctx.moveTo(x,-2);ctx.bezierCurveTo(x-34,-65,x+24,-86,x,-160);ctx.stroke();
+    for(let k=0;k<4;k++){ctx.fillStyle=j%2?"#8eb663":"#4e9b4f";ctx.beginPath();ctx.ellipse(x+10,-20-k*32,11,5,-.3,0,Math.PI*2);ctx.fill()}
+   }
+  }else if(idx%5===1){
+   for(let j=0;j<4;j++){
+    const x=-54+j*36;roundRect(x,-25-j*17,32,25+j*17,5,"#59665a");ctx.strokeStyle=w;ctx.lineWidth=3;ctx.strokeRect(x+3,-25-j*17,26,16);
+    ctx.shadowColor=w;ctx.shadowBlur=unlocked?0:10;ctx.fillStyle=unlocked?"#9baea2":w;ctx.beginPath();ctx.arc(x+15,-28-j*18,7,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+   }
+  }else if(idx%5===2){
+   roundRect(-27,-122,54,115,12,"#52675d");ctx.fillStyle="#2e4549";ctx.beginPath();ctx.arc(0,-118,48,0,Math.PI*2);ctx.fill();
+   for(let k=0;k<8;k++){ctx.save();ctx.rotate(k*Math.PI/4+clock*.23);roundRect(-4,-165,8,47,5,w);ctx.restore()}
+   ctx.fillStyle="#f4e4bf";ctx.beginPath();ctx.arc(0,-116,13,0,Math.PI*2);ctx.fill();
+  }else if(idx%5===3){
+   for(let j=-1;j<=1;j++){
+    const x=j*33;roundRect(x-11,top+Math.abs(j)*20,22,160-Math.abs(j)*20,6,"#777c79");roundRect(x-8,top+6+Math.abs(j)*20,16,139,5,j===0?w:"#4a696a");
+   }
+   ctx.strokeStyle="#fae4b8";ctx.lineWidth=4;ctx.beginPath();ctx.arc(0,-110,36,0,Math.PI*2);ctx.stroke();
+  }else{
+   for(let j=-1;j<=1;j++){
+    const x=j*39;ctx.fillStyle=j===0?w:"#89a5ae";ctx.beginPath();ctx.moveTo(x-22,-16);ctx.lineTo(x-28,-87);ctx.lineTo(x,-142-Math.abs(j)*18);ctx.lineTo(x+23,-86);ctx.lineTo(x+21,-16);ctx.closePath();ctx.fill();
+    ctx.strokeStyle="#e3f8f7";ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,-136-Math.abs(j)*18);ctx.lineTo(x+4,-30);ctx.stroke();
+   }
+  }
+  if(idx===14){ // Special exponents and radicals matching gate.
+    ctx.fillStyle="#1d484c";roundRect(-68,-164,136,110,14,"#16565b");
+    ctx.strokeStyle="#aadccf";ctx.lineWidth=4;ctx.strokeRect(-66,-161,132,105);
+    ctx.fillStyle="#e9d8af";ctx.font="bold 25px Georgia";ctx.fillText("²↔√", -27,-101);
+  }
+  if(idx===20){
+    ctx.strokeStyle="#efc879";ctx.lineWidth=9;
+    for(let j=-1;j<=1;j++){ctx.beginPath();ctx.arc(j*30,-112,18,0,Math.PI*2);ctx.stroke()}
+  }
+  if(unlocked){ctx.strokeStyle="#d1f4ce";ctx.lineWidth=6;ctx.beginPath();ctx.moveTo(-18,-88);ctx.lineTo(-5,-72);ctx.lineTo(22,-108);ctx.stroke();}
+  ctx.globalAlpha=1;
+  roundRect(-75,-198,150,34,8,"#163e42dd");ctx.strokeStyle="#ddc38a";ctx.lineWidth=1;ctx.strokeRect(-73,-197,146,32);
+  ctx.fillStyle="#fff4d5";ctx.textAlign="center";ctx.font="bold 15px system-ui";
+  ctx.fillText((idx+1)+"/21 · "+g.icon,0,-177);
+  if(!unlocked){ctx.shadowColor=w;ctx.shadowBlur=14;ctx.fillStyle=w;ctx.beginPath();ctx.arc(0,-126,5+Math.sin(clock*2)*1.5,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0}
+ });
+}
+const baseBackground=background;
+background=function(){baseBackground();
+ for(const h of HAZARDS)drawMini(h);
+ drawBridgeDetailed();
+ for(const g of GATES)drawMain(g);
+};
+render=function(){
+ ctx.setTransform(dpr,0,0,dpr,0,0);ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality="high";
+ const maxCam=Math.max(0,W-vw/scale),desired=Math.max(0,Math.min(maxCam,heroX-vw/scale*.43));
+ if(!camReady){camera=desired;camReady=true}else camera+=(desired-camera)*.13;
+ background();
+ const a=available();if(a){const mp=campaignMarker(a);marker(mp.x,mp.y)}
+ const ahead=Math.cos(clock*.9)>0;
+ if(!ahead)birdSprite();
+ const air=Math.max(0,GROUND-heroY),shadowScale=Math.max(.65,1-air/420);
+ ctx.fillStyle="rgba(12,35,25,"+Math.max(.09,.28-air/800)+")";
+ ctx.beginPath();ctx.ellipse(worldX(heroX),worldY(GROUND+groundOffset+2),42*scale*shadowScale,7*scale*shadowScale,0,0,Math.PI*2);ctx.fill();
+ heroSprite();
+ if(ahead)birdSprite();
+};
+function nextBlocked(oldX,target){
+ if(target<=oldX)return target;
+ for(const g of GATES){
+  if(!SOLVED.has(g.id)&&oldX<=g.stop&&target>g.stop){hitMessage="🔎 "+g.label+" · büyütece dokun";hitTimer=clock+1.5;return g.stop}
+ }
+ return target;
+}
+function nextHazard(oldX,target){
+ if(Math.abs(target-oldX)<.05)return target;
+ for(const h of HAZARDS){
+  const start=h.x-27,end=h.x+h.w+24;
+  if(target>oldX&&oldX<=start&&target>start&&heroY>GROUND-h.height-18){
+   hitMessage=h.type==="gap"?"Küçük boşluk! Zıpla ↑":"Önünde engel var! Zıpla ↑";hitTimer=clock+1.7;flashObstacle=clock+.25;return start-2;
+  }
+  if(target<oldX&&oldX>=end&&target<end&&heroY>GROUND-h.height-18){
+   hitMessage="Geri geçmek için zıpla ↑";hitTimer=clock+1.7;return end+2;
+  }
+ }
+ return target;
+}
+update=function(dt){
+ if(!started||modalOpen)return;
+ if(heroY<GROUND||vy!==0){vy+=1150*dt;heroY=Math.min(GROUND,heroY+vy*dt);if(heroY>=GROUND){heroY=GROUND;vy=0}}
+ const previous=heroX;
+ let target=Math.max(280,Math.min(GATE_X+32,heroX+requested*245*dt));
+ target=nextBlocked(heroX,target);
+ target=nextHazard(heroX,target);
+ heroX=target;
+ if(Math.abs(heroX-previous)>.01){face=requested>=0?1:-1;travel+=Math.abs(heroX-previous)}
+ if(solved&&bridgeProgress<1)bridgeProgress=Math.min(1,(clock-bridgeBuildStart)/2.1);
+ saveTimer+=dt;if(saveTimer>2&&Math.abs(heroX-saveLastX)>32)save();
+ const active=available(),gate=nearestGate(),done=campaignProgress();
+ $("#examine").hidden=!active;
+ let hint=active==="FINISH"?"🔎 Gözlemevinin kapısını aç":gate?"🔎 "+(gate.index+1)+"/21: "+gate.label+" · İNCELE tuşuna dokun":"Sağa ilerle. Küçük boşluklar, taşlar ve kütükler için ZIPLA ↑";
+ if(hitTimer>clock)hint=hitMessage;
+ $("#hint").hidden=false;$("#hint").textContent=hint;
+ $("#progress").textContent=done+"/21 mühür açıldı · "+(done===21?"Gözlemevine ilerle":(GATES.find(g=>!SOLVED.has(g.id))?.label||"Yol açık"));
+ $("#campaignHud").textContent="🌿 "+done+"/21 engel · "+difficulty.toUpperCase();
+ if(!finishShown&&done===21&&heroX>=12510){finishShown=true;reachGate()}
+};
+if(new URLSearchParams(location.search).get("preview")==="1")approved=true;
+if(!approved){
+ openModal("Önce Dedenin Evi","<p>Bu bölüm, Dedenin Evi'ndeki üç halka keşfinden sonra açılır. Kontrol amaçlı önizleme için bağlantıya <b>?preview=1</b> ekleyebilirsiniz.</p>");
+ action("Dedenin Evine Dön",()=>location.assign("./?scene=home"));
+}else if(resumed){
+ started=true;introDone=true;save(true);$("#hint").textContent="Kaldığın yerden devam ediyorsun.";
+}else{started=false;story();}
+
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>
