@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#102d2d"><title>v68 · Orman Patikası · Etkileşimli Matematik Engel Sorusu</title>
+<style>
+:root{color-scheme:dark;--p:#f8e8bd;--gold:#eec77c;--ink:#16302e;--leaf:#87d0a6;--edge:#8cae92}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#0b242a;color:#fff7e5;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+body{background:radial-gradient(ellipse at 70% 0%,#366d5f 0,transparent 55%),linear-gradient(160deg,#112f36,#102820 62%,#081b29);padding:max(16px,env(safe-area-inset-top)) 14px max(30px,env(safe-area-inset-bottom))}
+main{max-width:780px;margin:0 auto}nav{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:20px}
+nav a{color:#ffdf9a;text-decoration:none;font-weight:700;font-size:13px}h1{font-size:clamp(28px,7vw,45px);font-family:Georgia,serif;margin:8px 0 6px;color:#ffdf98}
+.subtitle{font-size:14px;color:#d5eadb;line-height:1.5;margin:0 0 22px}
+.panel{background:linear-gradient(145deg,#f6e4b8,#dcb87d);color:#3d2f22;border:4px solid #996f3d;border-radius:24px;box-shadow:0 20px 48px #0009;padding:clamp(17px,4vw,27px)}
+.panel h2{margin:6px 0 16px;font-family:Georgia,serif;font-size:clamp(23px,6vw,31px);line-height:1.18}
+.eyebrow{color:#71502b;font-weight:900;letter-spacing:1.2px;font-size:11px}
+button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #267b74;outline-offset:2px}
+.btn{border:2px solid #315d53;border-radius:14px;background:#246c61;color:#fff9e7;font-weight:800;padding:12px 16px;min-height:48px}
+.btn.secondary{background:#f8edce;color:#314a3c;border-color:#8b997b}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btnRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+label{display:block;font-weight:800;margin:14px 0 7px}
+.input{display:block;width:100%;min-height:47px;padding:11px 12px;background:#fff9e9;border:2px solid #a4895f;border-radius:12px;color:#282f28}
+select.input{appearance:auto}.prompt{padding:16px;background:#fff6dc;border-left:5px solid #4f8d74;border-radius:10px;line-height:1.6;font-size:clamp(16px,4vw,19px);font-weight:650;white-space:pre-wrap}
+.helper{color:#675538;font-size:13px;line-height:1.45;margin:8px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:14px}
+.step{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;font-weight:800;color:#f9e7b6;margin:0 0 10px}
+.bar{height:11px;background:#294945;border-radius:10px;overflow:hidden;margin-bottom:19px;border:1px solid #93ab81}
+.bar>span{height:100%;background:linear-gradient(90deg,#65b69c,#d9d47d);display:block;transition:width .2s}
+.feedback{padding:14px;border-radius:12px;background:#fdf5d7;color:#403522;border:2px solid #a69261;margin-top:14px;font-weight:650;line-height:1.5}
+.feedback[hidden]{display:none}.ok{border-color:#448568;background:#e7f4d8}.wrong{border-color:#ad744f;background:#fff0d5}
+.stone{padding:12px;border:1px solid #c2a473;border-radius:12px;background:#fff5db}
+.stone b{display:block;margin-bottom:5px}.stone label{font-size:13px}.stone input,.stone select{margin-top:7px}
+.difficulty{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.difficulty button{border:2px solid #9b8052;background:#fff4d9;border-radius:15px;min-height:80px;font-weight:900;color:#3e392d;padding:10px}
+.difficulty button[aria-pressed=true]{background:#267265;color:#fff;border-color:#133f37}
+.difficulty button small{display:block;font-weight:500;margin-top:4px}
+.footer{font-size:12px;color:#c8decb;line-height:1.5;margin:22px 4px}
+#app:empty:before{content:"Sorular hazırlanıyor…";color:#e8d4a9}
+
+sup{font-size:.7em;line-height:0;vertical-align:super}
+.choiceGrid{display:grid;gap:11px;margin:20px 0 10px}
+.choice{display:flex;align-items:center;gap:13px;width:100%;min-height:61px;text-align:left;background:#fff7e2;border:2px solid #a99063;border-radius:14px;padding:11px;color:#3b3324;font-weight:760;line-height:1.55;transition:background .1s,border-color .1s}
+.choice:disabled{cursor:default;opacity:1}
+.choiceMark{display:grid;place-items:center;flex:0 0 37px;width:37px;height:37px;border-radius:11px;background:#ead3a4;color:#593f26;font-weight:950}
+.choice[aria-pressed=true]{background:#dcf2dc;border-color:#237f62}
+.choice[aria-pressed=true] .choiceMark{background:#26765e;color:#fff}
+.choice.wrongChoice{background:#fae0d0;border-color:#b75f4e;color:#60382f}
+.choice.wrongChoice .choiceMark{background:#b75f4e;color:#fff}
+.solution{margin:13px 0;background:#fff6dd;border:2px solid #be9d68;color:#473624;border-radius:13px;padding:14px;line-height:1.6}
+.solution strong{display:block;margin:0 0 6px}
+.note{font-size:13px;color:#78603e;line-height:1.45;margin:8px 0}
+.detail{margin:10px 0 0;font-size:13px;color:#6c4e2c;font-weight:700}
+.mini{display:inline-block;background:#296356;color:#fff;border-radius:8px;font-size:12px;padding:5px 8px;font-weight:850;margin:7px 0}
+@media(max-width:430px){.panel{padding:16px 14px;border-width:3px}.panel h2{font-size:26px}.prompt{font-size:16px;padding:13px}.choice{font-size:17px;min-height:58px}.subtitle{font-size:13px}}
+.embedded{background:transparent;padding:8px 9px 18px}.embedded main{max-width:740px}.embedded nav,.embedded h1,.embedded .subtitle,.embedded .footer{display:none}.embedded .panel{border-width:3px;padding:16px 14px;border-radius:17px}.embedded .step{margin:0 0 9px;color:#f8e7c1}.embedded .bar{margin-bottom:9px}.embedded .choice{font-size:16px}.embedded .panel h2{font-size:26px}
+</style><script src="./forest-levels-v65.js?v=65"></script></head>
+<body><main><nav><a href="./forest-v67.html?v=67">‹ Orman Patikasına dön</a><a href="./map-v67.html?v=67">🗺️ Macera Haritası</a></nav>
+<h1>🌲 Orman Patikası</h1><p class="subtitle">21 engelli matematik macerası · dört şıklı sorular · MAT.9.1.1 · Üslü ve köklü gösterimler. Dört seçenek arasından karar ver. Yanlışta ipucu, örnek çözüm ve pekiştirme adımları seni yönlendirecek. Fiziksel engellerin sahne entegrasyonu ayrı geliştirilir.</p>
+<div id="step" class="step" hidden></div><div id="bar" class="bar" hidden><span id="fill"></span></div><section id="app" class="panel" aria-live="polite"></section>
+<p class="footer">Soru geçmişi yalnızca bu tarayıcıda tutulur. Dedenin Evi ve mevcut orman sahnesindeki ilerleme kaydı değiştirilmez. Matematiksel gerekçe isteyen sorularda yazılı açıklamaların öğretmen tarafından incelenmesi önerilir.</p>
+</main><script>
+
+"use strict";
+const EMBED=new URLSearchParams(location.search).get("embedded")==="1";
+const FORCED=new URLSearchParams(location.search).get("obstacle")||"";
+const FORCED_DIFFICULTY=new URLSearchParams(location.search).get("difficulty")||"orta";
+const BANK_URL="./forest-questions-v66.json?v=66";
+const RUN_KEY=EMBED?"mathverse-v68-quiz-"+FORCED+"-"+FORCED_DIFFICULTY:"mathverse-v65-choice-run",HISTORY_KEY="mathverse-v65-choice-history";
+const OLD_SAVE_KEY="mathverse-v40-investigation";
+let bank=null,run=null,history={used:{},last:{},seenPrompts:{}};
+const app=document.querySelector("#app"),step=document.querySelector("#step"),bar=document.querySelector("#bar"),fill=document.querySelector("#fill");
+const qs=id=>bank.questions.find(q=>q.id===id);
+function node(tag,cl,text){const e=document.createElement(tag);if(cl)e.className=cl;if(text!==undefined)e.textContent=text;return e}
+function append(p,...items){items.forEach(x=>p.appendChild(x));return p}
+function btn(text,handler,secondary=false){let b=node("button","btn"+(secondary?" secondary":""),text);b.type="button";b.addEventListener("click",handler);return b}
+function read(key){try{return JSON.parse(localStorage.getItem(key)||"null")}catch(e){return null}}
+function save(){try{localStorage.setItem(RUN_KEY,JSON.stringify(run));localStorage.setItem(HISTORY_KEY,JSON.stringify(history))}catch(e){}}
+function htmlMath(str){
+ const escaped=String(str??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+ return escaped.replace(/\^\(([^)]+)\)|\^([−-]?\d+)/g,(all,group,plain)=>"<sup>"+(group||plain)+"</sup>");
+}
+function mathText(tag,cls,s){const p=node(tag,cls);p.innerHTML=htmlMath(s);return p}
+function pick(obId,difficulty,exceptId){
+ const key=obId+"|"+difficulty;
+ const options=bank.questions.filter(q=>q.obstacleId===obId&&q.difficulty===difficulty);
+ let used=history.used[key]||[],last=history.last[key]||"";
+ let pool=options.filter(x=>!used.includes(x.id)&&x.id!==exceptId);
+ if(!pool.length){used=[];pool=options.filter(x=>x.id!==last&&x.id!==exceptId)}
+ if(!pool.length)pool=options.filter(x=>x.id!==exceptId);
+ if(!pool.length)pool=options;
+ const unseen=pool.filter(x=>!(history.seenPrompts[key]||[]).includes(window.FOREST_LEVELS_V65(x).prompt));
+ if(unseen.length)pool=unseen;
+ const id=pool[Math.floor(Math.random()*pool.length)].id;
+ const q=window.FOREST_LEVELS_V65(qs(id));
+ history.used[key]=[...used.filter(x=>x!==id),id];
+ history.last[key]=id;
+ history.seenPrompts[key]=[...(history.seenPrompts[key]||[]).slice(-50),q.prompt];
+ save();return id;
+}
+function ensure(){if(run&&run.index<21&&!run.activeId)run.activeId=pick(bank.playOrder[run.index],run.difficulty)}
+function currentId(){return run.remediationId||run.practiceId||run.activeId}
+function current(){return window.FOREST_LEVELS_V65(qs(currentId()))}
+function resetStage(){run.stage=0;run.wrong=0;run.wrongChoices=[];run.stageCorrect=false;run.revealed=false;run.feedback="";save()}
+function hash(s){let h=2166136261;for(let c of s){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0}
+function shuffle(list,seed){let a=[...list],n=hash(seed);for(let i=a.length-1;i>0;i--){n=(Math.imul(1664525,n)+1013904223)>>>0;const j=n%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
+function uniq4(answer,list,seed){
+ const values=[String(answer)];for(let x of list){if(x!==undefined&&x!==null&&String(x)!==""&&!values.includes(String(x)))values.push(String(x))}
+ while(values.length<4)values.push("Seçenek "+(values.length+1));
+ return shuffle(values.slice(0,4),seed);
+}
+function decoys(answer,q){
+ const a=String(answer),type=q.inputType||"";
+ if(type==="choice-direction"||a==="sol"||a==="sağ"||a==="Sol"||a==="Sağ")return ["Sol","Sağ","Eşit","Belirlenemez"];
+ if(/^Sol:[^;]+;Sağ:/.test(a)){
+ const m=a.match(/^Sol:([^;]+);Sağ:(.+)$/);const x=m[1],y=m[2];
+ return uniq4(a,["Sol:"+y+";Sağ:"+x,"Sol:"+x+";Sağ:"+x,"Sol:"+y+";Sağ:"+y],q.id);
+ }
+ if(/^[A-D]-[A-D]$/.test(a))return uniq4(a,["A-B","A-C","A-D","B-C","B-D","C-D"],q.id);
+ const scientific=a.match(/^([0-9,.]+)×10\^([−-]?\d+)$/);
+ if(scientific){const v=Number(scientific[1].replace(",",".")),e=Number(scientific[2]);return uniq4(a,[scientific[1]+"×10^"+(e+1),scientific[1]+"×10^"+(e-1),String(v*10).replace(".",",")+"×10^"+e],q.id);}
+ const exp=a.match(/^(\d+)\^(\(?[−\d/]+\)?)$/);
+ if(exp){let b=Number(exp[1]),power=exp[2];let p=Number(power.replace(/[()]/g,""));return uniq4(a,[b+"^"+(p+1),b+"^"+Math.max(0,p-1),(b+1)+"^"+power],q.id)}
+ const radical=a.match(/^(-?\d+)?√(\d+)(?:\/(\d+))?$/);
+ if(radical){const coeff=Number(radical[1]||1),base=radical[2],den=radical[3]?"/"+radical[3]:"";return uniq4(a,[(coeff+1)+"√"+base+den,Math.max(1,coeff-1)+"√"+base+den,coeff+"√"+(Number(base)+1)+den],q.id);}
+ if(/^-?\d+(?:[,.]\d+)?$/.test(a)){
+  const n=Number(a.replace(",",".")),shift=Math.max(1,Math.round(Math.abs(n)*.1)),v=[n+shift,n-shift,n*2,n/2,n+1,n-1];
+  return uniq4(a,v.filter(x=>Number.isFinite(x)&&x>=0&&Number.isInteger(x)).map(String),q.id);
+ }
+ const rational=a.match(/^(.+)\/(\d+)$/);
+ if(rational)return uniq4(a,[rational[1]+"/"+(Number(rational[2])+1),rational[1]+"/"+Math.max(1,Number(rational[2])-1),rational[1]+"×"+rational[2]],q.id);
+ return uniq4(a,["√("+a+")",a+"+1",a+"−1"],q.id);
+}
+function stages(q){
+ const interaction=q.interaction||{};
+ if(q.inputType==="pair-with-work"){
+  const steps=(interaction.planks||[]).map(p=>({prompt:"Tahta "+p.id+": "+p.length+" m uzunluğunu en sade köklü biçimde gösteren seçeneği bul.",answer:p.simplified,hint:"Kök içindeki tam kare çarpanı ayır. Tahtaların uzunluğunu görmeden eşleştirme yapma.",solution:p.length+" = "+p.simplified,kind:"radical"}));
+  steps.push({prompt:q.prompt,answer:q.correctAnswer,hint:"Hesaplanan sade köklü uzunluklardan hangilerinin toplamı açıklığa eşit?",solution:q.solution,kind:"pair-with-work"});
+  return steps;
+ }
+ if(q.inputType==="matching-with-work"){
+  const l=interaction.left||[],r=interaction.right||[],pairs=interaction.correctPairs||[];
+  const steps=l.map((x,j)=>{const pid=pairs.find(p=>p.left===x.id)?.right;return {prompt:x.math+" gösterimine eşdeğer olan hangisidir?",answer:r.find(o=>o.id===pid)?.math||"",options:r.map(o=>o.math),hint:"Kesirli üs ifadesinde payda kökün derecesini, pay ise kuvveti gösterir.",solution:x.math+" = "+(r.find(o=>o.id===pid)?.math||""),kind:"matching-with-work"}});
+  const easy=q.difficulty==="kolay",hard=q.difficulty==="zor";
+  const rules=hard?[
+   {prompt:"Negatif kesirli üs için doğru dönüşüm kuralı hangisidir?",answer:"a^(-m/n) = 1/(a^(m/n))",options:["a^(-m/n) = 1/(a^(m/n))","a^(-m/n) = a^(m/n)","a^(-m/n) = -a^(m/n)","a^(-m/n) = a^(-m×n)"]},
+   {prompt:"Kök ile üs arasındaki doğru ilişki hangisidir?",answer:"a^(m/n) = (ⁿ√a)^m",options:["a^(m/n) = (ⁿ√a)^m","a^(m/n) = √(a×m×n)","a^(m/n) = a^(m×n)","a^(m/n) = n√(a+m)"]}
+  ]:easy?[
+   {prompt:"a pozitifken a^(1/2) nasıl yazılır?",answer:"√a",options:["√a","2a","a²","1/a"]},
+   {prompt:"a pozitifken (√a)² ifadesi neye eşittir?",answer:"a",options:["a","√a","2a","a²"]}
+  ]:[
+   {prompt:"a pozitifken a^(3/2) hangi ifadeye eşittir?",answer:"a√a",options:["a√a","3√a","a³","√(3a)"]},
+   {prompt:"a^(m/n) gösteriminde n sayısı neyi gösterir?",answer:"Kökün derecesini",options:["Kökün derecesini","Kuvvetin tabanını","Sayının işaretini","Kuvvetin sonucunu"]}
+  ];
+  for(const r0 of rules)steps.push({...r0,hint:"Önce kesirli üs kuralını hatırla: pay kuvveti, payda kökün derecesini verir.",solution:r0.answer,kind:"matching-with-work"});
+  return steps;
+ }
+ return [{prompt:q.prompt,answer:q.correctAnswer,hint:q.hint,solution:q.solution,kind:q.inputType,options:q.options}];
+}
+function options(stg,q){return stg.options?shuffle(stg.options,q.id+"|"+run.stage):decoys(stg.answer,{id:q.id+"|"+run.stage,inputType:stg.kind})}
+function rowButton(text,fn,secondary=false){let row=node("div","btnRow");row.appendChild(btn(text,fn,secondary));return row}
+function welcome(){
+ step.hidden=true;bar.hidden=true;app.replaceChildren();
+ append(app,node("div","eyebrow","MATEMATİK EVRENİ • v65"),node("h2",null,"Zorluğunu seç"),node("p","note","Kolay: tek kural · Orta: iki bağlantılı işlem · Zor: çok aşamalı muhakeme. Klavye kullanılmaz; yanıtlar dört şıktan seçilir."));
+ if(run&&run.index<21){const b=btn("Kaldığım yerden devam et",show);b.style.width="100%";app.appendChild(b)}
+ const grid=node("div","difficulty");let selected=run?.difficulty||"orta";
+ [["kolay","🌱 Kolay","Tek kural"],["orta","🌿 Orta","İki işlem"],["zor","🌳 Zor","Çok adım"]].forEach(([v,label,info])=>{let b=node("button",null);b.type="button";b.setAttribute("aria-pressed",String(v===selected));append(b,node("span",null,label),node("small",null,info));b.addEventListener("click",()=>{selected=v;for(let c of grid.children)c.setAttribute("aria-pressed",String(c===b))});grid.appendChild(b)});
+ append(app,node("h3",null,"Yeni macera"),grid,rowButton("Maceraya başla",()=>{
+ if(run&&!confirm("Yeni macera, mevcut soru ekranı ilerlemesini sıfırlar. Soru geçmişi korunacak. Devam?"))return;
+ run={difficulty:selected,index:0,activeId:null,practiceId:null,remediationId:null,awaiting:false};resetStage();ensure();save();show()
+ }));
+}
+function feedbackBox(status,s){return mathText("div","feedback "+status,s)}
+function example(q){
+ const others=bank.questions.filter(o=>o.obstacleId===q.obstacleId&&o.difficulty===q.difficulty&&o.id!==q.id);
+ if(!others.length)return null;
+ const ref=window.FOREST_LEVELS_V65(others[(q.variant+2)%others.length]);
+ return ref;
+}
+function show(){
+ if(!bank){return}if(!run){welcome();return}
+ if(run.index>=21){step.hidden=false;bar.hidden=false;fill.style.width="100%";step.textContent="21/21 tamamlandı";app.replaceChildren();append(app,node("h2",null,"🎉 Ormanı tamamladın!"),node("p",null,"21 engel bitti. Yeni oyunda daha önce görülmeyen soru varyasyonları seçilir."),rowButton("Yeniden başla",()=>{run=null;save();welcome()}));return}
+ ensure();const obs=bank.obstacles.find(o=>o.id===bank.playOrder[run.index]);
+ const q=current(),all=stages(q),s=all[Math.min(run.stage||0,all.length-1)];
+ step.hidden=false;bar.hidden=false;step.textContent=(run.index+1)+"/21 • "+obs.title+" • "+run.difficulty.toUpperCase()+(run.practiceId?" · PEKİŞTİRME":run.remediationId?" · YENİDEN DENE":"");
+ fill.style.width=(((run.index)+(run.awaiting?1:0))/21*100)+"%";
+ app.replaceChildren();
+ if(run.awaiting&&!run.practiceId&&!run.remediationId){
+ append(app,node("div","eyebrow","ENGEL TAMAMLANDI"),node("h2",null,obs.title),feedbackBox("ok","✓ Doğru! "+q.solution));
+ const controls=node("div","btnRow");
+ append(controls,btn("Sonraki engele geç",()=>{run.index++;run.activeId=null;run.awaiting=false;run.practiceId=null;run.remediationId=null;resetStage();ensure();save();show()}),btn("Benzer soru çöz",()=>{run.practiceId=pick(obs.id,run.difficulty,run.activeId);resetStage();show()},true));if(EMBED){
+   controls.replaceChildren(btn("Engeli aç · Ormana dön",()=>{window.parent.postMessage({source:"mathverse-v68-quiz",event:"solved",obstacle:obs.id,difficulty:run.difficulty},location.origin)}));
+   controls.appendChild(btn("Benzer soru çöz",()=>{run.practiceId=pick(obs.id,run.difficulty,run.activeId);resetStage();show()},true));
+  }
+  app.appendChild(controls);return
+ }
+ append(app,node("div","eyebrow",q.id+" · "+(run.practiceId?"BENZER SORU":run.remediationId?"YENİDEN DENE":"ANA GÖREV")),node("h2",null,obs.title));
+ if(all.length>1)append(app,node("div","mini","İşlem "+((run.stage||0)+1)+" / "+all.length));
+ append(app,mathText("div","prompt",s.prompt));
+ const choices=node("div","choiceGrid");
+ const choicesData=options(s,q);
+ choicesData.forEach((answer,index)=>{
+  const pressed=run.stageCorrect&&answer.toLocaleLowerCase("tr")===String(s.answer).toLocaleLowerCase("tr"),wrong=(run.wrongChoices||[]).includes(answer),b=node("button","choice"+(wrong?" wrongChoice":""),undefined);
+  b.type="button";b.setAttribute("aria-pressed",String(!!pressed));b.disabled=!!run.stageCorrect||!!run.revealed||wrong;
+  append(b,node("span","choiceMark","ABCD"[index]),mathText("span",null,answer));b.addEventListener("click",()=>select(answer,s,q,all.length));choices.appendChild(b)
+ });app.appendChild(choices);
+ if(run.stageCorrect){
+  app.appendChild(feedbackBox("ok","✓ Doğru seçim. "+s.solution));
+  app.appendChild(rowButton(run.stage>=all.length-1?"Engeli tamamla":"Sonraki işleme geç",()=>{
+    if(run.stage<all.length-1){run.stage++;run.wrong=0;run.wrongChoices=[];run.stageCorrect=false;save();show();return}
+    if(run.remediationId){run.remediationId=null;run.practiceId=null;run.awaiting=true;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show();return}
+    if(run.practiceId){run.practiceId=null;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show();return}
+    run.awaiting=true;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show()
+  }));
+ }else if(run.revealed){
+   app.appendChild(feedbackBox("wrong","Üçüncü yanlış deneme. Bu sorunun çözümünü dikkatle incele."));
+   app.appendChild(mathText("div","solution","Çözüm: "+s.solution+(all.length>1?" • Tam görevin çözümü: "+q.solution:"")));
+   app.appendChild(rowButton("Benzer bir soruyla kendimi sına",()=>{
+    run.remediationId=pick(q.obstacleId,run.difficulty,q.id);resetStage();show();
+   }));
+ }else if(run.wrong>0){
+   app.appendChild(feedbackBox("wrong","Yanlış seçim • "+run.wrong+"/3"+(run.wrong===1?" — İpucu: "+s.hint:" — Benzer çözümlü örneği incele.")));
+   if(run.wrong===2){
+    const ref=example(q);
+    if(ref){const box=node("div","solution");append(box,node("strong",null,"Benzer sorunun çözülmüş örneği"),mathText("p",null,ref.prompt),mathText("p",null,"Çözüm: "+ref.solution));app.appendChild(box)}
+   }
+ }
+ if(run.practiceId){app.appendChild(rowButton("Ana göreve dön",()=>{run.practiceId=null;resetStage();show()},true))}
+}
+function select(answer,s,q,stageCount){
+ if(!run||run.stageCorrect||run.revealed)return;
+ if(answer.toLocaleLowerCase("tr")===String(s.answer).toLocaleLowerCase("tr")){run.stageCorrect=true;run.feedback="ok";save();show();return}
+ run.wrong=(run.wrong||0)+1;run.wrongChoices=[...(run.wrongChoices||[]),answer];run.revealed=run.wrong>=3;save();show();
+}
+async function init(){
+ try{const r=await fetch(BANK_URL,{cache:"no-store"});if(!r.ok)throw Error("630 soruluk kaynak dosyası yüklenemedi");bank=await r.json();
+ if(bank.questions.length!==630||bank.obstacles.length!==21||typeof window.FOREST_LEVELS_V65!=="function")throw Error("v65 soru sistemi eksik");
+ const old=read(HISTORY_KEY);if(old)history=old;
+ const saved=read(RUN_KEY);
+ if(EMBED){
+  const idx=bank.playOrder.indexOf(FORCED);
+  if(idx<0||!["kolay","orta","zor"].includes(FORCED_DIFFICULTY))throw Error("Geçersiz engel veya zorluk seviyesi");
+  run=saved&&saved.index===idx&&saved.difficulty===FORCED_DIFFICULTY?saved:{difficulty:FORCED_DIFFICULTY,index:idx,activeId:null,practiceId:null,remediationId:null,awaiting:false,stage:0,wrong:0,wrongChoices:[],stageCorrect:false,revealed:false};
+  ensure();save();show();
+  document.body.classList.add("embedded");
+ }else{if(saved&&["kolay","orta","zor"].includes(saved.difficulty)&&Number.isInteger(saved.index)&&saved.index>=0&&saved.index<=21)run=saved;welcome();}
+ }catch(e){app.replaceChildren();append(app,node("h2",null,"Soru sistemi açılamadı"),node("p",null,e.message),rowButton("Tekrar dene",()=>location.reload()))}
+}
+init();
+
+</script></body></html>
