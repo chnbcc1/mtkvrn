@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#102d2d"><title>Orman Patikası · 21 Engelli Soru Denemesi v64</title>
+<style>
+:root{color-scheme:dark;--p:#f8e8bd;--gold:#eec77c;--ink:#16302e;--leaf:#87d0a6;--edge:#8cae92}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#0b242a;color:#fff7e5;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+body{background:radial-gradient(ellipse at 70% 0%,#366d5f 0,transparent 55%),linear-gradient(160deg,#112f36,#102820 62%,#081b29);padding:max(16px,env(safe-area-inset-top)) 14px max(30px,env(safe-area-inset-bottom))}
+main{max-width:780px;margin:0 auto}nav{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:20px}
+nav a{color:#ffdf9a;text-decoration:none;font-weight:700;font-size:13px}h1{font-size:clamp(28px,7vw,45px);font-family:Georgia,serif;margin:8px 0 6px;color:#ffdf98}
+.subtitle{font-size:14px;color:#d5eadb;line-height:1.5;margin:0 0 22px}
+.panel{background:linear-gradient(145deg,#f6e4b8,#dcb87d);color:#3d2f22;border:4px solid #996f3d;border-radius:24px;box-shadow:0 20px 48px #0009;padding:clamp(17px,4vw,27px)}
+.panel h2{margin:6px 0 16px;font-family:Georgia,serif;font-size:clamp(23px,6vw,31px);line-height:1.18}
+.eyebrow{color:#71502b;font-weight:900;letter-spacing:1.2px;font-size:11px}
+button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #267b74;outline-offset:2px}
+.btn{border:2px solid #315d53;border-radius:14px;background:#246c61;color:#fff9e7;font-weight:800;padding:12px 16px;min-height:48px}
+.btn.secondary{background:#f8edce;color:#314a3c;border-color:#8b997b}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btnRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+label{display:block;font-weight:800;margin:14px 0 7px}
+.input{display:block;width:100%;min-height:47px;padding:11px 12px;background:#fff9e9;border:2px solid #a4895f;border-radius:12px;color:#282f28}
+select.input{appearance:auto}.prompt{padding:16px;background:#fff6dc;border-left:5px solid #4f8d74;border-radius:10px;line-height:1.6;font-size:clamp(16px,4vw,19px);font-weight:650;white-space:pre-wrap}
+.helper{color:#675538;font-size:13px;line-height:1.45;margin:8px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:14px}
+.step{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;font-weight:800;color:#f9e7b6;margin:0 0 10px}
+.bar{height:11px;background:#294945;border-radius:10px;overflow:hidden;margin-bottom:19px;border:1px solid #93ab81}
+.bar>span{height:100%;background:linear-gradient(90deg,#65b69c,#d9d47d);display:block;transition:width .2s}
+.feedback{padding:14px;border-radius:12px;background:#fdf5d7;color:#403522;border:2px solid #a69261;margin-top:14px;font-weight:650;line-height:1.5}
+.feedback[hidden]{display:none}.ok{border-color:#448568;background:#e7f4d8}.wrong{border-color:#ad744f;background:#fff0d5}
+.stone{padding:12px;border:1px solid #c2a473;border-radius:12px;background:#fff5db}
+.stone b{display:block;margin-bottom:5px}.stone label{font-size:13px}.stone input,.stone select{margin-top:7px}
+.difficulty{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.difficulty button{border:2px solid #9b8052;background:#fff4d9;border-radius:15px;min-height:80px;font-weight:900;color:#3e392d;padding:10px}
+.difficulty button[aria-pressed=true]{background:#267265;color:#fff;border-color:#133f37}
+.difficulty button small{display:block;font-weight:500;margin-top:4px}
+.footer{font-size:12px;color:#c8decb;line-height:1.5;margin:22px 4px}
+#app:empty:before{content:"Sorular hazırlanıyor…";color:#e8d4a9}
+</style></head>
+<body><main><nav><a href="./forest-v62.html?v=62">‹ Orman Patikasına dön</a><a href="./map-v62.html?v=62">🗺️ Macera Haritası</a></nav>
+<h1>🌲 Orman Patikası</h1><p class="subtitle">21 engelli soru denemesi · MAT.9.1.1 · Üslü ve köklü gösterimler. Bu ekran soru ve ilerleme motorunu test eder; platform sahnesindeki 21 fiziksel engel henüz hazırlanmadı.</p>
+<div id="step" class="step" hidden></div><div id="bar" class="bar" hidden><span id="fill"></span></div><section id="app" class="panel" aria-live="polite"></section>
+<p class="footer">Soru geçmişi yalnızca bu tarayıcıda tutulur. Dedenin Evi ve mevcut orman sahnesindeki ilerleme kaydı değiştirilmez. Matematiksel gerekçe isteyen sorularda yazılı açıklamaların öğretmen tarafından incelenmesi önerilir.</p>
+</main><script>
+"use strict";
+const BANK_URL="./forest-questions-v63.json?v=64";
+const RUN_KEY="mathverse-v64-forest-question-run",HISTORY_KEY="mathverse-v64-forest-question-history";
+let bank=null,run=null,history={used:{},last:{},seenPrompts:{}};
+const app=document.getElementById("app"),step=document.getElementById("step"),bar=document.getElementById("bar"),fill=document.getElementById("fill");
+function el(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=txt;return e}
+function clear(){app.replaceChildren()}
+function add(parent,...nodes){nodes.forEach(n=>parent.appendChild(n));return parent}
+function read(key){try{return JSON.parse(localStorage.getItem(key)||"null")}catch(e){return null}}
+function save(){try{localStorage.setItem(RUN_KEY,JSON.stringify(run));localStorage.setItem(HISTORY_KEY,JSON.stringify(history))}catch(e){}}
+function norm(s){return String(s||"").trim().toLowerCase().replace(/\s+/g,"").replace(/−|–/g,"-").replace(/×|·|\*/g,"x").replace(/,/g,".").replace(/²/g,"^2").replace(/³/g,"^3").replace(/\^\(([-+]?\d+)\)/g,"^$1")}
+function equals(s,expected){return norm(s)===norm(expected)}
+function field(parent,label,id,placeholder,mode){const l=el("label",null,label);l.setAttribute("for",id);const x=el("input","input");x.id=id;x.placeholder=placeholder||"";x.autocomplete="off";x.inputMode=mode||"text";x.required=true;add(parent,l,x);return x}
+function dropdown(parent,label,id,items){const l=el("label",null,label),s=el("select","input");s.id=id;add(s,el("option",null,"Seçiniz"));s.options[0].value="";items.forEach(v=>{const o=el("option",null,v.label);o.value=v.value;s.appendChild(o)});s.required=true;add(parent,l,s);return s}
+function action(text,fn,secondary=false){const b=el("button","btn"+(secondary?" secondary":""),text);b.type="button";b.addEventListener("click",fn);return b}
+function currentObstacle(){return bank.obstacles.find(o=>o.id===bank.playOrder[run.index])}
+function currentQuestion(){const id=run.practiceId||run.activeId;return bank.questions.find(q=>q.id===id)}
+function pick(id,difficulty){const key=id+"|"+difficulty,items=bank.questions.filter(q=>q.obstacleId===id&&q.difficulty===difficulty);
+if(items.length!==10)throw Error("Soru sayısı eksik: "+key);
+let used=history.used[key]||[],last=history.last[key]||"";
+let choices=items.filter(q=>!used.includes(q.id)&&!(history.seenPrompts[id]||[]).includes(q.prompt));
+if(!choices.length)choices=items.filter(q=>!used.includes(q.id));
+if(!choices.length){used=last?[last]:[];choices=items.filter(q=>!used.includes(q.id)&&q.id!==last);if(!choices.length)choices=items.filter(q=>q.id!==last)}
+const result=choices[Math.floor(Math.random()*choices.length)];
+history.used[key]=[...used.filter(x=>x!==result.id),result.id];
+history.last[key]=result.id;
+history.seenPrompts[id]=[...(history.seenPrompts[id]||[]).slice(-60),result.prompt];
+save();return result.id}
+function ensureQuestion(){if(!run.activeId&&run.index<bank.playOrder.length){run.activeId=pick(bank.playOrder[run.index],run.difficulty);save()}}
+function welcome(){step.hidden=true;bar.hidden=true;clear();const head=el("div","eyebrow","MATEMATİK EVRENİ • SORU MOTORU v64");
+add(app,head,el("h2",null,run?"Maceran burada duruyor":"Yeni bir macera seç"),el("p",null,"Zorluğu maceranın başında belirle. Her engel için seçtiğin düzeyde 10 ayrı soru bulunur. Önceki oynayışlarda gördüklerin mümkün olduğu sürece tekrar gelmez."));
+if(run&&run.index<bank.playOrder.length){const b=action("Kaldığım yerden devam et",()=>show());b.style.width="100%";app.appendChild(b)}
+const box=el("div","difficulty");let chosen=run?.difficulty||"orta";
+["kolay","orta","zor"].forEach(d=>{const b=el("button",null,d==="kolay"?"🌱 Kolay":d==="orta"?"🌿 Orta":"🌳 Zor");b.type="button";b.setAttribute("aria-pressed",String(chosen===d));b.addEventListener("click",()=>{chosen=d;[...box.children].forEach(c=>c.setAttribute("aria-pressed",String(c===b)))});box.appendChild(b)});
+add(app,el("h3",null,"Yeni macera için zorluk"),box,action("Yeni maceraya başla",()=>{if(run&&!confirm("Yeni macera açılacak. Eski maceranın tamamlanan adımları sıfırlanır; soru geçmişi korunur. Devam edilsin mi?"))return;run={difficulty:chosen,index:0,activeId:null,practiceId:null,awaiting:false,lastSolved:null};ensureQuestion();save();show()}));
+}
+function show(){if(!bank){return}if(!run){welcome();return}step.hidden=false;bar.hidden=false;
+if(run.index>=bank.playOrder.length){step.textContent="Tüm engeller tamamlandı";fill.style.width="100%";clear();add(app,el("h2",null,"🎉 Orman tamamlandı!"),el("p",null,"21 engelin tamamını çözdün. Bir sonraki girişte soru geçmişi korunur ve farklı varyasyonlar seçilir."),action("Yeni macera",()=>{run=null;save();welcome()}));return}
+ensureQuestion();const ob=currentObstacle(),q=currentQuestion();step.textContent=(run.index+1)+"/21 • "+ob.title+" • "+run.difficulty.toUpperCase()+(run.practiceId?" • BENZER SORU":"");fill.style.width=((run.index+(run.awaiting?1:0))/21*100)+"%";
+clear();add(app,el("div","eyebrow",q.id+" · "+(run.practiceId?"PEKİŞTİRME":"ANA GÖREV")),el("h2",null,ob.title),el("div","prompt",q.prompt));
+if(run.awaiting&&!run.practiceId){const fb=el("div","feedback ok","✓ Engel tamamlandı. Çözüm: "+q.solution);add(app,fb);const row=el("div","btnRow");add(row,action("Sonraki engele geç",()=>{run.index++;run.activeId=null;run.awaiting=false;run.lastSolved=null;ensureQuestion();save();show()}),action("Benzer soru çöz",()=>{run.practiceId=pick(ob.id,run.difficulty);save();show()},true));add(app,row);return}
+const form=el("form");form.addEventListener("submit",e=>{e.preventDefault();check(q,form)});const body=el("div");renderInputs(body,q);const fb=el("div","feedback");fb.id="feedback";fb.hidden=true;
+const buttons=el("div","btnRow"),submit=el("button","btn","Kontrol et");submit.type="submit";add(buttons,submit,action("İpucu göster",()=>{fb.hidden=false;fb.className="feedback";fb.textContent=q.hint||"Verilenleri adım adım kullan."},true));
+if(run.practiceId)add(buttons,action("Ana göreve dön",()=>{run.practiceId=null;save();show()},true));
+add(form,body,buttons,fb);app.appendChild(form)}
+function renderInputs(box,q){const inter=q.interaction||{},t=q.inputType;
+if(t==="pair-with-work"){add(box,el("p","helper","Tahtaları seçmeden önce DÖRT köklü ifadeyi sadeleştir."));const g=el("div","grid");(inter.planks||[]).forEach(p=>{const x=el("div","stone");field(x,p.id+" • "+p.length+" = ?","plank-"+p.id,"Örn. 2√2");g.appendChild(x)});box.appendChild(g);
+dropdown(box,"Hesapladığın iki tahta","pair",[["A-B","A-D","B-C","C-D","A-C","B-D"].map(x=>({value:x,label:x}))][0]);
+}else if(t==="matching-with-work"){add(box,el("p","helper","Dört eşdeğerliği doğru eşleştir; ardından iki farklı eşleştirmenin ara işlemini yaz."));const g=el("div","grid");(inter.left||[]).forEach(p=>{const x=el("div","stone");dropdown(x,p.math+" ile eşdeğer",p.id,(inter.right||[]).map(r=>({value:r.id,label:r.math})));g.appendChild(x)});box.appendChild(g);field(box,"1. Eşleştirme için işlem basamakları","work1","Örn. 8^(2/3)=(∛8)^2=4");field(box,"2. Farklı eşleştirme için işlem basamakları","work2","En az iki eşittir işaretiyle yaz");
+}else if(t==="compare-with-proof"){dropdown(box,"Hangi patika daha kısa?","answer",[{value:"sol",label:"Sol"},{value:"sağ",label:"Sağ"}]);const g=el("div","grid");const a=el("div"),b=el("div");field(a,"Sol uzunluğun karesi","square0","İşlem sonucu","decimal");field(b,"Sağ uzunluğun karesi","square1","İşlem sonucu","decimal");add(g,a,b);box.appendChild(g);
+}else if(t==="two-results-with-proof"){field(box,"Sol tarafın sonucu","leftAnswer","Sol","decimal");field(box,"Sağ tarafın sonucu","rightAnswer","Sağ","decimal");
+}else if(t==="number-with-proof"){field(box,"Uygun kiriş uzunluğu","answer","Tam metre","decimal");const g=el("div","grid");const a=el("div"),b=el("div");field(a,"Alanı sınırlayan alt tam kare","lowSquare","Örn. 36","decimal");field(b,"Alanı sınırlayan üst tam kare","highSquare","Örn. 49","decimal");add(g,a,b);box.appendChild(g);
+}else{field(box,"Cevabın","answer",t==="radical"?"Örn. 2√3":t==="exponent"?"Örn. 2^5":t==="scientific"?"Örn. 3×10^-4":"Sonucu yaz",t==="number"?"decimal":"text");if(t==="radical"||t==="scientific")add(box,el("p","helper","Sonucu sadeleştirilmiş matematiksel gösterimle yaz."))}
+}
+function value(id){return document.getElementById(id)?.value||""}
+function valid(q){const t=q.inputType,c=q.correctAnswer,inter=q.interaction||{};
+if(t==="pair-with-work"){if(!(inter.planks||[]).every(p=>equals(value("plank-"+p.id),p.simplified)))return {ok:false,why:"Önce dört tahtanın köklü uzunluğunu doğru sadeleştir."};return {ok:value("pair").split("-").sort().join("-")===c.split("-").sort().join("-"),why:"İki tahtanın toplamı açıklık uzunluğuna eşit olmalı."}}
+if(t==="matching-with-work"){const pairs=inter.correctPairs||[];const matched=pairs.length===4&&pairs.every(p=>value(p.left)===p.right);if(!matched)return {ok:false,why:"Eşleştirmeleri üslü ve köklü gösterimlerin değerlerini hesaplayarak tekrar kontrol et."};const a=value("work1"),b=value("work2");const eq=s=>s.split("=").length>=3&&s.trim().length>10;
+if(!eq(a)||!eq(b)||norm(a)===norm(b))return {ok:false,why:"İki farklı eşleştirmeyi en az birer ara işlemle yaz (ör. 8^(2/3)=(∛8)^2=4)."};return {ok:true,why:"İşlem basamakları öğretmen incelemesine açıktır."}}
+if(t==="compare-with-proof")return {ok:equals(value("answer"),c)&&Number(value("square0"))===inter.squares?.[0]&&Number(value("square1"))===inter.squares?.[1],why:"İki uzunluğun karesini hesaplayıp karşılaştır."};
+if(t==="two-results-with-proof"){const m=c.match(/Sol:([^;]+);Sağ:(.+)/i);return {ok:!!m&&equals(value("leftAnswer"),m[1])&&equals(value("rightAnswer"),m[2]),why:"Karekökü toplamın içine dağıtma. İki tarafı ayrı hesapla."}}
+if(t==="number-with-proof"){const n=Number(c);return {ok:Number(value("answer"))===n&&Number(value("lowSquare"))===(n-1)**2&&Number(value("highSquare"))===n*n,why:"Alanı ardışık iki tam kare arasında göster."}}
+if(t==="number")return {ok:Number(value("answer").replace(",","."))===Number(c),why:"Sonucu ve birimi yeniden hesapla."};
+if(t==="scientific"){const m=norm(value("answer")).match(/^(\d+(?:\.\d+)?)x10\^(-?\d+)$/),n=norm(c).match(/^(\d+(?:\.\d+)?)x10\^(-?\d+)$/);const v=z=>Number(z[1])*Math.pow(10,Number(z[2]));return {ok:!!m&&!!n&&+m[1]>=1&&+m[1]<10&&Math.abs(v(m)-v(n))<=1e-9*Math.max(Math.abs(v(n)),1e-10),why:"Bilimsel gösterimde katsayı 1 ile 10 arasında olmalı; üsleri kontrol et."}}
+return {ok:equals(value("answer"),c),why:"Sonucu istenen biçimde, tam sadeleştirilmiş olarak yaz."}
+}
+function check(q,form){const out=document.getElementById("feedback"),r=valid(q);out.hidden=false;out.className="feedback "+(r.ok?"ok":"wrong");
+if(!r.ok){out.textContent="Tekrar dene: "+r.why;return}
+out.textContent="✓ Doğru! "+(r.why||"")+" Çözüm: "+q.solution;form.querySelectorAll("input,select,button").forEach(c=>c.disabled=true);
+const row=el("div","btnRow");if(run.practiceId){run.practiceId=null;add(row,action("Ana göreve dön",()=>show()),action("Bir benzer soru daha",()=>{run.practiceId=pick(q.obstacleId,run.difficulty);save();show()},true));}
+else{run.awaiting=true;run.lastSolved=q.id;add(row,action("Sonraki engele geç",()=>{run.index++;run.activeId=null;run.awaiting=false;run.lastSolved=null;ensureQuestion();save();show()}),action("Benzer soru çöz",()=>{run.practiceId=pick(q.obstacleId,run.difficulty);save();show()},true));}
+save();form.appendChild(row)}
+async function init(){try{const response=await fetch(BANK_URL,{cache:"no-store"});if(!response.ok)throw Error("Soru havuzu sunucudan açılamadı");bank=await response.json();
+if(bank.questions?.length!==630||bank.obstacles?.length!==21)throw Error("Soru havuzu eksik veya bozuk");const old=read(HISTORY_KEY);if(old)history=old;
+const saved=read(RUN_KEY);if(saved&&["kolay","orta","zor"].includes(saved.difficulty)&&Number.isInteger(saved.index)&&saved.index>=0&&saved.index<=21)run=saved;
+welcome()}catch(error){clear();add(app,el("h2",null,"Soru havuzu yüklenemedi"),el("p",null,error.message),action("Yeniden dene",()=>location.reload()))}}
+init();
+</script></body></html>
