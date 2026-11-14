@@ -50,7 +50,7 @@ sup{font-size:.7em;line-height:0;vertical-align:super}
 .detail{margin:10px 0 0;font-size:13px;color:#6c4e2c;font-weight:700}
 .mini{display:inline-block;background:#296356;color:#fff;border-radius:8px;font-size:12px;padding:5px 8px;font-weight:850;margin:7px 0}
 @media(max-width:430px){.panel{padding:16px 14px;border-width:3px}.panel h2{font-size:26px}.prompt{font-size:16px;padding:13px}.choice{font-size:17px;min-height:58px}.subtitle{font-size:13px}}
-</style><script src="./forest-levels-v65.js?v=65" defer></script></head>
+</style><script src="./forest-levels-v65.js?v=65"></script></head>
 <body><main><nav><a href="./forest-v62.html?v=62">‹ Orman Patikasına dön</a><a href="./map-v62.html?v=62">🗺️ Macera Haritası</a></nav>
 <h1>🌲 Orman Patikası</h1><p class="subtitle">21 engelli matematik macerası · dört şıklı sorular · MAT.9.1.1 · Üslü ve köklü gösterimler. Dört seçenek arasından karar ver. Yanlışta ipucu, örnek çözüm ve pekiştirme adımları seni yönlendirecek. Fiziksel engellerin sahne entegrasyonu ayrı geliştirilir.</p>
 <div id="step" class="step" hidden></div><div id="bar" class="bar" hidden><span id="fill"></span></div><section id="app" class="panel" aria-live="polite"></section>
@@ -92,7 +92,7 @@ function pick(obId,difficulty,exceptId){
  save();return id;
 }
 function ensure(){if(run&&run.index<21&&!run.activeId)run.activeId=pick(bank.playOrder[run.index],run.difficulty)}
-function currentId(){return run.practiceId||run.remediationId||run.activeId}
+function currentId(){return run.remediationId||run.practiceId||run.activeId}
 function current(){return window.FOREST_LEVELS_V65(qs(currentId()))}
 function resetStage(){run.stage=0;run.wrong=0;run.wrongChoices=[];run.stageCorrect=false;run.revealed=false;run.feedback="";save()}
 function hash(s){let h=2166136261;for(let c of s){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0}
@@ -189,7 +189,7 @@ function show(){
  const choices=node("div","choiceGrid");
  const choicesData=options(s,q);
  choicesData.forEach((answer,index)=>{
-  const pressed=run.stageCorrect&&answer===s.answer,wrong=(run.wrongChoices||[]).includes(answer),b=node("button","choice"+(wrong?" wrongChoice":""),undefined);
+  const pressed=run.stageCorrect&&answer.toLocaleLowerCase("tr")===String(s.answer).toLocaleLowerCase("tr"),wrong=(run.wrongChoices||[]).includes(answer),b=node("button","choice"+(wrong?" wrongChoice":""),undefined);
   b.type="button";b.setAttribute("aria-pressed",String(!!pressed));b.disabled=!!run.stageCorrect||!!run.revealed||wrong;
   append(b,node("span","choiceMark","ABCD"[index]),mathText("span",null,answer));b.addEventListener("click",()=>select(answer,s,q,all.length));choices.appendChild(b)
  });app.appendChild(choices);
@@ -197,13 +197,13 @@ function show(){
   app.appendChild(feedbackBox("ok","✓ Doğru seçim. "+s.solution));
   app.appendChild(rowButton(run.stage>=all.length-1?"Engeli tamamla":"Sonraki işleme geç",()=>{
     if(run.stage<all.length-1){run.stage++;run.wrong=0;run.wrongChoices=[];run.stageCorrect=false;save();show();return}
+    if(run.remediationId){run.remediationId=null;run.practiceId=null;run.awaiting=true;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show();return}
     if(run.practiceId){run.practiceId=null;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show();return}
-    if(run.remediationId){run.remediationId=null}
     run.awaiting=true;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show()
   }));
  }else if(run.revealed){
    app.appendChild(feedbackBox("wrong","Üçüncü yanlış deneme. Bu sorunun çözümünü dikkatle incele."));
-   app.appendChild(mathText("div","solution","Çözüm: "+s.solution));
+   app.appendChild(mathText("div","solution","Çözüm: "+s.solution+(all.length>1?" • Tam görevin çözümü: "+q.solution:"")));
    app.appendChild(rowButton("Benzer bir soruyla kendimi sına",()=>{
     run.remediationId=pick(q.obstacleId,run.difficulty,q.id);resetStage();show();
    }));
@@ -218,7 +218,7 @@ function show(){
 }
 function select(answer,s,q,stageCount){
  if(!run||run.stageCorrect||run.revealed)return;
- if(answer===s.answer){run.stageCorrect=true;run.feedback="ok";save();show();return}
+ if(answer.toLocaleLowerCase("tr")===String(s.answer).toLocaleLowerCase("tr")){run.stageCorrect=true;run.feedback="ok";save();show();return}
  run.wrong=(run.wrong||0)+1;run.wrongChoices=[...(run.wrongChoices||[]),answer];run.revealed=run.wrong>=3;save();show();
 }
 async function init(){
