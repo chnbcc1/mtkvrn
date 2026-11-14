@@ -448,6 +448,7 @@ if(initial&&Array.isArray(initial.solvedIds)){
  heroX=Math.max(315,Math.min(GATE_X-45,initial.version>=69?Number(initial.x)||350:(Number(initial.x)>820?820+(Number(initial.x)-820)*4:Number(initial.x)||350)));
  introDone=true;reachedGate=Boolean(initial.reachedGate);resumed=true;
 }else{heroX=330;reachedGate=false;resumed=false;}
+if(new URLSearchParams(location.search).get("focus")==="gate"&&reachedGate)heroX=GATE_X-95;
 heroY=GROUND;vy=0;solved=SOLVED.has("F08");bridgeProgress=solved?1:0;
 const campaignProgress=()=>SOLVED.size;
 function persistCampaign(){
@@ -464,14 +465,14 @@ function nearestGate(){
  return null;
 }
 function campaignMarker(id){
- if(id==="FINISH")return {x:12515,y:GROUND-142};
+ if(id==="FINISH")return {x:GATE_X-65,y:GROUND-142};
  const gate=GATES.find(g=>g.id===id);
  return gate?{x:gate.stop+15,y:GROUND-146}:{x:heroX,y:GROUND-135};
 }
 available=function(){
  if(modalOpen||!started||heroY<GROUND-62)return null;
  const gate=nearestGate();if(gate)return gate.id;
- if(campaignProgress()===21&&Math.abs(heroX-12510)<220)return "FINISH";
+ if(campaignProgress()===21&&Math.abs(heroX-(GATE_X-75))<220)return "FINISH";
  return null;
 };
 function openQuiz(id){
@@ -876,7 +877,7 @@ update=function(dt){
  $("#campaignHud").textContent="🌿 "+done+"/21 engel · "+difficulty.toUpperCase();
  $("#progressFill").style.width=(100*done/21)+"%";
  $("#progress").textContent=done+"/21 engel · "+difficulty.toUpperCase();
- if(!finishShown&&done===21&&heroX>=12510){finishShown=true;reachGate()}
+ if(!finishShown&&done===21&&heroX>=GATE_X-80){finishShown=true;reachGate()}
 };
 if(new URLSearchParams(location.search).get("preview")==="1")approved=true;
 if(!approved){
