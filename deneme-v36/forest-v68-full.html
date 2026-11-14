@@ -423,6 +423,7 @@ const SOLVED=new Set();
 let introDone=false,quizActiveId=null,hitMessage="",hitTimer=0,groundOffset=15,flashObstacle=0,finishShown=false;
 function savedCampaign(){try{return JSON.parse(localStorage.getItem(CAMPAIGN_KEY)||"null")}catch(e){return null}}
 const initial=savedCampaign();
+const RUN_TOKEN=initial?.token||String(Date.now())+"-"+Math.random().toString(36).slice(2,9);
 if(initial&&Array.isArray(initial.solvedIds)){
  for(const id of initial.solvedIds)if(ORDER.includes(id))SOLVED.add(id);
  difficulty=["kolay","orta","zor"].includes(initial.difficulty)?initial.difficulty:"orta";
@@ -432,7 +433,7 @@ if(initial&&Array.isArray(initial.solvedIds)){
 heroY=GROUND;vy=0;solved=SOLVED.has("F08");bridgeProgress=solved?1:0;
 const campaignProgress=()=>SOLVED.size;
 function persistCampaign(){
- try{localStorage.setItem(CAMPAIGN_KEY,JSON.stringify({version:68,x:Math.round(heroX),difficulty,solvedIds:[...SOLVED],reachedGate,updatedAt:new Date().toISOString()}))}catch(e){}
+ try{localStorage.setItem(CAMPAIGN_KEY,JSON.stringify({version:68,token:RUN_TOKEN,x:Math.round(heroX),difficulty,solvedIds:[...SOLVED],reachedGate,updatedAt:new Date().toISOString()}))}catch(e){}
 }
 save=function(force=false){
  if(!force&&Math.abs(saveLastX-heroX)<32&&saveTimer<2)return;
@@ -457,7 +458,7 @@ available=function(){
 };
 function openQuiz(id){
  const gate=GATES.find(g=>g.id===id);if(!gate||SOLVED.has(id))return;
- const qs=new URLSearchParams({embedded:"1",obstacle:id,difficulty});
+ const qs=new URLSearchParams({embedded:"1",obstacle:id,difficulty,session:RUN_TOKEN});
  quizActiveId=id;requested=0;activePointers.clear();updatePress();modalOpen=true;
  $("#quizTitle").textContent=gate.icon+" · "+(gate.index+1)+"/21 · "+gate.label;
  $("#quizFrame").src="./forest-v68-quiz.html?"+qs;
