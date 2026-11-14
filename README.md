@@ -4,10 +4,10 @@ TÜBİTAK 4006 matematik macera oyunu.
 
 **Ana oyun:** https://chnbcc1.github.io/mtkvrn/  
 **Dört şıklı soru denemesi (v65 / güncel 630 soru):** https://chnbcc1.github.io/mtkvrn/deneme-v36/forest-v65-mcq.html?v=66  
-**Yüksek çözünürlüklü orman (v66):** https://chnbcc1.github.io/mtkvrn/deneme-v36/forest-v66.html?v=66  
-**Güncel macera haritası:** https://chnbcc1.github.io/mtkvrn/deneme-v36/map-v66.html?v=66
+**Yüksek çözünürlüklü orman (v67):** https://chnbcc1.github.io/mtkvrn/deneme-v36/forest-v67.html?v=67  
+**Güncel macera haritası:** https://chnbcc1.github.io/mtkvrn/deneme-v36/map-v67.html?v=67
 
-## 14 Kasım 2026 — v65 / v66
+## 14 Kasım 2026 — v65 / v66 / v67
 
 - `deneme-v36/forest-questions-v66.json`: 21 engel × 3 zorluk × 10 varyasyon = **630 farklı soru metni ve kimliği**.
 - Gerçek zorluk ayrımı: **kolay** tek matematiksel kural, **orta** iki bağlantılı işlem, **zor** üç veya daha fazla bağlantılı adım/muhakeme.
@@ -16,8 +16,8 @@ TÜBİTAK 4006 matematik macera oyunu.
 - 1. yanlışta ipucu; 2. yanlışta çözümlü benzer örnek; 3. yanlışta sorunun çözümü ve benzer soruyla yeniden sınama.
 - F08 kırık köprü görevi: dört tahtanın kökleri tek tek sadeleştirilir, ardından uygun iki tahta seçilir. F21 eşleştirme: dört ayrı eşleştirme ve iki kural seçimi.
 - Gidilen engel, yanlış deneme ve soru geçmişi tarayıcıda korunur; ana oyunun önceki `mathverse-v40-investigation` kaydı etkilenmez.
-- `deneme-v36/forest-v66-hd.svg`: eski 640×360 piksellik görüntü yerine **vektör çözünürlüğünde çizilen** orman arka planı.
-- `deneme-v36/forest-v66.html` ve `deneme-v36/map-v66.html`: yeni orman resmi, mevcut hareket, zıplama, kaydetme ve harita bağlantıları korunarak ayrılmış sürüm.
+- `deneme-v36/forest-hd-v67-asset.js`: **1672×941 piksellik** yüksek ayrıntılı, WebP formatında sıkıştırılmış yeni sinematik orman görseli. Eski 640×360 arka plan artık v67 sahnesinde kullanılmıyor. `forest-v66-hd.svg` çevrimdışı yedek olarak duruyor.
+- `deneme-v36/forest-v67.html` ve `deneme-v36/map-v67.html`: yüksek çözünürlüklü yeni orman resmi, mevcut hareket, zıplama, kaydetme ve harita bağlantıları korunarak ayrılmış sürüm.
 
 ### Test durumu / sınırlar
 
@@ -27,7 +27,7 @@ TÜBİTAK 4006 matematik macera oyunu.
 - **Gerçek iPhone üzerinde tüm engellerin oynanış ve erişilebilirlik testi yapılmadı.**
 - Mevcut büyük orman sahnesinde **21 fiziksel engelin tümü henüz yerleştirilmedi**. Soru motoru ayrı deneme ekranındadır.
 - Bazı çok aşamalı soruların pedagojik ve dil açısından öğretmen incelemesi devam etmelidir.
-- Yeni HD orman SVG bir çizimdir; fotoğrafik dokuların birebir kopyası değildir.
+- Yeni yüksek çözünürlüklü sinematik görsel v67 orman sahnesine bağlanmıştır; farklı telefonlarda renk, kalite, animasyon ve performans testleri hâlâ yapılmalıdır.
 
 ## Önceki geliştirmeler
 - v63: 21 engel/630 soru tasarımı.
