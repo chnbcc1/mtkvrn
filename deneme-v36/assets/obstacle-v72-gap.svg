@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" width="420" height="300"><defs>
+<radialGradient id="shade"><stop stop-color="#17231a" stop-opacity=".65"/><stop offset="1" stop-color="#17231a" stop-opacity="0"/></radialGradient>
+<linearGradient id="stone" x1="0" y1="0" x2=".82" y2="1"><stop stop-color="#d0d4bc"/><stop offset=".34" stop-color="#879d90"/><stop offset=".67" stop-color="#526c66"/><stop offset="1" stop-color="#273f3c"/></linearGradient>
+<linearGradient id="stone2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#becbb1"/><stop offset=".4" stop-color="#6c8076"/><stop offset="1" stop-color="#344b43"/></linearGradient>
+<linearGradient id="bark" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#b78a53"/><stop offset=".3" stop-color="#9a7048"/><stop offset=".55" stop-color="#624b35"/><stop offset="1" stop-color="#41362c"/></linearGradient>
+<linearGradient id="root" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#cb9e67"/><stop offset=".35" stop-color="#896341"/><stop offset="1" stop-color="#3c3327"/></linearGradient>
+<linearGradient id="fungus" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f59465"/><stop offset=".32" stop-color="#bb4934"/><stop offset="1" stop-color="#792c26"/></linearGradient>
+<linearGradient id="soil" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d0a772"/><stop offset=".24" stop-color="#9a7149"/><stop offset=".7" stop-color="#493b2d"/><stop offset="1" stop-color="#20333b"/></linearGradient>
+<linearGradient id="pit" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#2e2721"/><stop offset=".35" stop-color="#18292b"/><stop offset=".78" stop-color="#0b3441"/><stop offset="1" stop-color="#316a7b"/></linearGradient>
+<filter id="bump" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="fractalNoise" baseFrequency=".029 .044" numOctaves="3" seed="17" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G"/></filter>
+<filter id="soft" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="5"/></filter>
+</defs>
+<ellipse cx="206" cy="274" rx="189" ry="21" fill="url(#shade)"/>
+<path d="M16 132Q49 108 73 128L97 102L127 115L150 91L182 111L215 95L237 118L270 103L294 131L333 109L369 138L399 127L391 264Q353 280 323 268L289 284L249 264L212 279L160 257L118 277L76 257L40 270L26 235Z" fill="url(#pit)" stroke="#352e28" stroke-width="10" filter="url(#bump)"/>
+<path d="M15 132Q54 108 74 130L100 102L130 118L153 95L181 112L216 98L239 118L268 106L292 133L336 112L368 137L398 128" stroke="#d7ad74" stroke-width="16" fill="none" stroke-linecap="round"/>
+<path d="M19 143Q58 130 72 146L110 125L150 136L183 124L215 135L256 123L297 149L329 132L394 145" stroke="#68503a" stroke-width="9" fill="none"/>
+<path d="M21 147L35 197L48 177L61 204M107 139L129 185L144 165L161 192M218 139L237 184L247 162L260 193M339 143L355 187L380 174" stroke="#a07b53" stroke-width="5" fill="none" opacity=".8"/>
+<path d="M65 240Q139 205 217 229T360 237" stroke="#5c9eaa" stroke-width="9" fill="none" opacity=".7"/>
+<path d="M70 248Q152 223 223 244T356 241" stroke="#b3d9c9" stroke-width="3.5" fill="none" opacity=".65"/>
+<path d="M28 133L26 113L51 108M384 135L391 108L408 111" stroke="#82623f" stroke-width="10" fill="none"/>
+<g transform="translate(38,144) scale(0.8)" fill="none" stroke-linecap="round"><path d="M0 0Q-10-18-17-25M0 0Q9-30 18-32M0 0Q1-25 1-38M0 0Q-24-10-32-12" stroke="#567a43" stroke-width="6"/><path d="M0 0Q-9-17-17-25M0 0Q9-28 18-32M0 0V-38" stroke="#91ad5c" stroke-width="2"/></g><g transform="translate(380,147) scale(0.82)" fill="none" stroke-linecap="round"><path d="M0 0Q-10-18-17-25M0 0Q9-30 18-32M0 0Q1-25 1-38M0 0Q-24-10-32-12" stroke="#567a43" stroke-width="6"/><path d="M0 0Q-9-17-17-25M0 0Q9-28 18-32M0 0V-38" stroke="#91ad5c" stroke-width="2"/></g>
+</svg>
