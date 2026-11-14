@@ -1,0 +1,76 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>v68 · Macera Haritası · Matematik Evreni</title><meta name="theme-color" content="#143a37">
+<style>
+*{box-sizing:border-box}html,body{min-height:100%;margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#122d35;color:#f8edce}
+body{background:radial-gradient(ellipse at 30% 10%,#376b65,transparent 48%),linear-gradient(145deg,#0b2937,#173d39 65%,#0c2d36);padding:max(env(safe-area-inset-top),18px) 16px max(env(safe-area-inset-bottom),20px);overflow-x:hidden}
+button{font:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button:focus-visible{outline:3px solid #ffe9a2;outline-offset:3px}
+.wrap{width:min(590px,100%);margin:0 auto}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.return{background:#234d57;border:1px solid #a2c4b9;border-radius:16px;color:#fff5d9;min-height:48px;padding:9px 15px;font-weight:800}
+.title{font-family:Georgia,serif;font-size:clamp(27px,7vw,42px);margin:4px 0 5px;color:#ffe1a4}
+.subtitle{font-size:13px;color:#cbe2d4;margin:0 0 17px}
+.paper{position:relative;background:radial-gradient(circle at 20% 23%,#f4db9d 2%,transparent 35%),repeating-linear-gradient(30deg,#6d4f2609 0 1px,transparent 1px 36px),linear-gradient(145deg,#f5e4b6,#deb878);border:5px solid #9f693d;border-radius:25px;outline:2px solid #f8d38b;box-shadow:0 20px 65px #0008;padding:22px 17px;color:#453021}
+.maphead{text-align:center;display:flex;justify-content:space-between;gap:10px;align-items:center;border-bottom:1px solid #ae8754;padding-bottom:14px;font-weight:900;letter-spacing:.3px}
+.key{font-size:11px;color:#71502f;font-weight:700}
+.route{position:relative;display:grid;gap:18px;margin:23px 5px}
+.route:before{content:'';position:absolute;width:6px;left:29px;top:31px;bottom:35px;border-radius:5px;background:repeating-linear-gradient(180deg,#9d7346 0 13px,#dcc399 13px 20px);box-shadow:0 0 0 2px #f0dab1}
+.stop{position:relative;display:grid;grid-template-columns:62px 1fr;gap:12px;align-items:center;text-align:left;border:2px solid #ae8a58;background:#fff5d8d9;border-radius:18px;padding:12px 14px 12px 6px;width:100%;min-height:105px;color:#503820;box-shadow:0 5px 12px #68451a15}
+.stop .badge{font-size:27px;display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:#f1d396;border:3px solid #bc9654;z-index:1;position:relative}
+.stop strong{display:block;font-size:17px;margin-bottom:5px}.stop small{font-size:12px;display:block;line-height:1.4;color:#6c533a}
+.stop[data-state="current"]{background:#fff7cf;border-color:#2b7972;box-shadow:0 0 0 3px #46a39150,0 8px 20px #254e3b36}
+.stop[data-state="current"] .badge{background:#28766f;color:white;border-color:#cbecc8;animation:glow 2.8s ease-in-out infinite}
+.stop[data-state="done"] .badge{background:#4c8464;border-color:#c2d1ab}
+.stop[data-state="locked"]{filter:saturate(.35);opacity:.73;background:#d8c9a8;cursor:not-allowed}
+.stop[data-state="locked"] .badge{background:#b0a18a}
+.foot{margin-top:14px;font-size:12px;line-height:1.5;color:#664929;text-align:center}
+.summary{margin-top:15px;padding:13px 15px;background:#143f48;border:1px solid #a6b9ab;border-radius:15px;font-weight:700;font-size:13px;line-height:1.5}
+@keyframes glow{50%{box-shadow:0 0 0 8px #34827545}}
+@media(prefers-reduced-motion:reduce){.stop[data-state="current"] .badge{animation:none}}
+</style></head><body><main class="wrap">
+<div class="top"><button id="back" class="return">‹ Maceraya dön</button><span>🧭 YOLCULUK</span></div>
+<h1 class="title">Macera Haritası</h1><p class="subtitle">Bölgeler birbirine sırayla bağlanır. Parlayan işaret bulunduğun macerayı gösterir.</p>
+<div class="paper"><div class="maphead"><span>🗺️ Profesörün Kayıp İzleri</span><span class="key">● Şu anki bölge</span></div>
+<div class="route">
+<button class="stop" id="home" type="button"><span class="badge">🏡</span><span><strong>1 · Dedenin Evi</strong><small id="homeStatus"></small></span></button>
+<button class="stop" id="forest" type="button"><span class="badge">🌲</span><span><strong>2 · Orman Patikası</strong><small id="forestStatus"></small></span></button>
+<button class="stop" id="gate" type="button"><span class="badge">🔭</span><span><strong>3 · Gözlemevi Girişi</strong><small id="gateStatus"></small></span></button>
+<button class="stop" id="inside" type="button"><span class="badge">🔒</span><span><strong>4 · Gözlemevi İç Mekânı</strong><small id="insideStatus"></small></span></button>
+</div><div class="foot">Tamamlanan duraklara geri dönülebilir. Yeni bir durak ancak önceki maceranın ardından açılır.</div></div>
+<div class="summary" id="summary" aria-live="polite"></div>
+</main>
+<script>
+'use strict';
+const STORE='mathverse-v40-investigation';
+const CAMPAIGN_STORE='mathverse-v68-forest-full';
+let campaign={};try{campaign=JSON.parse(localStorage.getItem(CAMPAIGN_STORE)||'{}')||{}}catch(e){};
+const doneCount=Array.isArray(campaign.solvedIds)?campaign.solvedIds.length:0;
+const query=new URLSearchParams(location.search),from=query.get('from')==='forest'?'forest':'home';
+let state={};try{state=JSON.parse(localStorage.getItem(STORE)||'{}')||{}}catch(e){}
+const homeDone=Boolean(state.complete&&state.visitedStudy);
+const stage=state.chapter2||{};
+const forestUnlocked=homeDone;
+const gateUnlocked=forestUnlocked&&Boolean(campaign.reachedGate)&&doneCount===21;
+const gateCurrent=gateUnlocked;
+const forestCurrent=forestUnlocked&&!gateUnlocked;
+const current=!forestUnlocked?'home':state.activeScene==='home'?'home':gateCurrent?'gate':'forest';
+const dest={
+ home:'./?v=62&scene=home',
+ forest:'./forest-v68-full.html?v=68&resume=1',
+ gate:'./forest-v68-full.html?v=68&resume=1&focus=gate'
+};
+function setStop(id,status,label,locked){
+ const el=document.getElementById(id);
+ el.dataset.state=status;
+ el.disabled=Boolean(locked);
+ el.setAttribute('aria-current',status==='current'?'step':'false');
+ document.getElementById(id+'Status').textContent=label;
+ el.onclick=()=>{if(!locked){try{const latest=JSON.parse(localStorage.getItem(STORE)||'{}')||{};latest.activeScene=id==='home'?'home':'forest-path';localStorage.setItem(STORE,JSON.stringify(latest))}catch(e){}location.assign(dest[id])}};
+}
+setStop('home',current==='home'?'current':'done',homeDone?'İpuçları tamamlandı · İstersen tekrar ziyaret et':'İlk macera · İpuçlarını araştır',false);
+setStop('forest',current==='forest'?'current':forestUnlocked?'done':'locked',forestUnlocked?(doneCount+'/21 mühür açıldı · Ormana dön'):'Dedenin evindeki harita keşfedilince açılır',!forestUnlocked);
+setStop('gate',current==='gate'?'current':gateUnlocked?'done':'locked',gateUnlocked?'Kapıya ulaşıldı · İncelemeye devam et':'Orman patikası tamamlanınca açılır',!gateUnlocked);
+setStop('inside','locked','Gözlemevi girişi tamamlandıktan sonra açılacak',true);
+document.querySelector('#back').onclick=()=>{const id=from==='forest'&&forestUnlocked?'forest':'home';document.querySelector('#'+id).click()};
+document.querySelector('#summary').textContent=current==='home'?'Şu an Dedenin Evi macerasındasın.':current==='forest'?'Şu an Orman Patikası macerasındasın. Matematik engelleri: '+doneCount+'/21 tamamlandı.':'Şu an Gözlemevi Girişi durağındasın. Kapıyı inceleyebilirsin.';
+</script></body></html>
