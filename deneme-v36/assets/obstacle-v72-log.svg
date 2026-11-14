@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" width="420" height="300"><defs>
+<radialGradient id="shade"><stop stop-color="#17231a" stop-opacity=".65"/><stop offset="1" stop-color="#17231a" stop-opacity="0"/></radialGradient>
+<linearGradient id="stone" x1="0" y1="0" x2=".82" y2="1"><stop stop-color="#d0d4bc"/><stop offset=".34" stop-color="#879d90"/><stop offset=".67" stop-color="#526c66"/><stop offset="1" stop-color="#273f3c"/></linearGradient>
+<linearGradient id="stone2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#becbb1"/><stop offset=".4" stop-color="#6c8076"/><stop offset="1" stop-color="#344b43"/></linearGradient>
+<linearGradient id="bark" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#b78a53"/><stop offset=".3" stop-color="#9a7048"/><stop offset=".55" stop-color="#624b35"/><stop offset="1" stop-color="#41362c"/></linearGradient>
+<linearGradient id="root" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#cb9e67"/><stop offset=".35" stop-color="#896341"/><stop offset="1" stop-color="#3c3327"/></linearGradient>
+<linearGradient id="fungus" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f59465"/><stop offset=".32" stop-color="#bb4934"/><stop offset="1" stop-color="#792c26"/></linearGradient>
+<linearGradient id="soil" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d0a772"/><stop offset=".24" stop-color="#9a7149"/><stop offset=".7" stop-color="#493b2d"/><stop offset="1" stop-color="#20333b"/></linearGradient>
+<linearGradient id="pit" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#2e2721"/><stop offset=".35" stop-color="#18292b"/><stop offset=".78" stop-color="#0b3441"/><stop offset="1" stop-color="#316a7b"/></linearGradient>
+<filter id="bump" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="fractalNoise" baseFrequency=".029 .044" numOctaves="3" seed="17" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G"/></filter>
+<filter id="soft" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="5"/></filter>
+</defs>
+<ellipse cx="210" cy="267" rx="200" ry="29" fill="url(#shade)"/>
+<path d="M24 259Q10 187 38 146Q90 113 148 124L349 139Q379 151 394 201L389 258Z" fill="url(#bark)" stroke="#48392c" stroke-width="9" filter="url(#bump)"/>
+<path d="M24 211Q88 177 144 182T346 186" stroke="#c9a276" stroke-width="13" fill="none" opacity=".8"/>
+<path d="M27 227Q127 208 230 220T364 207" stroke="#4f3b2d" stroke-width="10" fill="none"/>
+<path d="M45 159Q144 143 241 160T362 169" stroke="#e2bc84" stroke-width="7" fill="none" opacity=".65"/>
+<path d="M54 246Q118 241 185 236T346 239M79 178Q159 175 247 180T359 178M94 195Q150 199 272 190" stroke="#6d4b31" stroke-width="5" fill="none"/>
+<ellipse cx="364" cy="203" rx="44" ry="59" fill="#c69c69" stroke="#574233" stroke-width="8" transform="rotate(-7 364 203)"/>
+<ellipse cx="365" cy="203" rx="32" ry="45" fill="#b88c59" stroke="#865d3c" stroke-width="4"/>
+<ellipse cx="365" cy="202" rx="23" ry="33" fill="none" stroke="#d7bb8b" stroke-width="5"/>
+<ellipse cx="366" cy="203" rx="13" ry="21" fill="none" stroke="#745038" stroke-width="4"/>
+<path d="M117 141Q109 112 89 86M199 145Q207 105 222 84" fill="none" stroke="#78553a" stroke-width="16" stroke-linecap="round"/>
+<path d="M117 141L98 90M199 139L219 84" fill="none" stroke="#ba875a" stroke-width="6" stroke-linecap="round"/>
+<path d="M54 137Q126 119 180 125M109 142Q154 129 201 144" stroke="#64814c" stroke-width="15" fill="none"/>
+<path d="M54 130Q123 116 178 119" stroke="#a6bd69" stroke-width="4" fill="none"/>
+<g transform="translate(83,162) scale(0.56)"><path d="M0 0Q-13-20-29-23Q-20 0 0 0Q12-22 30-20Q23-1 0 0Z" fill="#598650" stroke="#3d6543" stroke-width="2"/><path d="M0 0L0-28" stroke="#d5d9a1" stroke-width="2"/></g><g transform="translate(256,165) scale(0.69)"><path d="M0 0Q-13-20-29-23Q-20 0 0 0Q12-22 30-20Q23-1 0 0Z" fill="#598650" stroke="#3d6543" stroke-width="2"/><path d="M0 0L0-28" stroke="#d5d9a1" stroke-width="2"/></g><g transform="translate(26,266) scale(0.66)" fill="none" stroke-linecap="round"><path d="M0 0Q-10-18-17-25M0 0Q9-30 18-32M0 0Q1-25 1-38M0 0Q-24-10-32-12" stroke="#567a43" stroke-width="6"/><path d="M0 0Q-9-17-17-25M0 0Q9-28 18-32M0 0V-38" stroke="#91ad5c" stroke-width="2"/></g><g transform="translate(397,271) scale(0.66)" fill="none" stroke-linecap="round"><path d="M0 0Q-10-18-17-25M0 0Q9-30 18-32M0 0Q1-25 1-38M0 0Q-24-10-32-12" stroke="#567a43" stroke-width="6"/><path d="M0 0Q-9-17-17-25M0 0Q9-28 18-32M0 0V-38" stroke="#91ad5c" stroke-width="2"/></g>
+<g fill="#f2dabb" stroke="#9a7859" stroke-width="2"><ellipse cx="251" cy="157" rx="21" ry="7"/><ellipse cx="237" cy="170" rx="11" ry="6"/></g>
+</svg>
