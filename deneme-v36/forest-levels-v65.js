@@ -2,6 +2,7 @@
 "use strict";
 const pow=(a,b)=>Math.pow(a,b),rad=(a,b)=>a===1?"√"+b:a+"√"+b;
 function enrich(original){
+ if(original?.contentVersion==="v66")return original;
  const q={...original,interaction:{...(original.interaction||{})}},i=q.variant||1,d=q.difficulty,h=d==="zor",e=d==="kolay";
  const A=i+2,B=2+i%3,R=[2,3,5,7][i%4],m=2+i%4;
  let p,ans,sol,hint;
