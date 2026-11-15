@@ -184,9 +184,9 @@ const SAVE_KEY='mathverse-v40-investigation';
 const W=49580,H=941,GROUND=760,RAVINE_LEFT=19298,RAVINE_RIGHT=19513,BRIDGE_X=19233,GATE_X=49060;
 const canvas=document.querySelector('#scene'),ctx=canvas.getContext('2d',{alpha:false});
 const $=s=>document.querySelector(s);
-const erdem=new Image(),chiko=new Image(),forestPhoto=new Image();
+const chiko=new Image(),forestPhoto=new Image();
 forestPhoto.src=window.FOREST_HD_V67||'./forest-v66-hd.svg?v=66';
-if(window.ERDEM_V57_HD_ATLAS)erdem.src=window.ERDEM_V57_HD_ATLAS;
+// Erdem sprite atlas is decoded once by erdem-animation-v81.js.
 if(window.CHIKO_V57_HD_ATLAS)chiko.src=window.CHIKO_V57_HD_ATLAS;
 let backing={},approved=false,solved=false,reachedGate=false,resumed=false,bridgeProgress=0,bridgeBuildStart=0,difficulty='orta',heroX=360,heroY=GROUND,vy=0,travel=0,face=1,requested=0,activePointers=new Map(),camera=0,camReady=false,scale=1,vw=innerWidth,vh=innerHeight,dpr=1,last=0,clock=0,flyingX=365,flyingY=420,flyingFace=1,modalOpen=false,started=false,saveLastX=360,saveTimer=0,nearMarker=null,seenMarker=false;
 try{
