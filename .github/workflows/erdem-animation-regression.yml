@@ -1,0 +1,29 @@
+name: Erdem Animation Regression
+
+on:
+  push:
+    paths:
+      - "deneme-v36/erdem-animation-v*.js"
+      - "deneme-v36/forest-v*-full.html"
+      - "deneme-v36/map-v*.html"
+      - "deneme-v36/index.html"
+      - "deneme-v36/tests/erdem-animation.test.cjs"
+      - ".github/workflows/erdem-animation-regression.yml"
+  pull_request:
+    paths:
+      - "deneme-v36/erdem-animation-v*.js"
+      - "deneme-v36/forest-v*-full.html"
+      - "deneme-v36/map-v*.html"
+      - "deneme-v36/index.html"
+      - "deneme-v36/tests/erdem-animation.test.cjs"
+
+jobs:
+  erdem-animation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify single atlas, fixed-size sprites and preserved jump physics
+        run: node deneme-v36/tests/erdem-animation.test.cjs
