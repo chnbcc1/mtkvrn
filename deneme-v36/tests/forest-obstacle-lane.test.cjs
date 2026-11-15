@@ -1,4 +1,4 @@
-/* v99: 2x sprite width, unchanged height, 75% ground-relative elevation on solid hazards, no painted shadows.
+/* v100: v99 vertical offset replaced by a bottom-anchored 75% visual height increase for four solid hazards; gap and widths unchanged.
    Run: node deneme-v36/tests/forest-obstacle-lane.test.cjs */
 "use strict";
 const assert=require("node:assert/strict");
@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const version=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(version,99);
+assert.equal(version,100);
 const forest=fs.readFileSync(path.join(root,"forest-v"+version+"-full.html"),"utf8");
 const map=fs.readFileSync(path.join(root,"map-v"+version+".html"),"utf8");
 const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v98.js"),"utf8");
@@ -54,18 +54,21 @@ for(const kind of kinds){
  assert(HAZARDS.some(h=>h.type===kind),"Missing obstacle: "+kind);
  for(const [name,geometry,lane] of [["photo",forPhoto,PHOTO_PATH_LANE],["fallback",forFallback,PATH_LANE]]){
   const box=geometry.obstacleGeometry({type:kind,x:500,w:def.w,height:def.height,laneY:760});
-  // v99 keeps v98's vertical dimension, doubles only horizontal size.
+  // Keep v99's contact line, double width and X positions unchanged.
+  // Four solid images become 1.75 times as tall by growing UP from the
+  // stationary bottom edge; the ground gap stays exactly the same size.
   const depth=lane.near-lane.far;
-  const margin=depth*.46;
-  const lift=kind==="gap"?0:(lane.near+margin-760)*.75;
-  assert(Math.abs(box.top-(lane.far-margin-lift))<1e-8,name+" top/elevation");
-  assert(Math.abs(box.bottom-(lane.near+margin-lift))<1e-8,name+" bottom/elevation");
-  assert(Math.abs(box.dy+760-(lane.far-margin-lift))<1e-8,name+" draw y mismatch");
-  assert(Math.abs(box.dh-depth*1.92)<1e-8,name+" vertical sprite height changed");
-  assert(Math.abs(box.dw-box.dh*(120/205)*2)<1e-8,name+" horizontal width not doubled");
-  assert(Math.abs(box.dw-2*.8*(depth*2.40*(120/205)))<1e-8,name+" not double v98 width");
+  const baseHeight=depth*1.92;
+  const oldBottom=lane.near+(baseHeight-depth)/2;
+  const expectedBottom=kind==="gap"?oldBottom:760+(oldBottom-760)*.25;
+  const expectedHeight=baseHeight*(kind==="gap"?1:1.75);
+  const width=baseHeight*(120/205)*2;
+  assert(Math.abs(box.bottom-expectedBottom)<1e-8,name+" bottom moved");
+  assert(Math.abs(box.top-(expectedBottom-expectedHeight))<1e-8,name+" top not grown");
+  assert(Math.abs(box.dy+760-box.top)<1e-8,name+" local drawing origin moved");
+  assert(Math.abs(box.dh-expectedHeight)<1e-8,name+" incorrect solid/gap height");
+  assert(Math.abs(box.dw-width)<1e-8,name+" width changed from v99");
   assert(Math.abs(box.dx+box.dw/2-def.w/2)<1e-8,name+" X center moved");
-  assert(Math.abs(box.dy+box.dh/2-(lane.far+lane.near)/2+760+lift)<1e-8,name+" Y relative lift error");
   assert.equal(box.left,500);assert.equal(box.right,500+def.w);
  }
  // Exact original fixed leap, checked at four phone frame rates.
@@ -89,14 +92,16 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v99-full.html?v=99"));
-assert(map.includes("forest-v99-full.html"));
+assert(home.includes("forest-v100-full.html?v=100"));
+assert(map.includes("forest-v100-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
-assert(forest.includes("map-v99.html?from=forest"),"Map route must follow v99");
-assert(forest.includes("const drawWidth=drawHeight*spriteAspect*2;"));
-assert(forest.includes('const elevation=h.type==="gap"?0:(lane.near+overflow-GROUND)*0.75;'));
+assert(forest.includes("map-v100.html?from=forest"),"Map route must follow v99");
+assert(forest.includes("const drawHeight=baseHeight*(solid?1.75:1);"));
+assert(forest.includes("const drawWidth=baseHeight*spriteAspect*2;"));
+assert(forest.includes("const groundContact=solid?GROUND+(originalBottom-GROUND)*.25:originalBottom;"));
+assert(!forest.includes("const elevation="),"v99 vertical translation code remains");
 assert(!forest.includes("ctx.createRadialGradient(sx,sy"),"Artificial oval shadow is still painted");
 assert(!forest.includes("ctx.ellipse(sx,sy"),"Shadow footprint fallback remains");
 assert(!forest.includes("drawObstacleNearRims"));
-console.log("PASS v99: 2x width, unchanged height, elevated solid obstacles, untouched gap, no ground shadow, all 63 jumpable.");
+console.log("PASS v100: bottom-anchored 75% height growth for solid hazards, same gap and width, no artificial shadows, 63 jumpable hazards.");
