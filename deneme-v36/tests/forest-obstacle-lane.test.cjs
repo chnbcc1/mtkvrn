@@ -1,4 +1,4 @@
-/* v92: 3D obstacles retain their native 120:205 aspect and 20% scale without changing physics.
+/* v93: 3D obstacles are doubled in width and height versus v92, preserving source aspect and jump physics.
    Run: node deneme-v36/tests/forest-obstacle-lane.test.cjs */
 "use strict";
 const assert=require("node:assert/strict");
@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const version=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(version,92);
+assert.equal(version,93);
 const forest=fs.readFileSync(path.join(root,"forest-v"+version+"-full.html"),"utf8");
 const map=fs.readFileSync(path.join(root,"map-v"+version+".html"),"utf8");
 const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v90.js"),"utf8");
@@ -50,14 +50,15 @@ for(const kind of kinds){
  assert(HAZARDS.some(h=>h.type===kind),"Missing obstacle: "+kind);
  for(const [name,geometry,lane] of [["photo",forPhoto,PHOTO_PATH_LANE],["fallback",forFallback,PATH_LANE]]){
   const box=geometry.obstacleGeometry({type:kind,x:500,w:def.w,height:def.height,laneY:760});
-  // Existing art is enlarged 20% in X and Y while remaining centered.
+  // Obstacle art doubles in both axes from v92, while remaining centered.
   const depth=lane.near-lane.far;
-  const margin=depth*.10;
+  const margin=depth*.70;
   assert(Math.abs(box.top-(lane.far-margin))<1e-8,name+" art top not centered");
   assert(Math.abs(box.bottom-(lane.near+margin))<1e-8,name+" art bottom not centered");
   assert(Math.abs(box.dy+760-(lane.far-margin))<1e-8,name+" render y shifted");
-  assert(Math.abs(box.dh-depth*1.20)<1e-8,name+" height is not 120%");
+  assert(Math.abs(box.dh-depth*2.40)<1e-8,name+" height is not 240%");
   assert(Math.abs(box.dw-box.dh*(120/205))<1e-8,name+" source image aspect 120:205 was distorted");
+   assert(Math.abs(box.dw-2*(depth*1.20*(120/205)))<1e-8,name+" width did not double from v92");
   assert(Math.abs(box.dx+box.dw/2-def.w/2)<1e-8,name+" X center moved");
   assert(Math.abs(box.dy+box.dh/2-(lane.far+lane.near)/2+760)<1e-8,name+" Y center moved");
   assert.equal(box.left,500);assert.equal(box.right,500+def.w);
@@ -83,8 +84,8 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v92-full.html?v=92"));
-assert(map.includes("forest-v92-full.html"));
+assert(home.includes("forest-v93-full.html?v=93"));
+assert(map.includes("forest-v93-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
-console.log("PASS v92: native sprite aspect 120:205 preserved at 120% lane-height, centered, 63 jumpable hazards, unchanged Erdem animation.");
+console.log("PASS v93: native sprite aspect 120:205 preserved at 240% lane-height (double v92), centered, 63 jumpable hazards, unchanged Erdem animation.");
