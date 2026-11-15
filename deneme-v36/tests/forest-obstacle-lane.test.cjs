@@ -49,7 +49,7 @@ for(const kind of kinds){
  assert(m.clearance>=29&&m.clearance<=91,"Collision height outside approved jump clearance");
 }
 assert(forest.includes('forest-obstacle-art-v85.js?v=85'));
-assert(forest.includes('forest-obstacle-art-v87.js?v=86'));
+assert(forest.includes('forest-obstacle-art-v87.js?v=87'));
 assert(horizontalAsset.includes("ctx.rotate(-Math.PI/2)"),"Log/root/gap must use horizontal assets");
 assert(horizontalAsset.includes('kind==="mushroom"'),"Mushroom caps must remain upright");
 assert(horizontalAsset.includes("sprites[kind]=tight(stage,4)"),"Obstacle art must be alpha-tight");
