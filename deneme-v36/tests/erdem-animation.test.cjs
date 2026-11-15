@@ -10,10 +10,14 @@ const versions=fs.readdirSync(root).map(x=>/^(?:erdem-animation-v)(\d+)\.js$/.ex
 assert(versions.length,"Missing Erdem animation module");
 const version=Math.max(...versions);
 const assetName="erdem-animation-v"+version+".js";
-const forestName="forest-v"+version+"-full.html";
-const mapName="map-v"+version+".html";
-const asset=fs.readFileSync(path.join(root,assetName),"utf8");
+// Scene versions may increase for geometry, levels or UI without changing
+// the ONE shared Erdem animation version.
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
+const sceneVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
+assert(Number.isInteger(sceneVersion)&&sceneVersion>=version,"Invalid scene version");
+const forestName="forest-v"+sceneVersion+"-full.html";
+const mapName="map-v"+sceneVersion+".html";
+const asset=fs.readFileSync(path.join(root,assetName),"utf8");
 const forest=fs.readFileSync(path.join(root,forestName),"utf8");
 const map=fs.readFileSync(path.join(root,mapName),"utf8");
 class ImageMock{
