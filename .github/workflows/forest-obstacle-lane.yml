@@ -1,0 +1,25 @@
+name: Forest Road-Spanning Obstacles Regression
+on:
+  push:
+    paths:
+      - "deneme-v36/forest-v*-full.html"
+      - "deneme-v36/map-v*.html"
+      - "deneme-v36/index.html"
+      - "deneme-v36/tests/forest-obstacle-lane.test.cjs"
+      - ".github/workflows/forest-obstacle-lane.yml"
+  pull_request:
+    paths:
+      - "deneme-v36/forest-v*-full.html"
+      - "deneme-v36/map-v*.html"
+      - "deneme-v36/index.html"
+      - "deneme-v36/tests/forest-obstacle-lane.test.cjs"
+jobs:
+  hazards:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify full-lane coverage and that all hazards are jumpable
+        run: node deneme-v36/tests/forest-obstacle-lane.test.cjs
