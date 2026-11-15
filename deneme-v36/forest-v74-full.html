@@ -206,7 +206,7 @@ function story(){
  openModal('Orman Patikası','<p>Erdem haritayı çantasına yerleştirdi. Çiko, tepeye uzanan patikanın üzerinde uçuyordu.</p><div class="thought">💭 <b>Erdem:</b> “Eski gözlemevine giden yol bu olmalı.”</div><p>Yürüyerek ilerle, gerekirse zıpla. Yol üzerinde karşılaşacağın sorunu ölçerek çöz.</p>');
  action('Patikaya çık ▶',()=>{started=true;closeModal();save(true)});
 }
-function home(){save(true);location.assign('./map-v70.html?from=forest')}
+function home(){save(true);location.assign('./map-v74.html?from=forest')}
 function journal(){
  const title=reachedGate?'Gözlemevi kapısı':solved?'Köprü tamamlandı':'Orman patikası';
  const note=reachedGate?'Erdem ve Çiko gözlemevinin girişine ulaştı.':solved?'Köprüyü ölçerek geçebilecekleri uzunluğu buldular.':'Erdem ve Çiko dere üzerindeki köprüyü incelemeye gidiyor.';
@@ -513,7 +513,7 @@ if(new URLSearchParams(location.search).get("focus")==="gate"&&reachedGate)heroX
 heroY=GROUND;vy=0;solved=SOLVED.has("F08");bridgeProgress=solved?1:0;
 const campaignProgress=()=>SOLVED.size;
 function persistCampaign(){
- try{localStorage.setItem(CAMPAIGN_KEY,JSON.stringify({version:73,token:RUN_TOKEN,x:Math.round(heroX),difficulty,solvedIds:[...SOLVED],reachedGate,gateInspected,updatedAt:new Date().toISOString()}))}catch(e){}
+ try{localStorage.setItem(CAMPAIGN_KEY,JSON.stringify({version:74,token:RUN_TOKEN,x:Math.round(heroX),difficulty,solvedIds:[...SOLVED],reachedGate,gateInspected,updatedAt:new Date().toISOString()}))}catch(e){}
 }
 save=function(force=false){
  if(!force&&Math.abs(saveLastX-heroX)<32&&saveTimer<2)return;
@@ -563,7 +563,7 @@ interact=function(){
 };
 $("#examine").addEventListener("pointerdown",e=>{e.preventDefault();interact()});
 $("#examine").addEventListener("click",e=>{if(e.detail===0)interact()});
-home=function(){save(true);location.assign("./map-v73.html?from=forest")};
+home=function(){save(true);location.assign("./map-v74.html?from=forest")};
 journal=function(){
  const done=campaignProgress();
  openModal("Erdem'in yol notları","<p><strong>"+done+"/21 matematik engeli tamamlandı.</strong></p><p>Yürürken taşları, ağaç kütüklerini ve küçük toprak boşluklarını zıplayarak geç. Parlayan büyüteçte matematik sorusunu çöz.</p><p>Yanlış cevapta ipucu, ikinci yanlışta çözümlü benzer örnek, üçüncü yanlışta çözüm ve yeni soru gösterilir.</p>");
