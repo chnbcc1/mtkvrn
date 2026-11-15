@@ -1,4 +1,4 @@
-/* v91: existing 3D obstacle drawings grow 20% on both axes without changing physics.
+/* v92: 3D obstacles retain their native 120:205 aspect and 20% scale without changing physics.
    Run: node deneme-v36/tests/forest-obstacle-lane.test.cjs */
 "use strict";
 const assert=require("node:assert/strict");
@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const version=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(version,91);
+assert.equal(version,92);
 const forest=fs.readFileSync(path.join(root,"forest-v"+version+"-full.html"),"utf8");
 const map=fs.readFileSync(path.join(root,"map-v"+version+".html"),"utf8");
 const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v90.js"),"utf8");
@@ -39,9 +39,9 @@ const from=forest.indexOf("const OBSTACLE_CLEARANCE=");
 const to=forest.indexOf("drawMini=function(h){",from);
 assert(from>0&&to>from);
 const kinds=["log","rock","root","mushroom","gap"];
-const loaded=(photo)=>new Function("GROUND","PATH_LANE","PHOTO_PATH_LANE","FOREST_PHOTO_READY",
+const loaded=(photo)=>new Function("GROUND","PATH_LANE","PHOTO_PATH_LANE","FOREST_PHOTO_READY","obstacleArt",
  forest.slice(from,to)+"\nreturn {OBSTACLE_CLEARANCE,obstacleGeometry};"
-)(760,PATH_LANE,PHOTO_PATH_LANE,()=>photo);
+)(760,PATH_LANE,PHOTO_PATH_LANE,()=>photo,{frameWidth:120,frameHeight:205});
 const forPhoto=loaded(true),forFallback=loaded(false);
 for(const kind of kinds){
  const def=HAZARD_GEOMETRY[kind];
@@ -57,7 +57,7 @@ for(const kind of kinds){
   assert(Math.abs(box.bottom-(lane.near+margin))<1e-8,name+" art bottom not centered");
   assert(Math.abs(box.dy+760-(lane.far-margin))<1e-8,name+" render y shifted");
   assert(Math.abs(box.dh-depth*1.20)<1e-8,name+" height is not 120%");
-  assert(Math.abs(box.dw-(def.w+10)*1.20)<1e-8,name+" width is not 120%");
+  assert(Math.abs(box.dw-box.dh*(120/205))<1e-8,name+" source image aspect 120:205 was distorted");
   assert(Math.abs(box.dx+box.dw/2-def.w/2)<1e-8,name+" X center moved");
   assert(Math.abs(box.dy+box.dh/2-(lane.far+lane.near)/2+760)<1e-8,name+" Y center moved");
   assert.equal(box.left,500);assert.equal(box.right,500+def.w);
@@ -83,8 +83,8 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v91-full.html?v=91"));
-assert(map.includes("forest-v91-full.html"));
+assert(home.includes("forest-v92-full.html?v=92"));
+assert(map.includes("forest-v92-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
-console.log("PASS v91: Existing 3D obstacles scaled 120% on both axes, fixed centers, 63 hazards retain jump physics and Erdem animation.");
+console.log("PASS v92: native sprite aspect 120:205 preserved at 120% lane-height, centered, 63 jumpable hazards, unchanged Erdem animation.");
