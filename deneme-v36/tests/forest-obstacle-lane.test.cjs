@@ -1,4 +1,4 @@
-/* v94: 3D obstacles are doubled in width and height versus v92, preserving source aspect and jump physics.
+/* v95: 3D obstacles are doubled in width and height versus v92, preserving source aspect and jump physics.
    Run: node deneme-v36/tests/forest-obstacle-lane.test.cjs */
 "use strict";
 const assert=require("node:assert/strict");
@@ -8,27 +8,26 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const version=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(version,94);
+assert.equal(version,95);
 const forest=fs.readFileSync(path.join(root,"forest-v"+version+"-full.html"),"utf8");
 const map=fs.readFileSync(path.join(root,"map-v"+version+".html"),"utf8");
-const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v94.js"),"utf8");
+const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v95.js"),"utf8");
 new vm.Script(artwork);
 const inline=forest.match(/<script>\s*('use strict';[\s\S]*?)<\/script>/);
 assert(inline,"Missing playable forest script");
 new vm.Script(inline[1]);
-const match=artwork.match(/image\.src="data:image\/avif;base64,([A-Za-z0-9+/=]+)";/);
-assert(match,"The new 3D art must be embedded and available without external hosting");
-const avif=Buffer.from(match[1],"base64");
-assert.equal(avif.toString("ascii",4,12),"ftypavif","Not an AVIF file");
+// v95 reads new native high-definition artwork rather than scaled old sprites.
+const avif=fs.readFileSync(path.join(root,"assets/forest-obstacles-v95.avif"));
+assert.equal(avif.toString("ascii",4,12),"ftypavif","High resolution art not AVIF");
+assert(avif.length>100000,"Premium source is unexpectedly tiny");
 const ispe=avif.indexOf(Buffer.from("ispe"));
 assert(ispe>0,"AVIF image size metadata missing");
-assert.equal(avif.readUInt32BE(ispe+8),600,"Five source frames need 120 pixels each");
-assert.equal(avif.readUInt32BE(ispe+12),205,"Source frame height changed");
+assert.equal(avif.readUInt32BE(ispe+8),2170,"Five source frames must be 434 pixels each");
+assert.equal(avif.readUInt32BE(ispe+12),724,"Premium source frame height mismatch");
 assert(artwork.includes('["log","rock","root","mushroom","gap"]'));
-assert(artwork.includes("frameWidth=120,frameHeight=205"));
-assert(artwork.includes("const targetScale=4"),"Missing high-density texture rebuild");
-assert(artwork.includes("art.frameWidth=frameWidth*targetScale"),"Source frame not upscaled");
-assert(artwork.includes("hiContext.getImageData"),"Missing subtle sharpness restoration");
+assert(artwork.includes("frameWidth=434,frameHeight=724"));
+assert(artwork.includes("./assets/forest-obstacles-v95.avif?v=95"));
+assert(forest.includes("const spriteAspect=120/205;"),"v94 obstacle geometry not preserved");
 const defs=forest.slice(forest.indexOf("const ORDER=["),forest.indexOf("const SOLVED=new Set();"));
 const {HAZARDS,HAZARD_GEOMETRY,PATH_LANE,PHOTO_PATH_LANE,GATES}=new Function(
  "GROUND","RAVINE_LEFT","RAVINE_RIGHT",
@@ -80,15 +79,15 @@ for(const kind of kinds){
   assert(passed,"Existing jump cannot clear "+kind+" at "+dt+" seconds");
  }
 }
-assert(forest.includes('forest-obstacle-art-v94.js?v=94'));
-assert(forest.includes('MTK_V94_3D_OBSTACLES'));
+assert(forest.includes('forest-obstacle-art-v95.js?v=95'));
+assert(forest.includes('MTK_V95_3D_OBSTACLES'));
 assert(forest.includes("sprite.frameWidth,sprite.frameHeight,m.dx,m.dy,m.dw,m.dh"));
 assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v94-full.html?v=94"));
-assert(map.includes("forest-v94-full.html"));
+assert(home.includes("forest-v95-full.html?v=95"));
+assert(map.includes("forest-v95-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
-console.log("PASS v94: enhanced 4x rendering, native sprite aspect 120:205 preserved at 240% lane-height (double v92), centered, 63 jumpable hazards, unchanged Erdem animation.");
+console.log("PASS v95: new premium 2170x724 AVIF atlas, v94 render size/aspect and 120:205 preserved at 240% lane-height (double v92), centered, 63 jumpable hazards, unchanged Erdem animation.");
