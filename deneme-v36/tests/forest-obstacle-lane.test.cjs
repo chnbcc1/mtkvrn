@@ -17,9 +17,12 @@ new vm.Script(artwork);
 const inline=forest.match(/<script>\s*('use strict';[\s\S]*?)<\/script>/);
 assert(inline,"Missing playable forest script");
 new vm.Script(inline[1]);
-const originalMatch=sourceArt.match(/window.MTK_V85_ROAD_OBSTACLES=([^;]+);/);
-assert(originalMatch,"Original high-res obstacle art missing");
-const original=JSON.parse(originalMatch[1]);
+// The data URIs contain a semicolon ("image/webp;base64"); evaluate this
+// repo-owned literal rather than incorrectly splitting at the first ';'.
+const context={window:{}};
+vm.runInNewContext(sourceArt,context);
+const original=context.window.MTK_V85_ROAD_OBSTACLES;
+assert(original,"Original high-res obstacle art missing");
 const kinds=["log","rock","root","mushroom","gap"];
 for(const kind of kinds){
  assert(original[kind]?.startsWith("data:image/webp;base64,"),"High-res "+kind+" missing");
