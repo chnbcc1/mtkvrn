@@ -32,8 +32,8 @@ const from=forest.indexOf("const OBSTACLE_DRAW_HEIGHT=");
 const to=forest.indexOf("drawMini=function(h){",from);
 assert(from>=0&&to>from,"Cannot isolate shared obstacle dimensions");
 const {OBSTACLE_DRAW_HEIGHT,OBSTACLE_CLEARANCE,obstacleGeometry}=new Function(
- "GROUND",forest.slice(from,to)+"\nreturn {OBSTACLE_DRAW_HEIGHT,OBSTACLE_CLEARANCE,obstacleGeometry};"
-)(760);
+ "GROUND","PATH_LANE",forest.slice(from,to)+"\nreturn {OBSTACLE_DRAW_HEIGHT,OBSTACLE_CLEARANCE,obstacleGeometry};"
+)(760,PATH_LANE);
 for(const kind of kinds){
  const h=HAZARD_GEOMETRY[kind];
  assert(h&&h.w>=100&&h.w<=112,"Forward collision width must stay jumpable: "+kind);
