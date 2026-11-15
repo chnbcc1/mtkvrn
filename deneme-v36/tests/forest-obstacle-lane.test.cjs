@@ -1,4 +1,4 @@
-/* v90: newly generated 3D sprites touch the unchanged photo path boundaries.
+/* v91: existing 3D obstacle drawings grow 20% on both axes without changing physics.
    Run: node deneme-v36/tests/forest-obstacle-lane.test.cjs */
 "use strict";
 const assert=require("node:assert/strict");
@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const version=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(version,90);
+assert.equal(version,91);
 const forest=fs.readFileSync(path.join(root,"forest-v"+version+"-full.html"),"utf8");
 const map=fs.readFileSync(path.join(root,"map-v"+version+".html"),"utf8");
 const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v90.js"),"utf8");
@@ -50,12 +50,17 @@ for(const kind of kinds){
  assert(HAZARDS.some(h=>h.type===kind),"Missing obstacle: "+kind);
  for(const [name,geometry,lane] of [["photo",forPhoto,PHOTO_PATH_LANE],["fallback",forFallback,PATH_LANE]]){
   const box=geometry.obstacleGeometry({type:kind,x:500,w:def.w,height:def.height,laneY:760});
-  assert.equal(box.top,lane.far,name+" upper path boundary changed");
-  assert.equal(box.bottom,lane.near,name+" lower path boundary changed");
-  assert.equal(box.dy+760,lane.far,name+" rendered top differs from road top");
-  assert.equal(box.dy+box.dh+760,lane.near,name+" rendered bottom differs from road bottom");
+  // Existing art is enlarged 20% in X and Y while remaining centered.
+  const depth=lane.near-lane.far;
+  const margin=depth*.10;
+  assert(Math.abs(box.top-(lane.far-margin))<1e-8,name+" art top not centered");
+  assert(Math.abs(box.bottom-(lane.near+margin))<1e-8,name+" art bottom not centered");
+  assert(Math.abs(box.dy+760-(lane.far-margin))<1e-8,name+" render y shifted");
+  assert(Math.abs(box.dh-depth*1.20)<1e-8,name+" height is not 120%");
+  assert(Math.abs(box.dw-(def.w+10)*1.20)<1e-8,name+" width is not 120%");
+  assert(Math.abs(box.dx+box.dw/2-def.w/2)<1e-8,name+" X center moved");
+  assert(Math.abs(box.dy+box.dh/2-(lane.far+lane.near)/2+760)<1e-8,name+" Y center moved");
   assert.equal(box.left,500);assert.equal(box.right,500+def.w);
-  assert.equal(box.dw,def.w+10,"Forward drawing width changed");
  }
  // Exact original fixed leap, checked at four phone frame rates.
  const clearance=forPhoto.OBSTACLE_CLEARANCE[kind];
@@ -78,8 +83,8 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v90-full.html?v=90"));
-assert(map.includes("forest-v90-full.html"));
+assert(home.includes("forest-v91-full.html?v=91"));
+assert(map.includes("forest-v91-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
-console.log("PASS v90: Five NEW 3D AVIF barriers align with both road borders; 63 hazards retain jump physics and Erdem's shared animation.");
+console.log("PASS v91: Existing 3D obstacles scaled 120% on both axes, fixed centers, 63 hazards retain jump physics and Erdem animation.");
