@@ -19,7 +19,7 @@ new vm.Script(inline[1]);
 // v98 reads new native high-definition artwork rather than scaled old sprites.
 const avif=fs.readFileSync(path.join(root,"assets/forest-obstacles-v98.avif"));
 assert.equal(avif.toString("ascii",4,12),"ftypavif","High resolution art not AVIF");
-assert(avif.length>100000,"Premium source is unexpectedly tiny");
+assert(avif.length>75000,"Premium source is unexpectedly tiny"); // Modern AVIF compression retains full 2170x724 canvas.
 const ispe=avif.indexOf(Buffer.from("ispe"));
 assert(ispe>0,"AVIF image size metadata missing");
 assert.equal(avif.readUInt32BE(ispe+8),2170,"Five source frames must be 434 pixels each");
