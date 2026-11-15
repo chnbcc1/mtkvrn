@@ -1,4 +1,4 @@
-/* v93: 3D obstacles are doubled in width and height versus v92, preserving source aspect and jump physics.
+/* v94: 3D obstacles are doubled in width and height versus v92, preserving source aspect and jump physics.
    Run: node deneme-v36/tests/forest-obstacle-lane.test.cjs */
 "use strict";
 const assert=require("node:assert/strict");
@@ -8,10 +8,10 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const version=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(version,93);
+assert.equal(version,94);
 const forest=fs.readFileSync(path.join(root,"forest-v"+version+"-full.html"),"utf8");
 const map=fs.readFileSync(path.join(root,"map-v"+version+".html"),"utf8");
-const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v90.js"),"utf8");
+const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v94.js"),"utf8");
 new vm.Script(artwork);
 const inline=forest.match(/<script>\s*('use strict';[\s\S]*?)<\/script>/);
 assert(inline,"Missing playable forest script");
@@ -26,6 +26,9 @@ assert.equal(avif.readUInt32BE(ispe+8),600,"Five source frames need 120 pixels e
 assert.equal(avif.readUInt32BE(ispe+12),205,"Source frame height changed");
 assert(artwork.includes('["log","rock","root","mushroom","gap"]'));
 assert(artwork.includes("frameWidth=120,frameHeight=205"));
+assert(artwork.includes("const targetScale=4"),"Missing high-density texture rebuild");
+assert(artwork.includes("art.frameWidth=frameWidth*targetScale"),"Source frame not upscaled");
+assert(artwork.includes("hiContext.getImageData"),"Missing subtle sharpness restoration");
 const defs=forest.slice(forest.indexOf("const ORDER=["),forest.indexOf("const SOLVED=new Set();"));
 const {HAZARDS,HAZARD_GEOMETRY,PATH_LANE,PHOTO_PATH_LANE,GATES}=new Function(
  "GROUND","RAVINE_LEFT","RAVINE_RIGHT",
@@ -77,15 +80,15 @@ for(const kind of kinds){
   assert(passed,"Existing jump cannot clear "+kind+" at "+dt+" seconds");
  }
 }
-assert(forest.includes('forest-obstacle-art-v90.js?v=90'));
-assert(forest.includes('MTK_V90_3D_OBSTACLES'));
+assert(forest.includes('forest-obstacle-art-v94.js?v=94'));
+assert(forest.includes('MTK_V94_3D_OBSTACLES'));
 assert(forest.includes("sprite.frameWidth,sprite.frameHeight,m.dx,m.dy,m.dw,m.dh"));
 assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v93-full.html?v=93"));
-assert(map.includes("forest-v93-full.html"));
+assert(home.includes("forest-v94-full.html?v=93"));
+assert(map.includes("forest-v94-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
-console.log("PASS v93: native sprite aspect 120:205 preserved at 240% lane-height (double v92), centered, 63 jumpable hazards, unchanged Erdem animation.");
+console.log("PASS v94: enhanced 4x rendering, native sprite aspect 120:205 preserved at 240% lane-height (double v92), centered, 63 jumpable hazards, unchanged Erdem animation.");
