@@ -2,6 +2,21 @@
 
 TÜBİTAK 4006 matematik macera oyunu.
 
+## v73 — Premium harita ve engel görselleri
+
+**Ana oyun:** https://chnbcc1.github.io/mtkvrn/deneme-v36/?v=73  
+**Premium keşif haritası:** https://chnbcc1.github.io/mtkvrn/deneme-v36/map-v73.html?v=73  
+**Orman bölümü:** https://chnbcc1.github.io/mtkvrn/deneme-v36/forest-v73-full.html?preview=1&v=73
+
+- Daha önce hazırlanmış premium görsel paketinin beş engeli ve dört keşif haritası orijinal görsellerden sıkıştırılmış WebP olarak `assets/v73-premium-assets.js` içinde oyuna eklendi.
+- Dört keşif aşamasında ayrı premium harita görseli gösterilir. Bölgeye dokunma alanları keşif kurallarına göre açılır.
+- Orman sahnesi mevcut kayıtları (`mathverse-v68-forest-full`) koruyarak yeni görsellere ve daha geniş başlangıç yürüyüşüne geçirildi.
+- İlk mini engel yaklaşık x=1550, ilk matematik incelemesi x=3545: görünür son ile inceleme arasında 1880 oyun birimi var.
+- 21 ana ve 29 mini engel, üç zorluk seviyesi ve 630 soruluk soru havuzu korundu.
+- Kod sözdizimi, 29 mini engel zıplaması, dört harita görünürlük durumu ve GitHub Pages dağıtımı kontrol edildi. Gerçek iPhone üzerinde uçtan uca test ayrıca yapılmalıdır.
+
+---
+
 ## v72 — Keşif haritası ve organik engeller (15 Kasım 2026)
 
 **Ana oyun:** https://chnbcc1.github.io/mtkvrn/deneme-v36/?v=72  
