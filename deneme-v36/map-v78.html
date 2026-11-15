@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#102a32">
+<title>v78 · Matematik Evreni Macera Haritası</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#081e28;color:#fff2d4;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+body{background:radial-gradient(ellipse at 50% 6%,#345d4d 0%,#12303a 55%,#071d28 100%);padding:calc(env(safe-area-inset-top) + 10px) 13px calc(env(safe-area-inset-bottom) + 22px)}
+button{font:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button:focus-visible{outline:3px solid #ffeea9;outline-offset:3px}
+main{width:min(1050px,100%);margin:0 auto}
+header{display:flex;align-items:center;gap:11px;justify-content:space-between;margin:0 0 12px}
+.return{color:#fae9bd;font-weight:850;font-size:13px;padding:11px 13px;border:1px solid #abbd96;background:#1b4343;border-radius:13px;min-height:44px}
+.brand{letter-spacing:1.5px;font-size:11px;color:#e7ce98;font-weight:900;text-align:right}
+h1{font:900 clamp(25px,5.5vw,38px)/1.1 Georgia,serif;color:#ffdb99;margin:4px 0 7px}
+.lead{font-size:13px;line-height:1.5;color:#d8e8d8;margin:0 0 13px}
+.viewport{height:clamp(340px,65dvh,610px);width:100%;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#ccb37d #163633;border-radius:23px;border:3px solid #d0ad65;box-shadow:0 14px 43px #000b;position:relative;background:#1d4144;touch-action:pan-x pan-y;-webkit-overflow-scrolling:touch}
+.plane{height:100%;aspect-ratio:1099 / 569;position:relative;min-width:max-content;overflow:hidden}
+.plane img{width:100%;height:100%;display:block;object-fit:fill;user-select:none;-webkit-user-drag:none;pointer-events:none}
+.map-pin{position:absolute;transform:translate(-50%,-50%);padding:0;border:0;border-radius:35%;background:transparent;color:transparent;touch-action:manipulation;z-index:2}
+.map-pin[hidden]{display:none}
+.map-pin:not([disabled]):hover{background:#ffe3a312}
+.map-pin.current:after{content:"";position:absolute;inset:11%;border-radius:40%;box-shadow:0 0 13px 3px #fff1bcaa,0 0 26px 9px #f8d77c65;pointer-events:none;animation:pulse 2.6s ease-in-out infinite}
+.map-pin.done{filter:drop-shadow(0 0 3px #ceefa1)}
+.map-pin[disabled]{cursor:default}
+.map-pin.home{left:14.5%;top:88%;width:24%;height:17%}
+.map-pin.forest{left:39%;top:67%;width:22%;height:21%}
+.map-pin.gate{left:69.5%;top:55%;width:19%;height:18%}
+.map-pin.inside{left:87.5%;top:35%;width:22%;height:18%}
+@keyframes pulse{50%{box-shadow:0 0 6px 2px #fff7db88,0 0 16px 5px #f8d77c55}}
+.scrollTip{padding:7px 5px 0;text-align:center;color:#c6dcc8;font-size:12px}
+.progress{display:flex;gap:10px;align-items:center;background:#163a3c;border:1px solid #7caa96;border-radius:16px;padding:12px 14px;margin:14px 0 8px}
+.progress .icon{font-size:28px}
+.progress strong{font-size:14px;color:#ffe4ae}
+.progress p{font-size:12px;color:#d2e4d4;margin:2px 0 0;line-height:1.45}
+.continue{display:block;width:100%;max-width:460px;padding:13px 18px;font-weight:900;font-size:15px;text-align:center;margin:12px auto 0;color:#26443a;background:linear-gradient(#ffe5ab,#e3b96d);border:2px solid #f7e4bc;border-radius:17px;box-shadow:0 4px 0 #8b6840}
+.legend{text-align:center;color:#aecfbd;font-size:11px;margin-top:11px}
+@media(max-width:480px){.viewport{height:clamp(340px,57dvh,530px)}.brand{font-size:10px}header{gap:6px}}
+@media(prefers-reduced-motion:reduce){.map-pin.current:after{animation:none}}
+</style>
+<script src="./assets/v73-premium-assets.js?v=73"></script>
+</head>
+<body><main>
+<header><button type="button" class="return" id="back">‹ Maceraya dön</button><span class="brand">MATEMATİK EVRENİ • MACERA HARİTASI</span></header>
+<h1>Profesörün Kayıp İzleri</h1>
+<p class="lead">Her keşif yeni bir bölgenin üzerindeki sisi kaldırır.</p>
+<section class="viewport" id="viewport" aria-label="Kaydırılabilir oyun dünyası">
+ <div class="plane" id="plane">
+  <img id="mapArt" alt="Orman, Dedenin Evi, şelale, dağ geçidi ve gözlemevinin bulunduğu macera dünyası" draggable="false">
+  <button type="button" class="map-pin home" data-region="home" aria-label="Dedenin Evine git"></button>
+  <button type="button" class="map-pin forest" data-region="forest" aria-label="Orman Patikasına git" hidden></button>
+  <button type="button" class="map-pin gate" data-region="gate" aria-label="Gözlemevi Girişine git" hidden></button>
+  <button type="button" class="map-pin inside" data-region="inside" aria-label="Gözlemevi İç Mekânı henüz oynanabilir değil" disabled hidden></button>
+ </div>
+</section>
+<div class="scrollTip">← Haritayı sağa ve sola kaydırarak keşfet →</div>
+<section class="progress" aria-live="polite"><span class="icon" id="missionIcon">🏡</span><div><strong id="missionTitle">Keşif başlıyor</strong><p id="missionDesc"></p></div></section>
+<button type="button" class="continue" id="continue">Maceraya devam et</button>
+<p class="legend" id="stageInfo">Keşfedilen bölgeler: 1/4</p>
+</main>
+<script>
+"use strict";
+const STORE="mathverse-v40-investigation",CAMPAIGN="mathverse-v68-forest-full";
+function read(key){try{return JSON.parse(localStorage.getItem(key)||"null")||{}}catch(e){return {}}}
+const state=read(STORE),campaign=read(CAMPAIGN);
+const homeDone=Boolean(state.complete&&state.visitedStudy);
+const solvedIds=Array.isArray(campaign.solvedIds)?[...new Set(campaign.solvedIds)]:[];
+const forestDone=Boolean(homeDone&&campaign.reachedGate&&solvedIds.length===21);
+const inspected=Boolean(forestDone&&campaign.gateInspected);
+const stage=!homeDone?1:!forestDone?2:!inspected?3:4;
+const discovered={home:true,forest:homeDone,gate:forestDone,inside:inspected};
+const current=stage===1?"home":stage===2?"forest":stage===3?"gate":"inside";
+const assets=window.MTK_V73_ASSETS||{};
+const mapArt=document.getElementById("mapArt");
+mapArt.src=assets["map"+stage]||assets.map4||"";
+for(const pin of document.querySelectorAll(".map-pin")){
+ const region=pin.dataset.region;
+ pin.hidden=!discovered[region];
+ pin.classList.toggle("current",region===current);
+ pin.classList.toggle("done",region==="home"?homeDone:region==="forest"?forestDone:region==="gate"?inspected:false);
+ if(region==="inside"){pin.disabled=true;continue}
+ pin.addEventListener("click",()=>go(region));
+}
+const dest={home:"./?scene=home&v=77",forest:"./forest-v78-full.html?resume=1&v=77",gate:"./forest-v78-full.html?resume=1&focus=gate&v=77"};
+function go(region){
+ if(!dest[region]||!discovered[region])return;
+ try{const x=read(STORE);x.activeScene=region==="home"?"home":"forest-path";localStorage.setItem(STORE,JSON.stringify(x))}catch(e){}
+ location.assign(dest[region]);
+}
+const mission=stage===1?["🏡","Dedenin Evi","Evdeki ipuçlarını tamamlayınca ormanın sisi dağılacak.","home"]:
+stage===2?["🌲","Orman Patikası",solvedIds.length+"/21 matematik engeli açıldı. Ormanı keşfetmeye devam et.","forest"]:
+stage===3?["🔭","Gözlemevi Girişi","Üç halkalı kapı işaretini inceleyerek yeni bölgeyi keşfet.","gate"]:
+["✨","Gözlemevi İç Mekânı keşfedildi","Gözlemevi iç bölümü haritada görünür oldu. Oynanış henüz hazırlanmadı.","forest"];
+document.getElementById("missionIcon").textContent=mission[0];
+document.getElementById("missionTitle").textContent=mission[1];
+document.getElementById("missionDesc").textContent=mission[2];
+document.getElementById("stageInfo").textContent="Keşfedilen bölgeler: "+Object.values(discovered).filter(Boolean).length+"/4";
+document.getElementById("continue").textContent=stage===4?"Orman Patikasına dön":mission[1]+" bölümüne git";
+document.getElementById("continue").addEventListener("click",()=>go(mission[3]));
+document.getElementById("back").addEventListener("click",()=>go(stage===1?"home":"forest"));
+const viewport=document.getElementById("viewport"),plane=document.getElementById("plane");
+function centerMap(){
+ plane.style.width=Math.round(viewport.clientHeight*1099/569)+"px";
+ const x=current==="home"?.145:current==="forest"?.39:current==="gate"?.695:.875;
+ viewport.scrollLeft=Math.max(0,Math.min(plane.scrollWidth-viewport.clientWidth,plane.scrollWidth*x-viewport.clientWidth/2));
+}
+window.addEventListener("load",centerMap,{once:true});
+window.addEventListener("resize",centerMap);
+</script>
+</body>
+</html>
