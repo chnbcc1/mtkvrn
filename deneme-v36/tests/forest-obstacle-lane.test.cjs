@@ -1,4 +1,4 @@
-/* v86 horizontal forest barriers and grassy-overlay regression test.
+/* v87 alpha-tight forest barriers and grass-overlay regression test.
    Run: node deneme-v36/tests/forest-obstacle-lane.test.cjs */
 "use strict";
 const assert=require("node:assert/strict");
@@ -8,11 +8,11 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const version=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert(Number.isInteger(version)&&version>=86);
+assert(Number.isInteger(version)&&version>=87);
 const forest=fs.readFileSync(path.join(root,"forest-v"+version+"-full.html"),"utf8");
 const map=fs.readFileSync(path.join(root,"map-v"+version+".html"),"utf8");
 const sourceAsset=fs.readFileSync(path.join(root,"forest-obstacle-art-v85.js"),"utf8");
-const horizontalAsset=fs.readFileSync(path.join(root,"forest-obstacle-art-v86.js"),"utf8");
+const horizontalAsset=fs.readFileSync(path.join(root,"forest-obstacle-art-v87.js"),"utf8");
 // Parse both game and art module to detect syntax errors before publishing.
 new vm.Script(horizontalAsset);
 const inline=forest.match(/<script>\s*('use strict';[\s\S]*?)<\/script>/);
@@ -36,23 +36,23 @@ const {OBSTACLE_DRAW_HEIGHT,OBSTACLE_CLEARANCE,obstacleGeometry}=new Function(
 )(760);
 for(const kind of kinds){
  const h=HAZARD_GEOMETRY[kind];
- assert(h&&h.w>=80&&h.w<=100,"Forward collision width must stay jumpable: "+kind);
+ assert(h&&h.w>=100&&h.w<=112,"Forward collision width must stay jumpable: "+kind);
  assert(h.height<=62,"Do not increase the collision body itself");
  assert(HAZARDS.some(x=>x.type===kind),"Missing obstacle type: "+kind);
  const m=obstacleGeometry({type:kind,x:400,w:h.w,height:h.height,laneY:760});
  assert.equal(m.left,400);
- assert.equal(m.right-m.left,h.w,"Collision differs from approved v85 width");
- assert.equal(m.dw,h.w+24,"Visual asset is not broad and horizontal");
- assert(m.dh>=56&&m.dh<=79,"Visual height out of requested moderate range");
- assert.equal(m.dy+m.dh,14,"Object base must be near Erdem's feet (y774), not y848");
- assert(m.dy<=-42,"Obstacles should visibly rise above the path");
- assert(m.clearance>=29&&m.clearance<=65,"Unexpected collision height");
+ assert.equal(m.right-m.left,h.w,"Collision must match visible obstacle's forward width");
+ assert.equal(m.dw,h.w+28,"Full-height sprite must have matching visible width");
+ assert(m.dh>=112&&m.dh<=120,"Rendered silhouette is too short");
+ assert.equal(m.dy+m.dh,kind==="gap"?88:15,"Footline or full road-depth gap misaligned");
+ assert(m.dy<=-25,"Obstacle must rise from its appropriate path anchor");
+ assert(m.clearance>=29&&m.clearance<=91,"Collision height outside approved jump clearance");
 }
 assert(forest.includes('forest-obstacle-art-v85.js?v=85'));
-assert(forest.includes('forest-obstacle-art-v86.js?v=86'));
+assert(forest.includes('forest-obstacle-art-v87.js?v=86'));
 assert(horizontalAsset.includes("ctx.rotate(-Math.PI/2)"),"Log/root/gap must use horizontal assets");
 assert(horizontalAsset.includes('kind==="mushroom"'),"Mushroom caps must remain upright");
-assert(horizontalAsset.includes("art[kind]=can"),"One cached sprite per obstacle kind");
+assert(horizontalAsset.includes("sprites[kind]=tight(stage,4)"),"Obstacle art must be alpha-tight");
 assert(!forest.includes("scenicScatter()"),"Flat stamped green grass returned");
 assert(!forest.includes("for(const row of laneRows)"),"Three-row obstacle stacking returned");
 assert(!forest.includes("ctx.drawImage(img,m.dx,m.dy,m.dw,m.dh)"),"Old vertical sprites returned");
@@ -91,4 +91,4 @@ for(const kind of kinds){
   assert(stalled>0,"Grounded character should be stopped by "+kind);
  }
 }
-console.log("PASS v"+version+": 63 horizontally oriented, raised, low barriers; primitive grass removed; 5 obstacle types crossed at four frame speeds; Erdem untouched.");
+console.log("PASS v"+version+": 63 full-height natural barriers; alpha trim and feet align; five types passable at four frame speeds; Erdem unchanged.");
