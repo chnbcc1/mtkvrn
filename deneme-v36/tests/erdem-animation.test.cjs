@@ -23,7 +23,7 @@ class ImageMock{
   if(this.onload)this.onload();
  }
 }
-const window={ERDEM_V57_HD_ATLAS:"test-data"};
+const window={ERDEM_V57_HD_ATLAS:"test-data",ERDEM_V83_HD_ATLAS:"test-data"};
 vm.runInNewContext(asset,{window,Image:ImageMock,Math,Number,Object,Array});
 const anim=window.MTK_ERDEM_ANIMATION;
 assert.equal(anim.version,version);
@@ -60,4 +60,10 @@ assert(map.includes(forestName),"Map not linked to current forest");
 assert(home.includes("hero.dy=-505;"),"House jump height changed");
 assert(forest.includes("vy=-560;jumpStartClock=clock"),"Forest jump height changed");
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"),"Forest jump length changed");
+const metrics=JSON.parse(fs.readFileSync(path.join(root,"assets/erdem-v83-atlas-metrics.json"),"utf8"));
+assert.equal(metrics.frames.length,18,"Atlas must contain 18 authored poses");
+for(const pose of metrics.frames){
+ assert(Math.abs(pose.encoded.head-123)<=2,"Head dimensions changed in frame "+pose.frame);
+ if(pose.state!=="jump")assert(Math.abs(pose.encoded.body_height-360)<=3,"Standing/walking height changed in frame "+pose.frame);
+}
 console.log("PASS: "+poses.length+" idle/walk/jump/turn poses have identical size and sole anchor; shared scenes and physics preserved (v"+version+").");
