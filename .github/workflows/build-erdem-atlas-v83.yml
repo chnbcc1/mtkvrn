@@ -1,0 +1,30 @@
+name: Generate corrected Erdem v83 sprite atlas
+on:
+  push:
+    branches: ["fix/erdem-atlas-source-v83"]
+    paths:
+      - "deneme-v36/tools/build_erdem_v83_atlas.py"
+      - ".github/workflows/build-erdem-atlas-v83.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install "Pillow>=12.0" "numpy>=2.0"
+      - name: Measure and rebuild all 18 Erdem poses
+        run: python deneme-v36/tools/build_erdem_v83_atlas.py
+      - name: Commit validated sprite atlas and measurements
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add deneme-v36/erdem-v83-hd-atlas.js deneme-v36/assets/erdem-v83-atlas-metrics.json deneme-v36/assets/erdem-v83-atlas-preview.webp
+          git diff --cached --quiet || git commit -m "asset(v83): normalized Erdem sprite atlas (18 measured frames)"
+          git push origin HEAD:fix/erdem-atlas-source-v83
