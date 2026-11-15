@@ -103,10 +103,12 @@ document.getElementById("continue").addEventListener("click",()=>go(mission[3]))
 document.getElementById("back").addEventListener("click",()=>go(stage===1?"home":"forest"));
 const viewport=document.getElementById("viewport"),plane=document.getElementById("plane");
 function centerMap(){
+ plane.style.width=Math.round(viewport.clientHeight*1099/569)+"px";
  const x=current==="home"?.145:current==="forest"?.39:current==="gate"?.695:.875;
  viewport.scrollLeft=Math.max(0,Math.min(plane.scrollWidth-viewport.clientWidth,plane.scrollWidth*x-viewport.clientWidth/2));
 }
 window.addEventListener("load",centerMap,{once:true});
+window.addEventListener("resize",centerMap);
 </script>
 </body>
 </html>
