@@ -1,4 +1,4 @@
-/* v97: v95 premium obstacles reduced exactly 50% in both axes, with no gameplay physics changes.
+/* v98: 3D obstacles are doubled in width and height versus v92, preserving source aspect and jump physics.
    Run: node deneme-v36/tests/forest-obstacle-lane.test.cjs */
 "use strict";
 const assert=require("node:assert/strict");
@@ -8,16 +8,16 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const version=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(version,97);
+assert.equal(version,98);
 const forest=fs.readFileSync(path.join(root,"forest-v"+version+"-full.html"),"utf8");
 const map=fs.readFileSync(path.join(root,"map-v"+version+".html"),"utf8");
-const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v95.js"),"utf8");
+const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v98.js"),"utf8");
 new vm.Script(artwork);
 const inline=forest.match(/<script>\s*('use strict';[\s\S]*?)<\/script>/);
 assert(inline,"Missing playable forest script");
 new vm.Script(inline[1]);
-// v95 reads new native high-definition artwork rather than scaled old sprites.
-const avif=fs.readFileSync(path.join(root,"assets/forest-obstacles-v95.avif"));
+// v98 reads new native high-definition artwork rather than scaled old sprites.
+const avif=fs.readFileSync(path.join(root,"assets/forest-obstacles-v98.avif"));
 assert.equal(avif.toString("ascii",4,12),"ftypavif","High resolution art not AVIF");
 assert(avif.length>100000,"Premium source is unexpectedly tiny");
 const ispe=avif.indexOf(Buffer.from("ispe"));
@@ -26,8 +26,10 @@ assert.equal(avif.readUInt32BE(ispe+8),2170,"Five source frames must be 434 pixe
 assert.equal(avif.readUInt32BE(ispe+12),724,"Premium source frame height mismatch");
 assert(artwork.includes('["log","rock","root","mushroom","gap"]'));
 assert(artwork.includes("frameWidth=434,frameHeight=724"));
-assert(artwork.includes("./assets/forest-obstacles-v95.avif?v=95"));
-assert(forest.includes("const spriteAspect=120/205;"),"v94 obstacle geometry not preserved");
+assert(artwork.includes("./assets/forest-obstacles-v98.avif?v=98"));
+assert(forest.includes("const spriteAspect=120/205;"),"Premium obstacle aspect was changed");
+assert(forest.includes("const drawScale=1.92;"),"v98 visual size must be 80% of v95");
+assert(!forest.includes("drawObstacleNearRims"),"v96 rendering must not leak into v98");
 const defs=forest.slice(forest.indexOf("const ORDER=["),forest.indexOf("const SOLVED=new Set();"));
 const {HAZARDS,HAZARD_GEOMETRY,PATH_LANE,PHOTO_PATH_LANE,GATES}=new Function(
  "GROUND","RAVINE_LEFT","RAVINE_RIGHT",
@@ -52,15 +54,15 @@ for(const kind of kinds){
  assert(HAZARDS.some(h=>h.type===kind),"Missing obstacle: "+kind);
  for(const [name,geometry,lane] of [["photo",forPhoto,PHOTO_PATH_LANE],["fallback",forFallback,PATH_LANE]]){
   const box=geometry.obstacleGeometry({type:kind,x:500,w:def.w,height:def.height,laneY:760});
-  // Both draw dimensions are exactly half of v95; center and physics stay fixed.
+  // Obstacle art is 20% smaller than the approved v95 baseline, while remaining centered.
   const depth=lane.near-lane.far;
-  const margin=depth*.10;
+  const margin=depth*.46;
   assert(Math.abs(box.top-(lane.far-margin))<1e-8,name+" art top not centered");
   assert(Math.abs(box.bottom-(lane.near+margin))<1e-8,name+" art bottom not centered");
   assert(Math.abs(box.dy+760-(lane.far-margin))<1e-8,name+" render y shifted");
-  assert(Math.abs(box.dh-depth*1.20)<1e-8,name+" height is not 120%");
+  assert(Math.abs(box.dh-depth*1.92)<1e-8,name+" height should be 80% of v95");
   assert(Math.abs(box.dw-box.dh*(120/205))<1e-8,name+" source image aspect 120:205 was distorted");
-   assert(Math.abs(box.dw-(depth*1.20*(120/205)))<1e-8,name+" visual width should be half of v95");
+   assert(Math.abs(box.dw-.8*(depth*2.40*(120/205)))<1e-8,name+" width should be 80% of v95");
   assert(Math.abs(box.dx+box.dw/2-def.w/2)<1e-8,name+" X center moved");
   assert(Math.abs(box.dy+box.dh/2-(lane.far+lane.near)/2+760)<1e-8,name+" Y center moved");
   assert.equal(box.left,500);assert.equal(box.right,500+def.w);
@@ -79,15 +81,16 @@ for(const kind of kinds){
   assert(passed,"Existing jump cannot clear "+kind+" at "+dt+" seconds");
  }
 }
-assert(forest.includes('forest-obstacle-art-v95.js?v=95'));
-assert(forest.includes('MTK_V95_3D_OBSTACLES'));
+assert(forest.includes('forest-obstacle-art-v98.js?v=98'));
+assert(forest.includes('MTK_V98_3D_OBSTACLES'));
 assert(forest.includes("sprite.frameWidth,sprite.frameHeight,m.dx,m.dy,m.dw,m.dh"));
 assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v97-full.html?v=97"));
-assert(map.includes("forest-v97-full.html"));
+assert(home.includes("forest-v98-full.html?v=98"));
+assert(map.includes("forest-v98-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
-console.log("PASS v97: new premium 2170x724 AVIF atlas, v95 render shape with half-size and 120:205 preserved at 120% lane-height (double v92), centered, 63 jumpable hazards, unchanged Erdem animation.");
+assert(forest.includes("map-v98.html?from=forest"),"Map route must follow v98");
+console.log("PASS v98: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
