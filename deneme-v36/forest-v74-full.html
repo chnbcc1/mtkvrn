@@ -85,14 +85,33 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 .hudRight .iconBtn:active{transform:translateY(2px);filter:brightness(1.22)}
 @media(orientation:landscape){.hud{left:max(9px,env(safe-area-inset-left));right:max(9px,env(safe-area-inset-right));top:calc(env(safe-area-inset-top) + 7px);min-height:58px;padding:5px 11px}.hud:before{font-size:11px;top:-10px;padding:1px 13px}.hud .chip{font-size:12px}.hud .chip small{font-size:10px}.hudRight .iconBtn{height:37px;width:38px}.controls{bottom:calc(max(6px,env(safe-area-inset-bottom)) + 3px)}.ctrl{height:53px;min-width:58px;border-radius:14px}#jump{min-width:80px}#examine{min-width:80px}.hint{bottom:calc(max(8px,env(safe-area-inset-bottom)) + 59px);font-size:11px;max-width:45vw}}
 @media(max-width:430px) and (orientation:portrait){.hud{min-height:68px;gap:7px;padding:8px 8px}.hud:before{top:-12px;font-size:11px;padding:3px 10px}.hud .chip{max-width:44%;font-size:11px}.hud .chip small{font-size:10px}.hudRight .iconBtn{width:35px;height:38px;font-size:17px}}
+
+/* v74: the gold/emerald approved fantasy HUD, with live controls & text */
+.hud.hud-v74{z-index:5;top:calc(max(5px,env(safe-area-inset-top)) + 3px);left:50%;right:auto;transform:translateX(-50%);display:flex;flex-direction:column;gap:1px;width:min(860px,calc(100vw - 18px));padding:5px 10px 8px;border-radius:17px;pointer-events:none;background:linear-gradient(180deg,#855329ec 0%,#58371ce6 28%,#174d3eec 31%,#0a332eed 100%);border:2px solid #f0c46f;box-shadow:0 0 0 2px #402918ad,inset 0 2px #ffefb072,0 8px 23px #081d1d90}
+.hud-v74:before{content:"";position:absolute;inset:4px;border-radius:13px;border:1px solid #c89b50a0;pointer-events:none}
+.hudBrand{height:23px;display:flex;align-items:center;justify-content:center;gap:6px;color:#ffe2a0;font-family:Georgia,serif;font-weight:900;font-size:13px;line-height:1;text-shadow:0 1px #27180c,0 2px 5px #0b1c19;letter-spacing:.7px}
+.hudBrand small{display:inline;margin-left:8px;font-family:system-ui,sans-serif;font-size:9px;font-weight:750;letter-spacing:0;color:#fff2c9}
+.hudCompass{color:#f7d576;font-size:18px}
+.hudRow{display:flex;align-items:center;gap:9px;width:100%;justify-content:space-between}
+.hud-v74 .chip{display:flex;flex-direction:column;justify-content:center;flex:none;max-width:50%;min-width:132px;min-height:43px;padding:4px 10px;background:linear-gradient(120deg,#175340,#0e3c32);border:1.5px solid #e5bc70;box-shadow:inset 0 0 0 1px #0b2924;border-radius:12px;color:#ffedc1}
+.hud-v74 .chip b{font-size:11px;white-space:nowrap}
+.hud-v74 .chip small{font-size:10px;white-space:nowrap;margin:3px 0 0;color:#fbdc9e}
+.hud-v74 .trackShell{height:15px;min-width:34px;border-radius:999px;background:linear-gradient(#063a32,#104c3c);border:2px solid #cda45b;box-shadow:inset 0 1px 3px #0008;overflow:hidden;flex:1}
+.hud-v74 .trackShell span{height:100%;background:linear-gradient(90deg,#ffd16a,#f8ea9e);box-shadow:0 0 8px #fae1a0}
+.hud-v74 .hudRight{padding:0;gap:4px;background:transparent;border:0;box-shadow:none;pointer-events:auto}
+.hud-v74 .iconBtn{width:40px;height:40px;background:linear-gradient(#22674f,#0c3d35);border:2px solid #e0bd72;border-radius:11px;box-shadow:inset 0 0 0 1px #133c32,0 2px 5px #0007;font-size:19px;color:#fce2a4}
+@media(max-width:450px){.hud.hud-v74{padding:3px 7px 6px;border-width:1.5px;gap:0}.hudBrand{height:19px;font-size:10px}.hudBrand small{font-size:8px;margin-left:4px}.hudCompass{font-size:14px}.hudRow{gap:5px}.hud-v74 .chip{padding:3px 7px;min-width:122px;min-height:35px}.hud-v74 .chip b{font-size:10px}.hud-v74 .chip small{font-size:9px}.hud-v74 .iconBtn{width:36px;height:35px;font-size:17px}.hud-v74 .trackShell{height:11px}}
+@media(orientation:landscape) and (max-height:560px){.hud.hud-v74{flex-direction:row;align-items:center;width:min(890px,calc(100vw - 14px));padding:4px 9px}.hudBrand{flex:0 0 auto;font-size:11px;height:auto;padding-right:8px}.hudBrand small{display:none}.hudRow{flex:1;min-width:0}.hud-v74 .chip{min-height:31px}.hud-v74 .iconBtn{height:34px}.hint{bottom:calc(max(9px,env(safe-area-inset-bottom)) + 67px)}}
+
 </style>
 </head>
 <body>
 <canvas id="scene" aria-label="Erdem ve Çiko ile oynanabilir orman patikası"></canvas><div class="tint"></div>
-<div class="hud">
- <div class="chip">🌲 ORMAN PATİKASI<small id="progress">0/21 engel · ORTA</small></div>
+<div class="hud hud-v74" aria-label="Matematik Evreni oyun bilgi paneli">
+ <div class="hudBrand"><span class="hudCompass" aria-hidden="true">✦</span><span>MATEMATİK EVRENİ <small>Profesörün Kayıp İzleri</small></span></div>
+ <div class="hudRow"><div class="chip"><b>🌲 ORMAN PATİKASI</b><small id="progress">0/21 engel · ORTA</small></div>
  <div class="trackShell" aria-label="Bölüm ilerleme çubuğu"><span id="progressFill"></span></div>
- <div class="hudRight"><button class="iconBtn" id="journal" aria-label="Bölüm notlarını göster">📜</button><button class="iconBtn" id="home" aria-label="Macera haritasını aç">🗺️</button></div>
+ <div class="hudRight"><button class="iconBtn" id="journal" aria-label="Bölüm notlarını göster">📜</button><button class="iconBtn" id="home" aria-label="Macera haritasını aç">🗺️</button></div></div>
 </div>
 <div class="hint" id="hint">Patikada ilerle; parlayan büyüteçleri incele.</div>
 <div class="controls">
@@ -463,13 +482,17 @@ const ICONS=["🌿","✦","☁","✧","◆","🍄","◼","🌉","♧","▰","�
 const FIRST_MATH_GATE=3700;
 const GATES=ORDER.map((id,i)=>({id,label:LABELS[i],icon:ICONS[i],index:i,x:FIRST_MATH_GATE+i*2240,stop:id==="F08"?RAVINE_LEFT-68:FIRST_MATH_GATE+i*2240-155}));
 const PALETTE=["#39764b","#80d2ed","#779bb9","#aa8de9","#b4f3ff","#ce984e","#7ed6cf","#a6754f","#ba9b63","#98bddd","#5fc8e1","#e3c876","#8e9f9d","#c3b888","#9dc7c1","#d7e5db","#e7b88e","#87accf","#a2b7c7","#e6c384","#e0bd77"];
-const HAZARD_GEOMETRY={rock:{w:168,height:92},log:{w:180,height:92},gap:{w:146,height:36},root:{w:154,height:95},mushroom:{w:156,height:97}};
+const HAZARD_GEOMETRY={rock:{w:133,height:118},log:{w:152,height:123},gap:{w:140,height:38},root:{w:145,height:127},mushroom:{w:138,height:124}};
 const makeHazard=(x,type)=>({x,type,...HAZARD_GEOMETRY[type]});
-const HAZARDS=[makeHazard(1550,"log"),makeHazard(2380,"rock"),makeHazard(3010,"mushroom")];
-const TYPES=["rock","root","log","mushroom","gap"];
+const TYPES=["log","rock","gap","root","mushroom"];
+const HAZARDS=[makeHazard(1030,"log"),makeHazard(1650,"rock"),makeHazard(2270,"root"),makeHazard(2850,"mushroom")];
 for(let i=0;i<GATES.length-1;i++){
- const base=GATES[i].x;
- for(let j=0;j<3;j++)HAZARDS.push(makeHazard(base+[435,1020,1630][j],TYPES[(i+j*2)%5]));
+ const left=GATES[i].stop+290,right=GATES[i+1].stop-390,span=right-left;
+ for(let j=0;j<3;j++){
+  const x=Math.round(left+span*(.11+.32*j));
+  if(x>RAVINE_LEFT-440&&x<RAVINE_RIGHT+410)continue;
+  HAZARDS.push(makeHazard(x,TYPES[(i*3+j+2)%TYPES.length]));
+ }
 }
 HAZARDS.sort((a,b)=>a.x-b.x);
 const SOLVED=new Set();
@@ -949,20 +972,19 @@ for(const kind of obstacleTypes){
 // A fallback keeps the game playable if an SVG file cannot be loaded.
 drawMini=function(h){
  const img=obstacleArt[h.type];
- worldObject(h.x,GROUND+14,()=>{
+ worldObject(h.x,GROUND+18,()=>{
+  const margin=h.type==="gap"?18:10,width=h.w+margin*2;
+  ctx.save();
+  ctx.fillStyle="rgba(15,29,22,.4)";
+  ctx.beginPath();ctx.ellipse(h.w*.5,1,h.w*.64,11,0,0,Math.PI*2);ctx.fill();
   if(img?.complete&&img.naturalWidth>0){
-   ctx.save();ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality="high";
-   const margin=h.type==="gap"?6:4,wide=h.w+margin*2;
-   const tall=h.type==="gap"?142:h.height+65;
-   const y=h.type==="gap"?-43:-(h.height+56);
-   ctx.fillStyle="#14282088";ctx.beginPath();ctx.ellipse(h.w/2,9,Math.max(49,h.w*.51),10,0,0,Math.PI*2);ctx.fill();
-   // A gap must stay below the foot path; never paint a floating black rectangle.
-   if(h.type==="gap"){
-    ctx.beginPath();ctx.rect(-margin,-9,wide,105);ctx.clip();
-   }
-   ctx.drawImage(img,-margin,y,wide,tall);
-   ctx.restore();
+   ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality="high";
+   const tall=h.type==="gap"?156:h.height+51;
+   const y=h.type==="gap"?-56:-tall+14;
+   if(h.type==="gap"){ctx.beginPath();ctx.rect(-margin,-31,width,120);ctx.clip();}
+   ctx.drawImage(img,-margin,y,width,tall);
   }else paintMiniObstacle(h);
+  ctx.restore();
  });
 };
 
@@ -994,8 +1016,8 @@ function nextBlocked(oldX,target){
 function nextHazard(oldX,target){
  if(Math.abs(target-oldX)<.05)return target;
  for(const h of HAZARDS){
-  const reach=29,start=h.x-reach,end=h.x+h.w+reach;
-  const clearance=h.type==="gap"?29:Math.min(72,Math.round(h.height*.74));
+  const start=h.x-12,end=h.x+h.w+12;
+  const clearance=h.type==="gap"?34:h.height-23;
   if(target>oldX&&target>start&&target<end&&heroY>GROUND-clearance){
    hitMessage=h.type==="gap"?"Boşluğun üzerinden zıpla ↑":"Üzerinden atlamak için zıpla ↑";hitTimer=clock+1.7;flashObstacle=clock+.25;return start-2;
   }
