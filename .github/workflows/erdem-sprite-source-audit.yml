@@ -1,0 +1,17 @@
+name: Erdem Sprite Source Audit
+on:
+  pull_request:
+    paths:
+      - "deneme-v36/tools/measure_erdem_head_frames.py"
+      - ".github/workflows/erdem-sprite-source-audit.yml"
+  workflow_dispatch:
+jobs:
+  inspect-atlas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install "Pillow>=11.3.0"
+      - run: python deneme-v36/tools/measure_erdem_head_frames.py
