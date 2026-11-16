@@ -140,13 +140,13 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 }
 
 </style>
-</head>
+<script src="./settings-v116.js?v=116"></script></head>
 <body>
 <canvas id="scene" aria-label="Erdem ve Çiko ile oynanabilir orman patikası"></canvas><div class="tint"></div>
 <div class="hud hud-v75" aria-label="Orman Patikası ilerleme ve oyun menüsü">
  <div class="hudChapter"><b>🌲 ORMAN PATİKASI</b><small id="progress">0/21 engel · ORTA</small></div>
  <div class="trackShell" role="progressbar" aria-label="Tamamlanan matematik engelleri" aria-valuemin="0" aria-valuemax="21" aria-valuenow="0"><span id="progressFill"></span></div>
- <div class="hudRight"><button class="iconBtn" id="journal" aria-label="Bölüm notlarını göster">📜</button><button class="iconBtn" id="home" aria-label="Macera haritasını aç">🗺️</button></div>
+ <div class="hudRight"><button class="iconBtn" id="mtkTitleBtn" type="button" aria-label="Ana menüye dön">🏠</button><button class="iconBtn" id="journal" aria-label="Bölüm notlarını göster">📜</button><button class="iconBtn" id="home" aria-label="Macera haritasını aç">🗺️</button></div>
 </div>
 <div class="hint" id="hint">Patikada ilerle; parlayan büyüteçleri incele.</div>
 <div class="controls">
@@ -252,6 +252,17 @@ function story(){
  action('Patikaya çık ▶',()=>{started=true;closeModal();save(true)});
 }
 function home(){save(true);location.assign('./map-v113.html?from=forest')}
+function recordForestExit(){
+ save(true);
+ try{
+  const state=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}')||{};
+  state.activeScene='forest-path';state.chapter2EntrySeen=true;
+  state.chapter2={...(state.chapter2||{}),stage:'forest-path',x:Math.round(heroX),difficulty,puzzleSolved:solved,reachedGate};
+  localStorage.setItem(SAVE_KEY,JSON.stringify(state));
+ }catch(e){}
+}
+$('#mtkTitleBtn').onclick=()=>{recordForestExit();location.assign('./menu-v116.html?v=116')};
+window.addEventListener('pagehide',()=>{if(started)recordForestExit()});
 function journal(){
  const title=reachedGate?'Gözlemevi kapısı':solved?'Köprü tamamlandı':'Orman patikası';
  const note=reachedGate?'Erdem ve Çiko gözlemevinin girişine ulaştı.':solved?'Köprüyü ölçerek geçebilecekleri uzunluğu buldular.':'Erdem ve Çiko dere üzerindeki köprüyü incelemeye gidiyor.';

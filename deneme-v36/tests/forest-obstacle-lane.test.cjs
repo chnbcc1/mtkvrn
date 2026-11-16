@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(homeVersion,115);
+assert.equal(homeVersion,116);
 // The home artwork was updated independently; the forest scene remains v113.
 const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
@@ -283,3 +283,19 @@ assert(forest.includes("map-v113.html?from=forest"),"Map route must follow v113"
 assert(!forest.includes('ctx.createRadialGradient(sx,sy'),"Dark shadow gradient remains");
 assert(!forest.includes("ctx.ellipse(sx,sy"),"Dark oval or loading oval remains");
 console.log("PASS v115: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
+
+// v116: responsive title menu, real save-aware navigation and platform preferences.
+const menuV116=fs.readFileSync(path.join(root,"menu-v116.html"),"utf8");
+const settingsV116=fs.readFileSync(path.join(root,"settings-v116.js"),"utf8");
+assert(menuV116.includes("menu-v116-landscape.avif"));
+assert(menuV116.includes("menu-v116-portrait.avif"));
+for (const control of ['id="start"','id="resume"','id="chapters"','id="settings"']) assert(menuV116.includes(control));
+assert(menuV116.includes("mathverse-v40-investigation"));
+assert(menuV116.includes("mathverse-v68-forest-full"));
+assert(menuV116.includes("function resetAndStart()"));
+assert(menuV116.includes("function resumeGame()"));
+assert(settingsV116.includes("mathverse-v116-settings"));
+assert(settingsV116.includes("navigator.vibrate"));
+assert(home.includes("homeX:Math.round(hero.x)"));
+assert(home.includes("get('autostart')==='1'"));
+assert(forest.includes("function recordForestExit()"));

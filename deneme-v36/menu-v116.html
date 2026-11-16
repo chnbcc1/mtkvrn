@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07192f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Matematik Evreni – Profesörün Kayıp İzleri · v116</title>
+<style>
+*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#07192f;color:#fff3d5;font-family:system-ui,-apple-system,'Segoe UI',sans-serif}
+body{display:grid;place-items:center;min-height:100vh;min-height:100dvh}
+#frame{width:min(100vw,177.6833dvh);aspect-ratio:1672/941;position:relative;overflow:hidden;filter:drop-shadow(0 0 35px #0006)}
+#frame img{width:100%;height:100%;object-fit:fill;display:block;user-select:none;-webkit-user-drag:none}
+.hit{position:absolute;cursor:pointer;border:0;border-radius:30px;background:transparent;color:transparent;font-size:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.hit:focus-visible{outline:3px solid #fff;outline-offset:-4px;background:#fff2}
+.hit:hover{background:#fff1}
+#start{left:51.6%;top:40%;width:29%;height:11.2%}
+#resume{left:54.4%;top:52.5%;width:24.5%;height:9.4%}
+#chapters{left:54.3%;top:62.8%;width:24.5%;height:9.4%}
+#settings{left:54.3%;top:73.2%;width:24.5%;height:9.4%}
+@media(orientation:portrait){
+ #frame{width:min(100vw,56.28dvh);aspect-ratio:941/1672}
+ #start{left:17%;top:65.3%;width:65%;height:7%}
+ #resume{left:17.5%;top:73%;width:64%;height:7.0%}
+ #chapters{left:17.5%;top:80.7%;width:64%;height:6.9%}
+ #settings{left:17.4%;top:88.4%;width:64%;height:6.6%}
+}
+#shade[hidden]{display:none}#shade{position:fixed;inset:0;z-index:10;display:grid;place-items:center;padding:calc(15px + env(safe-area-inset-top)) 14px calc(15px + env(safe-area-inset-bottom));background:#061427bf;backdrop-filter:blur(12px)}
+.dialog{width:min(100%,520px);max-height:100%;overflow:auto;border:2px solid #e7b56c;border-radius:24px;padding:clamp(16px,4vw,28px);background:linear-gradient(155deg,#143c58,#102338 73%);box-shadow:0 16px 80px #000b,inset 0 1px 0 #ffffff40}
+.dialog h2{margin:0 0 14px;color:#ffe2a3;font-size:clamp(24px,5vw,32px)}.dialog p{line-height:1.45;color:#e9f3f2;margin:8px 0 16px}.dialog footer{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;margin-top:20px}
+.dialog button,.chapter{border:1px solid #d0a15b;border-radius:12px;background:linear-gradient(180deg,#365675,#183a51);padding:12px 16px;color:#fff4df;font:inherit;font-weight:750;cursor:pointer;min-height:46px}
+.dialog button.primary{background:linear-gradient(180deg,#edc47e,#a65d21);color:#271c0d}.dialog button:disabled{opacity:.48;cursor:not-allowed}.dialog button:focus-visible{outline:3px solid #fff}
+.setting{display:flex;justify-content:space-between;align-items:center;gap:18px;margin:12px 0;padding:13px 15px;border-radius:15px;background:#ffffff12;border:1px solid #ffffff24}
+.setting strong{display:block}.setting small{display:block;color:#cbdce4;margin-top:3px;font-size:12px}.setting input{width:24px;height:24px;accent-color:#dba350;cursor:pointer;flex-shrink:0}
+.chapter-list{display:grid;gap:10px}.chapter{display:flex;text-align:left;flex-direction:column;gap:3px;width:100%}.chapter small{font-weight:450;color:#e5d8b8}.chapter:disabled small{color:#b1b1b1}
+.info{font-size:13px;border-top:1px solid #ffffff30;padding-top:14px;margin-top:16px}.status{font-size:13px;color:#f6d68c;margin-top:13px}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main id="frame" aria-label="Matematik Evreni – Profesörün Kayıp İzleri ana ekranı">
+<picture><source media="(orientation: portrait)" srcset="./assets/menu-v116-portrait.avif"><img src="./assets/menu-v116-landscape.avif" alt="Matematik Evreni: Profesörün Kayıp İzleri, Erdem ve Çiko'nun matematik macerası; menü seçenekleri" draggable="false" fetchpriority="high"></picture>
+<button class="hit" id="start" aria-label="Yeni Oyun">Yeni Oyun</button>
+<button class="hit" id="resume" aria-label="Devam Et">Devam Et</button>
+<button class="hit" id="chapters" aria-label="Bölümler">Bölümler</button>
+<button class="hit" id="settings" aria-label="Ayarlar">Ayarlar</button>
+</main>
+<div id="shade" hidden><section class="dialog" id="dialog" role="dialog" aria-modal="true" aria-labelledby="panelTitle"><h2 id="panelTitle"></h2><div id="panelBody"></div><footer id="panelActions"></footer></section></div>
+<script src="./settings-v116.js?v=116"></script>
+<script>
+'use strict';
+const SAVE_KEY='mathverse-v40-investigation', FOREST_KEY='mathverse-v68-forest-full';
+const $=s=>document.querySelector(s), read=k=>{try{return JSON.parse(localStorage.getItem(k)||'null')||{}}catch(e){return {}}};
+const homeUrl='./?scene=home&autostart=1&v=116',forestUrl='./forest-v113-full.html?resume=1&v=116';
+const home=()=>read(SAVE_KEY), forest=()=>read(FOREST_KEY);
+function hasSave(){const h=home(),f=forest();return !!(h.introSeen||h.visitedStudy||h.complete||(Array.isArray(h.found)&&h.found.length)||f.token||(Array.isArray(f.solvedIds)&&f.solvedIds.length));}
+function hasForest(){const h=home();return !!(h.complete&&h.visitedStudy);}
+function closePanel(){const shade=$('#shade');shade.hidden=true;$('#panelBody').replaceChildren();$('#panelActions').replaceChildren();}
+function openPanel(title,markup,actions=[]){$('#panelTitle').textContent=title;$('#panelBody').innerHTML=markup;const footer=$('#panelActions');footer.replaceChildren();for(const [caption,handler,primary] of actions){const b=document.createElement('button');b.textContent=caption;b.type='button';b.className=primary?'primary':'';b.addEventListener('click',handler);footer.append(b)}$('#shade').hidden=false;const focus=footer.querySelector('button');focus?.focus();}
+function newGame(){if(hasSave()){openPanel('Yeni oyun başlatılsın mı?','<p>Mevcut macera kaydın silinecek ve Erdem ile Çiko başlangıçtan başlayacak. Ayarlar korunacaktır.</p>',[['Vazgeç',closePanel],['Yeni Oyuna Başla',resetAndStart,true]]);}else resetAndStart();}
+function resetAndStart(){try{localStorage.removeItem(SAVE_KEY);localStorage.removeItem(FOREST_KEY)}catch(e){}location.assign(homeUrl);}
+function resumeGame(){if(!hasSave()){openPanel('Kayıt bulunamadı','<p>Henüz kayıtlı bir macera yok. Önce Yeni Oyun ile başlayabilirsin.</p>',[['Tamam',closePanel]]);return;}
+const h=home(),f=forest();const forestStarted=hasForest()&&(h.activeScene==='forest-path'||f.token||h.chapter2?.stage==='forest-path');location.assign(forestStarted?forestUrl:homeUrl);}
+function showChapters(){const unlocked=hasForest();openPanel('Bölümler','<p>Tamamladığın bölümleri tekrar ziyaret edebilirsin. Yeni bölümler hazırlandıkça listeye eklenecektir.</p><div class="chapter-list"><button class="chapter" id="chapterHome"><strong>🏡 1. Dedenin Evi</strong><small>Başlangıç · Kullanılabilir</small></button><button class="chapter" id="chapterForest" '+(unlocked?'':'disabled')+'><strong>🌲 2. Orman Patikası</strong><small>'+(unlocked?'Açıldı · Devam et':'Önce Dedenin Evi bölümünü tamamla')+'</small></button><button class="chapter" disabled><strong>🔭 3. Eski Gözlemevi</strong><small>Gelecek sürümlerde açılacak</small></button></div>',[['Kapat',closePanel]]);
+$('#chapterHome').onclick=()=>location.assign(homeUrl);
+if(unlocked)$('#chapterForest').onclick=()=>location.assign(forestUrl);}
+function showSettings(){const p=window.MTKPrefs.load();openPanel('⚙️ Ayarlar','<div class="setting"><span><strong>🔊 Ses efektleri</strong><small>Menü ve oyun düğmesi sesleri</small></span><input id="soundToggle" type="checkbox" aria-label="Ses efektlerini aç veya kapat" '+(p.sound?'checked':'')+'></div><div class="setting"><span><strong>📳 Titreşim</strong><small>Destekleyen telefonlarda dokunma bildirimi</small></span><input id="vibeToggle" type="checkbox" aria-label="Titreşimi aç veya kapat" '+(p.vibration?'checked':'')+'></div><div class="info"><h3>ℹ️ Oyun Bilgisi</h3><p><strong>Matematik Evreni – Profesörün Kayıp İzleri</strong><br>Sürüm: v116 · TÜBİTAK 4006 matematik macerası<br>Erdem ve Çiko ile keşfet, matematik sorularını çöz, ipuçlarını takip et.</p><p>İlerlemen bu tarayıcıda saklanır. Tarayıcı verilerini silmek veya başka cihaz kullanmak kaydını etkileyebilir.</p></div>',[['Kapat',closePanel]]);
+$('#soundToggle').addEventListener('change',e=>window.MTKPrefs.update({sound:e.target.checked}));$('#vibeToggle').addEventListener('change',e=>window.MTKPrefs.update({vibration:e.target.checked}));}
+$('#start').addEventListener('click',newGame);$('#resume').addEventListener('click',resumeGame);$('#chapters').addEventListener('click',showChapters);$('#settings').addEventListener('click',showSettings);
+$('#shade').addEventListener('click',e=>{if(e.target===$('#shade'))closePanel()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#shade').hidden)closePanel()});
+</script>
+</body>
+</html>
