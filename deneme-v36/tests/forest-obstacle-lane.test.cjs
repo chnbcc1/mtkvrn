@@ -1,4 +1,4 @@
-/* v108: use the uploaded exact root image with the existing v107 coordinates and unchanged collision / physics.
+/* v109: enlarge approved v108 root 50% about original center; collision/physics unchanged.
    Run: node deneme-v36/tests/forest-obstacle-lane.test.cjs */
 "use strict";
 const assert=require("node:assert/strict");
@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const version=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(version,108);
+assert.equal(version,109);
 const forest=fs.readFileSync(path.join(root,"forest-v"+version+"-full.html"),"utf8");
 const map=fs.readFileSync(path.join(root,"map-v"+version+".html"),"utf8");
 const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v98.js"),"utf8");
@@ -100,12 +100,17 @@ for(const kind of kinds){
   const box=geometry.obstacleGeometry({type:kind,x:500,w:def.w,height:def.height,laneY:760});
   const depth=lane.near-lane.far;
   if(kind==="root"){
-   assert(Math.abs(box.top-(lane.far-12))<1e-8,name+" root top not beyond far road edge");
-   assert(Math.abs(box.bottom-(lane.near+10))<1e-8,name+" root bottom not beyond near road edge");
-   assert(Math.abs(box.dh-(depth+22))<1e-8,name+" root draw height wrong");
-   assert(Math.abs(box.dw-box.dh*(434/672))<1e-8,name+" root source aspect distorted");
+   const oldTop=lane.far-12,oldBottom=lane.near+10;
+   const oldHeight=oldBottom-oldTop,oldWidth=oldHeight*(434/672);
+   const centerY=(oldTop+oldBottom)/2;
+   assert(Math.abs(box.dh-oldHeight*1.5)<1e-8,name+" root height not 150% of v108");
+   assert(Math.abs(box.dw-oldWidth*1.5)<1e-8,name+" root width not 150% of v108");
+   assert(Math.abs((box.top+box.bottom)/2-centerY)<1e-8,name+" root vertical center moved");
+   assert(Math.abs(box.top-(centerY-oldHeight*.75))<1e-8,name+" root top not equally extended");
+   assert(Math.abs(box.bottom-(centerY+oldHeight*.75))<1e-8,name+" root bottom not equally extended");
+   assert(Math.abs(box.dw-box.dh*(434/672))<1e-8,name+" root photo aspect changed");
    assert(Math.abs(box.dy+760-box.top)<1e-8,name+" root render origin moved");
-   assert(Math.abs(box.dx+box.dw/2-def.w/2)<1e-8,name+" root centered X incorrectly");
+   assert(Math.abs(box.dx+box.dw/2-def.w/2)<1e-8,name+" root horizontal center moved");
   }else if(kind==="mushroom"){
    // Compare against the existing v103 geometry, keeping the exact center fixed.
    const oldHeight=(depth+12)*1.20;
@@ -168,11 +173,11 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v108-full.html?v=108"));
-assert(map.includes("forest-v108-full.html"));
+assert(home.includes("forest-v109-full.html?v=109"));
+assert(map.includes("forest-v109-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
-assert(forest.includes("map-v108.html?from=forest"),"Map route must follow v107");
+assert(forest.includes("map-v109.html?from=forest"),"Map route must follow v109");
 assert(!forest.includes('ctx.createRadialGradient(sx,sy'),"Dark shadow gradient remains");
 assert(!forest.includes("ctx.ellipse(sx,sy"),"Dark oval or loading oval remains");
-console.log("PASS v108: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
+console.log("PASS v109: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
