@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(homeVersion,118);
+assert.equal(homeVersion,119);
 // The home artwork was updated independently; the forest scene remains v113.
 const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
@@ -275,7 +275,7 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v113-full.html?v=118"));
+assert(home.includes("forest-v113-full.html?v=119"));
 assert(map.includes("forest-v113-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
@@ -310,7 +310,7 @@ assert(forest.includes('id="settingsBtn"'),"HUD settings action present");
 assert(forest.includes("window.MTKPrefs?.update({sound:"),"Saved sound toggle");
 assert(forest.includes("window.MTKPrefs?.update({vibration:"),"Saved vibration toggle");
 assert(forest.includes('done+"/21 ENGEL"'),"HUD progress must be live, not artwork-only");
-assert(menuV116.includes("forest-v113-full.html?resume=1&v=118"),"Menu links to latest forest HUD");
+assert(menuV116.includes("forest-v113-full.html?resume=1&v=119"),"Menu links to latest forest HUD");
 console.log("PASS v117: Forest top HUD artwork, dynamic progress, working controls and responsive touch targets");
 
 // v118: landscape display must include the road and Erdem's feet (not just forest sky).
@@ -327,3 +327,15 @@ for(const [width,height] of [[844,390],[1024,480],[1280,720],[1536,610],[1920,10
 assert(forest.includes('@media(orientation:landscape) and (max-height:800px)'), 'Short-screen landscape HUD rule missing');
 assert(forest.includes('height:clamp(74px,17vh,118px)'), 'Landscape HUD is too tall');
 assert(forest.includes("visualViewport.addEventListener('resize',resize)"), 'Browser toolbar resize needs a redraw');
+
+// v119: screenshots showed blurred HUD icons, a stretched landscape hint,
+// and hard-to-reach quiz choices on short landscape viewports.
+assert(forest.includes('backdrop-filter:none;-webkit-backdrop-filter:none;filter:none;'), 'HUD controls must not blur the illustrated icons');
+assert(forest.includes('bottom:auto;min-height:0;max-height:none;'), 'Landscape hint must not stretch from top to bottom');
+assert(forest.includes('top:calc(env(safe-area-inset-top) + clamp(78px,19vh,124px))'), 'Compact landscape toast positioning missing');
+assert(forest.includes('#quizOverlay .quizWrap{\n  height:100%;max-height:100%;min-height:0'), 'Quiz dialog must fit the mobile viewport');
+assert(forest.includes('forest-v70-quiz.html?v=119&'), 'Quiz iframe URL must invalidate old styles');
+const quizV119=fs.readFileSync(path.join(root,'forest-v70-quiz.html'),'utf8');
+assert(quizV119.includes('grid-template-columns:repeat(2,minmax(0,1fr))'), 'Landscape answers must display in two columns');
+assert(quizV119.includes('-webkit-overflow-scrolling:touch'), 'Landscape quiz scrolling must be enabled');
+console.log('PASS v119: sharp HUD icons, compact hints, scrollable two-column landscape quiz');

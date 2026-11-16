@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#102d2d"><title>v70 · Orman Patikası · Matematiksel Düşünme Görevi</title>
+<meta name="theme-color" content="#102d2d"><title>v119 · Orman Patikası · Matematiksel Düşünme Görevi</title>
 <style>
 :root{color-scheme:dark;--p:#f8e8bd;--gold:#eec77c;--ink:#16302e;--leaf:#87d0a6;--edge:#8cae92}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#0b242a;color:#fff7e5;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
@@ -67,6 +67,30 @@ sup{font-size:.7em;line-height:0;vertical-align:super}
 .embedded .btn{font-size:14px;min-height:43px;padding:9px}
 
 .embedded{scroll-padding-bottom:52px}.embedded .panel{padding-bottom:24px}.embedded .prompt{font-size:clamp(15px,3.7vw,18px)}.embedded .btnRow{padding:8px;box-shadow:0 -4px 12px #35220c19}.embedded .feedback{font-size:14px}
+/* v119: iPhone landscape quiz fits two answers per row and scrolls
+   naturally in the embedded iframe; portrait stays one column. */
+@media (orientation:landscape) and (min-width:580px) and (max-height:800px){
+ html{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch}
+ body.embedded{
+  min-height:100%;height:auto;overflow-y:auto;touch-action:pan-y;
+  -webkit-overflow-scrolling:touch;padding:4px 8px 20px
+ }
+ .embedded .panel{padding:9px 12px 12px;border-width:2px;border-radius:12px}
+ .embedded .panel h2{font-size:20px;line-height:1.16;margin:3px 0 8px}
+ .embedded .prompt{font-size:14px;line-height:1.38;padding:9px 11px}
+ .embedded .choiceGrid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;margin:10px 0 12px
+ }
+ .embedded .choice{
+  min-width:0;min-height:47px;padding:7px 9px;
+  font-size:14px;line-height:1.28;align-items:center
+ }
+ .embedded .choiceMark{
+  width:29px;height:29px;flex-basis:29px;border-radius:9px
+ }
+ .embedded .feedback{padding:9px;margin-top:7px}
+}
 </style><script src="./forest-levels-v65.js?v=65"></script></head>
 <body><main><nav><a href="./forest-v70-full.html?v=69">‹ Orman Patikasına dön</a><a href="./map-v70.html?v=69">🗺️ Macera Haritası</a></nav>
 <h1>🌲 Orman Patikası</h1><p class="subtitle">21 engelli matematik macerası · dört şıklı sorular · MAT.9.1.1 · Üslü ve köklü gösterimler. Dört seçenek arasından karar ver. Yanlışta ipucu, örnek çözüm ve pekiştirme adımları seni yönlendirecek. Fiziksel engellerin sahne entegrasyonu ayrı geliştirilir.</p>

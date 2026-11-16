@@ -84,7 +84,7 @@ for(const pin of document.querySelectorAll(".map-pin")){
  if(region==="inside"){pin.disabled=true;continue}
  pin.addEventListener("click",()=>go(region));
 }
-const dest={home:"./?scene=home&v=118",forest:"./forest-v113-full.html?resume=1&v=118",gate:"./forest-v113-full.html?resume=1&focus=gate&v=118"};
+const dest={home:"./?scene=home&v=119",forest:"./forest-v113-full.html?resume=1&v=119",gate:"./forest-v113-full.html?resume=1&focus=gate&v=119"};
 function go(region){
  if(!dest[region]||!discovered[region])return;
  try{const x=read(STORE);x.activeScene=region==="home"?"home":"forest-path";localStorage.setItem(STORE,JSON.stringify(x))}catch(e){}
