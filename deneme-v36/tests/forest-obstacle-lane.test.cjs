@@ -1,4 +1,4 @@
-/* v110: substitute the isolated deep earth fissure for the gap picture, with road edge overhang; keep all gameplay geometry.
+/* v111: substitute the isolated deep earth fissure for the gap picture, with road edge overhang; keep all gameplay geometry.
    Run: node deneme-v36/tests/forest-obstacle-lane.test.cjs */
 "use strict";
 const assert=require("node:assert/strict");
@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const version=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(version,110);
+assert.equal(version,111);
 const forest=fs.readFileSync(path.join(root,"forest-v"+version+"-full.html"),"utf8");
 const map=fs.readFileSync(path.join(root,"map-v"+version+".html"),"utf8");
 const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v98.js"),"utf8");
@@ -68,6 +68,30 @@ const gapIspe=gapAvif.indexOf(Buffer.from("ispe"));
 assert(gapIspe>0,"Gap AVIF dimensions missing");
 assert.equal(gapAvif.readUInt32BE(gapIspe+8),434);
 assert.equal(gapAvif.readUInt32BE(gapIspe+12),741);
+
+// v111 premium bridge visual integration (original 2.1s timing and colliders unchanged).
+const bridgeLoader=fs.readFileSync(path.join(root,"forest-bridge-art-v111.js"),"utf8");
+new vm.Script(bridgeLoader);
+assert(bridgeLoader.includes("MTK_V111_BRIDGE_ART"));
+for(const [name,w,h] of [["broken",960,720],["restored",960,720],["plank",177,480]]){
+ const asset=fs.readFileSync(path.join(root,"assets/forest-bridge-"+name+"-v111.avif"));
+ assert.equal(asset.toString("ascii",4,12),"ftypavif",name+" asset is not AVIF");
+ assert(asset.length>15000,name+" asset too small");
+ const ispe=asset.indexOf(Buffer.from("ispe"));
+ assert(ispe>0,name+" AVIF dimensions missing");
+ assert.equal(asset.readUInt32BE(ispe+8),w,name+" width mismatch");
+ assert.equal(asset.readUInt32BE(ispe+12),h,name+" height mismatch");
+}
+assert(forest.includes('forest-bridge-art-v111.js?v=111'));
+assert(forest.includes('const art=window.MTK_V111_BRIDGE_ART;'));
+assert(forest.includes('ctx.drawImage(art.broken.image,bridgeX,bridgeY,bridgeWidth,bridgeHeight)'));
+assert(forest.includes('ctx.drawImage(art.restored.image,bridgeX,bridgeY,bridgeWidth,bridgeHeight)'));
+assert(forest.includes('ctx.drawImage(art.plank.image,i*slotWidth+1,-54+drop,slotWidth-2,58)'));
+assert(forest.includes('const count=8,slotWidth=span/count'));
+assert(forest.includes('const rippleShift=(clock*22)%33'));
+assert(!forest.includes('const left=worldX(RAVINE_LEFT),right=worldX(RAVINE_RIGHT),yy=worldY(738);'),"Old primitive river is still drawn");
+assert(!forest.includes('ctx.drawImage(propAtlas,3*362,1*362,362,362,-46,-279'),"Old 2D bridge overlay remains");
+assert(forest.includes('bridgeProgress=Math.min(1,(clock-bridgeBuildStart)/2.1)'),"Repair animation speed changed");
 const inline=forest.match(/<script>\s*('use strict';[\s\S]*?)<\/script>/);
 assert(inline,"Missing playable forest script");
 new vm.Script(inline[1]);
@@ -198,11 +222,11 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v110-full.html?v=110"));
-assert(map.includes("forest-v110-full.html"));
+assert(home.includes("forest-v111-full.html?v=111"));
+assert(map.includes("forest-v111-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
-assert(forest.includes("map-v110.html?from=forest"),"Map route must follow v110");
+assert(forest.includes("map-v111.html?from=forest"),"Map route must follow v110");
 assert(!forest.includes('ctx.createRadialGradient(sx,sy'),"Dark shadow gradient remains");
 assert(!forest.includes("ctx.ellipse(sx,sy"),"Dark oval or loading oval remains");
-console.log("PASS v110: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
+console.log("PASS v111: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
