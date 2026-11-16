@@ -1,4 +1,4 @@
-/* v104: mushroom cutout 20% larger in all directions about its unchanged v103 center.
+/* v105: keep v104 geometry, physics, animations and other images; replace only log art.
    Run: node deneme-v36/tests/forest-obstacle-lane.test.cjs */
 "use strict";
 const assert=require("node:assert/strict");
@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const version=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(version,104);
+assert.equal(version,105);
 const forest=fs.readFileSync(path.join(root,"forest-v"+version+"-full.html"),"utf8");
 const map=fs.readFileSync(path.join(root,"map-v"+version+".html"),"utf8");
 const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v98.js"),"utf8");
@@ -24,6 +24,17 @@ const mushroomIspe=mushroomAVIF.indexOf(Buffer.from("ispe"));
 assert(mushroomIspe>0);
 assert.equal(mushroomAVIF.readUInt32BE(mushroomIspe+8),434);
 assert.equal(mushroomAVIF.readUInt32BE(mushroomIspe+12),733);
+const logLoader=fs.readFileSync(path.join(root,"forest-log-art-v105.js"),"utf8");
+new vm.Script(logLoader);
+assert(logLoader.includes("MTK_V105_LOG_OBSTACLE"));
+assert(logLoader.includes("./assets/forest-log-v105.avif?v=105"));
+const logAvif=fs.readFileSync(path.join(root,"assets/forest-log-v105.avif"));
+assert.equal(logAvif.toString("ascii",4,12),"ftypavif","Log art must be AVIF");
+assert(logAvif.length>50000,"Log art unexpectedly small");
+const logIspe=logAvif.indexOf(Buffer.from("ispe"));
+assert(logIspe>0,"Log AVIF dimensions missing");
+assert.equal(logAvif.readUInt32BE(logIspe+8),434);
+assert.equal(logAvif.readUInt32BE(logIspe+12),741);
 const inline=forest.match(/<script>\s*('use strict';[\s\S]*?)<\/script>/);
 assert(inline,"Missing playable forest script");
 new vm.Script(inline[1]);
@@ -110,17 +121,21 @@ for(const kind of kinds){
 assert(forest.includes('forest-obstacle-art-v98.js?v=98'));
 assert(forest.includes('MTK_V98_3D_OBSTACLES'));
 assert(forest.includes('MTK_V102_MUSHROOM_OBSTACLE'));
+assert(forest.includes('MTK_V105_LOG_OBSTACLE'));
+assert(forest.includes('forest-log-art-v105.js?v=105'));
+assert(forest.includes('}else if(h.type==="log"){'));
+assert(forest.includes('ctx.drawImage(logArt.image,m.dx,m.dy,m.dw,m.dh)'));
 assert(forest.includes('forest-mushroom-art-v102.js?v=102'));
 assert(forest.includes("sprite.frameWidth,sprite.frameHeight,m.dx,m.dy,m.dw,m.dh"));
 assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v104-full.html?v=104"));
-assert(map.includes("forest-v104-full.html"));
+assert(home.includes("forest-v105-full.html?v=105"));
+assert(map.includes("forest-v105-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
-assert(forest.includes("map-v104.html?from=forest"),"Map route must follow v103");
+assert(forest.includes("map-v105.html?from=forest"),"Map route must follow v105");
 assert(!forest.includes('ctx.createRadialGradient(sx,sy'),"Dark shadow gradient remains");
 assert(!forest.includes("ctx.ellipse(sx,sy"),"Dark oval or loading oval remains");
-console.log("PASS v104: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
+console.log("PASS v105: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
