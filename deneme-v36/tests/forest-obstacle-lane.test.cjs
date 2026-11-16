@@ -1,4 +1,4 @@
-/* v109: enlarge approved v108 root 50% about original center; collision/physics unchanged.
+/* v110: substitute the isolated deep earth fissure for the gap picture, with road edge overhang; keep all gameplay geometry.
    Run: node deneme-v36/tests/forest-obstacle-lane.test.cjs */
 "use strict";
 const assert=require("node:assert/strict");
@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const version=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(version,109);
+assert.equal(version,110);
 const forest=fs.readFileSync(path.join(root,"forest-v"+version+"-full.html"),"utf8");
 const map=fs.readFileSync(path.join(root,"map-v"+version+".html"),"utf8");
 const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v98.js"),"utf8");
@@ -57,6 +57,17 @@ const rootIspe=rootAvif.indexOf(Buffer.from("ispe"));
 assert(rootIspe>0,"Root AVIF dimensions missing");
 assert.equal(rootAvif.readUInt32BE(rootIspe+8),434);
 assert.equal(rootAvif.readUInt32BE(rootIspe+12),672);
+const gapLoader=fs.readFileSync(path.join(root,"forest-gap-art-v110.js"),"utf8");
+new vm.Script(gapLoader);
+assert(gapLoader.includes("MTK_V110_GAP_OBSTACLE"));
+assert(gapLoader.includes("./assets/forest-gap-v110.avif?v=110"));
+const gapAvif=fs.readFileSync(path.join(root,"assets/forest-gap-v110.avif"));
+assert.equal(gapAvif.toString("ascii",4,12),"ftypavif","Gap art must be AVIF");
+assert(gapAvif.length>35000,"Gap art unexpectedly small");
+const gapIspe=gapAvif.indexOf(Buffer.from("ispe"));
+assert(gapIspe>0,"Gap AVIF dimensions missing");
+assert.equal(gapAvif.readUInt32BE(gapIspe+8),434);
+assert.equal(gapAvif.readUInt32BE(gapIspe+12),741);
 const inline=forest.match(/<script>\s*('use strict';[\s\S]*?)<\/script>/);
 assert(inline,"Missing playable forest script");
 new vm.Script(inline[1]);
@@ -111,6 +122,16 @@ for(const kind of kinds){
    assert(Math.abs(box.dw-box.dh*(434/672))<1e-8,name+" root photo aspect changed");
    assert(Math.abs(box.dy+760-box.top)<1e-8,name+" root render origin moved");
    assert(Math.abs(box.dx+box.dw/2-def.w/2)<1e-8,name+" root horizontal center moved");
+  }else if(kind==="gap"){
+   // The new fissure overlaps the pictured road edges by 12 / 10 units.
+   // Keep v109's visual width, X center and untouched leap/collision dimensions.
+   const v109Width=depth*1.92*(120/205);
+   assert(Math.abs(box.top-(lane.far-12))<1e-8,name+" gap top not beyond far road edge");
+   assert(Math.abs(box.bottom-(lane.near+10))<1e-8,name+" gap bottom not beyond near road edge");
+   assert(Math.abs(box.dh-(depth+22))<1e-8,name+" gap height incorrect");
+   assert(Math.abs(box.dw-v109Width)<1e-8,name+" gap width must match v109");
+   assert(Math.abs(box.dy+760-box.top)<1e-8,name+" gap render origin moved");
+   assert(Math.abs(box.dx+box.dw/2-def.w/2)<1e-8,name+" gap horizontal center moved");
   }else if(kind==="mushroom"){
    // Compare against the existing v103 geometry, keeping the exact center fixed.
    const oldHeight=(depth+12)*1.20;
@@ -161,6 +182,10 @@ assert(forest.includes('forest-rock-art-v106.js?v=106'));
 assert(forest.includes('}else if(h.type==="rock"){'));
 assert(forest.includes('forest-root-art-v108.js?v=108'));
 assert(forest.includes('const rootArt=window.MTK_V108_ROOT_OBSTACLE;'));
+assert(forest.includes('forest-gap-art-v110.js?v=110'));
+assert(forest.includes('const gapArt=window.MTK_V110_GAP_OBSTACLE;'));
+assert(forest.includes('}else if(h.type==="gap"){'));
+assert(forest.includes('ctx.drawImage(gapArt.image,m.dx,m.dy,m.dw,m.dh)'));
 assert(forest.includes('}else if(h.type==="root"){'));
 assert(forest.includes('ctx.drawImage(rootArt.image,m.dx,m.dy,m.dw,m.dh)'));
 assert(forest.includes('ctx.drawImage(rockArt.image,m.dx,m.dy,m.dw,m.dh)'));
@@ -173,11 +198,11 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v109-full.html?v=109"));
-assert(map.includes("forest-v109-full.html"));
+assert(home.includes("forest-v110-full.html?v=110"));
+assert(map.includes("forest-v110-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
-assert(forest.includes("map-v109.html?from=forest"),"Map route must follow v109");
+assert(forest.includes("map-v110.html?from=forest"),"Map route must follow v110");
 assert(!forest.includes('ctx.createRadialGradient(sx,sy'),"Dark shadow gradient remains");
 assert(!forest.includes("ctx.ellipse(sx,sy"),"Dark oval or loading oval remains");
-console.log("PASS v109: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
+console.log("PASS v110: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
