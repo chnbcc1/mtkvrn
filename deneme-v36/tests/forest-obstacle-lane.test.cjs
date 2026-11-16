@@ -1,4 +1,4 @@
-/* v103: mushroom cutout enlarged 20% while keeping its foot on the same road edge; others unchanged.
+/* v104: mushroom cutout 20% larger in all directions about its unchanged v103 center.
    Run: node deneme-v36/tests/forest-obstacle-lane.test.cjs */
 "use strict";
 const assert=require("node:assert/strict");
@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const version=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(version,103);
+assert.equal(version,104);
 const forest=fs.readFileSync(path.join(root,"forest-v"+version+"-full.html"),"utf8");
 const map=fs.readFileSync(path.join(root,"map-v"+version+".html"),"utf8");
 const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v98.js"),"utf8");
@@ -67,12 +67,18 @@ for(const kind of kinds){
   const box=geometry.obstacleGeometry({type:kind,x:500,w:def.w,height:def.height,laneY:760});
   const depth=lane.near-lane.far;
   if(kind==="mushroom"){
-   const v102Height=depth+12,enlargedHeight=v102Height*1.20;
-   assert(Math.abs(box.bottom-lane.near)<1e-8,name+" mushroom base moved");
-   assert(Math.abs(box.top-(lane.near-enlargedHeight))<1e-8,name+" mushroom top not 20% larger");
-   assert(Math.abs(box.dh-enlargedHeight)<1e-8,name+" mushroom height not 20% larger");
-   assert(Math.abs(box.dw-v102Height*(434/733)*1.20)<1e-8,name+" mushroom width not 20% larger");
-   assert(Math.abs(box.dy+760-(lane.near-enlargedHeight))<1e-8,name+" mushroom y moved");
+   // Compare against the existing v103 geometry, keeping the exact center fixed.
+   const oldHeight=(depth+12)*1.20;
+   const oldWidth=oldHeight*(434/733);
+   const oldCenterY=lane.near-oldHeight/2;
+   const newHeight=oldHeight*1.20;
+   const newWidth=oldWidth*1.20;
+   assert(Math.abs(box.dh-newHeight)<1e-8,name+" mushroom not 20% taller than v103");
+   assert(Math.abs(box.dw-newWidth)<1e-8,name+" mushroom not 20% wider than v103");
+   assert(Math.abs((box.top+box.bottom)/2-oldCenterY)<1e-8,name+" mushroom Y center moved");
+   assert(Math.abs(box.top-(oldCenterY-newHeight/2))<1e-8,name+" mushroom top scaling wrong");
+   assert(Math.abs(box.bottom-(oldCenterY+newHeight/2))<1e-8,name+" mushroom bottom scaling wrong");
+   assert(Math.abs(box.dy+760-box.top)<1e-8,name+" mushroom world placement changed");
    assert(Math.abs(box.dx+box.dw/2-def.w/2)<1e-8,name+" mushroom X center moved");
   }else{
    const margin=depth*.46;
@@ -110,11 +116,11 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v103-full.html?v=103"));
-assert(map.includes("forest-v103-full.html"));
+assert(home.includes("forest-v104-full.html?v=104"));
+assert(map.includes("forest-v104-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
-assert(forest.includes("map-v103.html?from=forest"),"Map route must follow v103");
+assert(forest.includes("map-v104.html?from=forest"),"Map route must follow v103");
 assert(!forest.includes('ctx.createRadialGradient(sx,sy'),"Dark shadow gradient remains");
 assert(!forest.includes("ctx.ellipse(sx,sy"),"Dark oval or loading oval remains");
-console.log("PASS v103: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
+console.log("PASS v104: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
