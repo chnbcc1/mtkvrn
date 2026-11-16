@@ -88,7 +88,7 @@ assert(forest.includes('ctx.drawImage(art.broken.image,bridgeX,bridgeY,bridgeWid
 assert(forest.includes('ctx.drawImage(art.restored.image,bridgeX,bridgeY,bridgeWidth,bridgeHeight)'));
 assert(forest.includes('ctx.drawImage(art.plank.image,i*slotWidth+1,-54+drop,slotWidth-2,58)'));
 assert(forest.includes('const count=8,slotWidth=span/count'));
-assert(forest.includes('const rippleShift=(clock*22)%33'));
+assert(!forest.includes('const rippleShift='),"River animation must stay removed");
 assert(!forest.includes('const left=worldX(RAVINE_LEFT),right=worldX(RAVINE_RIGHT),yy=worldY(738);'),"Old primitive river is still drawn");
 assert(!forest.includes('ctx.drawImage(propAtlas,3*362,1*362,362,362,-46,-279'),"Old 2D bridge overlay remains");
 assert(forest.includes('bridgeProgress=Math.min(1,(clock-bridgeBuildStart)/2.1)'),"Repair animation speed changed");
