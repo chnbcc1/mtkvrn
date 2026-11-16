@@ -7,7 +7,10 @@ const path=require("node:path");
 const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
-const version=Number(home.match(/<title>v(\d+)/)?.[1]);
+const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
+assert.equal(homeVersion,114);
+// The home artwork was updated independently; the forest scene remains v113.
+const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
 const forest=fs.readFileSync(path.join(root,"forest-v"+version+"-full.html"),"utf8");
 const map=fs.readFileSync(path.join(root,"map-v"+version+".html"),"utf8");

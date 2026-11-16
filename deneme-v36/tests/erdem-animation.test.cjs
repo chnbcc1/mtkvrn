@@ -15,8 +15,11 @@ const assetName="erdem-animation-v"+version+".js";
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const sceneVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
 assert(Number.isInteger(sceneVersion)&&sceneVersion>=version,"Invalid scene version");
-const forestName="forest-v"+sceneVersion+"-full.html";
-const mapName="map-v"+sceneVersion+".html";
+// The home release may advance without creating a new forest/map release.
+const forestVersion=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
+assert(Number.isInteger(forestVersion)&&forestVersion<=sceneVersion,"Forest release must not exceed home version");
+const forestName="forest-v"+forestVersion+"-full.html";
+const mapName="map-v"+forestVersion+".html";
 const asset=fs.readFileSync(path.join(root,assetName),"utf8");
 const forest=fs.readFileSync(path.join(root,forestName),"utf8");
 const map=fs.readFileSync(path.join(root,mapName),"utf8");
