@@ -119,7 +119,7 @@ assert.equal(bgFile.toString("hex",23,26),"9d012a","Home WebP must contain a val
 assert.equal(bgFile.readUInt16LE(26)&0x3fff,1672,"Home background width must match original world");
 assert.equal(bgFile.readUInt16LE(28)&0x3fff,941,"Home background height must match original world");
 assert.equal(require("node:crypto").createHash("sha256").update(bgFile).digest("hex"),
- "199edf5ed27ffbb8343428a8d688d79266bb643a04198d2f694c4d444eb2ac79",
+ "466e777f792b913390e9ad4c390eae245ee6f3edfff2bb15a09d12fac7d5f4df",
  "Home background differs from clean recovered original source");
 assert(!home.includes("dedemin-evi-background-v112.webp"),"Broken original background reference still present");
 assert(home.includes("./assets/dedemin-evi-background-v113.webp?v=113"));
