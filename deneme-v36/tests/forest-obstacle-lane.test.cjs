@@ -1,4 +1,4 @@
-/* v113: restore pristine original Dedenin Evi image while preserving bridge depth, static stream, physics.
+/* v114: integrate completed Dedenin Evi image while preserving bridge depth, static stream, physics.
    Run: node deneme-v36/tests/forest-obstacle-lane.test.cjs */
 "use strict";
 const assert=require("node:assert/strict");
@@ -122,7 +122,15 @@ assert.equal(require("node:crypto").createHash("sha256").update(bgFile).digest("
  "466e777f792b913390e9ad4c390eae245ee6f3edfff2bb15a09d12fac7d5f4df",
  "Home background differs from clean recovered original source");
 assert(!home.includes("dedemin-evi-background-v112.webp"),"Broken original background reference still present");
-assert(home.includes("./assets/dedemin-evi-background-v113.webp?v=113"));
+// v114: recovered and completed Grandpa's House artwork, stored as compact AVIF.
+const bgV114=fs.readFileSync(path.join(root,"assets/dedemin-evi-background-v114.avif"));
+assert(bgV114.length>45000,"Completed house background unexpectedly small");
+assert.equal(bgV114.toString("ascii",4,12),"ftypavif","Completed background must be AVIF");
+assert.equal(require("node:crypto").createHash("sha256").update(bgV114).digest("hex"),
+ "179ec790ebadd81368439521fbd437acccf940f9371e010d30406de787ee038c",
+ "Completed house artwork differs from approved recovered image");
+assert(home.includes("./assets/dedemin-evi-background-v114.avif?v=114"));
+assert(!home.includes("./assets/dedemin-evi-background-v113.webp?v=113"));
 assert(!home.includes("background:'data:image/webp;base64,"));
 assert(home.includes("const sourceX=Math.max(0,Math.min(img.naturalWidth-1,cameraX/W*img.naturalWidth));"));
 assert(home.includes("const sourceW=Math.min(img.naturalWidth-sourceX,viewportW/(baseScale*W)*img.naturalWidth);"));
@@ -263,4 +271,4 @@ assert(!forest.includes("scenicScatter()"));
 assert(forest.includes("map-v113.html?from=forest"),"Map route must follow v113");
 assert(!forest.includes('ctx.createRadialGradient(sx,sy'),"Dark shadow gradient remains");
 assert(!forest.includes("ctx.ellipse(sx,sy"),"Dark oval or loading oval remains");
-console.log("PASS v113: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
+console.log("PASS v114: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
