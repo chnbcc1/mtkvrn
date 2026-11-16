@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(homeVersion,117);
+assert.equal(homeVersion,118);
 // The home artwork was updated independently; the forest scene remains v113.
 const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
@@ -275,7 +275,7 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v113-full.html?v=117"));
+assert(home.includes("forest-v113-full.html?v=118"));
 assert(map.includes("forest-v113-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
@@ -312,3 +312,18 @@ assert(forest.includes("window.MTKPrefs?.update({vibration:"),"Saved vibration t
 assert(forest.includes('done+"/21 ENGEL"'),"HUD progress must be live, not artwork-only");
 assert(menuV116.includes("forest-v113-full.html?resume=1&v=117"),"Menu links to latest forest HUD");
 console.log("PASS v117: Forest top HUD artwork, dynamic progress, working controls and responsive touch targets");
+
+// v118: landscape display must include the road and Erdem's feet (not just forest sky).
+const resizeV118 = forest.match(/function resize\(\)\{([^}]+)\}/)?.[1] || '';
+assert(resizeV118.includes('scale=vw>vh?vh/H:Math.max(vh/H,vw/1450)'), 'Landscape camera must fit the entire scene height');
+const H118=941, GROUND118=760;
+for(const [width,height] of [[844,390],[1024,480],[1280,720],[1536,610],[1920,1080]]){
+ const scaled=height/H118;
+ const groundScreenY=GROUND118*scaled;
+ const heroHeadY=(GROUND118-360)*scaled;
+ assert(groundScreenY<height-35, 'Ground clipped in landscape '+width+'x'+height);
+ assert(heroHeadY>65, 'Hero hidden under HUD in landscape '+width+'x'+height);
+}
+assert(forest.includes('@media(orientation:landscape) and (max-height:800px)'), 'Short-screen landscape HUD rule missing');
+assert(forest.includes('height:clamp(74px,17vh,118px)'), 'Landscape HUD is too tall');
+assert(forest.includes("visualViewport.addEventListener('resize',resize)"), 'Browser toolbar resize needs a redraw');

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#0b2732">
-<title>v117 · Orman Patikası · Matematik Evreni</title>
+<title>v118 · Orman Patikası · Matematik Evreni</title>
 <style>
 :root{--cream:#ffedcb;--gold:#f4cd77;--dark:#092536;--ink:#4b321f}
 *{box-sizing:border-box}
@@ -200,11 +200,20 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
  padding:12px 14px;border-radius:12px;font-weight:800
 }
 .forestSettings input{width:24px;height:24px;accent-color:#266e57}
-@media(orientation:landscape) and (max-height:560px){
+/* v118: short landscape phones need an unobstructed jumping lane. */
+@media(orientation:landscape) and (max-height:800px){
  .hud.hud-v75.hud-v117{
   top:env(safe-area-inset-top);
-  height:clamp(105px,19vw,154px)
+  height:clamp(74px,17vh,118px)
  }
+ .hud.hud-v75.hud-v117 .hudChapter small{
+  font-size:clamp(8px,1.2vw,13px)
+ }
+ .hud.hud-v75.hud-v117 .iconBtn{min-height:32px}
+ .controls{bottom:max(8px,env(safe-area-inset-bottom))}
+ .controls .ctrl{height:clamp(48px,12vh,68px);min-width:58px}
+ #jump{min-width:96px}
+ .hint{top:calc(env(safe-area-inset-top) + 122px)}
 }
 @media(max-width:430px) and (orientation:portrait){
  .hud.hud-v75.hud-v117{top:calc(env(safe-area-inset-top) + 2px);height:105px}
@@ -322,8 +331,11 @@ function save(force=false){
   localStorage.setItem(SAVE_KEY,JSON.stringify(latest));
  }catch(e){}
 }
-function resize(){vw=innerWidth;vh=innerHeight;dpr=Math.min(devicePixelRatio||1,3);scale=Math.max(vh/H,vw/1450);canvas.width=Math.round(vw*dpr);canvas.height=Math.round(vh*dpr);canvas.style.width=vw+'px';canvas.style.height=vh+'px';camReady=false}
-addEventListener('resize',resize);resize();
+// v118: Landscape play must fit the entire authored 941px scene vertically.
+// v117's width-filling zoom hid the ground, Erdem and obstacles below the viewport.
+// Portrait retains its original look; all world/collision dimensions stay unchanged.
+function resize(){vw=innerWidth;vh=innerHeight;dpr=Math.min(devicePixelRatio||1,3);scale=vw>vh?vh/H:Math.max(vh/H,vw/1450);canvas.width=Math.round(vw*dpr);canvas.height=Math.round(vh*dpr);canvas.style.width=vw+'px';canvas.style.height=vh+'px';camReady=false}
+addEventListener('resize',resize);addEventListener('orientationchange',()=>requestAnimationFrame(resize));if(window.visualViewport)window.visualViewport.addEventListener('resize',resize);resize();
 function openModal(title,content,eyebrow='BÖLÜM 2'){modalOpen=true;requested=0;activePointers.clear();updatePress();$('#modalTitle').textContent=title;$('#modalContent').innerHTML=content;$('#eyebrow').textContent=eyebrow;$('#modalActions').replaceChildren();$('#feedback').textContent='';$('#modal').hidden=false}
 function closeModal(){modalOpen=false;$('#modal').hidden=true;$('#modalActions').replaceChildren();$('#feedback').textContent='';last=0}
 function action(label,fn,variant='primary'){const b=document.createElement('button');b.type='button';b.className=variant;b.textContent=label;b.onclick=fn;$('#modalActions').appendChild(b);return b}
@@ -341,7 +353,7 @@ function recordForestExit(){
   localStorage.setItem(SAVE_KEY,JSON.stringify(state));
  }catch(e){}
 }
-$('#mtkTitleBtn').onclick=()=>{recordForestExit();location.assign('./menu-v116.html?v=116')};
+$('#mtkTitleBtn').onclick=()=>{recordForestExit();location.assign('./menu-v116.html?v=118')};
 
 /* v117 forest settings; share the same saved preferences as the title screen. */
 function openForestSettings(){
