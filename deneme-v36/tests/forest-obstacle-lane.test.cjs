@@ -132,7 +132,15 @@ assert.equal(bgV114.toString("ascii",4,12),"ftypavif","Completed background must
 assert.equal(require("node:crypto").createHash("sha256").update(bgV114).digest("hex"),
  "179ec790ebadd81368439521fbd437acccf940f9371e010d30406de787ee038c",
  "Completed house artwork differs from approved recovered image");
-assert(home.includes("./assets/dedemin-evi-background-v114.avif?v=114"));
+// v115: high-resolution, higher-quality Dedenin Evi background only; gameplay and forest remain unchanged.
+const bgV115=fs.readFileSync(path.join(root,"assets/dedemin-evi-background-v115.avif"));
+assert(bgV115.length>350000,"Higher-quality house background unexpectedly small");
+assert.equal(bgV115.toString("ascii",4,12),"ftypavif","New house background must be AVIF");
+assert.equal(require("node:crypto").createHash("sha256").update(bgV115).digest("hex"),
+ "45f214be2932b1dd0a8b4bc2628798d31f276069bc629a3ae37854009f02286f",
+ "v115 house artwork differs from approved high-quality image");
+assert(home.includes("./assets/dedemin-evi-background-v115.avif?v=115"));
+assert(!home.includes("./assets/dedemin-evi-background-v114.avif?v=114"));
 assert(!home.includes("./assets/dedemin-evi-background-v113.webp?v=113"));
 assert(!home.includes("background:'data:image/webp;base64,"));
 assert(home.includes("const sourceX=Math.max(0,Math.min(img.naturalWidth-1,cameraX/W*img.naturalWidth));"));
@@ -274,4 +282,4 @@ assert(!forest.includes("scenicScatter()"));
 assert(forest.includes("map-v113.html?from=forest"),"Map route must follow v113");
 assert(!forest.includes('ctx.createRadialGradient(sx,sy'),"Dark shadow gradient remains");
 assert(!forest.includes("ctx.ellipse(sx,sy"),"Dark oval or loading oval remains");
-console.log("PASS v114: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
+console.log("PASS v115: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
