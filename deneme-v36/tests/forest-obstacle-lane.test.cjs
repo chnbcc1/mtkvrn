@@ -1,4 +1,4 @@
-/* v101: Restore v98 geometry and artwork; remove ONLY painted oval shadows.
+/* v102: only mushroom art changes; remaining v98 geometry preserved.
    Run: node deneme-v36/tests/forest-obstacle-lane.test.cjs */
 "use strict";
 const assert=require("node:assert/strict");
@@ -8,11 +8,22 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const version=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(version,101);
+assert.equal(version,102);
 const forest=fs.readFileSync(path.join(root,"forest-v"+version+"-full.html"),"utf8");
 const map=fs.readFileSync(path.join(root,"map-v"+version+".html"),"utf8");
 const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v98.js"),"utf8");
 new vm.Script(artwork);
+const mushroomLoader=fs.readFileSync(path.join(root,"forest-mushroom-art-v102.js"),"utf8");
+new vm.Script(mushroomLoader);
+assert(mushroomLoader.includes("MTK_V102_MUSHROOM_OBSTACLE"));
+assert(mushroomLoader.includes("./assets/forest-mushroom-v102.avif?v=102"));
+const mushroomAVIF=fs.readFileSync(path.join(root,"assets/forest-mushroom-v102.avif"));
+assert.equal(mushroomAVIF.toString("ascii",4,12),"ftypavif");
+assert(mushroomAVIF.length>30000);
+const mushroomIspe=mushroomAVIF.indexOf(Buffer.from("ispe"));
+assert(mushroomIspe>0);
+assert.equal(mushroomAVIF.readUInt32BE(mushroomIspe+8),434);
+assert.equal(mushroomAVIF.readUInt32BE(mushroomIspe+12),733);
 const inline=forest.match(/<script>\s*('use strict';[\s\S]*?)<\/script>/);
 assert(inline,"Missing playable forest script");
 new vm.Script(inline[1]);
@@ -54,17 +65,25 @@ for(const kind of kinds){
  assert(HAZARDS.some(h=>h.type===kind),"Missing obstacle: "+kind);
  for(const [name,geometry,lane] of [["photo",forPhoto,PHOTO_PATH_LANE],["fallback",forFallback,PATH_LANE]]){
   const box=geometry.obstacleGeometry({type:kind,x:500,w:def.w,height:def.height,laneY:760});
-  // Obstacle art is 20% smaller than the approved v95 baseline, while remaining centered.
   const depth=lane.near-lane.far;
-  const margin=depth*.46;
-  assert(Math.abs(box.top-(lane.far-margin))<1e-8,name+" art top not centered");
-  assert(Math.abs(box.bottom-(lane.near+margin))<1e-8,name+" art bottom not centered");
-  assert(Math.abs(box.dy+760-(lane.far-margin))<1e-8,name+" render y shifted");
-  assert(Math.abs(box.dh-depth*1.92)<1e-8,name+" height should be 80% of v95");
-  assert(Math.abs(box.dw-box.dh*(120/205))<1e-8,name+" source image aspect 120:205 was distorted");
-   assert(Math.abs(box.dw-.8*(depth*2.40*(120/205)))<1e-8,name+" width should be 80% of v95");
-  assert(Math.abs(box.dx+box.dw/2-def.w/2)<1e-8,name+" X center moved");
-  assert(Math.abs(box.dy+box.dh/2-(lane.far+lane.near)/2+760)<1e-8,name+" Y center moved");
+  if(kind==="mushroom"){
+   assert(Math.abs(box.top-(lane.far-12))<1e-8,name+" mushroom top must exceed road far edge by 12");
+   assert(Math.abs(box.bottom-lane.near)<1e-8,name+" mushroom base must touch near road edge");
+   assert(Math.abs(box.dh-(depth+12))<1e-8,name+" mushroom draw height mismatch");
+   assert(Math.abs(box.dw-box.dh*(434/733))<1e-8,name+" mushroom cutout aspect mismatch");
+   assert(Math.abs(box.dy+760-(lane.far-12))<1e-8,name+" mushroom y placement mismatch");
+   assert(Math.abs(box.dx+box.dw/2-def.w/2)<1e-8,name+" mushroom x center mismatch");
+  }else{
+   const margin=depth*.46;
+   assert(Math.abs(box.top-(lane.far-margin))<1e-8,name+" art top not centered");
+   assert(Math.abs(box.bottom-(lane.near+margin))<1e-8,name+" art bottom not centered");
+   assert(Math.abs(box.dy+760-(lane.far-margin))<1e-8,name+" render y shifted");
+   assert(Math.abs(box.dh-depth*1.92)<1e-8,name+" legacy art height mismatch");
+   assert(Math.abs(box.dw-box.dh*(120/205))<1e-8,name+" legacy aspect distorted");
+   assert(Math.abs(box.dw-.8*(depth*2.40*(120/205)))<1e-8,name+" legacy width changed");
+   assert(Math.abs(box.dx+box.dw/2-def.w/2)<1e-8,name+" legacy x center moved");
+   assert(Math.abs(box.dy+box.dh/2-(lane.far+lane.near)/2+760)<1e-8,name+" legacy y center moved");
+  }
   assert.equal(box.left,500);assert.equal(box.right,500+def.w);
  }
  // Exact original fixed leap, checked at four phone frame rates.
@@ -83,16 +102,18 @@ for(const kind of kinds){
 }
 assert(forest.includes('forest-obstacle-art-v98.js?v=98'));
 assert(forest.includes('MTK_V98_3D_OBSTACLES'));
+assert(forest.includes('MTK_V102_MUSHROOM_OBSTACLE'));
+assert(forest.includes('forest-mushroom-art-v102.js?v=102'));
 assert(forest.includes("sprite.frameWidth,sprite.frameHeight,m.dx,m.dy,m.dw,m.dh"));
 assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v101-full.html?v=101"));
-assert(map.includes("forest-v101-full.html"));
+assert(home.includes("forest-v102-full.html?v=102"));
+assert(map.includes("forest-v102-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
-assert(forest.includes("map-v101.html?from=forest"),"Map route must follow v101");
+assert(forest.includes("map-v102.html?from=forest"),"Map route must follow v101");
 assert(!forest.includes('ctx.createRadialGradient(sx,sy'),"Dark shadow gradient remains");
 assert(!forest.includes("ctx.ellipse(sx,sy"),"Dark oval or loading oval remains");
-console.log("PASS v101: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
+console.log("PASS v102: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
