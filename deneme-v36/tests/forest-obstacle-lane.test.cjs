@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(homeVersion,116);
+assert.equal(homeVersion,117);
 // The home artwork was updated independently; the forest scene remains v113.
 const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
@@ -275,7 +275,7 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v113-full.html?v=113"));
+assert(home.includes("forest-v113-full.html?v=117"));
 assert(map.includes("forest-v113-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
@@ -299,3 +299,16 @@ assert(settingsV116.includes("navigator.vibrate"));
 assert(home.includes("homeX:Math.round(hero.x)"));
 assert(home.includes("get('autostart')==='1'"));
 assert(forest.includes("function recordForestExit()"));
+
+/* v117 selected forest top HUD regression checks. */
+const forestHudArt=fs.readFileSync(path.join(root,"assets/forest-hud-v117.avif"));
+assert.equal(forestHudArt.toString("ascii",4,12),"ftypavif");
+assert(forestHudArt.length>30000 && forestHudArt.length<250000,"Optimized HUD asset size");
+assert(forest.includes("hud-v75 hud-v117"),"New wood HUD mounted in existing forest scene");
+assert(forest.includes("forest-hud-v117.avif?v=117"),"HUD image version pinned");
+assert(forest.includes('id="settingsBtn"'),"HUD settings action present");
+assert(forest.includes("window.MTKPrefs?.update({sound:"),"Saved sound toggle");
+assert(forest.includes("window.MTKPrefs?.update({vibration:"),"Saved vibration toggle");
+assert(forest.includes('done+"/21 ENGEL"'),"HUD progress must be live, not artwork-only");
+assert(menuV116.includes("forest-v113-full.html?resume=1&v=117"),"Menu links to latest forest HUD");
+console.log("PASS v117: Forest top HUD artwork, dynamic progress, working controls and responsive touch targets");

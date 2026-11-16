@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#07192f">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Matematik Evreni – Profesörün Kayıp İzleri · v116</title>
+<title>Matematik Evreni – Profesörün Kayıp İzleri · v117</title>
 <style>
 *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#07192f;color:#fff3d5;font-family:system-ui,-apple-system,'Segoe UI',sans-serif}
 body{display:grid;place-items:center;min-height:100vh;min-height:100dvh}
@@ -51,7 +51,7 @@ body{display:grid;place-items:center;min-height:100vh;min-height:100dvh}
 'use strict';
 const SAVE_KEY='mathverse-v40-investigation', FOREST_KEY='mathverse-v68-forest-full';
 const $=s=>document.querySelector(s), read=k=>{try{return JSON.parse(localStorage.getItem(k)||'null')||{}}catch(e){return {}}};
-const homeUrl='./?scene=home&autostart=1&v=116',forestUrl='./forest-v113-full.html?resume=1&v=116';
+const homeUrl='./?scene=home&autostart=1&v=117',forestUrl='./forest-v113-full.html?resume=1&v=117';
 const home=()=>read(SAVE_KEY), forest=()=>read(FOREST_KEY);
 function hasSave(){const h=home(),f=forest();return !!(h.introSeen||h.visitedStudy||h.complete||(Array.isArray(h.found)&&h.found.length)||f.token||(Array.isArray(f.solvedIds)&&f.solvedIds.length));}
 function hasForest(){const h=home();return !!(h.complete&&h.visitedStudy);}

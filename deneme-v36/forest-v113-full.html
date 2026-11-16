@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#0b2732">
-<title>v113 · Orman Patikası · Matematik Evreni</title>
+<title>v117 · Orman Patikası · Matematik Evreni</title>
 <style>
 :root{--cream:#ffedcb;--gold:#f4cd77;--dark:#092536;--ink:#4b321f}
 *{box-sizing:border-box}
@@ -139,14 +139,94 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
  .hud-v75 .iconBtn{height:35px;width:39px}
 }
 
+
+/* v117: user's selected wood-and-parchment top HUD.
+   Original artwork remains decorative. Progress and hit targets are real controls. */
+.hud.hud-v75.hud-v117{
+ top:calc(env(safe-area-inset-top) + 2px);left:50%;right:auto;
+ width:min(930px,calc(100vw - 12px - env(safe-area-inset-left) - env(safe-area-inset-right)));
+ height:clamp(105px,25vw,210px);min-height:0;max-height:none;
+ margin:0;padding:0;display:block;overflow:visible;isolation:isolate;
+ border:0;outline:0;border-radius:0;background:transparent;
+ box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;
+ pointer-events:none
+}
+.hud-v117 .hud-v117-art{
+ position:absolute;inset:0;display:block;width:100%;height:100%;
+ object-fit:fill;user-select:none;pointer-events:none;
+ filter:drop-shadow(0 5px 6px #071715b3)
+}
+.hud.hud-v75.hud-v117 .hudChapter{
+ position:absolute;left:51.2%;top:57.3%;transform:translate(-50%,-50%);
+ width:23.3%;max-width:none;height:25%;min-height:0;
+ display:flex;align-items:center;justify-content:center;box-sizing:border-box;
+ padding:1px 4px;border:2px solid #ecc878;border-radius:999px;
+ background:linear-gradient(175deg,#176e6a,#094653 68%,#073744);
+ box-shadow:inset 0 2px 3px #a0e7c844,0 2px 5px #2418099a;
+ color:#fff9ed;pointer-events:none
+}
+.hud-v117 .hudChapter b{display:none}
+.hud.hud-v75.hud-v117 .hudChapter small{
+ display:block;margin:0;color:#fffaf0;
+ font:900 clamp(9px,1.6vw,18px)/1.1 system-ui,sans-serif;
+ letter-spacing:.1px;white-space:nowrap;text-shadow:0 1px 3px #001c22
+}
+.hud.hud-v75.hud-v117 .trackShell{
+ position:absolute;left:43.5%;top:67%;width:15.5%;height:4px;
+ min-width:0;margin:0;padding:0;border:0;border-radius:99px;
+ background:#082c38;box-shadow:0 1px 2px #001b1c88;overflow:hidden
+}
+.hud-v117 .trackShell span{background:linear-gradient(90deg,#5dd69c,#ffe38a)}
+.hud.hud-v75.hud-v117 .hudRight{display:contents}
+.hud.hud-v75.hud-v117 .iconBtn{
+ position:absolute;top:31.7%;width:8.8%;height:46.8%;
+ min-height:42px;min-width:0;display:block;margin:0;padding:0;
+ border:0;border-radius:10px;background:transparent;
+ box-shadow:none;color:transparent;font-size:0;line-height:1;
+ cursor:pointer;pointer-events:auto;touch-action:manipulation
+}
+.hud.hud-v75.hud-v117 .iconBtn:active{
+ background:#fff6a72a;transform:scale(.97);filter:brightness(1.1)
+}
+.hud-v117 .iconBtn:focus-visible{outline:3px solid #fff5af;outline-offset:1px}
+.hud-v117 #mtkTitleBtn{left:1.8%;top:28%;width:10%;height:55%}
+.hud-v117 #journal{left:69.4%}
+.hud-v117 #home{left:79.4%}
+.hud-v117 #settingsBtn{left:89.0%}
+.forestSettings{display:grid;gap:12px;text-align:left}
+.forestSettings label{
+ display:flex;align-items:center;justify-content:space-between;gap:12px;
+ background:#e8d8b6;color:#392616;border:1px solid #b78b4c;
+ padding:12px 14px;border-radius:12px;font-weight:800
+}
+.forestSettings input{width:24px;height:24px;accent-color:#266e57}
+@media(orientation:landscape) and (max-height:560px){
+ .hud.hud-v75.hud-v117{
+  top:env(safe-area-inset-top);
+  height:clamp(105px,19vw,154px)
+ }
+}
+@media(max-width:430px) and (orientation:portrait){
+ .hud.hud-v75.hud-v117{top:calc(env(safe-area-inset-top) + 2px);height:105px}
+ .hud.hud-v75.hud-v117 .hudChapter{border-width:1px}
+ .hud.hud-v75.hud-v117 .iconBtn{min-height:43px}
+ .hud.hud-v75.hud-v117 .hudChapter small{font-size:9px}
+}
+
 </style>
 <script src="./settings-v116.js?v=116"></script></head>
 <body>
 <canvas id="scene" aria-label="Erdem ve Çiko ile oynanabilir orman patikası"></canvas><div class="tint"></div>
-<div class="hud hud-v75" aria-label="Orman Patikası ilerleme ve oyun menüsü">
- <div class="hudChapter"><b>🌲 ORMAN PATİKASI</b><small id="progress">0/21 engel · ORTA</small></div>
+<div class="hud hud-v75 hud-v117" aria-label="Orman Patikası ilerleme ve oyun menüsü">
+ <img class="hud-v117-art" src="./assets/forest-hud-v117.avif?v=117" alt="" aria-hidden="true" draggable="false">
+ <div class="hudChapter"><b>🌲 ORMAN PATİKASI</b><small id="progress" aria-live="polite">0/21 ENGEL</small></div>
  <div class="trackShell" role="progressbar" aria-label="Tamamlanan matematik engelleri" aria-valuemin="0" aria-valuemax="21" aria-valuenow="0"><span id="progressFill"></span></div>
- <div class="hudRight"><button class="iconBtn" id="mtkTitleBtn" type="button" aria-label="Ana menüye dön">🏠</button><button class="iconBtn" id="journal" aria-label="Bölüm notlarını göster">📜</button><button class="iconBtn" id="home" aria-label="Macera haritasını aç">🗺️</button></div>
+ <div class="hudRight">
+  <button class="iconBtn" id="mtkTitleBtn" type="button" aria-label="Ana menüye dön" title="Ana Menü">Ana menü</button>
+  <button class="iconBtn" id="journal" type="button" aria-label="Bölüm notlarını göster" title="Notlar">Notlar</button>
+  <button class="iconBtn" id="home" type="button" aria-label="Macera haritasını aç" title="Harita">Harita</button>
+  <button class="iconBtn" id="settingsBtn" type="button" aria-label="Oyun ayarlarını aç" title="Ayarlar">Ayarlar</button>
+ </div>
 </div>
 <div class="hint" id="hint">Patikada ilerle; parlayan büyüteçleri incele.</div>
 <div class="controls">
@@ -262,6 +342,23 @@ function recordForestExit(){
  }catch(e){}
 }
 $('#mtkTitleBtn').onclick=()=>{recordForestExit();location.assign('./menu-v116.html?v=116')};
+
+/* v117 forest settings; share the same saved preferences as the title screen. */
+function openForestSettings(){
+ const p=window.MTKPrefs?window.MTKPrefs.load():{sound:true,vibration:true};
+ openModal('Oyun Ayarları',
+  '<div class="forestSettings">'+
+  '<label for="forestSound">🔊 Ses efektleri <input id="forestSound" type="checkbox" '+(p.sound?'checked':'')+'></label>'+
+  '<label for="forestVibration">📳 Titreşim <input id="forestVibration" type="checkbox" '+(p.vibration?'checked':'')+'></label>'+
+  '</div><p class="footerNote">Matematik Evreni – Profesörün Kayıp İzleri · v117<br>İlerlemen otomatik kaydedilir.</p>',
+  'AYARLAR');
+ $('#forestSound').addEventListener('change',e=>window.MTKPrefs?.update({sound:e.target.checked}));
+ $('#forestVibration').addEventListener('change',e=>window.MTKPrefs?.update({vibration:e.target.checked}));
+ action('Oyuna dön',closeModal);
+ action('Ana menü',()=>{recordForestExit();location.assign('./menu-v116.html?v=117')},'secondary');
+}
+$('#settingsBtn').onclick=openForestSettings;
+
 window.addEventListener('pagehide',()=>{if(started)recordForestExit()});
 function journal(){
  const title=reachedGate?'Gözlemevi kapısı':solved?'Köprü tamamlandı':'Orman patikası';
@@ -1211,7 +1308,7 @@ update=function(dt){
  $("#campaignHud").textContent="🌿 "+done+"/21 engel · "+difficulty.toUpperCase();
  $("#progressFill").style.width=(100*done/21)+"%";
  $(".hud-v75 .trackShell").setAttribute("aria-valuenow",String(done));
- $("#progress").textContent=done+"/21 engel · "+difficulty.toUpperCase();
+ $("#progress").textContent=done+"/21 ENGEL";
  if(!finishShown&&done===21&&heroX>=GATE_X-80){finishShown=true;reachGate()}
 };
 if(new URLSearchParams(location.search).get("preview")==="1")approved=true;
