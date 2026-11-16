@@ -1,4 +1,4 @@
-/* v112: bridge depth layering, static stream and safe original Dedenin Evi backdrop.
+/* v113: restore pristine original Dedenin Evi image while preserving bridge depth, static stream, physics.
    Run: node deneme-v36/tests/forest-obstacle-lane.test.cjs */
 "use strict";
 const assert=require("node:assert/strict");
@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const version=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(version,112);
+assert.equal(version,113);
 const forest=fs.readFileSync(path.join(root,"forest-v"+version+"-full.html"),"utf8");
 const map=fs.readFileSync(path.join(root,"map-v"+version+".html"),"utf8");
 const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v98.js"),"utf8");
@@ -110,11 +110,19 @@ assert(lastRender.includes("heroSprite();\n drawBridgeFrontRail();\n if(ahead)bi
 assert(forest.includes("bridgeProgress=Math.min(1,(clock-bridgeBuildStart)/2.1)"));
 assert(!forest.includes("const rippleShift="));
 assert(!forest.includes("clock*22"));
-const bgFile=fs.readFileSync(path.join(root,"assets/dedemin-evi-background-v112.webp"));
+const bgFile=fs.readFileSync(path.join(root,"assets/dedemin-evi-background-v113.webp"));
 assert.equal(bgFile.toString("ascii",0,4),"RIFF");
 assert.equal(bgFile.toString("ascii",8,12),"WEBP");
-assert(bgFile.length>250000);
-assert(home.includes("./assets/dedemin-evi-background-v112.webp?v=112"));
+assert(bgFile.length>400000,"Clean house background is unexpectedly small");
+assert.equal(bgFile.toString("ascii",12,16),"VP8 ","Home image must be a standard VP8 WebP");
+assert.equal(bgFile.toString("hex",23,26),"9d012a","Home WebP must contain a valid frame header");
+assert.equal(bgFile.readUInt16LE(26)&0x3fff,1672,"Home background width must match original world");
+assert.equal(bgFile.readUInt16LE(28)&0x3fff,941,"Home background height must match original world");
+assert.equal(require("node:crypto").createHash("sha256").update(bgFile).digest("hex"),
+ "199edf5ed27ffbb8343428a8d688d79266bb643a04198d2f694c4d444eb2ac79",
+ "Home background differs from clean recovered original source");
+assert(!home.includes("dedemin-evi-background-v112.webp"),"Broken original background reference still present");
+assert(home.includes("./assets/dedemin-evi-background-v113.webp?v=113"));
 assert(!home.includes("background:'data:image/webp;base64,"));
 assert(home.includes("const sourceX=Math.max(0,Math.min(img.naturalWidth-1,cameraX/W*img.naturalWidth));"));
 assert(home.includes("const sourceW=Math.min(img.naturalWidth-sourceX,viewportW/(baseScale*W)*img.naturalWidth);"));
@@ -248,11 +256,11 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v112-full.html?v=112"));
-assert(map.includes("forest-v112-full.html"));
+assert(home.includes("forest-v113-full.html?v=113"));
+assert(map.includes("forest-v113-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
-assert(forest.includes("map-v112.html?from=forest"),"Map route must follow v112");
+assert(forest.includes("map-v113.html?from=forest"),"Map route must follow v113");
 assert(!forest.includes('ctx.createRadialGradient(sx,sy'),"Dark shadow gradient remains");
 assert(!forest.includes("ctx.ellipse(sx,sy"),"Dark oval or loading oval remains");
-console.log("PASS v112: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
+console.log("PASS v113: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
