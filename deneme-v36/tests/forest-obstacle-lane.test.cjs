@@ -1,4 +1,4 @@
-/* v114: integrate completed Dedenin Evi image while preserving bridge depth, static stream, physics.
+/* v115: integrate high-resolution Dedenin Evi image while preserving bridge depth, static stream, physics.
    Run: node deneme-v36/tests/forest-obstacle-lane.test.cjs */
 "use strict";
 const assert=require("node:assert/strict");
@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(homeVersion,114);
+assert.equal(homeVersion,115);
 // The home artwork was updated independently; the forest scene remains v113.
 const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
