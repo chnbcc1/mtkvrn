@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#0b2732">
-<title>v122 · Orman Patikası · Matematik Evreni</title>
+<title>v123 · Orman Patikası · Matematik Evreni</title>
 <style>
 :root{--cream:#ffedcb;--gold:#f4cd77;--dark:#092536;--ink:#4b321f}
 *{box-sizing:border-box}
@@ -304,6 +304,57 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
  .controls #jump{height:85px;min-width:138px;width:clamp(138px,18vw,165px)}
 }
 
+
+/* v123: smaller landscape menu and subtle glass gamepad in both orientations.
+   This overrides former landscape button sizes without modifying jump physics. */
+.controls .ctrl{
+ background:rgba(10,44,55,.36);
+ border:1.5px solid rgba(237,223,177,.48);
+ color:#fff2c8;
+ box-shadow:0 4px 12px rgba(0,18,25,.22),inset 0 1px 0 rgba(255,255,255,.12);
+ backdrop-filter:blur(2.5px);
+ -webkit-backdrop-filter:blur(2.5px);
+}
+.controls .ctrl:active,.controls .ctrl.pressed{
+ background:rgba(31,88,99,.69);
+ border-color:rgba(255,239,194,.78);
+}
+@media (orientation:portrait){
+ .controls .moves .ctrl{
+  width:clamp(54px,15vw,62px);min-width:54px;
+  height:clamp(58px,7vh,65px);border-radius:16px;
+  font-size:23px;
+ }
+ .controls #jump{
+  width:clamp(76px,20vw,82px);min-width:76px;
+  height:clamp(58px,7vh,65px);
+  border-radius:16px;font-size:12px;
+ }
+ .controls .moves{gap:8px}
+}
+@media (orientation:landscape){
+ .hud.hud-v75.hud-v117{
+  width:min(790px,calc(100vw - 30px),150dvh);
+  height:auto;aspect-ratio:2172 / 362;
+ }
+ .controls .moves{gap:clamp(10px,1.5vw,15px)}
+ .controls .moves .ctrl{
+  width:clamp(68px,9.5vw,88px);min-width:68px;
+  height:clamp(68px,18vh,86px);
+  border-radius:19px;font-size:clamp(23px,2.7vw,29px)
+ }
+ .controls #jump{
+  width:clamp(118px,15.5vw,150px);min-width:118px;
+  height:clamp(68px,18vh,86px);
+  padding:0 10px;border-radius:19px;
+  font-size:clamp(15px,1.9vw,20px)
+ }
+}
+/* Short iPhone landscape: keep playable touch targets without tall buttons. */
+@media (orientation:landscape) and (max-height:450px){
+ .controls .moves .ctrl{width:74px;min-width:74px;height:74px}
+ .controls #jump{min-width:122px;width:clamp(122px,15.5vw,136px);height:74px}
+}
 </style>
 <script src="./settings-v116.js?v=116"></script></head>
 <body>
@@ -323,7 +374,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 <div class="hint" id="hint">Patikada ilerle; parlayan büyüteçleri incele.</div>
 <div class="controls">
  <div class="moves"><button class="ctrl" id="left" aria-label="Sola yürü">◀</button><button class="ctrl" id="right" aria-label="Sağa yürü">▶</button></div>
- <button class="ctrl" id="examine" aria-label="Engeli incele" hidden>🔎 İNCELE</button><button class="ctrl" id="jump" aria-label="Zıpla">ZIPLA ↑</button>
+ <button class="ctrl" id="jump" aria-label="Zıpla">ZIPLA ↑</button>
 </div>
 <section class="screen" id="modal" hidden aria-modal="true" role="dialog">
  <div class="paper">
@@ -436,7 +487,7 @@ function recordForestExit(){
   localStorage.setItem(SAVE_KEY,JSON.stringify(state));
  }catch(e){}
 }
-$('#mtkTitleBtn').onclick=()=>{recordForestExit();location.assign('./menu-v116.html?v=122')};
+$('#mtkTitleBtn').onclick=()=>{recordForestExit();location.assign('./menu-v116.html?v=123')};
 
 /* v117 forest settings; share the same saved preferences as the title screen. */
 function openForestSettings(){
@@ -794,7 +845,7 @@ function openQuiz(id){
  quizActiveId=id;requested=0;activePointers.clear();updatePress();modalOpen=true;
  $("#quizTitle").textContent=gate.icon+" · "+(gate.index+1)+"/21 · "+gate.label;
  $("#quizFrame").src="./forest-v70-quiz.html?v=119&"+qs;
- $("#quizOverlay").hidden=false;$("#examine").hidden=true;
+ $("#quizOverlay").hidden=false;
 }
 function closeQuiz(){
  if($("#quizOverlay").hidden)return;
@@ -813,8 +864,8 @@ interact=function(){
  const a=available();if(!a)return;
  if(a==="FINISH")reachGate();else openQuiz(a);
 };
-$("#examine").addEventListener("pointerdown",e=>{e.preventDefault();interact()});
-$("#examine").addEventListener("click",e=>{if(e.detail===0)interact()});
+// The in-world magnifier on the canvas is the only inspection touch target.
+// Keyboard E and the existing canvas pointer hit test still call interact().
 home=function(){save(true);location.assign("./map-v113.html?from=forest")};
 journal=function(){
  const done=campaignProgress();
@@ -1395,8 +1446,7 @@ update=function(dt){
  if(solved&&bridgeProgress<1)bridgeProgress=Math.min(1,(clock-bridgeBuildStart)/2.1);
  saveTimer+=dt;if(saveTimer>2&&Math.abs(heroX-saveLastX)>32)save();
  const active=available(),gate=nearestGate(),done=campaignProgress();
- $("#examine").hidden=!active;
- let hint=active==="FINISH"?"🔎 Gözlemevinin kapısını aç":gate?"🔎 "+(gate.index+1)+"/21: "+gate.label+" · İNCELE tuşuna dokun":"Sağa ilerle. Küçük boşluklar, taşlar ve kütükler için ZIPLA ↑";
+ let hint=active==="FINISH"?"🔎 Gözlemevinin kapısını aç":gate?"🔎 "+(gate.index+1)+"/21: "+gate.label+" · büyütece dokun":"Sağa ilerle. Küçük boşluklar, taşlar ve kütükler için ZIPLA ↑";
  if(hitTimer>clock)hint=hitMessage;
  $("#hint").hidden=!(hitTimer>clock||active);$("#hint").textContent=hint;
  $("#progress").textContent=done+"/21 mühür açıldı · "+(done===21?"Gözlemevine ilerle":(GATES.find(g=>!SOLVED.has(g.id))?.label||"Yol açık"));

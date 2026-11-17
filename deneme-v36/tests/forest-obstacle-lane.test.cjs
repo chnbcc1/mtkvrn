@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(homeVersion,122);
+assert.equal(homeVersion,123);
 // The home artwork was updated independently; the forest scene remains v113.
 const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
@@ -275,7 +275,7 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v113-full.html?v=122"));
+assert(home.includes("forest-v113-full.html?v=123"));
 assert(map.includes("forest-v113-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
@@ -310,7 +310,7 @@ assert(forest.includes('id="settingsBtn"'),"HUD settings action present");
 assert(forest.includes("window.MTKPrefs?.update({sound:"),"Saved sound toggle");
 assert(forest.includes("window.MTKPrefs?.update({vibration:"),"Saved vibration toggle");
 assert(forest.includes('done+"/21 ENGEL"'),"HUD progress must be live, not artwork-only");
-assert(menuV116.includes("forest-v113-full.html?resume=1&v=122"),"Menu links to latest forest HUD");
+assert(menuV116.includes("forest-v113-full.html?resume=1&v=123"),"Menu links to latest forest HUD");
 console.log("PASS v117: Forest top HUD artwork, dynamic progress, working controls and responsive touch targets");
 
 // v118: landscape display must include the road and Erdem's feet (not just forest sky).
@@ -364,3 +364,17 @@ assert(forest.includes('hud-v122-landscape-art'),'v122 artwork CSS/markup missin
 assert(forest.includes('class="hud-v117-art" src="./assets/forest-hud-v117.avif?v=117"'),'Portrait original HUD must be kept');
 assert(!forest.includes('class="hud-v121-landscape-art"'),'Old low-detail vector should no longer be shown');
 console.log("PASS v122: Premium 2172x362 landscape AVIF, portrait unchanged, responsive controls and game physics preserved");
+
+// v123: redundant examine button gone; native magnifier keeps the only entry point.
+assert(!forest.includes('id="examine"'), 'Redundant fixed examine button must be removed');
+assert(!forest.includes('$("#examine")'), 'No event listener or update may target removed examine button');
+assert(forest.includes("canvas.addEventListener('pointerup',e=>{"), 'Magnifier tap must still use canvas hit testing');
+assert(forest.includes('if(Math.hypot(sx-px,sy-py)<64){e.preventDefault();interact()}'), 'Magnifier must trigger existing interact action');
+assert(forest.includes('gate.label+" · büyütece dokun"'), 'Hint must direct pupils to magnifier');
+assert(forest.includes('width:min(790px,calc(100vw - 30px),150dvh)'), 'Landscape HUD should use compact dimensions');
+assert(forest.includes('background:rgba(10,44,55,.36)'), 'Controls must be semi-transparent in both orientations');
+assert(forest.includes('width:clamp(54px,15vw,62px)'), 'Portrait controls must be modestly smaller');
+assert(forest.includes('width:clamp(68px,9.5vw,88px)'), 'Landscape controls must be modestly smaller');
+assert(forest.includes('width:clamp(118px,15.5vw,150px)'), 'Landscape jump button must be modestly smaller');
+assert(forest.includes('scale=vw>vh?vh/H:Math.max(vh/H,vw/1450)'), 'Keep the v118 camera that fits the road');
+console.log('PASS v123: magnifier-only inspection, compact landscape HUD, smaller glass controls in portrait and landscape');
