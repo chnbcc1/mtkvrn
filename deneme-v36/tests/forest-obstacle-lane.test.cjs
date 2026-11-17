@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(homeVersion,131);
+assert.equal(homeVersion,132);
 // The home artwork was updated independently; the forest scene remains v113.
 const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
@@ -276,7 +276,7 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v113-full.html?v=131"));
+assert(home.includes("forest-v113-full.html?v=132"));
 assert(map.includes("forest-v113-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
@@ -305,9 +305,9 @@ assert(forest.includes("function recordForestExit()"));
 
 // v130 — the LAST USER-APPROVED illustrated map is the real GitHub asset.
 const originalArt=fs.readFileSync(path.join(root,"assets/premium-map-approved-v130.avif"));
-const worldJS=fs.readFileSync(path.join(root,"assets/world-map-v131.js"),"utf8");
+const worldJS=fs.readFileSync(path.join(root,"assets/world-map-v132.js"),"utf8");
 const sharedJS=fs.readFileSync(path.join(root,"assets/game-ui-v131.js"),"utf8");
-const sharedCSS=fs.readFileSync(path.join(root,"assets/unified-ui-v131.css"),"utf8");
+const sharedCSS=fs.readFileSync(path.join(root,"assets/unified-ui-v132.css"),"utf8");
 const hudArt=fs.readFileSync(path.join(root,"assets/hud-shell-v129.svg"),"utf8");
 const menu=menuV116;
 new vm.Script(worldJS);new vm.Script(sharedJS);
@@ -331,7 +331,8 @@ assert(worldJS.includes('firstLocked.fogStart'),"Each future chapter defines a n
 assert(worldJS.includes('const legend=element("img","mtk-cinematic-legend-preserve")'),"Original bottom-right legend must remain visible under fog");
 assert(worldJS.includes('const b=element("button","mtk-cinematic-hotspot")'),"Map region links are invisible accessible hotspots over the approved signs");
 assert(sharedCSS.includes("mtk-cinematic-fog"),"Natural 3D atmospheric fog is mandatory");
-assert(sharedCSS.includes("backdrop-filter:blur(13px)"),"Natural mist must obscure unreached content");
+assert(sharedCSS.includes('.mtk-cinematic-fog{')&&sharedCSS.includes('border-radius:0!important'),"Fog must be an edge-less canvas, never an oval");
+assert(!sharedCSS.includes('ellipse 125% 106%')&&!sharedCSS.includes('border-radius:44% 0 0 29%'),"Reject the old pasted-on white egg");
 assert(sharedCSS.includes("mtk-cinematic-legend-preserve"),"Original explanation card must stay readable");
 assert(sharedCSS.includes(".mtk-cinematic-viewport")&&sharedCSS.includes("overflow-y:hidden!important"),"Map card fits without vertical scrolling");
 assert(sharedCSS.includes('@import url("./unified-ui-v129.css?v=129")'),"Existing game controls and story/question card behavior must remain");
@@ -339,13 +340,13 @@ assert(sharedJS.includes('window.MTKWorldMap.mount(body,'),"Map opens in-game ca
 assert(!sharedJS.includes('createElement("iframe")'),"Map uses no iframe");
 for(const chapter of [home,forest]){
  assert(chapter.includes('class="mtk-hud-shell"'),"Existing universal chapter HUD retained");
- assert(chapter.includes("hud-shell-v129.svg?v=131"),"Shared illustration must remain identical across chapters");
- assert(chapter.includes("assets/world-map-v131.js?v=131"),"Both chapters have the new adventure map logic");
- assert(chapter.includes("assets/game-ui-v131.js?v=131"),"Both chapters use the same card logic");
- assert(chapter.includes("assets/unified-ui-v131.css?v=131"),"All panels use v130 responsive card CSS");
+ assert(chapter.includes("hud-shell-v129.svg?v=132"),"Shared HUD illustration retained");
+ assert(chapter.includes("assets/world-map-v132.js?v=132"),"All chapters use volumetric fog map engine");
+ assert(chapter.includes("assets/game-ui-v131.js?v=132"),"Shared navigation and modal code retained");
+ assert(chapter.includes("assets/unified-ui-v132.css?v=132"),"All panels use unified responsive styles");
  assert(chapter.includes("window.MTKGameUI.openMap({"),"Map opens from inside game");
 }
-assert(menu.includes("world-map-v131.js?v=131"),"Title-screen chapter list shares the universal registry");
+assert(menu.includes("world-map-v132.js?v=132"),"Title-screen shares global fog registry");
 assert(menu.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"New Game resets all later expansions");
 assert(home.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"In-home reset clears expansion progress");
 assert(forest.includes('$("#progressFill")?.parentElement'),"Forest score update still present");
@@ -391,6 +392,13 @@ assert(stage("planet-two").unlocked,"Even fifth region unlocks with generic fog 
 memory.clear(); // New Game = reset canonical save stores.
 assert.deepEqual(Array.from(atlas.progress().discovered),["home"],"New Game returns visibility to the house only");
 assert(sharedJS.includes("if(from===region)"),"Card navigation is universal across every chapter");
-assert(sharedCSS.includes("radial-gradient(ellipse 125% 106%")&&sharedCSS.includes(".mtk-cinematic-wisp"),
-"Volumetric atmospheric mist replaces flat rectangles");
-console.log("PASS v131: natural fog and unlocking generalize to all future chapters");
+assert(worldJS.includes('const fog=element("canvas","mtk-cinematic-fog")'),"Fog must be a canvas texture, not a CSS oval card");
+assert(worldJS.includes('paintNaturalMist(fog,revealEdge)'),"Every locked region uses the same procedural painter");
+assert(atlas.mistOpacityAt(.2,.47,31.5)===0,"Dedenin Evi must remain sharp and clear");
+assert(atlas.mistOpacityAt(.37,.62,31.5)>.995,"Locked stage 2 number must be completely invisible");
+assert(atlas.mistOpacityAt(.85,.50,65)>.995,"Locked observatory name and number must be hidden");
+assert(atlas.mistOpacityAt(.74,.10,31.5)===0,"Title and sky must not be covered by fog");
+assert(atlas.mistOpacityAt(.46,.40,65)<.01,"Previously unlocked forest remains in view");
+assert(atlas.mistOpacityAt(.99,.7,91)>.995,"New chapters use the same concealment");
+assert(sharedCSS.includes("mtk-cinematic-legend-preserve"),"Original explanation legend stays visible");
+console.log("PASS v132: layered natural fog, no white ellipse, hidden locked labels and universal progression");
