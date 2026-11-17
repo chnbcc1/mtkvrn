@@ -14,7 +14,7 @@ const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
 const forest=fs.readFileSync(path.join(root,"forest-v"+version+"-full.html"),"utf8");
 const map=fs.readFileSync(path.join(root,"map-v"+version+".html"),"utf8");
-const sharedUIJS=fs.readFileSync(path.join(root,"assets/game-ui-v130.js"),"utf8");
+const sharedUIJS=fs.readFileSync(path.join(root,"assets/game-ui-v131.js"),"utf8");
 const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v98.js"),"utf8");
 new vm.Script(artwork);
 const mushroomLoader=fs.readFileSync(path.join(root,"forest-mushroom-art-v102.js"),"utf8");
@@ -305,9 +305,9 @@ assert(forest.includes("function recordForestExit()"));
 
 // v130 — the LAST USER-APPROVED illustrated map is the real GitHub asset.
 const originalArt=fs.readFileSync(path.join(root,"assets/premium-map-approved-v130.avif"));
-const worldJS=fs.readFileSync(path.join(root,"assets/world-map-v130.js"),"utf8");
-const sharedJS=fs.readFileSync(path.join(root,"assets/game-ui-v130.js"),"utf8");
-const sharedCSS=fs.readFileSync(path.join(root,"assets/unified-ui-v130.css"),"utf8");
+const worldJS=fs.readFileSync(path.join(root,"assets/world-map-v131.js"),"utf8");
+const sharedJS=fs.readFileSync(path.join(root,"assets/game-ui-v131.js"),"utf8");
+const sharedCSS=fs.readFileSync(path.join(root,"assets/unified-ui-v131.css"),"utf8");
 const hudArt=fs.readFileSync(path.join(root,"assets/hud-shell-v129.svg"),"utf8");
 const menu=menuV116;
 new vm.Script(worldJS);new vm.Script(sharedJS);
@@ -325,11 +325,13 @@ assert(!worldJS.includes("Profesörün ipuçları")&&!worldJS.includes("21 matem
 assert(worldJS.includes("const W=1671,H=941"),"Interactive coordinates use source artwork geometry");
 assert(worldJS.includes("const chapters=[")&&worldJS.includes('id:"observatory"'),"Only the three main named regions are initial map chapters");
 assert(!worldJS.includes('id:"gate"')&&!worldJS.includes('id:"inside"'),"Observatory is ONE map region, not multiple chapters");
-assert(worldJS.includes('const revealEdge=firstLocked===1?35.7:firstLocked===2?65'),"Fog reveal follows progress boundaries");
+assert(worldJS.includes('const firstLocked=state.chapters.find(c=>!c.unlocked)'),"One general fog rule follows the first locked region");
+assert(!worldJS.includes('firstLocked===1')&&!worldJS.includes('firstLocked===2'),"Fog must never depend on chapter index");
+assert(worldJS.includes('firstLocked.fogStart'),"Each future chapter defines a natural reveal boundary");
 assert(worldJS.includes('const legend=element("img","mtk-cinematic-legend-preserve")'),"Original bottom-right legend must remain visible under fog");
 assert(worldJS.includes('const b=element("button","mtk-cinematic-hotspot")'),"Map region links are invisible accessible hotspots over the approved signs");
 assert(sharedCSS.includes("mtk-cinematic-fog"),"Natural 3D atmospheric fog is mandatory");
-assert(sharedCSS.includes("backdrop-filter:blur(19px)"),"Fog must obscure unvisited text and paths");
+assert(sharedCSS.includes("backdrop-filter:blur(13px)"),"Natural mist must obscure unreached content");
 assert(sharedCSS.includes("mtk-cinematic-legend-preserve"),"Original explanation card must stay readable");
 assert(sharedCSS.includes(".mtk-cinematic-viewport")&&sharedCSS.includes("overflow-y:hidden!important"),"Map card fits without vertical scrolling");
 assert(sharedCSS.includes('@import url("./unified-ui-v129.css?v=129")'),"Existing game controls and story/question card behavior must remain");
@@ -338,9 +340,9 @@ assert(!sharedJS.includes('createElement("iframe")'),"Map uses no iframe");
 for(const chapter of [home,forest]){
  assert(chapter.includes('class="mtk-hud-shell"'),"Existing universal chapter HUD retained");
  assert(chapter.includes("hud-shell-v129.svg?v=130"),"Common HUD artwork file must be preserved (v130 cache refresh only)");
- assert(chapter.includes("assets/world-map-v130.js?v=130"),"Both chapters have the new adventure map logic");
- assert(chapter.includes("assets/game-ui-v130.js?v=130"),"Both chapters use the same card logic");
- assert(chapter.includes("assets/unified-ui-v130.css?v=130"),"All panels use v130 responsive card CSS");
+ assert(chapter.includes("assets/world-map-v131.js?v=131"),"Both chapters have the new adventure map logic");
+ assert(chapter.includes("assets/game-ui-v131.js?v=131"),"Both chapters use the same card logic");
+ assert(chapter.includes("assets/unified-ui-v131.css?v=131"),"All panels use v130 responsive card CSS");
  assert(chapter.includes("window.MTKGameUI.openMap({"),"Map opens from inside game");
 }
 assert(menu.includes("world-map-v130.js?v=130"),"Title-screen chapter list shares current registry");
@@ -376,6 +378,19 @@ assert.deepEqual(Array.from(atlas.progress().discovered),["home","forest","obser
 assert(atlas.registerChapter({id:"future-planet",name:"Yeni Bölge",x:1600,y:850,after:"observatory"}),
  "Future chapters can be registered without redesigning the unlock mechanism");
 assert(!stage("future-planet").unlocked,"Future chapter stays in the mist until its predecessor is completed");
+// Future observatory and all later chapters are governed by the SAME rules.
+assert(!atlas.markChapterCompleted("observatory"),"Unimplemented chapter cannot be completed");
+assert(atlas.configureChapter("observatory",{playable:true,route:"./observatory.html"}),"Future chapter implementation activates its map node");
+assert(atlas.markChapterCompleted("observatory"),"Completing observatory unlocks its successor");
+assert(stage("future-planet").unlocked,"New stage opens without a new fog implementation");
+assert(atlas.registerChapter({id:"planet-two",name:"Yeni Macera",x:1650,y:870,after:"future-planet",fogStart:91,playable:true,route:"./planet-two.html"}),"A later chapter can be registered");
+assert(!stage("planet-two").unlocked,"Another chapter must remain fogged before its predecessor is done");
+assert(atlas.configureChapter("future-planet",{playable:true,route:"./planet-one.html"}),"A new chapter can be activated");
+assert(atlas.markChapterCompleted("future-planet"),"New chapter completion is persisted");
+assert(stage("planet-two").unlocked,"Even fifth region unlocks with generic fog rule");
 memory.clear(); // New Game = reset canonical save stores.
 assert.deepEqual(Array.from(atlas.progress().discovered),["home"],"New Game returns visibility to the house only");
-console.log("PASS v130: approved original art, fog unlock progression, 3 true chapters, in-game map and existing controls");
+assert(sharedJS.includes("if(from===region)"),"Card navigation is universal across every chapter");
+assert(sharedCSS.includes("radial-gradient(ellipse 125% 106%")&&sharedCSS.includes(".mtk-cinematic-wisp"),
+"Volumetric atmospheric mist replaces flat rectangles");
+console.log("PASS v131: natural fog and unlocking generalize to all future chapters");
