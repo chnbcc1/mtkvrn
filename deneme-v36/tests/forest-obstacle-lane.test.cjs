@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(homeVersion,119);
+assert.equal(homeVersion,120);
 // The home artwork was updated independently; the forest scene remains v113.
 const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
@@ -275,7 +275,7 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v113-full.html?v=119"));
+assert(home.includes("forest-v113-full.html?v=120"));
 assert(map.includes("forest-v113-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
@@ -310,7 +310,7 @@ assert(forest.includes('id="settingsBtn"'),"HUD settings action present");
 assert(forest.includes("window.MTKPrefs?.update({sound:"),"Saved sound toggle");
 assert(forest.includes("window.MTKPrefs?.update({vibration:"),"Saved vibration toggle");
 assert(forest.includes('done+"/21 ENGEL"'),"HUD progress must be live, not artwork-only");
-assert(menuV116.includes("forest-v113-full.html?resume=1&v=119"),"Menu links to latest forest HUD");
+assert(menuV116.includes("forest-v113-full.html?resume=1&v=120"),"Menu links to latest forest HUD");
 console.log("PASS v117: Forest top HUD artwork, dynamic progress, working controls and responsive touch targets");
 
 // v118: landscape display must include the road and Erdem's feet (not just forest sky).
@@ -339,3 +339,14 @@ const quizV119=fs.readFileSync(path.join(root,'forest-v70-quiz.html'),'utf8');
 assert(quizV119.includes('grid-template-columns:repeat(2,minmax(0,1fr))'), 'Landscape answers must display in two columns');
 assert(quizV119.includes('-webkit-overflow-scrolling:touch'), 'Landscape quiz scrolling must be enabled');
 console.log('PASS v119: sharp HUD icons, compact hints, scrollable two-column landscape quiz');
+
+// v120: original illustrated HUD must never be squashed in landscape mode.
+assert(forest.includes('object-fit:contain;user-select:none;pointer-events:none;'), 'Portrait source image must retain its natural aspect ratio');
+assert(forest.includes('class="hud-v120-artparts"'), 'Segmented landscape HUD missing');
+for(const crop of ['viewBox="0 80 615 276"','viewBox="490 0 590 177"','viewBox="1020 90 516 267"'])assert(forest.includes(crop),'Missing natural-aspect artwork crop: '+crop);
+assert(forest.includes('preserveAspectRatio="xMidYMid meet"'), 'Source artwork must preserve the aspect ratio');
+assert(forest.includes('width:clamp(80px,10.8vw,110px);min-width:80px;'), 'Landscape movement controls remain too small');
+assert(forest.includes('width:clamp(135px,18vw,180px);'), 'Landscape jump control remains too small');
+assert(forest.includes('height:86px;min-width:138px;width:clamp(138px,18vw,164px)'), 'Short landscape phone jump button must remain large');
+assert(forest.includes('scale=vw>vh?vh/H:Math.max(vh/H,vw/1450)'), 'Do not regress landscape ground/hero camera');
+console.log('PASS v120: Natural-aspect three-part illustrated HUD, enlarged landscape movement/jump buttons, unchanged camera and obstacle physics');

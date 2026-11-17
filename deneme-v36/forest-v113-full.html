@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#0b2732">
-<title>v119 · Orman Patikası · Matematik Evreni</title>
+<title>v120 · Orman Patikası · Matematik Evreni</title>
 <style>
 :root{--cream:#ffedcb;--gold:#f4cd77;--dark:#092536;--ink:#4b321f}
 *{box-sizing:border-box}
@@ -153,7 +153,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 }
 .hud-v117 .hud-v117-art{
  position:absolute;inset:0;display:block;width:100%;height:100%;
- object-fit:fill;user-select:none;pointer-events:none;
+ object-fit:contain;user-select:none;pointer-events:none;
  filter:drop-shadow(0 5px 6px #071715b3)
 }
 .hud.hud-v75.hud-v117 .hudChapter{
@@ -250,12 +250,105 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
  .hud.hud-v75.hud-v117 .hudChapter small{font-size:9px}
 }
 
+
+/* v120 — preserves the 1536 × 425 illustration instead of stretching it
+   to a 10:1 phone banner. SVG viewBoxes crop the existing source at its
+   native aspect ratio; no icons, text or leaves are squeezed. */
+.hud-v120-artparts{display:none}
+@media (orientation:landscape){
+ .hud.hud-v75.hud-v117{
+  box-sizing:border-box;top:calc(env(safe-area-inset-top) + 2px);
+  left:50%;right:auto;transform:translateX(-50%);
+  width:min(1160px,calc(100vw - 18px - env(safe-area-inset-left) - env(safe-area-inset-right)));
+  height:clamp(92px,23vh,136px);max-height:none;min-height:0;
+  padding:0;margin:0;overflow:visible;
+  background:linear-gradient(180deg,#84532f 0%,#744222 54%,#62351c 100%);
+  border:2px solid #bb894d;border-radius:18px;
+  box-shadow:inset 0 1px #ecc7897a,0 5px 12px #0623249c;
+  backdrop-filter:none;-webkit-backdrop-filter:none
+ }
+ .hud.hud-v75.hud-v117 .hud-v117-art{display:none}
+ .hud-v120-artparts{
+  position:absolute;inset:0;display:grid;align-items:center;
+  grid-template-columns:32% 36% 32%;
+  width:100%;height:100%;pointer-events:none
+ }
+ .hud-v120-artparts svg{
+  width:100%;height:100%;display:block;overflow:hidden;
+  pointer-events:none;user-select:none
+ }
+ .hud-v120-artparts .hud-v120-title{height:64%;align-self:start}
+ .hud.hud-v75.hud-v117 .hudChapter{
+  top:76%;left:50%;transform:translate(-50%,-50%);
+  height:32%;width:25%;max-width:none;
+  padding:1px 3px;border:2px solid #edbf73;
+  background:linear-gradient(180deg,#1a7773,#07465a);
+  border-radius:999px
+ }
+ .hud.hud-v75.hud-v117 .hudChapter small{
+  color:#fff9e8;white-space:nowrap;font:900 clamp(12px,1.7vw,20px)/1.1 system-ui,sans-serif
+ }
+ .hud.hud-v75.hud-v117 .trackShell{display:none}
+ .hud.hud-v75.hud-v117 .iconBtn{
+  top:14%;height:69%;width:8.5%;min-height:0;
+  border:0;background:transparent;border-radius:10px;
+  filter:none;backdrop-filter:none;-webkit-backdrop-filter:none;
+  touch-action:manipulation;pointer-events:auto
+ }
+ .hud.hud-v75.hud-v117 #mtkTitleBtn{left:0.7%;top:13%;width:7.7%;height:77%}
+ .hud.hud-v75.hud-v117 #journal{left:69.4%}
+ .hud.hud-v75.hud-v117 #home{left:79.2%}
+ .hud.hud-v75.hud-v117 #settingsBtn{left:89.0%}
+ .controls{
+  left:max(16px,env(safe-area-inset-left));
+  right:max(16px,env(safe-area-inset-right));
+  bottom:max(9px,env(safe-area-inset-bottom));
+ }
+ .controls .moves{gap:clamp(12px,2vw,20px)}
+ .controls .moves .ctrl{
+  box-sizing:border-box;
+  width:clamp(80px,10.8vw,110px);min-width:80px;
+  height:clamp(80px,22vh,108px);
+  border-radius:clamp(20px,2.5vw,27px);
+  font-size:clamp(25px,3.1vw,34px)
+ }
+ .controls #jump{
+  box-sizing:border-box;min-width:135px;max-width:none;
+  width:clamp(135px,18vw,180px);
+  height:clamp(80px,22vh,108px);
+  border-radius:clamp(20px,2.5vw,27px);
+  padding:0 11px;font-size:clamp(17px,2.2vw,23px);
+  font-weight:850
+ }
+ .controls #examine{
+  min-width:105px;width:clamp(105px,13vw,130px);
+  max-width:130px;height:clamp(72px,20vh,98px);
+  font-size:clamp(13px,1.7vw,16px)
+ }
+}
+@media (orientation:landscape) and (max-height:450px){
+ .hud.hud-v75.hud-v117{height:92px}
+ .controls .moves .ctrl{width:86px;min-width:86px;height:86px}
+ .controls #jump{height:86px;min-width:138px;width:clamp(138px,18vw,164px)}
+ .controls #examine{height:82px}
+}
 </style>
 <script src="./settings-v116.js?v=116"></script></head>
 <body>
 <canvas id="scene" aria-label="Erdem ve Çiko ile oynanabilir orman patikası"></canvas><div class="tint"></div>
 <div class="hud hud-v75 hud-v117" aria-label="Orman Patikası ilerleme ve oyun menüsü">
  <img class="hud-v117-art" src="./assets/forest-hud-v117.avif?v=117" alt="" aria-hidden="true" draggable="false">
+ <div class="hud-v120-artparts" aria-hidden="true">
+  <svg class="hud-v120-left" viewBox="0 80 615 276" preserveAspectRatio="xMidYMid meet" focusable="false">
+   <image href="./assets/forest-hud-v117.avif?v=117" width="1536" height="425"/>
+  </svg>
+  <svg class="hud-v120-title" viewBox="490 0 590 177" preserveAspectRatio="xMidYMid meet" focusable="false">
+   <image href="./assets/forest-hud-v117.avif?v=117" width="1536" height="425"/>
+  </svg>
+  <svg class="hud-v120-right" viewBox="1020 90 516 267" preserveAspectRatio="xMidYMid meet" focusable="false">
+   <image href="./assets/forest-hud-v117.avif?v=117" width="1536" height="425"/>
+  </svg>
+ </div>
  <div class="hudChapter"><b>🌲 ORMAN PATİKASI</b><small id="progress" aria-live="polite">0/21 ENGEL</small></div>
  <div class="trackShell" role="progressbar" aria-label="Tamamlanan matematik engelleri" aria-valuemin="0" aria-valuemax="21" aria-valuenow="0"><span id="progressFill"></span></div>
  <div class="hudRight">
@@ -381,7 +474,7 @@ function recordForestExit(){
   localStorage.setItem(SAVE_KEY,JSON.stringify(state));
  }catch(e){}
 }
-$('#mtkTitleBtn').onclick=()=>{recordForestExit();location.assign('./menu-v116.html?v=119')};
+$('#mtkTitleBtn').onclick=()=>{recordForestExit();location.assign('./menu-v116.html?v=120')};
 
 /* v117 forest settings; share the same saved preferences as the title screen. */
 function openForestSettings(){
