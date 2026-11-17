@@ -280,7 +280,7 @@ assert(home.includes("forest-v113-full.html?v=127"));
 assert(map.includes("forest-v113-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
-assert(forest.includes("map-v113.html?from=forest"),"Map route must follow v113");
+assert(forest.includes("window.MTKGameUI.openMap({") && forest.includes("from:\'forest\'"),"Forest map should open as an in-game card");
 assert(!forest.includes('ctx.createRadialGradient(sx,sy'),"Dark shadow gradient remains");
 assert(!forest.includes("ctx.ellipse(sx,sy"),"Dark oval or loading oval remains");
 console.log("PASS v115: new premium 2170x724 AVIF atlas, v95 geometry with 80% scale and 120:205 preserved at 192% lane-height (80% of v95), centered, 63 jumpable hazards, unchanged Erdem animation.");
