@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(homeVersion,123);
+assert.equal(homeVersion,124);
 // The home artwork was updated independently; the forest scene remains v113.
 const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
@@ -275,7 +275,7 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v113-full.html?v=123"));
+assert(home.includes("forest-v113-full.html?v=124"));
 assert(map.includes("forest-v113-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
@@ -310,7 +310,7 @@ assert(forest.includes('id="settingsBtn"'),"HUD settings action present");
 assert(forest.includes("window.MTKPrefs?.update({sound:"),"Saved sound toggle");
 assert(forest.includes("window.MTKPrefs?.update({vibration:"),"Saved vibration toggle");
 assert(forest.includes('done+"/21 ENGEL"'),"HUD progress must be live, not artwork-only");
-assert(menuV116.includes("forest-v113-full.html?resume=1&v=123"),"Menu links to latest forest HUD");
+assert(menuV116.includes("forest-v113-full.html?resume=1&v=124"),"Menu links to latest forest HUD");
 console.log("PASS v117: Forest top HUD artwork, dynamic progress, working controls and responsive touch targets");
 
 // v118: landscape display must include the road and Erdem's feet (not just forest sky).
@@ -378,3 +378,21 @@ assert(forest.includes('width:clamp(68px,9.5vw,88px)'), 'Landscape controls must
 assert(forest.includes('width:clamp(118px,15.5vw,150px)'), 'Landscape jump button must be modestly smaller');
 assert(forest.includes('scale=vw>vh?vh/H:Math.max(vh/H,vw/1450)'), 'Keep the v118 camera that fits the road');
 console.log('PASS v123: magnifier-only inspection, compact landscape HUD, smaller glass controls in portrait and landscape');
+
+// v124: settings, notes and map must fit viewport without vertical scroll.
+assert(forest.includes("$('#modal').dataset.panel=eyebrow==='AYARLAR'?'settings':title===\"Erdem'in yol notları\"?'notes':''"),'Modal panel should tag settings/notes only');
+assert(forest.includes('grid-template-rows:auto minmax(0,1fr) auto'), 'No-scroll responsive panel grid missing');
+assert(forest.includes('#modal[data-panel="settings"] .paper,#modal[data-panel="notes"] .paper'), 'Separate premium panel styles missing');
+assert(forest.includes('height:min(500px,calc(100dvh - 18px'), 'Modal height must fit dynamic viewport');
+assert(forest.includes('overflow:hidden;'), 'Modal contents must not scroll');
+assert(forest.includes('İlerleme otomatik kaydedilir') || forest.includes('İlerleme otomatik kaydedilir'), 'Information label missing');
+assert(forest.includes('Matematik Evreni · v124'), 'Settings still displays old release');
+assert(forest.includes('class="notesProgress"'), 'Premium notes progress card missing');
+assert(map.includes('class="mapShell"') && map.includes('class="mapStage"') && map.includes('class="mapFooter"'), 'Premium map layout must have header/stage/footer');
+assert(map.includes('height:100dvh;min-height:0;') && map.includes('overflow-x:auto;overflow-y:hidden;touch-action:pan-x'), 'Map page must block vertical scrolling but retain horizontal panning');
+assert(map.includes('grid-template-areas:"head head" "map foot"'), 'Landscape map needs side-by-side mission panel');
+assert(map.includes('grid-template-areas:"progress" "go" "legend"'), 'Portrait map footer must fit without scrolling');
+assert(map.includes('map-pin forest') && map.includes('centerMap()'), 'Interactive map pins and centering must be preserved');
+assert(forest.includes('background:rgba(10,44,55,.36)'), 'v123 glass movement controls must be preserved');
+assert(forest.includes('if(Math.hypot(sx-px,sy-py)<64){e.preventDefault();interact()}'), 'In-world magnifier interaction must remain');
+console.log('PASS v124: premium viewport-fitted settings/notes/map, horizontal map panning, saved progress and controls preserved');

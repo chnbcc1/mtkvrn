@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#0b2732">
-<title>v123 · Orman Patikası · Matematik Evreni</title>
+<title>v124 · Orman Patikası · Matematik Evreni</title>
 <style>
 :root{--cream:#ffedcb;--gold:#f4cd77;--dark:#092536;--ink:#4b321f}
 *{box-sizing:border-box}
@@ -355,6 +355,139 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
  .controls .moves .ctrl{width:74px;min-width:74px;height:74px}
  .controls #jump{min-width:122px;width:clamp(122px,15.5vw,136px);height:74px}
 }
+
+/* v124 · premium, fully viewport-fitted game sheets: only Settings and Notes.
+   Gameplay quizzes and story panels retain their normal scrolling behavior. */
+#modal[data-panel="settings"],#modal[data-panel="notes"]{
+ padding:max(7px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right))
+         max(7px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left));
+ background:radial-gradient(ellipse at 50% 40%,rgba(24,71,60,.61),rgba(3,17,21,.86) 78%);
+ backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}
+#modal[data-panel="settings"] .paper,#modal[data-panel="notes"] .paper{
+ position:relative;
+ box-sizing:border-box;width:min(800px,100%);
+ height:min(500px,calc(100dvh - 18px - env(safe-area-inset-top) - env(safe-area-inset-bottom)));
+ max-height:none;min-height:0;display:grid;
+ grid-template-rows:auto minmax(0,1fr) auto;
+ margin:0;padding:0;overflow:hidden;
+ background:radial-gradient(ellipse at 15% 15%,#fff6d6 0,#f3dfac 48%,#d6ae70 100%);
+ border:4px ridge #a56a2d;outline:2px solid #4a2b14;
+ border-radius:clamp(14px,2vw,26px);
+ box-shadow:inset 0 0 0 3px #f8e8b4,inset 0 0 34px #a568374d,0 16px 60px #04100bc2;
+ color:#472b17;
+}
+#modal[data-panel="settings"] .panel-head,#modal[data-panel="notes"] .panel-head{
+ position:relative;min-height:0;padding:clamp(9px,2vh,15px) clamp(14px,3vw,26px);
+ color:#fff0c7;
+ background:
+  repeating-linear-gradient(100deg,transparent 0 14px,#32170524 15px 16px,transparent 17px 26px),
+  linear-gradient(165deg,#8d542b 0%,#623217 52%,#40200f 100%);
+ border-bottom:3px solid #d4a452;box-shadow:inset 0 2px #ffe3a045;
+}
+#modal[data-panel="settings"] .panel-head::after,
+#modal[data-panel="notes"] .panel-head::after{
+ content:"⚙";position:absolute;right:clamp(14px,4vw,28px);top:50%;transform:translateY(-50%);
+ width:clamp(37px,7vh,53px);height:clamp(37px,7vh,53px);border-radius:50%;
+ display:grid;place-items:center;color:#f8dc90;background:radial-gradient(circle,#8b4b24,#452411);
+ border:2px solid #d4a252;box-shadow:0 2px 7px #100a0a88;
+ font-size:clamp(23px,4vh,32px);
+}
+#modal[data-panel="notes"] .panel-head::after{content:"📜"}
+#modal[data-panel="settings"] .eyebrow,#modal[data-panel="notes"] .eyebrow{
+ display:block;color:#eaca8c;font:900 clamp(9px,1.5vh,12px)/1.1 system-ui,sans-serif;
+ letter-spacing:2px;margin:0 0 4px;
+}
+#modal[data-panel="settings"] .paper h2,#modal[data-panel="notes"] .paper h2{
+ margin:0;padding-right:60px;color:#fff0c9;text-shadow:0 2px 4px #240d08;
+ font:900 clamp(23px,4.2vh,37px)/1.04 Georgia,serif;
+}
+#modal[data-panel="settings"] #modalContent,#modal[data-panel="notes"] #modalContent{
+ box-sizing:border-box;min-width:0;min-height:0;padding:clamp(9px,2.1vh,17px) clamp(15px,3vw,28px);
+ display:flex;flex-direction:column;justify-content:center;gap:clamp(6px,1.5vh,10px);
+ overflow:hidden;
+}
+#modal[data-panel="settings"] .forestSettings{
+ display:grid;grid-template-columns:1fr;gap:clamp(7px,1.3vh,12px);min-height:0
+}
+#modal[data-panel="settings"] .forestSettings label{
+ display:flex;align-items:center;min-width:0;gap:clamp(8px,2vw,16px);
+ padding:clamp(7px,1.4vh,13px) clamp(11px,2vw,18px);
+ min-height:clamp(52px,10dvh,78px);margin:0;
+ border-radius:15px;border:1.5px solid #bf9555;background:linear-gradient(120deg,#fff8df,#e8cd98);
+ box-shadow:inset 0 1px #fff9dd,0 3px 8px #724a2424;color:#493019
+}
+#modal[data-panel="settings"] .settingIcon{flex:0 0 auto;font-size:clamp(20px,3vh,28px)}
+#modal[data-panel="settings"] .settingLabel{min-width:0;flex:1;display:grid;gap:2px}
+#modal[data-panel="settings"] .settingLabel strong{font:900 clamp(15px,2.5vh,19px)/1.1 system-ui,sans-serif}
+#modal[data-panel="settings"] .settingLabel small{font-size:clamp(10px,1.55vh,12px);font-weight:600;color:#87633c;line-height:1.25}
+#modal[data-panel="settings"] .forestSettings input{
+ appearance:none;-webkit-appearance:none;position:relative;flex:0 0 auto;
+ width:clamp(43px,7vh,52px);height:clamp(25px,4vh,31px);
+ margin:0;border:2px solid #a58a61;border-radius:99px;background:#c1b9a7;
+ cursor:pointer;transition:background .15s ease;accent-color:auto
+}
+#modal[data-panel="settings"] .forestSettings input::before{
+ content:"";position:absolute;top:2px;left:2px;width:calc(100% / 2 - 3px);
+ height:calc(100% - 8px);border-radius:50%;background:#fff8dd;
+ box-shadow:0 1px 4px #0005;transition:transform .15s ease
+}
+#modal[data-panel="settings"] .forestSettings input:checked{background:#277c68;border-color:#1a604f}
+#modal[data-panel="settings"] .forestSettings input:checked::before{transform:translateX(calc(100% - 2px))}
+#modal[data-panel="settings"] .forestSettings input:focus-visible{outline:3px solid #0d7662;outline-offset:3px}
+#modal[data-panel="settings"] .footerNote{
+ margin:0;color:#745232;font:700 clamp(10px,1.55vh,13px)/1.3 system-ui,sans-serif;
+ text-align:center
+}
+#modal[data-panel="notes"] .notesProgress{
+ display:flex;align-items:center;gap:12px;padding:clamp(9px,2vh,16px);
+ border:2px solid #aa8548;border-radius:16px;
+ background:linear-gradient(120deg,#174f48,#237566);color:#fff2c5;
+ box-shadow:inset 0 2px #ffffff2b
+}
+#modal[data-panel="notes"] .notesSeal{font-size:clamp(24px,4vh,35px)}
+#modal[data-panel="notes"] .notesProgress div{display:grid;gap:2px}
+#modal[data-panel="notes"] .notesProgress strong{font-size:clamp(15px,2.8vh,21px);line-height:1.1}
+#modal[data-panel="notes"] .notesProgress small{font-size:clamp(10px,1.6vh,13px);color:#e4e9c2}
+#modal[data-panel="notes"] .noteAdvice{
+ border-left:4px solid #b48b4d;border-radius:7px;padding:4px 10px;
+ background:#fff5d88c;margin:0;color:#51341e;
+ font:650 clamp(11px,1.9vh,15px)/1.38 system-ui,sans-serif
+}
+#modal[data-panel="settings"] #modalActions,#modal[data-panel="notes"] #modalActions{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:clamp(7px,1.4vw,12px);min-height:0;margin:0;
+ padding:clamp(7px,1.5vh,12px) clamp(15px,3vw,28px) clamp(10px,2vh,17px);
+ background:linear-gradient(180deg,#e3bf80,#d2a66c);
+ border-top:2px solid #c29958
+}
+#modal[data-panel="settings"] #modalActions button,#modal[data-panel="notes"] #modalActions button{
+ width:100%;min-width:0;min-height:clamp(40px,7.5vh,52px);
+ padding:6px;border-radius:12px;font-size:clamp(12px,2vh,16px);
+ text-align:center;white-space:normal;
+}
+#modal[data-panel="settings"] #modalActions .primary,#modal[data-panel="notes"] #modalActions .primary{
+ background:linear-gradient(180deg,#277c69,#174c43);border:2px solid #7aaf90;
+ box-shadow:0 2px #0a3d35;color:#fff7db
+}
+#modal[data-panel="settings"] #modalActions .secondary,#modal[data-panel="notes"] #modalActions .secondary{
+ background:linear-gradient(180deg,#fff8dc,#dec28e);border:2px solid #a88149;
+ color:#57371d
+}
+#modal[data-panel="settings"] #feedback,#modal[data-panel="notes"] #feedback{display:none}
+@media (orientation:landscape) and (max-height:480px){
+ #modal[data-panel="settings"] .paper,#modal[data-panel="notes"] .paper{height:calc(100dvh - 12px - env(safe-area-inset-top) - env(safe-area-inset-bottom))}
+ #modal[data-panel="settings"] .panel-head,#modal[data-panel="notes"] .panel-head{padding:6px 18px}
+ #modal[data-panel="settings"] .paper h2,#modal[data-panel="notes"] .paper h2{font-size:clamp(21px,6vh,28px)}
+ #modal[data-panel="settings"] #modalContent,#modal[data-panel="notes"] #modalContent{padding:6px 18px;gap:5px}
+ #modal[data-panel="settings"] .forestSettings{gap:6px}
+ #modal[data-panel="settings"] .forestSettings label{min-height:46px;padding:5px 10px}
+ #modal[data-panel="notes"] .notesProgress{padding:6px 12px}
+ #modal[data-panel="notes"] .noteAdvice{font-size:clamp(10px,3vh,12px);line-height:1.3;padding:2px 8px}
+ #modal[data-panel="settings"] #modalActions,#modal[data-panel="notes"] #modalActions{padding:5px 18px 7px}
+ #modal[data-panel="settings"] #modalActions button,#modal[data-panel="notes"] #modalActions button{min-height:35px}
+}
+
 </style>
 <script src="./settings-v116.js?v=116"></script></head>
 <body>
@@ -378,8 +511,8 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 </div>
 <section class="screen" id="modal" hidden aria-modal="true" role="dialog">
  <div class="paper">
-  <span class="eyebrow" id="eyebrow">MACERA</span>
-  <h2 id="modalTitle">Orman Patikası</h2>
+  <div class="panel-head"><span class="eyebrow" id="eyebrow">MACERA</span>
+  <h2 id="modalTitle">Orman Patikası</h2></div>
   <div id="modalContent"></div>
   <div class="actions" id="modalActions"></div>
   <div class="feedback" id="feedback" aria-live="polite"></div>
@@ -470,7 +603,13 @@ function save(force=false){
 // Portrait retains its original look; all world/collision dimensions stay unchanged.
 function resize(){vw=innerWidth;vh=innerHeight;dpr=Math.min(devicePixelRatio||1,3);scale=vw>vh?vh/H:Math.max(vh/H,vw/1450);canvas.width=Math.round(vw*dpr);canvas.height=Math.round(vh*dpr);canvas.style.width=vw+'px';canvas.style.height=vh+'px';camReady=false}
 addEventListener('resize',resize);addEventListener('orientationchange',()=>requestAnimationFrame(resize));if(window.visualViewport)window.visualViewport.addEventListener('resize',resize);resize();
-function openModal(title,content,eyebrow='BÖLÜM 2'){modalOpen=true;requested=0;activePointers.clear();updatePress();$('#modalTitle').textContent=title;$('#modalContent').innerHTML=content;$('#eyebrow').textContent=eyebrow;$('#modalActions').replaceChildren();$('#feedback').textContent='';$('#modal').hidden=false}
+function openModal(title,content,eyebrow='BÖLÜM 2'){
+ modalOpen=true;requested=0;activePointers.clear();updatePress();
+ $('#modal').dataset.panel=eyebrow==='AYARLAR'?'settings':title==="Erdem'in yol notları"?'notes':'';
+ $('#modalTitle').textContent=title;$('#modalContent').innerHTML=content;
+ $('#eyebrow').textContent=eyebrow;$('#modalActions').replaceChildren();
+ $('#feedback').textContent='';$('#modal').hidden=false
+}
 function closeModal(){modalOpen=false;$('#modal').hidden=true;$('#modalActions').replaceChildren();$('#feedback').textContent='';last=0}
 function action(label,fn,variant='primary'){const b=document.createElement('button');b.type='button';b.className=variant;b.textContent=label;b.onclick=fn;$('#modalActions').appendChild(b);return b}
 function story(){
@@ -487,21 +626,21 @@ function recordForestExit(){
   localStorage.setItem(SAVE_KEY,JSON.stringify(state));
  }catch(e){}
 }
-$('#mtkTitleBtn').onclick=()=>{recordForestExit();location.assign('./menu-v116.html?v=123')};
+$('#mtkTitleBtn').onclick=()=>{recordForestExit();location.assign('./menu-v116.html?v=124')};
 
 /* v117 forest settings; share the same saved preferences as the title screen. */
 function openForestSettings(){
  const p=window.MTKPrefs?window.MTKPrefs.load():{sound:true,vibration:true};
  openModal('Oyun Ayarları',
   '<div class="forestSettings">'+
-  '<label for="forestSound">🔊 Ses efektleri <input id="forestSound" type="checkbox" '+(p.sound?'checked':'')+'></label>'+
-  '<label for="forestVibration">📳 Titreşim <input id="forestVibration" type="checkbox" '+(p.vibration?'checked':'')+'></label>'+
-  '</div><p class="footerNote">Matematik Evreni – Profesörün Kayıp İzleri · v117<br>İlerlemen otomatik kaydedilir.</p>',
+  '<label for="forestSound"><span class="settingIcon">🔊</span><span class="settingLabel"><strong>Ses efektleri</strong><small>Düğme ve başarı sesleri</small></span><input id="forestSound" type="checkbox" '+(p.sound?'checked':'')+'></label>'+
+  '<label for="forestVibration"><span class="settingIcon">📳</span><span class="settingLabel"><strong>Titreşim</strong><small>Desteklenen cihazlarda dokunsal geri bildirim</small></span><input id="forestVibration" type="checkbox" '+(p.vibration?'checked':'')+'></label>'+
+  '</div><p class="footerNote">✦ Matematik Evreni · v124 <span>• İlerleme otomatik kaydedilir</span></p>',
   'AYARLAR');
  $('#forestSound').addEventListener('change',e=>window.MTKPrefs?.update({sound:e.target.checked}));
  $('#forestVibration').addEventListener('change',e=>window.MTKPrefs?.update({vibration:e.target.checked}));
  action('Oyuna dön',closeModal);
- action('Ana menü',()=>{recordForestExit();location.assign('./menu-v116.html?v=117')},'secondary');
+ action('Ana menü',()=>{recordForestExit();location.assign('./menu-v116.html?v=124')},'secondary');
 }
 $('#settingsBtn').onclick=openForestSettings;
 
@@ -869,7 +1008,10 @@ interact=function(){
 home=function(){save(true);location.assign("./map-v113.html?from=forest")};
 journal=function(){
  const done=campaignProgress();
- openModal("Erdem'in yol notları","<p><strong>"+done+"/21 matematik engeli tamamlandı.</strong></p><p>Yürürken taşları, ağaç kütüklerini ve küçük toprak boşluklarını zıplayarak geç. Parlayan büyüteçte matematik sorusunu çöz.</p><p>Yanlış cevapta ipucu, ikinci yanlışta çözümlü benzer örnek, üçüncü yanlışta çözüm ve yeni soru gösterilir.</p>");
+ openModal("Erdem'in yol notları",
+  '<div class="notesProgress"><span class="notesSeal">🌲</span><div><strong>'+done+'/21 engel tamamlandı</strong><small>Orman Patikası · '+difficulty.toUpperCase()+'</small></div></div>'+
+  '<p class="noteAdvice"><b>Keşif:</b> Engellerin yanındaki büyüteçten matematik sorularını aç; kayaları ve yarıkları zıplayarak aş.</p>'+
+  '<p class="noteAdvice"><b>İpuçları:</b> Yanlış cevaplardan sonra sırayla ipucu, benzer çözüm ve yeni soru gösterilir.</p>');
  action("Macera haritası",home,"secondary");action("Devam et",closeModal);
 };
 story=function(){

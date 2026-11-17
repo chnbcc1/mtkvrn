@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#102a32">
-<title>v113 · Matematik Evreni Macera Haritası</title>
+<title>v124 · Matematik Evreni Macera Haritası</title>
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;background:#081e28;color:#fff2d4;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
@@ -40,14 +40,140 @@ h1{font:900 clamp(25px,5.5vw,38px)/1.1 Georgia,serif;color:#ffdb99;margin:4px 0 
 .legend{text-align:center;color:#aecfbd;font-size:11px;margin-top:11px}
 @media(max-width:480px){.viewport{height:clamp(340px,57dvh,530px)}.brand{font-size:10px}header{gap:6px}}
 @media(prefers-reduced-motion:reduce){.map-pin.current:after{animation:none}}
+
+/* v124: complete premium adventure atlas, vertical page scroll prohibited.
+   The large map itself retains horizontal drag to discover regions. */
+html,body{height:100%;max-height:100%;overflow:hidden;overscroll-behavior:none}
+body{
+ height:100dvh;min-height:0;
+ display:flex;align-items:stretch;justify-content:center;
+ padding:max(6px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right))
+         max(6px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left));
+ background:
+  radial-gradient(circle at 20% 6%,#326756 0%,transparent 44%),
+  radial-gradient(circle at 85% 94%,#0a4042 0%,transparent 45%),
+  linear-gradient(135deg,#091f27,#143c33 53%,#071923)
+}
+main.mapShell{
+ box-sizing:border-box;position:relative;width:min(1180px,100%);height:100%;min-height:0;
+ display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:clamp(5px,1dvh,11px);
+ margin:0;padding:clamp(8px,1.6dvh,15px);overflow:hidden;
+ border:3px solid #ae7d3b;outline:1px solid #edd19d;border-radius:clamp(15px,2.6vw,25px);
+ background:linear-gradient(130deg,#153e39 0%,#0c2b32 60%,#0b2430 100%);
+ box-shadow:inset 0 0 0 2px #e8c67d38,inset 0 0 32px #020d145e,0 17px 48px #0009
+}
+main.mapShell::before{
+ content:"";position:absolute;inset:6px;border:1px solid #d0a45b44;
+ border-radius:inherit;pointer-events:none
+}
+.mapHeading{min-height:0;display:flex;flex-direction:column;gap:2px}
+.mapHeading header{display:flex;align-items:center;justify-content:space-between;margin:0}
+.mapHeading .return{
+ min-height:34px;padding:6px 12px;font-size:clamp(11px,1.9vh,14px);
+ border-radius:12px;border:1.5px solid #d8af67;
+ color:#fff1c6;background:linear-gradient(180deg,#6b4327,#402718);
+ box-shadow:inset 0 1px #fff4c43d
+}
+.mapHeading .brand{font-size:clamp(9px,1.3vh,12px);letter-spacing:1.3px;color:#e4c184}
+.mapHeading h1{
+ font:900 clamp(21px,4.8dvh,39px)/1.02 Georgia,serif;
+ text-shadow:0 2px 6px #090e18;margin:2px 0;color:#ffe2a5
+}
+.mapHeading .lead{font-size:clamp(10px,1.9dvh,14px);line-height:1.25;margin:0;color:#c8dfd1}
+.mapStage{
+ min-height:0;position:relative;border-radius:clamp(12px,2vw,20px);
+ border:3px ridge #c59d53;background:#123735;overflow:hidden;
+ box-shadow:inset 0 0 0 3px #edd39a53,0 7px 15px #0008
+}
+.mapStage .viewport{
+ height:100%;min-height:0;max-height:none;width:100%;
+ padding:0;border:0;border-radius:0;box-shadow:none;
+ overflow-x:auto;overflow-y:hidden;touch-action:pan-x;overscroll-behavior-x:contain;
+ -webkit-overflow-scrolling:touch;scrollbar-width:none
+}
+.mapStage .viewport::-webkit-scrollbar{display:none}
+.mapStage .plane{height:100%;aspect-ratio:1099 / 569;min-width:max-content}
+.mapStage .plane img{height:100%;width:100%;display:block;object-fit:fill}
+.mapStage .scrollTip{
+ position:absolute;z-index:3;left:50%;bottom:6px;transform:translateX(-50%);
+ max-width:calc(100% - 14px);padding:4px 10px;pointer-events:none;
+ white-space:nowrap;text-overflow:ellipsis;overflow:hidden;
+ font-size:clamp(9px,1.5vh,11px);
+ color:#ffe8b2;background:#102d30d9;border:1px solid #bea26aaa;border-radius:999px
+}
+.mapFooter{
+ min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(160px,.5fr);
+ grid-template-areas:"progress go" "legend legend";align-items:center;gap:clamp(4px,.9dvh,9px)
+}
+.mapFooter .progress{
+ grid-area:progress;min-width:0;min-height:0;margin:0;padding:clamp(7px,1.4vh,11px);
+ border:1.5px solid #9dbd8d;border-radius:13px;
+ background:linear-gradient(120deg,#245b50,#14413e);box-shadow:inset 0 1px #ffffff28
+}
+.mapFooter .progress .icon{font-size:clamp(19px,3vh,26px)}
+.mapFooter .progress strong{font-size:clamp(12px,1.9vh,16px)}
+.mapFooter .progress p{font-size:clamp(10px,1.6vh,13px);line-height:1.2}
+.mapFooter .continue{
+ grid-area:go;max-width:none;width:100%;min-height:0;margin:0;padding:clamp(9px,1.8vh,13px);
+ font-size:clamp(12px,1.9vh,15px);line-height:1.2;border-radius:12px;
+ border:2px solid #f6dea5;background:linear-gradient(180deg,#ffebbb,#ddb66f);
+ box-shadow:0 3px #7a542a;color:#315146
+}
+.mapFooter .legend{grid-area:legend;margin:0;font-size:clamp(9px,1.4vh,11px);line-height:1;text-align:center;color:#c9d8be}
+@media (orientation:portrait){
+ .mapFooter{grid-template-columns:minmax(0,1fr);grid-template-areas:"progress" "go" "legend";gap:clamp(4px,.7vh,7px)}
+ .mapFooter .progress{padding:clamp(6px,1.2vh,11px)}
+ .mapFooter .continue{padding:clamp(8px,1.2vh,12px);min-height:41px}
+ .mapHeading .brand{max-width:44%;text-align:right}
+}
+@media (orientation:landscape){
+ main.mapShell{
+  grid-template-columns:minmax(0,1.65fr) minmax(190px,.85fr);
+  grid-template-rows:auto minmax(0,1fr);gap:8px 10px;
+  grid-template-areas:"head head" "map foot"
+ }
+ .mapHeading{grid-area:head}
+ .mapStage{grid-area:map}
+ .mapFooter{
+  grid-area:foot;display:flex;flex-direction:column;align-items:stretch;justify-content:center;
+  gap:clamp(6px,1.9vh,13px)
+ }
+ .mapFooter .progress{flex:0 1 auto}
+ .mapFooter .continue{flex:0 0 auto}
+ .mapFooter .legend{margin:0}
+}
+@media (orientation:landscape) and (max-height:480px){
+ main.mapShell{padding:7px 9px;gap:5px 9px;border-radius:14px}
+ .mapHeading{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"return title";align-items:center;gap:6px}
+ .mapHeading header{grid-area:return}
+ .mapHeading .brand,.mapHeading .lead{display:none}
+ .mapHeading h1{grid-area:title;font-size:clamp(17px,3.1vw,25px);text-align:right;margin:0}
+ .mapHeading .return{min-height:30px;padding:4px 10px}
+ .mapStage{border-width:2px;border-radius:12px}
+ .mapStage .scrollTip{font-size:9px;bottom:3px;padding:2px 7px}
+ .mapFooter{gap:5px}
+ .mapFooter .progress{padding:6px;gap:6px}
+ .mapFooter .progress .icon{font-size:19px}
+ .mapFooter .progress strong{font-size:12px}
+ .mapFooter .progress p{font-size:10px}
+ .mapFooter .continue{padding:8px 4px;min-height:35px;font-size:12px}
+ .mapFooter .legend{font-size:9px}
+}
+@media (orientation:portrait) and (max-height:640px){
+ .mapHeading .lead{display:none}
+ .mapFooter .progress{padding:6px}
+ .mapFooter .continue{min-height:38px;padding:6px}
+ main.mapShell{gap:5px}
+}
+
 </style>
 <script src="./assets/v73-premium-assets.js?v=73"></script>
 </head>
-<body><main>
-<header><button type="button" class="return" id="back">‹ Maceraya dön</button><span class="brand">MATEMATİK EVRENİ • MACERA HARİTASI</span></header>
+<body><main class="mapShell">
+<div class="mapHeading"><header><button type="button" class="return" id="back">‹ Maceraya dön</button><span class="brand">MATEMATİK EVRENİ • MACERA HARİTASI</span></header>
 <h1>Profesörün Kayıp İzleri</h1>
-<p class="lead">Her keşif yeni bir bölgenin üzerindeki sisi kaldırır.</p>
-<section class="viewport" id="viewport" aria-label="Kaydırılabilir oyun dünyası">
+<p class="lead">Her keşif yeni bir bölgenin üzerindeki sisi kaldırır.</p></div>
+<div class="mapStage"><section class="viewport" id="viewport" aria-label="Kaydırılabilir oyun dünyası">
  <div class="plane" id="plane">
   <img id="mapArt" alt="Orman, Dedenin Evi, şelale, dağ geçidi ve gözlemevinin bulunduğu macera dünyası" draggable="false">
   <button type="button" class="map-pin home" data-region="home" aria-label="Dedenin Evine git"></button>
@@ -56,10 +182,10 @@ h1{font:900 clamp(25px,5.5vw,38px)/1.1 Georgia,serif;color:#ffdb99;margin:4px 0 
   <button type="button" class="map-pin inside" data-region="inside" aria-label="Gözlemevi İç Mekânı henüz oynanabilir değil" disabled hidden></button>
  </div>
 </section>
-<div class="scrollTip">← Haritayı sağa ve sola kaydırarak keşfet →</div>
-<section class="progress" aria-live="polite"><span class="icon" id="missionIcon">🏡</span><div><strong id="missionTitle">Keşif başlıyor</strong><p id="missionDesc"></p></div></section>
+<div class="scrollTip">← Haritayı sağa ve sola kaydırarak keşfet →</div></div>
+<div class="mapFooter"><section class="progress" aria-live="polite"><span class="icon" id="missionIcon">🏡</span><div><strong id="missionTitle">Keşif başlıyor</strong><p id="missionDesc"></p></div></section>
 <button type="button" class="continue" id="continue">Maceraya devam et</button>
-<p class="legend" id="stageInfo">Keşfedilen bölgeler: 1/4</p>
+<p class="legend" id="stageInfo">Keşfedilen bölgeler: 1/4</p></div>
 </main>
 <script>
 "use strict";
@@ -84,7 +210,7 @@ for(const pin of document.querySelectorAll(".map-pin")){
  if(region==="inside"){pin.disabled=true;continue}
  pin.addEventListener("click",()=>go(region));
 }
-const dest={home:"./?scene=home&v=123",forest:"./forest-v113-full.html?resume=1&v=123",gate:"./forest-v113-full.html?resume=1&focus=gate&v=123"};
+const dest={home:"./?scene=home&v=124",forest:"./forest-v113-full.html?resume=1&v=124",gate:"./forest-v113-full.html?resume=1&focus=gate&v=124"};
 function go(region){
  if(!dest[region]||!discovered[region])return;
  try{const x=read(STORE);x.activeScene=region==="home"?"home":"forest-path";localStorage.setItem(STORE,JSON.stringify(x))}catch(e){}
