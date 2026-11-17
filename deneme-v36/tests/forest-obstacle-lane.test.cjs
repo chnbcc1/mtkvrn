@@ -308,8 +308,8 @@ assert(forestHudArt.length>30000 && forestHudArt.length<250000,"Optimized HUD as
 assert(forest.includes("hud-v75 hud-v117"),"New wood HUD mounted in existing forest scene");
 assert(forest.includes("forest-hud-v117.avif?v=117"),"HUD image version pinned");
 assert(forest.includes('id="settingsBtn"'),"HUD settings action present");
-assert(forest.includes("window.MTKPrefs?.update({sound:"),"Saved sound toggle");
-assert(forest.includes("window.MTKPrefs?.update({vibration:"),"Saved vibration toggle");
+assert(sharedUIJS.includes("window.MTKPrefs?.update({sound:"),"Saved sound toggle in shared settings");
+assert(sharedUIJS.includes("window.MTKPrefs?.update({vibration:"),"Saved vibration toggle in shared settings");
 assert(forest.includes('done+"/21 ENGEL"'),"HUD progress must be live, not artwork-only");
 assert(menuV116.includes("forest-v113-full.html?resume=1&v=125"),"Menu links to latest forest HUD");
 console.log("PASS v117: Forest top HUD artwork, dynamic progress, working controls and responsive touch targets");
@@ -388,7 +388,7 @@ assert(forest.includes('height:min(500px,calc(100dvh - 18px'), 'Modal height mus
 assert(forest.includes('overflow:hidden;'), 'Modal contents must not scroll');
 assert(sharedUIJS.includes('İlerleme otomatik kaydedilir'), 'Global settings information label missing');
 assert(sharedUIJS.includes('const version="125"'), 'Shared settings should display current release');
-assert(forest.includes('class="notesProgress"'), 'Premium notes progress card missing');
+assert(forest.includes('class="notesProgress mtk-notes-progress"'), 'Shared premium notes progress card missing');
 assert(map.includes('class="mapShell"') && map.includes('class="mapStage"') && map.includes('class="mapFooter"'), 'Premium map layout must have header/stage/footer');
 assert(map.includes('height:100dvh;min-height:0;') && map.includes('overflow-x:auto;overflow-y:hidden;touch-action:pan-x'), 'Map page must block vertical scrolling but retain horizontal panning');
 assert(map.includes('grid-template-areas:"head head" "map foot"'), 'Landscape map needs side-by-side mission panel');
