@@ -348,7 +348,7 @@ assert(menu.includes('window.MTKWorldMap.progress().chapters'),"The Chapters car
 assert(menu.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"New Game must clear future chapter milestones");
 assert(home.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"Home reset must clear future chapter milestones");
 assert(map.includes('window.MTKWorldMap.mount(')&&!map.includes('id="mapArt"'),"Legacy map link must show the same modern atlas");
-assert(menu.includes('game-ui-v128.js?v=129'),"Main menu settings must use shared controls");
+assert(menu.includes('game-ui-v129.js?v=129'),"Main menu settings must use shared controls");
 assert(sharedJS.includes('window.MTKPrefs?.update({sound:'),"Saved sound setting preserved");
 assert(sharedJS.includes('window.MTKPrefs?.update({vibration:'),"Saved vibration setting preserved");
 assert(forest.includes('const horizontalSpeed=heroY<GROUND-.2?422:245'),"Obstacle jump/movement physics must not regress");
