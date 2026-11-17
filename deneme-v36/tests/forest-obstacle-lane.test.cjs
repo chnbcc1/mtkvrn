@@ -412,7 +412,7 @@ assert(home.includes("else delete $('#info').dataset.mtkPanel"), 'Long story pan
 assert(sharedUICSS.includes('#info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"])'), 'Global panel layout must target only Settings and Notes');
 assert(sharedUICSS.includes('background:var(--mtk-glass)!important'), 'Global transparent gamepad controls missing');
 assert(sharedUICSS.includes('.mtk-ui-hud.home-hud'), 'House wood HUD must be defined in global stylesheet');
-assert(sharedUICSS.includes('#info[data-mtk-panel] .modalPanel'), 'House premium scroll-free cards missing');
+assert(sharedUICSS.includes('#info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) .modalPanel'), 'House premium scroll-free cards missing');
 assert(sharedUICSS.includes('.mtk-ui-dialog'), 'Title menu cards must use global panel theme');
 assert(home.includes("location.assign('./map-v113.html?from=home&v=125')"), 'House map button route missing');
 assert(forest.includes('forest-hud-landscape-v122.avif?v=122'), 'Preserve existing high-resolution forest HUD artwork');
