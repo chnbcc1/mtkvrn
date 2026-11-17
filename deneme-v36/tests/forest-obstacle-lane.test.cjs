@@ -8,13 +8,13 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(homeVersion,126);
+assert.equal(homeVersion,127);
 // The home artwork was updated independently; the forest scene remains v113.
 const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
 const forest=fs.readFileSync(path.join(root,"forest-v"+version+"-full.html"),"utf8");
 const map=fs.readFileSync(path.join(root,"map-v"+version+".html"),"utf8");
-const sharedUIJS=fs.readFileSync(path.join(root,"assets/game-ui-v126.js"),"utf8");
+const sharedUIJS=fs.readFileSync(path.join(root,"assets/game-ui-v127.js"),"utf8");
 const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v98.js"),"utf8");
 new vm.Script(artwork);
 const mushroomLoader=fs.readFileSync(path.join(root,"forest-mushroom-art-v102.js"),"utf8");
@@ -276,7 +276,7 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v113-full.html?v=126"));
+assert(home.includes("forest-v113-full.html?v=127"));
 assert(map.includes("forest-v113-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
@@ -311,7 +311,7 @@ assert(forest.includes('id="settingsBtn"'),"HUD settings action present");
 assert(sharedUIJS.includes("window.MTKPrefs?.update({sound:"),"Saved sound toggle in shared settings");
 assert(sharedUIJS.includes("window.MTKPrefs?.update({vibration:"),"Saved vibration toggle in shared settings");
 assert(forest.includes('done+"/21 ENGEL"'),"HUD progress must be live, not artwork-only");
-assert(menuV116.includes("forest-v113-full.html?resume=1&v=126"),"Menu links to latest forest HUD");
+assert(menuV116.includes("forest-v113-full.html?resume=1&v=127"),"Menu links to latest forest HUD");
 console.log("PASS v117: Forest top HUD artwork, dynamic progress, working controls and responsive touch targets");
 
 // v118: landscape display must include the road and Erdem's feet (not just forest sky).
@@ -387,7 +387,7 @@ assert(forest.includes('#modal[data-panel="settings"] .paper,#modal[data-panel="
 assert(forest.includes('height:min(500px,calc(100dvh - 18px'), 'Modal height must fit dynamic viewport');
 assert(forest.includes('overflow:hidden;'), 'Modal contents must not scroll');
 assert(sharedUIJS.includes('İlerleme otomatik kaydedilir'), 'Global settings information label missing');
-assert(sharedUIJS.includes('const version="126"'), 'Shared settings should display current release');
+assert(sharedUIJS.includes('const version="127"'), 'Shared settings should display current release');
 assert(!forest.includes('id="journal"'), 'Forest note button must be removed');
 assert(map.includes('class="mapShell"') && map.includes('class="mapStage"') && map.includes('class="mapFooter"'), 'Premium map layout must have header/stage/footer');
 assert(map.includes('height:100dvh;min-height:0;') && map.includes('overflow-x:auto;overflow-y:hidden;touch-action:pan-x'), 'Map page must block vertical scrolling but retain horizontal panning');
@@ -399,13 +399,13 @@ assert(forest.includes('if(Math.hypot(sx-px,sy-py)<64){e.preventDefault();intera
 console.log('PASS v124: premium viewport-fitted settings/notes/map, horizontal map panning, saved progress and controls preserved');
 
 // v125: all playable chapters share controls, wood/gold HUD theme and premium panels.
-const sharedUICSS=fs.readFileSync(path.join(root,'assets/game-ui-v125.css'),'utf8');
-const sharedUniversalCSS=fs.readFileSync(path.join(root,'assets/universal-hud-v126.css'),'utf8');
+const sharedUICSS=fs.readFileSync(path.join(root,'assets/game-ui-v127.css'),'utf8');
+const sharedUniversalCSS=fs.readFileSync(path.join(root,'assets/universal-hud-v127.css'),'utf8');
 assert(home.includes('class="hud hud-v75 hud-v117 mtk-ui-hud mtk-illustrated-hud"'), 'House must use illustrated HUD');
 assert(forest.includes('class="hud hud-v75 hud-v117 mtk-ui-hud mtk-illustrated-hud"'), 'Forest must share same HUD class');
 assert(home.includes('class="controls mtk-ui-controls"') && forest.includes('class="controls mtk-ui-controls"'), 'Both chapter controls must share their styling');
-for(const scene of [home,forest,map,menuV116])assert(scene.includes('assets/game-ui-v125.css?v=125'), 'All scene and menu pages need the shared visual system');
-for(const scene of [home,forest,menuV116])assert(scene.includes('assets/game-ui-v126.js?v=126'), 'Main menu and playable scenes need shared settings logic');
+for(const scene of [home,forest,map,menuV116])assert(scene.includes('assets/game-ui-v127.css?v=127'), 'All scene and menu pages need the shared visual system');
+for(const scene of [home,forest,menuV116])assert(scene.includes('assets/game-ui-v127.js?v=127'), 'Main menu and playable scenes need shared settings logic');
 assert(home.includes('id="homeMapBtn"') && home.includes('id="homeSettingsBtn"'), 'House needs map and settings buttons');
 assert(home.includes('window.MTKGameUI.settingsMarkup(\'home\',p)') && forest.includes('window.MTKGameUI.settingsMarkup(\'forest\',p)') && menuV116.includes('window.MTKGameUI.settingsMarkup(\'menu\',p)'), 'Settings must come from one shared implementation');
 assert(!home.includes('id="journalBtn"') && !home.includes('homeNotesCompact'), 'House notes must be removed');
@@ -415,7 +415,7 @@ assert(sharedUICSS.includes('background:var(--mtk-glass)!important'), 'Global tr
 assert(sharedUniversalCSS.includes('.mtk-illustrated-hud'), 'Both chapters must use universal illustrated HUD CSS');
 assert(sharedUICSS.includes('#info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) .modalPanel'), 'House premium scroll-free cards missing');
 assert(sharedUICSS.includes('.mtk-ui-dialog'), 'Title menu cards must use global panel theme');
-assert(home.includes("location.assign('./map-v113.html?from=home&v=126')"), 'House map origin route missing');
+assert(home.includes('window.MTKGameUI.openMap({') && home.includes("from:'home'"), 'House map must open an in-game sheet');
 assert(forest.includes('forest-hud-landscape-v122.avif?v=122'), 'Preserve existing high-resolution forest HUD artwork');
 assert(forest.includes('const horizontalSpeed=heroY<GROUND-.2?422:245'), 'Forest movement physics must remain untouched');
 console.log('PASS v126: shared illustrated HUD, notes removed, origin-aware navigation and compact confirmations');
@@ -424,14 +424,41 @@ console.log('PASS v126: shared illustrated HUD, notes removed, origin-aware navi
 for(const chapter of [home,forest]){
  assert(chapter.includes('forest-hud-v117.avif?v=117'), 'Portrait must reuse selected forest HUD');
  assert(chapter.includes('forest-hud-landscape-v122.avif?v=122'), 'Landscape must reuse high-res forest HUD');
- assert(chapter.includes('assets/universal-hud-v126.css?v=126'), 'Both chapters need shared HUD responsive sizing');
+ assert(chapter.includes('assets/universal-hud-v127.css?v=127'), 'Both chapters need shared HUD responsive sizing');
  assert(chapter.includes('id="pikoBtn"'), 'Chiko remains accessible after deleting notebook');
 }
 assert(!home.includes('journalBtn') && !forest.includes('id="journal"') && !forest.includes('function journal()'), 'Notebook interactions must be removed');
 assert(sharedUniversalCSS.includes('.mtk-illustrated-hud[data-chapter="home"] .mtk-chapter-label'), 'House title should replace only baked chapter lettering');
-assert(sharedUniversalCSS.includes('.mtk-illustrated-hud #pikoBtn::after'), 'The old notes label must be replaced with a Chiko badge');
+assert(sharedUniversalCSS.includes('.mtk-illustrated-hud #pikoBtn .mtk-chiko-frame'), 'Real Chiko sprite must fill illustrated icon');
 assert(menuV116.includes('data-size="confirmation"') && menuV116.includes("dataset.size=title==='Yeni oyun başlatılsın mı?'"), 'New game confirmation must be content-height');
 assert(map.includes('function backToSource()') && map.includes('if(source==="home")return location.assign(dest.home)') && map.includes('if(source==="forest")return location.assign(dest.forest)'), 'Map back must respect opener');
-assert(map.includes('dest={home:"./?scene=home&autostart=1&v=126"'), 'Map home destination must skip title screen');
+assert(map.includes('dest={home:"./?scene=home&autostart=1&v=127"'), 'Standalone map home destination must skip title screen');
 assert(map.includes('document.getElementById("continue").addEventListener("click",()=>go(mission[3]))'), 'Mission navigation must preserve selected chapter');
 console.log('PASS v126: source-aware map back, house auto-start, compact confirmation and common responsive illustrated HUD');
+
+// v127: an in-scene map card replaces page navigation; rotation resizes canvas.
+for(const chapter of [home,forest]){
+ assert(chapter.includes('window.MTKGameUI.openMap({'), 'Map must open a sheet in both chapters');
+ assert(chapter.includes('window.MTKGameUI.mountChiko();'), 'Both chapters must mount the genuine Chiko sprite');
+ assert(chapter.includes('window.visualViewport?.addEventListener(\'resize\',syncViewport)'), 'Both chapters must follow iOS visual viewport orientation changes');
+ assert(chapter.includes('new ResizeObserver(resize).observe('), 'Both chapters must watch real game/canvas dimensions');
+ assert(!chapter.includes('title="Çiko">🦜</button>'), 'Generic bird placeholder must be removed');
+}
+assert(home.includes('gameViewport.getBoundingClientRect()'), 'House canvas dimensions must come from rendered viewport');
+assert(home.includes("canvas.style.width='100%';canvas.style.height='100%'"), 'House canvas must resize automatically in CSS');
+assert(forest.includes('canvas.getBoundingClientRect()'), 'Forest canvas must follow real viewport');
+assert(!home.includes('location.assign(\'./map-v113.html?from=home&v=127\')'), 'House must not navigate to a map page on HUD click');
+assert(!forest.includes('home=function(){recordForestExit();location.assign'), 'Forest must not navigate to map page');
+assert(sharedUIJS.includes('window.MTKGameUI=Object.freeze({version,settingsMarkup,bindSettings,notesProgress,mountChiko,openMap})'), 'Shared map modal and Chiko sprite integration missing');
+assert(sharedUIJS.includes('event.origin!==location.origin||event.source!==frame.contentWindow'), 'Map iframe messages must be same-origin and from the correct frame');
+assert(sharedUIJS.includes('frame.src="./map-v113.html?embedded=1&from="'), 'Map must load in its own same-page frame');
+assert(sharedUIJS.includes('if((from==="home"&&region==="home")||(from==="forest"&&region==="forest")){close();return}'), 'Selecting current region should only close map');
+assert(sharedUICSS.includes('.mtk-map-layer')&&sharedUICSS.includes('.mtk-map-sheet'), 'Shared premium map panel styles must exist');
+assert(map.includes('if(embedded){tellParent("mtk-map-navigate",region);return;}'), 'Embedded map must message parent rather than navigate');
+assert(map.includes('if(embedded){tellParent("mtk-map-close");return;}'), 'Embedded map back button should close its card');
+assert(map.includes('body.mtk-embedded-map')&&map.includes('grid-template-areas:"map foot"'), 'Map must fit landscape dialog viewport');
+assert(sharedUniversalCSS.includes('background-size:600% 300%'), 'Genuine Chiko atlas cropping must use 6×3 layout');
+assert(!sharedUniversalCSS.includes('content:"ÇİKO"'), 'Old floating sticker label must not return');
+console.log('PASS v127: native Chiko atlas, portrait/landscape rotations, same-page interactive map card');
+
+assert(home.includes('viewportH*.84-ground*baseScale'), 'Landscape camera should keep Erdem on the visible walking lane');

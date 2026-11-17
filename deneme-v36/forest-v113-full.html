@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#0b2732">
-<title>v126 · Orman Patikası · Matematik Evreni</title>
+<title>v127 · Orman Patikası · Matematik Evreni</title>
 <style>
 :root{--cream:#ffedcb;--gold:#f4cd77;--dark:#092536;--ink:#4b321f}
 *{box-sizing:border-box}
@@ -489,8 +489,8 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 }
 
 </style>
-<link rel="stylesheet" href="./assets/game-ui-v125.css?v=125"><link rel="stylesheet" href="./assets/universal-hud-v126.css?v=126">
-<script src="./settings-v116.js?v=116"></script><script src="./assets/game-ui-v126.js?v=126"></script></head>
+<link rel="stylesheet" href="./assets/game-ui-v127.css?v=127"><link rel="stylesheet" href="./assets/universal-hud-v127.css?v=127"><style>html,body{height:100dvh!important}#scene{width:100dvw!important;height:100dvh!important}</style>
+<script src="./settings-v116.js?v=116"></script><script src="./assets/game-ui-v127.js?v=127"></script></head>
 <body>
 <canvas id="scene" aria-label="Erdem ve Çiko ile oynanabilir orman patikası"></canvas><div class="tint"></div>
 <div class="hud hud-v75 hud-v117 mtk-ui-hud mtk-illustrated-hud" data-chapter="forest" aria-label="Orman Patikası ilerleme ve oyun menüsü">
@@ -500,7 +500,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
  <div class="trackShell" role="progressbar" aria-label="Tamamlanan matematik engelleri" aria-valuemin="0" aria-valuemax="21" aria-valuenow="0"><span id="progressFill"></span></div>
  <div class="hudRight">
   <button class="iconBtn" id="mtkTitleBtn" type="button" aria-label="Ana menüye dön" title="Ana Menü">Ana menü</button>
-  <button class="iconBtn" id="pikoBtn" type="button" aria-label="Çiko ile konuş" title="Çiko">🦜</button>
+  <button class="iconBtn" id="pikoBtn" type="button" aria-label="Çiko ile konuş" title="Çiko"></button>
   <button class="iconBtn" id="home" type="button" aria-label="Macera haritasını aç" title="Harita">Harita</button>
   <button class="iconBtn" id="settingsBtn" type="button" aria-label="Oyun ayarlarını aç" title="Ayarlar">Ayarlar</button>
  </div>
@@ -602,8 +602,29 @@ function save(force=false){
 // v118: Landscape play must fit the entire authored 941px scene vertically.
 // v117's width-filling zoom hid the ground, Erdem and obstacles below the viewport.
 // Portrait retains its original look; all world/collision dimensions stay unchanged.
-function resize(){vw=innerWidth;vh=innerHeight;dpr=Math.min(devicePixelRatio||1,3);scale=vw>vh?vh/H:Math.max(vh/H,vw/1450);canvas.width=Math.round(vw*dpr);canvas.height=Math.round(vh*dpr);canvas.style.width=vw+'px';canvas.style.height=vh+'px';camReady=false}
-addEventListener('resize',resize);addEventListener('orientationchange',()=>requestAnimationFrame(resize));if(window.visualViewport)window.visualViewport.addEventListener('resize',resize);resize();
+function resize(){
+ const rect=canvas.getBoundingClientRect();
+ const width=Math.max(1,Math.round(rect.width||innerWidth));
+ const height=Math.max(1,Math.round(rect.height||innerHeight));
+ const ratio=Math.min(devicePixelRatio||1,3);
+ if(width===vw&&height===vh&&ratio===dpr&&
+    canvas.width===Math.round(width*ratio)&&canvas.height===Math.round(height*ratio))return;
+ vw=width;vh=height;dpr=ratio;
+ scale=vw>vh?vh/H:Math.max(vh/H,vw/1450);
+ canvas.style.width='100%';canvas.style.height='100%';
+ canvas.width=Math.round(vw*dpr);canvas.height=Math.round(vh*dpr);
+ camReady=false;last=0;
+}
+function syncViewport(){
+ resize();requestAnimationFrame(resize);
+ for(const delay of [80,180,360,700])setTimeout(resize,delay);
+}
+addEventListener('resize',syncViewport);
+addEventListener('orientationchange',syncViewport);
+window.visualViewport?.addEventListener('resize',syncViewport);
+addEventListener('pageshow',syncViewport);
+if(window.ResizeObserver)new ResizeObserver(resize).observe(canvas);
+syncViewport();
 function openModal(title,content,eyebrow='BÖLÜM 2'){
  modalOpen=true;requested=0;activePointers.clear();updatePress();
  $('#modal').dataset.panel=eyebrow==='AYARLAR'?'settings':'';
@@ -617,7 +638,14 @@ function story(){
  openModal('Orman Patikası','<p>Erdem haritayı çantasına yerleştirdi. Çiko, tepeye uzanan patikanın üzerinde uçuyordu.</p><div class="thought">💭 <b>Erdem:</b> “Eski gözlemevine giden yol bu olmalı.”</div><p>Yürüyerek ilerle, gerekirse zıpla. Yol üzerinde karşılaşacağın sorunu ölçerek çöz.</p>');
  action('Patikaya çık ▶',()=>{started=true;closeModal();save(true)});
 }
-function home(){recordForestExit();location.assign('./map-v113.html?from=forest&v=126')}
+function home(){
+ window.MTKGameUI.openMap({
+  from:'forest',
+  onOpen:()=>{modalOpen=true;requested=0;activePointers.clear();updatePress()},
+  onClose:()=>{modalOpen=false;last=0},
+  onBeforeNavigate:recordForestExit
+ });
+}
 function recordForestExit(){
  save(true);
  try{
@@ -627,7 +655,7 @@ function recordForestExit(){
   localStorage.setItem(SAVE_KEY,JSON.stringify(state));
  }catch(e){}
 }
-$('#mtkTitleBtn').onclick=()=>{recordForestExit();location.assign('./menu-v116.html?v=126')};
+$('#mtkTitleBtn').onclick=()=>{recordForestExit();location.assign('./menu-v116.html?v=127')};
 
 /* v117 forest settings; share the same saved preferences as the title screen. */
 function openForestSettings(){
@@ -635,7 +663,7 @@ function openForestSettings(){
  openModal('Oyun Ayarları',window.MTKGameUI.settingsMarkup('forest',p),'AYARLAR');
  window.MTKGameUI.bindSettings('forest');
  action('Oyuna dön',closeModal);
- action('Ana menü',()=>{recordForestExit();location.assign('./menu-v116.html?v=126')},'secondary');
+ action('Ana menü',()=>{recordForestExit();location.assign('./menu-v116.html?v=127')},'secondary');
 }
 $('#settingsBtn').onclick=openForestSettings;
 
@@ -693,6 +721,7 @@ for(const [id,dir] of [['left',-1],['right',1]]){
 // Restore all six house jump sprites and preserve natural gravity.
 function jump(){if(!started||modalOpen||heroY<GROUND-.2)return;vy=-560;jumpStartClock=clock}
 $('#jump').addEventListener('pointerdown',e=>{e.preventDefault();jump()});
+window.MTKGameUI.mountChiko();
 $('#home').onclick=home;$('#pikoBtn').onclick=()=>{const tip=$('#hint');tip.textContent='Çiko: Parlayan büyüteçlerden ipuçlarını bul, engelleri zıplayarak aş!';tip.hidden=false;};
 addEventListener('keydown',e=>{
  if(['ArrowLeft','ArrowRight','ArrowUp',' ','e','E','a','d','A','D'].includes(e.key))e.preventDefault();
@@ -884,7 +913,9 @@ function update(dt){
  $('#hint').textContent=m==='bridge'?'🔎 Büyütece dokun: köprünün ölçüsünü tamamla':m==='gate'?'🔎 Gözlemevi kapısını incele':!solved?'Ormanda ilerle. Önce geçişteki ölçü sorununu çöz.':(solved&&bridgeProgress<1?'Tahtalar yerleşiyor, köprü kuruluyor...':'Köprü tamamlandı. Gözlemevine doğru devam et.');
  $('#progress').textContent=reachedGate?'Gözlemevi kapısındasın':solved?'Köprü geçildi · Gözlemevine ilerle':'Köprüye doğru ilerle';
 }
-function loop(ts){const dt=Math.min(.036,(last?(ts-last):16)/1000);last=ts;clock+=dt;update(dt);render();requestAnimationFrame(loop)}
+function loop(ts){
+ if(Math.abs(canvas.clientWidth-vw)>1||Math.abs(canvas.clientHeight-vh)>1)resize();
+ const dt=Math.min(.036,(last?(ts-last):16)/1000);last=ts;clock+=dt;update(dt);render();requestAnimationFrame(loop)}
 
 // v68 : 21-stage playable forest campaign with platform hazards.
 const CAMPAIGN_KEY="mathverse-v68-forest-full";
@@ -992,7 +1023,7 @@ interact=function(){
 };
 // The in-world magnifier on the canvas is the only inspection touch target.
 // Keyboard E and the existing canvas pointer hit test still call interact().
-home=function(){recordForestExit();location.assign("./map-v113.html?from=forest&v=126")};
+// Harita uses the shared in-game card; do not redirect to a separate page.
 story=function(){
  openModal("Orman Patikası · Tam Bölüm","<p>Çiko, ormanın içindeki <b>21 mühürlü engeli</b> keşfetti. Erdem engelleri matematikle açacak, aralarındaki küçük kayaları, kütükleri ve boşlukları zıplayarak aşacak.</p><p>Oyun boyunca zorluk seviyen sabit kalacak. Hangisini seçiyorsun?</p>");
  for(const [d,label] of [["kolay","🌱 Kolay · Tek kural"],["orta","🌿 Orta · Bağlantılı işlem"],["zor","🌳 Zor · Çok adım"]]){

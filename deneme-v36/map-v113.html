@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#102a32">
-<title>v126 · Matematik Evreni Macera Haritası</title>
+<title>v127 · Matematik Evreni Macera Haritası</title>
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;background:#081e28;color:#fff2d4;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
@@ -167,7 +167,35 @@ main.mapShell::before{
 }
 
 </style>
-<link rel="stylesheet" href="./assets/game-ui-v125.css?v=125">
+<style>
+/* Embedded atlas: its parent is the in-game premium sheet. */
+body.mtk-embedded-map{width:100%;height:100dvh;min-height:0;max-height:100dvh;
+ padding:0!important;background:transparent!important;overflow:hidden!important}
+body.mtk-embedded-map main.mapShell{
+ width:100%;height:100%;max-height:100%;min-height:0;
+ border:0;outline:0;border-radius:0;box-shadow:none;
+ padding:clamp(6px,1.25dvh,12px);background:linear-gradient(145deg,#16443b,#0b3038)}
+body.mtk-embedded-map .mapHeading{padding:0 6px}
+body.mtk-embedded-map .mapHeading header{display:none}
+body.mtk-embedded-map .mapHeading h1{font-size:clamp(15px,3.1dvh,26px);margin:0}
+body.mtk-embedded-map .mapHeading .lead{display:none}
+body.mtk-embedded-map .mapStage{min-height:0}
+body.mtk-embedded-map .mapFooter{min-height:0}
+body.mtk-embedded-map .scrollTip{font-size:clamp(8px,1.5dvh,11px)}
+@media(orientation:landscape) and (max-height:500px){
+ body.mtk-embedded-map main.mapShell{padding:5px 7px}
+ body.mtk-embedded-map .mapHeading{display:none}
+ body.mtk-embedded-map main.mapShell{
+  grid-template-columns:minmax(0,1.8fr) minmax(170px,.8fr);
+  grid-template-rows:minmax(0,1fr);grid-template-areas:"map foot"
+ }
+}
+@media(orientation:portrait) and (max-height:700px){
+ body.mtk-embedded-map .mapFooter .progress{padding:5px}
+ body.mtk-embedded-map .mapFooter .continue{min-height:35px;padding:5px}
+}
+</style>
+<link rel="stylesheet" href="./assets/game-ui-v127.css?v=127">
 <script src="./assets/v73-premium-assets.js?v=73"></script>
 </head>
 <body class="mtk-ui-map"><main class="mapShell">
@@ -190,6 +218,11 @@ main.mapShell::before{
 </main>
 <script>
 "use strict";
+const embedded=new URLSearchParams(location.search).get("embedded")==="1"&&window.parent!==window;
+document.body.classList.toggle("mtk-embedded-map",embedded);
+function tellParent(type,region){
+ if(embedded)window.parent.postMessage({type,region},location.origin);
+}
 const STORE="mathverse-v40-investigation",CAMPAIGN="mathverse-v68-forest-full";
 function read(key){try{return JSON.parse(localStorage.getItem(key)||"null")||{}}catch(e){return {}}}
 const state=read(STORE),campaign=read(CAMPAIGN);
@@ -211,9 +244,10 @@ for(const pin of document.querySelectorAll(".map-pin")){
  if(region==="inside"){pin.disabled=true;continue}
  pin.addEventListener("click",()=>go(region));
 }
-const dest={home:"./?scene=home&autostart=1&v=126",forest:"./forest-v113-full.html?resume=1&v=126",gate:"./forest-v113-full.html?resume=1&focus=gate&v=126"};
+const dest={home:"./?scene=home&autostart=1&v=127",forest:"./forest-v113-full.html?resume=1&v=127",gate:"./forest-v113-full.html?resume=1&focus=gate&v=127"};
 function go(region){
  if(!dest[region]||!discovered[region])return;
+ if(embedded){tellParent("mtk-map-navigate",region);return;}
  try{const x=read(STORE);x.activeScene=region==="home"?"home":"forest-path";localStorage.setItem(STORE,JSON.stringify(x))}catch(e){}
  location.assign(dest[region]);
 }
@@ -230,10 +264,11 @@ document.getElementById("continue").addEventListener("click",()=>go(mission[3]))
 // Remember which scene actually opened the map instead of guessing from unlock stage.
 const source=new URLSearchParams(location.search).get("from");
 function backToSource(){
+ if(embedded){tellParent("mtk-map-close");return;}
  if(source==="home")return location.assign(dest.home);
  if(source==="forest")return location.assign(dest.forest);
- if(source==="title")return location.assign("./?scene=home&v=126");
- if(source==="menu")return location.assign("./menu-v116.html?v=126");
+ if(source==="title")return location.assign("./?scene=home&v=127");
+ if(source==="menu")return location.assign("./menu-v116.html?v=127");
  const saved=read(STORE);
  return location.assign(saved.activeScene==="forest-path"?dest.forest:dest.home);
 }

@@ -1,0 +1,278 @@
+/* Matematik Evreni v125 — ONE shared visual system for every playable chapter.
+   Include this file after a chapter's historical CSS; future chapters use the
+   same mtk-ui-* classes without reproducing local rules. */
+:root{
+ --mtk-wood-deep:#38200f;--mtk-wood:#724126;--mtk-gold:#dbb16c;
+ --mtk-parchment:#f1deaf;--mtk-ink:#4b321e;--mtk-forest:#145349;
+ --mtk-glass:rgba(10,44,55,.36);
+}
+/* Consistent control-size and transparency on Dedenin Evi and Orman Patikasi */
+.mtk-ui-controls{touch-action:none}
+.mtk-ui-controls button,.mtk-ui-controls .ctrl{
+ box-sizing:border-box;min-height:0;max-height:none;
+ background:var(--mtk-glass)!important;
+ color:#fff2c8!important;
+ border:1.5px solid rgba(237,223,177,.48)!important;
+ box-shadow:0 4px 12px rgba(0,18,25,.22),inset 0 1px rgba(255,255,255,.12)!important;
+ backdrop-filter:blur(2.5px);-webkit-backdrop-filter:blur(2.5px);
+ -webkit-user-select:none;user-select:none;
+ transform:none;
+}
+.mtk-ui-controls button:active,.mtk-ui-controls button.pressed,
+.mtk-ui-controls .ctrl:active,.mtk-ui-controls .ctrl.pressed{
+ background:rgba(31,88,99,.69)!important;border-color:rgba(255,239,194,.78)!important;
+ transform:none!important;box-shadow:0 2px 8px rgba(0,18,25,.4)!important;
+}
+@media (orientation:portrait){
+ .mtk-ui-controls .move,.mtk-ui-controls .moves{gap:8px!important}
+ .mtk-ui-controls #left,.mtk-ui-controls #right{
+  box-sizing:border-box;width:clamp(54px,15vw,62px)!important;min-width:54px!important;
+  height:clamp(58px,7vh,65px)!important;border-radius:16px!important;font-size:23px!important;padding:0!important
+ }
+ .mtk-ui-controls #jump{
+  box-sizing:border-box;width:clamp(76px,20vw,82px)!important;min-width:76px!important;
+  height:clamp(58px,7vh,65px)!important;border-radius:16px!important;
+  font-size:12px!important;padding:0 5px!important;
+ }
+}
+@media (orientation:landscape){
+ .mtk-ui-controls .move,.mtk-ui-controls .moves{gap:clamp(10px,1.5vw,15px)!important}
+ .mtk-ui-controls #left,.mtk-ui-controls #right{
+  box-sizing:border-box;width:clamp(68px,9.5vw,88px)!important;min-width:68px!important;
+  height:clamp(68px,18vh,86px)!important;border-radius:19px!important;
+  font-size:clamp(23px,2.7vw,29px)!important;padding:0!important;
+ }
+ .mtk-ui-controls #jump{
+  box-sizing:border-box;width:clamp(118px,15.5vw,150px)!important;min-width:118px!important;
+  height:clamp(68px,18vh,86px)!important;border-radius:19px!important;
+  font-size:clamp(15px,1.9vw,20px)!important;padding:0 10px!important;
+ }
+}
+@media (orientation:landscape) and (max-height:450px){
+ .mtk-ui-controls #left,.mtk-ui-controls #right{
+  width:74px!important;min-width:74px!important;height:74px!important
+ }
+ .mtk-ui-controls #jump{
+  width:clamp(122px,15.5vw,136px)!important;min-width:122px!important;height:74px!important
+ }
+}
+/* All chapter HUDs use gold/wood craftsmanship with live DOM buttons.
+   Chapter-specific illustrated assets remain their own native aspect ratio. */
+.mtk-ui-hud{isolation:isolate}
+.mtk-ui-hud button{touch-action:manipulation;cursor:pointer}
+.mtk-ui-hud button:focus-visible{outline:3px solid #fff1b3!important;outline-offset:2px}
+.mtk-ui-hud.home-hud{
+ position:absolute;top:calc(env(safe-area-inset-top) + 3px)!important;
+ left:50%!important;right:auto!important;transform:translateX(-50%);
+ width:min(930px,calc(100vw - 12px - env(safe-area-inset-left) - env(safe-area-inset-right)));
+ max-width:100%;
+ height:clamp(66px,10.5vh,91px);min-height:0;max-height:none;
+ display:flex;align-items:center;justify-content:space-between;gap:8px;
+ padding:7px clamp(6px,1.3vw,14px);
+ background:repeating-linear-gradient(91deg,#3d210e0a 0 4px,#2a170d36 5px 6px,transparent 7px 23px),
+ linear-gradient(165deg,#945b32,#6f3d22 56%,#43240e);
+ border:3px ridge #dcaa57;border-radius:17px;
+ box-shadow:inset 0 0 0 2px #ecc77e65,inset 0 2px 2px #fff5bf5c,0 6px 14px #0718199c;
+ backdrop-filter:none;-webkit-backdrop-filter:none;
+}
+.home-hud .chip{
+ border:2px solid #b98743!important;border-radius:12px!important;
+ box-shadow:inset 0 1px #fff3d1,0 2px 7px #321a1691!important;
+ background:linear-gradient(170deg,#fff0bf,#dbb077)!important;
+ text-shadow:none!important;color:#4a2b16!important;
+ backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+.home-hud .chapter{flex:1 1 auto;min-width:0;max-width:35%;padding:7px 12px}
+.home-hud .chapter b{
+ color:#55341b!important;font:900 clamp(12px,1.9vw,19px)/1.1 Georgia,serif!important;
+ white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:none!important
+}
+.home-hud .chapter span{color:#7b532b!important;font-size:clamp(9px,1.3vw,12px)!important}
+.home-hud .rightBtns{display:flex;gap:clamp(3px,.8vw,8px);align-items:center;flex:0 0 auto;min-width:0}
+.home-hud .rightBtns .clues{max-width:140px;padding:6px 10px;white-space:nowrap}
+.home-hud .rightBtns .clues small,.home-hud .rightBtns .clues #score{
+ color:#573820!important;text-shadow:none!important
+}
+.home-hud .rightBtns .round{
+ width:clamp(34px,4.6vw,48px);height:clamp(34px,4.6vw,48px);
+ min-width:0;flex:0 0 auto;padding:4px;
+ background:radial-gradient(circle at 35% 25%,#ffefbc,#c9934f 65%,#936029)!important;
+ border:2px solid #eac17a!important;border-radius:50%!important;
+ color:#55331b!important;font-size:clamp(16px,2.3vw,22px);
+ box-shadow:inset 0 0 0 2px #744116,0 2px 6px #241309a8!important;
+}
+.home-hud .rightBtns .round:active{filter:brightness(1.16)}
+@media(orientation:portrait) and (max-width:650px){
+ .home-hud.mtk-ui-hud{
+  width:calc(100vw - 8px - env(safe-area-inset-left) - env(safe-area-inset-right));
+  height:67px;gap:3px;padding:5px
+ }
+ .home-hud .chapter{max-width:none;flex:1 1 auto;padding:6px;min-width:0}
+ .home-hud .chapter b{font-size:clamp(10px,3vw,12px)!important;letter-spacing:-.3px}
+ .home-hud .chapter span,.home-hud .clues{display:none!important}
+ .home-hud .rightBtns{gap:3px}
+ .home-hud .rightBtns .round{width:clamp(29px,8.5vw,36px);height:clamp(29px,8.5vw,36px);font-size:16px;padding:2px}
+}
+/* Shared premium settings and notes components in chapter modals, main menu */
+.mtk-setting-list{display:grid;gap:clamp(7px,1.2vh,12px)}
+.mtk-setting-list label{
+ display:flex!important;align-items:center!important;gap:clamp(8px,1.4vw,14px)!important;
+ background:linear-gradient(120deg,#fff8df,#e8cd98)!important;
+ border:1.5px solid #ba8f52!important;border-radius:14px!important;
+ box-shadow:inset 0 1px #fffcdf,0 2px 8px #78522f26!important;
+ padding:clamp(7px,1.4vh,12px) clamp(9px,2vw,16px)!important;
+ min-height:clamp(48px,10dvh,72px)!important;color:#493019!important;margin:0!important
+}
+.mtk-setting-list .mtk-setting-icon{font-size:clamp(20px,3vh,26px)}
+.mtk-setting-list .mtk-setting-label{display:grid;flex:1;min-width:0;gap:2px}
+.mtk-setting-list .mtk-setting-label strong{font:900 clamp(13px,2.5vh,18px)/1.1 system-ui,sans-serif}
+.mtk-setting-list .mtk-setting-label small{
+ font:650 clamp(9px,1.65vh,12px)/1.25 system-ui,sans-serif;color:#7c5c3d
+}
+.mtk-setting-list input[type="checkbox"]{
+ appearance:none;-webkit-appearance:none;position:relative;flex:0 0 auto;
+ width:48px!important;height:28px!important;margin:0!important;
+ border:2px solid #ad8850!important;border-radius:99px!important;background:#baa78b!important
+}
+.mtk-setting-list input[type="checkbox"]::before{
+ content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;
+ background:#fff8e4;box-shadow:0 1px 4px #0004;transition:transform .15s ease
+}
+.mtk-setting-list input[type="checkbox"]:checked{background:#287d67!important;border-color:#1a6250!important}
+.mtk-setting-list input[type="checkbox"]:checked::before{transform:translateX(19px)}
+.mtk-setting-list input[type="checkbox"]:focus-visible{outline:3px solid #087667;outline-offset:3px}
+.mtk-version{margin:3px 0 0!important;font:700 clamp(10px,1.6vh,13px)/1.3 system-ui,sans-serif!important;color:#755335!important;text-align:center}
+.mtk-notes-progress{
+ display:flex;align-items:center;gap:9px;padding:clamp(8px,2vh,13px);
+ border-radius:13px;border:2px solid #a68a54;
+ color:#fff2ce;background:linear-gradient(130deg,#1a5850,#266f5e);
+ font-weight:900
+}
+.mtk-notes-progress small{display:block;margin-top:3px;font-size:11px;color:#e8e7b9}
+.mtk-note-line{padding:5px 8px!important;margin:0!important;background:#fff6deaa;
+ color:#563921!important;border-left:3px solid #b58b50;border-radius:5px;
+ font:650 clamp(11px,1.9vh,15px)/1.34 system-ui,sans-serif!important}
+.mtk-panel-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.mtk-panel-actions button,.mtk-panel-actions a{
+ min-height:clamp(37px,7vh,50px);border:2px solid #d9b678;border-radius:12px;
+ padding:7px 10px;background:linear-gradient(#286d61,#185047);color:#fff5da;
+ font:850 clamp(12px,2vh,15px)/1.2 system-ui,sans-serif;text-align:center;text-decoration:none
+}
+/* House notebook and settings adopt the same no-scroll gold-edged layout as
+   the forest's v124 settings/notes. Other story inspection panels are untouched. */
+#info[data-mtk-panel="settings"],#info[data-mtk-panel="notes"]{
+ padding:max(7px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right))
+         max(7px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left));
+ background:radial-gradient(ellipse at 50% 40%,#18473c9c,#031115dc 78%);
+}
+#info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) .modalPanel{
+ box-sizing:border-box;width:min(800px,100%)!important;
+ height:min(500px,calc(100dvh - 18px - env(safe-area-inset-top) - env(safe-area-inset-bottom)))!important;
+ max-height:none!important;min-height:0;
+ display:grid;grid-template-rows:auto minmax(0,1fr) auto;
+ gap:0;margin:0!important;padding:0!important;overflow:hidden!important;
+ color:#472b17!important;
+ background:radial-gradient(ellipse at 15% 15%,#fff6d6,#f3dfac 49%,#d6ae70)!important;
+ border:4px ridge #a56a2d!important;outline:2px solid #4a2b14!important;
+ border-radius:clamp(14px,2vw,26px)!important;
+ box-shadow:inset 0 0 0 3px #f8e8b4,inset 0 0 34px #a568374d,0 16px 60px #04100bc2!important
+}
+#info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) .mtk-modal-head{
+ display:flex;align-items:center;justify-content:space-between;min-height:0;
+ padding:clamp(9px,2vh,15px) clamp(14px,3vw,26px);
+ background:linear-gradient(160deg,#92572d,#5b2d16 60%,#3b1d10);
+ color:#fff0c9;border-bottom:3px solid #d6a653
+}
+#info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) .mtk-modal-head h2{
+ font:900 clamp(22px,4.5vh,37px)/1.05 Georgia,serif!important;
+ margin:0!important;color:#fff0c9!important;text-shadow:0 2px 4px #240d08
+}
+#info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) .mtk-modal-head span{font-size:clamp(24px,4vh,34px)}
+#info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) #modalText{
+ min-height:0;padding:clamp(8px,2vh,18px) clamp(14px,3vw,26px);
+ display:flex;flex-direction:column;justify-content:center;gap:clamp(6px,1.4vh,10px);
+ overflow:hidden;text-align:left
+}
+#info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) #closeModal{
+ display:block;width:auto;min-height:clamp(39px,7vh,52px);margin:0!important;
+ border:2px solid #7ba98d;border-radius:13px;
+ background:linear-gradient(#2b826f,#17534b);color:#fff7e0;
+ padding:6px 15px;font:850 clamp(12px,2vh,17px)/1.15 system-ui,sans-serif
+}
+#info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) .mtk-modal-foot{
+ background:linear-gradient(#e7c78e,#d3a36a);
+ border-top:2px solid #c29755;padding:clamp(7px,1.4vh,12px) clamp(14px,3vw,26px)
+}
+/* Universal menu dialogs match all gameplay cards. */
+.mtk-ui-dialog{
+ border:4px ridge #a56a2d!important;outline:2px solid #4a2b14!important;
+ border-radius:clamp(16px,2vw,26px)!important;
+ background:radial-gradient(ellipse at 18% 10%,#fff6d6,#efdbab 60%,#d4a76c)!important;
+ color:#492f1b!important;box-shadow:inset 0 0 0 3px #f8e8b4,0 16px 60px #061512bd!important
+}
+.mtk-ui-dialog h2{
+ font:900 clamp(22px,4vh,34px)/1.05 Georgia,serif!important;
+ margin:0 0 8px!important;color:#50301b!important
+}
+.mtk-ui-dialog p{color:#60432a!important;margin:5px 0 9px!important;line-height:1.32!important}
+.mtk-ui-dialog .setting{border:1px solid #b78d53;background:#fff3d1b8;border-radius:13px}
+.mtk-ui-dialog .info{color:#573a24}
+.mtk-ui-dialog button{color:#573b20;background:linear-gradient(#f7dfaa,#dfb36e);border-color:#b38d4c}
+.mtk-ui-dialog button.primary{background:linear-gradient(#2c7a67,#174d43);color:#fff8da;border-color:#a8ba8d}
+@media(orientation:landscape) and (max-height:500px){
+ #info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) .modalPanel{height:calc(100dvh - 12px - env(safe-area-inset-top) - env(safe-area-inset-bottom))!important}
+ #info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) .mtk-modal-head{padding:5px 16px}
+ #info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) #modalText{padding:6px 16px;gap:5px}
+ #info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) .mtk-modal-foot{padding:5px 16px}
+ .mtk-setting-list label{min-height:43px!important;padding:5px 9px!important}
+ .mtk-ui-dialog{padding:10px!important}
+}
+
+/* v127 — map opens inside the current game, with the same carved-wood and
+   parchment language as settings. Never navigate away just to inspect it. */
+.mtk-map-layer{
+ position:fixed;z-index:10000;inset:0;
+ display:grid;place-items:center;box-sizing:border-box;
+ padding:max(6px,env(safe-area-inset-top)) max(6px,env(safe-area-inset-right))
+         max(6px,env(safe-area-inset-bottom)) max(6px,env(safe-area-inset-left));
+ background:radial-gradient(ellipse at 50% 42%,#214d4296,#071c21e8);
+ backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)
+}
+.mtk-map-sheet{
+ box-sizing:border-box;width:min(1040px,100%);
+ height:min(760px,calc(100dvh - 16px - env(safe-area-inset-top) - env(safe-area-inset-bottom)));
+ min-height:0;max-height:100%;
+ display:grid;grid-template-rows:auto minmax(0,1fr);
+ border:4px ridge #b48742;outline:2px solid #3c210f;border-radius:clamp(15px,2.5vw,25px);
+ overflow:hidden;background:linear-gradient(#123a33,#082732);
+ box-shadow:inset 0 0 0 2px #f8d68b55,0 15px 50px #000c
+}
+.mtk-map-sheet-head{
+ display:flex;align-items:center;justify-content:space-between;gap:10px;
+ box-sizing:border-box;padding:clamp(7px,1.6vh,13px) clamp(10px,2vw,20px);
+ background:repeating-linear-gradient(100deg,transparent 0 10px,#30170821 11px 12px),
+ linear-gradient(160deg,#92582f,#563017 60%,#381c0e);
+ border-bottom:3px solid #d8aa59;
+ color:#fff0c3
+}
+.mtk-map-sheet-head strong{
+ min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+ font:900 clamp(11px,2.2vh,19px)/1.15 Georgia,serif;letter-spacing:.2px
+}
+.mtk-map-sheet-close{
+ flex:0 0 auto;min-height:36px;min-width:72px;
+ padding:5px 12px;border:2px solid #dbb477;border-radius:12px;
+ background:linear-gradient(#ffe5b0,#d5a361);color:#442711;
+ font:900 clamp(12px,2vh,15px)/1 system-ui,sans-serif;
+ box-shadow:inset 0 1px #fff7d1,0 2px #4a2815
+}
+.mtk-map-sheet-frame{
+ width:100%;height:100%;min-height:0;border:0;display:block;
+ background:#092b2f
+}
+@media (orientation:landscape) and (max-height:500px){
+ .mtk-map-sheet{height:calc(100dvh - 12px - env(safe-area-inset-top) - env(safe-area-inset-bottom));width:calc(100vw - 12px)}
+ .mtk-map-sheet-head{padding:4px 11px;border-bottom-width:2px}
+ .mtk-map-sheet-head strong{font-size:clamp(11px,2.8vh,15px)}
+ .mtk-map-sheet-close{min-height:29px;padding:4px 10px}
+}
