@@ -276,7 +276,7 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v113-full.html?v=130"));
+assert(home.includes("forest-v113-full.html?v=131"));
 assert(map.includes("forest-v113-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
@@ -339,13 +339,13 @@ assert(sharedJS.includes('window.MTKWorldMap.mount(body,'),"Map opens in-game ca
 assert(!sharedJS.includes('createElement("iframe")'),"Map uses no iframe");
 for(const chapter of [home,forest]){
  assert(chapter.includes('class="mtk-hud-shell"'),"Existing universal chapter HUD retained");
- assert(chapter.includes("hud-shell-v129.svg?v=130"),"Common HUD artwork file must be preserved (v130 cache refresh only)");
+ assert(chapter.includes("hud-shell-v129.svg?v=131"),"Shared illustration must remain identical across chapters");
  assert(chapter.includes("assets/world-map-v131.js?v=131"),"Both chapters have the new adventure map logic");
  assert(chapter.includes("assets/game-ui-v131.js?v=131"),"Both chapters use the same card logic");
  assert(chapter.includes("assets/unified-ui-v131.css?v=131"),"All panels use v130 responsive card CSS");
  assert(chapter.includes("window.MTKGameUI.openMap({"),"Map opens from inside game");
 }
-assert(menu.includes("world-map-v130.js?v=130"),"Title-screen chapter list shares current registry");
+assert(menu.includes("world-map-v131.js?v=131"),"Title-screen chapter list shares the universal registry");
 assert(menu.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"New Game resets all later expansions");
 assert(home.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"In-home reset clears expansion progress");
 assert(forest.includes('$("#progressFill")?.parentElement'),"Forest score update still present");
