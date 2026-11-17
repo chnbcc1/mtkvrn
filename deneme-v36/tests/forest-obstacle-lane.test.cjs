@@ -327,7 +327,7 @@ for(const [width,height] of [[844,390],[1024,480],[1280,720],[1536,610],[1920,10
 }
 assert(forest.includes('@media(orientation:landscape) and (max-height:800px)'), 'Short-screen landscape HUD rule missing');
 assert(forest.includes('height:clamp(74px,17vh,118px)'), 'Landscape HUD is too tall');
-assert(forest.includes("visualViewport.addEventListener('resize',resize)"), 'Browser toolbar resize needs a redraw');
+assert(forest.includes("window.visualViewport?.addEventListener('resize',syncViewport)"), 'Browser toolbar resize must trigger adaptive viewport redraw');
 
 // v119: screenshots showed blurred HUD icons, a stretched landscape hint,
 // and hard-to-reach quiz choices on short landscape viewports.
