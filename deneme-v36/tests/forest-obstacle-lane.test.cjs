@@ -337,7 +337,7 @@ assert(worldJS.includes('const path="M"'),"Routes should connect successive unlo
 assert(worldJS.includes('world.style.width=Math.round(height*WORLD_W/WORLD_H)+"px"'),"Map art must keep its intrinsic aspect ratio");
 assert(!sharedJS.includes('createElement("iframe")'),"Map must not load a separate page in a frame");
 assert(sharedJS.includes('window.MTKWorldMap.mount(body,'),"Map must render directly inside game card DOM");
-assert(sharedJS.includes('if(choice.id===from)'),"Selection of current chapter should close card");
+assert(worldJS.includes('if(choice.id===from)'),"Selection of current chapter should close card");
 assert(sharedCSS.includes('.mtk-map-contents')&&sharedCSS.includes('overflow-x:auto;overflow-y:hidden'),"Map only pans horizontally, no vertical scroll");
 assert(sharedCSS.includes('#modal[data-panel="question"] #modalContent'),"Only long questions can scroll");
 assert(sharedCSS.includes('#info[data-mtk-panel="story"] .modalPanel'),"Investigation/inspection cards fit a screen");
