@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#07192f">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Matematik Evreni – Profesörün Kayıp İzleri · v127</title>
+<title>Matematik Evreni – Profesörün Kayıp İzleri · v128</title>
 <style>
 *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#07192f;color:#fff3d5;font-family:system-ui,-apple-system,'Segoe UI',sans-serif}
 body{display:grid;place-items:center;min-height:100vh;min-height:100dvh}
@@ -36,7 +36,7 @@ body{display:grid;place-items:center;min-height:100vh;min-height:100dvh}
 .info{font-size:13px;border-top:1px solid #ffffff30;padding-top:14px;margin-top:16px}.status{font-size:13px;color:#f6d68c;margin-top:13px}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 </style>
-<link rel="stylesheet" href="./assets/game-ui-v127.css?v=127">
+<link rel="stylesheet" href="./assets/game-ui-v127.css?v=128"><link rel="stylesheet" href="./assets/unified-ui-v128.css?v=128">
 <style>
 /* All main-menu cards fit the screen instead of using a long scrolling web panel. */
 #shade{overflow:hidden;padding:max(7px,env(safe-area-inset-top)) 9px max(7px,env(safe-area-inset-bottom))}
@@ -106,24 +106,35 @@ body{display:grid;place-items:center;min-height:100vh;min-height:100dvh}
 <button class="hit" id="settings" aria-label="Ayarlar">Ayarlar</button>
 </main>
 <div id="shade" hidden><section class="dialog mtk-ui-dialog" id="dialog" role="dialog" aria-modal="true" aria-labelledby="panelTitle"><h2 id="panelTitle"></h2><div id="panelBody"></div><footer id="panelActions"></footer></section></div>
-<script src="./settings-v116.js?v=116"></script><script src="./assets/game-ui-v127.js?v=127"></script>
+<script src="./settings-v116.js?v=116"></script><script src="./assets/world-map-v128.js?v=128"></script><script src="./assets/game-ui-v128.js?v=128"></script>
 <script>
 'use strict';
 const SAVE_KEY='mathverse-v40-investigation', FOREST_KEY='mathverse-v68-forest-full';
 const $=s=>document.querySelector(s), read=k=>{try{return JSON.parse(localStorage.getItem(k)||'null')||{}}catch(e){return {}}};
-const homeUrl='./?scene=home&autostart=1&v=127',forestUrl='./forest-v113-full.html?resume=1&v=127';
+const homeUrl='./?scene=home&autostart=1&v=128',forestUrl='./forest-v113-full.html?resume=1&v=128';
 const home=()=>read(SAVE_KEY), forest=()=>read(FOREST_KEY);
 function hasSave(){const h=home(),f=forest();return !!(h.introSeen||h.visitedStudy||h.complete||(Array.isArray(h.found)&&h.found.length)||f.token||(Array.isArray(f.solvedIds)&&f.solvedIds.length));}
 function hasForest(){const h=home();return !!(h.complete&&h.visitedStudy);}
 function closePanel(){const shade=$('#shade');shade.hidden=true;delete $('#dialog').dataset.size;$('#panelBody').replaceChildren();$('#panelActions').replaceChildren();}
 function openPanel(title,markup,actions=[]){$('#dialog').dataset.size=title==='Yeni oyun başlatılsın mı?'?'confirmation':'';$('#panelTitle').textContent=title;$('#panelBody').innerHTML=markup;const footer=$('#panelActions');footer.replaceChildren();for(const [caption,handler,primary] of actions){const b=document.createElement('button');b.textContent=caption;b.type='button';b.className=primary?'primary':'';b.addEventListener('click',handler);footer.append(b)}$('#shade').hidden=false;const focus=footer.querySelector('button');focus?.focus();}
 function newGame(){if(hasSave()){openPanel('Yeni oyun başlatılsın mı?','<p>Mevcut macera kaydın silinecek ve Erdem ile Çiko başlangıçtan başlayacak. Ayarlar korunacaktır.</p>',[['Vazgeç',closePanel],['Yeni Oyuna Başla',resetAndStart,true]]);}else resetAndStart();}
-function resetAndStart(){try{localStorage.removeItem(SAVE_KEY);localStorage.removeItem(FOREST_KEY)}catch(e){}location.assign(homeUrl);}
+function resetAndStart(){try{localStorage.removeItem(SAVE_KEY);localStorage.removeItem(FOREST_KEY);localStorage.removeItem('mathverse-v128-chapter-milestones')}catch(e){}location.assign(homeUrl);}
 function resumeGame(){if(!hasSave()){openPanel('Kayıt bulunamadı','<p>Henüz kayıtlı bir macera yok. Önce Yeni Oyun ile başlayabilirsin.</p>',[['Tamam',closePanel]]);return;}
 const h=home(),f=forest();const forestStarted=hasForest()&&(h.activeScene==='forest-path'||f.token||h.chapter2?.stage==='forest-path');location.assign(forestStarted?forestUrl:homeUrl);}
-function showChapters(){const unlocked=hasForest();openPanel('Bölümler','<p>Tamamladığın bölümleri tekrar ziyaret edebilirsin. Yeni bölümler hazırlandıkça listeye eklenecektir.</p><div class="chapter-list"><button class="chapter" id="chapterHome"><strong>🏡 1. Dedenin Evi</strong><small>Başlangıç · Kullanılabilir</small></button><button class="chapter" id="chapterForest" '+(unlocked?'':'disabled')+'><strong>🌲 2. Orman Patikası</strong><small>'+(unlocked?'Açıldı · Devam et':'Önce Dedenin Evi bölümünü tamamla')+'</small></button><button class="chapter" disabled><strong>🔭 3. Eski Gözlemevi</strong><small>Gelecek sürümlerde açılacak</small></button></div>',[['Kapat',closePanel]]);
-$('#chapterHome').onclick=()=>location.assign(homeUrl);
-if(unlocked)$('#chapterForest').onclick=()=>location.assign(forestUrl);}
+function showChapters(){
+ const stages=window.MTKWorldMap.progress().chapters;
+ const markup='<p>Her bölüm bir önceki tamamlanınca açılır. Yeni maceralar sisin ardında bekliyor.</p><div class="chapter-list">'+
+  stages.map((c,i)=>'<button class="chapter" data-chapter-id="'+c.id+'" '+(!c.unlocked||!c.playable?'disabled':'')+'><strong>'+
+   c.icon+' '+(i+1)+'. '+(c.unlocked?c.name:'Bilinmeyen Bölge')+'</strong><small>'+
+   (!c.unlocked?'🔒 Sis altında':!c.playable?'Yakında':c.complete?'✓ Tamamlandı · Yeniden oyna':'Açıldı · Devam et')+'</small></button>').join('')+
+  '</div>';
+ openPanel('Bölümler',markup,[['Kapat',closePanel]]);
+ $('#panelBody').querySelectorAll('[data-chapter-id]').forEach(button=>button.addEventListener('click',()=>{
+  const c=stages.find(x=>x.id===button.dataset.chapterId);
+  if(!c?.unlocked||!c.playable||!c.route)return;
+  closePanel();location.assign(c.route);
+ }));
+}
 function showSettings(){
  const p=window.MTKPrefs.load();
  openPanel('⚙️ Oyun Ayarları',window.MTKGameUI.settingsMarkup('menu',p)+

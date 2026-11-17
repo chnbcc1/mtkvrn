@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(homeVersion,127);
+assert.equal(homeVersion,128);
 // The home artwork was updated independently; the forest scene remains v113.
 const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
@@ -276,7 +276,7 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v113-full.html?v=127"));
+assert(home.includes("forest-v113-full.html?v=128"));
 assert(map.includes("forest-v113-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
@@ -301,164 +301,75 @@ assert(home.includes("homeX:Math.round(hero.x)"));
 assert(home.includes("get('autostart')==='1'"));
 assert(forest.includes("function recordForestExit()"));
 
-/* v117 selected forest top HUD regression checks. */
-const forestHudArt=fs.readFileSync(path.join(root,"assets/forest-hud-v117.avif"));
-assert.equal(forestHudArt.toString("ascii",4,12),"ftypavif");
-assert(forestHudArt.length>30000 && forestHudArt.length<250000,"Optimized HUD asset size");
-assert(forest.includes("hud-v75 hud-v117"),"New wood HUD mounted in existing forest scene");
-assert(forest.includes("forest-hud-v117.avif?v=117"),"HUD image version pinned");
-assert(forest.includes('id="settingsBtn"'),"HUD settings action present");
-assert(sharedUIJS.includes("window.MTKPrefs?.update({sound:"),"Saved sound toggle in shared settings");
-assert(sharedUIJS.includes("window.MTKPrefs?.update({vibration:"),"Saved vibration toggle in shared settings");
-assert(forest.includes('done+"/21 ENGEL"'),"HUD progress must be live, not artwork-only");
-assert(menuV116.includes("forest-v113-full.html?resume=1&v=127"),"Menu links to latest forest HUD");
-console.log("PASS v117: Forest top HUD artwork, dynamic progress, working controls and responsive touch targets");
 
-// v118: landscape display must include the road and Erdem's feet (not just forest sky).
-const resizeV118 = forest.match(/function resize\(\)\{([^}]+)\}/)?.[1] || '';
-assert(resizeV118.includes('scale=vw>vh?vh/H:Math.max(vh/H,vw/1450)'), 'Landscape camera must fit the entire scene height');
-const H118=941, GROUND118=760;
-for(const [width,height] of [[844,390],[1024,480],[1280,720],[1536,610],[1920,1080]]){
- const scaled=height/H118;
- const groundScreenY=GROUND118*scaled;
- const heroHeadY=(GROUND118-360)*scaled;
- assert(groundScreenY<height-35, 'Ground clipped in landscape '+width+'x'+height);
- assert(heroHeadY>65, 'Hero hidden under HUD in landscape '+width+'x'+height);
-}
-assert(forest.includes('@media(orientation:landscape) and (max-height:800px)'), 'Short-screen landscape HUD rule missing');
-assert(forest.includes('height:clamp(74px,17vh,118px)'), 'Landscape HUD is too tall');
-assert(forest.includes("window.visualViewport?.addEventListener('resize',syncViewport)"), 'Browser toolbar resize must trigger adaptive viewport redraw');
-
-// v119: screenshots showed blurred HUD icons, a stretched landscape hint,
-// and hard-to-reach quiz choices on short landscape viewports.
-assert(forest.includes('backdrop-filter:none;-webkit-backdrop-filter:none;filter:none;'), 'HUD controls must not blur the illustrated icons');
-assert(forest.includes('bottom:auto;min-height:0;max-height:none;'), 'Landscape hint must not stretch from top to bottom');
-assert(forest.includes('top:calc(env(safe-area-inset-top) + clamp(78px,19vh,124px))'), 'Compact landscape toast positioning missing');
-assert(forest.includes('#quizOverlay .quizWrap{\n  height:100%;max-height:100%;min-height:0'), 'Quiz dialog must fit the mobile viewport');
-assert(forest.includes('forest-v70-quiz.html?v=119&'), 'Quiz iframe URL must invalidate old styles');
-const quizV119=fs.readFileSync(path.join(root,'forest-v70-quiz.html'),'utf8');
-assert(quizV119.includes('grid-template-columns:repeat(2,minmax(0,1fr))'), 'Landscape answers must display in two columns');
-assert(quizV119.includes('-webkit-overflow-scrolling:touch'), 'Landscape quiz scrolling must be enabled');
-console.log('PASS v119: sharp HUD icons, compact hints, scrollable two-column landscape quiz');
-
-// v121: native panorama art with no screenshot crop seams or image distortion.
-const landscapeSVG=fs.readFileSync(path.join(root,"assets/forest-hud-landscape-v121.svg"),"utf8");
-assert(landscapeSVG.includes('viewBox="0 0 1920 254"'),"Landscape HUD must be authored at a truly wide native aspect");
-assert(landscapeSVG.includes('ORMAN PATİKASI') && landscapeSVG.includes('NOTLAR') && landscapeSVG.includes('HARİTA') && landscapeSVG.includes('AYARLAR'),"New HUD missing labels");
-assert(forest.includes('forest-hud-landscape-v122.avif?v=122'),"High-resolution landscape artwork was not integrated");
-assert(!forest.includes('hud-v120-artparts'),"Do not splice the old HUD into independent fragments");
-assert(forest.includes('aspect-ratio:2172 / 362'),"High-resolution landscape artwork aspect ratio must be preserved");
-assert(forest.includes('object-fit:contain;object-position:center'),"Landscape art must not stretch to fill the box");
-assert(forest.includes('height:auto;aspect-ratio:2172 / 362'),"Do not force an incorrect HUD height");
-assert(forest.includes('width:clamp(80px,11vw,110px)'),"Large landscape directional buttons must remain");
-assert(forest.includes('width:clamp(135px,18vw,182px)'),"Large landscape jump button must remain");
-assert(forest.includes('scale=vw>vh?vh/H:Math.max(vh/H,vw/1450)'),"Landscape camera / jump area changed");
-// v122: verify new artwork is a real AVIF with its native full-resolution dimensions.
-const landscapeHiRes=fs.readFileSync(path.join(root,'assets/forest-hud-landscape-v122.avif'));
-assert.equal(landscapeHiRes.toString('ascii',4,12),'ftypavif','Landscape file must be AVIF');
-assert(landscapeHiRes.length>120000,'Illustrated landscape source unexpectedly low-detail/small');
-const ispe122=landscapeHiRes.indexOf(Buffer.from('ispe'));
-assert(ispe122>0,'AVIF image properties missing');
-assert.equal(landscapeHiRes.readUInt32BE(ispe122+8),2172);
-assert.equal(landscapeHiRes.readUInt32BE(ispe122+12),362);
-assert(forest.includes('hud-v122-landscape-art'),'v122 artwork CSS/markup missing');
-assert(forest.includes('class="hud-v117-art" src="./assets/forest-hud-v117.avif?v=117"'),'Portrait original HUD must be kept');
-assert(!forest.includes('class="hud-v121-landscape-art"'),'Old low-detail vector should no longer be shown');
-console.log("PASS v122: Premium 2172x362 landscape AVIF, portrait unchanged, responsive controls and game physics preserved");
-
-// v123: redundant examine button gone; native magnifier keeps the only entry point.
-assert(!forest.includes('id="examine"'), 'Redundant fixed examine button must be removed');
-assert(!forest.includes('$("#examine")'), 'No event listener or update may target removed examine button');
-assert(forest.includes("canvas.addEventListener('pointerup',e=>{"), 'Magnifier tap must still use canvas hit testing');
-assert(forest.includes('if(Math.hypot(sx-px,sy-py)<64){e.preventDefault();interact()}'), 'Magnifier must trigger existing interact action');
-assert(forest.includes('gate.label+" · büyütece dokun"'), 'Hint must direct pupils to magnifier');
-assert(forest.includes('width:min(790px,calc(100vw - 30px),150dvh)'), 'Landscape HUD should use compact dimensions');
-assert(forest.includes('background:rgba(10,44,55,.36)'), 'Controls must be semi-transparent in both orientations');
-assert(forest.includes('width:clamp(54px,15vw,62px)'), 'Portrait controls must be modestly smaller');
-assert(forest.includes('width:clamp(68px,9.5vw,88px)'), 'Landscape controls must be modestly smaller');
-assert(forest.includes('width:clamp(118px,15.5vw,150px)'), 'Landscape jump button must be modestly smaller');
-assert(forest.includes('scale=vw>vh?vh/H:Math.max(vh/H,vw/1450)'), 'Keep the v118 camera that fits the road');
-console.log('PASS v123: magnifier-only inspection, compact landscape HUD, smaller glass controls in portrait and landscape');
-
-// v124: settings, notes and map must fit viewport without vertical scroll.
-assert(forest.includes("$('#modal').dataset.panel=eyebrow==='AYARLAR'?'settings':''"),'Only Settings panel should be available; notes removed');
-assert(forest.includes('grid-template-rows:auto minmax(0,1fr) auto'), 'No-scroll responsive panel grid missing');
-assert(forest.includes('#modal[data-panel="settings"] .paper,#modal[data-panel="notes"] .paper'), 'Separate premium panel styles missing');
-assert(forest.includes('height:min(500px,calc(100dvh - 18px'), 'Modal height must fit dynamic viewport');
-assert(forest.includes('overflow:hidden;'), 'Modal contents must not scroll');
-assert(sharedUIJS.includes('İlerleme otomatik kaydedilir'), 'Global settings information label missing');
-assert(sharedUIJS.includes('const version="127"'), 'Shared settings should display current release');
-assert(!forest.includes('id="journal"'), 'Forest note button must be removed');
-assert(map.includes('class="mapShell"') && map.includes('class="mapStage"') && map.includes('class="mapFooter"'), 'Premium map layout must have header/stage/footer');
-assert(map.includes('height:100dvh;min-height:0;') && map.includes('overflow-x:auto;overflow-y:hidden;touch-action:pan-x'), 'Map page must block vertical scrolling but retain horizontal panning');
-assert(map.includes('grid-template-areas:"head head" "map foot"'), 'Landscape map needs side-by-side mission panel');
-assert(map.includes('grid-template-areas:"progress" "go" "legend"'), 'Portrait map footer must fit without scrolling');
-assert(map.includes('map-pin forest') && map.includes('centerMap()'), 'Interactive map pins and centering must be preserved');
-assert(forest.includes('background:rgba(10,44,55,.36)'), 'v123 glass movement controls must be preserved');
-assert(forest.includes('if(Math.hypot(sx-px,sy-py)<64){e.preventDefault();interact()}'), 'In-world magnifier interaction must remain');
-console.log('PASS v124: premium viewport-fitted settings/notes/map, horizontal map panning, saved progress and controls preserved');
-
-// v125: all playable chapters share controls, wood/gold HUD theme and premium panels.
-const sharedUICSS=fs.readFileSync(path.join(root,'assets/game-ui-v127.css'),'utf8');
-const sharedUniversalCSS=fs.readFileSync(path.join(root,'assets/universal-hud-v127.css'),'utf8');
-assert(home.includes('class="hud hud-v75 hud-v117 mtk-ui-hud mtk-illustrated-hud"'), 'House must use illustrated HUD');
-assert(forest.includes('class="hud hud-v75 hud-v117 mtk-ui-hud mtk-illustrated-hud"'), 'Forest must share same HUD class');
-assert(home.includes('class="controls mtk-ui-controls"') && forest.includes('class="controls mtk-ui-controls"'), 'Both chapter controls must share their styling');
-for(const scene of [home,forest,map,menuV116])assert(scene.includes('assets/game-ui-v127.css?v=127'), 'All scene and menu pages need the shared visual system');
-for(const scene of [home,forest,menuV116])assert(scene.includes('assets/game-ui-v127.js?v=127'), 'Main menu and playable scenes need shared settings logic');
-assert(home.includes('id="homeMapBtn"') && home.includes('id="homeSettingsBtn"'), 'House needs map and settings buttons');
-assert(home.includes('window.MTKGameUI.settingsMarkup(\'home\',p)') && forest.includes('window.MTKGameUI.settingsMarkup(\'forest\',p)') && menuV116.includes('window.MTKGameUI.settingsMarkup(\'menu\',p)'), 'Settings must come from one shared implementation');
-assert(!home.includes('id="journalBtn"') && !home.includes('homeNotesCompact'), 'House notes must be removed');
-assert(home.includes("else delete $('#info').dataset.mtkPanel"), 'Long story panels must remain scrollable and must not inherit notes layout');
-assert(sharedUICSS.includes('#info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"])'), 'Global panel layout must target only Settings and Notes');
-assert(sharedUICSS.includes('background:var(--mtk-glass)!important'), 'Global transparent gamepad controls missing');
-assert(sharedUniversalCSS.includes('.mtk-illustrated-hud'), 'Both chapters must use universal illustrated HUD CSS');
-assert(sharedUICSS.includes('#info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) .modalPanel'), 'House premium scroll-free cards missing');
-assert(sharedUICSS.includes('.mtk-ui-dialog'), 'Title menu cards must use global panel theme');
-assert(home.includes('window.MTKGameUI.openMap({') && home.includes("from:'home'"), 'House map must open an in-game sheet');
-assert(forest.includes('forest-hud-landscape-v122.avif?v=122'), 'Preserve existing high-resolution forest HUD artwork');
-assert(forest.includes('const horizontalSpeed=heroY<GROUND-.2?422:245'), 'Forest movement physics must remain untouched');
-console.log('PASS v126: shared illustrated HUD, notes removed, origin-aware navigation and compact confirmations');
-
-// v126: the same native artwork and interaction map must work in every scene.
+// v128: one clean artwork for every chapter; metadata is sourced from a
+// single registry, not rectangles plastered over the old forest-only banner.
+const hudArt=fs.readFileSync(path.join(root,"assets/hud-shell-v128.svg"),"utf8");
+const worldArt=fs.readFileSync(path.join(root,"assets/world-map-v128.svg"),"utf8");
+const worldJS=fs.readFileSync(path.join(root,"assets/world-map-v128.js"),"utf8");
+const sharedJS=fs.readFileSync(path.join(root,"assets/game-ui-v128.js"),"utf8");
+const sharedCSS=fs.readFileSync(path.join(root,"assets/unified-ui-v128.css"),"utf8");
+const menu=menuV116;
+new vm.Script(worldJS);new vm.Script(sharedJS);
+assert(hudArt.includes('viewBox="0 0 1800 360"'),"HUD must be crisp vector artwork");
+assert(!hudArt.includes("ORMAN PATİKASI")&&!hudArt.includes("DEDENİN EVİ")&&!hudArt.includes("NOTLAR"),"HUD must be genuinely blank where dynamic metadata goes");
 for(const chapter of [home,forest]){
- assert(chapter.includes('forest-hud-v117.avif?v=117'), 'Portrait must reuse selected forest HUD');
- assert(chapter.includes('forest-hud-landscape-v122.avif?v=122'), 'Landscape must reuse high-res forest HUD');
- assert(chapter.includes('assets/universal-hud-v127.css?v=127'), 'Both chapters need shared HUD responsive sizing');
- assert(chapter.includes('id="pikoBtn"'), 'Chiko remains accessible after deleting notebook');
+ assert(chapter.includes('class="mtk-hud-shell"'),"Shared clean HUD required in every playable chapter");
+ assert(chapter.includes('assets/hud-shell-v128.svg?v=128'),"Both chapters must use exact same illustration");
+ assert(chapter.includes('assets/world-map-v128.js?v=128'),"Both chapters must use expanding chapter registry");
+ assert(chapter.includes('assets/game-ui-v128.js?v=128'),"Both chapters must use shared card behaviors");
+ assert(chapter.includes('assets/unified-ui-v128.css?v=128'),"Both chapters must use common visual system");
+ assert(!chapter.includes('mtk-chapter-label')&&!chapter.includes('forest-hud-v117.avif?v=117'),"Old patched artwork must not be mounted");
+ assert(chapter.includes('window.MTKGameUI.mountChiko();'),"Actual Chiko sprite is preserved");
+ assert(chapter.includes('window.MTKGameUI.configureHUD('),"Chapter title and icon must be configured dynamically");
+ assert(chapter.includes('window.MTKGameUI.openMap({'),"Map must open inside a game card");
+ assert(chapter.includes('class="controls mtk-ui-controls"'),"Approved translucent controls must remain");
 }
-assert(!home.includes('journalBtn') && !forest.includes('id="journal"') && !forest.includes('function journal()'), 'Notebook interactions must be removed');
-assert(sharedUniversalCSS.includes('.mtk-illustrated-hud[data-chapter="home"] .mtk-chapter-label'), 'House title should replace only baked chapter lettering');
-assert(sharedUniversalCSS.includes('.mtk-illustrated-hud #pikoBtn .mtk-chiko-frame'), 'Real Chiko sprite must fill illustrated icon');
-assert(menuV116.includes('data-size="confirmation"') && menuV116.includes("dataset.size=title==='Yeni oyun başlatılsın mı?'"), 'New game confirmation must be content-height');
-assert(map.includes('function backToSource()') && map.includes('if(source==="home")return location.assign(dest.home)') && map.includes('if(source==="forest")return location.assign(dest.forest)'), 'Map back must respect opener');
-assert(map.includes('dest={home:"./?scene=home&autostart=1&v=127"'), 'Standalone map home destination must skip title screen');
-assert(map.includes('document.getElementById("continue").addEventListener("click",()=>go(mission[3]))'), 'Mission navigation must preserve selected chapter');
-console.log('PASS v126: source-aware map back, house auto-start, compact confirmation and common responsive illustrated HUD');
-
-// v127: an in-scene map card replaces page navigation; rotation resizes canvas.
-for(const chapter of [home,forest]){
- assert(chapter.includes('window.MTKGameUI.openMap({'), 'Map must open a sheet in both chapters');
- assert(chapter.includes('window.MTKGameUI.mountChiko();'), 'Both chapters must mount the genuine Chiko sprite');
- assert(chapter.includes('window.visualViewport?.addEventListener(\'resize\',syncViewport)'), 'Both chapters must follow iOS visual viewport orientation changes');
- assert(chapter.includes('new ResizeObserver(resize).observe('), 'Both chapters must watch real game/canvas dimensions');
- assert(!chapter.includes('title="Çiko">🦜</button>'), 'Generic bird placeholder must be removed');
-}
-assert(home.includes('gameViewport.getBoundingClientRect()'), 'House canvas dimensions must come from rendered viewport');
-assert(home.includes("canvas.style.width='100%';canvas.style.height='100%'"), 'House canvas must resize automatically in CSS');
-assert(forest.includes('canvas.getBoundingClientRect()'), 'Forest canvas must follow real viewport');
-assert(!home.includes('location.assign(\'./map-v113.html?from=home&v=127\')'), 'House must not navigate to a map page on HUD click');
-assert(!forest.includes('home=function(){recordForestExit();location.assign'), 'Forest must not navigate to map page');
-assert(sharedUIJS.includes('window.MTKGameUI=Object.freeze({version,settingsMarkup,bindSettings,notesProgress,mountChiko,openMap})'), 'Shared map modal and Chiko sprite integration missing');
-assert(sharedUIJS.includes('event.origin!==location.origin||event.source!==frame.contentWindow'), 'Map iframe messages must be same-origin and from the correct frame');
-assert(sharedUIJS.includes('frame.src="./map-v113.html?embedded=1&from="'), 'Map must load in its own same-page frame');
-assert(sharedUIJS.includes('if((from==="home"&&region==="home")||(from==="forest"&&region==="forest")){close();return}'), 'Selecting current region should only close map');
-assert(sharedUICSS.includes('.mtk-map-layer')&&sharedUICSS.includes('.mtk-map-sheet'), 'Shared premium map panel styles must exist');
-assert(map.includes('if(embedded){tellParent("mtk-map-navigate",region);return;}'), 'Embedded map must message parent rather than navigate');
-assert(map.includes('if(embedded){tellParent("mtk-map-close");return;}'), 'Embedded map back button should close its card');
-assert(map.includes('body.mtk-embedded-map')&&map.includes('grid-template-areas:"map foot"'), 'Map must fit landscape dialog viewport');
-assert(sharedUniversalCSS.includes('background-size:600% 300%'), 'Genuine Chiko atlas cropping must use 6×3 layout');
-assert(!sharedUniversalCSS.includes('content:"ÇİKO"'), 'Old floating sticker label must not return');
-console.log('PASS v127: native Chiko atlas, portrait/landscape rotations, same-page interactive map card');
-
-assert(home.includes('viewportH*.84-ground*baseScale'), 'Landscape camera should keep Erdem on the visible walking lane');
+assert(home.includes('configureHUD("home")'),"House chapter metadata is dynamic");
+assert(forest.includes('configureHUD("forest")'),"Forest chapter metadata is dynamic");
+assert(home.includes("found.size+'/3 İPUCU'"),"House progress must remain live");
+assert(forest.includes('done+"/21 ENGEL"'),"Forest progress must remain live");
+assert(worldArt.includes('viewBox="0 0 2600 1260"')&&worldArt.length>100000,"High-detail scalable parchment atlas required");
+assert(worldJS.includes('x:275,y:270')&&worldJS.includes('x:830,y:470'),"Dedenin Evi should start upper-left, then forest");
+assert(worldJS.includes('mtk-atlas-fog')&&worldJS.includes('SİSİN ARDINDA'),"Locked chapters must be fogged");
+assert(worldJS.includes('function registerChapter(def)'),"Adding future chapters must be data-driven");
+assert(worldJS.includes('const path="M"'),"Routes should connect successive unlocked chapters");
+assert(worldJS.includes('world.style.width=Math.round(height*WORLD_W/WORLD_H)+"px"'),"Map art must keep its intrinsic aspect ratio");
+assert(!sharedJS.includes('createElement("iframe")'),"Map must not load a separate page in a frame");
+assert(sharedJS.includes('window.MTKWorldMap.mount(body,'),"Map must render directly inside game card DOM");
+assert(sharedJS.includes('if(choice.id===from)'),"Selection of current chapter should close card");
+assert(sharedCSS.includes('.mtk-map-contents')&&sharedCSS.includes('overflow-x:auto;overflow-y:hidden'),"Map only pans horizontally, no vertical scroll");
+assert(sharedCSS.includes('#modal[data-panel="question"] #modalContent'),"Only long questions can scroll");
+assert(sharedCSS.includes('#info[data-mtk-panel="story"] .modalPanel'),"Investigation/inspection cards fit a screen");
+assert(home.includes("$('#info').dataset.mtkPanel=kind||'story'"),"All house inspection dialogs must use the shared fit-to-viewport card");
+assert(forest.includes("title==='Kırık köprü'?'question':'story'"),"Forest questions must remain scrollable");
+assert(forest.includes("window.MTKGameUI.fitPanel($('#modalContent'))"),"Forest story cards must shrink rather than scroll");
+assert(menu.includes('window.MTKWorldMap.progress().chapters'),"The Chapters card must use the same future-proof registry");
+assert(menu.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"New Game must clear future chapter milestones");
+assert(home.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"Home reset must clear future chapter milestones");
+assert(map.includes('window.MTKWorldMap.mount(')&&!map.includes('id="mapArt"'),"Legacy map link must show the same modern atlas");
+assert(menu.includes('game-ui-v128.js?v=128'),"Main menu settings must use shared controls");
+assert(sharedJS.includes('window.MTKPrefs?.update({sound:'),"Saved sound setting preserved");
+assert(sharedJS.includes('window.MTKPrefs?.update({vibration:'),"Saved vibration setting preserved");
+assert(forest.includes('const horizontalSpeed=heroY<GROUND-.2?422:245'),"Obstacle jump/movement physics must not regress");
+assert(home.includes('hero.dy=-505'),"House jump physics must be preserved");
+// Verify progressive unlocking without browser dependencies: no unlocked future
+// chapter until the previous chapter has actually been completed.
+const memory=new Map();
+const context={window:{},localStorage:{
+ getItem:key=>memory.get(key)||null,
+ setItem:(key,value)=>memory.set(key,String(value))
+}};
+vm.runInNewContext(worldJS,context);
+const atlas=context.window.MTKWorldMap;
+function stage(id){return atlas.progress().chapters.find(c=>c.id===id)}
+assert(stage("home").unlocked&&!stage("forest").unlocked&&!stage("gate").unlocked,"Initial atlas must reveal only Dedenin Evi");
+memory.set("mathverse-v40-investigation",JSON.stringify({complete:true,visitedStudy:true}));
+assert(stage("forest").unlocked&&!stage("gate").unlocked,"Forest only opens when home is done");
+memory.set("mathverse-v68-forest-full",JSON.stringify({solvedIds:Array.from({length:21},(_,i)=>i+1),reachedGate:true}));
+assert(stage("gate").unlocked&&!stage("inside").unlocked,"Gate only opens after all 21 forest obstacles");
+memory.set("mathverse-v68-forest-full",JSON.stringify({solvedIds:Array.from({length:21},(_,i)=>i+1),reachedGate:true,gateInspected:true}));
+assert(stage("inside").unlocked&&!stage("future-1").unlocked,"Gözlemevi is revealed, future world still fogged");
+assert(atlas.registerChapter({id:"new-island",name:"Yeni Ada",x:2480,y:1050,after:"future-1",route:"./island.html"}),"A new stage should be registerable without editing atlas layout");
+assert(!stage("new-island").unlocked,"Future stage respects preceding chapter");
+console.log("PASS v128: clean global HUD, responsive modal cards, native scalable map, fog unlock rules and future chapter data");

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#0b2732">
-<title>v127 · Orman Patikası · Matematik Evreni</title>
+<title>v128 · Orman Patikası · Matematik Evreni</title>
 <style>
 :root{--cream:#ffedcb;--gold:#f4cd77;--dark:#092536;--ink:#4b321f}
 *{box-sizing:border-box}
@@ -489,20 +489,21 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 }
 
 </style>
-<link rel="stylesheet" href="./assets/game-ui-v127.css?v=127"><link rel="stylesheet" href="./assets/universal-hud-v127.css?v=127"><style>html,body{height:100dvh!important}#scene{width:100dvw!important;height:100dvh!important}</style>
-<script src="./settings-v116.js?v=116"></script><script src="./assets/game-ui-v127.js?v=127"></script></head>
+<link rel="stylesheet" href="./assets/game-ui-v127.css?v=128"><link rel="stylesheet" href="./assets/unified-ui-v128.css?v=128"><style>html,body{height:100dvh!important}#scene{width:100dvw!important;height:100dvh!important}</style>
+<script src="./settings-v116.js?v=116"></script><script src="./assets/world-map-v128.js?v=128"></script><script src="./assets/game-ui-v128.js?v=128"></script></head>
 <body>
 <canvas id="scene" aria-label="Erdem ve Çiko ile oynanabilir orman patikası"></canvas><div class="tint"></div>
-<div class="hud hud-v75 hud-v117 mtk-ui-hud mtk-illustrated-hud" data-chapter="forest" aria-label="Orman Patikası ilerleme ve oyun menüsü">
- <img class="hud-v117-art" src="./assets/forest-hud-v117.avif?v=117" alt="" aria-hidden="true" draggable="false">
- <img class="hud-v122-landscape-art" src="./assets/forest-hud-landscape-v122.avif?v=122" alt="" aria-hidden="true" draggable="false">
- <div class="hudChapter"><b>🌲 ORMAN PATİKASI</b><small id="progress" aria-live="polite">0/21 ENGEL</small></div>
- <div class="trackShell" role="progressbar" aria-label="Tamamlanan matematik engelleri" aria-valuemin="0" aria-valuemax="21" aria-valuenow="0"><span id="progressFill"></span></div>
- <div class="hudRight">
-  <button class="iconBtn" id="mtkTitleBtn" type="button" aria-label="Ana menüye dön" title="Ana Menü">Ana menü</button>
-  <button class="iconBtn" id="pikoBtn" type="button" aria-label="Çiko ile konuş" title="Çiko"></button>
-  <button class="iconBtn" id="home" type="button" aria-label="Macera haritasını aç" title="Harita">Harita</button>
-  <button class="iconBtn" id="settingsBtn" type="button" aria-label="Oyun ayarlarını aç" title="Ayarlar">Ayarlar</button>
+<div class="mtk-hud-shell" data-chapter="forest" aria-label="Ortak oyun üst menüsü">
+ <img class="mtk-hud-art" src="./assets/hud-shell-v128.svg?v=128" alt="" aria-hidden="true" draggable="false">
+ <button type="button" id="mtkTitleBtn" class="mtk-hud-compass" aria-label="Ana menüye dön" title="Ana menü"></button>
+ <div class="mtk-hud-chapter"><span class="mtk-hud-chapter-icon" aria-hidden="true">🌲</span><span class="mtk-hud-chapter-copy"><strong class="mtk-hud-chapter-name">Orman Patikası</strong><small class="mtk-hud-chapter-subtitle">21 matematik engeli</small></span></div>
+ <div class="mtk-hud-brand"><strong>Matematik Evreni</strong><small>Profesörün Kayıp İzleri</small></div>
+ <div class="mtk-hud-progress"><span id="progress" aria-live="polite">0/21 ENGEL</span></div>
+ <div class="trackShell" role="progressbar" aria-label="Tamamlanan matematik engelleri" aria-valuemin="0" aria-valuemax="21" aria-valuenow="0" hidden><span id="progressFill"></span></div>
+ <div class="mtk-hud-actions">
+ <button type="button" class="mtk-hud-action" id="pikoBtn" aria-label="Çiko ile konuş" title="Çiko"></button>
+ <button type="button" class="mtk-hud-action mtk-hud-map" id="home" aria-label="Macera haritasını aç" title="Harita">🗺️</button>
+ <button type="button" class="mtk-hud-action mtk-hud-settings" id="settingsBtn" aria-label="Ayarları aç" title="Ayarlar">⚙️</button>
  </div>
 </div>
 <div class="hint" id="hint">Patikada ilerle; parlayan büyüteçleri incele.</div>
@@ -627,13 +628,13 @@ if(window.ResizeObserver)new ResizeObserver(resize).observe(canvas);
 syncViewport();
 function openModal(title,content,eyebrow='BÖLÜM 2'){
  modalOpen=true;requested=0;activePointers.clear();updatePress();
- $('#modal').dataset.panel=eyebrow==='AYARLAR'?'settings':'';
+ $('#modal').dataset.panel=eyebrow==='AYARLAR'?'settings':title==='Kırık köprü'?'question':'story';
  $('#modalTitle').textContent=title;$('#modalContent').innerHTML=content;
  $('#eyebrow').textContent=eyebrow;$('#modalActions').replaceChildren();
  $('#feedback').textContent='';$('#modal').hidden=false
 }
 function closeModal(){modalOpen=false;$('#modal').hidden=true;$('#modalActions').replaceChildren();$('#feedback').textContent='';last=0}
-function action(label,fn,variant='primary'){const b=document.createElement('button');b.type='button';b.className=variant;b.textContent=label;b.onclick=fn;$('#modalActions').appendChild(b);return b}
+function action(label,fn,variant='primary'){const b=document.createElement('button');b.type='button';b.className=variant;b.textContent=label;b.onclick=fn;$('#modalActions').appendChild(b);if($('#modal').dataset.panel!=='question')window.MTKGameUI.fitPanel($('#modalContent'));return b}
 function story(){
  openModal('Orman Patikası','<p>Erdem haritayı çantasına yerleştirdi. Çiko, tepeye uzanan patikanın üzerinde uçuyordu.</p><div class="thought">💭 <b>Erdem:</b> “Eski gözlemevine giden yol bu olmalı.”</div><p>Yürüyerek ilerle, gerekirse zıpla. Yol üzerinde karşılaşacağın sorunu ölçerek çöz.</p>');
  action('Patikaya çık ▶',()=>{started=true;closeModal();save(true)});
@@ -655,7 +656,7 @@ function recordForestExit(){
   localStorage.setItem(SAVE_KEY,JSON.stringify(state));
  }catch(e){}
 }
-$('#mtkTitleBtn').onclick=()=>{recordForestExit();location.assign('./menu-v116.html?v=127')};
+$('#mtkTitleBtn').onclick=()=>{recordForestExit();location.assign('./menu-v116.html?v=128')};
 
 /* v117 forest settings; share the same saved preferences as the title screen. */
 function openForestSettings(){
@@ -663,7 +664,7 @@ function openForestSettings(){
  openModal('Oyun Ayarları',window.MTKGameUI.settingsMarkup('forest',p),'AYARLAR');
  window.MTKGameUI.bindSettings('forest');
  action('Oyuna dön',closeModal);
- action('Ana menü',()=>{recordForestExit();location.assign('./menu-v116.html?v=127')},'secondary');
+ action('Ana menü',()=>{recordForestExit();location.assign('./menu-v116.html?v=128')},'secondary');
 }
 $('#settingsBtn').onclick=openForestSettings;
 
@@ -721,7 +722,7 @@ for(const [id,dir] of [['left',-1],['right',1]]){
 // Restore all six house jump sprites and preserve natural gravity.
 function jump(){if(!started||modalOpen||heroY<GROUND-.2)return;vy=-560;jumpStartClock=clock}
 $('#jump').addEventListener('pointerdown',e=>{e.preventDefault();jump()});
-window.MTKGameUI.mountChiko();
+window.MTKGameUI.mountChiko();window.MTKGameUI.configureHUD("forest");
 $('#home').onclick=home;$('#pikoBtn').onclick=()=>{const tip=$('#hint');tip.textContent='Çiko: Parlayan büyüteçlerden ipuçlarını bul, engelleri zıplayarak aş!';tip.hidden=false;};
 addEventListener('keydown',e=>{
  if(['ArrowLeft','ArrowRight','ArrowUp',' ','e','E','a','d','A','D'].includes(e.key))e.preventDefault();
