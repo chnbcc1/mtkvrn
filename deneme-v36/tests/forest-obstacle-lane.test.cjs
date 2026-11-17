@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(homeVersion,121);
+assert.equal(homeVersion,122);
 // The home artwork was updated independently; the forest scene remains v113.
 const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
@@ -275,7 +275,7 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v113-full.html?v=121"));
+assert(home.includes("forest-v113-full.html?v=122"));
 assert(map.includes("forest-v113-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
@@ -310,7 +310,7 @@ assert(forest.includes('id="settingsBtn"'),"HUD settings action present");
 assert(forest.includes("window.MTKPrefs?.update({sound:"),"Saved sound toggle");
 assert(forest.includes("window.MTKPrefs?.update({vibration:"),"Saved vibration toggle");
 assert(forest.includes('done+"/21 ENGEL"'),"HUD progress must be live, not artwork-only");
-assert(menuV116.includes("forest-v113-full.html?resume=1&v=121"),"Menu links to latest forest HUD");
+assert(menuV116.includes("forest-v113-full.html?resume=1&v=122"),"Menu links to latest forest HUD");
 console.log("PASS v117: Forest top HUD artwork, dynamic progress, working controls and responsive touch targets");
 
 // v118: landscape display must include the road and Erdem's feet (not just forest sky).
@@ -344,12 +344,23 @@ console.log('PASS v119: sharp HUD icons, compact hints, scrollable two-column la
 const landscapeSVG=fs.readFileSync(path.join(root,"assets/forest-hud-landscape-v121.svg"),"utf8");
 assert(landscapeSVG.includes('viewBox="0 0 1920 254"'),"Landscape HUD must be authored at a truly wide native aspect");
 assert(landscapeSVG.includes('ORMAN PATİKASI') && landscapeSVG.includes('NOTLAR') && landscapeSVG.includes('HARİTA') && landscapeSVG.includes('AYARLAR'),"New HUD missing labels");
-assert(forest.includes('forest-hud-landscape-v121.svg?v=121'),"Landscape artwork was not integrated");
+assert(forest.includes('forest-hud-landscape-v122.avif?v=122'),"High-resolution landscape artwork was not integrated");
 assert(!forest.includes('hud-v120-artparts'),"Do not splice the old HUD into independent fragments");
-assert(forest.includes('aspect-ratio:1920 / 254'),"New landscape art aspect ratio must be preserved");
+assert(forest.includes('aspect-ratio:2172 / 362'),"High-resolution landscape artwork aspect ratio must be preserved");
 assert(forest.includes('object-fit:contain;object-position:center'),"Landscape art must not stretch to fill the box");
-assert(forest.includes('height:auto;aspect-ratio:1920 / 254'),"Do not force an incorrect HUD height");
+assert(forest.includes('height:auto;aspect-ratio:2172 / 362'),"Do not force an incorrect HUD height");
 assert(forest.includes('width:clamp(80px,11vw,110px)'),"Large landscape directional buttons must remain");
 assert(forest.includes('width:clamp(135px,18vw,182px)'),"Large landscape jump button must remain");
 assert(forest.includes('scale=vw>vh?vh/H:Math.max(vh/H,vw/1450)'),"Landscape camera / jump area changed");
-console.log("PASS v121: Independent native 1920x254 HUD, responsive controls, preserved portrait and game physics");
+// v122: verify new artwork is a real AVIF with its native full-resolution dimensions.
+const landscapeHiRes=fs.readFileSync(path.join(root,'assets/forest-hud-landscape-v122.avif'));
+assert.equal(landscapeHiRes.toString('ascii',4,12),'ftypavif','Landscape file must be AVIF');
+assert(landscapeHiRes.length>120000,'Illustrated landscape source unexpectedly low-detail/small');
+const ispe122=landscapeHiRes.indexOf(Buffer.from('ispe'));
+assert(ispe122>0,'AVIF image properties missing');
+assert.equal(landscapeHiRes.readUInt32BE(ispe122+8),2172);
+assert.equal(landscapeHiRes.readUInt32BE(ispe122+12),362);
+assert(forest.includes('hud-v122-landscape-art'),'v122 artwork CSS/markup missing');
+assert(forest.includes('class="hud-v117-art" src="./assets/forest-hud-v117.avif?v=117"'),'Portrait original HUD must be kept');
+assert(!forest.includes('class="hud-v121-landscape-art"'),'Old low-detail vector should no longer be shown');
+console.log("PASS v122: Premium 2172x362 landscape AVIF, portrait unchanged, responsive controls and game physics preserved");
