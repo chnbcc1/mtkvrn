@@ -1,0 +1,486 @@
+/* Matematik Evreni v128 | clean universal HUD and parchment expedition atlas.
+   The underlying HUD artwork contains NO scene-specific text or old icons.
+   All chapter names, symbols, progress and actions are real semantic HTML. */
+.mtk-hud-shell{
+ position:absolute!important;z-index:6!important;
+ top:calc(env(safe-area-inset-top) + 1px)!important;left:50%!important;right:auto!important;
+ width:min(100%,920px)!important;
+ aspect-ratio:1800/360!important;height:auto!important;min-height:0!important;max-height:none!important;
+ box-sizing:border-box!important;transform:translateX(-50%)!important;
+ margin:0!important;padding:0!important;border:0!important;outline:0!important;
+ border-radius:0!important;background:transparent!important;box-shadow:none!important;
+ overflow:visible!important;isolation:isolate;pointer-events:none!important;
+ backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+ font-family:system-ui,-apple-system,"Segoe UI",sans-serif!important
+}
+.mtk-hud-shell *{box-sizing:border-box}
+.mtk-hud-shell .mtk-hud-art{
+ position:absolute;inset:0;width:100%;height:100%;display:block;
+ object-fit:contain;object-position:center;pointer-events:none;user-select:none;
+ filter:drop-shadow(0 5px 8px #081914b8);
+}
+.mtk-hud-shell .mtk-hud-chapter{
+ position:absolute;left:14%;top:35.5%;width:24.5%;height:34%;
+ display:flex;align-items:center;justify-content:center;gap:3%;
+ min-width:0;overflow:hidden;text-align:center;color:#51301a;
+ background:none!important;border:0!important;box-shadow:none!important;pointer-events:none!important;
+}
+.mtk-hud-chapter .mtk-hud-chapter-icon{flex:0 0 auto;font-size:clamp(12px,2vw,26px);line-height:1}
+.mtk-hud-chapter .mtk-hud-chapter-copy{min-width:0;display:flex;flex-direction:column;justify-content:center}
+.mtk-hud-chapter-copy strong{font:900 clamp(10px,1.4vw,18px)/1.12 Georgia,serif!important;color:#4b2b19!important;text-shadow:0 1px #fff3cb;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mtk-hud-chapter-copy small{font:700 clamp(7px,.85vw,11px)/1.15 system-ui,sans-serif!important;color:#92693c!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mtk-hud-brand{
+ position:absolute;left:43.1%;top:19%;width:22.9%;height:29%;
+ display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;
+ text-align:center;color:#fff1c8;pointer-events:none;
+}
+.mtk-hud-brand strong{font:900 clamp(11px,1.75vw,24px)/1 Georgia,serif;text-shadow:0 2px 2px #2b120f;white-space:nowrap}
+.mtk-hud-brand small{font:800 clamp(7px,1vw,12px)/1.15 Georgia,serif;color:#f2d295;text-shadow:0 1px 2px #29130a;white-space:nowrap}
+.mtk-hud-progress{
+ position:absolute;left:46.3%;top:57%;width:18.5%;height:15%;
+ display:flex;align-items:center;justify-content:center;
+ font:900 clamp(10px,1.45vw,21px)/1 system-ui,sans-serif;
+ color:#fff9df;text-shadow:0 1px 3px #001922;pointer-events:none
+}
+.mtk-hud-shell .mtk-hud-compass{
+ position:absolute;left:3.1%;top:29%;width:8.2%;height:46%;
+ display:block;background:transparent!important;border:0!important;
+ border-radius:50%;box-shadow:none!important;cursor:pointer;pointer-events:auto!important;
+ font-size:0!important;color:transparent!important;touch-action:manipulation;
+}
+.mtk-hud-shell .mtk-hud-actions{
+ position:absolute;inset:0;display:block;pointer-events:none!important
+}
+.mtk-hud-shell .mtk-hud-action{
+ position:absolute;top:35%;width:7.2%;height:34%;
+ display:flex;justify-content:center;align-items:center;
+ background:transparent!important;border:0!important;border-radius:50%!important;
+ box-shadow:none!important;cursor:pointer;pointer-events:auto!important;
+ color:#5a3018!important;font-size:clamp(13px,2.25vw,30px)!important;
+ filter:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+ padding:0!important;margin:0!important;min-width:0!important;min-height:0!important;
+ touch-action:manipulation
+}
+.mtk-hud-action:focus-visible,.mtk-hud-compass:focus-visible{
+ outline:3px solid #fff0a5!important;outline-offset:1px
+}
+.mtk-hud-action:active{filter:brightness(1.24)!important}
+.mtk-hud-shell #pikoBtn{left:74.15%}
+.mtk-hud-shell .mtk-hud-map{left:82.04%}
+.mtk-hud-shell .mtk-hud-settings{left:89.93%}
+.mtk-hud-shell #pikoBtn .mtk-chiko-portrait{
+ position:relative;display:block;width:87%;aspect-ratio:1;
+ border-radius:50%;overflow:hidden;background:radial-gradient(circle,#f4dc9a,#ac7643);
+}
+.mtk-hud-shell #pikoBtn .mtk-chiko-frame{
+ position:absolute;inset:0;display:block;background-repeat:no-repeat;
+ background-position:0 0;background-size:600% 300%;
+}
+.mtk-hud-shell #pikoBtn .mtk-chiko-name{display:none}
+@media(orientation:portrait){
+ .mtk-hud-shell{
+  width:calc(100vw - 7px - env(safe-area-inset-left) - env(safe-area-inset-right))!important
+ }
+ .mtk-hud-chapter .mtk-hud-chapter-icon{font-size:clamp(10px,3.1vw,14px)}
+ .mtk-hud-chapter-copy strong{font-size:clamp(7px,2.2vw,10px)!important}
+ .mtk-hud-chapter-copy small{font-size:clamp(6px,1.65vw,8px)!important}
+ .mtk-hud-brand strong{font-size:clamp(9px,2.5vw,13px)}
+ .mtk-hud-brand small{font-size:clamp(6px,1.65vw,8px)}
+ .mtk-hud-progress{font-size:clamp(8px,2.4vw,12px)}
+ .mtk-hud-shell .mtk-hud-action{font-size:clamp(12px,3.5vw,18px)!important}
+}
+@media(orientation:landscape){
+ .mtk-hud-shell{
+  width:min(840px,78vw,190dvh)!important
+ }
+}
+@media(orientation:landscape) and (max-height:430px){
+ .mtk-hud-shell{width:min(760px,80vw,185dvh)!important}
+}
+/* Shared game card architecture. Story, inspection, settings, and maps fit
+   without vertical scroll. Only question bodies may scroll when long. */
+.mtk-map-layer{
+ position:fixed!important;z-index:10000;inset:0;box-sizing:border-box;
+ display:grid;place-items:center;
+ padding:max(6px,env(safe-area-inset-top)) max(6px,env(safe-area-inset-right))
+ max(6px,env(safe-area-inset-bottom)) max(6px,env(safe-area-inset-left));
+ background:radial-gradient(ellipse at 50% 42%,#1c40349c,#06181eeb)!important;
+ backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)
+}
+.mtk-map-sheet{
+ box-sizing:border-box!important;width:min(1100px,100%)!important;
+ height:min(860px,calc(100dvh - 14px - env(safe-area-inset-top) - env(safe-area-inset-bottom)))!important;
+ min-height:0!important;max-height:100%!important;
+ display:grid!important;grid-template-rows:auto minmax(0,1fr)!important;
+ border:4px ridge #bd9351!important;outline:2px solid #432812;
+ border-radius:clamp(15px,2.7vw,25px)!important;overflow:hidden!important;
+ background:linear-gradient(165deg,#3d6147,#132f2c)!important;
+ box-shadow:inset 0 0 0 2px #f7d18b77,0 14px 48px #000b!important
+}
+.mtk-map-sheet-head{
+ min-height:0!important;display:flex;align-items:center;justify-content:space-between;gap:10px;
+ padding:clamp(6px,1.35vh,12px) clamp(10px,2vw,20px);
+ background:linear-gradient(160deg,#9d6538,#5c311a 56%,#331c0d)!important;
+ border-bottom:3px solid #dfb76c!important;color:#f8e9bf
+}
+.mtk-map-sheet-head strong{font:900 clamp(12px,2.4vh,18px)/1.15 Georgia,serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mtk-map-sheet-close{
+ flex:0 0 auto;min-width:75px;min-height:33px;padding:5px 12px;
+ border:2px solid #e6c784;border-radius:11px;background:linear-gradient(#fff0bd,#dbac6d);
+ color:#4d2b1a;font:900 clamp(12px,2vh,15px)/1 system-ui,sans-serif
+}
+.mtk-map-contents{
+ min-height:0!important;min-width:0;
+ display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;
+ gap:clamp(3px,.7dvh,8px);
+ padding:clamp(6px,1.1dvh,11px);
+ overflow:hidden!important
+}
+.mtk-atlas-intro{min-width:0;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.mtk-atlas-intro-copy{min-width:0;display:flex;flex-direction:column;gap:1px}
+.mtk-atlas-intro-copy strong{font:900 clamp(13px,2.6dvh,20px)/1.1 Georgia,serif;color:#ffe6ae;text-shadow:0 2px 3px #152619}
+.mtk-atlas-intro-copy small{font:600 clamp(9px,1.6dvh,12px)/1.1 system-ui,sans-serif;color:#dfd7ad;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mtk-atlas-count{flex:0 0 auto;font:900 clamp(11px,2dvh,15px)/1.1 system-ui,sans-serif;border:1px solid #e1c48e;border-radius:15px;background:#42301d;color:#f6dcac;padding:5px 10px}
+.mtk-atlas-viewport{
+ position:relative;min-height:0;min-width:0;width:100%;height:100%;
+ overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;
+ touch-action:pan-x;scrollbar-width:thin;scrollbar-color:#d6b174 #49341e;
+ border:4px ridge #ae7847;border-radius:clamp(11px,2.5vw,18px);
+ background:#cdae7b;box-shadow:inset 0 0 0 2px #f8e6b4,0 4px 13px #0008
+}
+.mtk-atlas-world{
+ position:relative;height:100%;aspect-ratio:2600/1260;
+ width:auto;flex:none;isolation:isolate;
+}
+.mtk-atlas-art{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;user-select:none}
+.mtk-atlas-trails{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;filter:drop-shadow(0 2px 2px #57332191)}
+.mtk-atlas-fog{
+ position:absolute;z-index:3;transform:translate(-50%,-50%);
+ width:clamp(190px,28%,460px);height:clamp(140px,35%,440px);
+ border-radius:49%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+ background:radial-gradient(ellipse,#cfd7cd 0%,#d7dfd9ed 29%,#c8d1ccdd 48%,#bac9c5a8 65%,transparent 76%);
+ color:#4a5d59;text-align:center;filter:drop-shadow(0 0 18px #f8f4e6);
+ pointer-events:none
+}
+.mtk-atlas-fog span{font-size:clamp(22px,4vw,52px);filter:grayscale(.6);opacity:.72}
+.mtk-atlas-fog b{font:900 clamp(9px,1.25vw,14px)/1.2 Georgia,serif;max-width:180px;text-shadow:0 1px #fff8e8}
+.mtk-atlas-marker{
+ position:absolute;z-index:5;transform:translate(-50%,-50%);
+ display:flex;align-items:center;flex-direction:column;justify-content:center;
+ min-width:clamp(90px,12%,150px);max-width:17%;min-height:58px;
+ gap:1px;padding:3px 7px;border:3px ridge #be8a49;border-radius:15px;
+ background:linear-gradient(170deg,#fff0c0,#e0b879 62%,#ba8652);
+ box-shadow:0 6px 13px #54341b8c,inset 0 0 0 2px #fff1b7;
+ color:#4c301d;text-align:center;cursor:pointer;touch-action:manipulation;
+ font-family:Georgia,serif
+}
+.mtk-atlas-marker.is-complete{border-color:#5d9b69;box-shadow:0 0 0 3px #b6dfa466,0 5px 13px #342d16a0}
+.mtk-atlas-marker.is-selected{outline:4px solid #fef1b6;outline-offset:2px}
+.mtk-atlas-marker.is-unavailable{cursor:default;opacity:.85}
+.mtk-atlas-medal{font-size:clamp(23px,2.3vw,37px);line-height:1}
+.mtk-atlas-marker-title{font-size:clamp(11px,1.35vw,17px);font-weight:900;white-space:nowrap;text-shadow:0 1px #fff4d9}
+.mtk-atlas-marker-index{
+ position:absolute;left:-10px;top:-11px;width:24px;height:24px;border:2px solid #f3cd88;
+ border-radius:50%;background:#62401f;color:#f8e5b3;font:900 13px/20px system-ui,sans-serif
+}
+.mtk-atlas-check{
+ position:absolute;right:-9px;top:-12px;width:27px;height:27px;border-radius:50%;
+ background:#2f844f;color:#fff8d1;border:2px solid #eadca5;font:900 18px/22px system-ui,sans-serif
+}
+.mtk-atlas-swipe{font:650 clamp(9px,1.6dvh,12px)/1.1 system-ui,sans-serif;color:#efdfaf;text-align:center}
+.mtk-atlas-footer{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;min-height:0}
+.mtk-atlas-chapter-desc{
+ min-width:0;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:3px;
+ padding:clamp(7px,1.2vh,12px) clamp(9px,1.6vw,16px);
+ border:1px solid #b9cf97;border-radius:12px;
+ background:linear-gradient(100deg,#236253,#104238);color:#fff3d2
+}
+.mtk-atlas-chapter-desc strong{font:900 clamp(12px,2vh,17px)/1.12 Georgia,serif}
+.mtk-atlas-chapter-desc span{font:600 clamp(10px,1.55vh,13px)/1.25 system-ui,sans-serif;color:#dbe8d3}
+.mtk-atlas-cta{
+ flex:0 0 auto;min-width:120px;max-width:44%;
+ padding:clamp(8px,1.4vh,13px) clamp(10px,2vw,20px);
+ border:2px solid #fff1b3;border-radius:12px;background:linear-gradient(#ffebbb,#ddab67);
+ color:#375342;font:900 clamp(11px,1.8vh,15px)/1.15 system-ui,sans-serif;
+ box-shadow:0 3px #694628;cursor:pointer
+}
+.mtk-atlas-cta:disabled{opacity:.65;cursor:not-allowed}
+@media(orientation:portrait){
+ .mtk-atlas-footer{grid-template-columns:minmax(0,1fr) auto;gap:6px}
+ .mtk-atlas-cta{min-width:116px;padding:9px 8px}
+}
+@media(orientation:landscape){
+ .mtk-map-contents{
+  grid-template-columns:minmax(0,1fr) minmax(190px,30%);
+  grid-template-rows:auto minmax(0,1fr);
+  gap:5px 9px;
+ }
+ .mtk-atlas-intro{grid-column:1 / -1;grid-row:1}
+ .mtk-atlas-viewport{grid-column:1;grid-row:2}
+ .mtk-atlas-swipe{display:none}
+ .mtk-atlas-footer{grid-column:2;grid-row:2;display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:10px}
+ .mtk-atlas-cta{max-width:none;width:100%;min-height:45px}
+}
+@media(orientation:landscape) and (max-height:430px){
+ .mtk-map-sheet-head{padding:4px 11px}
+ .mtk-map-sheet-close{min-height:28px}
+ .mtk-map-contents{padding:5px;gap:3px 6px}
+ .mtk-atlas-intro-copy small{display:none}
+ .mtk-atlas-footer{gap:6px}
+ .mtk-atlas-chapter-desc{padding:6px}
+}
+/* Non-question cards never vertically scroll. Quiz answer text may scroll in
+   its own bounded area, without resizing the game scene. */
+#info .modalPanel,#modal .paper{max-height:calc(100dvh - 18px);overflow:hidden}
+#info #modalText,#modal #modalContent{min-height:0;overflow:hidden}
+#info[data-mtk-panel="question"] #modalText,
+#modal[data-panel="question"] #modalContent,
+#quizOverlay iframe{overflow-y:auto!important;-webkit-overflow-scrolling:touch}
+
+/* Research and inspection use the same real-card grid. Buttons remain on
+   screen in both orientations; unlike exam questions, these never scroll. */
+#info[data-mtk-panel="story"]{
+ padding:max(6px,env(safe-area-inset-top)) 8px max(6px,env(safe-area-inset-bottom));
+ background:radial-gradient(ellipse,#163c348c,#07151fe8);
+}
+#info[data-mtk-panel="story"] .modalPanel{
+ width:min(760px,100%)!important;
+ height:min(540px,calc(100dvh - 18px - env(safe-area-inset-top) - env(safe-area-inset-bottom)))!important;
+ max-height:100%!important;min-height:0!important;
+ display:grid;grid-template-rows:auto minmax(0,1fr) auto;
+ padding:0!important;gap:0;overflow:hidden!important;
+ border:4px ridge #b78340!important;outline:2px solid #4a2b18;
+ background:radial-gradient(ellipse at 20% 10%,#fff4cf,#e2c58e 70%,#cda66c)!important;
+ box-shadow:inset 0 0 0 3px #ffefbe,0 14px 48px #061612bf
+}
+#info[data-mtk-panel="story"] .mtk-modal-head{
+ display:flex;justify-content:space-between;align-items:center;gap:10px;
+ padding:clamp(7px,1.6vh,15px) clamp(12px,2vw,25px);
+ background:linear-gradient(160deg,#91592d,#4d2a16);border-bottom:3px solid #dfb36c
+}
+#info[data-mtk-panel="story"] .mtk-modal-head h2{
+ margin:0;color:#fff1c6;font-size:clamp(20px,4.3vh,34px);line-height:1.05
+}
+#info[data-mtk-panel="story"] .mtk-modal-head span{font-size:clamp(20px,4vh,30px)}
+#info[data-mtk-panel="story"] #modalText{
+ min-height:0;box-sizing:border-box;overflow:hidden!important;
+ display:flex;flex-direction:column;justify-content:center;gap:clamp(4px,1.3vh,10px);
+ padding:clamp(7px,1.7vh,17px) clamp(12px,2.2vw,23px);
+ font-size:clamp(11px,2vh,16px);line-height:1.25;
+}
+#info[data-mtk-panel="story"] #modalText p{margin:2px 0;line-height:1.25}
+#info[data-mtk-panel="story"] #modalText img,
+#info[data-mtk-panel="story"] #modalText canvas{max-height:30dvh;max-width:100%;object-fit:contain}
+#info[data-mtk-panel="story"] .mtk-modal-foot{
+ padding:clamp(6px,1.4vh,12px) clamp(12px,2vw,23px);
+ background:linear-gradient(#e4c489,#cba06e);border-top:2px solid #ae864d
+}
+#info[data-mtk-panel="story"] .mtk-modal-foot button{width:100%;min-height:38px;margin:0}
+#modal[data-panel="story"] .paper{
+ box-sizing:border-box;width:min(740px,100%);height:min(520px,calc(100dvh - 16px));
+ max-height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;
+ overflow:hidden;padding:0;border:4px ridge #ae7b42
+}
+#modal[data-panel="story"] .panel-head{
+ padding:clamp(7px,1.6vh,14px) clamp(14px,2.3vw,22px);
+ background:linear-gradient(150deg,#7e4b2a,#462616);
+ border-bottom:2px solid #dfb36c
+}
+#modal[data-panel="story"] .panel-head h2{font-size:clamp(20px,4.2vh,31px);line-height:1.05;color:#fff1ca;margin:0}
+#modal[data-panel="story"] .panel-head .eyebrow{color:#e4cc98}
+#modal[data-panel="story"] #modalContent{
+ min-height:0;overflow:hidden;display:flex;flex-direction:column;justify-content:center;
+ padding:clamp(6px,1.6vh,14px) clamp(14px,2.2vw,21px);gap:clamp(4px,1vh,9px);
+}
+#modal[data-panel="story"] #modalContent p{line-height:1.28;margin:4px 0}
+#modal[data-panel="story"] .actions{
+ margin:0;padding:clamp(6px,1.6vh,12px) clamp(14px,2.2vw,21px);
+ display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px;
+ background:linear-gradient(#e5c78f,#d1a66f)
+}
+#modal[data-panel="story"] .actions button{min-height:38px;padding:6px 9px}
+#modal[data-panel="story"] .feedback{display:none}
+#modal[data-panel="question"] .paper{
+ max-height:calc(100dvh - 16px);height:min(780px,calc(100dvh - 16px));
+ display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;overflow:hidden;padding:0
+}
+#modal[data-panel="question"] .panel-head{padding:clamp(7px,1.6vh,14px) 15px}
+#modal[data-panel="question"] #modalContent{
+ overflow-y:auto!important;justify-content:flex-start;padding:10px 15px;
+ overscroll-behavior:contain
+}
+#modal[data-panel="question"] .actions{margin-top:0}
+@media(orientation:landscape) and (max-height:430px){
+ #info[data-mtk-panel="story"] .mtk-modal-head{padding:5px 12px}
+ #info[data-mtk-panel="story"] #modalText{padding:4px 11px;gap:3px}
+ #info[data-mtk-panel="story"] #modalText p{font-size:11px}
+ #info[data-mtk-panel="story"] .mtk-modal-foot{padding:4px 11px}
+ #modal[data-panel="story"] .panel-head{padding:4px 11px}
+ #modal[data-panel="story"] #modalContent{padding:4px 11px;gap:3px}
+ #modal[data-panel="story"] #modalContent p{font-size:11px;margin:0}
+ #modal[data-panel="story"] .actions{padding:4px 11px}
+}
+
+/* Future chapters extend horizontally inside the Chapters CARD. Never
+   allow the game dialog itself to grow vertically just to fit new stages. */
+#shade .dialog .chapter-list{
+ display:flex!important;flex-direction:row;align-items:stretch;
+ gap:clamp(6px,1.1vw,10px);min-width:0;max-width:100%;
+ overflow-x:auto!important;overflow-y:hidden!important;
+ overscroll-behavior-x:contain;touch-action:pan-x;
+ padding:5px 3px 8px;scrollbar-width:thin
+}
+#shade .dialog .chapter-list .chapter{
+ flex:0 0 clamp(145px,30vw,205px);max-width:205px;min-width:0;
+ min-height:clamp(72px,12vh,104px);padding:8px!important;
+ white-space:normal
+}
+#shade .dialog .chapter-list .chapter strong,
+#shade .dialog .chapter-list .chapter small{
+ white-space:normal;overflow-wrap:anywhere;line-height:1.18
+}
+@media(orientation:landscape) and (max-height:430px){
+ #shade .dialog .chapter-list .chapter{flex-basis:153px;min-height:62px}
+}
+
+
+/* v129: redesigned premium forest navigation + cinematic expedition atlas.
+   Portrait retains its established controls; landscape gets a narrow HUD. */
+.mtk-hud-shell .mtk-hud-chapter-name{
+ white-space:normal!important;overflow:visible!important;text-overflow:clip!important;
+ display:block;line-height:1.04!important;max-height:2.1em;
+}
+.mtk-hud-shell .mtk-hud-progress{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mtk-hud-shell .mtk-hud-art{image-rendering:auto;filter:drop-shadow(0 3px 5px #101d15c2)}
+#campaignHud{display:none!important}
+@media (orientation:portrait){
+ .mtk-hud-shell .mtk-hud-chapter-name{font-size:clamp(9px,2.4vw,11px)!important}
+ .mtk-hud-shell .mtk-hud-progress{font-size:clamp(9px,2.7vw,12px)!important}
+}
+@media (orientation:landscape){
+ .mtk-hud-shell{
+  width:min(650px,72vw,126dvh)!important;max-width:calc(100dvw - 18px)!important;
+  top:calc(env(safe-area-inset-top) + 2px)!important;
+ }
+ .mtk-hud-chapter .mtk-hud-chapter-icon{font-size:clamp(13px,1.55vw,20px)}
+ .mtk-hud-chapter .mtk-hud-chapter-name{font-size:clamp(10px,1.2vw,14px)!important}
+ .mtk-hud-chapter-copy small{font-size:clamp(7px,.9vw,10px)!important}
+ .mtk-hud-brand strong{font-size:clamp(13px,1.65vw,19px)!important}
+ .mtk-hud-brand small{font-size:clamp(8px,1vw,12px)!important}
+ .mtk-hud-progress{font-size:clamp(11px,1.5vw,17px)!important}
+ .mtk-hud-shell .mtk-hud-action{font-size:clamp(15px,2.2vw,25px)!important}
+}
+@media (orientation:landscape) and (max-height:430px){
+ .mtk-hud-shell{width:min(610px,70vw,121dvh)!important}
+}
+/* Never allow the atlas's wide panorama to enlarge the card's grid columns. */
+.mtk-map-sheet{width:min(1090px,calc(100vw - 12px))!important;overflow:hidden!important}
+.mtk-map-sheet-head{min-width:0!important;gap:8px!important;padding:7px 13px!important}
+.mtk-map-sheet-head strong{
+ display:block;flex:1 1 auto;min-width:0;white-space:nowrap;
+ font:900 clamp(12px,2.3vh,18px)/1.1 Georgia,serif!important;
+}
+.mtk-map-contents{
+ box-sizing:border-box;width:100%!important;max-width:100%!important;
+ min-width:0!important;min-height:0!important;overflow:hidden!important;
+}
+.mtk-atlas-intro{min-width:0!important;max-width:100%!important;padding:0 3px}
+.mtk-atlas-intro-copy small{max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mtk-atlas-viewport{
+ width:100%!important;min-width:0!important;max-width:100%!important;
+ border:3px solid #d9b775!important;border-radius:17px!important;
+ background:#204d3e!important;box-shadow:0 0 0 2px #59381e,0 9px 24px #0219138f!important;
+ touch-action:pan-x!important;
+}
+.mtk-atlas-world{background:#3f7f56}
+.mtk-atlas-art{object-fit:contain;image-rendering:auto;filter:saturate(1.14) contrast(1.05)}
+.mtk-atlas-world .mtk-atlas-fog{
+ position:absolute!important;z-index:4!important;
+ top:0!important;bottom:0!important;right:auto;
+ height:100%!important;border-radius:0!important;transform:none!important;
+ display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+ background:
+  radial-gradient(ellipse at 24% 18%,#ffffff9c,transparent 32%),
+  radial-gradient(ellipse at 55% 65%,#eaf0e4bb,transparent 42%),
+  radial-gradient(ellipse at 84% 32%,#f6f9f2ce,transparent 38%),
+  linear-gradient(90deg,#d4e5da35,#dfede4e8 33%,#dce8e1e8 90%);
+ box-shadow:inset 48px 0 42px -26px #e3f1e088;
+ backdrop-filter:blur(6px) saturate(.55);
+ -webkit-backdrop-filter:blur(6px) saturate(.55);
+ text-align:center;color:#385b54;pointer-events:none;
+}
+.mtk-atlas-world .mtk-atlas-fog .mtk-atlas-fog-symbol{
+ display:block!important;font-size:clamp(30px,4vw,48px)!important;
+ color:#bd9161;opacity:.78;
+ text-shadow:0 1px 4px #fff;
+}
+.mtk-atlas-world .mtk-atlas-fog b{
+ display:block;position:relative;max-width:260px;
+ padding:8px 13px;border:1px solid #c6bd9b9c;border-radius:20px;
+ background:linear-gradient(100deg,#e3ede5b8,#f3f6edd1);
+ color:#45665d;font:900 clamp(11px,1.4vw,16px)/1.15 Georgia,serif!important;
+ letter-spacing:.8px;text-shadow:0 1px #fff;
+ box-shadow:0 3px 12px #45645322
+}
+.mtk-atlas-world .mtk-atlas-marker{
+ z-index:5;min-width:clamp(82px,10%,135px)!important;max-width:13%!important;
+ min-height:0!important;padding:6px 8px 8px!important;gap:3px;
+ background:linear-gradient(145deg,#fff7d5,#f5d89c 39%,#cf9958 100%)!important;
+ border:3px ridge #ca974c!important;border-radius:17px!important;
+ box-shadow:0 0 0 2px #f9e4ad66,0 7px 16px #1c2f2599,inset 0 2px 2px #fff5d2!important;
+ color:#4b321e!important;
+ transform:translate(-50%,-50%);
+}
+.mtk-atlas-marker .mtk-atlas-medal{font-size:clamp(21px,2.25vw,32px);filter:drop-shadow(0 2px 1px #553d296b)}
+.mtk-atlas-marker .mtk-atlas-marker-title{font:900 clamp(10px,1.25vw,14px)/1.15 Georgia,serif;white-space:normal;text-shadow:0 1px #fff4d5}
+.mtk-atlas-marker .mtk-atlas-marker-index{font-size:12px;top:-8px;left:-8px;width:24px;height:24px}
+.mtk-atlas-marker.is-selected{
+ outline:3px solid #fff7b0!important;outline-offset:2px;
+ box-shadow:0 0 0 8px #efdf8d4f,0 0 26px #ffeb9c99,0 5px 19px #183829af!important
+}
+.mtk-atlas-footer{
+ box-sizing:border-box;width:100%!important;max-width:100%!important;min-width:0!important;
+ overflow:hidden!important;align-items:stretch!important;
+}
+.mtk-atlas-chapter-desc{min-width:0!important;overflow:hidden!important;border:1px solid #9cbb90!important}
+.mtk-atlas-cta{min-height:43px!important;white-space:normal}
+.mtk-atlas-swipe{text-align:center;color:#e7dab7}
+@media(orientation:portrait){
+ .mtk-map-sheet-head{padding:5px 10px!important}
+ .mtk-map-sheet-head strong{font-size:clamp(12px,3.35vw,15px)!important}
+ .mtk-map-sheet-close{min-width:65px;min-height:32px;padding:5px 8px;font-size:11px}
+ .mtk-map-contents{
+  display:grid!important;grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:min-content minmax(0,1fr) min-content!important;
+  gap:6px!important;padding:8px 8px 10px!important;
+ }
+ .mtk-atlas-intro{grid-column:1!important;grid-row:1!important;min-width:0}
+ .mtk-atlas-intro-copy strong{font-size:clamp(15px,4vw,19px)}
+ .mtk-atlas-intro-copy small{display:none}
+ .mtk-atlas-count{font-size:10px;padding:5px 7px}
+ .mtk-atlas-viewport{grid-column:1!important;grid-row:2!important;min-height:0}
+ .mtk-atlas-swipe{display:none!important}
+ .mtk-atlas-footer{
+  grid-column:1!important;grid-row:3!important;display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(116px,32%)!important;
+  gap:7px!important;max-height:86px!important;
+ }
+ .mtk-atlas-chapter-desc{padding:7px 9px!important;min-width:0;gap:2px!important}
+ .mtk-atlas-chapter-desc strong{font-size:12px}
+ .mtk-atlas-chapter-desc span{font-size:10px;line-height:1.12}
+ .mtk-atlas-cta{max-width:none!important;min-width:0!important;width:100%!important;font-size:11px;min-height:42px!important;padding:6px!important}
+}
+@media(orientation:landscape){
+ .mtk-map-contents{
+  grid-template-columns:minmax(0,1fr) minmax(150px,26%)!important;
+  grid-template-rows:minmax(0,1fr)!important;
+  gap:8px!important;padding:7px!important;
+ }
+ .mtk-atlas-intro{display:none!important}
+ .mtk-atlas-viewport{grid-column:1!important;grid-row:1!important}
+ .mtk-atlas-footer{grid-column:2!important;grid-row:1!important;display:flex!important;flex-direction:column!important;justify-content:center;align-items:stretch!important;gap:9px!important}
+ .mtk-atlas-chapter-desc{padding:11px!important}
+ .mtk-atlas-chapter-desc strong{font-size:clamp(12px,2.5vh,18px)}
+ .mtk-atlas-chapter-desc span{font-size:clamp(10px,1.95vh,13px)}
+ .mtk-atlas-cta{width:100%!important;max-width:none!important}
+}
