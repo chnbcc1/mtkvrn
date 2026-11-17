@@ -1,0 +1,185 @@
+@import url("./unified-ui-v129.css?v=129");
+/* v130 — The approved illustrated map IS the complete card design.
+   No duplicate counters, regional subtitles, or separate artificial map boxes. */
+.mtk-map-layer{
+ position:fixed!important;inset:0!important;z-index:10000!important;
+ display:grid!important;place-items:center!important;
+ box-sizing:border-box!important;
+ padding:max(7px,env(safe-area-inset-top)) max(7px,env(safe-area-inset-right))
+         max(7px,env(safe-area-inset-bottom)) max(7px,env(safe-area-inset-left))!important;
+ background:radial-gradient(circle at center,#2e45367d,#06161eea)!important;
+ backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)
+}
+.mtk-map-layer .mtk-map-sheet{
+ position:relative!important;display:block!important;
+ box-sizing:border-box!important;
+ width:min(1180px,100%)!important;max-width:100%!important;
+ height:min(780px,calc(100dvh - 16px - env(safe-area-inset-top) - env(safe-area-inset-bottom)))!important;
+ max-height:100%!important;min-height:0!important;
+ padding:0!important;margin:0!important;
+ border:4px ridge #d8af66!important;outline:2px solid #4b2c18!important;
+ border-radius:clamp(13px,2.6vw,24px)!important;
+ overflow:hidden!important;box-shadow:0 17px 55px #071813bd,inset 0 0 0 2px #f5d897!important;
+ background:linear-gradient(140deg,#314f3c,#19362b)!important
+}
+.mtk-map-layer .mtk-map-sheet-head{
+ position:absolute!important;z-index:110!important;right:clamp(7px,1.3vw,15px)!important;
+ top:clamp(7px,1.3vh,13px)!important;
+ width:auto!important;height:auto!important;min-height:0!important;
+ display:flex!important;justify-content:flex-end!important;
+ padding:0!important;margin:0!important;
+ border:0!important;background:none!important;box-shadow:none!important;
+ pointer-events:none
+}
+.mtk-map-sheet-head strong{display:none!important}
+.mtk-map-layer .mtk-map-sheet-close{
+ pointer-events:auto!important;display:inline-flex;align-items:center;justify-content:center;
+ box-sizing:border-box!important;width:auto;max-width:105px;min-width:53px!important;
+ min-height:31px!important;padding:5px 11px!important;margin:0!important;
+ border:2px solid #f1d391!important;border-radius:18px!important;
+ background:linear-gradient(135deg,#fff2ca,#d1a365)!important;
+ color:#49301b!important;font:900 clamp(11px,1.8vh,14px)/1.1 system-ui,sans-serif!important;
+ box-shadow:inset 0 1px 1px #fff8df,0 2px 6px #24140dcc!important
+}
+.mtk-map-layer .mtk-map-contents{
+ position:absolute!important;inset:0!important;
+ display:block!important;width:100%!important;height:100%!important;
+ box-sizing:border-box!important;min-width:0!important;min-height:0!important;
+ padding:0!important;margin:0!important;overflow:hidden!important
+}
+.mtk-cinematic-viewport{
+ width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;
+ box-sizing:border-box!important;display:flex;align-items:center;
+ overflow-x:auto!important;overflow-y:hidden!important;
+ scroll-behavior:smooth;overscroll-behavior-x:contain;
+ touch-action:pan-x!important;
+ background:linear-gradient(130deg,#213e31,#406f56 55%,#162f2c);
+ scrollbar-width:thin;scrollbar-color:#e4c07f #30533b
+}
+.mtk-cinematic-world{
+ position:relative!important;display:block;isolation:isolate;
+ flex:0 0 auto;overflow:hidden!important;background:#385d43
+}
+.mtk-cinematic-art{
+ position:absolute;z-index:0;inset:0;width:100%;height:100%;
+ display:block;object-fit:fill;pointer-events:none;
+ user-select:none;-webkit-user-select:none;
+ image-rendering:auto
+}
+/* v133: region-specific atmospheric clouds, one canvas per map tile.
+   Placement uses world coordinate percentages; never force a 100% canvas. */
+.mtk-cinematic-fog{
+ position:absolute!important;z-index:6!important;display:block!important;
+ box-sizing:border-box!important;overflow:hidden;pointer-events:none!important;
+ user-select:none!important;border:0!important;border-radius:0!important;
+ background:transparent!important;mask-image:none!important;-webkit-mask-image:none!important;
+ filter:blur(.7px);image-rendering:auto;
+}
+.mtk-cinematic-fog.mtk-cinematic-fog-fallback{
+ background:radial-gradient(ellipse at center,#d5e6dfef,#bed9d87a 58%,transparent 82%)!important;
+}
+/* Restore the ORIGINAL, baked-in legend above mist without repainting it.
+   The source has its explanatory legend at bottom-right. */
+.mtk-cinematic-legend-preserve{
+ position:absolute;inset:0;z-index:8;width:100%;height:100%;
+ display:block;object-fit:fill;pointer-events:none;user-select:none;
+ clip-path:inset(72.7% 1.7% 6.9% 77.7% round 20px)
+}
+/* Invisible semantic touch targets precisely over the original nameplates. */
+.mtk-cinematic-hotspot{
+ position:absolute;z-index:12;transform:translate(-50%,-50%);
+ display:block;box-sizing:border-box;min-width:0;min-height:0;
+ border:0!important;background:transparent!important;box-shadow:none!important;
+ color:transparent!important;padding:0!important;margin:0!important;
+ cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+}
+.mtk-cinematic-hotspot:focus-visible{
+ outline:4px solid #f4df92!important;outline-offset:-2px;
+ border-radius:18px!important;background:#ffe29b28!important
+}
+.mtk-cinematic-hotspot:active{background:#f4e1a92c!important;border-radius:20px}
+.mtk-cinematic-done{
+ position:absolute;right:0;top:0;
+ display:flex;align-items:center;justify-content:center;
+ width:clamp(21px,2.4vw,32px);height:clamp(21px,2.4vw,32px);
+ border:2px solid #fff6bb;border-radius:50%;
+ background:linear-gradient(#60d164,#228a47);color:#faffcf;
+ box-shadow:0 0 9px #edff8c9c,0 2px 7px #19421c;
+ font:900 clamp(13px,1.7vw,21px)/1 system-ui
+}
+.mtk-cinematic-observatory-open{
+ position:absolute;z-index:13;
+ transform:translate(-50%,-50%);
+ width:clamp(30px,4.1%,68px);aspect-ratio:1;
+ display:flex;align-items:center;justify-content:center;
+ border:4px double #fff2b8;border-radius:50%;
+ background:radial-gradient(circle,#efffc5,#f4cd72 46%,#935a29 89%);
+ color:#68461b;text-shadow:0 1px #fff6cb;
+ box-shadow:0 0 23px #ffda73bf,0 3px 7px #302112;
+ font:900 clamp(20px,2.5vw,38px)/1 Georgia,serif
+}
+.mtk-cinematic-notice{
+ position:absolute;z-index:25;left:24%;right:24%;bottom:14%;
+ text-align:center;border:2px solid #e9c786;border-radius:12px;
+ background:linear-gradient(#67402cf0,#3f2d20f1);color:#fff4da;
+ padding:10px 12px;box-shadow:0 7px 20px #0b1e16b5;
+ font:800 clamp(12px,1.4vw,16px)/1.2 system-ui;
+ opacity:0;transition:opacity .2s;pointer-events:none
+}
+.mtk-cinematic-notice.is-visible{opacity:1}
+@media(orientation:portrait){
+ .mtk-map-layer .mtk-map-sheet{width:calc(100vw - 13px)!important}
+ .mtk-map-layer .mtk-map-sheet-close{min-height:27px!important;font-size:11px!important;padding:4px 9px!important}
+ .mtk-cinematic-viewport{scrollbar-width:none}
+ .mtk-cinematic-viewport::-webkit-scrollbar{display:none}
+}
+@media(orientation:landscape) and (max-height:480px){
+ .mtk-map-layer .mtk-map-sheet{height:calc(100dvh - 14px - env(safe-area-inset-top) - env(safe-area-inset-bottom))!important}
+}
+
+/* Seam-aware, expanding game world. Zoom increases the world in both axes
+   without stretching, reprojecting or replacing its original illustration. */
+.mtk-cinematic-viewport{
+ overflow-x:auto!important;overflow-y:auto!important;
+ touch-action:pan-x pan-y!important;
+ overscroll-behavior:contain;scrollbar-width:none!important;
+ -webkit-overflow-scrolling:touch;
+}
+.mtk-cinematic-viewport::-webkit-scrollbar{display:none}
+.mtk-cinematic-world{transform:none!important;transform-origin:top left!important}
+.mtk-cinematic-tile{
+ position:absolute!important;object-fit:fill!important;
+ max-height:none!important;max-width:none!important;image-rendering:auto;
+}
+.mtk-cinematic-fog{max-width:none!important;max-height:none!important}
+.mtk-cinematic-hotspot{transform:none!important;z-index:12!important}
+.mtk-cinematic-stage-plaque{
+ position:absolute;top:0;left:0;display:flex;align-items:center;justify-content:center;
+ width:100%;height:100%;
+ box-sizing:border-box;border:3px solid #f4cf83;border-radius:18px;
+ padding:8px;text-align:center;white-space:normal;
+ color:#4d321b;font:900 clamp(12px,1.5vw,21px)/1.12 Georgia,serif;
+ text-shadow:0 1px #fff5d4;
+ background:linear-gradient(150deg,#fff6d4,#e7b969 58%,#c88949);
+ box-shadow:0 0 0 4px #81532ec9,0 8px 20px #132f247d,inset 0 2px #fffbe5;
+}
+.mtk-map-camera-tools{
+ position:absolute;z-index:114;bottom:clamp(9px,2vh,19px);left:clamp(9px,1.6vw,16px);
+ display:flex;align-items:center;gap:5px;
+ padding:5px;border:1px solid #d4bd84b0;border-radius:24px;
+ background:#1c4939bd;box-shadow:0 3px 12px #112b2370;
+ backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)
+}
+.mtk-map-zoom-button{
+ width:clamp(32px,5vh,41px);height:clamp(32px,5vh,41px);min-width:0!important;
+ border-radius:50%;border:1px solid #f4d898;background:#ebd299e8;
+ color:#493721;font:900 24px/1 system-ui,sans-serif;
+ display:grid;place-items:center;box-shadow:inset 0 1px #fff8de;
+ cursor:pointer;touch-action:manipulation;
+}
+.mtk-map-zoom-button:focus-visible{outline:3px solid #fff4c4;outline-offset:2px}
+.mtk-map-zoom-button:active{background:#fff1b9}
+@media(orientation:portrait){
+ .mtk-map-camera-tools{bottom:9px;left:9px}
+ .mtk-map-zoom-button{width:33px;height:33px;font-size:21px}
+}

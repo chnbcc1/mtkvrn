@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(homeVersion,132);
+assert.equal(homeVersion,133);
 // The home artwork was updated independently; the forest scene remains v113.
 const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
@@ -276,7 +276,7 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v113-full.html?v=132"));
+assert(home.includes("forest-v113-full.html?v=133"));
 assert(map.includes("forest-v113-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
@@ -305,10 +305,11 @@ assert(forest.includes("function recordForestExit()"));
 
 // v130 — the LAST USER-APPROVED illustrated map is the real GitHub asset.
 const originalArt=fs.readFileSync(path.join(root,"assets/premium-map-approved-v130.avif"));
-const worldJS=fs.readFileSync(path.join(root,"assets/world-map-v132.js"),"utf8");
-const sharedJS=fs.readFileSync(path.join(root,"assets/game-ui-v131.js"),"utf8");
-const sharedCSS=fs.readFileSync(path.join(root,"assets/unified-ui-v132.css"),"utf8");
+const worldJS=fs.readFileSync(path.join(root,"assets/world-map-v133.js"),"utf8");
+const sharedJS=fs.readFileSync(path.join(root,"assets/game-ui-v133.js"),"utf8");
+const sharedCSS=fs.readFileSync(path.join(root,"assets/unified-ui-v133.css"),"utf8");
 const hudArt=fs.readFileSync(path.join(root,"assets/hud-shell-v129.svg"),"utf8");
+const worldRegistry=fs.readFileSync(path.join(root,"assets/map-world-registry-v133.js"),"utf8");
 const menu=menuV116;
 new vm.Script(worldJS);new vm.Script(sharedJS);
 assert(originalArt.length>100000,"Approved premium map should not be replaced with a low-detail SVG drawing");
@@ -325,28 +326,31 @@ assert(!worldJS.includes("Profesörün ipuçları")&&!worldJS.includes("21 matem
 assert(worldJS.includes("const W=1671,H=941"),"Interactive coordinates use source artwork geometry");
 assert(worldJS.includes("const chapters=[")&&worldJS.includes('id:"observatory"'),"Only the three main named regions are initial map chapters");
 assert(!worldJS.includes('id:"gate"')&&!worldJS.includes('id:"inside"'),"Observatory is ONE map region, not multiple chapters");
-assert(worldJS.includes('const firstLocked=state.chapters.find(c=>!c.unlocked)'),"One general fog rule follows the first locked region");
-assert(!worldJS.includes('firstLocked===1')&&!worldJS.includes('firstLocked===2'),"Fog must never depend on chapter index");
-assert(worldJS.includes('firstLocked.fogStart'),"Each future chapter defines a natural reveal boundary");
-assert(worldJS.includes('const legend=element("img","mtk-cinematic-legend-preserve")'),"Original bottom-right legend must remain visible under fog");
-assert(worldJS.includes('const b=element("button","mtk-cinematic-hotspot")'),"Map region links are invisible accessible hotspots over the approved signs");
-assert(sharedCSS.includes("mtk-cinematic-fog"),"Natural 3D atmospheric fog is mandatory");
-assert(sharedCSS.includes('.mtk-cinematic-fog{')&&sharedCSS.includes('border-radius:0!important'),"Fog must be an edge-less canvas, never an oval");
+assert(worldJS.includes('const tiles=[')&&worldJS.includes('const chapters=['),"All chapters and art tiles use one world registry");
+assert(worldJS.includes('function registerTile(')&&worldJS.includes('function registerChapter('),"World can grow by adding approved tiles and their chapters");
+assert(worldJS.includes('fogPolygon:[[545,170]')&&worldJS.includes('fogPolygon:[[1140,175]'),"Forest and observatory have independent 2D fog boundaries");
+assert(worldJS.includes('const locked=state.chapters.filter(c=>!c.unlocked&&c.tileId===tile.id)'),"Only locked polygons on each tile receive fog");
+assert(worldJS.includes('paintRegionMist(fog,tile,locked)'),"Mist is painted by chapter geometry, not a full-screen oval");
+assert(worldJS.includes('image.style.maskImage=gradient')&&worldJS.includes('image.style.webkitMaskImage=gradient'),"Joined artwork softens just the shared overlap");
+assert(worldJS.includes('function zoomTo(')&&worldJS.includes('e.touches.length===2'),"World supports zoom buttons and two-finger pinch");
+assert(!worldJS.includes('Işıklı Taş'),"Obstacle is not a separate map chapter");
+assert(sharedCSS.includes('.mtk-cinematic-fog{')&&sharedCSS.includes('border-radius:0!important'),"Fog must be edge-less per-tile canvas");
 assert(!sharedCSS.includes('ellipse 125% 106%')&&!sharedCSS.includes('border-radius:44% 0 0 29%'),"Reject the old pasted-on white egg");
 assert(sharedCSS.includes("mtk-cinematic-legend-preserve"),"Original explanation card must stay readable");
-assert(sharedCSS.includes(".mtk-cinematic-viewport")&&sharedCSS.includes("overflow-y:hidden!important"),"Map card fits without vertical scrolling");
+assert(sharedCSS.includes(".mtk-cinematic-viewport")&&sharedCSS.includes("overflow-y:auto!important"),"Zoomed world can pan without scrolling the surrounding card");
 assert(sharedCSS.includes('@import url("./unified-ui-v129.css?v=129")'),"Existing game controls and story/question card behavior must remain");
 assert(sharedJS.includes('window.MTKWorldMap.mount(body,'),"Map opens in-game card without another page");
 assert(!sharedJS.includes('createElement("iframe")'),"Map uses no iframe");
 for(const chapter of [home,forest]){
  assert(chapter.includes('class="mtk-hud-shell"'),"Existing universal chapter HUD retained");
- assert(chapter.includes("hud-shell-v129.svg?v=132"),"Shared HUD illustration retained");
- assert(chapter.includes("assets/world-map-v132.js?v=132"),"All chapters use volumetric fog map engine");
- assert(chapter.includes("assets/game-ui-v131.js?v=132"),"Shared navigation and modal code retained");
- assert(chapter.includes("assets/unified-ui-v132.css?v=132"),"All panels use unified responsive styles");
+ assert(chapter.includes("hud-shell-v129.svg?v=133"),"Shared HUD illustration retained");
+ assert(chapter.includes("assets/world-map-v133.js?v=133"),"All chapters use the single expanding map engine");
+ assert(chapter.includes("assets/game-ui-v133.js?v=133"),"Shared navigation and modal code retained");
+ assert(chapter.includes("assets/unified-ui-v133.css?v=133"),"All panels use unified responsive styles");
  assert(chapter.includes("window.MTKGameUI.openMap({"),"Map opens from inside game");
 }
-assert(menu.includes("world-map-v132.js?v=132"),"Title-screen shares global fog registry");
+assert(menu.includes("world-map-v133.js?v=133"),"Title-screen shares global fog registry");
+for(const scene of [home,forest,menu]) assert(scene.includes("map-world-registry-v133.js?v=133"),"All scenes load the same expansion manifest");
 assert(menu.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"New Game resets all later expansions");
 assert(home.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"In-home reset clears expansion progress");
 assert(forest.includes('$("#progressFill")?.parentElement'),"Forest score update still present");
@@ -376,29 +380,44 @@ assert(!stage("observatory").unlocked,"All obstacles without reaching final dest
 memory.set("mathverse-v68-forest-full",JSON.stringify({solvedIds:Array.from({length:21},(_,i)=>i+1),reachedGate:true}));
 assert(stage("observatory").unlocked&&stage("home").unlocked,"Observatory unlock reveals all prior zones permanently");
 assert.deepEqual(Array.from(atlas.progress().discovered),["home","forest","observatory"]);
-assert(atlas.registerChapter({id:"future-planet",name:"Yeni Bölge",x:1600,y:850,after:"observatory"}),
- "Future chapters can be registered without redesigning the unlock mechanism");
-assert(!stage("future-planet").unlocked,"Future chapter stays in the mist until its predecessor is completed");
-// Future observatory and all later chapters are governed by the SAME rules.
-assert(!atlas.markChapterCompleted("observatory"),"Unimplemented chapter cannot be completed");
-assert(atlas.configureChapter("observatory",{playable:true,route:"./observatory.html"}),"Future chapter implementation activates its map node");
-assert(atlas.markChapterCompleted("observatory"),"Completing observatory unlocks its successor");
-assert(stage("future-planet").unlocked,"New stage opens without a new fog implementation");
-assert(atlas.registerChapter({id:"planet-two",name:"Yeni Macera",x:1650,y:870,after:"future-planet",fogStart:91,playable:true,route:"./planet-two.html"}),"A later chapter can be registered");
-assert(!stage("planet-two").unlocked,"Another chapter must remain fogged before its predecessor is done");
-assert(atlas.configureChapter("future-planet",{playable:true,route:"./planet-one.html"}),"A new chapter can be activated");
-assert(atlas.markChapterCompleted("future-planet"),"New chapter completion is persisted");
-assert(stage("planet-two").unlocked,"Even fifth region unlocks with generic fog rule");
+assert(atlas.registerTile({id:"expansion-east",afterTile:"origin",side:"right",overlap:110,w:1671,h:941,
+ src:"./assets/future-east.avif",styleKey:"matematik-evreni-premium-3d-v1"}),"Next premium image joins first world tile");
+const east=atlas.tiles().find(t=>t.id==="expansion-east");
+assert.equal(east.x,1561,"First shared edge overlaps exactly 110 px");
+assert(!atlas.registerTile({id:"bad",afterTile:"origin",side:"right",overlap:110,w:1671,h:941,
+ src:"./assets/mismatch.avif",styleKey:"other-art-style"}),"Mismatched artwork style must be rejected");
+assert(atlas.registerChapter({id:"future-planet",name:"Yeni Bölge",tileId:"expansion-east",localX:620,localY:470,
+ rx:170,ry:83,after:"observatory"}),"Fourth chapter can join the approved world without replacing initial artwork");
+assert(!stage("future-planet").unlocked,"Fourth chapter stays misted until observatory is completed");
+assert(!atlas.markChapterCompleted("observatory"),"Unimplemented stage cannot be completed");
+assert(atlas.configureChapter("observatory",{playable:true,route:"./observatory.html"}),"New stage can activate through common API");
+assert(atlas.markChapterCompleted("observatory"),"Completing observatory unlocks fourth region");
+assert(stage("future-planet").unlocked,"Fourth chapter opens and earlier chapter never closes");
+assert(atlas.registerTile({id:"expansion-east-two",afterTile:"expansion-east",side:"right",overlap:110,w:1671,h:941,
+ src:"./assets/future-east-two.avif",styleKey:"matematik-evreni-premium-3d-v1"}),"Fifth region can use the same seam rules");
+assert.equal(atlas.tiles().find(t=>t.id==="expansion-east-two").x,3122,"Successive tiles reuse the same global coordinates");
+assert(atlas.registerChapter({id:"planet-two",name:"Yeni Macera",tileId:"expansion-east-two",localX:580,localY:560,
+ after:"future-planet",playable:true,route:"./planet-two.html"}),"Fifth stage registered once for the whole game");
+assert(!stage("planet-two").unlocked,"Fifth stage remains misted until fourth finished");
+assert(atlas.configureChapter("future-planet",{playable:true,route:"./planet-one.html"}));
+assert(atlas.markChapterCompleted("future-planet"),"Fourth stage completion persists");
+assert(stage("planet-two").unlocked,"Fifth stage automatically unlocks with no new fog code");
+const forestFog=atlas.chapters().find(c=>c.id==="forest"),
+      observatoryFog=atlas.chapters().find(c=>c.id==="observatory");
+assert(atlas.fogOpacityAt(326,401,[forestFog],326,401)<.001,"Home remains entirely clear");
+assert(atlas.fogOpacityAt(754,588,[forestFog],754,588)>.99,"Locked forest nameplate is hidden");
+assert(atlas.fogOpacityAt(1430,495,[observatoryFog],1430,495)>.99,"Locked observatory nameplate is hidden");
+assert(atlas.fogOpacityAt(760,588,[observatoryFog],760,588)<.001,"Unlocking forest does not fog it again");
+const sampleFuture=atlas.chapters().find(c=>c.id==="future-planet");
+assert(atlas.fogOpacityAt(620,470,[{...sampleFuture,tileX:east.x,tileY:east.y}],east.x+620,470)>.99,
+ "Locked chapter on ANY new art tile must receive its own fog");
 memory.clear(); // New Game = reset canonical save stores.
 assert.deepEqual(Array.from(atlas.progress().discovered),["home"],"New Game returns visibility to the house only");
 assert(sharedJS.includes("if(from===region)"),"Card navigation is universal across every chapter");
-assert(worldJS.includes('const fog=element("canvas","mtk-cinematic-fog")'),"Fog must be a canvas texture, not a CSS oval card");
-assert(worldJS.includes('paintNaturalMist(fog,revealEdge)'),"Every locked region uses the same procedural painter");
-assert(atlas.mistOpacityAt(.2,.47,31.5)===0,"Dedenin Evi must remain sharp and clear");
-assert(atlas.mistOpacityAt(.37,.62,31.5)>.995,"Locked stage 2 number must be completely invisible");
-assert(atlas.mistOpacityAt(.85,.50,65)>.995,"Locked observatory name and number must be hidden");
-assert(atlas.mistOpacityAt(.74,.10,31.5)===0,"Title and sky must not be covered by fog");
-assert(atlas.mistOpacityAt(.46,.40,65)<.01,"Previously unlocked forest remains in view");
-assert(atlas.mistOpacityAt(.99,.7,91)>.995,"New chapters use the same concealment");
-assert(sharedCSS.includes("mtk-cinematic-legend-preserve"),"Original explanation legend stays visible");
-console.log("PASS v132: layered natural fog, no white ellipse, hidden locked labels and universal progression");
+assert(sharedCSS.includes(".mtk-map-camera-tools")&&sharedCSS.includes(".mtk-map-zoom-button"),"Map supports +/− with real controls");
+assert(sharedCSS.includes("mtk-cinematic-stage-plaque"),"New imagery tiles can show stage names without redrawing art");
+assert(worldRegistry.includes("NEW_TILES=[]")&&worldRegistry.includes("NEW_CHAPTERS=[]"),"Future artwork is not invented in this release");
+const other={window:{MTKWorldMap:atlas}};
+vm.runInNewContext(worldRegistry,other);
+assert.equal(other.window.MTKWorldRegistry.tileCount,3,"One original + two sample extension tiles in regression sandbox");
+console.log("PASS v133: fixed premium art, seam-joined tiles, per-chapter fog, camera zoom and future expansion.");
