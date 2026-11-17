@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#07192f">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Matematik Evreni – Profesörün Kayıp İzleri · v124</title>
+<title>Matematik Evreni – Profesörün Kayıp İzleri · v125</title>
 <style>
 *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#07192f;color:#fff3d5;font-family:system-ui,-apple-system,'Segoe UI',sans-serif}
 body{display:grid;place-items:center;min-height:100vh;min-height:100dvh}
@@ -36,6 +36,39 @@ body{display:grid;place-items:center;min-height:100vh;min-height:100dvh}
 .info{font-size:13px;border-top:1px solid #ffffff30;padding-top:14px;margin-top:16px}.status{font-size:13px;color:#f6d68c;margin-top:13px}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 </style>
+<link rel="stylesheet" href="./assets/game-ui-v125.css?v=125">
+<style>
+/* All main-menu cards fit the screen instead of using a long scrolling web panel. */
+#shade{overflow:hidden;padding:max(7px,env(safe-area-inset-top)) 9px max(7px,env(safe-area-inset-bottom))}
+#shade .dialog.mtk-ui-dialog{
+ width:min(690px,100%);height:min(540px,calc(100dvh - 16px - env(safe-area-inset-top) - env(safe-area-inset-bottom)));
+ max-height:none;min-height:0;overflow:hidden;display:grid;
+ grid-template-rows:auto minmax(0,1fr) auto;gap:8px;
+ padding:clamp(10px,2vh,18px);
+}
+#shade .dialog #panelBody{min-height:0;display:flex;flex-direction:column;justify-content:center;gap:6px;overflow:hidden}
+#shade .dialog #panelActions{min-height:0;display:flex;gap:9px;margin:0;justify-content:center;align-items:center}
+#shade .dialog #panelActions button{flex:1;min-width:0;padding:8px 10px;min-height:39px;font-size:clamp(12px,2vh,15px)}
+#shade .dialog .chapter-list{min-height:0;display:grid;grid-template-columns:1fr;gap:5px}
+#shade .dialog .chapter{padding:8px 11px}
+#shade .dialog .chapter small{font-size:11px}
+#shade .dialog .info{min-height:0;margin:0;padding:6px}
+#shade .dialog .info h3{margin:2px 0;font-size:15px}
+#shade .dialog .info p{font-size:11px;line-height:1.25}
+@media(orientation:landscape) and (max-height:480px){
+ #shade .dialog.mtk-ui-dialog{padding:8px 14px;gap:3px}
+ #shade .dialog #panelTitle{font-size:clamp(19px,5.7vh,25px);margin:0}
+ #shade .dialog #panelBody>p{font-size:11px;margin:0}
+ #shade .dialog .chapter-list{grid-template-columns:repeat(3,minmax(0,1fr))}
+ #shade .dialog .chapter{min-width:0;padding:5px}
+ #shade .dialog .chapter strong{font-size:11px}
+ #shade .dialog .chapter small{font-size:9px;line-height:1.1}
+ #shade .dialog .mtk-setting-list{grid-template-columns:1fr 1fr;gap:7px}
+ #shade .dialog .mtk-setting-list label{min-width:0;min-height:45px!important}
+ #shade .dialog .mtk-setting-label small{display:none}
+ #shade .dialog .info p:last-child{display:none}
+}
+</style>
 </head>
 <body>
 <main id="frame" aria-label="Matematik Evreni – Profesörün Kayıp İzleri ana ekranı">
@@ -45,13 +78,13 @@ body{display:grid;place-items:center;min-height:100vh;min-height:100dvh}
 <button class="hit" id="chapters" aria-label="Bölümler">Bölümler</button>
 <button class="hit" id="settings" aria-label="Ayarlar">Ayarlar</button>
 </main>
-<div id="shade" hidden><section class="dialog" id="dialog" role="dialog" aria-modal="true" aria-labelledby="panelTitle"><h2 id="panelTitle"></h2><div id="panelBody"></div><footer id="panelActions"></footer></section></div>
-<script src="./settings-v116.js?v=116"></script>
+<div id="shade" hidden><section class="dialog mtk-ui-dialog" id="dialog" role="dialog" aria-modal="true" aria-labelledby="panelTitle"><h2 id="panelTitle"></h2><div id="panelBody"></div><footer id="panelActions"></footer></section></div>
+<script src="./settings-v116.js?v=116"></script><script src="./assets/game-ui-v125.js?v=125"></script>
 <script>
 'use strict';
 const SAVE_KEY='mathverse-v40-investigation', FOREST_KEY='mathverse-v68-forest-full';
 const $=s=>document.querySelector(s), read=k=>{try{return JSON.parse(localStorage.getItem(k)||'null')||{}}catch(e){return {}}};
-const homeUrl='./?scene=home&autostart=1&v=124',forestUrl='./forest-v113-full.html?resume=1&v=124';
+const homeUrl='./?scene=home&autostart=1&v=125',forestUrl='./forest-v113-full.html?resume=1&v=125';
 const home=()=>read(SAVE_KEY), forest=()=>read(FOREST_KEY);
 function hasSave(){const h=home(),f=forest();return !!(h.introSeen||h.visitedStudy||h.complete||(Array.isArray(h.found)&&h.found.length)||f.token||(Array.isArray(f.solvedIds)&&f.solvedIds.length));}
 function hasForest(){const h=home();return !!(h.complete&&h.visitedStudy);}
@@ -64,8 +97,13 @@ const h=home(),f=forest();const forestStarted=hasForest()&&(h.activeScene==='for
 function showChapters(){const unlocked=hasForest();openPanel('Bölümler','<p>Tamamladığın bölümleri tekrar ziyaret edebilirsin. Yeni bölümler hazırlandıkça listeye eklenecektir.</p><div class="chapter-list"><button class="chapter" id="chapterHome"><strong>🏡 1. Dedenin Evi</strong><small>Başlangıç · Kullanılabilir</small></button><button class="chapter" id="chapterForest" '+(unlocked?'':'disabled')+'><strong>🌲 2. Orman Patikası</strong><small>'+(unlocked?'Açıldı · Devam et':'Önce Dedenin Evi bölümünü tamamla')+'</small></button><button class="chapter" disabled><strong>🔭 3. Eski Gözlemevi</strong><small>Gelecek sürümlerde açılacak</small></button></div>',[['Kapat',closePanel]]);
 $('#chapterHome').onclick=()=>location.assign(homeUrl);
 if(unlocked)$('#chapterForest').onclick=()=>location.assign(forestUrl);}
-function showSettings(){const p=window.MTKPrefs.load();openPanel('⚙️ Ayarlar','<div class="setting"><span><strong>🔊 Ses efektleri</strong><small>Menü ve oyun düğmesi sesleri</small></span><input id="soundToggle" type="checkbox" aria-label="Ses efektlerini aç veya kapat" '+(p.sound?'checked':'')+'></div><div class="setting"><span><strong>📳 Titreşim</strong><small>Destekleyen telefonlarda dokunma bildirimi</small></span><input id="vibeToggle" type="checkbox" aria-label="Titreşimi aç veya kapat" '+(p.vibration?'checked':'')+'></div><div class="info"><h3>ℹ️ Oyun Bilgisi</h3><p><strong>Matematik Evreni – Profesörün Kayıp İzleri</strong><br>Sürüm: v116 · TÜBİTAK 4006 matematik macerası<br>Erdem ve Çiko ile keşfet, matematik sorularını çöz, ipuçlarını takip et.</p><p>İlerlemen bu tarayıcıda saklanır. Tarayıcı verilerini silmek veya başka cihaz kullanmak kaydını etkileyebilir.</p></div>',[['Kapat',closePanel]]);
-$('#soundToggle').addEventListener('change',e=>window.MTKPrefs.update({sound:e.target.checked}));$('#vibeToggle').addEventListener('change',e=>window.MTKPrefs.update({vibration:e.target.checked}));}
+function showSettings(){
+ const p=window.MTKPrefs.load();
+ openPanel('⚙️ Oyun Ayarları',window.MTKGameUI.settingsMarkup('menu',p)+
+  '<div class="info"><h3>ℹ️ Profesörün Kayıp İzleri</h3><p>TÜBİTAK 4006 · Erdem ve Çiko ile matematik macerası. İlerleme bu tarayıcıda saklanır.</p></div>',
+  [['Kapat',closePanel]]);
+ window.MTKGameUI.bindSettings('menu');
+}
 $('#start').addEventListener('click',newGame);$('#resume').addEventListener('click',resumeGame);$('#chapters').addEventListener('click',showChapters);$('#settings').addEventListener('click',showSettings);
 $('#shade').addEventListener('click',e=>{if(e.target===$('#shade'))closePanel()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#shade').hidden)closePanel()});
 </script>

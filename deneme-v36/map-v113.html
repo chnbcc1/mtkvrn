@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#102a32">
-<title>v124 · Matematik Evreni Macera Haritası</title>
+<title>v125 · Matematik Evreni Macera Haritası</title>
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;background:#081e28;color:#fff2d4;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
@@ -167,9 +167,10 @@ main.mapShell::before{
 }
 
 </style>
+<link rel="stylesheet" href="./assets/game-ui-v125.css?v=125">
 <script src="./assets/v73-premium-assets.js?v=73"></script>
 </head>
-<body><main class="mapShell">
+<body class="mtk-ui-map"><main class="mapShell">
 <div class="mapHeading"><header><button type="button" class="return" id="back">‹ Maceraya dön</button><span class="brand">MATEMATİK EVRENİ • MACERA HARİTASI</span></header>
 <h1>Profesörün Kayıp İzleri</h1>
 <p class="lead">Her keşif yeni bir bölgenin üzerindeki sisi kaldırır.</p></div>
@@ -210,7 +211,7 @@ for(const pin of document.querySelectorAll(".map-pin")){
  if(region==="inside"){pin.disabled=true;continue}
  pin.addEventListener("click",()=>go(region));
 }
-const dest={home:"./?scene=home&v=124",forest:"./forest-v113-full.html?resume=1&v=124",gate:"./forest-v113-full.html?resume=1&focus=gate&v=124"};
+const dest={home:"./?scene=home&v=125",forest:"./forest-v113-full.html?resume=1&v=125",gate:"./forest-v113-full.html?resume=1&focus=gate&v=125"};
 function go(region){
  if(!dest[region]||!discovered[region])return;
  try{const x=read(STORE);x.activeScene=region==="home"?"home":"forest-path";localStorage.setItem(STORE,JSON.stringify(x))}catch(e){}

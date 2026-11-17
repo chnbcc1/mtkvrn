@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#0b2732">
-<title>v124 · Orman Patikası · Matematik Evreni</title>
+<title>v125 · Orman Patikası · Matematik Evreni</title>
 <style>
 :root{--cream:#ffedcb;--gold:#f4cd77;--dark:#092536;--ink:#4b321f}
 *{box-sizing:border-box}
@@ -489,10 +489,11 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 }
 
 </style>
-<script src="./settings-v116.js?v=116"></script></head>
+<link rel="stylesheet" href="./assets/game-ui-v125.css?v=125">
+<script src="./settings-v116.js?v=116"></script><script src="./assets/game-ui-v125.js?v=125"></script></head>
 <body>
 <canvas id="scene" aria-label="Erdem ve Çiko ile oynanabilir orman patikası"></canvas><div class="tint"></div>
-<div class="hud hud-v75 hud-v117" aria-label="Orman Patikası ilerleme ve oyun menüsü">
+<div class="hud hud-v75 hud-v117 mtk-ui-hud" aria-label="Orman Patikası ilerleme ve oyun menüsü">
  <img class="hud-v117-art" src="./assets/forest-hud-v117.avif?v=117" alt="" aria-hidden="true" draggable="false">
  <img class="hud-v122-landscape-art" src="./assets/forest-hud-landscape-v122.avif?v=122" alt="" aria-hidden="true" draggable="false">
  <div class="hudChapter"><b>🌲 ORMAN PATİKASI</b><small id="progress" aria-live="polite">0/21 ENGEL</small></div>
@@ -505,7 +506,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
  </div>
 </div>
 <div class="hint" id="hint">Patikada ilerle; parlayan büyüteçleri incele.</div>
-<div class="controls">
+<div class="controls mtk-ui-controls">
  <div class="moves"><button class="ctrl" id="left" aria-label="Sola yürü">◀</button><button class="ctrl" id="right" aria-label="Sağa yürü">▶</button></div>
  <button class="ctrl" id="jump" aria-label="Zıpla">ZIPLA ↑</button>
 </div>
@@ -626,21 +627,15 @@ function recordForestExit(){
   localStorage.setItem(SAVE_KEY,JSON.stringify(state));
  }catch(e){}
 }
-$('#mtkTitleBtn').onclick=()=>{recordForestExit();location.assign('./menu-v116.html?v=124')};
+$('#mtkTitleBtn').onclick=()=>{recordForestExit();location.assign('./menu-v116.html?v=125')};
 
 /* v117 forest settings; share the same saved preferences as the title screen. */
 function openForestSettings(){
  const p=window.MTKPrefs?window.MTKPrefs.load():{sound:true,vibration:true};
- openModal('Oyun Ayarları',
-  '<div class="forestSettings">'+
-  '<label for="forestSound"><span class="settingIcon">🔊</span><span class="settingLabel"><strong>Ses efektleri</strong><small>Düğme ve başarı sesleri</small></span><input id="forestSound" type="checkbox" '+(p.sound?'checked':'')+'></label>'+
-  '<label for="forestVibration"><span class="settingIcon">📳</span><span class="settingLabel"><strong>Titreşim</strong><small>Desteklenen cihazlarda dokunsal geri bildirim</small></span><input id="forestVibration" type="checkbox" '+(p.vibration?'checked':'')+'></label>'+
-  '</div><p class="footerNote">✦ Matematik Evreni · v124 <span>• İlerleme otomatik kaydedilir</span></p>',
-  'AYARLAR');
- $('#forestSound').addEventListener('change',e=>window.MTKPrefs?.update({sound:e.target.checked}));
- $('#forestVibration').addEventListener('change',e=>window.MTKPrefs?.update({vibration:e.target.checked}));
+ openModal('Oyun Ayarları',window.MTKGameUI.settingsMarkup('forest',p),'AYARLAR');
+ window.MTKGameUI.bindSettings('forest');
  action('Oyuna dön',closeModal);
- action('Ana menü',()=>{recordForestExit();location.assign('./menu-v116.html?v=124')},'secondary');
+ action('Ana menü',()=>{recordForestExit();location.assign('./menu-v116.html?v=125')},'secondary');
 }
 $('#settingsBtn').onclick=openForestSettings;
 
@@ -1009,9 +1004,9 @@ home=function(){save(true);location.assign("./map-v113.html?from=forest")};
 journal=function(){
  const done=campaignProgress();
  openModal("Erdem'in yol notları",
-  '<div class="notesProgress"><span class="notesSeal">🌲</span><div><strong>'+done+'/21 engel tamamlandı</strong><small>Orman Patikası · '+difficulty.toUpperCase()+'</small></div></div>'+
-  '<p class="noteAdvice"><b>Keşif:</b> Engellerin yanındaki büyüteçten matematik sorularını aç; kayaları ve yarıkları zıplayarak aş.</p>'+
-  '<p class="noteAdvice"><b>İpuçları:</b> Yanlış cevaplardan sonra sırayla ipucu, benzer çözüm ve yeni soru gösterilir.</p>');
+  '<div class="notesProgress mtk-notes-progress"><span class="notesSeal">🌲</span><div><strong>'+done+'/21 engel tamamlandı</strong><small>Orman Patikası · '+difficulty.toUpperCase()+'</small></div></div>'+
+  '<p class="noteAdvice mtk-note-line"><b>Keşif:</b> Engellerin yanındaki büyüteçten matematik sorularını aç; kayaları ve yarıkları zıplayarak aş.</p>'+
+  '<p class="noteAdvice mtk-note-line"><b>İpuçları:</b> Yanlış cevaplardan sonra sırayla ipucu, benzer çözüm ve yeni soru gösterilir.</p>');
  action("Macera haritası",home,"secondary");action("Devam et",closeModal);
 };
 story=function(){

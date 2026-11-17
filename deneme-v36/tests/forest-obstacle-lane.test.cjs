@@ -8,12 +8,13 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(homeVersion,124);
+assert.equal(homeVersion,125);
 // The home artwork was updated independently; the forest scene remains v113.
 const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
 const forest=fs.readFileSync(path.join(root,"forest-v"+version+"-full.html"),"utf8");
 const map=fs.readFileSync(path.join(root,"map-v"+version+".html"),"utf8");
+const sharedUIJS=fs.readFileSync(path.join(root,"assets/game-ui-v125.js"),"utf8");
 const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v98.js"),"utf8");
 new vm.Script(artwork);
 const mushroomLoader=fs.readFileSync(path.join(root,"forest-mushroom-art-v102.js"),"utf8");
@@ -275,7 +276,7 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v113-full.html?v=124"));
+assert(home.includes("forest-v113-full.html?v=125"));
 assert(map.includes("forest-v113-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
@@ -310,7 +311,7 @@ assert(forest.includes('id="settingsBtn"'),"HUD settings action present");
 assert(forest.includes("window.MTKPrefs?.update({sound:"),"Saved sound toggle");
 assert(forest.includes("window.MTKPrefs?.update({vibration:"),"Saved vibration toggle");
 assert(forest.includes('done+"/21 ENGEL"'),"HUD progress must be live, not artwork-only");
-assert(menuV116.includes("forest-v113-full.html?resume=1&v=124"),"Menu links to latest forest HUD");
+assert(menuV116.includes("forest-v113-full.html?resume=1&v=125"),"Menu links to latest forest HUD");
 console.log("PASS v117: Forest top HUD artwork, dynamic progress, working controls and responsive touch targets");
 
 // v118: landscape display must include the road and Erdem's feet (not just forest sky).
@@ -385,8 +386,8 @@ assert(forest.includes('grid-template-rows:auto minmax(0,1fr) auto'), 'No-scroll
 assert(forest.includes('#modal[data-panel="settings"] .paper,#modal[data-panel="notes"] .paper'), 'Separate premium panel styles missing');
 assert(forest.includes('height:min(500px,calc(100dvh - 18px'), 'Modal height must fit dynamic viewport');
 assert(forest.includes('overflow:hidden;'), 'Modal contents must not scroll');
-assert(forest.includes('İlerleme otomatik kaydedilir') || forest.includes('İlerleme otomatik kaydedilir'), 'Information label missing');
-assert(forest.includes('Matematik Evreni · v124'), 'Settings still displays old release');
+assert(sharedUIJS.includes('İlerleme otomatik kaydedilir'), 'Global settings information label missing');
+assert(sharedUIJS.includes('const version="125"'), 'Shared settings should display current release');
 assert(forest.includes('class="notesProgress"'), 'Premium notes progress card missing');
 assert(map.includes('class="mapShell"') && map.includes('class="mapStage"') && map.includes('class="mapFooter"'), 'Premium map layout must have header/stage/footer');
 assert(map.includes('height:100dvh;min-height:0;') && map.includes('overflow-x:auto;overflow-y:hidden;touch-action:pan-x'), 'Map page must block vertical scrolling but retain horizontal panning');
@@ -396,3 +397,22 @@ assert(map.includes('map-pin forest') && map.includes('centerMap()'), 'Interacti
 assert(forest.includes('background:rgba(10,44,55,.36)'), 'v123 glass movement controls must be preserved');
 assert(forest.includes('if(Math.hypot(sx-px,sy-py)<64){e.preventDefault();interact()}'), 'In-world magnifier interaction must remain');
 console.log('PASS v124: premium viewport-fitted settings/notes/map, horizontal map panning, saved progress and controls preserved');
+
+// v125: all playable chapters share controls, wood/gold HUD theme and premium panels.
+const sharedUICSS=fs.readFileSync(path.join(root,'assets/game-ui-v125.css'),'utf8');
+assert(home.includes('class="hud mtk-ui-hud home-hud"'), 'House needs global wood/gold chapter HUD');
+assert(forest.includes('class="hud hud-v75 hud-v117 mtk-ui-hud"'), 'Forest HUD needs global style marker');
+assert(home.includes('class="controls mtk-ui-controls"') && forest.includes('class="controls mtk-ui-controls"'), 'Both chapter controls must share their styling');
+for(const scene of [home,forest,map,menuV116])assert(scene.includes('assets/game-ui-v125.css?v=125'), 'All scene and menu pages need the shared visual system');
+for(const scene of [home,forest,menuV116])assert(scene.includes('assets/game-ui-v125.js?v=125'), 'Main menu and playable scenes need shared settings logic');
+assert(home.includes('id="homeMapBtn"') && home.includes('id="homeSettingsBtn"'), 'House needs map and settings buttons');
+assert(home.includes('window.MTKGameUI.settingsMarkup(\'home\',p)') && forest.includes('window.MTKGameUI.settingsMarkup(\'forest\',p)') && menuV116.includes('window.MTKGameUI.settingsMarkup(\'menu\',p)'), 'Settings must come from one shared implementation');
+assert(home.includes("openInfo('Erdem’in notları',homeNotesCompact(),'notes')"), 'House notebook must use the same premium card layout');
+assert(sharedUICSS.includes('background:var(--mtk-glass)!important'), 'Global transparent gamepad controls missing');
+assert(sharedUICSS.includes('.mtk-ui-hud.home-hud'), 'House wood HUD must be defined in global stylesheet');
+assert(sharedUICSS.includes('#info[data-mtk-panel] .modalPanel'), 'House premium scroll-free cards missing');
+assert(sharedUICSS.includes('.mtk-ui-dialog'), 'Title menu cards must use global panel theme');
+assert(home.includes("location.assign('./map-v113.html?from=home&v=125')"), 'House map button route missing');
+assert(forest.includes('forest-hud-landscape-v122.avif?v=122'), 'Preserve existing high-resolution forest HUD artwork');
+assert(forest.includes('const horizontalSpeed=heroY<GROUND-.2?422:245'), 'Forest movement physics must remain untouched');
+console.log('PASS v125: global HUD/controls/settings/notes/menu, chapter-specific graphics and mechanics preserved');
