@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#102a32">
-<title>v125 · Matematik Evreni Macera Haritası</title>
+<title>v126 · Matematik Evreni Macera Haritası</title>
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;background:#081e28;color:#fff2d4;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
@@ -211,7 +211,7 @@ for(const pin of document.querySelectorAll(".map-pin")){
  if(region==="inside"){pin.disabled=true;continue}
  pin.addEventListener("click",()=>go(region));
 }
-const dest={home:"./?scene=home&v=125",forest:"./forest-v113-full.html?resume=1&v=125",gate:"./forest-v113-full.html?resume=1&focus=gate&v=125"};
+const dest={home:"./?scene=home&autostart=1&v=126",forest:"./forest-v113-full.html?resume=1&v=126",gate:"./forest-v113-full.html?resume=1&focus=gate&v=126"};
 function go(region){
  if(!dest[region]||!discovered[region])return;
  try{const x=read(STORE);x.activeScene=region==="home"?"home":"forest-path";localStorage.setItem(STORE,JSON.stringify(x))}catch(e){}
@@ -227,7 +227,17 @@ document.getElementById("missionDesc").textContent=mission[2];
 document.getElementById("stageInfo").textContent="Keşfedilen bölgeler: "+Object.values(discovered).filter(Boolean).length+"/4";
 document.getElementById("continue").textContent=stage===4?"Orman Patikasına dön":mission[1]+" bölümüne git";
 document.getElementById("continue").addEventListener("click",()=>go(mission[3]));
-document.getElementById("back").addEventListener("click",()=>go(stage===1?"home":"forest"));
+// Remember which scene actually opened the map instead of guessing from unlock stage.
+const source=new URLSearchParams(location.search).get("from");
+function backToSource(){
+ if(source==="home")return location.assign(dest.home);
+ if(source==="forest")return location.assign(dest.forest);
+ if(source==="title")return location.assign("./?scene=home&v=126");
+ if(source==="menu")return location.assign("./menu-v116.html?v=126");
+ const saved=read(STORE);
+ return location.assign(saved.activeScene==="forest-path"?dest.forest:dest.home);
+}
+document.getElementById("back").addEventListener("click",backToSource);
 const viewport=document.getElementById("viewport"),plane=document.getElementById("plane");
 function centerMap(){
  plane.style.width=Math.round(viewport.clientHeight*1099/569)+"px";

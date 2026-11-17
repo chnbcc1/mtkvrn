@@ -1,0 +1,135 @@
+/* v126: one illustrated HUD for every playable chapter.
+   The same forest portrait and landscape AVIFs are shared; only chapter text
+   and live progress data differ. Controls never rely on text baked in art. */
+.mtk-illustrated-hud{
+ position:absolute!important;z-index:6;
+ top:calc(env(safe-area-inset-top) + 2px)!important;left:50%!important;right:auto!important;
+ transform:translateX(-50%)!important;
+ width:min(930px,calc(100vw - 12px - env(safe-area-inset-left) - env(safe-area-inset-right)))!important;
+ height:clamp(105px,25vw,210px)!important;min-height:0!important;max-height:none!important;
+ display:block!important;box-sizing:border-box!important;
+ margin:0!important;padding:0!important;overflow:visible!important;isolation:isolate;
+ background:none!important;border:0!important;border-radius:0!important;outline:0;
+ box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+ pointer-events:none
+}
+.mtk-illustrated-hud .hud-v117-art{
+ position:absolute;inset:0;width:100%;height:100%;display:block;
+ object-fit:contain;object-position:center;
+ pointer-events:none;user-select:none;
+ filter:drop-shadow(0 5px 6px #071715b3)
+}
+.mtk-illustrated-hud .hud-v122-landscape-art{display:none}
+.mtk-illustrated-hud .hudChapter{
+ position:absolute;left:51.2%;top:57.3%;transform:translate(-50%,-50%);
+ box-sizing:border-box;display:flex;align-items:center;justify-content:center;
+ width:23.3%;height:25%;max-width:none;min-height:0;padding:0 3px;
+ background:linear-gradient(175deg,#176e6a,#094653 68%,#073744);
+ border:1px solid #ecc878;border-radius:999px;
+ box-shadow:inset 0 2px 3px #a0e7c844,0 2px 5px #2418099a;
+ pointer-events:none;
+}
+.mtk-illustrated-hud .hudChapter b{display:none!important}
+.mtk-illustrated-hud .hudChapter small{
+ margin:0!important;display:block;white-space:nowrap;
+ font:900 clamp(9px,1.6vw,18px)/1.1 system-ui,sans-serif;
+ color:#fffaf0;text-shadow:0 1px 3px #001c22
+}
+.mtk-illustrated-hud .hudRight{display:contents}
+.mtk-illustrated-hud .iconBtn{
+ position:absolute;z-index:3;top:31.7%;width:8.8%;height:46.8%;
+ min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;
+ display:block;border:0!important;border-radius:10px;background:transparent!important;
+ font-size:0!important;color:transparent!important;line-height:1;
+ box-shadow:none!important;filter:none;
+ backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+ cursor:pointer;pointer-events:auto;touch-action:manipulation
+}
+.mtk-illustrated-hud .iconBtn:active{filter:brightness(1.2)}
+.mtk-illustrated-hud .iconBtn:focus-visible{outline:3px solid #fff5af;outline-offset:2px}
+.mtk-illustrated-hud #mtkTitleBtn{
+ left:1.8%;top:28%;width:10%;height:55%;
+}
+.mtk-illustrated-hud #pikoBtn{left:69.4%}
+.mtk-illustrated-hud #homeMapBtn,.mtk-illustrated-hud #home{left:79.4%}
+.mtk-illustrated-hud #homeSettingsBtn,.mtk-illustrated-hud #settingsBtn{left:89%}
+/* Replace the notes illustration at the original first-icon position
+   with a real Çiko interaction rather than leaving a dead notes button. */
+.mtk-illustrated-hud #pikoBtn{
+ background:radial-gradient(circle at 36% 26%,#fff1bb,#d59b54 62%,#7c4824)!important;
+ border:2px solid #e9be75!important;border-radius:50%!important;
+ box-shadow:inset 0 0 0 2px #724022,0 2px 5px #32170db8!important;
+ color:#51301a!important;font-size:clamp(13px,2.4vw,29px)!important;line-height:1!important;
+ text-align:center
+}
+.mtk-illustrated-hud #pikoBtn::after{
+ content:"ÇİKO";position:absolute;top:75%;left:-17%;width:134%;z-index:5;
+ font:900 clamp(7px,.95vw,12px)/1.15 system-ui,sans-serif;
+ color:#4b2d16;background:linear-gradient(#ffe5a2,#dca564);
+ border:1px solid #bb8543;border-radius:9px;padding:1px 0;
+ text-shadow:none
+}
+.mtk-illustrated-hud #pikoBtn .miniChiko{
+ width:92%;height:92%;object-fit:contain;display:block;margin:auto;pointer-events:none
+}
+/* Home-only parchment cover hides the baked "Orman Patikası" chapter label;
+   the underlying image is otherwise EXACTLY the same asset as forest. */
+.mtk-illustrated-hud .mtk-chapter-label{display:none}
+.mtk-illustrated-hud[data-chapter="home"] .mtk-chapter-label{
+ position:absolute;z-index:2;left:12.2%;top:34.5%;width:24.5%;height:37%;
+ box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;
+ gap:1px;padding:2px 5px;
+ border:1px solid #c59651;border-radius:9px;
+ background:linear-gradient(145deg,#ffecc0,#ead19b 68%,#d8b378);
+ color:#543118;box-shadow:inset 0 1px #fff7d9,0 1px 5px #42240935;
+ pointer-events:none;transform:rotate(-.2deg)
+}
+.mtk-illustrated-hud .mtk-chapter-label strong{
+ font:900 clamp(11px,1.65vw,21px)/1.02 Georgia,serif;
+ white-space:nowrap;text-shadow:0 1px #fff1c4
+}
+.mtk-illustrated-hud .mtk-chapter-label span{
+ font:750 clamp(7px,1.1vw,12px)/1.1 system-ui,sans-serif;
+ white-space:nowrap;color:#7b502b
+}
+.mtk-illustrated-hud .trackShell{display:none!important}
+@media (orientation:portrait) and (max-width:430px){
+ .mtk-illustrated-hud{height:105px!important}
+ .mtk-illustrated-hud .hudChapter small{font-size:9px}
+ .mtk-illustrated-hud .mtk-chapter-label strong{font-size:clamp(9px,2.8vw,12px)}
+ .mtk-illustrated-hud .mtk-chapter-label span{font-size:7px}
+ .mtk-illustrated-hud #pikoBtn{border-width:1px!important}
+ .mtk-illustrated-hud #pikoBtn::after{font-size:7px}
+}
+@media (orientation:landscape){
+ .mtk-illustrated-hud{
+  top:calc(env(safe-area-inset-top) + 2px)!important;
+  width:min(790px,calc(100vw - 30px),150dvh)!important;
+  height:auto!important;aspect-ratio:2172/362!important;
+ }
+ .mtk-illustrated-hud .hud-v117-art{display:none}
+ .mtk-illustrated-hud .hud-v122-landscape-art{
+  position:absolute;inset:0;display:block;width:100%;height:100%;
+  object-fit:contain;object-position:center;pointer-events:none;
+  filter:drop-shadow(0 5px 7px #061b1a8f)
+ }
+ .mtk-illustrated-hud .hudChapter{
+  left:48.9%;top:66.8%;width:22%;height:26%;
+  padding:0;background:none;border:0;border-radius:0;box-shadow:none
+ }
+ .mtk-illustrated-hud .hudChapter small{
+  font:900 clamp(11px,1.8vw,22px)/1.08 system-ui,sans-serif;
+  color:#fff7e5;text-shadow:0 2px 4px #01252f
+ }
+ .mtk-illustrated-hud .iconBtn{top:35%;height:51%;width:8.6%}
+ .mtk-illustrated-hud #mtkTitleBtn{left:2.6%;top:33%;width:9.1%;height:53%}
+ .mtk-illustrated-hud #pikoBtn{left:67.6%}
+ .mtk-illustrated-hud #homeMapBtn,.mtk-illustrated-hud #home{left:78.2%}
+ .mtk-illustrated-hud #homeSettingsBtn,.mtk-illustrated-hud #settingsBtn{left:88.7%}
+ .mtk-illustrated-hud[data-chapter="home"] .mtk-chapter-label{
+  left:15.6%;top:41%;width:23.2%;height:39%;border-radius:8px
+ }
+ .mtk-illustrated-hud .mtk-chapter-label strong{font-size:clamp(10px,1.55vw,16px)}
+ .mtk-illustrated-hud .mtk-chapter-label span{font-size:clamp(7px,1vw,10px)}
+ .mtk-illustrated-hud #pikoBtn::after{font-size:clamp(7px,1vw,10px)}
+}
