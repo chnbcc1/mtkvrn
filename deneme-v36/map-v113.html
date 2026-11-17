@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#123932">
-<title>v129 · Matematik Evreni Macera Haritası</title>
+<title>v130 · Matematik Evreni Macera Haritası</title>
 <link rel="stylesheet" href="./assets/game-ui-v127.css?v=127">
-<link rel="stylesheet" href="./assets/unified-ui-v129.css?v=129">
+<link rel="stylesheet" href="./assets/unified-ui-v130.css?v=130">
 <style>
 html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#081d24;font-family:system-ui,sans-serif}
 .mtk-map-layer{position:fixed;inset:0}
@@ -18,24 +18,24 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#081d24;fon
 <div class="mtk-map-layer">
  <section class="mtk-map-sheet" role="dialog" aria-label="Macera haritası">
   <div class="mtk-map-sheet-head">
-   <strong>🧭 MATEMATİK EVRENİ · MACERA HARİTASI</strong>
+   <strong>🧭 MACERA HARİTASI</strong>
    <button id="back" class="mtk-map-sheet-close" type="button">✕ Dön</button>
   </div>
   <div class="mtk-map-contents" id="map"></div>
  </section>
 </div>
-<script src="./assets/world-map-v129.js?v=129"></script>
+<script src="./assets/world-map-v130.js?v=130"></script>
 <script>
 "use strict";
 const from=new URLSearchParams(location.search).get("from")||"home";
 function backToSource(){
- const url=from==="menu"?"./menu-v116.html?v=129":
-  from==="forest"?"./forest-v113-full.html?resume=1&v=129":
-  from==="title"?"./menu-v116.html?v=129":"./?scene=home&autostart=1&v=129";
+ const url=from==="menu"?"./menu-v116.html?v=130":
+  from==="forest"?"./forest-v113-full.html?resume=1&v=130":
+  from==="title"?"./menu-v116.html?v=130":"./?scene=home&autostart=1&v=130";
  location.assign(url);
 }
 document.getElementById("back").addEventListener("click",backToSource);
-const fallbackForest="./forest-v113-full.html?resume=1&v=129";
+const fallbackForest="./forest-v113-full.html?resume=1&v=130";
 window.MTKWorldMap.mount(document.getElementById("map"),{
  from,
  onClose:backToSource,

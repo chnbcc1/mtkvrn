@@ -8,13 +8,13 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(homeVersion,129);
+assert.equal(homeVersion,130);
 // The home artwork was updated independently; the forest scene remains v113.
 const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
 const forest=fs.readFileSync(path.join(root,"forest-v"+version+"-full.html"),"utf8");
 const map=fs.readFileSync(path.join(root,"map-v"+version+".html"),"utf8");
-const sharedUIJS=fs.readFileSync(path.join(root,"assets/game-ui-v129.js"),"utf8");
+const sharedUIJS=fs.readFileSync(path.join(root,"assets/game-ui-v130.js"),"utf8");
 const artwork=fs.readFileSync(path.join(root,"forest-obstacle-art-v98.js"),"utf8");
 new vm.Script(artwork);
 const mushroomLoader=fs.readFileSync(path.join(root,"forest-mushroom-art-v102.js"),"utf8");
@@ -276,7 +276,7 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v113-full.html?v=129"));
+assert(home.includes("forest-v113-full.html?v=130"));
 assert(map.includes("forest-v113-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
@@ -302,99 +302,80 @@ assert(home.includes("get('autostart')==='1'"));
 assert(forest.includes("function recordForestExit()"));
 
 
-// v128: one clean artwork for every chapter; metadata is sourced from a
-// single registry, not rectangles plastered over the old forest-only banner.
+
+// v130 — the LAST USER-APPROVED illustrated map is the real GitHub asset.
+const originalArt=fs.readFileSync(path.join(root,"assets/premium-map-approved-v130.avif"));
+const worldJS=fs.readFileSync(path.join(root,"assets/world-map-v130.js"),"utf8");
+const sharedJS=fs.readFileSync(path.join(root,"assets/game-ui-v130.js"),"utf8");
+const sharedCSS=fs.readFileSync(path.join(root,"assets/unified-ui-v130.css"),"utf8");
 const hudArt=fs.readFileSync(path.join(root,"assets/hud-shell-v129.svg"),"utf8");
-const worldArt=fs.readFileSync(path.join(root,"assets/world-map-v129.svg"),"utf8");
-const worldJS=fs.readFileSync(path.join(root,"assets/world-map-v129.js"),"utf8");
-const sharedJS=fs.readFileSync(path.join(root,"assets/game-ui-v129.js"),"utf8");
-const sharedCSS=fs.readFileSync(path.join(root,"assets/unified-ui-v129.css"),"utf8");
 const menu=menuV116;
 new vm.Script(worldJS);new vm.Script(sharedJS);
-assert(hudArt.includes('viewBox="0 0 1800 360"'),"HUD must be crisp vector artwork");
-assert(!hudArt.includes("ORMAN PATİKASI")&&!hudArt.includes("DEDENİN EVİ")&&!hudArt.includes("NOTLAR"),"HUD must be genuinely blank where dynamic metadata goes");
+assert(originalArt.length>100000,"Approved premium map should not be replaced with a low-detail SVG drawing");
+assert.equal(originalArt.toString("ascii",4,12),"ftypavif","Approved map must be a real compressed illustration");
+const ispe=originalArt.indexOf(Buffer.from("ispe"));
+assert(ispe>0);
+assert.equal(originalArt.readUInt32BE(ispe+8),1671,"Approved map retains full reference width");
+assert.equal(originalArt.readUInt32BE(ispe+12),941,"Approved map retains full reference height");
+assert(worldJS.includes("premium-map-approved-v130.avif?v=130"),"Actual approved map asset must load");
+assert(!worldJS.includes("world-map-v129.svg"),"Old flat-map asset must be removed from gameplay");
+assert(!worldJS.includes("Işıklı Taş"),"Forest obstacle must never become a map region");
+assert(!worldJS.includes("Keşfedilen Bölgeler")&&!worldJS.includes("bölge sayısı"),"No discovered-region counter");
+assert(!worldJS.includes("Profesörün ipuçları")&&!worldJS.includes("21 matematik engeli"),"No chapter subtitles");
+assert(worldJS.includes("const W=1671,H=941"),"Interactive coordinates use source artwork geometry");
+assert(worldJS.includes("const chapters=[")&&worldJS.includes('id:"observatory"'),"Only the three main named regions are initial map chapters");
+assert(!worldJS.includes('id:"gate"')&&!worldJS.includes('id:"inside"'),"Observatory is ONE map region, not multiple chapters");
+assert(worldJS.includes('const revealEdge=firstLocked===1?35.7:firstLocked===2?65'),"Fog reveal follows progress boundaries");
+assert(worldJS.includes('const legend=element("img","mtk-cinematic-legend-preserve")'),"Original bottom-right legend must remain visible under fog");
+assert(worldJS.includes('const b=element("button","mtk-cinematic-hotspot")'),"Map region links are invisible accessible hotspots over the approved signs");
+assert(sharedCSS.includes("mtk-cinematic-fog"),"Natural 3D atmospheric fog is mandatory");
+assert(sharedCSS.includes("backdrop-filter:blur(19px)"),"Fog must obscure unvisited text and paths");
+assert(sharedCSS.includes("mtk-cinematic-legend-preserve"),"Original explanation card must stay readable");
+assert(sharedCSS.includes(".mtk-cinematic-viewport")&&sharedCSS.includes("overflow-y:hidden!important"),"Map card fits without vertical scrolling");
+assert(sharedCSS.includes('@import url("./unified-ui-v129.css?v=129")'),"Existing game controls and story/question card behavior must remain");
+assert(sharedJS.includes('window.MTKWorldMap.mount(body,'),"Map opens in-game card without another page");
+assert(!sharedJS.includes('createElement("iframe")'),"Map uses no iframe");
 for(const chapter of [home,forest]){
- assert(chapter.includes('class="mtk-hud-shell"'),"Shared clean HUD required in every playable chapter");
- assert(chapter.includes('assets/hud-shell-v129.svg?v=129'),"Both chapters must use exact same illustration");
- assert(chapter.includes('assets/world-map-v129.js?v=129'),"Both chapters must use expanding chapter registry");
- assert(chapter.includes('assets/game-ui-v129.js?v=129'),"Both chapters must use shared card behaviors");
- assert(chapter.includes('assets/unified-ui-v129.css?v=129'),"Both chapters must use common visual system");
- assert(!chapter.includes('mtk-chapter-label')&&!chapter.includes('forest-hud-v117.avif?v=117'),"Old patched artwork must not be mounted");
- assert(chapter.includes('window.MTKGameUI.mountChiko();'),"Actual Chiko sprite is preserved");
- assert(chapter.includes('window.MTKGameUI.configureHUD('),"Chapter title and icon must be configured dynamically");
- assert(chapter.includes('window.MTKGameUI.openMap({'),"Map must open inside a game card");
- assert(chapter.includes('class="controls mtk-ui-controls"'),"Approved translucent controls must remain");
+ assert(chapter.includes('class="mtk-hud-shell"'),"Existing universal chapter HUD retained");
+ assert(chapter.includes("hud-shell-v129.svg?v=129"),"Common HUD art must be unchanged");
+ assert(chapter.includes("assets/world-map-v130.js?v=130"),"Both chapters have the new adventure map logic");
+ assert(chapter.includes("assets/game-ui-v130.js?v=130"),"Both chapters use the same card logic");
+ assert(chapter.includes("assets/unified-ui-v130.css?v=130"),"All panels use v130 responsive card CSS");
+ assert(chapter.includes("window.MTKGameUI.openMap({"),"Map opens from inside game");
 }
-assert(home.includes('configureHUD("home")'),"House chapter metadata is dynamic");
-assert(forest.includes('configureHUD("forest")'),"Forest chapter metadata is dynamic");
-assert(home.includes("found.size+'/3 İPUCU'"),"House progress must remain live");
-assert(forest.includes('done+"/21 ENGEL"'),"Forest progress must remain live");
-assert(worldArt.includes('viewBox="0 0 2400 1180"')&&worldArt.length>200000,"Premium detailed scalable expedition atlas required");
-assert(worldJS.includes('x:340,y:414')&&worldJS.includes('x:835,y:698'),"Dedenin Evi begins upper-left, then forest");
-assert(worldJS.includes('mtk-atlas-fog')&&worldJS.includes('KEŞFEDİLMEMİŞ TOPRAKLAR'),"Single continuous fog curtain must protect locked chapters");
-assert(worldJS.includes('function registerChapter(def)'),"Adding future chapters must be data-driven");
-assert(worldJS.includes('const path="M"'),"Routes should connect successive unlocked chapters");
-assert(worldJS.includes('world.style.width=Math.round(height*WORLD_W/WORLD_H)+"px"'),"Map art must keep its intrinsic aspect ratio");
-assert(!sharedJS.includes('createElement("iframe")'),"Map must not load a separate page in a frame");
-assert(sharedJS.includes('window.MTKWorldMap.mount(body,'),"Map must render directly inside game card DOM");
-assert(worldJS.includes('if(choice.id===from)'),"Selection of current chapter should close card");
-assert(sharedCSS.includes('.mtk-map-contents')&&sharedCSS.includes('overflow-x:auto;overflow-y:hidden'),"Map only pans horizontally, no vertical scroll");
-assert(sharedCSS.includes('#modal[data-panel="question"] #modalContent'),"Only long questions can scroll");
-assert(sharedCSS.includes('#info[data-mtk-panel="story"] .modalPanel'),"Investigation/inspection cards fit a screen");
-assert(home.includes("$('#info').dataset.mtkPanel=kind||'story'"),"All house inspection dialogs must use the shared fit-to-viewport card");
-assert(forest.includes("title==='Kırık köprü'?'question':'story'"),"Forest questions must remain scrollable");
-assert(forest.includes("window.MTKGameUI.fitPanel($('#modalContent'))"),"Forest story cards must shrink rather than scroll");
-assert(menu.includes('window.MTKWorldMap.progress().chapters'),"The Chapters card must use the same future-proof registry");
-assert(menu.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"New Game must clear future chapter milestones");
-assert(home.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"Home reset must clear future chapter milestones");
-assert(map.includes('window.MTKWorldMap.mount(')&&!map.includes('id="mapArt"'),"Legacy map link must show the same modern atlas");
-assert(menu.includes('game-ui-v129.js?v=129'),"Main menu settings must use shared controls");
-assert(sharedJS.includes('window.MTKPrefs?.update({sound:'),"Saved sound setting preserved");
-assert(sharedJS.includes('window.MTKPrefs?.update({vibration:'),"Saved vibration setting preserved");
-assert(forest.includes('const horizontalSpeed=heroY<GROUND-.2?422:245'),"Obstacle jump/movement physics must not regress");
-assert(home.includes('hero.dy=-505'),"House jump physics must be preserved");
-// Verify progressive unlocking without browser dependencies: no unlocked future
-// chapter until the previous chapter has actually been completed.
+assert(menu.includes("world-map-v130.js?v=130"),"Title-screen chapter list shares current registry");
+assert(menu.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"New Game resets all later expansions");
+assert(home.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"In-home reset clears expansion progress");
+assert(forest.includes('$("#progressFill")?.parentElement'),"Forest score update still present");
+assert(forest.includes("const horizontalSpeed=heroY<GROUND-.2?422:245"),"Forest movement/physics preserved");
+assert(home.includes("hero.dy=-505"),"House movement/physics preserved");
+
+// Progression is based on actual saves and no later region is visible early.
 const memory=new Map();
 const context={window:{},localStorage:{
  getItem:key=>memory.get(key)||null,
- setItem:(key,value)=>memory.set(key,String(value))
+ setItem:(key,val)=>memory.set(key,String(val))
 }};
 vm.runInNewContext(worldJS,context);
 const atlas=context.window.MTKWorldMap;
-function stage(id){return atlas.progress().chapters.find(c=>c.id===id)}
-assert(stage("home").unlocked&&!stage("forest").unlocked&&!stage("gate").unlocked,"Initial atlas must reveal only Dedenin Evi");
+const stage=id=>atlas.progress().chapters.find(c=>c.id===id);
+assert.deepEqual(Array.from(atlas.progress().discovered),["home"],"At new game ONLY Dedenin Evi is visible");
+assert(!stage("forest").unlocked&&!stage("observatory").unlocked);
+memory.set("mathverse-v40-investigation",JSON.stringify({complete:true,visitedStudy:false}));
+assert(!stage("forest").unlocked,"Reaching half of house investigation must not unlock forest");
 memory.set("mathverse-v40-investigation",JSON.stringify({complete:true,visitedStudy:true}));
-assert(stage("forest").unlocked&&!stage("gate").unlocked,"Forest only opens when home is done");
+assert(stage("forest").unlocked&&!stage("observatory").unlocked,"Forest appears only after full house completion");
+assert.deepEqual(Array.from(atlas.progress().discovered),["home","forest"]);
+memory.set("mathverse-v68-forest-full",JSON.stringify({solvedIds:Array.from({length:20},(_,i)=>i+1),reachedGate:true}));
+assert(!stage("observatory").unlocked,"20 out of 21 forest obstacles does NOT unlock the observatory");
+memory.set("mathverse-v68-forest-full",JSON.stringify({solvedIds:Array.from({length:21},(_,i)=>i+1),reachedGate:false}));
+assert(!stage("observatory").unlocked,"All obstacles without reaching final destination should not unlock observatory");
 memory.set("mathverse-v68-forest-full",JSON.stringify({solvedIds:Array.from({length:21},(_,i)=>i+1),reachedGate:true}));
-assert(stage("gate").unlocked&&!stage("inside").unlocked,"Gate only opens after all 21 forest obstacles");
-memory.set("mathverse-v68-forest-full",JSON.stringify({solvedIds:Array.from({length:21},(_,i)=>i+1),reachedGate:true,gateInspected:true}));
-assert(stage("inside").unlocked&&!stage("future-1").unlocked,"Gözlemevi is revealed, future world still fogged");
-assert(atlas.registerChapter({id:"new-island",name:"Yeni Ada",x:2280,y:1050,after:"future-1",route:"./island.html"}),"A new stage should be registerable without editing atlas layout");
-assert(!stage("new-island").unlocked,"Future stage respects preceding chapter");
-console.log("PASS v129: premium illustrated map, responsive HUD, fog unlock rules and chapter data");
-
-// v129 regression tests: the forest MUST keep animating after HUD replacement.
-assert(!forest.includes('$(".hud-v75 .trackShell").setAttribute('),
- "Deleted forest HUD selector must never abort update() and the RAF loop");
-assert(forest.includes('$("#progressFill")?.parentElement?.setAttribute("aria-valuenow",String(done))'),
- "Forest HUD progress updates must tolerate markup changes");
-for(const id of ['left','right','jump'])assert(forest.includes('id="'+id+'"'),"Missing forest touch control "+id);
-assert(forest.includes("btn.addEventListener('pointerdown'")&&forest.includes("hold(dir,true,e.pointerId)"),
- "Directional pointer controls must be bound");
-assert(forest.includes("$('#jump').addEventListener('pointerdown'")&&forest.includes("function jump()"),
- "Jump control must be bound");
-assert(forest.includes("if(!window.PointerEvent)"),"Legacy iOS touch fallback missing");
-assert(forest.includes("$('#mtkTitleBtn').onclick=home;"),"Forest compass must open card map");
-assert(home.includes("$('#mtkTitleBtn').onclick=showAdventureMap;"),"House compass must open card map");
-assert(sharedCSS.includes('width:min(650px,72vw,126dvh)'),"Landscape HUD must be compact");
-assert(sharedCSS.includes('mtk-atlas-world .mtk-atlas-fog'),"Premium single fog curtain CSS missing");
-assert(sharedCSS.includes('mtk-atlas-footer')&&sharedCSS.includes('grid-template-columns:minmax(0,1fr) minmax(116px,32%)'),
- "Portrait map footer/CTA must fit");
-assert(worldJS.includes('const firstUnknown=all.find(c=>!c.unlocked)'),"Fog must unlock progressively");
-assert(worldArt.includes('translate(325 252)')&&worldArt.includes('translate(1790 307)'),
- "Premium landmarks should include the cottage upper-left and observatory");
-assert(!worldJS.includes('for(let i=all.length-1;i>=0;i--)'),"Overlapping white fog bubbles must be gone");
-assert(home.includes('hud-shell-v129.svg?v=129')&&forest.includes('hud-shell-v129.svg?v=129'),
- "Every chapter must share one new premium HUD illustration");
-console.log("PASS v129 regression: forest controls + game loop, atlas visuals, compact HUD and compass action");
+assert(stage("observatory").unlocked&&stage("home").unlocked,"Observatory unlock reveals all prior zones permanently");
+assert.deepEqual(Array.from(atlas.progress().discovered),["home","forest","observatory"]);
+assert(atlas.registerChapter({id:"future-planet",name:"Yeni Bölge",x:1600,y:850,after:"observatory"}),
+ "Future chapters can be registered without redesigning the unlock mechanism");
+assert(!stage("future-planet").unlocked,"Future chapter stays in the mist until its predecessor is completed");
+memory.clear(); // New Game = reset canonical save stores.
+assert.deepEqual(Array.from(atlas.progress().discovered),["home"],"New Game returns visibility to the house only");
+console.log("PASS v130: approved original art, fog unlock progression, 3 true chapters, in-game map and existing controls");
