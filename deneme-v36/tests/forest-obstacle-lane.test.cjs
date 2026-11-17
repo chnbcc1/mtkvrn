@@ -337,7 +337,7 @@ assert(sharedJS.includes('window.MTKWorldMap.mount(body,'),"Map opens in-game ca
 assert(!sharedJS.includes('createElement("iframe")'),"Map uses no iframe");
 for(const chapter of [home,forest]){
  assert(chapter.includes('class="mtk-hud-shell"'),"Existing universal chapter HUD retained");
- assert(chapter.includes("hud-shell-v129.svg?v=129"),"Common HUD art must be unchanged");
+ assert(chapter.includes("hud-shell-v129.svg?v=130"),"Common HUD artwork file must be preserved (v130 cache refresh only)");
  assert(chapter.includes("assets/world-map-v130.js?v=130"),"Both chapters have the new adventure map logic");
  assert(chapter.includes("assets/game-ui-v130.js?v=130"),"Both chapters use the same card logic");
  assert(chapter.includes("assets/unified-ui-v130.css?v=130"),"All panels use v130 responsive card CSS");
