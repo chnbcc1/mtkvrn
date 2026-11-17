@@ -165,7 +165,7 @@
          max(7px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left));
  background:radial-gradient(ellipse at 50% 40%,#18473c9c,#031115dc 78%);
 }
-#info[data-mtk-panel] .modalPanel{
+#info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) .modalPanel{
  box-sizing:border-box;width:min(800px,100%)!important;
  height:min(500px,calc(100dvh - 18px - env(safe-area-inset-top) - env(safe-area-inset-bottom)))!important;
  max-height:none!important;min-height:0;
@@ -177,29 +177,29 @@
  border-radius:clamp(14px,2vw,26px)!important;
  box-shadow:inset 0 0 0 3px #f8e8b4,inset 0 0 34px #a568374d,0 16px 60px #04100bc2!important
 }
-#info[data-mtk-panel] .mtk-modal-head{
+#info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) .mtk-modal-head{
  display:flex;align-items:center;justify-content:space-between;min-height:0;
  padding:clamp(9px,2vh,15px) clamp(14px,3vw,26px);
  background:linear-gradient(160deg,#92572d,#5b2d16 60%,#3b1d10);
  color:#fff0c9;border-bottom:3px solid #d6a653
 }
-#info[data-mtk-panel] .mtk-modal-head h2{
+#info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) .mtk-modal-head h2{
  font:900 clamp(22px,4.5vh,37px)/1.05 Georgia,serif!important;
  margin:0!important;color:#fff0c9!important;text-shadow:0 2px 4px #240d08
 }
-#info[data-mtk-panel] .mtk-modal-head span{font-size:clamp(24px,4vh,34px)}
-#info[data-mtk-panel] #modalText{
+#info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) .mtk-modal-head span{font-size:clamp(24px,4vh,34px)}
+#info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) #modalText{
  min-height:0;padding:clamp(8px,2vh,18px) clamp(14px,3vw,26px);
  display:flex;flex-direction:column;justify-content:center;gap:clamp(6px,1.4vh,10px);
  overflow:hidden;text-align:left
 }
-#info[data-mtk-panel] #closeModal{
+#info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) #closeModal{
  display:block;width:auto;min-height:clamp(39px,7vh,52px);margin:0!important;
  border:2px solid #7ba98d;border-radius:13px;
  background:linear-gradient(#2b826f,#17534b);color:#fff7e0;
  padding:6px 15px;font:850 clamp(12px,2vh,17px)/1.15 system-ui,sans-serif
 }
-#info[data-mtk-panel] .mtk-modal-foot{
+#info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) .mtk-modal-foot{
  background:linear-gradient(#e7c78e,#d3a36a);
  border-top:2px solid #c29755;padding:clamp(7px,1.4vh,12px) clamp(14px,3vw,26px)
 }
@@ -220,10 +220,10 @@
 .mtk-ui-dialog button{color:#573b20;background:linear-gradient(#f7dfaa,#dfb36e);border-color:#b38d4c}
 .mtk-ui-dialog button.primary{background:linear-gradient(#2c7a67,#174d43);color:#fff8da;border-color:#a8ba8d}
 @media(orientation:landscape) and (max-height:500px){
- #info[data-mtk-panel] .modalPanel{height:calc(100dvh - 12px - env(safe-area-inset-top) - env(safe-area-inset-bottom))!important}
- #info[data-mtk-panel] .mtk-modal-head{padding:5px 16px}
- #info[data-mtk-panel] #modalText{padding:6px 16px;gap:5px}
- #info[data-mtk-panel] .mtk-modal-foot{padding:5px 16px}
+ #info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) .modalPanel{height:calc(100dvh - 12px - env(safe-area-inset-top) - env(safe-area-inset-bottom))!important}
+ #info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) .mtk-modal-head{padding:5px 16px}
+ #info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) #modalText{padding:6px 16px;gap:5px}
+ #info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"]) .mtk-modal-foot{padding:5px 16px}
  .mtk-setting-list label{min-height:43px!important;padding:5px 9px!important}
  .mtk-ui-dialog{padding:10px!important}
 }

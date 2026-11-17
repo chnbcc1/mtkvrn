@@ -397,7 +397,7 @@ function jump(){
 function announce(lines){dialogueQueue.push(...lines.map(x=>typeof x==='string'?{who:'Çiko',text:x}:x));clearHold();if($('#dialogue').hidden&&!openModal)advanceTalk()}
 function advanceTalk(){clearHold();if(dialogueQueue.length){const line=dialogueQueue.shift();const erdem=line.who==='Erdem';$('#speaker').textContent=erdem?'ERDEM':'ÇİKO';$('#speech').textContent=line.text;$('#talkFace').src=erdem?ERDEM_FACE:CHIKO_FACE;$('#dialogue').classList.toggle('erdem',erdem);$('#dialogue').hidden=false;$('#guide').hidden=true;}else{$('#dialogue').hidden=true;$('#guide').hidden=false;refreshUI();}}
 function openInfo(title,html,kind=''){
- clearHold();$('#info').dataset.mtkPanel=kind;
+ clearHold();if(kind)$('#info').dataset.mtkPanel=kind;else delete $('#info').dataset.mtkPanel;
  $('#modalTitle').textContent=title;$('#modalText').innerHTML=html;
  $('#modalGlyph').textContent=kind==='settings'?'⚙':kind==='notes'?'📜':'🔎';
  $('#info').hidden=false;openModal=true;$('#guide').hidden=true;

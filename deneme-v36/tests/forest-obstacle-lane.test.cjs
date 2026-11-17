@@ -408,6 +408,8 @@ for(const scene of [home,forest,menuV116])assert(scene.includes('assets/game-ui-
 assert(home.includes('id="homeMapBtn"') && home.includes('id="homeSettingsBtn"'), 'House needs map and settings buttons');
 assert(home.includes('window.MTKGameUI.settingsMarkup(\'home\',p)') && forest.includes('window.MTKGameUI.settingsMarkup(\'forest\',p)') && menuV116.includes('window.MTKGameUI.settingsMarkup(\'menu\',p)'), 'Settings must come from one shared implementation');
 assert(home.includes("openInfo('Erdem’in notları',homeNotesCompact(),'notes')"), 'House notebook must use the same premium card layout');
+assert(home.includes("else delete $('#info').dataset.mtkPanel"), 'Long story panels must remain scrollable and must not inherit notes layout');
+assert(sharedUICSS.includes('#info:is([data-mtk-panel="settings"],[data-mtk-panel="notes"])'), 'Global panel layout must target only Settings and Notes');
 assert(sharedUICSS.includes('background:var(--mtk-glass)!important'), 'Global transparent gamepad controls missing');
 assert(sharedUICSS.includes('.mtk-ui-hud.home-hud'), 'House wood HUD must be defined in global stylesheet');
 assert(sharedUICSS.includes('#info[data-mtk-panel] .modalPanel'), 'House premium scroll-free cards missing');
