@@ -518,7 +518,8 @@ function homeWorldVerticalOffset(){
  return viewportW>viewportH?Math.min(-4,viewportH*.84-ground*scale):Math.max(-5,(viewportH-H*scale)/2);
 }
 function positionHomeSpeech(){
- const bubble=$('#dialogue');if(bubble.hidden||!started||openModal)return;
+ const bubble=$('#dialogue');
+ if(bubble.hidden||!started||openModal||!$('#info').hidden){bubble.style.visibility='hidden';return}
  const erdem=bubble.dataset.speaker==='erdem';
  const scene=gameViewport.getBoundingClientRect();
  const hud=document.querySelector('.mtk-hud-shell')?.getBoundingClientRect();
@@ -528,50 +529,62 @@ function positionHomeSpeech(){
  const offset=homeWorldVerticalOffset();
  const heroHead={x:(hero.x-cameraX)*scale,y:(hero.y-215)*scale+offset};
  const birdHead={x:(chiko.x-cameraX)*scale,y:(chiko.y-48)*scale+offset};
- const speaker=erdem?heroHead:birdHead;
+ const speaker=erdem?heroHead:birdHead,other=erdem?birdHead:heroHead;
  if(speaker.x<0||speaker.x>viewportW){bubble.style.visibility='hidden';return}
  bubble.style.visibility='visible';
- const w=bubble.offsetWidth||195,h=bubble.offsetHeight||72;
- const clamp=(n,min,max)=>Math.min(Math.max(n,min),Math.max(min,max));
- const heroBounds={x1:heroHead.x-54*scale,x2:heroHead.x+59*scale,
-  y1:heroHead.y-47*scale,y2:hero.y*scale+offset-3*scale};
- const birdBounds={x1:birdHead.x-82*scale,x2:birdHead.x+82*scale,
-  y1:birdHead.y-62*scale,y2:birdHead.y+62*scale};
- const gap=erdem?60*scale:72*scale;
- const candidates=erdem?[
-  {x:heroHead.x-w-gap,y:heroHead.y-h*.42,tail:'side-left'},
-  {x:heroHead.x+gap,y:heroHead.y-h*.42,tail:'side-right'},
-  {x:heroHead.x-w/2,y:heroHead.y-h-60*scale,tail:'above'},
-  {x:heroHead.x-w/2,y:topLimit+4,tail:'above'},
-  {x:heroHead.x-w-35*scale,y:topLimit+4,tail:'above'},
-  {x:heroHead.x+25*scale,y:topLimit+4,tail:'above'}
- ]:[
-  {x:birdHead.x-w/2,y:birdHead.y-h-48*scale,tail:'above'},
-  {x:birdHead.x+66*scale,y:birdHead.y-h*.5,tail:'side-right'},
-  {x:birdHead.x-w-66*scale,y:birdHead.y-h*.5,tail:'side-left'},
-  {x:birdHead.x-w/2,y:topLimit+4,tail:'above'},
-  {x:birdHead.x-w/2,y:birdHead.y+65*scale,tail:'below'}
- ];
- function overlap(rect,x,y){
-  return Math.max(0,Math.min(x+w,rect.x2)-Math.max(x,rect.x1))*
-         Math.max(0,Math.min(y+h,rect.y2)-Math.max(y,rect.y1));
- }
+ const w=bubble.offsetWidth||215,h=bubble.offsetHeight||72;
+ const clamp=(v,a,b)=>Math.min(Math.max(v,a),Math.max(a,b));
  let chosen=null,best=Infinity;
- candidates.forEach((c,i)=>{
-  const x=clamp(c.x,8,Math.max(8,viewportW-w-8));
-  const y=clamp(c.y,topLimit,Math.max(topLimit,bottomLimit-h));
-  const overlapCharacters=overlap(heroBounds,x,y)+overlap(birdBounds,x,y);
-  const score=overlapCharacters*200+(Math.abs(x-c.x)+Math.abs(y-c.y))*8+i*15+
-   Math.abs(x+w/2-speaker.x)*.14+Math.abs(y+h/2-speaker.y)*.11;
-  if(score<best){best=score;chosen={x,y,tail:c.tail}}
- });
+ if(!erdem){
+  // Çiko: restore the v139 four candidates and their original scoring.
+  const opponent={x1:other.x-59*scale,x2:other.x+59*scale,
+   y1:other.y-66*scale,y2:other.y+90*scale};
+  const candidates=[
+   {x:speaker.x+37*scale,y:speaker.y-h/2,tail:'side-right'},
+   {x:speaker.x-w-37*scale,y:speaker.y-h/2,tail:'side-left'},
+   {x:speaker.x-w/2,y:speaker.y-h-40*scale,tail:'above'},
+   {x:speaker.x-w/2,y:speaker.y+40*scale,tail:'below'}
+  ];
+  candidates.forEach((c,i)=>{
+   const x=clamp(c.x,8,Math.max(8,viewportW-w-8));
+   const y=clamp(c.y,topLimit,Math.max(topLimit,bottomLimit-h));
+   const overlapW=Math.max(0,Math.min(x+w,opponent.x2)-Math.max(x,opponent.x1));
+   const overlapH=Math.max(0,Math.min(y+h,opponent.y2)-Math.max(y,opponent.y1));
+   const score=overlapW*overlapH*15+(Math.abs(x-c.x)+Math.abs(y-c.y))*12+i*4;
+   if(score<best){best=score;chosen={x,y,tail:c.tail}}
+  });
+ }else{
+  // Erdem: the balloon stays alongside his head and outside both character bodies.
+  const heroBox={x1:heroHead.x-54*scale,x2:heroHead.x+59*scale,
+   y1:heroHead.y-43*scale,y2:hero.y*scale+offset-3*scale};
+  const birdBox={x1:birdHead.x-74*scale,x2:birdHead.x+74*scale,
+   y1:birdHead.y-60*scale,y2:birdHead.y+60*scale};
+  const gap=72*scale,headY=heroHead.y-h*.37;
+  const candidates=[
+   {x:heroHead.x-w-gap,y:headY,tail:'side-left'},
+   {x:heroHead.x+gap,y:headY,tail:'side-right'},
+   {x:heroHead.x-w-gap,y:headY-h*.38,tail:'side-left'},
+   {x:heroHead.x+gap,y:headY-h*.38,tail:'side-right'},
+   {x:heroHead.x-w/2,y:heroHead.y-h-65*scale,tail:'above'}
+  ];
+  const area=(box,x,y)=>Math.max(0,Math.min(x+w,box.x2)-Math.max(x,box.x1))*
+    Math.max(0,Math.min(y+h,box.y2)-Math.max(y,box.y1));
+  candidates.forEach((c,i)=>{
+   const x=clamp(c.x,8,Math.max(8,viewportW-w-8));
+   const y=clamp(c.y,topLimit,Math.max(topLimit,bottomLimit-h));
+   const score=(area(heroBox,x,y)+area(birdBox,x,y))*250+
+    (Math.abs(x-c.x)+Math.abs(y-c.y))*12+i*3;
+   if(score<best){best=score;chosen={x,y,tail:c.tail}}
+  });
+ }
  if(!chosen)return;
  bubble.classList.remove('bubble-side-left','bubble-side-right','bubble-below');
  if(chosen.tail==='side-left'||chosen.tail==='side-right')bubble.classList.add('bubble-'+chosen.tail);
- if(chosen.tail==='below')bubble.classList.add('bubble-below');
+ else if(chosen.tail==='below')bubble.classList.add('bubble-below');
  bubble.style.setProperty('--bubble-tail',clamp(speaker.x-chosen.x,13,w-13)+'px');
  bubble.style.setProperty('--bubble-tail-y',clamp(speaker.y-chosen.y,13,h-13)+'px');
- bubble.style.left=Math.round(chosen.x)+'px';bubble.style.top=Math.round(chosen.y)+'px';
+ bubble.style.left=Math.round(chosen.x)+'px';
+ bubble.style.top=Math.round(chosen.y)+'px';
 }
 function openInfo(title,html,kind=''){
  clearHold();$('#info').dataset.mtkPanel=kind||'story';
