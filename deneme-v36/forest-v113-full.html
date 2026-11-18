@@ -514,8 +514,8 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 #modal.mtk-restart-confirm .paper h2{font-size:clamp(21px,4vh,32px)!important}
 #modal.mtk-restart-confirm #modalActions{flex:0 0 auto!important}
 </style>
-<link rel="stylesheet" href="./assets/game-ui-v127.css?v=133"><link rel="stylesheet" href="./assets/unified-ui-v133.css?v=140"><style>html,body{height:100dvh!important}#scene{width:100dvw!important;height:100dvh!important}</style>
-<script src="./settings-v116.js?v=116"></script><script src="./assets/world-map-v133.js?v=140"></script><script src="./assets/map-world-registry-v133.js?v=133"></script><script src="./assets/game-ui-v133.js?v=140"></script></head>
+<link rel="stylesheet" href="./assets/game-ui-v127.css?v=133"><link rel="stylesheet" href="./assets/unified-ui-v133.css?v=141"><style>html,body{height:100dvh!important}#scene{width:100dvw!important;height:100dvh!important}</style>
+<script src="./settings-v116.js?v=116"></script><script src="./assets/world-map-v133.js?v=140"></script><script src="./assets/map-world-registry-v133.js?v=133"></script><script src="./assets/game-ui-v133.js?v=141"></script></head>
 <body>
 <canvas id="scene" aria-label="Erdem ve Çiko ile oynanabilir orman patikası"></canvas><div class="tint"></div>
 <div class="mtk-hud-shell" data-chapter="forest" aria-label="Ortak oyun üst menüsü">
@@ -695,7 +695,7 @@ function confirmForestRestart(scope){
  action('Evet, Yeniden Başlat',()=>{
   suppressForestExitSave=true;
   if(!window.MTKGameUI.resetProgress(all?'game':'chapter','forest')){suppressForestExitSave=false;return}
-  location.replace(all?'./?scene=home&autostart=1&v=140':'./forest-v113-full.html?resume=1&v=140');
+  location.replace(all?'./?scene=home&autostart=1&v=141':'./forest-v113-full.html?resume=1&v=141');
  });
 }
 /* v139 forest settings; share the same saved preferences as the title screen. */

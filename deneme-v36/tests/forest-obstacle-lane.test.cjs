@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(homeVersion,140);
+assert.equal(homeVersion,141);
 // The home artwork was updated independently; the forest scene remains v113.
 const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
@@ -276,7 +276,7 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v113-full.html?v=140"));
+assert(home.includes("forest-v113-full.html?v=141"));
 assert(map.includes("forest-v113-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
@@ -353,8 +353,8 @@ for(const chapter of [home,forest]){
  assert(chapter.includes('class="mtk-hud-shell"'),"Existing universal chapter HUD retained");
  assert(chapter.includes("hud-shell-v129.svg?v=133"),"Shared HUD illustration retained");
  assert(chapter.includes("assets/world-map-v133.js?v=140"),"All chapters use the single expanding map engine");
- assert(chapter.includes("assets/game-ui-v133.js?v=140"),"Shared navigation and modal code retained");
- assert(chapter.includes("assets/unified-ui-v133.css?v=140"),"All panels use unified responsive styles");
+ assert(chapter.includes("assets/game-ui-v133.js?v=141"),"Shared navigation and modal code retained");
+ assert(chapter.includes("assets/unified-ui-v133.css?v=141"),"All panels use unified responsive styles");
  assert(chapter.includes("window.MTKGameUI.openMap({"),"Map opens from inside game");
 }
 assert(menu.includes("world-map-v133.js?v=140"),"Title-screen shares global fog registry");
@@ -456,7 +456,8 @@ assert(forest.includes("ctx.drawImage(premiumObservatory"),"Observatory image pa
 assert(!forest.includes("ctx.fillRect(gx-135*scale,gy-240*scale"),"Flat gray observatory removed");
 assert(home.includes("const hud=document.querySelector('.mtk-hud-shell')?.getBoundingClientRect()"),"Character bubbles avoid HUD");
 assert(home.includes("position:fixed!important;left:0;top:0;right:auto"),"CSS does not lock bubble position");
-assert(home.includes("const candidates=erdem?[")&&home.includes("overlap(heroBounds,x,y)+overlap(birdBounds,x,y)"),"Home speech avoids BOTH character sprites");
+assert(home.includes("if(!erdem){")&&home.includes("Çiko: restore the v139 four candidates"),"Çiko uses the earlier speech coordinates");
+assert(home.includes("const gap=72*scale")&&home.includes("area(heroBox,x,y)+area(birdBox,x,y)"),"Erdem has a separate near-character placement away from both sprites");
 assert(home.includes("suppressProgressSave=true")&&home.includes("!suppressProgressSave"),"Home reset does not resurrect save");
 assert(forest.includes("suppressForestExitSave=true")&&forest.includes("!suppressForestExitSave"),"Forest reset does not resurrect save");
 assert(home.includes("confirmHomeRestart")&&forest.includes("confirmForestRestart"),"Both chapter settings have confirmation");
@@ -469,10 +470,15 @@ assert(obsIspe>0&&hiResObs.readUInt32BE(obsIspe+8)===940&&hiResObs.readUInt32BE(
 assert(forest.includes("observatory-premium-v139.avif?v=139"),"Forest loads the upgraded resolution");
 assert(!forest.includes("premiumObservatory.src='./assets/observatory-premium-v138.avif"),"Old low-resolution art no longer used");
 assert(home.includes("function homeWorldVerticalOffset()")&&home.includes("const verticalOffset=homeWorldVerticalOffset();"),"Landscape camera shared between background and magnifier");
-assert(home.includes("landscapeLift=viewportW>viewportH"),"Landscape magnifiers follow their actual object positions");
+assert(home.includes("INSPECT_MARKERS_LANDSCAPE")&&!home.includes("landscapeLift=viewportW>viewportH"),"Landscape magnifiers stay on research objects instead of floating too high");
 assert(home.includes("#game #controls.mtk-ui-controls button:not(.pressed):not(:active)"),"Translucent controls visible on first paint");
 assert(menu.includes("window.MTKWorldMap.mount($('#menuChapterAtlas')")&&menu.includes('class="menu-atlas-host"'),"Chapters show same fog-aware map used in gameplay");
 assert(!menu.includes('class="chapter-list"')&&menu.includes("chapterAtlasView?.close()"),"Remove cropped chapter cards and release map resources on exit");
-assert(sharedRestarts.includes("mtk-setting-switch")&&sharedRestarts.includes("mtk-action-setting"),"Restart actions styled like sound/vibration switch rows");
+assert(sharedRestarts.includes("mtk-action-setting")&&!sharedRestarts.includes("mtk-setting-switch"),"Restart actions do not imitate persistent toggle switches");
 assert(forest.includes("mtk-restart-confirm")&&forest.includes("height:auto!important"),"Confirmation is content-sized rather than mostly blank");
-console.log("PASS v140: shared chapter atlas, switch-style restart actions and iPhone layout fixes.");
+assert(home.includes('id="homeMainMenu"')&&home.includes("$('#homeMainMenu').onclick"),"Home settings has a main menu return action");
+assert(home.includes("$('#homeMainMenu').hidden=kind!=='settings'"),"Main menu return appears only within settings");
+assert(home.includes("$('#dialogue').style.visibility='hidden'")&&home.includes("#game:has(#info:not([hidden])) #dialogue"),"All modal cards hide underlying speech bubbles");
+assert(!home.includes('id="nextTalk"')&&!home.includes("$('#nextTalk').onclick"),"Dialogue advance buttons removed");
+assert(home.includes("$('#game').addEventListener('click'")&&home.includes("advanceTalk();"),"Any tap in gameplay advances conversation");
+console.log("PASS v141: responsive home dialogue, restored Chiko placement, compact settings, corrected landscape magnifiers.");
