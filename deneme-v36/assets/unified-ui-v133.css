@@ -78,7 +78,7 @@
 .mtk-cinematic-fog.mtk-cinematic-fog-fallback{
  background:radial-gradient(ellipse at center,#d5e6dfef,#bed9d87a 58%,transparent 82%)!important;
 }
-/* Restore the ORIGINAL, baked-in legend above mist without repainting it.
+/* Legacy legend clipping is no longer used by the new text-free base map.
    The source has its explanatory legend at bottom-right. */
 .mtk-cinematic-legend-preserve{
  position:absolute;inset:0;z-index:8;width:100%;height:100%;
@@ -183,3 +183,34 @@
  .mtk-map-camera-tools{bottom:9px;left:9px}
  .mtk-map-zoom-button{width:33px;height:33px;font-size:21px}
 }
+
+/* v135: individually removable charcoal fog layers and gold lock illustrations. */
+.mtk-cinematic-fog-premium{
+  z-index:7!important;object-fit:fill!important;filter:none!important;
+  max-width:none!important;max-height:none!important;
+}
+.mtk-cinematic-fog-loading{
+  z-index:6!important;background:linear-gradient(130deg,#212a34,#333e49 54%,#242e38)!important;
+  filter:none!important;
+}
+.mtk-cinematic-base-plaque{
+  position:absolute;left:50%;top:100%;transform:translate(-50%,4px);
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:0;max-width:280px;white-space:nowrap;
+  padding:8px 17px;border-radius:22px;border:2px solid #fbe0a1;
+  background:linear-gradient(145deg,#fff3d4,#e6b968 70%,#b7753c);
+  color:#4b2e15;text-shadow:0 1px #fff8dc;
+  box-shadow:0 0 0 3px #6f452ec7,0 5px 12px #1a1716a6;
+  font:900 21px/1.1 Georgia,serif;pointer-events:none;
+}
+.mtk-cinematic-legend{
+  position:absolute;z-index:113;right:11px;bottom:12px;display:grid;gap:4px;
+  background:linear-gradient(155deg,#50331df0,#241e19f1);
+  border:2px solid #e0b96b;border-radius:12px;padding:7px 11px;
+  color:#fff1d3;box-shadow:0 3px 14px #17150d9a;
+  font:750 clamp(10px,1.8vw,13px)/1.2 system-ui;
+  pointer-events:none;
+}
+.mtk-cinematic-legend-row{display:flex;align-items:center;gap:7px;white-space:nowrap}
+.mtk-cinematic-legend-mark{min-width:18px;text-align:center;color:#ffd56f}
+@media(max-width:430px){.mtk-cinematic-legend{right:7px;bottom:7px;padding:6px 8px;gap:2px}}

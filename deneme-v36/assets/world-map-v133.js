@@ -1,4 +1,4 @@
-/* Matematik Evreni v134 — seamless expanding world, chapter-specific atmospheric fog.
+/* Matematik Evreni v135 — seamless expanding world, chapter-specific atmospheric fog.
    Single illustration. Never display unreached regions, roads, names or labels.
    Unlock logic depends exclusively on actual canonical game progress. */
 (function(){
@@ -8,16 +8,20 @@ const EXTRA="mathverse-v128-chapter-milestones";
 const W=1671,H=941;
 const ROOT_TILE="origin";
 const STYLE_KEY="matematik-evreni-premium-3d-v1";
-const art="./assets/premium-map-approved-v130.avif?v=130";
+const art="./assets/mtkv135-base-map.webp?v=135";
 // The same full-resolution approved artwork is retained. Mist reveals it by stage metadata.
 // Approved world illustration: its pixels, three landmarks and story text stay unchanged.
 // Future illustrations attach with a shared, visually matched 90–140px edge strip.
 const tiles=[{id:ROOT_TILE,src:art,x:0,y:0,w:W,h:H,overlap:0,side:null,styleKey:STYLE_KEY}];
 const chapters=[
- {id:"home",name:"Dedenin Evi",icon:"🏡",x:326,y:401,rx:169,ry:76,after:null,tileId:ROOT_TILE,playable:true,route:"./?scene=home&autostart=1&v=134"},
- {id:"forest",name:"Orman Patikası",icon:"🌲",x:754,y:588,rx:190,ry:83,after:"home",tileId:ROOT_TILE,fogPolygon:[[560,150],[1105,150],[1140,400],[1090,670],[1045,941],[470,941],[500,700],[510,410]],playable:true,route:"./forest-v113-full.html?resume=1&v=134"},
- {id:"observatory",name:"Gözlemevi",icon:"🔭",x:1430,y:495,rx:194,ry:83,after:"forest",tileId:ROOT_TILE,fogPolygon:[[1105,150],[1671,150],[1671,941],[1045,941],[1090,670],[1140,400]],playable:false,route:null}
+ {id:"home",name:"Dedenin Evi",icon:"🏡",x:323,y:401,rx:169,ry:76,after:null,tileId:ROOT_TILE,fogPolygon:[[0,0],[600,0],[612,95],[596,185],[608,270],[617,350],[647,430],[638,515],[613,590],[654,670],[672,742],[657,845],[620,941],[0,941]],playable:true,route:"./?scene=home&autostart=1&v=135"},
+ {id:"forest",name:"Orman Patikası",icon:"🌲",x:846,y:520,rx:190,ry:83,after:"home",tileId:ROOT_TILE,fogPolygon:[[600,0],[612,95],[596,185],[608,270],[617,350],[647,430],[638,515],[613,590],[654,670],[672,742],[657,845],[620,941],[1370,941],[1340,825],[1340,715],[1305,645],[1260,572],[1220,500],[1190,430],[1175,352],[1160,265],[1185,180],[1200,90],[1180,0]],playable:true,route:"./forest-v113-full.html?resume=1&v=135"},
+ {id:"observatory",name:"Gözlemevi",icon:"🔭",x:1418,y:262,rx:194,ry:83,after:"forest",tileId:ROOT_TILE,fogPolygon:[[1180,0],[1200,90],[1185,180],[1160,265],[1175,352],[1190,430],[1220,500],[1260,572],[1305,645],[1340,715],[1340,825],[1370,941],[1671,941],[1671,0]],playable:false,route:null}
 ];
+const PREMIUM_REGION_LAYERS=Object.freeze({
+ forest:"./assets/mtkv135-forest-fog-lock.webp?v=135",
+ observatory:"./assets/mtkv135-observatory-fog-lock.webp?v=135"
+});
 function read(key){try{return JSON.parse(localStorage.getItem(key)||"null")||{}}catch(_){return {}}}
 function progress(){
  const house=read(SAVE),forest=read(FOREST),extra=read(EXTRA);
@@ -137,7 +141,7 @@ function noiseAt(x,y,scale,seed){
        c=hashNoise(ix,iy+1,seed),d=hashNoise(ix+1,iy+1,seed);
  return (a+(b-a)*u)*(1-v)+(c+(d-c)*u)*v;
 }
-/* v134 — image-based premium grey cloud fog, region-masked at full opacity. */
+/* v135 — approved dark fog overlays and exact shared region boundaries. */
 const fogTexture=typeof Image==="function"?new Image():null;
 if(fogTexture){fogTexture.decoding="async";fogTexture.src="./assets/fog-premium-v134.webp?v=134";}
 function fogOpacityAt(x,y,regions,globalX=x,globalY=y){
@@ -174,16 +178,16 @@ function paintRegionMist(canvas,tile,locked){
    if(alpha<=.002){p[k+3]=0;continue}
    if(ready){
     // Preserve cloud texture and deep shadows instead of a flat white veil.
-    p[k]=Math.max(45,Math.min(242,Math.round(p[k]*.87+8)));
-    p[k+1]=Math.max(49,Math.min(244,Math.round(p[k+1]*.89+9)));
-    p[k+2]=Math.max(55,Math.min(248,Math.round(p[k+2]*.94+9)));
+    p[k]=Math.max(29,Math.min(125,Math.round(p[k]*.42+9)));
+    p[k+1]=Math.max(32,Math.min(132,Math.round(p[k+1]*.44+11)));
+    p[k+2]=Math.max(39,Math.min(148,Math.round(p[k+2]*.50+14)));
    }else{
     // Temporary opaque gray fog while WebP decodes; never reveal hidden areas.
     const a=noiseAt(gx,gy,250,17),b=noiseAt(gx,gy,95,87);
     const f=.65*a+.35*b;
-    p[k]=Math.round(90+118*f);
-    p[k+1]=Math.round(100+119*f);
-    p[k+2]=Math.round(116+116*f);
+    p[k]=Math.round(35+48*f);
+    p[k+1]=Math.round(42+49*f);
+    p[k+2]=Math.round(51+55*f);
    }
    p[k+3]=Math.round(alpha*255);
   }
@@ -225,29 +229,52 @@ function mount(host,{from="home",onNavigate=()=>{},onClose=()=>{}}={}){
   image.addEventListener("error",()=>{image.dataset.loadFailed="true"});
   world.append(image);
  }
- // Each locked region owns its fog shape. Unlocking removes ONLY its region,
- // not the haze on any later, undiscovered region on the same or a new tile.
+ // Each locked chapter is rendered independently. The two user-approved
+ // v135 overlays are exact transparent WebPs and include their own gold locks.
+ // Unlocking just one stage removes only THAT chapter's picture and lock.
+ // Generic chapters on future tiles retain the scalable polygon canvas fallback.
  for(const tile of tiles){
   const locked=state.chapters.filter(c=>!c.unlocked&&c.tileId===tile.id);
-  if(!locked.length)continue;
-  const fog=element("canvas","mtk-cinematic-fog");
-  fog.dataset.tileId=tile.id;fog.setAttribute("aria-hidden","true");
-  placement(fog,tile.x,tile.y,tile.w,tile.h);
-  const repaint=()=>{try{
-   if(!paintRegionMist(fog,tile,locked))fog.classList.add("mtk-cinematic-fog-fallback");
-  }catch(_){fog.classList.add("mtk-cinematic-fog-fallback")}};
-  world.append(fog);repaint();
-  if(fogTexture&&!fogTexture.complete)fogTexture.addEventListener("load",repaint,{once:true});
+  for(const c of locked){
+   const premiumSrc=tile.id===ROOT_TILE?PREMIUM_REGION_LAYERS[c.id]:null;
+   if(premiumSrc){
+    const placeholder=element("div","mtk-cinematic-fog mtk-cinematic-fog-loading");
+    placeholder.dataset.chapterId=c.id;
+    const points=c.fogPolygon.map(([x,y])=>
+     (100*x/tile.w).toFixed(4)+"% "+(100*y/tile.h).toFixed(4)+"%").join(",");
+    placeholder.style.clipPath="polygon("+points+")";
+    placeholder.style.webkitClipPath=placeholder.style.clipPath;
+    placement(placeholder,tile.x,tile.y,tile.w,tile.h);
+    world.append(placeholder);
+    const image=element("img","mtk-cinematic-fog mtk-cinematic-fog-premium");
+    image.dataset.chapterId=c.id;image.alt="";image.draggable=false;
+    image.setAttribute("aria-hidden","true");
+    placement(image,tile.x,tile.y,tile.w,tile.h);
+    image.addEventListener("load",()=>placeholder.remove(),{once:true});
+    image.addEventListener("error",()=>{image.remove();placeholder.dataset.loadFailed="true"}, {once:true});
+    image.src=premiumSrc;
+    world.append(image);
+    if(image.complete&&image.naturalWidth>0)placeholder.remove();
+    continue;
+   }
+   const fog=element("canvas","mtk-cinematic-fog");
+   fog.dataset.chapterId=c.id;fog.dataset.tileId=tile.id;
+   fog.setAttribute("aria-hidden","true");
+   placement(fog,tile.x,tile.y,tile.w,tile.h);
+   const repaint=()=>{try{
+    if(!paintRegionMist(fog,tile,[c]))fog.classList.add("mtk-cinematic-fog-fallback");
+   }catch(_){fog.classList.add("mtk-cinematic-fog-fallback")}};
+   world.append(fog);repaint();
+   if(fogTexture&&!fogTexture.complete)fogTexture.addEventListener("load",repaint,{once:true});
+  }
  }
- // Preserve the approved illustration's original bottom-right legend,
- // above any fog. The original artwork is never redrawn or regenerated.
- const homeTile=tiles.find(t=>t.id===ROOT_TILE);
- if(state.chapters.some(c=>!c.unlocked&&c.tileId===ROOT_TILE)&&homeTile){
-  const legend=element("img","mtk-cinematic-legend-preserve");
-  legend.src=art;legend.alt="";legend.draggable=false;
-  legend.setAttribute("aria-hidden","true");
-  placement(legend,homeTile.x,homeTile.y,homeTile.w,homeTile.h);
-  world.append(legend);
+ // Status explanation is a separate UI element, not baked into the new art.
+ const legend=element("div","mtk-cinematic-legend");
+ legend.setAttribute("aria-label","Harita işaretleri");
+ for(const [icon,label] of [["✓","Tamamlandı"],["●","Devam ediyor"],["🔒","Kilitli"]]){
+  const item=element("span","mtk-cinematic-legend-row");
+  item.append(element("span","mtk-cinematic-legend-mark",icon),element("span","",label));
+  legend.append(item);
  }
  for(const c of opened){
   const b=element("button","mtk-cinematic-hotspot");
@@ -263,9 +290,9 @@ function mount(host,{from="home",onNavigate=()=>{},onClose=()=>{}}={}){
    const notice=element("div","mtk-cinematic-notice",c.name+" macerası sonraki sürümlerde oynanabilecek.");
    world.append(notice);requestAnimationFrame(()=>notice.classList.add("is-visible"));
   });
-  if(c.tileId!==ROOT_TILE){
+  if(c.tileId!==ROOT_TILE||["home","forest","observatory"].includes(c.id)){
    // New scenery tiles do not bake nameplates into the environment image.
-   const plaque=element("span","mtk-cinematic-stage-plaque",c.icon+" "+c.name);
+   const plaque=element("span",c.tileId===ROOT_TILE?"mtk-cinematic-base-plaque":"mtk-cinematic-stage-plaque",c.icon+" "+c.name);
    plaque.setAttribute("aria-hidden","true");b.append(plaque);
   }
   if(c.complete){
@@ -281,7 +308,7 @@ function mount(host,{from="home",onNavigate=()=>{},onClose=()=>{}}={}){
   badge.setAttribute("aria-label","Gözlemevi keşfedildi");
   world.append(badge);
  }
- viewport.append(world);host.append(viewport);
+ viewport.append(world);host.append(viewport);host.append(legend);
  // A zoom is measured against the original approved 941px-high map tile.
  // It never changes the original image's proportions or coordinates.
  let zoom=1,scale=1,destroyed=false,firstLayout=true;
