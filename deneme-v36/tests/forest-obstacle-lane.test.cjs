@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(homeVersion,133);
+assert.equal(homeVersion,134);
 // The home artwork was updated independently; the forest scene remains v113.
 const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
@@ -319,6 +319,12 @@ assert(premiumMapIspe>0);
 assert.equal(originalArt.readUInt32BE(premiumMapIspe+8),1671,"Approved map retains full reference width");
 assert.equal(originalArt.readUInt32BE(premiumMapIspe+12),941,"Approved map retains full reference height");
 assert(worldJS.includes("premium-map-approved-v130.avif?v=130"),"Actual approved map asset must load");
+const fogArt=fs.readFileSync(path.join(root,"assets/fog-premium-v134.webp"));
+assert.equal(fogArt.toString("ascii",0,4),"RIFF","Premium fog must be WebP");
+assert.equal(fogArt.toString("ascii",8,12),"WEBP","Premium fog asset must be readable");
+assert(fogArt.length>2000,"Premium fog asset unexpectedly small");
+assert(worldJS.includes("fog-premium-v134.webp?v=134"),"Premium fog texture must be used by map");
+
 assert(!worldJS.includes("world-map-v129.svg"),"Old flat-map asset must be removed from gameplay");
 assert(!worldJS.includes("Işıklı Taş"),"Forest obstacle must never become a map region");
 assert(!worldJS.includes("Keşfedilen Bölgeler")&&!worldJS.includes("bölge sayısı"),"No discovered-region counter");
@@ -328,7 +334,7 @@ assert(worldJS.includes("const chapters=[")&&worldJS.includes('id:"observatory"'
 assert(!worldJS.includes('id:"gate"')&&!worldJS.includes('id:"inside"'),"Observatory is ONE map region, not multiple chapters");
 assert(worldJS.includes('const tiles=[')&&worldJS.includes('const chapters=['),"All chapters and art tiles use one world registry");
 assert(worldJS.includes('function registerTile(')&&worldJS.includes('function registerChapter('),"World can grow by adding approved tiles and their chapters");
-assert(worldJS.includes('fogPolygon:[[545,170]')&&worldJS.includes('fogPolygon:[[1140,175]'),"Forest and observatory have independent 2D fog boundaries");
+assert(worldJS.includes('fogPolygon:[[560,150]')&&worldJS.includes('fogPolygon:[[1105,150]'),"Forest and observatory have independent 2D fog boundaries");
 assert(worldJS.includes('const locked=state.chapters.filter(c=>!c.unlocked&&c.tileId===tile.id)'),"Only locked polygons on each tile receive fog");
 assert(worldJS.includes('paintRegionMist(fog,tile,locked)'),"Mist is painted by chapter geometry, not a full-screen oval");
 assert(worldJS.includes('image.style.maskImage=gradient')&&worldJS.includes('image.style.webkitMaskImage=gradient'),"Joined artwork softens just the shared overlap");
@@ -344,12 +350,12 @@ assert(!sharedJS.includes('createElement("iframe")'),"Map uses no iframe");
 for(const chapter of [home,forest]){
  assert(chapter.includes('class="mtk-hud-shell"'),"Existing universal chapter HUD retained");
  assert(chapter.includes("hud-shell-v129.svg?v=133"),"Shared HUD illustration retained");
- assert(chapter.includes("assets/world-map-v133.js?v=133"),"All chapters use the single expanding map engine");
+ assert(chapter.includes("assets/world-map-v133.js?v=134"),"All chapters use the single expanding map engine");
  assert(chapter.includes("assets/game-ui-v133.js?v=133"),"Shared navigation and modal code retained");
- assert(chapter.includes("assets/unified-ui-v133.css?v=133"),"All panels use unified responsive styles");
+ assert(chapter.includes("assets/unified-ui-v133.css?v=134"),"All panels use unified responsive styles");
  assert(chapter.includes("window.MTKGameUI.openMap({"),"Map opens from inside game");
 }
-assert(menu.includes("world-map-v133.js?v=133"),"Title-screen shares global fog registry");
+assert(menu.includes("world-map-v133.js?v=134"),"Title-screen shares global fog registry");
 for(const scene of [home,forest,menu]) assert(scene.includes("map-world-registry-v133.js?v=133"),"All scenes load the same expansion manifest");
 assert(menu.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"New Game resets all later expansions");
 assert(home.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"In-home reset clears expansion progress");
@@ -408,6 +414,7 @@ assert(atlas.fogOpacityAt(326,401,[forestFog],326,401)<.001,"Home remains entire
 assert(atlas.fogOpacityAt(754,588,[forestFog],754,588)>.99,"Locked forest nameplate is hidden");
 assert(atlas.fogOpacityAt(1430,495,[observatoryFog],1430,495)>.99,"Locked observatory nameplate is hidden");
 assert(atlas.fogOpacityAt(760,588,[observatoryFog],760,588)<.001,"Unlocking forest does not fog it again");
+assert(atlas.fogOpacityAt(1105,150,[forestFog,observatoryFog],1105,150)>.80,"Adjacent locked regions must not leave a transparent seam");
 const sampleFuture=atlas.chapters().find(c=>c.id==="future-planet");
 assert(atlas.fogOpacityAt(620,470,[{...sampleFuture,tileX:east.x,tileY:east.y}],east.x+620,470)>.99,
  "Locked chapter on ANY new art tile must receive its own fog");
@@ -420,4 +427,4 @@ assert(worldRegistry.includes("NEW_TILES=[]")&&worldRegistry.includes("NEW_CHAPT
 const other={window:{MTKWorldMap:atlas}};
 vm.runInNewContext(worldRegistry,other);
 assert.equal(other.window.MTKWorldRegistry.tileCount,3,"One original + two sample extension tiles in regression sandbox");
-console.log("PASS v133: fixed premium art, seam-joined tiles, per-chapter fog, camera zoom and future expansion.");
+console.log("PASS v134: fixed premium art, seam-joined tiles, per-chapter fog, camera zoom and future expansion.");
