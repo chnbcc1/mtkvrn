@@ -847,12 +847,18 @@ const REDUCE_INSPECT_MOTION=window.matchMedia&&window.matchMedia('(prefers-reduc
 function inspectableNearby(){
  return near&&started&&!openModal&&$('#dialogue').hidden&&Math.abs(near.x-hero.x)<94?near:null;
 }
+// Landscape markers use individually measured points on the actual garden objects.
+const INSPECT_MARKERS_LANDSCAPE={
+ gate:{x:257,y:530},
+ shed:{x:748,y:575},
+ window:{x:1117,y:463},
+ door:{x:1483,y:488}
+};
 function inspectScreenPosition(item){
- const marker=INSPECT_MARKERS[item.id]||item;
- // Landscape world art, character and magnifier share the same camera offset.
- // Raise the icon to the actual inspectable landmark instead of the road surface.
- const landscapeLift=viewportW>viewportH?(item.id==='shed'?86:item.id==='gate'?45:57):0;
- return {x:(marker.x-cameraX)*scale,y:(marker.y-landscapeLift)*scale+homeWorldVerticalOffset()};
+ const marker=viewportW>viewportH
+  ?(INSPECT_MARKERS_LANDSCAPE[item.id]||INSPECT_MARKERS[item.id]||item)
+  :(INSPECT_MARKERS[item.id]||item);
+ return {x:(marker.x-cameraX)*scale,y:marker.y*scale+homeWorldVerticalOffset()};
 }
 function paintInspectMagnifier(x,y){
  const pulse=REDUCE_INSPECT_MOTION?.35:(Math.sin(time*2.8)+1)/2;
