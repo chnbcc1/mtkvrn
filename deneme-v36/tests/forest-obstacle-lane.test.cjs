@@ -498,5 +498,5 @@ assert(settingsStyle.includes("grid-template-columns:repeat(2,minmax(0,1fr))!imp
 assert(settingsStyle.includes("overflow-y:auto!important"),"Small viewports can scroll without clipping controls");
 assert(settingsStyle.includes(".mtk-version{")&&settingsStyle.includes("position:static!important"),"Version text cannot overlay buttons");
 assert(settingsStyle.includes("modalActions>button")&&settingsStyle.includes("mtk-modal-foot #homeMainMenu"),"Footer actions share identical appearance");
-assert(home.includes("'old-map'")&&settingsStyle.includes(".threeRings i{"),"Old map discovery uses compact ornate ring artwork");
+assert(home.includes('"old-map"')&&settingsStyle.includes(".threeRings i{"),"Old map discovery uses compact ornate ring artwork");
 console.log("PASS v144: same settings in all areas, unclipped landscape, polished old-map discovery.");
