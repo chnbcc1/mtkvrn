@@ -1,7 +1,7 @@
 /* Matematik Evreni v128 — shared settings & chapter panel building blocks. */
 (function(){
  "use strict";
- const version="143";
+ const version="144";
  function settingsMarkup(prefix,p){
   const sound=!!p.sound,vibration=!!p.vibration;
   return '<div class="mtk-setting-list forestSettings">'+

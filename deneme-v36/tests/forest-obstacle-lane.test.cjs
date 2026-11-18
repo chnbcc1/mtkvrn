@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(homeVersion,143);
+assert.equal(homeVersion,144);
 // The home artwork was updated independently; the forest scene remains v113.
 const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
@@ -353,7 +353,7 @@ for(const chapter of [home,forest]){
  assert(chapter.includes('class="mtk-hud-shell"'),"Existing universal chapter HUD retained");
  assert(chapter.includes("hud-shell-v129.svg?v=133"),"Shared HUD illustration retained");
  assert(chapter.includes("assets/world-map-v133.js?v=140"),"All chapters use the single expanding map engine");
- assert(chapter.includes(chapter===home?"assets/game-ui-v133.js?v=143":"assets/game-ui-v133.js?v=141"),"Shared navigation and modal code retained (forest URL left unchanged)");
+ assert(chapter.includes("assets/game-ui-v133.js?v=144"),"All playable chapters use same settings logic");
  assert(chapter.includes("assets/unified-ui-v133.css?v=141"),"All panels use unified responsive styles");
  assert(chapter.includes("window.MTKGameUI.openMap({"),"Map opens from inside game");
 }
@@ -486,9 +486,17 @@ assert(home.includes("HOME PORTRAIT ONLY")&&home.includes("Erdem LANDSCAPE: keep
 assert(home.includes("#game #dialogue.erdem{")&&home.includes("width:clamp(142px,40vw,176px)!important"),"Portrait Erdem bubble is narrow and taller");
 assert(home.includes("grid-template-columns:repeat(2,minmax(0,1fr))!important"),"Landscape home settings use two balanced columns");
 assert(home.includes("mtk-setting-list>button.mtk-restart-game")&&home.includes("background:linear-gradient(120deg,#fff8df,#e8cd98)"),"Landscape settings and restart rows share the parchment/gold palette");
-assert(menu.includes("assets/game-ui-v133.js?v=143")&&forest.includes("assets/game-ui-v133.js?v=141"),"Forest release assets and all speech styling remain unchanged");
+assert(menu.includes("assets/game-ui-v133.js?v=144")&&forest.includes("assets/game-ui-v133.js?v=144"),"Menu and forest use same settings logic");
 assert(home.includes("inline-size:min(680px,100%)!important")&&home.includes("grid-template-columns:minmax(0,1fr)!important"),"House landscape settings can never exceed available viewport width");
 assert(home.includes("mtk-modal-foot #closeModal,")&&home.includes("mtk-modal-foot #homeMainMenu"),"Footer buttons share identical size and emerald colors");
 assert(home.includes("max-width:100%!important;width:100%!important"),"Landscape setting cards stay inside the panel width");
 assert(home.includes("HOME PORTRAIT ONLY")&&home.includes("Erdem LANDSCAPE: keep the already approved v141"),"Approved Dedenin Evi character speech stays unchanged");
-console.log("PASS v143: landscape settings fit and consistent portrait/landscape colors and footer sizes.");
+const settingsStyle=fs.readFileSync(path.join(root,"assets/settings-standard-v144.css"),"utf8");
+assert(home.includes("settings-standard-v144.css?v=144")&&forest.includes("settings-standard-v144.css?v=144")&&menu.includes("settings-standard-v144.css?v=144"),"All 3 sections load shared stylesheet");
+assert(home.includes("classList.toggle('mtk-settings-standard'")&&forest.includes("classList.toggle('mtk-settings-standard'")&&menu.includes("classList.toggle('mtk-settings-standard'"),"All 3 sections activate unified settings mode");
+assert(settingsStyle.includes("grid-template-columns:repeat(2,minmax(0,1fr))!important"),"Landscape settings are 2x2");
+assert(settingsStyle.includes("overflow-y:auto!important"),"Small viewports can scroll without clipping controls");
+assert(settingsStyle.includes(".mtk-version{")&&settingsStyle.includes("position:static!important"),"Version text cannot overlay buttons");
+assert(settingsStyle.includes("modalActions>button")&&settingsStyle.includes("mtk-modal-foot #homeMainMenu"),"Footer actions share identical appearance");
+assert(home.includes("'old-map'")&&settingsStyle.includes(".threeRings i{"),"Old map discovery uses compact ornate ring artwork");
+console.log("PASS v144: same settings in all areas, unclipped landscape, polished old-map discovery.");

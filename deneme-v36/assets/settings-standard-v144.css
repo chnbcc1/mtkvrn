@@ -1,0 +1,227 @@
+/* Matematik Evreni v144: one shared settings layout for home, forest and main menu.
+   Scoping is explicit: do not style story, quiz or speech bubbles. */
+#info.mtk-settings-standard,#modal.mtk-settings-standard{
+ box-sizing:border-box!important;display:grid!important;place-items:center!important;
+ padding:max(7px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(7px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))!important;
+ background:radial-gradient(ellipse at center,#234a3db5,#061a20e7)!important
+}
+#info.mtk-settings-standard[hidden],#modal.mtk-settings-standard[hidden]{display:none!important}
+#info.mtk-settings-standard>.modalPanel,
+#modal.mtk-settings-standard>.paper,
+#shade .dialog.mtk-settings-standard{
+ box-sizing:border-box!important;width:min(800px,100%)!important;max-width:100%!important;
+ min-width:0!important;min-height:0!important;
+ height:min(525px,calc(100dvh - 18px - env(safe-area-inset-top) - env(safe-area-inset-bottom)))!important;
+ max-height:calc(100dvh - 18px - env(safe-area-inset-top) - env(safe-area-inset-bottom))!important;
+ display:grid!important;grid-template-columns:minmax(0,1fr)!important;
+ grid-template-rows:auto minmax(0,1fr) auto!important;
+ gap:0!important;overflow:hidden!important;margin:0 auto!important;padding:0!important;
+ border:4px ridge #a46b30!important;outline:2px solid #4c2915!important;
+ border-radius:clamp(15px,2vw,25px)!important;
+ background:radial-gradient(ellipse at 16% 10%,#fff6db,#ead1a1 82%)!important;
+ box-shadow:inset 0 0 0 3px #fae7b4,0 16px 54px #061613c0!important;
+ color:#4c311e!important
+}
+#info.mtk-settings-standard .mtk-modal-head,
+#modal.mtk-settings-standard .panel-head,
+#shade .dialog.mtk-settings-standard #panelTitle{
+ box-sizing:border-box!important;min-height:0!important;
+ margin:0!important;padding:clamp(8px,2vh,13px) clamp(15px,3vw,24px)!important;
+ border:0!important;border-bottom:3px solid #d2a45f!important;
+ background:repeating-linear-gradient(100deg,#2e160b13 0 12px,#280e0825 13px 14px,transparent 15px 25px),
+ linear-gradient(160deg,#8c532b,#633118 57%,#43210f)!important;
+ color:#fff1c8!important;box-shadow:inset 0 2px #ffe7b33d!important
+}
+#info.mtk-settings-standard .mtk-modal-head h2,
+#modal.mtk-settings-standard .panel-head h2,
+#shade .dialog.mtk-settings-standard #panelTitle{
+ font:900 clamp(22px,4.2vh,36px)/1.05 Georgia,serif!important;
+ color:#fff1c8!important;text-shadow:0 2px 3px #220e08be!important
+}
+#shade .dialog.mtk-settings-standard #panelTitle{position:relative;padding-right:70px!important}
+#shade .dialog.mtk-settings-standard #panelTitle:after{
+ content:"⚙";position:absolute;right:18px;top:50%;transform:translateY(-50%);
+ box-sizing:border-box;width:40px;height:40px;
+ border:2px solid #d4a15e;border-radius:50%;display:grid;place-items:center;
+ background:#754324;color:#fff1d4;font:26px/1 system-ui,sans-serif
+}
+#info.mtk-settings-standard #modalText,
+#modal.mtk-settings-standard #modalContent,
+#shade .dialog.mtk-settings-standard #panelBody{
+ box-sizing:border-box!important;min-width:0!important;min-height:0!important;
+ margin:0!important;padding:clamp(8px,1.9vh,17px) clamp(13px,3vw,25px)!important;
+ display:flex!important;flex-direction:column!important;justify-content:center!important;
+ gap:clamp(5px,1.3vh,9px)!important;
+ background:radial-gradient(ellipse at 15% 4%,#fff9e2,#f0d9ab 80%,#dfbb85)!important;
+ overflow-x:hidden!important;overflow-y:auto!important;
+ scrollbar-width:thin;scrollbar-color:#ab8552 transparent
+}
+:is(#info.mtk-settings-standard,#modal.mtk-settings-standard,#shade .dialog.mtk-settings-standard) .mtk-setting-list{
+ box-sizing:border-box!important;width:100%!important;max-width:100%!important;
+ min-width:0!important;min-height:0!important;flex:0 0 auto!important;
+ display:grid!important;grid-template-columns:minmax(0,1fr)!important;
+ gap:clamp(7px,1.15vh,10px)!important;margin:0!important;padding:0!important
+}
+:is(#info.mtk-settings-standard,#modal.mtk-settings-standard,#shade .dialog.mtk-settings-standard) .mtk-setting-list>label,
+:is(#info.mtk-settings-standard,#modal.mtk-settings-standard,#shade .dialog.mtk-settings-standard) .mtk-setting-list>button.mtk-action-setting{
+ box-sizing:border-box!important;min-width:0!important;
+ width:100%!important;max-width:100%!important;
+ height:clamp(55px,8.4dvh,71px)!important;max-height:71px!important;min-height:0!important;
+ display:flex!important;align-items:center!important;
+ gap:clamp(8px,1.7vw,13px)!important;
+ padding:7px clamp(9px,2vw,16px)!important;margin:0!important;
+ border:1.5px solid #bc945a!important;border-radius:14px!important;
+ background:linear-gradient(120deg,#fff9df,#e8cd99)!important;
+ color:#50351f!important;box-shadow:inset 0 1px #fffbea,0 2px 7px #7d542d2e!important;
+ overflow:hidden!important;text-align:left!important
+}
+:is(#info.mtk-settings-standard,#modal.mtk-settings-standard,#shade .dialog.mtk-settings-standard) .mtk-setting-list .mtk-setting-icon{
+ flex:0 0 28px!important;width:28px!important;font-size:clamp(19px,3vh,26px)!important;text-align:center!important
+}
+:is(#info.mtk-settings-standard,#modal.mtk-settings-standard,#shade .dialog.mtk-settings-standard) .mtk-setting-list .mtk-setting-label{
+ flex:1 1 auto!important;min-width:0!important;display:grid!important;
+ gap:2px!important;overflow:hidden!important
+}
+:is(#info.mtk-settings-standard,#modal.mtk-settings-standard,#shade .dialog.mtk-settings-standard) .mtk-setting-list .mtk-setting-label strong{
+ display:block!important;font:900 clamp(13px,2.4vh,18px)/1.1 system-ui,sans-serif!important;
+ color:#51351e!important;white-space:normal!important;overflow-wrap:break-word!important
+}
+:is(#info.mtk-settings-standard,#modal.mtk-settings-standard,#shade .dialog.mtk-settings-standard) .mtk-setting-list .mtk-setting-label small{
+ display:block!important;font:650 clamp(9px,1.6vh,12px)/1.13 system-ui,sans-serif!important;
+ color:#795937!important;white-space:normal!important;overflow-wrap:break-word!important
+}
+:is(#info.mtk-settings-standard,#modal.mtk-settings-standard,#shade .dialog.mtk-settings-standard) .mtk-setting-list input[type="checkbox"]{
+ appearance:none!important;-webkit-appearance:none!important;
+ display:block!important;position:relative!important;flex:0 0 46px!important;
+ width:46px!important;height:27px!important;min-width:46px!important;min-height:27px!important;
+ padding:0!important;margin:0!important;border:2px solid #ad8852!important;
+ border-radius:99px!important;background:#bbae9b!important
+}
+:is(#info.mtk-settings-standard,#modal.mtk-settings-standard,#shade .dialog.mtk-settings-standard) .mtk-setting-list input[type="checkbox"]::before{
+ content:"";position:absolute;top:2px;left:2px;width:19px;height:19px;
+ border-radius:50%;background:#fff9e3;box-shadow:0 1px 4px #0004;transition:transform .15s ease
+}
+:is(#info.mtk-settings-standard,#modal.mtk-settings-standard,#shade .dialog.mtk-settings-standard) .mtk-setting-list input[type="checkbox"]:checked{
+ background:#29816c!important;border-color:#1b624f!important
+}
+:is(#info.mtk-settings-standard,#modal.mtk-settings-standard,#shade .dialog.mtk-settings-standard) .mtk-setting-list input[type="checkbox"]:checked::before{transform:translateX(19px)}
+:is(#info.mtk-settings-standard,#modal.mtk-settings-standard,#shade .dialog.mtk-settings-standard) .mtk-version{
+ position:static!important;display:block!important;flex:0 0 auto!important;
+ font:700 clamp(10px,1.7vh,12px)/1.16 system-ui,sans-serif!important;
+ margin:0!important;padding:1px 0!important;color:#765330!important;text-align:center!important
+}
+#info.mtk-settings-standard .mtk-modal-foot,
+#modal.mtk-settings-standard #modalActions,
+#shade .dialog.mtk-settings-standard #panelActions{
+ box-sizing:border-box!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ min-height:0!important;align-items:stretch!important;
+ gap:clamp(7px,1.5vw,12px)!important;padding:clamp(7px,1.35vh,12px) clamp(13px,3vw,25px)!important;
+ margin:0!important;background:linear-gradient(#eac98e,#d6aa70)!important;
+ border-top:2px solid #c49859!important
+}
+#shade .dialog.mtk-settings-standard #panelActions:has(>button:only-child){grid-template-columns:minmax(0,1fr)!important}
+#info.mtk-settings-standard .mtk-modal-foot #closeModal,
+#info.mtk-settings-standard .mtk-modal-foot #homeMainMenu,
+#modal.mtk-settings-standard #modalActions>button,
+#shade .dialog.mtk-settings-standard #panelActions>button{
+ box-sizing:border-box!important;flex:none!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ width:100%!important;min-width:0!important;height:clamp(43px,7vh,52px)!important;
+ min-height:43px!important;max-height:52px!important;margin:0!important;padding:6px 9px!important;
+ font:850 clamp(12px,2.1vh,16px)/1.14 system-ui,sans-serif!important;
+ color:#fff8df!important;text-align:center!important;white-space:normal!important;
+ background:linear-gradient(#308b75,#165b50)!important;
+ border:2px solid #8ebb9e!important;border-radius:12px!important;
+ box-shadow:inset 0 2px #d6ffe438,0 3px #145042a0!important
+}
+#info.mtk-settings-standard .mtk-modal-foot #homeMainMenu[hidden]{display:none!important}
+@media(orientation:landscape){
+ #info.mtk-settings-standard>.modalPanel,
+ #modal.mtk-settings-standard>.paper,
+ #shade .dialog.mtk-settings-standard{
+  width:min(840px,100%)!important;
+  height:min(410px,calc(100dvh - 14px - env(safe-area-inset-top) - env(safe-area-inset-bottom)))!important;
+  max-height:calc(100dvh - 14px - env(safe-area-inset-top) - env(safe-area-inset-bottom))!important
+ }
+ :is(#info.mtk-settings-standard,#modal.mtk-settings-standard,#shade .dialog.mtk-settings-standard) .mtk-setting-list{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:repeat(2,minmax(0,1fr))!important;gap:7px 9px!important
+ }
+ :is(#info.mtk-settings-standard,#modal.mtk-settings-standard,#shade .dialog.mtk-settings-standard) .mtk-setting-list>label,
+ :is(#info.mtk-settings-standard,#modal.mtk-settings-standard,#shade .dialog.mtk-settings-standard) .mtk-setting-list>button.mtk-action-setting{
+  height:clamp(44px,12dvh,56px)!important;min-height:0!important;max-height:56px!important;padding:5px 9px!important
+ }
+ :is(#info.mtk-settings-standard,#modal.mtk-settings-standard,#shade .dialog.mtk-settings-standard) .mtk-setting-list .mtk-setting-label strong{font-size:clamp(12px,2.75vh,16px)!important}
+ :is(#info.mtk-settings-standard,#modal.mtk-settings-standard,#shade .dialog.mtk-settings-standard) .mtk-setting-list .mtk-setting-label small{font-size:clamp(9px,2vh,11px)!important;display:block!important}
+ #info.mtk-settings-standard .mtk-modal-head,
+ #modal.mtk-settings-standard .panel-head,
+ #shade .dialog.mtk-settings-standard #panelTitle{padding:6px 16px!important}
+ #info.mtk-settings-standard #modalText,
+ #modal.mtk-settings-standard #modalContent,
+ #shade .dialog.mtk-settings-standard #panelBody{padding:6px 14px!important;gap:4px!important}
+ #info.mtk-settings-standard .mtk-modal-foot,
+ #modal.mtk-settings-standard #modalActions,
+ #shade .dialog.mtk-settings-standard #panelActions{padding:6px 14px!important;gap:9px!important}
+ #info.mtk-settings-standard .mtk-modal-foot #closeModal,
+ #info.mtk-settings-standard .mtk-modal-foot #homeMainMenu,
+ #modal.mtk-settings-standard #modalActions>button,
+ #shade .dialog.mtk-settings-standard #panelActions>button{
+  height:clamp(38px,9.7dvh,45px)!important;min-height:38px!important;max-height:45px!important
+ }
+}
+/* Polished old-map story card (only home discovery, never global gameplay). */
+#info[data-mtk-panel="old-map"]{
+ box-sizing:border-box!important;display:grid!important;place-items:center!important;
+ padding:max(8px,env(safe-area-inset-top)) max(9px,env(safe-area-inset-right))
+ max(8px,env(safe-area-inset-bottom)) max(9px,env(safe-area-inset-left))!important
+}
+#info[data-mtk-panel="old-map"] .modalPanel{
+ box-sizing:border-box!important;width:min(610px,100%)!important;max-width:100%!important;
+ height:auto!important;max-height:calc(100dvh - 18px - env(safe-area-inset-top) - env(safe-area-inset-bottom))!important;
+ min-height:0!important;display:flex!important;flex-direction:column!important;
+ overflow:hidden!important;padding:0!important;margin:0 auto!important;
+ border:4px ridge #a56a2d!important;border-radius:22px!important
+}
+#info[data-mtk-panel="old-map"] .mtk-modal-head{
+ flex:0 0 auto!important;padding:10px 16px!important;background:linear-gradient(155deg,#8b5029,#643219 70%,#44220f)!important
+}
+#info[data-mtk-panel="old-map"] #modalText{
+ display:flex!important;flex-direction:column!important;justify-content:flex-start!important;
+ gap:clamp(7px,1.2vh,12px)!important;align-items:stretch!important;
+ min-height:0!important;flex:0 1 auto!important;overflow-y:auto!important;
+ padding:clamp(10px,2vh,18px) clamp(14px,3vw,22px)!important
+}
+#info[data-mtk-panel="old-map"] #modalText>p{line-height:1.4!important;margin:0!important;color:#594027!important}
+#info[data-mtk-panel="old-map"] #modalText>.atlasFind{
+ margin:0!important;padding:10px 13px!important;flex:0 0 auto!important;
+ min-height:68px!important;border:2px solid #ba9154!important;border-radius:14px!important;
+ background:linear-gradient(135deg,#faedc9,#e7c893)!important
+}
+#info[data-mtk-panel="old-map"] .threeRings{
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ width:116px!important;height:54px!important;min-width:116px!important;flex-shrink:0!important;
+ border:2px ridge #caa764!important;border-radius:12px!important;
+ background:radial-gradient(ellipse at 28% 31%,#fff1c2,#c28d45 75%,#835320)!important;
+ box-shadow:inset 0 0 0 2px #f5daa2,0 3px 8px #54341d56!important
+}
+#info[data-mtk-panel="old-map"] .threeRings i{
+ box-sizing:border-box!important;width:31px!important;height:31px!important;flex:0 0 31px!important;
+ margin-left:-7px!important;border:4px ridge #e5ba65!important;border-radius:50%!important;
+ background:#5d3b21b8!important;
+ box-shadow:inset 0 0 0 2px #492b14,0 0 0 1px #f9e8a4,0 2px 5px #52321b90!important
+}
+#info[data-mtk-panel="old-map"] .threeRings i:first-child{margin-left:0!important}
+#info[data-mtk-panel="old-map"] .erdemThought{margin:0!important;padding:9px 11px!important;line-height:1.3!important;background:#fff9e2d9!important}
+#info[data-mtk-panel="old-map"] .deduceBtn{box-sizing:border-box!important;margin:0!important;min-height:46px!important;padding:9px 12px!important}
+#info[data-mtk-panel="old-map"] .mtk-modal-foot{
+ flex:0 0 auto!important;padding:8px 14px!important;background:linear-gradient(#e9c78b,#d4a769)!important
+}
+#info[data-mtk-panel="old-map"] .mtk-modal-foot button{
+ box-sizing:border-box!important;margin:0!important;min-height:45px!important;
+ color:#fff9e0!important;background:linear-gradient(#2e806b,#16594e)!important
+}
+@media(orientation:landscape) and (max-height:420px){
+ #info[data-mtk-panel="old-map"] #modalText{gap:4px!important;padding:6px 12px!important}
+ #info[data-mtk-panel="old-map"] .erdemThought{padding:5px 9px!important}
+ #info[data-mtk-panel="old-map"] .atlasFind{min-height:48px!important;padding:5px 8px!important}
+}

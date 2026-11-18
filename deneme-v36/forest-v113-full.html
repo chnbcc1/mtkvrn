@@ -514,8 +514,8 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 #modal.mtk-restart-confirm .paper h2{font-size:clamp(21px,4vh,32px)!important}
 #modal.mtk-restart-confirm #modalActions{flex:0 0 auto!important}
 </style>
-<link rel="stylesheet" href="./assets/game-ui-v127.css?v=133"><link rel="stylesheet" href="./assets/unified-ui-v133.css?v=141"><style>html,body{height:100dvh!important}#scene{width:100dvw!important;height:100dvh!important}</style>
-<script src="./settings-v116.js?v=116"></script><script src="./assets/world-map-v133.js?v=140"></script><script src="./assets/map-world-registry-v133.js?v=133"></script><script src="./assets/game-ui-v133.js?v=141"></script></head>
+<link rel="stylesheet" href="./assets/game-ui-v127.css?v=133"><link rel="stylesheet" href="./assets/unified-ui-v133.css?v=141"><link rel="stylesheet" href="./assets/settings-standard-v144.css?v=144"><style>html,body{height:100dvh!important}#scene{width:100dvw!important;height:100dvh!important}</style>
+<script src="./settings-v116.js?v=116"></script><script src="./assets/world-map-v133.js?v=140"></script><script src="./assets/map-world-registry-v133.js?v=133"></script><script src="./assets/game-ui-v133.js?v=144"></script></head>
 <body>
 <canvas id="scene" aria-label="Erdem ve Çiko ile oynanabilir orman patikası"></canvas><div class="tint"></div>
 <div class="mtk-hud-shell" data-chapter="forest" aria-label="Ortak oyun üst menüsü">
@@ -654,6 +654,7 @@ syncViewport();
 function openModal(title,content,eyebrow='BÖLÜM 2'){
  modalOpen=true;requested=0;activePointers.clear();updatePress();
  $('#modal').classList.remove('mtk-restart-confirm');
+ $('#modal').classList.toggle('mtk-settings-standard',title==='Oyun Ayarları'&&eyebrow==='AYARLAR');
  $('#modal').dataset.panel=eyebrow==='AYARLAR'?'settings':title==='Kırık köprü'?'question':'story';
  $('#modalTitle').textContent=title;$('#modalContent').innerHTML=content;
  $('#eyebrow').textContent=eyebrow;$('#modalActions').replaceChildren();
@@ -706,7 +707,7 @@ function openForestSettings(){
  $('#forestRestartChapter')?.addEventListener('click',()=>confirmForestRestart('chapter'));
  $('#forestRestartGame')?.addEventListener('click',()=>confirmForestRestart('game'));
  action('Oyuna dön',closeModal);
- action('Ana menü',()=>{recordForestExit();location.assign('./menu-v116.html?v=133')},'secondary');
+ action('Ana menü',()=>{recordForestExit();location.assign('./menu-v116.html?v=144')},'secondary');
 }
 $('#settingsBtn').onclick=openForestSettings;
 
