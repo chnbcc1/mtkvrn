@@ -451,7 +451,7 @@ assert(forest.includes('speechSpeaker==="erdem"?worldX(heroX):worldX(flyingX)'),
 assert(forest.includes('.chiko-speech[data-speaker="erdem"]'),"Erdem uses turquoise; Çiko continues using gold");
 const obsV138=fs.readFileSync(path.join(root,"assets/observatory-premium-v138.avif"));
 assert(obsV138.length>5000&&obsV138.toString("ascii",4,12)==="ftypavif","Premium image must be AVIF");
-assert(forest.includes("premiumObservatory.src='./assets/observatory-premium-v138.avif?v=138'"),"Forest loads new standalone observatory");
+assert(forest.includes("premiumObservatory.src='./assets/observatory-premium-v139.avif?v=139'"),"Forest loads upgraded standalone observatory");
 assert(forest.includes("ctx.drawImage(premiumObservatory"),"Observatory image painted into forest");
 assert(!forest.includes("ctx.fillRect(gx-135*scale,gy-240*scale"),"Flat gray observatory removed");
 assert(home.includes("const hud=document.querySelector('.mtk-hud-shell')?.getBoundingClientRect()"),"Character bubbles avoid HUD");
