@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(homeVersion,142);
+assert.equal(homeVersion,143);
 // The home artwork was updated independently; the forest scene remains v113.
 const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
@@ -485,6 +485,10 @@ assert(home.includes("}else if(viewportW<viewportH){"),"Portrait-only Erdem plac
 assert(home.includes("HOME PORTRAIT ONLY")&&home.includes("Erdem LANDSCAPE: keep the already approved v141"),"Existing landscape bubble geometry preserved");
 assert(home.includes("#game #dialogue.erdem{")&&home.includes("width:clamp(142px,40vw,176px)!important"),"Portrait Erdem bubble is narrow and taller");
 assert(home.includes("grid-template-columns:repeat(2,minmax(0,1fr))!important"),"Landscape home settings use two balanced columns");
-assert(home.includes("mtk-restart-game")&&home.includes("background:linear-gradient(120deg,#fff1e4,#efc6ae)"),"Destructive action is visually differentiated");
-assert(menu.includes("assets/game-ui-v133.js?v=142")&&forest.includes("assets/game-ui-v133.js?v=141"),"Forest release assets and all speech styling remain unchanged");
-console.log("PASS v142: portrait-only upright Erdem balloon and readable, coordinated home landscape settings.");
+assert(home.includes("mtk-setting-list>button.mtk-restart-game")&&home.includes("background:linear-gradient(120deg,#fff8df,#e8cd98)"),"Landscape settings and restart rows share the parchment/gold palette");
+assert(menu.includes("assets/game-ui-v133.js?v=143")&&forest.includes("assets/game-ui-v133.js?v=141"),"Forest release assets and all speech styling remain unchanged");
+assert(home.includes("inline-size:min(680px,100%)!important")&&home.includes("grid-template-columns:minmax(0,1fr)!important"),"House landscape settings can never exceed available viewport width");
+assert(home.includes("mtk-modal-foot #closeModal,")&&home.includes("mtk-modal-foot #homeMainMenu"),"Footer buttons share identical size and emerald colors");
+assert(home.includes("max-width:100%!important;width:100%!important"),"Landscape setting cards stay inside the panel width");
+assert(home.includes("HOME PORTRAIT ONLY")&&home.includes("Erdem LANDSCAPE: keep the already approved v141"),"Approved Dedenin Evi character speech stays unchanged");
+console.log("PASS v143: landscape settings fit and consistent portrait/landscape colors and footer sizes.");
