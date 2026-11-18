@@ -986,7 +986,6 @@ let introDone=false,quizActiveId=null,hitMessage="",hitTimer=0,groundOffset=15,f
 /* v136: event-driven speech and cumulative wrong counts; no interruptions to movement. */
 let chikoSpeechUntil=0,chikoSpeechKind="",lastResearchApproach="",chikoPreviousReaction="";
 const chikoLastSpokeAt=new Map();
-const TASK_WRONG_COUNTS={...(initial?.taskWrongCounts&&typeof initial.taskWrongCounts==="object"?initial.taskWrongCounts:{})};
 const CHIKO_REACTIONS=[
  ["Hiç zorlanmadık Erdem!","Tek seferde başardık!","Bu görev bizi hiç yormadı!","Harika, hemen çözdük!"],
  ["Biraz uğraştırdı ama başardık!","Az da olsa zorlandık!","Küçük bir pürüzdü, aştık!","İkinci denemede çözdük!"],
@@ -1019,6 +1018,7 @@ function positionChikoSpeech(){
 
 function savedCampaign(){try{return JSON.parse(localStorage.getItem(CAMPAIGN_KEY)||"null")}catch(e){return null}}
 const initial=savedCampaign();
+const TASK_WRONG_COUNTS={...(initial?.taskWrongCounts&&typeof initial.taskWrongCounts==="object"?initial.taskWrongCounts:{})};
 const RUN_TOKEN=initial?.token||String(Date.now())+"-"+Math.random().toString(36).slice(2,9);
 let gateInspected=Boolean(initial?.gateInspected);
 if(initial&&Array.isArray(initial.solvedIds)){
