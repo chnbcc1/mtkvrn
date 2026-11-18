@@ -467,8 +467,8 @@ function showAdventureMap(){
  persist();
  window.MTKGameUI.openMap({
   from:'home',
-  onOpen:()=>{clearHold();openModal=true;$('#guide').hidden=true},
-  onClose:()=>{openModal=false;refreshUI();last=0},
+  onOpen:()=>{clearHold();openModal=true;$('#guide').hidden=true;$('#dialogue').style.visibility='hidden'},
+  onClose:()=>{openModal=false;refreshUI();if(!$('#dialogue').hidden)requestAnimationFrame(positionHomeSpeech);last=0},
   onBeforeNavigate:()=>persist()
  });
 }
@@ -485,7 +485,7 @@ $('#modalText').addEventListener('click',event=>{
  if(confirmed){
   const scope=confirmed.dataset.scope;suppressProgressSave=true;
   if(!window.MTKGameUI.resetProgress(scope,'home')){suppressProgressSave=false;return}
-  location.replace('./?scene=home&autostart=1&v=139');return;
+  location.replace('./?scene=home&autostart=1&v=141');return;
  }
  const reset=event.target.closest('#resetProgress'), nextChapter=event.target.closest('#openChapterTwo');
  const map=event.target.closest('#openMap'),journey=event.target.closest('#openJourneyMap');
@@ -494,8 +494,13 @@ $('#modalText').addEventListener('click',event=>{
  if(map){openMap();return;}
  if(journey){closeModal();showAdventureMap();return;}
 });
-$('#closeModal').onclick=closeModal;$('#nextTalk').onclick=advanceTalk;
-$('#dialogue').addEventListener('click',e=>{if(!e.target.closest('button'))advanceTalk()});
+$('#closeModal').onclick=closeModal;
+$('#homeMainMenu').onclick=()=>{if(!started)return;persist();location.assign('./menu-v116.html?v=141')};
+$('#game').addEventListener('click',e=>{
+ if(!started||openModal||$('#dialogue').hidden)return;
+ if(e.target.closest('#info,#intro,.mtk-hud-shell,.mtk-map-layer'))return;
+ advanceTalk();
+});
 function jump(){
  if(!started||openModal||!$('#dialogue').hidden)return;
  if(hero.y<ground-.2)return;
@@ -573,9 +578,17 @@ function openInfo(title,html,kind=''){
  $('#modalTitle').textContent=title;$('#modalText').innerHTML=html;
  $('#modalGlyph').textContent=kind==='settings'?'⚙':kind==='notes'?'📜':'🔎';
  $('#info').hidden=false;openModal=true;$('#guide').hidden=true;
+ $('#homeMainMenu').hidden=kind!=='settings';
+ $('#dialogue').style.visibility='hidden';
  requestAnimationFrame(()=>window.MTKGameUI.fitPanel($('#modalText')));
 }
-function closeModal(){$('#info').hidden=true;openModal=false;if($('#dialogue').hidden&&dialogueQueue.length)advanceTalk();else if($('#dialogue').hidden)$('#guide').hidden=false;refreshUI()}
+function closeModal(){
+ $('#info').hidden=true;openModal=false;
+ if($('#dialogue').hidden&&dialogueQueue.length)advanceTalk();
+ else if($('#dialogue').hidden)$('#guide').hidden=false;
+ else requestAnimationFrame(positionHomeSpeech);
+ refreshUI();
+}
 function closest(){let all=[...points,door];let c=all.reduce((a,b)=>Math.abs(b.x-hero.x)<Math.abs(a.x-hero.x)?b:a);return Math.abs(c.x-hero.x)<96?c:null}
 // Bölüm 2 hazırlığı: gelecekteki oynanabilir noktalar için kalıcı kimlikler.
 const OBSERVATORY_CHAPTER={
