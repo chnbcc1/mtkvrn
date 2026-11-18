@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#0b2732">
-<title>v137 · Orman Patikası · Matematik Evreni</title>
+<title>v138 · Orman Patikası · Matematik Evreni</title>
 <style>
 :root{--cream:#ffedcb;--gold:#f4cd77;--dark:#092536;--ink:#4b321f}
 *{box-sizing:border-box}
@@ -798,6 +798,7 @@ function tree(x,base,rad,foreground=false){
 }
 
 
+const premiumObservatory=new Image();premiumObservatory.decoding='async';premiumObservatory.src='./assets/observatory-premium-v138.avif?v=138';
 let forestFadeTile=null;
 function prepareForestEdge(){
  try{
@@ -857,15 +858,13 @@ function background(){
 
  }
  // v111 bridge and water are rendered by premium image assets, without old flat rectangles.
- // Observatory silhouette and stone gateway at end of trail.
- const gx=worldX(GATE_X-25),gy=worldY(728);
- if(gx>-320&&gx<vw+350){
-  ctx.fillStyle='#a0a7a0';ctx.fillRect(gx-135*scale,gy-240*scale,270*scale,240*scale);
-  ctx.fillStyle='#657d77';ctx.beginPath();ctx.arc(gx,gy-236*scale,139*scale,Math.PI,0);ctx.lineTo(gx+140*scale,gy-225*scale);ctx.closePath();ctx.fill();
-  ctx.fillStyle='#425953';ctx.fillRect(gx-50*scale,gy-130*scale,100*scale,130*scale);
-  ctx.strokeStyle='#e5cd89';ctx.lineWidth=5*scale;
-  for(let i=-1;i<=1;i++){ctx.beginPath();ctx.arc(gx+i*19*scale,gy-167*scale,11*scale,0,Math.PI*2);ctx.stroke()}
-  ctx.fillStyle='#d9cba5';ctx.fillRect(gx-150*scale,gy-15*scale,300*scale,19*scale);
+ // v138: standalone transparent 3D observatory art replaces the old gray geometry.
+ const gx=worldX(GATE_X+65),gy=worldY(744);
+ if(gx>-300*scale&&gx<vw+300*scale&&premiumObservatory.complete&&premiumObservatory.naturalWidth>0){
+  const width=455*scale,height=width*premiumObservatory.naturalHeight/premiumObservatory.naturalWidth;
+  ctx.save();ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality="high";
+  ctx.drawImage(premiumObservatory,gx-width/2,gy-height,width,height);
+  ctx.restore();
  }
  // Grass and flowers at the near edge.
  for(let i=0;i<95;i++){
@@ -1079,7 +1078,7 @@ function nearestGate(){
  return null;
 }
 function campaignMarker(id){
- if(id==="FINISH")return {x:GATE_X-65,y:GROUND-142};
+ if(id==="FINISH")return {x:GATE_X+52,y:GROUND-113};
  const gate=GATES.find(g=>g.id===id);
  return gate?{x:gate.stop+15,y:GROUND-146}:{x:heroX,y:GROUND-135};
 }
