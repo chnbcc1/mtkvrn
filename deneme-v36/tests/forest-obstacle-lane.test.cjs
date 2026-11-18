@@ -461,4 +461,11 @@ assert(home.includes("suppressProgressSave=true")&&home.includes("!suppressProgr
 assert(forest.includes("suppressForestExitSave=true")&&forest.includes("!suppressForestExitSave"),"Forest reset does not resurrect save");
 assert(home.includes("confirmHomeRestart")&&forest.includes("confirmForestRestart"),"Both chapter settings have confirmation");
 assert(menu.includes("$('#menuRestartChapter')")&&menu.includes("$('#menuRestartGame')"),"Main menu settings have restart controls");
+// v139 high-resolution observatory must be at least 2x the previous artwork source width.
+const hiResObs=fs.readFileSync(path.join(root,"assets/observatory-premium-v139.avif"));
+assert(hiResObs.length>40000&&hiResObs.toString("ascii",4,12)==="ftypavif","High-resolution observatory must be valid AVIF");
+const obsIspe=hiResObs.indexOf(Buffer.from("ispe"));
+assert(obsIspe>0&&hiResObs.readUInt32BE(obsIspe+8)===940&&hiResObs.readUInt32BE(obsIspe+12)===778,"Observatory source must be 940×778");
+assert(forest.includes("observatory-premium-v139.avif?v=139"),"Forest loads the upgraded resolution");
+assert(!forest.includes("premiumObservatory.src='./assets/observatory-premium-v138.avif"),"Old low-resolution art no longer used");
 console.log("PASS v139: distinct chapter/game reset controls, stored progress guards and non-overlapping dialogues.");
