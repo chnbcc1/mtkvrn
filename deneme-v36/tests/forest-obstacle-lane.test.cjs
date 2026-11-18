@@ -355,7 +355,7 @@ for(const chapter of [home,forest]){
  assert(chapter.includes("assets/unified-ui-v133.css?v=135"),"All panels use unified responsive styles");
  assert(chapter.includes("window.MTKGameUI.openMap({"),"Map opens from inside game");
 }
-assert(menu.includes("world-map-v133.js?v=134"),"Title-screen shares global fog registry");
+assert(menu.includes("world-map-v133.js?v=135"),"Title-screen shares global fog registry");
 for(const scene of [home,forest,menu]) assert(scene.includes("map-world-registry-v133.js?v=133"),"All scenes load the same expansion manifest");
 assert(menu.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"New Game resets all later expansions");
 assert(home.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"In-home reset clears expansion progress");
