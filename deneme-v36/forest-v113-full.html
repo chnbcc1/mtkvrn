@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#0b2732">
-<title>v139 · Orman Patikası · Matematik Evreni</title>
+<title>v140 · Orman Patikası · Matematik Evreni</title>
 <style>
 :root{--cream:#ffedcb;--gold:#f4cd77;--dark:#092536;--ink:#4b321f}
 *{box-sizing:border-box}
@@ -498,9 +498,24 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 @keyframes chikoBubbleAppear{from{opacity:0;scale:.94}to{opacity:1;scale:1}}
 @media(orientation:landscape){.chiko-speech{max-width:220px;padding:7px 11px;font-size:clamp(12px,1.5vw,14px)}}
 @media(prefers-reduced-motion:reduce){.chiko-speech{animation:none}}
+/* v140: restart approval uses its content height, not the full settings sheet. */
+#modal[data-panel="settings"].mtk-restart-confirm .paper{
+ width:min(560px,calc(100vw - 20px))!important;
+ height:auto!important;min-height:0!important;
+ max-height:min(440px,calc(100dvh - 20px - env(safe-area-inset-top) - env(safe-area-inset-bottom)))!important;
+ display:flex!important;flex-direction:column!important
+}
+#modal.mtk-restart-confirm #modalContent{
+ flex:0 1 auto!important;min-height:0!important;
+ justify-content:flex-start!important;padding:16px 20px!important;overflow:visible!important
+}
+#modal.mtk-restart-confirm #modalContent p{margin:0!important;font-size:clamp(13px,2.4vh,17px)}
+#modal.mtk-restart-confirm .panel-head{padding:10px 17px!important}
+#modal.mtk-restart-confirm .paper h2{font-size:clamp(21px,4vh,32px)!important}
+#modal.mtk-restart-confirm #modalActions{flex:0 0 auto!important}
 </style>
-<link rel="stylesheet" href="./assets/game-ui-v127.css?v=133"><link rel="stylesheet" href="./assets/unified-ui-v133.css?v=139"><style>html,body{height:100dvh!important}#scene{width:100dvw!important;height:100dvh!important}</style>
-<script src="./settings-v116.js?v=116"></script><script src="./assets/world-map-v133.js?v=139"></script><script src="./assets/map-world-registry-v133.js?v=133"></script><script src="./assets/game-ui-v133.js?v=139"></script></head>
+<link rel="stylesheet" href="./assets/game-ui-v127.css?v=133"><link rel="stylesheet" href="./assets/unified-ui-v133.css?v=140"><style>html,body{height:100dvh!important}#scene{width:100dvw!important;height:100dvh!important}</style>
+<script src="./settings-v116.js?v=116"></script><script src="./assets/world-map-v133.js?v=140"></script><script src="./assets/map-world-registry-v133.js?v=133"></script><script src="./assets/game-ui-v133.js?v=140"></script></head>
 <body>
 <canvas id="scene" aria-label="Erdem ve Çiko ile oynanabilir orman patikası"></canvas><div class="tint"></div>
 <div class="mtk-hud-shell" data-chapter="forest" aria-label="Ortak oyun üst menüsü">
@@ -638,6 +653,7 @@ if(window.ResizeObserver)new ResizeObserver(resize).observe(canvas);
 syncViewport();
 function openModal(title,content,eyebrow='BÖLÜM 2'){
  modalOpen=true;requested=0;activePointers.clear();updatePress();
+ $('#modal').classList.remove('mtk-restart-confirm');
  $('#modal').dataset.panel=eyebrow==='AYARLAR'?'settings':title==='Kırık köprü'?'question':'story';
  $('#modalTitle').textContent=title;$('#modalContent').innerHTML=content;
  $('#eyebrow').textContent=eyebrow;$('#modalActions').replaceChildren();
@@ -674,11 +690,12 @@ function confirmForestRestart(scope){
  openModal(all?'Oyunu Yeniden Başlat':'Bölümü Yeniden Başlat',
   '<p>'+(all?'Bütün bölümlerdeki ilerleme silinecek ve Erdem Dedenin Evi’ne dönecek.':'Yalnızca Orman Patikası ilerlemesi ve mevcut soru oturumları silinecek. Dedenin Evi kayıtları korunacak.')+'</p>',
   'AYARLAR');
+ $('#modal').classList.add('mtk-restart-confirm');
  action('Vazgeç',openForestSettings,'secondary');
  action('Evet, Yeniden Başlat',()=>{
   suppressForestExitSave=true;
   if(!window.MTKGameUI.resetProgress(all?'game':'chapter','forest')){suppressForestExitSave=false;return}
-  location.replace(all?'./?scene=home&autostart=1&v=139':'./forest-v113-full.html?resume=1&v=139');
+  location.replace(all?'./?scene=home&autostart=1&v=140':'./forest-v113-full.html?resume=1&v=140');
  });
 }
 /* v139 forest settings; share the same saved preferences as the title screen. */
