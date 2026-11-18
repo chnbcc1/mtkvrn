@@ -444,7 +444,7 @@ assert(forest.includes('positionChikoSpeech();'),"Bubble follows bird");
 assert(forest.includes('id="chikoSpeech"')&&forest.includes('.hint,#hint{display:none!important}'),"Old helper banner removed");
 assert(home.includes("function positionHomeSpeech()")&&home.includes("draw();positionHomeSpeech();requestAnimationFrame(frame);"),"House speech bubbles must follow characters in the animation");
 assert(home.includes("$('#dialogue').dataset.speaker=erdem?'erdem':'chiko'")&&home.includes("#dialogue.erdem"),"House Erdem and Çiko need distinct colors");
-assert(home.includes("$('#dialogue').addEventListener('click'"),"House dialogue advances by tapping the bubble");
+assert(home.includes("$('#game').addEventListener('click'"),"House dialogue advances by tapping anywhere in the game scene");
 assert(forest.includes('const ERDEM_REPLIES=[')&&forest.includes('function erdemReply(wrongCount)'),"Erdem has an encouraging reply for all three result bands");
 assert(forest.includes('chikoSuccessConversation(wrongCount)')&&forest.includes('pendingErdemReply={'),"Chiko must speak first; Erdem replies after");
 assert(forest.includes('speechSpeaker==="erdem"?worldX(heroX):worldX(flyingX)'),"Forest speech bubble follows the correct character");
