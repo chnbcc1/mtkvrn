@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const homeVersion=Number(home.match(/<title>v(\d+)/)?.[1]);
-assert.equal(homeVersion,141);
+assert.equal(homeVersion,142);
 // The home artwork was updated independently; the forest scene remains v113.
 const version=Number(home.match(/forest-v(\d+)-full\.html/)?.[1]);
 assert.equal(version,113);
@@ -353,7 +353,7 @@ for(const chapter of [home,forest]){
  assert(chapter.includes('class="mtk-hud-shell"'),"Existing universal chapter HUD retained");
  assert(chapter.includes("hud-shell-v129.svg?v=133"),"Shared HUD illustration retained");
  assert(chapter.includes("assets/world-map-v133.js?v=140"),"All chapters use the single expanding map engine");
- assert(chapter.includes("assets/game-ui-v133.js?v=141"),"Shared navigation and modal code retained");
+ assert(chapter.includes(chapter===home?"assets/game-ui-v133.js?v=142":"assets/game-ui-v133.js?v=141"),"Shared navigation and modal code retained (forest URL left unchanged)");
  assert(chapter.includes("assets/unified-ui-v133.css?v=141"),"All panels use unified responsive styles");
  assert(chapter.includes("window.MTKGameUI.openMap({"),"Map opens from inside game");
 }
@@ -481,4 +481,10 @@ assert(home.includes("$('#homeMainMenu').hidden=kind!=='settings'"),"Main menu r
 assert(home.includes("$('#dialogue').style.visibility='hidden'")&&home.includes("#game:has(#info:not([hidden])) #dialogue"),"All modal cards hide underlying speech bubbles");
 assert(!home.includes('id="nextTalk"')&&!home.includes("$('#nextTalk').onclick"),"Dialogue advance buttons removed");
 assert(home.includes("$('#game').addEventListener('click'")&&home.includes("advanceTalk();"),"Any tap in gameplay advances conversation");
-console.log("PASS v141: responsive home dialogue, restored Chiko placement, compact settings, corrected landscape magnifiers.");
+assert(home.includes("}else if(viewportW<viewportH){"),"Portrait-only Erdem placement is isolated from landscape");
+assert(home.includes("HOME PORTRAIT ONLY")&&home.includes("Erdem LANDSCAPE: keep the already approved v141"),"Existing landscape bubble geometry preserved");
+assert(home.includes("#game #dialogue.erdem{")&&home.includes("width:clamp(142px,40vw,176px)!important"),"Portrait Erdem bubble is narrow and taller");
+assert(home.includes("grid-template-columns:repeat(2,minmax(0,1fr))!important"),"Landscape home settings use two balanced columns");
+assert(home.includes("mtk-restart-game")&&home.includes("background:linear-gradient(120deg,#fff1e4,#efc6ae)"),"Destructive action is visually differentiated");
+assert(menu.includes("assets/game-ui-v133.js?v=142")&&forest.includes("assets/game-ui-v133.js?v=141"),"Forest release assets and all speech styling remain unchanged");
+console.log("PASS v142: portrait-only upright Erdem balloon and readable, coordinated home landscape settings.");
