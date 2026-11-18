@@ -228,8 +228,8 @@ function show(){
  if(run.awaiting&&!run.practiceId&&!run.remediationId){
  append(app,node("div","eyebrow","ENGEL TAMAMLANDI"),node("h2",null,obs.title),feedbackBox("ok","✓ Doğru! "+q.solution));
  const controls=node("div","btnRow");
- append(controls,btn("Sonraki engele geç",()=>{run.index++;run.activeId=null;run.awaiting=false;run.practiceId=null;run.remediationId=null;resetStage();ensure();save();show()}),btn("Benzer soru çöz",()=>{run.practiceId=pick(obs.id,run.difficulty,run.activeId);resetStage();show()},true));if(EMBED){
-   controls.replaceChildren(btn("Engeli aç · Ormana dön",()=>{window.parent.postMessage({source:"mathverse-v68-quiz",event:"solved",obstacle:obs.id,difficulty:run.difficulty},location.origin)}));
+ append(controls,btn("Sonraki engele geç",()=>{run.index++;run.activeId=null;run.awaiting=false;run.practiceId=null;run.remediationId=null;run.taskWrong=0;run.completionWrong=null;resetStage();ensure();save();show()}),btn("Benzer soru çöz",()=>{run.practiceId=pick(obs.id,run.difficulty,run.activeId);resetStage();show()},true));if(EMBED){
+   controls.replaceChildren(btn("Engeli aç · Ormana dön",()=>{window.parent.postMessage({source:"mathverse-v68-quiz",event:"solved",obstacle:obs.id,difficulty:run.difficulty,wrongCount:Math.max(0,Math.floor(Number(run.completionWrong??run.taskWrong??0)||0))},location.origin)}));
    controls.appendChild(btn("Benzer soru çöz",()=>{run.practiceId=pick(obs.id,run.difficulty,run.activeId);resetStage();show()},true));
   }
   app.appendChild(controls);return
@@ -248,9 +248,9 @@ function show(){
   app.appendChild(feedbackBox("ok","✓ Doğru seçim. "+s.solution));
   app.appendChild(rowButton(run.stage>=all.length-1?"Engeli tamamla":"Sonraki işleme geç",()=>{
     if(run.stage<all.length-1){run.stage++;run.wrong=0;run.wrongChoices=[];run.stageCorrect=false;save();show();return}
-    if(run.remediationId){run.remediationId=null;run.practiceId=null;run.awaiting=true;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show();return}
+    if(run.remediationId){run.completionWrong=run.taskWrong||0;run.remediationId=null;run.practiceId=null;run.awaiting=true;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show();return}
     if(run.practiceId){run.practiceId=null;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show();return}
-    run.awaiting=true;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show()
+    run.completionWrong=run.taskWrong||0;run.awaiting=true;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show()
   }));
  }else if(run.revealed){
    app.appendChild(feedbackBox("wrong","Üçüncü yanlış deneme. Bu sorunun çözümünü dikkatle incele."));
@@ -270,7 +270,7 @@ function show(){
 function select(answer,s,q,stageCount){
  if(!run||run.stageCorrect||run.revealed)return;
  if(answer.toLocaleLowerCase("tr")===String(s.answer).toLocaleLowerCase("tr")){run.stageCorrect=true;run.feedback="ok";save();show();return}
- run.wrong=(run.wrong||0)+1;run.wrongChoices=[...(run.wrongChoices||[]),answer];run.revealed=run.wrong>=3;save();show();
+ run.wrong=(run.wrong||0)+1;if(!run.practiceId)run.taskWrong=(run.taskWrong||0)+1;run.wrongChoices=[...(run.wrongChoices||[]),answer];run.revealed=run.wrong>=3;save();show();
 }
 async function init(){
  try{const r=await fetch(BANK_URL,{cache:"no-store"});if(!r.ok)throw Error("630 soruluk kaynak dosyası yüklenemedi");bank=await r.json();
@@ -280,7 +280,7 @@ async function init(){
  if(EMBED){
   const idx=bank.playOrder.indexOf(FORCED);
   if(idx<0||!["kolay","orta","zor"].includes(FORCED_DIFFICULTY))throw Error("Geçersiz engel veya zorluk seviyesi");
-  run=saved&&saved.index===idx&&saved.difficulty===FORCED_DIFFICULTY?saved:{difficulty:FORCED_DIFFICULTY,index:idx,activeId:null,practiceId:null,remediationId:null,awaiting:false,stage:0,wrong:0,wrongChoices:[],stageCorrect:false,revealed:false};
+  run=saved&&saved.index===idx&&saved.difficulty===FORCED_DIFFICULTY?saved:{difficulty:FORCED_DIFFICULTY,index:idx,activeId:null,practiceId:null,remediationId:null,awaiting:false,stage:0,wrong:0,wrongChoices:[],stageCorrect:false,revealed:false,taskWrong:0,completionWrong:null};
   ensure();save();show();
   document.body.classList.add("embedded");
   document.title="Matematik engeli · "+FORCED;

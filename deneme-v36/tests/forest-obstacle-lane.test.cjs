@@ -338,7 +338,9 @@ assert(worldJS.includes('fogPolygon:[[600,0]')&&worldJS.includes('fogPolygon:[[1
 assert(worldJS.includes('const locked=state.chapters.filter(c=>!c.unlocked&&c.tileId===tile.id)'),"Only locked polygons on each tile receive fog");
 assert(worldJS.includes('paintRegionMist(fog,tile,[c])')&&worldJS.includes('const premiumSrc=tile.id===ROOT_TILE?PREMIUM_REGION_LAYERS[c.id]:null'),"Each locked chapter gets independent fog");
 assert(worldJS.includes('image.style.maskImage=gradient')&&worldJS.includes('image.style.webkitMaskImage=gradient'),"Joined artwork softens just the shared overlap");
-assert(worldJS.includes('function zoomTo(')&&worldJS.includes('e.touches.length===2'),"World supports zoom buttons and two-finger pinch");
+assert(worldJS.includes('function zoomTo(')&&worldJS.includes('e.touches.length===2'),"Pinch to zoom remains");
+assert(!worldJS.includes('host.append(tools)'),"Removed on-screen zoom buttons");
+assert(sharedCSS.includes('@media (orientation:landscape)'),"Map labels compact on landscape");
 assert(!worldJS.includes('Işıklı Taş'),"Obstacle is not a separate map chapter");
 assert(sharedCSS.includes('.mtk-cinematic-fog{')&&sharedCSS.includes('border-radius:0!important'),"Fog must be edge-less per-tile canvas");
 assert(!sharedCSS.includes('ellipse 125% 106%')&&!sharedCSS.includes('border-radius:44% 0 0 29%'),"Reject the old pasted-on white egg");
@@ -350,12 +352,12 @@ assert(!sharedJS.includes('createElement("iframe")'),"Map uses no iframe");
 for(const chapter of [home,forest]){
  assert(chapter.includes('class="mtk-hud-shell"'),"Existing universal chapter HUD retained");
  assert(chapter.includes("hud-shell-v129.svg?v=133"),"Shared HUD illustration retained");
- assert(chapter.includes("assets/world-map-v133.js?v=135"),"All chapters use the single expanding map engine");
+ assert(chapter.includes("assets/world-map-v133.js?v=136"),"All chapters use the single expanding map engine");
  assert(chapter.includes("assets/game-ui-v133.js?v=133"),"Shared navigation and modal code retained");
- assert(chapter.includes("assets/unified-ui-v133.css?v=135"),"All panels use unified responsive styles");
+ assert(chapter.includes("assets/unified-ui-v133.css?v=136"),"All panels use unified responsive styles");
  assert(chapter.includes("window.MTKGameUI.openMap({"),"Map opens from inside game");
 }
-assert(menu.includes("world-map-v133.js?v=135"),"Title-screen shares global fog registry");
+assert(menu.includes("world-map-v133.js?v=136"),"Title-screen shares global fog registry");
 for(const scene of [home,forest,menu]) assert(scene.includes("map-world-registry-v133.js?v=133"),"All scenes load the same expansion manifest");
 assert(menu.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"New Game resets all later expansions");
 assert(home.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"In-home reset clears expansion progress");
@@ -421,10 +423,19 @@ assert(atlas.fogOpacityAt(620,470,[{...sampleFuture,tileX:east.x,tileY:east.y}],
 memory.clear(); // New Game = reset canonical save stores.
 assert.deepEqual(Array.from(atlas.progress().discovered),["home"],"New Game returns visibility to the house only");
 assert(sharedJS.includes("if(from===region)"),"Card navigation is universal across every chapter");
-assert(sharedCSS.includes(".mtk-map-camera-tools")&&sharedCSS.includes(".mtk-map-zoom-button"),"Map supports +/− with real controls");
+assert(sharedCSS.includes(".mtk-map-camera-tools{display:none!important}"),"Legacy buttons hidden");
 assert(sharedCSS.includes("mtk-cinematic-stage-plaque"),"New imagery tiles can show stage names without redrawing art");
 assert(worldRegistry.includes("NEW_TILES=[]")&&worldRegistry.includes("NEW_CHAPTERS=[]"),"Future artwork is not invented in this release");
 const other={window:{MTKWorldMap:atlas}};
 vm.runInNewContext(worldRegistry,other);
 assert.equal(other.window.MTKWorldRegistry.tileCount,3,"One original + two sample extension tiles in regression sandbox");
-console.log("PASS v135: fixed premium art, seam-joined tiles, per-chapter fog, camera zoom and future expansion.");
+const quizChiko=fs.readFileSync(path.join(root,"forest-v70-quiz.html"),"utf8");
+assert(quizChiko.includes("run.taskWrong=(run.taskWrong||0)+1"),"Collect task-level wrong answers");
+assert(quizChiko.includes("wrongCount:Math.max(0"),"Quiz reports mistakes to main game");
+assert(forest.includes("TASK_WRONG_COUNTS[gate.id]=wrongCount"),"Task results persist");
+assert(forest.includes("chikoReactionGroup(")&&forest.includes("chikoReaction(wrongCount)"),"3 success reaction categories");
+assert(forest.includes('chikoSpeak("Engeli geçmek için zıpla!","collision"'),"Only collision suggests jumping");
+assert(forest.includes('chikoSpeak("Burayı araştırmalıyız!","research"'),"Research arrival prompts");
+assert(forest.includes('positionChikoSpeech();'),"Bubble follows bird");
+assert(forest.includes('id="chikoSpeech"')&&forest.includes('.hint,#hint{display:none!important}'),"Old helper banner removed");
+console.log("PASS v136: compact map labels, zoom gestures, Chiko collision/research/completion speech.");

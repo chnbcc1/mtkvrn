@@ -214,3 +214,12 @@
 .mtk-cinematic-legend-row{display:flex;align-items:center;gap:7px;white-space:nowrap}
 .mtk-cinematic-legend-mark{min-width:18px;text-align:center;color:#ffd56f}
 @media(max-width:430px){.mtk-cinematic-legend{right:7px;bottom:7px;padding:6px 8px;gap:2px}}
+
+/* v136 UI: compact map region plaques on landscape devices; zoom remains gesture based. */
+.mtk-map-camera-tools{display:none!important}
+.mtk-cinematic-base-plaque{font-size:clamp(12px,1.2vw,16px)!important;padding:5px 11px!important;border-radius:14px!important;max-width:210px!important}
+@media (orientation:landscape) {
+ .mtk-cinematic-base-plaque {font-size:clamp(11px,1.05vw,14px)!important;padding:3px 8px!important;max-width:175px!important;border-width:1px!important;border-radius:12px!important;box-shadow:0 0 0 2px #6f452ec7,0 3px 7px #1a17167a!important}
+ .mtk-cinematic-stage-plaque {font-size:clamp(11px,1.05vw,14px)!important;padding:3px 7px!important;border-width:1px!important;border-radius:12px!important}
+ .mtk-cinematic-done {width:22px;height:22px;font-size:13px}
+}

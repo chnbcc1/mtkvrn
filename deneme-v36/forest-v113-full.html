@@ -488,9 +488,17 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
  #modal[data-panel="settings"] #modalActions button,#modal[data-panel="notes"] #modalActions button{min-height:35px}
 }
 
+/* v136 — Çiko's world-following speech bubble, not a static instruction banner. */
+.hint,#hint{display:none!important}
+.chiko-speech[hidden]{display:none!important}
+.chiko-speech{position:fixed;z-index:40;box-sizing:border-box;pointer-events:none;width:max-content;max-width:min(258px,calc(100vw - 18px));padding:10px 14px;border:2px solid #e0bb75;border-radius:17px;color:#382716;background:#fff2d4f7;box-shadow:0 6px 18px #0e2719a9,inset 0 1px #fff;font:800 clamp(12px,3.3vw,17px)/1.3 system-ui,sans-serif;text-align:center;text-wrap:balance;animation:chikoBubbleAppear .18s ease-out}
+.chiko-speech:after{content:"";position:absolute;left:50%;bottom:-10px;transform:translateX(-50%) rotate(45deg);width:15px;height:15px;background:#fff2d4;border-right:2px solid #e0bb75;border-bottom:2px solid #e0bb75}
+@keyframes chikoBubbleAppear{from{opacity:0;scale:.94}to{opacity:1;scale:1}}
+@media(orientation:landscape){.chiko-speech{max-width:220px;padding:7px 11px;font-size:clamp(12px,1.5vw,14px)}}
+@media(prefers-reduced-motion:reduce){.chiko-speech{animation:none}}
 </style>
-<link rel="stylesheet" href="./assets/game-ui-v127.css?v=133"><link rel="stylesheet" href="./assets/unified-ui-v133.css?v=135"><style>html,body{height:100dvh!important}#scene{width:100dvw!important;height:100dvh!important}</style>
-<script src="./settings-v116.js?v=116"></script><script src="./assets/world-map-v133.js?v=135"></script><script src="./assets/map-world-registry-v133.js?v=133"></script><script src="./assets/game-ui-v133.js?v=133"></script></head>
+<link rel="stylesheet" href="./assets/game-ui-v127.css?v=133"><link rel="stylesheet" href="./assets/unified-ui-v133.css?v=136"><style>html,body{height:100dvh!important}#scene{width:100dvw!important;height:100dvh!important}</style>
+<script src="./settings-v116.js?v=116"></script><script src="./assets/world-map-v133.js?v=136"></script><script src="./assets/map-world-registry-v133.js?v=133"></script><script src="./assets/game-ui-v133.js?v=133"></script></head>
 <body>
 <canvas id="scene" aria-label="Erdem ve Çiko ile oynanabilir orman patikası"></canvas><div class="tint"></div>
 <div class="mtk-hud-shell" data-chapter="forest" aria-label="Ortak oyun üst menüsü">
@@ -506,7 +514,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
  <button type="button" class="mtk-hud-action mtk-hud-settings" id="settingsBtn" aria-label="Ayarları aç" title="Ayarlar">⚙️</button>
  </div>
 </div>
-<div class="hint" id="hint">Patikada ilerle; parlayan büyüteçleri incele.</div>
+<div class="hint" id="hint" hidden></div><div id="chikoSpeech" class="chiko-speech" role="status" aria-live="polite" hidden></div>
 <div class="controls mtk-ui-controls">
  <div class="moves"><button class="ctrl" id="left" aria-label="Sola yürü">◀</button><button class="ctrl" id="right" aria-label="Sağa yürü">▶</button></div>
  <button class="ctrl" id="jump" aria-label="Zıpla">ZIPLA ↑</button>
@@ -726,7 +734,7 @@ for(const [id,dir] of [['left',-1],['right',1]]){
 }
 // v78: keep the modest forest jump height (vy=-560), but match the home's long directional jump.
 // Restore all six house jump sprites and preserve natural gravity.
-function jump(){if(!started||modalOpen||heroY<GROUND-.2)return;vy=-560;jumpStartClock=clock}
+function jump(){if(!started||modalOpen||heroY<GROUND-.2)return;vy=-560;jumpStartClock=clock;clearChikoSpeech("collision")}
 $('#jump').addEventListener('pointerdown',e=>{e.preventDefault();jump()});
 // Pointer-only iOS browsers are handled above. For older touch implementations,
 // install fallback listeners only when PointerEvent is unavailable.
@@ -739,7 +747,7 @@ if(!window.PointerEvent){
  $('#jump').addEventListener('touchstart',e=>{e.preventDefault();jump()},{passive:false});
 }
 window.MTKGameUI.mountChiko();window.MTKGameUI.configureHUD("forest");
-$('#home').onclick=home;$('#pikoBtn').onclick=()=>{const tip=$('#hint');tip.textContent='Çiko: Parlayan büyüteçlerden ipuçlarını bul, engelleri zıplayarak aş!';tip.hidden=false;};
+$('#home').onclick=home;$('#pikoBtn').onclick=()=>chikoSpeak("Parlayan büyüteçleri inceleyelim Erdem!","manual",3.2,0);
 addEventListener('keydown',e=>{
  if(['ArrowLeft','ArrowRight','ArrowUp',' ','e','E','a','d','A','D'].includes(e.key))e.preventDefault();
  if(e.key==='Escape'&&modalOpen){closeModal();return}
@@ -974,6 +982,41 @@ HAZARDS.sort((a,b)=>a.x-b.x);
 const SOLVED=new Set();
 let jumpStartClock=0;
 let introDone=false,quizActiveId=null,hitMessage="",hitTimer=0,groundOffset=15,flashObstacle=0,finishShown=false;
+
+/* v136: event-driven speech and cumulative wrong counts; no interruptions to movement. */
+let chikoSpeechUntil=0,chikoSpeechKind="",lastResearchApproach="",chikoPreviousReaction="";
+const chikoLastSpokeAt=new Map();
+const TASK_WRONG_COUNTS={...(initial?.taskWrongCounts&&typeof initial.taskWrongCounts==="object"?initial.taskWrongCounts:{})};
+const CHIKO_REACTIONS=[
+ ["Hiç zorlanmadık Erdem!","Tek seferde başardık!","Bu görev bizi hiç yormadı!","Harika, hemen çözdük!"],
+ ["Biraz uğraştırdı ama başardık!","Az da olsa zorlandık!","Küçük bir pürüzdü, aştık!","İkinci denemede çözdük!"],
+ ["Bu görev bizi epey zorladı!","Zorlandık ama pes etmedik!","Bu sefer gerçekten uğraştık!","Nihayet çözdük Erdem!"]
+];
+function chikoReactionGroup(n){const mistakes=Math.max(0,Math.floor(Number(n)||0));return mistakes===0?0:mistakes===1?1:2}
+function chikoSpeak(message,kind="tip",duration=3,cooldown=0){
+ const key=kind+":"+message,prev=chikoLastSpokeAt.get(key)??-Infinity;
+ if(clock-prev<cooldown)return false;
+ chikoLastSpokeAt.set(key,clock);chikoSpeechUntil=clock+duration;chikoSpeechKind=kind;
+ const bubble=$("#chikoSpeech");bubble.textContent=message;bubble.hidden=false;return true;
+}
+function chikoReaction(wrongCount){
+ const phrases=CHIKO_REACTIONS[chikoReactionGroup(wrongCount)];
+ const unique=phrases.filter(p=>p!==chikoPreviousReaction);
+ const options=unique.length?unique:phrases;
+ const line=options[Math.floor(Math.random()*options.length)];chikoPreviousReaction=line;return line;
+}
+function clearChikoSpeech(kind){if(chikoSpeechKind===kind){chikoSpeechUntil=0;$("#chikoSpeech").hidden=true}}
+function positionChikoSpeech(){
+ const bubble=$("#chikoSpeech");
+ if(!started||modalOpen||clock>=chikoSpeechUntil){bubble.hidden=true;return}
+ const x=worldX(flyingX),y=worldY(flyingY);
+ if(x<0||x>vw||y<0||y>vh){bubble.hidden=true;return}
+ bubble.hidden=false;
+ const w=bubble.offsetWidth||190,h=bubble.offsetHeight||52;
+ bubble.style.left=Math.round(Math.max(8,Math.min(vw-w-8,x-w/2)))+"px";
+ bubble.style.top=Math.round(Math.max(vw>vh?76:105,Math.min(vh-h-12,y-48*scale-h-13)))+"px";
+}
+
 function savedCampaign(){try{return JSON.parse(localStorage.getItem(CAMPAIGN_KEY)||"null")}catch(e){return null}}
 const initial=savedCampaign();
 const RUN_TOKEN=initial?.token||String(Date.now())+"-"+Math.random().toString(36).slice(2,9);
@@ -990,7 +1033,7 @@ if(new URLSearchParams(location.search).get("focus")==="gate"&&reachedGate)heroX
 heroY=GROUND;vy=0;solved=SOLVED.has("F08");bridgeProgress=solved?1:0;
 const campaignProgress=()=>SOLVED.size;
 function persistCampaign(){
- try{localStorage.setItem(CAMPAIGN_KEY,JSON.stringify({version:92,token:RUN_TOKEN,x:Math.round(heroX),difficulty,solvedIds:[...SOLVED],reachedGate,gateInspected,updatedAt:new Date().toISOString()}))}catch(e){}
+ try{localStorage.setItem(CAMPAIGN_KEY,JSON.stringify({version:92,token:RUN_TOKEN,x:Math.round(heroX),difficulty,solvedIds:[...SOLVED],reachedGate,gateInspected,taskWrongCounts:TASK_WRONG_COUNTS,updatedAt:new Date().toISOString()}))}catch(e){}
 }
 save=function(force=false){
  if(!force&&Math.abs(saveLastX-heroX)<32&&saveTimer<2)return;
@@ -1018,7 +1061,7 @@ function openQuiz(id){
  const qs=new URLSearchParams({embedded:"1",obstacle:id,difficulty,session:RUN_TOKEN});
  quizActiveId=id;requested=0;activePointers.clear();updatePress();modalOpen=true;
  $("#quizTitle").textContent=gate.icon+" · "+(gate.index+1)+"/21 · "+gate.label;
- $("#quizFrame").src="./forest-v70-quiz.html?v=119&"+qs;
+ $("#quizFrame").src="./forest-v70-quiz.html?v=136&"+qs;
  $("#quizOverlay").hidden=false;
 }
 function closeQuiz(){
@@ -1031,8 +1074,9 @@ window.addEventListener("message",e=>{
  if(e.origin!==location.origin||e.source!==$("#quizFrame").contentWindow)return;
  const d=e.data;if(!d||d.source!=="mathverse-v68-quiz"||d.event!=="solved"||d.obstacle!==quizActiveId||d.difficulty!==difficulty)return;
  const gate=GATES.find(g=>g.id===d.obstacle);if(!gate)return;
+ const wrongCount=Math.max(0,Math.floor(Number(d.wrongCount)||0));TASK_WRONG_COUNTS[gate.id]=wrongCount;
  SOLVED.add(gate.id);if(gate.id==="F08"){solved=true;bridgeProgress=0;bridgeBuildStart=clock}
- closeQuiz();hitMessage=gate.icon+" "+gate.label+" açıldı!";hitTimer=clock+4;save(true);
+ closeQuiz();chikoSpeak(chikoReaction(wrongCount),"success",3.6,0);save(true);
 });
 interact=function(){
  const a=available();if(!a)return;
@@ -1575,6 +1619,7 @@ render=function(){
  heroSprite();
  drawBridgeFrontRail();
  if(ahead)birdSprite();
+ positionChikoSpeech();
 };
 function nextBlocked(oldX,target){
  if(target<=oldX)return target;
@@ -1591,10 +1636,10 @@ function nextHazard(oldX,target){
   const start=geom.left-footRadius,end=geom.right+footRadius;
   const clearance=geom.clearance;
   if(target>oldX&&target>start&&target<end&&heroY>GROUND-clearance){
-   hitMessage=h.type==="gap"?"Boşluğun üzerinden zıpla ↑":"Üzerinden atlamak için zıpla ↑";hitTimer=clock+1.7;flashObstacle=clock+.25;return start-2;
+   chikoSpeak("Engeli geçmek için zıpla!","collision",2.7,4.5);flashObstacle=clock+.25;return start-2;
   }
   if(target<oldX&&target<end&&target>start&&heroY>GROUND-clearance){
-   hitMessage="Engeli geçmek için zıpla ↑";hitTimer=clock+1.7;return end+2;
+   chikoSpeak("Engeli geçmek için zıpla!","collision",2.7,4.5);return end+2;
   }
  }
  return target;
@@ -1614,10 +1659,8 @@ update=function(dt){
  if(Math.abs(heroX-previous)>.01){face=requested>=0?1:-1;travel+=Math.abs(heroX-previous)}
  if(solved&&bridgeProgress<1)bridgeProgress=Math.min(1,(clock-bridgeBuildStart)/2.1);
  saveTimer+=dt;if(saveTimer>2&&Math.abs(heroX-saveLastX)>32)save();
- const active=available(),gate=nearestGate(),done=campaignProgress();
- let hint=active==="FINISH"?"🔎 Gözlemevinin kapısını aç":gate?"🔎 "+(gate.index+1)+"/21: "+gate.label+" · büyütece dokun":"Sağa ilerle. Küçük boşluklar, taşlar ve kütükler için ZIPLA ↑";
- if(hitTimer>clock)hint=hitMessage;
- $("#hint").hidden=!(hitTimer>clock||active);$("#hint").textContent=hint;
+ const active=available(),done=campaignProgress();
+ if(active!==lastResearchApproach){if(active)chikoSpeak("Burayı araştırmalıyız!","research",3.2,6);lastResearchApproach=active||""}
  $("#progress").textContent=done+"/21 mühür açıldı · "+(done===21?"Gözlemevine ilerle":(GATES.find(g=>!SOLVED.has(g.id))?.label||"Yol açık"));
  $("#campaignHud").textContent="🌿 "+done+"/21 engel · "+difficulty.toUpperCase();
  $("#progressFill").style.width=(100*done/21)+"%";

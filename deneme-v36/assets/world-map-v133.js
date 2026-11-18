@@ -1,4 +1,4 @@
-/* Matematik Evreni v135 — seamless expanding world, chapter-specific atmospheric fog.
+/* Matematik Evreni v136 — seamless expanding world, chapter-specific atmospheric fog.
    Single illustration. Never display unreached regions, roads, names or labels.
    Unlock logic depends exclusively on actual canonical game progress. */
 (function(){
@@ -338,14 +338,6 @@ function mount(host,{from="home",onNavigate=()=>{},onClose=()=>{}}={}){
   viewport.scrollLeft=Math.max(0,wx*scale-px);
   viewport.scrollTop=Math.max(0,wy*scale-py);
  }
- const tools=element("div","mtk-map-camera-tools");
- for(const [label,symbol,multiplier] of [["Uzaklaştır","−",1/1.24],["Yakınlaştır","+",1.24]]){
-  const btn=element("button","mtk-map-zoom-button",symbol);
-  btn.type="button";btn.setAttribute("aria-label",label);
-  btn.addEventListener("click",()=>zoomTo(zoom*multiplier));
-  tools.append(btn);
- }
- host.append(tools);
  viewport.addEventListener("wheel",e=>{
   if(!e.ctrlKey&&!e.metaKey)return;
   e.preventDefault();zoomTo(zoom*(e.deltaY<0?1.13:1/1.13),e.clientX,e.clientY);
