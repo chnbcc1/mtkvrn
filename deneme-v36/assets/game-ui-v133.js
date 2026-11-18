@@ -1,7 +1,7 @@
 /* Matematik Evreni v128 — shared settings & chapter panel building blocks. */
 (function(){
  "use strict";
- const version="133";
+ const version="139";
  function settingsMarkup(prefix,p){
   const sound=!!p.sound,vibration=!!p.vibration;
   return '<div class="mtk-setting-list forestSettings">'+
@@ -11,12 +11,40 @@
    '<label for="'+prefix+'Vibration"><span class="mtk-setting-icon">📳</span>'+
    '<span class="mtk-setting-label"><strong>Titreşim</strong><small>Desteklenen cihazlarda dokunsal geri bildirim</small></span>'+
    '<input id="'+prefix+'Vibration" type="checkbox" '+(vibration?'checked':'')+' aria-label="Titreşim"></label>'+
+   '</div><div class="mtk-restart-actions" role="group" aria-label="İlerleme seçenekleri">'+
+   '<button type="button" id="'+prefix+'RestartChapter" class="mtk-restart-chapter">↻ Bölümü Yeniden Başlat</button>'+
+   '<button type="button" id="'+prefix+'RestartGame" class="mtk-restart-game">↻ Oyunu Yeniden Başlat</button>'+
    '</div><p class="mtk-version">✦ Matematik Evreni · v'+version+' · İlerleme otomatik kaydedilir.</p>';
  }
  function bindSettings(prefix){
   const one=document.getElementById(prefix+"Sound"),two=document.getElementById(prefix+"Vibration");
   if(one)one.addEventListener("change",e=>window.MTKPrefs?.update({sound:e.target.checked}));
   if(two)two.addEventListener("change",e=>window.MTKPrefs?.update({vibration:e.target.checked}));
+ }
+ function resetProgress(scope,chapter="home"){
+  const homeKey="mathverse-v40-investigation",forestKey="mathverse-v68-forest-full";
+  function clearQuizRuns(){
+   const keys=[];for(let i=0;i<localStorage.length;i++)keys.push(localStorage.key(i));
+   for(const k of keys)if(k&&(k.startsWith("mathverse-v70-quiz-")||k==="mathverse-v65-choice-run"))localStorage.removeItem(k);
+  }
+  try{
+   if(scope==="game"){
+    for(const k of [homeKey,forestKey,"mathverse-v128-chapter-milestones"])localStorage.removeItem(k);
+    clearQuizRuns();return true;
+   }
+   if(scope!=="chapter")return false;
+   if(chapter==="home"){localStorage.removeItem(homeKey);return true}
+   if(chapter==="forest"){
+    localStorage.removeItem(forestKey);localStorage.removeItem("mathverse-v128-chapter-milestones");clearQuizRuns();
+    const home=JSON.parse(localStorage.getItem(homeKey)||"null");
+    if(home&&typeof home==="object"){
+     delete home.chapter2;home.chapter2EntrySeen=false;home.activeScene="home";
+     localStorage.setItem(homeKey,JSON.stringify(home));
+    }
+    return true;
+   }
+  }catch(e){console.warn("İlerleme sıfırlanamadı",e);return false}
+  return false;
  }
  function notesProgress(icon,title,detail){
   const holder=document.createElement("div");holder.className="mtk-notes-progress";
@@ -130,5 +158,5 @@
   closeButton.focus({preventScroll:true});
   return close;
  }
- window.MTKGameUI=Object.freeze({version,settingsMarkup,bindSettings,notesProgress,mountChiko,configureHUD,fitPanel,openMap});
+ window.MTKGameUI=Object.freeze({version,settingsMarkup,bindSettings,resetProgress,notesProgress,mountChiko,configureHUD,fitPanel,openMap});
 })();
