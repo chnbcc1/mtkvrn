@@ -1,7 +1,7 @@
 /* Matematik Evreni v128 — shared settings & chapter panel building blocks. */
 (function(){
  "use strict";
- const version="139";
+ const version="140";
  function settingsMarkup(prefix,p){
   const sound=!!p.sound,vibration=!!p.vibration;
   return '<div class="mtk-setting-list forestSettings">'+
@@ -11,9 +11,10 @@
    '<label for="'+prefix+'Vibration"><span class="mtk-setting-icon">📳</span>'+
    '<span class="mtk-setting-label"><strong>Titreşim</strong><small>Desteklenen cihazlarda dokunsal geri bildirim</small></span>'+
    '<input id="'+prefix+'Vibration" type="checkbox" '+(vibration?'checked':'')+' aria-label="Titreşim"></label>'+
-   '</div><div class="mtk-restart-actions" role="group" aria-label="İlerleme seçenekleri">'+
-   '<button type="button" id="'+prefix+'RestartChapter" class="mtk-restart-chapter">↻ Bölümü Yeniden Başlat</button>'+
-   '<button type="button" id="'+prefix+'RestartGame" class="mtk-restart-game">↻ Oyunu Yeniden Başlat</button>'+
+   '<button type="button" id="'+prefix+'RestartChapter" class="mtk-action-setting mtk-restart-chapter" aria-label="Bölümü yeniden başlatmayı onayla">'+
+   '<span class="mtk-setting-icon" aria-hidden="true">↻</span><span class="mtk-setting-label"><strong>Bölümü Yeniden Başlat</strong><small>Yalnızca bulunduğun bölümü sıfırla</small></span><span class="mtk-setting-switch" aria-hidden="true"></span></button>'+
+   '<button type="button" id="'+prefix+'RestartGame" class="mtk-action-setting mtk-restart-game" aria-label="Oyunu yeniden başlatmayı onayla">'+
+   '<span class="mtk-setting-icon" aria-hidden="true">↻</span><span class="mtk-setting-label"><strong>Oyunu Yeniden Başlat</strong><small>Bütün bölümleri sıfırla</small></span><span class="mtk-setting-switch" aria-hidden="true"></span></button>'+
    '</div><p class="mtk-version">✦ Matematik Evreni · v'+version+' · İlerleme otomatik kaydedilir.</p>';
  }
  function bindSettings(prefix){
