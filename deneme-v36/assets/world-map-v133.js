@@ -1,4 +1,4 @@
-/* Matematik Evreni v133 — seamless expanding world, chapter-specific atmospheric fog.
+/* Matematik Evreni v134 — seamless expanding world, chapter-specific atmospheric fog.
    Single illustration. Never display unreached regions, roads, names or labels.
    Unlock logic depends exclusively on actual canonical game progress. */
 (function(){
@@ -14,9 +14,9 @@ const art="./assets/premium-map-approved-v130.avif?v=130";
 // Future illustrations attach with a shared, visually matched 90–140px edge strip.
 const tiles=[{id:ROOT_TILE,src:art,x:0,y:0,w:W,h:H,overlap:0,side:null,styleKey:STYLE_KEY}];
 const chapters=[
- {id:"home",name:"Dedenin Evi",icon:"🏡",x:326,y:401,rx:169,ry:76,after:null,tileId:ROOT_TILE,playable:true,route:"./?scene=home&autostart=1&v=133"},
- {id:"forest",name:"Orman Patikası",icon:"🌲",x:754,y:588,rx:190,ry:83,after:"home",tileId:ROOT_TILE,fogPolygon:[[545,170],[1115,160],[1235,415],[1140,670],[1110,941],[465,941],[505,750],[565,510]],playable:true,route:"./forest-v113-full.html?resume=1&v=133"},
- {id:"observatory",name:"Gözlemevi",icon:"🔭",x:1430,y:495,rx:194,ry:83,after:"forest",tileId:ROOT_TILE,fogPolygon:[[1140,175],[1671,155],[1671,941],[1060,941],[1045,720],[1140,475]],playable:false,route:null}
+ {id:"home",name:"Dedenin Evi",icon:"🏡",x:326,y:401,rx:169,ry:76,after:null,tileId:ROOT_TILE,playable:true,route:"./?scene=home&autostart=1&v=134"},
+ {id:"forest",name:"Orman Patikası",icon:"🌲",x:754,y:588,rx:190,ry:83,after:"home",tileId:ROOT_TILE,fogPolygon:[[560,150],[1105,150],[1140,400],[1090,670],[1045,941],[470,941],[500,700],[510,410]],playable:true,route:"./forest-v113-full.html?resume=1&v=134"},
+ {id:"observatory",name:"Gözlemevi",icon:"🔭",x:1430,y:495,rx:194,ry:83,after:"forest",tileId:ROOT_TILE,fogPolygon:[[1105,150],[1671,150],[1671,941],[1045,941],[1090,670],[1140,400]],playable:false,route:null}
 ];
 function read(key){try{return JSON.parse(localStorage.getItem(key)||"null")||{}}catch(_){return {}}}
 function progress(){
@@ -137,34 +137,33 @@ function noiseAt(x,y,scale,seed){
        c=hashNoise(ix,iy+1,seed),d=hashNoise(ix+1,iy+1,seed);
  return (a+(b-a)*u)*(1-v)+(c+(d-c)*u)*v;
 }
+/* v134 — image-based premium grey cloud fog, region-masked at full opacity. */
+const fogTexture=typeof Image==="function"?new Image():null;
+if(fogTexture){fogTexture.decoding="async";fogTexture.src="./assets/fog-premium-v134.webp?v=134";}
 function fogOpacityAt(x,y,regions,globalX=x,globalY=y){
  let alpha=0;
  for(const c of regions){
-  const poly=c.fogPolygon;
-  if(!poly)continue;
-  const raw=regionSignedDistance(x,y,poly);
-  const wander=10*Math.sin(globalY*.021+Math.sin(globalX*.005)*2)+
-               7*Math.sin(globalY*.054+globalX*.018);
-  const feather=smoothstep((raw+wander+15)/61);
-  if(feather<=0)continue;
-  const density=.86+.12*noiseAt(globalX,globalY,295,193);
-  let value=feather*density;
-  const cx=c.x-(c.tileX||0),cy=c.y-(c.tileY||0);
-  // Opaque, soft-edged mist around the painted label, not a pasted white patch.
-  const near=Math.hypot((x-cx)/(c.rx+42),(y-cy)/(c.ry+38));
-  const cover=smoothstep((1.56-near)/.68);
-  value=Math.max(value,feather*cover);
-  alpha=Math.max(alpha,value);
+  if(!c.fogPolygon)continue;
+  const dist=regionSignedDistance(x,y,c.fogPolygon);
+  const drift=1.7*Math.sin(globalY*.022+globalX*.008)+
+              1.1*Math.sin(globalY*.047-globalX*.021);
+  const cover=smoothstep((dist+12+drift)/15);
+  // Compositing adjacent locked regions avoids a see-through seam.
+  alpha=1-(1-alpha)*(1-cover);
+  if(alpha>=1)break;
  }
  return Math.max(0,Math.min(1,alpha));
 }
 function paintRegionMist(canvas,tile,locked){
- const ctx=canvas.getContext?.("2d");
+ const ctx=canvas.getContext?.("2d",{willReadFrequently:true});
  if(!ctx)return false;
- const cols=Math.round(Math.min(700,Math.max(340,tile.w*.37)));
+ const cols=Math.round(Math.min(880,Math.max(460,tile.w*.48)));
  const rows=Math.round(cols*tile.h/tile.w);
  canvas.width=cols;canvas.height=rows;
- const frame=ctx.createImageData(cols,rows),p=frame.data;
+ const ready=Boolean(fogTexture&&fogTexture.complete&&fogTexture.naturalWidth>0);
+ if(ready)ctx.drawImage(fogTexture,0,0,cols,rows);
+ const frame=ready?ctx.getImageData(0,0,cols,rows):ctx.createImageData(cols,rows);
+ const p=frame.data;
  const stages=locked.map(c=>({...c,tileX:tile.x,tileY:tile.y}));
  for(let py=0;py<rows;py++){
   const y=(py+.5)*tile.h/rows;
@@ -173,13 +172,19 @@ function paintRegionMist(canvas,tile,locked){
    const gx=tile.x+x,gy=tile.y+y;
    const alpha=fogOpacityAt(x,y,stages,gx,gy);
    if(alpha<=.002){p[k+3]=0;continue}
-   const low=noiseAt(gx,gy,395,17),mid=noiseAt(gx,gy,145,87),
-         fine=noiseAt(gx,gy,51,229);
-   const depth=.50*low+.36*mid+.14*fine;
-   // Luminous valley mist with subtle shadows, never flat white rectangles.
-   p[k]=Math.round(190+42*depth);
-   p[k+1]=Math.round(208+33*depth);
-   p[k+2]=Math.round(201+45*depth);
+   if(ready){
+    // Preserve cloud texture and deep shadows instead of a flat white veil.
+    p[k]=Math.max(45,Math.min(242,Math.round(p[k]*.87+8)));
+    p[k+1]=Math.max(49,Math.min(244,Math.round(p[k+1]*.89+9)));
+    p[k+2]=Math.max(55,Math.min(248,Math.round(p[k+2]*.94+9)));
+   }else{
+    // Temporary opaque gray fog while WebP decodes; never reveal hidden areas.
+    const a=noiseAt(gx,gy,250,17),b=noiseAt(gx,gy,95,87);
+    const f=.65*a+.35*b;
+    p[k]=Math.round(90+118*f);
+    p[k+1]=Math.round(100+119*f);
+    p[k+2]=Math.round(116+116*f);
+   }
    p[k+3]=Math.round(alpha*255);
   }
  }
@@ -228,10 +233,11 @@ function mount(host,{from="home",onNavigate=()=>{},onClose=()=>{}}={}){
   const fog=element("canvas","mtk-cinematic-fog");
   fog.dataset.tileId=tile.id;fog.setAttribute("aria-hidden","true");
   placement(fog,tile.x,tile.y,tile.w,tile.h);
-  try{
+  const repaint=()=>{try{
    if(!paintRegionMist(fog,tile,locked))fog.classList.add("mtk-cinematic-fog-fallback");
-  }catch(_){fog.classList.add("mtk-cinematic-fog-fallback")}
-  world.append(fog);
+  }catch(_){fog.classList.add("mtk-cinematic-fog-fallback")}};
+  world.append(fog);repaint();
+  if(fogTexture&&!fogTexture.complete)fogTexture.addEventListener("load",repaint,{once:true});
  }
  // Preserve the approved illustration's original bottom-right legend,
  // above any fog. The original artwork is never redrawn or regenerated.
