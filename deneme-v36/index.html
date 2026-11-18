@@ -176,7 +176,24 @@
  #dialogue .advance{min-width:32px!important;width:32px!important;min-height:32px!important;height:32px!important;flex-basis:32px!important}
 }
 @media(prefers-reduced-motion:reduce){#dialogue{transition:none!important;animation:none!important}}
-@media(orientation:portrait){#dialogue.erdem{max-width:min(205px,calc(100dvw - 24px))!important}}
+@media(orientation:portrait){#dialogue.erdem{max-width:min(225px,calc(100dvw - 24px))!important}}
+/* v141: no story bubble may sit above a settings or research card. */
+#game:has(#info:not([hidden])) #dialogue{visibility:hidden!important;pointer-events:none!important}
+#info #homeMainMenu[hidden]{display:none!important}
+#info[data-mtk-panel="settings"] .mtk-modal-foot{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:9px!important;align-items:stretch!important
+}
+#info[data-mtk-panel="settings"] .mtk-modal-foot .modalClose{
+ width:100%!important;min-width:0!important;min-height:45px!important;
+ margin-top:8px!important;padding:8px 7px!important;
+ font-size:clamp(11px,2vw,15px)!important
+}
+#info[data-mtk-panel="settings"] #homeMainMenu{
+ background:linear-gradient(160deg,#fce9bd,#d7ac6b)!important;
+ color:#57391e!important;border:2px solid #a57a44!important
+}
+
 /* v140: first frame uses the same semi-transparent touch controls as subsequent frames. */
 #game #controls.mtk-ui-controls button:not(.pressed):not(:active){
  background:rgba(10,44,55,.34)!important;
