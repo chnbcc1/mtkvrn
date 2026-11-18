@@ -433,6 +433,7 @@ const quizChiko=fs.readFileSync(path.join(root,"forest-v70-quiz.html"),"utf8");
 assert(quizChiko.includes("run.taskWrong=(run.taskWrong||0)+1"),"Collect task-level wrong answers");
 assert(quizChiko.includes("wrongCount:Math.max(0"),"Quiz reports mistakes to main game");
 assert(forest.includes("TASK_WRONG_COUNTS[gate.id]=wrongCount"),"Task results persist");
+assert(forest.indexOf("const TASK_WRONG_COUNTS=")>forest.indexOf("const initial=savedCampaign();"),"Saved mistakes initialized after save record");
 assert(forest.includes("chikoReactionGroup(")&&forest.includes("chikoReaction(wrongCount)"),"3 success reaction categories");
 assert(forest.includes('chikoSpeak("Engeli geçmek için zıpla!","collision"'),"Only collision suggests jumping");
 assert(forest.includes('chikoSpeak("Burayı araştırmalıyız!","research"'),"Research arrival prompts");
