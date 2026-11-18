@@ -353,7 +353,7 @@ for(const chapter of [home,forest]){
  assert(chapter.includes('class="mtk-hud-shell"'),"Existing universal chapter HUD retained");
  assert(chapter.includes("hud-shell-v129.svg?v=133"),"Shared HUD illustration retained");
  assert(chapter.includes("assets/world-map-v133.js?v=140"),"All chapters use the single expanding map engine");
- assert(chapter.includes(chapter===home?"assets/game-ui-v133.js?v=142":"assets/game-ui-v133.js?v=141"),"Shared navigation and modal code retained (forest URL left unchanged)");
+ assert(chapter.includes(chapter===home?"assets/game-ui-v133.js?v=143":"assets/game-ui-v133.js?v=141"),"Shared navigation and modal code retained (forest URL left unchanged)");
  assert(chapter.includes("assets/unified-ui-v133.css?v=141"),"All panels use unified responsive styles");
  assert(chapter.includes("window.MTKGameUI.openMap({"),"Map opens from inside game");
 }
