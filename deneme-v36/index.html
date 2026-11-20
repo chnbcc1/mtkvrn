@@ -613,7 +613,7 @@ $('#start').onclick=()=>{
  let saveStage=null,latestState={};
  try{latestState=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}')||{};saveStage=latestState.chapter2||null}catch(e){}
  if(!goHome&&gameOver&&chapter2EntrySeen&&saveStage&&saveStage.stage==='forest-path'&&latestState.activeScene!=='home'){
-  location.assign('./forest-v113-full.html?v=145&resume=1');
+  location.assign('./forest-v113-full.html?v=146&resume=1');
   return;
  }
  const firstVisit=!introSeen&&!found.size&&!visitedStudy&&!gameOver;
@@ -838,7 +838,7 @@ function openObservatoryEntry(){
  if(!gameOver)return;
  chapter2EntrySeen=true;persist();refreshUI();
  // Open the playable v61 forest route rather than the old text-only placeholder.
- location.assign('./forest-v113-full.html?v=145&resume=1');
+ location.assign('./forest-v113-full.html?v=146&resume=1');
 }
 function openMap(){
  // One authored discovery scene — there are no alternate destinations to select.
