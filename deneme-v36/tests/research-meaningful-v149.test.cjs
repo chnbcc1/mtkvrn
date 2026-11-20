@@ -4,67 +4,62 @@ const fs=require("node:fs");
 const path=require("node:path");
 const vm=require("node:vm");
 const root=path.resolve(__dirname,"..");
-const script=fs.readFileSync(path.join(root,"assets/meaningful-research-v149.js"),"utf8");
+const src=fs.readFileSync(path.join(root,"assets/meaningful-research-v150.js"),"utf8");
 const gui=fs.readFileSync(path.join(root,"assets/approved-quiz-ui-v145.js"),"utf8");
 const html=fs.readFileSync(path.join(root,"forest-v70-quiz.html"),"utf8");
 const bank=JSON.parse(fs.readFileSync(path.join(root,"forest-questions-v147.json"),"utf8"));
-new vm.Script(script,{filename:"meaningful-research-v149.js"});
-assert(html.includes("meaningful-research-v149.js?v=149"),"New interaction source must be loaded");
-assert(html.indexOf("meaningful-research-v149.js")<html.indexOf("approved-quiz-ui-v145.js"),"Interaction should load before existing screen");
-assert.equal((gui.match(/MTKResearchMeaningfulV149\?\.mount\(visual,q\)/g)||[]).length,2,"All object rendering paths need interaction");
+new vm.Script(src,{filename:"meaningful-research-v150.js"});
+new vm.Script(gui,{filename:"approved-quiz-ui-v145.js"});
+assert(html.includes("meaningful-research-v150.js?v=150"));
+assert(html.indexOf("meaningful-research-v150.js")<html.indexOf("approved-quiz-ui-v145.js"));
+assert.equal((gui.match(/MTKResearchMeaningfulV150\?\.mount\(visual,q,textRegion\)/g)||[]).length,2);
+assert(gui.includes("renderResearchObject(visual,q,text)"));
 assert.equal(bank.questions.length,630);
 class FakeElement{
- constructor(tag){this.tagName=tag;this.style={};this.children=[];this.textContent="";this.title="";this.hidden=false;this.attrs={};this.listeners={};this.classes=new Set();this.className="";this.classList={
- add:(x)=>this.classes.add(x),toggle:(x,on)=>{if(on)this.classes.add(x);else this.classes.delete(x)}
+ constructor(tag){this.tagName=tag;this.style={};this.children=[];this.textContent="";this.title="";this.hidden=false;this.attrs={};this.listeners={};this.className="";this.set=new Set();this.classList={
+   add:x=>this.set.add(x),toggle:(x,on)=>{if(on)this.set.add(x);else this.set.delete(x)}
  };}
  appendChild(x){this.children.push(x);return x}
  append(...xs){xs.forEach(x=>this.appendChild(x))}
  setAttribute(k,v){this.attrs[k]=String(v)}
- addEventListener(k,fn){this.listeners[k]=fn}
- querySelectorAll(tag){return this.children.flatMap(c=>[...(c.tagName===tag?[c]:[]),...c.querySelectorAll(tag)])}
- getAttribute(k){return this.attrs[k]}
+ addEventListener(k,f){this.listeners[k]=f}
+ querySelectorAll(selector){return this.children.flatMap(c=>[...(selector[0]==="."?c.className.includes(selector.slice(1))?[c]:[]:c.tagName===selector?[c]:[]),...c.querySelectorAll(selector)])}
 }
-const head=new FakeElement("head");
-const doc={head,createElement:t=>new FakeElement(t),createElementNS:(ns,t)=>new FakeElement(t),getElementById:()=>null};
-const sandbox={window:{},document:doc,console};
-vm.runInNewContext(script,sandbox);
-const mount=sandbox.window.MTKResearchMeaningfulV149.mount;
-const get=id=>bank.questions.find(q=>q.id===id);
-const find=(v,cls)=>v.children.find(c=>c.className.includes(cls));
-const f01=get("F01-O-04");
-assert(f01?.prompt.includes("4. günün sonunda")&&f01?.visual?.labels?.length===5);
-const vines=new FakeElement("div");
-assert(mount(vines,f01));
-const panel=find(vines,"mtk-growth-panel");
-assert(panel&&panel.listeners.click,"Vines need an active day control");
-const caption=panel.children[0],bars=panel.children.slice(1,3).map(row=>row.children[1].children[0]);
-assert(caption.textContent.includes("1. gün"),"Begin from the initial day");
-const initial=[parseFloat(bars[0].style.width),parseFloat(bars[1].style.width)];
-assert(initial[0]>initial[1],"First day 3 > 2");
-panel.listeners.click();panel.listeners.click();panel.listeners.click();
-assert(caption.textContent.includes("4. gün"));
-const final=[parseFloat(bars[0].style.width),parseFloat(bars[1].style.width)];
-assert(final[1]>final[0],"Fourth day proportional bars show 2×3³ exceeds 3×2³");
-assert(!String(panel.textContent).includes("78"),"Do not give away the final sum");
-panel.listeners.click();
-assert(caption.textContent.includes("1. gün"),"Day interaction must cycle");
-const f02=get("F02-O-06");
-assert(f02?.prompt.includes("2⁵")&&f02?.visual?.labels?.length===3);
-const stairs=new FakeElement("div");
-assert(mount(stairs,f02));
-const step=find(stairs,"mtk-step-guide");
-assert(step&&step.listeners.click);
-const phaseTitle=step.children[0];
-assert(phaseTitle.textContent.includes("kaynakları"));
-const barsF02=step.children[1].children;
-assert.equal(barsF02.length,3);
-const widths=barsF02.map(b=>parseFloat(b.children[0].style.width));
-assert(widths[0]===100&&widths[1]===50&&widths[2]===25,"Energy bars must correctly represent 32:16:8");
-step.listeners.click();assert(phaseTitle.textContent.includes("birleşir"));
-step.listeners.click();assert(phaseTitle.textContent.includes("harcar"));
-assert(!String(phaseTitle.textContent).includes("40"),"The remaining power must be calculated by the learner");
-const all=bank.questions.filter(q=>["F01","F02"].includes(q.obstacleId));
-assert.equal(all.length,60);
-assert(all.every(q=>q.visual?.bakedIntoImage===false));
-assert(script.includes("prefers-reduced-motion"),"Reduce-motion support is required");
-console.log("PASS v149: F01 temporal growth and F02 source/consume energy interactions, unchanged 630-question bank and art.");
+const doc={head:new FakeElement("head"),createElement:t=>new FakeElement(t),createElementNS:(ns,t)=>new FakeElement(t),getElementById:()=>null};
+const context={window:{},document:doc,console};
+vm.runInNewContext(src,context);
+const mount=context.window.MTKResearchMeaningfulV150.mount;
+const findChild=(v,needle)=>v.children.find(c=>c.className.includes(needle));
+const q=id=>bank.questions.find(x=>x.id===id);
+const vine=new FakeElement("div"),vineText=new FakeElement("div");
+assert(mount(vine,q("F01-O-04"),vineText));
+const growth=findChild(vineText,"mtk-story-control");
+assert(growth,"F01 learning control should live under text, NOT over the 3D art");
+assert(!findChild(vine,"mtk-story-control"),"No teaching button may obscure 3D image");
+const nav=growth.children[0],barRow=growth.children[1],status=nav.children[1];
+assert(status.textContent.includes("1. gün"));
+const bars=barRow.children.map(e=>e.children[1].children[0]);
+assert(parseFloat(bars[0].style.width)>parseFloat(bars[1].style.width));
+for(let i=0;i<3;i++)nav.children[2].listeners.click();
+assert(status.textContent.includes("4. gün"));
+assert(parseFloat(bars[0].style.width)<parseFloat(bars[1].style.width));
+assert(!growth.textContent.includes("78"),"Do not reveal final answer");
+nav.children[0].listeners.click();
+assert(status.textContent.includes("3. gün"),"Backward navigation must work");
+const stair=new FakeElement("div"),stairText=new FakeElement("div");
+assert(mount(stair,q("F02-O-06"),stairText));
+const energy=findChild(stairText,"mtk-story-control");
+assert(energy&&!findChild(stair,"mtk-story-control"));
+const energyNav=energy.children[0],energyStatus=energyNav.children[1];
+assert(energyStatus.textContent.includes("Kaynaklar"));
+energyNav.children[2].listeners.click();assert(energyStatus.textContent.includes("Birleşme"));
+energyNav.children[2].listeners.click();assert(energyStatus.textContent.includes("Tüketim"));
+assert(energy.children[1].children[1].textContent.includes("Turuncu"));
+energyNav.children[0].listeners.click();assert(energyStatus.textContent.includes("Birleşme"));
+const artPaths=stair.querySelectorAll("path");
+assert.equal(artPaths.length,3);
+assert(!energyStatus.textContent.includes("40"),"Leave the numeric answer to the learner");
+assert.equal(bank.questions.filter(x=>["F01","F02"].includes(x.obstacleId)).length,60);
+assert(bank.questions.every(x=>x.visual?.bakedIntoImage===false));
+assert(src.includes("prefers-reduced-motion"),"Motion accessibility");
+console.log("PASS v150: clean F01 growth and F02 energy controls beneath question text; original art and 630 approved questions preserved.");
