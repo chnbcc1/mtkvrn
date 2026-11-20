@@ -100,6 +100,22 @@
     .mtk-frame .mtk-matching-col{grid-template-rows:repeat(5,minmax(28px,auto))}
     .mtk-frame .mtk-matching-col button{font-size:clamp(12px,1.5cqw,22px);min-height:28px}
   }
+
+  /* v148: F01/F02 3D objects stay unmarked; math is positioned as editable DOM. */
+  .mtk-frame .mtk-research-object{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;user-select:none}
+  .mtk-frame .mtk-research-value{position:absolute;z-index:3;transform:translate(-50%,-50%);
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    box-sizing:border-box;max-height:19%;overflow:hidden;color:#224b32;
+    font-size:clamp(10px,2.15cqw,22px);font-weight:950;line-height:1.08;
+    overflow-wrap:break-word;white-space:normal;text-shadow:0 1px 0 #fff8e3aa;
+    pointer-events:none}
+  .mtk-frame .mtk-research-value.mini{font-size:clamp(8px,1.48cqw,15px);max-height:9%}
+  .mtk-frame .mtk-research-value.long{font-size:clamp(9px,1.65cqw,17px)}
+  @media(orientation:landscape){
+    .mtk-frame .mtk-research-value{font-size:clamp(11px,1.48cqw,23px)}
+    .mtk-frame .mtk-research-value.mini{font-size:clamp(9px,1.15cqw,17px)}
+    .mtk-frame .mtk-research-value.long{font-size:clamp(10px,1.24cqw,18px)}
+  }
   `;
   function elem(tag,cls){const e=document.createElement(tag);if(cls)e.className=cls;return e}
   function tag(container,text,left){const t=elem('span','mtk-image-tag');t.textContent=text;t.style.left=left+'%';container.appendChild(t)}
@@ -145,6 +161,70 @@
     const vals=[...description.matchAll(/(?:\d+\s*[×÷+-]\s*)?\d+(?:\^\(?[−-]?\d+\)?|[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]+)?(?:\/\d+)?/g)].map(x=>x[0].trim()).filter(Boolean).slice(0,4);
     if(vals.length){const chips=elem('div','mtk-info-values');vals.forEach(v=>appendText(chips,'',v));scene.appendChild(chips)}
     visual.appendChild(scene);
+  }
+
+  /* Named semantic anchors have priority; every unknown anchor receives a free plaque. */
+  function renderResearchObject(visual,q){
+    const id=String(q?.obstacleId||"");
+    if(id!=="F01"&&id!=="F02")return false;
+    const data=window.MTK_RESEARCH_OBJECTS_V148?.[id];
+    if(typeof data!=="string"||!data.startsWith("data:image/webp;base64,"))return false;
+    const art=elem("img","mtk-research-object");art.src=data;art.alt=id==="F01"?
+      "Sarmaşıklarla kaplı taş duvar; üç büyük ve iki küçük boş bilgi levhası":
+      "Dört ışıklı taş basamak ve boş taş enerji levhaları";
+    visual.appendChild(art);
+    const entries=Array.isArray(q?.visual?.labels)?q.visual.labels:[];
+    /* Fractions/powers are source-supplied data. Never calculate or bake them into the image. */
+    const plaques=id==="F01"?
+      [{x:23.6,y:47,w:27},{x:50,y:39,w:32},{x:77.5,y:47,w:27},{x:33.2,y:69,w:12,mini:true},{x:71.6,y:69,w:12,mini:true}]:
+      [{x:50,y:76,w:77},{x:50,y:63,w:73},{x:50,y:51,w:67},{x:50,y:38,w:60},{x:50,y:21,w:66}];
+    const used=new Set();
+    function choose(i,anchor){
+      const a=String(anchor||"").toLocaleLowerCase("tr").replaceAll("_"," ");
+      let slot=-1;
+      if(id==="F01"){
+        if(/sol.*(büyüme|korunma|kopan)/.test(a))slot=3;
+        else if(/sağ.*(büyüme|korunma|kopan)/.test(a))slot=4;
+        else if(/sol|ilk dal|sabah/.test(a))slot=0;
+        else if(/sağ/.test(a))slot=2;
+        else if(/toplam|ortak|sayaç|gün|bugün|geçit/.test(a))slot=1;
+      }else{
+        if(/sayaç|çalışma oran|basamak sayısı/.test(a))slot=4;
+        else if(/üst basamak|son basamak|basamak 4/.test(a))slot=3;
+        else if(/orta basamak|basamak 3/.test(a))slot=2;
+        else if(/basamak 2|kapı tüketim/.test(a))slot=1;
+        else if(/ilk|giriş|alt basamak|basamak 1/.test(a))slot=0;
+      }
+      const priority=id==="F01"?[0,2,1,3,4]:[0,1,2,3,4];
+      if(slot<0||used.has(slot))slot=priority.find(n=>!used.has(n))??-1;
+      if(slot>=0)used.add(slot);
+      return slot;
+    }
+    const countItem=id==="F02"?entries.find(e=>/basamak[_ ]sayısı/i.test(String(e.anchor||""))):null;
+    const perStep=id==="F02"?entries.find(e=>/her[_ ]basamak/i.test(String(e.anchor||""))):null;
+    if(countItem&&perStep){
+      const raw=Number(String(countItem.value).replace(/[^0-9]/g,""));
+      const count=Number.isFinite(raw)?Math.max(1,Math.min(4,raw)):1;
+      const heading=plaques[4],v=elem("span","mtk-research-value");
+      v.style.left=heading.x+"%";v.style.top=heading.y+"%";v.style.width=heading.w+"%";
+      v.textContent=String(countItem.value)+" basamak";v.title=String(countItem.anchor);visual.appendChild(v);
+      for(let i=0;i<count;i++){
+        const p=plaques[i],n=elem("span","mtk-research-value");
+        n.style.left=p.x+"%";n.style.top=p.y+"%";n.style.width=p.w+"%";
+        n.textContent=String(perStep.value);n.title="Basamak "+(i+1);visual.appendChild(n);
+      }
+      return true;
+    }
+    for(let i=0;i<entries.length;i++){
+      const item=entries[i],n=choose(i,item.anchor);
+      if(n<0)continue;
+      const p=plaques[n],label=elem("span","mtk-research-value"+(p.mini?" mini":"")+(String(item.value||"").length>11?" long":""));
+      label.style.left=p.x+"%";label.style.top=p.y+"%";label.style.width=p.w+"%";
+      label.textContent=String(item.value??"");label.title=String(item.anchor||"");
+      label.setAttribute("aria-label",String(item.anchor||"")+" "+String(item.value??""));
+      visual.appendChild(label);
+    }
+    return true;
   }
   function matchingBoard(visual,q,choices,run,save){
     const data=q?.interaction;
@@ -219,7 +299,7 @@
         };
         if(labels.length)labels.slice(0,5).forEach((item,i)=>tag(visual,item.value,leftFor(item.anchor,i)));
         else direct.slice(0,5).forEach((value,i)=>tag(visual,value,[15.5,35.3,51.5,67,86.5][i]));
-      }else illustrate(visual,q,s);
+      }else if(!renderResearchObject(visual,q))illustrate(visual,q,s);
     }
     const extra=elem('section','mtk-feedback-overlay');rest.forEach(x=>extra.appendChild(x));
     frame.append(text,visual,choices);
