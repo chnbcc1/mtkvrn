@@ -229,6 +229,7 @@ function example(q){
 }
 
 function workedSteps(q){
+ if(q?.contentVersion==="v147-approved-packs")return String(q.solution||"");
  const prompt=String(q?.prompt||"");
  const m=prompt.match(/(\d+)\s+filiz\s+(\d+)\s+kez\s+iki\s+katına\s+çıkıyor,\s*sonra\s+(\d+)\s+filiz\s+kuruyor/i);
  if(m){
@@ -293,7 +294,16 @@ function show(){window.MTKApprovedQuizV145?.reset();
  }else if(run.revealed){
    app.appendChild(feedbackBox("wrong","Üçüncü yanlış deneme. Bu sorunun çözümünü dikkatle incele."));
    app.appendChild(mathText("div","solution","Çözüm: "+workedSteps(q)+(all.length>1?" • Tam görevin çözümü: "+q.solution:"")));
-   app.appendChild(rowButton("Benzer bir soruyla kendimi sına",()=>{
+   if(q.followUp?.question){
+     const practice=node("div","solution");
+     append(practice,node("strong",null,"Kaynak paketteki benzer soru"),mathText("p",null,q.followUp.question));
+     const check=btn("Cevabımı kontrol et",()=>{
+       append(practice,mathText("p",null,"Doğru cevap: "+(q.followUp.correct_answer||"")),mathText("p",null,"Çözüm: "+(q.followUp.solution||"")));
+       check.disabled=true;
+     },true);
+     practice.appendChild(check);app.appendChild(practice);
+   }
+   app.appendChild(rowButton("Başka bir onaylı soruyu çöz",()=>{
     run.remediationId=pick(q.obstacleId,run.difficulty,q.id);resetStage();show();
    }));
  }else if(run.wrong>0){
