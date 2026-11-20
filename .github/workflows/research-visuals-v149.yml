@@ -1,8 +1,8 @@
-name: Research Visuals v149 Regression
+name: Research Visuals v150 Regression
 on:
   push:
     paths:
-      - "deneme-v36/assets/meaningful-research-v149.js"
+      - "deneme-v36/assets/meaningful-research-v150.js"
       - "deneme-v36/assets/approved-quiz-ui-v145.js"
       - "deneme-v36/forest-v70-quiz.html"
       - "deneme-v36/forest-questions-v147.json"
@@ -10,7 +10,7 @@ on:
       - ".github/workflows/research-visuals-v149.yml"
   pull_request:
     paths:
-      - "deneme-v36/assets/meaningful-research-v149.js"
+      - "deneme-v36/assets/meaningful-research-v150.js"
       - "deneme-v36/assets/approved-quiz-ui-v145.js"
       - "deneme-v36/forest-v70-quiz.html"
       - "deneme-v36/tests/research-meaningful-v149.test.cjs"
@@ -22,5 +22,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Verify day-by-day growth and energy transfer relationships
+      - name: Verify readable growth and energy controls do not cover illustration
         run: node deneme-v36/tests/research-meaningful-v149.test.cjs
