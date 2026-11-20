@@ -268,7 +268,7 @@ function show(){window.MTKApprovedQuizV145?.reset();
     btn("Sonraki engele geç",()=>{run.index++;run.activeId=null;run.awaiting=false;run.practiceId=null;run.remediationId=null;run.taskWrong=0;run.completionWrong=null;resetStage();ensure();save();show()}),
     btn("Benzer soru çöz",()=>{run.practiceId=pick(obs.id,run.difficulty,run.activeId);resetStage();show()},true));
   app.appendChild(controls);
-  if(EMBED)window.MTKApprovedQuizV145?.mount(app,q,s,doneChoices);
+  if(EMBED)window.MTKApprovedQuizV145?.mount(app,q,s,doneChoices,run,save);
   return;
  }
  if(!EMBED)append(app,node("div","eyebrow",q.id+" · "+(run.practiceId?"BENZER SORU":run.remediationId?"YENİDEN DENE":"ANA GÖREV")),node("h2",null,obs.title));
@@ -304,7 +304,7 @@ function show(){window.MTKApprovedQuizV145?.reset();
    }
  }
  if(run.practiceId){app.appendChild(rowButton("Ana göreve dön",()=>{run.practiceId=null;resetStage();show()},true))}
- if(EMBED)window.MTKApprovedQuizV145?.mount(app,q,s,choices);
+ if(EMBED)window.MTKApprovedQuizV145?.mount(app,q,s,choices,run,save);
 }
 function select(answer,s,q,stageCount){
  if(!run||run.stageCorrect||run.revealed)return;
