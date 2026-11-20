@@ -276,7 +276,7 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(home.includes("forest-v113-full.html?v=141"));
+assert(home.includes("forest-v113-full.html?v=145"));
 assert(map.includes("forest-v113-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
@@ -499,4 +499,21 @@ assert(settingsStyle.includes("overflow-y:auto!important"),"Small viewports can 
 assert(settingsStyle.includes(".mtk-version{")&&settingsStyle.includes("position:static!important"),"Version text cannot overlay buttons");
 assert(settingsStyle.includes("modalActions>button")&&settingsStyle.includes("mtk-modal-foot #homeMainMenu"),"Footer actions share identical appearance");
 assert(home.includes('"old-map"')&&settingsStyle.includes(".threeRings i{"),"Old map discovery uses compact ornate ring artwork");
-console.log("PASS v144: same settings in all areas, unclipped landscape, polished old-map discovery.");
+
+/* v145: approved portrait/landscape quiz frames and unchanged question-bank size. */
+const quizFrameArtwork=fs.readFileSync(path.join(root,"assets/quiz-approved-frames-v145.js"),"utf8");
+const quizF03Artwork=fs.readFileSync(path.join(root,"assets/quiz-f03-machine-v145.js"),"utf8");
+const quizFrameUI=fs.readFileSync(path.join(root,"assets/approved-quiz-ui-v145.js"),"utf8");
+new vm.Script(quizFrameArtwork);new vm.Script(quizF03Artwork);new vm.Script(quizFrameUI);
+assert(quizFrameArtwork.includes("MTK_QUIZ_FRAMES_V145")&&quizFrameArtwork.includes("portrait")&&quizFrameArtwork.includes("landscape"),"Both approved character-preserving frame images must be bundled");
+assert(quizFrameUI.includes("aspect-ratio:941/1672")&&quizFrameUI.includes("aspect-ratio:1672/941"),"Portrait and landscape must have separate fixed frames");
+assert(quizFrameUI.includes("width:35.1%")&&quizFrameUI.includes("width:39.1%"),"All four answers use identical dimensions within each orientation");
+assert(quizFrameUI.includes("const anchors=[15.5,35.3,51.5,67,86.5]"),"F03 filter labels must track their corresponding machine elements");
+assert(quizChiko.includes("assets/quiz-approved-frames-v145.js?v=145")&&quizChiko.includes("MTKApprovedQuizV145?.mount"),"Embedded quiz must render approved art with dynamic live text");
+assert(forest.includes("mtk-approved-quiz-shell-v145"),"The forest quiz must use full-size responsive shell");
+const bank145=JSON.parse(fs.readFileSync(path.join(root,"forest-questions-v70.json"),"utf8"));
+assert.equal(bank145.questions.length,630,"The existing 630-question bank must not be reduced");
+const reviewedF03=bank145.questions.find(q=>q.id==="F03-zor-01");
+assert(reviewedF03&&reviewedF03.prompt.includes("2¹³ birim sis")&&reviewedF03.correctAnswer==="4"&&reviewedF03.options.join("|")==="16|8|4|32");
+assert(reviewedF03.fixedChoiceOrder&&reviewedF03.visual?.bakedIntoImage===false,"Approved F03 values must stay in dynamic HTML layer");
+console.log("PASS v145: same settings in all areas, unclipped landscape, polished old-map discovery.");
