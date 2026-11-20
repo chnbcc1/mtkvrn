@@ -1,0 +1,26 @@
+name: Quiz Screen v146 Regression
+on:
+  push:
+    paths:
+      - "deneme-v36/forest-v70-quiz.html"
+      - "deneme-v36/assets/approved-quiz-ui-v145.js"
+      - "deneme-v36/assets/quiz-approved-frames-v145.js"
+      - "deneme-v36/forest-questions-v70.json"
+      - "deneme-v36/tests/quiz-screen-v146.test.cjs"
+      - ".github/workflows/quiz-screen-v146.yml"
+  pull_request:
+    paths:
+      - "deneme-v36/forest-v70-quiz.html"
+      - "deneme-v36/assets/approved-quiz-ui-v145.js"
+      - "deneme-v36/forest-questions-v70.json"
+      - "deneme-v36/tests/quiz-screen-v146.test.cjs"
+jobs:
+  quiz:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check approved frames, quiz logic, responsive layout and correct solution steps
+        run: node deneme-v36/tests/quiz-screen-v146.test.cjs
