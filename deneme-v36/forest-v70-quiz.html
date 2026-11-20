@@ -282,7 +282,7 @@ function show(){window.MTKApprovedQuizV145?.reset();
   append(b,node("span","choiceMark","ABCD"[index]),mathText("span",null,answer));b.addEventListener("click",()=>select(answer,s,q,all.length));choices.appendChild(b)
  });app.appendChild(choices);
  if(run.stageCorrect){
-  app.appendChild(feedbackBox("ok","✓ Doğru seçim. "+s.solution));
+  app.appendChild(feedbackBox("ok","✓ Doğru seçim. "+workedSteps(q)));
   app.appendChild(rowButton(EMBED&&run.stage>=all.length-1&&!run.practiceId&&!run.remediationId?"Engeli aç · Ormana dön":run.stage>=all.length-1?"Engeli tamamla":"Sonraki işleme geç",()=>{
     if(run.stage<all.length-1){run.stage++;run.wrong=0;run.wrongChoices=[];run.stageCorrect=false;save();show();return}
     if(run.remediationId){run.completionWrong=run.taskWrong||0;run.remediationId=null;run.practiceId=null;run.awaiting=true;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show();return}
