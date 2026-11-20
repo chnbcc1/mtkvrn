@@ -89,7 +89,9 @@
       const art=elem('div','mtk-vine-scene');
       appendText(art,'mtk-vine-title','Sarmaşıkların gelişimi');
       const row=elem('div','mtk-vine-track');
-      const steps=[[start+' filiz','🌱'],['2^'+times+' kat','🌿'],[dry+' filiz kurur','🍂']];
+      const superDigits={'0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹'};
+      const exponent=String(times).split('').map(x=>superDigits[x]||x).join('');
+      const steps=[[start+' filiz','🌱'],['2'+exponent+' kat','🌿'],[dry+' filiz kurur','🍂']];
       steps.forEach(([caption,emoji],i)=>{
         if(i)appendText(row,'mtk-vine-arrow','→');
         const block=elem('div','mtk-vine-step');
