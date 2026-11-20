@@ -109,6 +109,7 @@ sup{font-size:.7em;line-height:0;vertical-align:super}
 const EMBED=new URLSearchParams(location.search).get("embedded")==="1";
 const FORCED=new URLSearchParams(location.search).get("obstacle")||"";
 const FORCED_DIFFICULTY=new URLSearchParams(location.search).get("difficulty")||"orta";
+const PREVIEW_QUESTION_ID=new URLSearchParams(location.search).get("previewQuestion")||"";
 const CAMPAIGN_SESSION=new URLSearchParams(location.search).get("session")||"direct-preview";
 const BANK_URL="./forest-questions-v147.json?v=147";
 const RUN_KEY=EMBED?"mathverse-v147-quiz-"+CAMPAIGN_SESSION+"-"+FORCED+"-"+FORCED_DIFFICULTY:"mathverse-v147-choice-run",HISTORY_KEY="mathverse-v147-choice-history";
@@ -330,6 +331,8 @@ async function init(){
   const idx=bank.playOrder.indexOf(FORCED);
   if(idx<0||!["kolay","orta","zor"].includes(FORCED_DIFFICULTY))throw Error("Geçersiz engel veya zorluk seviyesi");
   run=saved&&saved.index===idx&&saved.difficulty===FORCED_DIFFICULTY?saved:{difficulty:FORCED_DIFFICULTY,index:idx,activeId:null,practiceId:null,remediationId:null,awaiting:false,stage:0,wrong:0,wrongChoices:[],stageCorrect:false,revealed:false,taskWrong:0,completionWrong:null};
+  const preview=bank.questions.find(q=>q.id===PREVIEW_QUESTION_ID&&q.obstacleId===FORCED&&q.difficulty===FORCED_DIFFICULTY);
+  if(preview){run.activeId=preview.id;run.practiceId=null;run.remediationId=null;run.awaiting=false;run.stage=0;run.wrong=0;run.stageCorrect=false;run.revealed=false;run.wrongChoices=[]}
   ensure();save();show();
   document.body.classList.add("embedded");
   document.title="Matematik engeli · "+FORCED;
