@@ -508,11 +508,14 @@ new vm.Script(quizFrameArtwork);new vm.Script(quizF03Artwork);new vm.Script(quiz
 assert(quizFrameArtwork.includes("MTK_QUIZ_FRAMES_V145")&&quizFrameArtwork.includes("portrait")&&quizFrameArtwork.includes("landscape"),"Both approved character-preserving frame images must be bundled");
 assert(quizFrameUI.includes("aspect-ratio:941/1672")&&quizFrameUI.includes("aspect-ratio:1672/941"),"Portrait and landscape must have separate fixed frames");
 assert(quizFrameUI.includes("width:35.1%")&&quizFrameUI.includes("width:39.1%"),"All four answers use identical dimensions within each orientation");
-assert(quizFrameUI.includes("const anchors=[15.5,35.3,51.5,67,86.5]"),"F03 filter labels must track their corresponding machine elements");
+assert(quizFrameUI.includes("const leftFor=(anchor,index)=>")&&quizFrameUI.includes("return 35.3;")&&quizFrameUI.includes("return 51.5;")&&quizFrameUI.includes("return 67;"),"F03 values must anchor by their semantic machine positions");
 assert(quizChiko.includes("assets/quiz-approved-frames-v145.js?v=145")&&quizChiko.includes("MTKApprovedQuizV145?.mount"),"Embedded quiz must render approved art with dynamic live text");
 assert(forest.includes("mtk-approved-quiz-shell-v145"),"The forest quiz must use full-size responsive shell");
 const bank145=JSON.parse(fs.readFileSync(path.join(root,"forest-questions-v70.json"),"utf8"));
 assert.equal(bank145.questions.length,630,"The existing 630-question bank must not be reduced");
+const bank147=JSON.parse(fs.readFileSync(path.join(root,"forest-questions-v147.json"),"utf8"));
+assert.equal(bank147.questions.length,630,"User-approved 630-question ZIP bank must stay complete");
+assert(quizChiko.includes("forest-questions-v147.json?v=147"),"Current quiz must load the confirmed question bank");
 const reviewedF03=bank145.questions.find(q=>q.id==="F03-zor-01");
 assert(reviewedF03&&reviewedF03.prompt.includes("2¹³ birim sis")&&reviewedF03.correctAnswer==="4"&&reviewedF03.options.join("|")==="16|8|4|32");
 assert(reviewedF03.fixedChoiceOrder&&reviewedF03.visual?.bakedIntoImage===false,"Approved F03 values must stay in dynamic HTML layer");
