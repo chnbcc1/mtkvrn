@@ -1136,7 +1136,7 @@ function openQuiz(id){
  const qs=new URLSearchParams({embedded:"1",obstacle:id,difficulty,session:RUN_TOKEN});
  quizActiveId=id;requested=0;activePointers.clear();updatePress();modalOpen=true;
  $("#quizTitle").textContent=gate.icon+" · "+(gate.index+1)+"/21 · "+gate.label;
- $("#quizFrame").src="./forest-v70-quiz.html?v=149&"+qs;
+ $("#quizFrame").src="./forest-v70-quiz.html?v=150&"+qs;
  $("#quizOverlay").hidden=false;
 }
 function closeQuiz(){
