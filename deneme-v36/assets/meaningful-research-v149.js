@@ -3,6 +3,7 @@
 (function(){
  "use strict";
  const CSS = [
+  ".mtk-frame .mtk-research-value[hidden]{display:none!important}",
   ".mtk-frame .mtk-story-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:visible}",
   ".mtk-frame .mtk-story-svg path{fill:none;stroke:#17bde0;stroke-width:12;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:23 19;filter:drop-shadow(0 0 13px #5be4fc);animation:mtkEnergyMarch 2.4s linear infinite}",
   ".mtk-frame .mtk-story-svg path.drain{stroke:#ed9b57;filter:drop-shadow(0 0 10px #f4ac61)}",
