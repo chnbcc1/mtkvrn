@@ -213,7 +213,7 @@
         n.style.left=p.x+"%";n.style.top=p.y+"%";n.style.width=p.w+"%";
         n.textContent=String(perStep.value);n.title="Basamak "+(i+1);visual.appendChild(n);
       }
-      window.MTKResearchMeaningfulV149?.mount(visual,q);
+      window.MTKResearchMeaningfulV150?.mount(visual,q,text);
       return true;
     }
     for(let i=0;i<entries.length;i++){
@@ -225,7 +225,7 @@
       label.setAttribute("aria-label",String(item.anchor||"")+" "+String(item.value??""));
       visual.appendChild(label);
     }
-    window.MTKResearchMeaningfulV149?.mount(visual,q);
+    window.MTKResearchMeaningfulV150?.mount(visual,q,text);
     return true;
   }
   function matchingBoard(visual,q,choices,run,save){
