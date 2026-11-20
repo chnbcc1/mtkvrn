@@ -109,11 +109,11 @@
     font-size:clamp(10px,2.15cqw,22px);font-weight:950;line-height:1.08;
     overflow-wrap:break-word;white-space:normal;text-shadow:0 1px 0 #fff8e3aa;
     pointer-events:none}
-  .mtk-frame .mtk-research-value.mini{font-size:clamp(8px,1.48cqw,15px);max-height:9%}
+  .mtk-frame .mtk-research-value.small-plaque{font-size:clamp(8px,1.48cqw,15px);max-height:9%}
   .mtk-frame .mtk-research-value.long{font-size:clamp(9px,1.65cqw,17px)}
   @media(orientation:landscape){
     .mtk-frame .mtk-research-value{font-size:clamp(11px,1.48cqw,23px)}
-    .mtk-frame .mtk-research-value.mini{font-size:clamp(9px,1.15cqw,17px)}
+    .mtk-frame .mtk-research-value.small-plaque{font-size:clamp(9px,1.15cqw,17px)}
     .mtk-frame .mtk-research-value.long{font-size:clamp(10px,1.24cqw,18px)}
   }
   `;
@@ -218,7 +218,7 @@
     for(let i=0;i<entries.length;i++){
       const item=entries[i],n=choose(i,item.anchor);
       if(n<0)continue;
-      const p=plaques[n],label=elem("span","mtk-research-value"+(p.mini?" mini":"")+(String(item.value||"").length>11?" long":""));
+      const p=plaques[n],label=elem("span","mtk-research-value"+(p.mini?" small-plaque":"")+(String(item.value||"").length>11?" long":""));
       label.style.left=p.x+"%";label.style.top=p.y+"%";label.style.width=p.w+"%";
       label.textContent=String(item.value??"");label.title=String(item.anchor||"");
       label.setAttribute("aria-label",String(item.anchor||"")+" "+String(item.value??""));
