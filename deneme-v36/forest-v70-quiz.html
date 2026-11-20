@@ -137,6 +137,9 @@ function pick(obId,difficulty,exceptId){
  if(!pool.length)pool=options;
  const unseen=pool.filter(x=>!(history.seenPrompts[key]||[]).includes(hydrate(x).prompt));
  if(unseen.length)pool=unseen;
+ // One-time priority for the newly reviewed F03 text; afterwards retain all ten variants.
+ const reviewed=options.find(x=>x.contentVersion==='v145-approved-F03'&&!(history.seenPrompts[key]||[]).includes(x.prompt)&&x.id!==exceptId);
+ if(reviewed)pool=[reviewed];
  const id=pool[Math.floor(Math.random()*pool.length)].id;
  const q=hydrate(qs(id));
  history.used[key]=[...used.filter(x=>x!==id),id];
