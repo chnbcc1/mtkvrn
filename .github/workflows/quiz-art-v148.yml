@@ -1,0 +1,29 @@
+name: F01-F02 Research Object v148 Regression
+on:
+  push:
+    paths:
+      - "deneme-v36/forest-v70-quiz.html"
+      - "deneme-v36/forest-v113-full.html"
+      - "deneme-v36/index.html"
+      - "deneme-v36/menu-v116.html"
+      - "deneme-v36/assets/approved-quiz-ui-v145.js"
+      - "deneme-v36/assets/quiz-research-objects-v148.js"
+      - "deneme-v36/forest-questions-v147.json"
+      - "deneme-v36/tests/quiz-art-v148.test.cjs"
+      - ".github/workflows/quiz-art-v148.yml"
+  pull_request:
+    paths:
+      - "deneme-v36/forest-v70-quiz.html"
+      - "deneme-v36/assets/approved-quiz-ui-v145.js"
+      - "deneme-v36/assets/quiz-research-objects-v148.js"
+      - "deneme-v36/tests/quiz-art-v148.test.cjs"
+jobs:
+  assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check 3D objects and dynamic labels for both orientations
+        run: node deneme-v36/tests/quiz-art-v148.test.cjs
