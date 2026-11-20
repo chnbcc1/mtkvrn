@@ -1,4 +1,4 @@
-name: Quiz Screen v146 Regression
+name: Quiz Screen v147 Approved Bank Regression
 on:
   push:
     paths:
@@ -6,14 +6,15 @@ on:
       - "deneme-v36/assets/approved-quiz-ui-v145.js"
       - "deneme-v36/assets/quiz-approved-frames-v145.js"
       - "deneme-v36/forest-questions-v70.json"
-      - "deneme-v36/tests/quiz-screen-v146.test.cjs"
+      - "deneme-v36/forest-questions-v147.json"
+      - "deneme-v36/tests/quiz-screen-v147.test.cjs"
       - ".github/workflows/quiz-screen-v146.yml"
   pull_request:
     paths:
       - "deneme-v36/forest-v70-quiz.html"
       - "deneme-v36/assets/approved-quiz-ui-v145.js"
       - "deneme-v36/forest-questions-v70.json"
-      - "deneme-v36/tests/quiz-screen-v146.test.cjs"
+      - "deneme-v36/tests/quiz-screen-v147.test.cjs"
 jobs:
   quiz:
     runs-on: ubuntu-latest
@@ -23,4 +24,4 @@ jobs:
         with:
           node-version: "22"
       - name: Check approved frames, quiz logic, responsive layout and correct solution steps
-        run: node deneme-v36/tests/quiz-screen-v146.test.cjs
+        run: node deneme-v36/tests/quiz-screen-v147.test.cjs
