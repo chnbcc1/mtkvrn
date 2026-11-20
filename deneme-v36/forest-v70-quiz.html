@@ -110,13 +110,13 @@ const EMBED=new URLSearchParams(location.search).get("embedded")==="1";
 const FORCED=new URLSearchParams(location.search).get("obstacle")||"";
 const FORCED_DIFFICULTY=new URLSearchParams(location.search).get("difficulty")||"orta";
 const CAMPAIGN_SESSION=new URLSearchParams(location.search).get("session")||"direct-preview";
-const BANK_URL="./forest-questions-v70.json?v=145";
-const RUN_KEY=EMBED?"mathverse-v70-quiz-"+CAMPAIGN_SESSION+"-"+FORCED+"-"+FORCED_DIFFICULTY:"mathverse-v65-choice-run",HISTORY_KEY="mathverse-v65-choice-history";
+const BANK_URL="./forest-questions-v147.json?v=147";
+const RUN_KEY=EMBED?"mathverse-v147-quiz-"+CAMPAIGN_SESSION+"-"+FORCED+"-"+FORCED_DIFFICULTY:"mathverse-v147-choice-run",HISTORY_KEY="mathverse-v147-choice-history";
 const OLD_SAVE_KEY="mathverse-v40-investigation";
 let bank=null,run=null,history={used:{},last:{},seenPrompts:{}};
 const app=document.querySelector("#app"),step=document.querySelector("#step"),bar=document.querySelector("#bar"),fill=document.querySelector("#fill");
 const qs=id=>bank.questions.find(q=>q.id===id);
-function hydrate(q){if(q&&["v66","v69","v70","v145-approved-F03"].includes(q.contentVersion))return q;return window.FOREST_LEVELS_V65(q)}
+function hydrate(q){if(q&&["v66","v69","v70","v145-approved-F03","v147-approved-packs"].includes(q.contentVersion))return q;return window.FOREST_LEVELS_V65(q)}
 function node(tag,cl,text){const e=document.createElement(tag);if(cl)e.className=cl;if(text!==undefined)e.textContent=text;return e}
 function append(p,...items){items.forEach(x=>p.appendChild(x));return p}
 function btn(text,handler,secondary=false){let b=node("button","btn"+(secondary?" secondary":""),text);b.type="button";b.addEventListener("click",handler);return b}
@@ -222,10 +222,10 @@ function welcome(){window.MTKApprovedQuizV145?.reset();
 }
 function feedbackBox(status,s){return mathText("div","feedback "+status,s)}
 function example(q){
+ if(q.workedExample&&q.workedExample.solution)return {prompt:q.workedExample.question||"Benzer örnek",solution:q.workedExample.solution,sourceVerified:true};
  const others=bank.questions.filter(o=>o.obstacleId===q.obstacleId&&o.difficulty===q.difficulty&&o.id!==q.id);
  if(!others.length)return null;
- const ref=hydrate(others[(q.variant+2)%others.length]);
- return ref;
+ return hydrate(others[(q.variant+2)%others.length]);
 }
 
 function workedSteps(q){
@@ -300,7 +300,7 @@ function show(){window.MTKApprovedQuizV145?.reset();
    app.appendChild(feedbackBox("wrong","Yanlış seçim • "+run.wrong+"/3"+(run.wrong===1?" — İpucu: "+s.hint:" — Benzer çözümlü örneği incele.")));
    if(run.wrong===2){
     const ref=example(q);
-    if(ref){const box=node("div","solution");append(box,node("strong",null,"Benzer sorunun çözümlü örneği"),mathText("p",null,ref.prompt),mathText("p",null,"İşlem basamakları: "+workedSteps(ref)));app.appendChild(box)}
+    if(ref){const box=node("div","solution");append(box,node("strong",null,"Benzer sorunun çözümlü örneği"),mathText("p",null,ref.prompt),mathText("p",null,"İşlem basamakları: "+(ref.sourceVerified?ref.solution:workedSteps(ref))));app.appendChild(box)}
    }
  }
  if(run.practiceId){app.appendChild(rowButton("Ana göreve dön",()=>{run.practiceId=null;resetStage();show()},true))}
@@ -313,7 +313,7 @@ function select(answer,s,q,stageCount){
 }
 async function init(){
  try{const r=await fetch(BANK_URL,{cache:"no-store"});if(!r.ok)throw Error("630 soruluk kaynak dosyası yüklenemedi");bank=await r.json();
- if(bank.questions.length!==630||bank.obstacles.length!==21||typeof window.FOREST_LEVELS_V65!=="function")throw Error("v65 soru sistemi eksik");
+ if(bank.schema!=="forest-question-bank-v147"||bank.questions.length!==630||bank.obstacles.length!==21||bank.questionsPerObstaclePerDifficulty!==10||typeof window.FOREST_LEVELS_V65!=="function")throw Error("Onaylı 630 soruluk havuz doğrulanamadı");
  const old=read(HISTORY_KEY);if(old)history=old;
  const saved=read(RUN_KEY);
  if(EMBED){
