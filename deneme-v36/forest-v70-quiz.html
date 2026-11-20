@@ -227,6 +227,20 @@ function example(q){
  const ref=hydrate(others[(q.variant+2)%others.length]);
  return ref;
 }
+
+function workedSteps(q){
+ const prompt=String(q?.prompt||"");
+ const m=prompt.match(/(\d+)\s+filiz\s+(\d+)\s+kez\s+iki\s+katına\s+çıkıyor,\s*sonra\s+(\d+)\s+filiz\s+kuruyor/i);
+ if(m){
+   const start=Number(m[1]),cycles=Number(m[2]),lost=Number(m[3]),grown=start*2**cycles;
+   return "Başlangıç: "+start+" filiz. "+cycles+" kez iki katına çıkınca "+start+"×2^"+cycles+" = "+grown+" filiz olur. Kuruyan "+lost+" filizi çıkar: "+grown+" − "+lost+" = "+(grown-lost)+" filiz kalır.";
+ }
+ return String(q?.solution||"İşlem adımlarını değerlendir.");
+}
+function reportSolved(obs){
+ run.completionWrong=Math.max(0,Math.floor(Number(run.taskWrong)||0));run.awaiting=true;save();
+ window.parent.postMessage({source:"mathverse-v68-quiz",event:"solved",obstacle:obs.id,difficulty:run.difficulty,wrongCount:run.completionWrong},location.origin);
+}
 function show(){window.MTKApprovedQuizV145?.reset();
  if(!bank){return}if(!run){welcome();return}
  if(run.index>=21){step.hidden=false;bar.hidden=false;fill.style.width="100%";step.textContent="21/21 tamamlandı";app.replaceChildren();append(app,node("h2",null,"🎉 Ormanı tamamladın!"),node("p",null,"21 engel bitti. Yeni oyunda daha önce görülmeyen soru varyasyonları seçilir."),rowButton("Yeniden başla",()=>{run=null;save();welcome()}));return}
@@ -236,13 +250,26 @@ function show(){window.MTKApprovedQuizV145?.reset();
  fill.style.width=(((run.index)+(run.awaiting?1:0))/21*100)+"%";
  app.replaceChildren();
  if(run.awaiting&&!run.practiceId&&!run.remediationId){
- append(app,node("div","eyebrow","ENGEL TAMAMLANDI"),node("h2",null,obs.title),feedbackBox("ok","✓ Doğru! "+q.solution));
- const controls=node("div","btnRow");
- append(controls,btn("Sonraki engele geç",()=>{run.index++;run.activeId=null;run.awaiting=false;run.practiceId=null;run.remediationId=null;run.taskWrong=0;run.completionWrong=null;resetStage();ensure();save();show()}),btn("Benzer soru çöz",()=>{run.practiceId=pick(obs.id,run.difficulty,run.activeId);resetStage();show()},true));if(EMBED){
-   controls.replaceChildren(btn("Engeli aç · Ormana dön",()=>{window.parent.postMessage({source:"mathverse-v68-quiz",event:"solved",obstacle:obs.id,difficulty:run.difficulty,wrongCount:Math.max(0,Math.floor(Number(run.completionWrong??run.taskWrong??0)||0))},location.origin)}));
-   controls.appendChild(btn("Benzer soru çöz",()=>{run.practiceId=pick(obs.id,run.difficulty,run.activeId);resetStage();show()},true));
-  }
-  app.appendChild(controls);return
+  const donePrompt=mathText("div","prompt","✓ "+obs.title+" tamamlandı.");
+  const doneChoices=node("div","choiceGrid");
+  const finalOptions=options(s,q);
+  finalOptions.forEach((answer,index)=>{
+    const b=node("button","choice",undefined);b.type="button";b.disabled=true;
+    b.setAttribute("aria-pressed",String(answer===s.answer));
+    append(b,node("span","choiceMark","ABCD"[index]),mathText("span",null,answer));
+    doneChoices.appendChild(b);
+  });
+  app.append(donePrompt,doneChoices,feedbackBox("ok","✓ Doğru! "+workedSteps(q)));
+  const controls=node("div","btnRow");
+  if(EMBED)append(controls,
+    btn("Engeli aç · Ormana dön",()=>reportSolved(obs)),
+    btn("Benzer soru çöz",()=>{run.practiceId=pick(obs.id,run.difficulty,run.activeId);resetStage();show()},true));
+  else append(controls,
+    btn("Sonraki engele geç",()=>{run.index++;run.activeId=null;run.awaiting=false;run.practiceId=null;run.remediationId=null;run.taskWrong=0;run.completionWrong=null;resetStage();ensure();save();show()}),
+    btn("Benzer soru çöz",()=>{run.practiceId=pick(obs.id,run.difficulty,run.activeId);resetStage();show()},true));
+  app.appendChild(controls);
+  if(EMBED)window.MTKApprovedQuizV145?.mount(app,q,s,doneChoices);
+  return;
  }
  if(!EMBED)append(app,node("div","eyebrow",q.id+" · "+(run.practiceId?"BENZER SORU":run.remediationId?"YENİDEN DENE":"ANA GÖREV")),node("h2",null,obs.title));
  if(all.length>1)append(app,node("div","mini","İşlem "+((run.stage||0)+1)+" / "+all.length));
@@ -256,15 +283,16 @@ function show(){window.MTKApprovedQuizV145?.reset();
  });app.appendChild(choices);
  if(run.stageCorrect){
   app.appendChild(feedbackBox("ok","✓ Doğru seçim. "+s.solution));
-  app.appendChild(rowButton(run.stage>=all.length-1?"Engeli tamamla":"Sonraki işleme geç",()=>{
+  app.appendChild(rowButton(EMBED&&run.stage>=all.length-1&&!run.practiceId&&!run.remediationId?"Engeli aç · Ormana dön":run.stage>=all.length-1?"Engeli tamamla":"Sonraki işleme geç",()=>{
     if(run.stage<all.length-1){run.stage++;run.wrong=0;run.wrongChoices=[];run.stageCorrect=false;save();show();return}
     if(run.remediationId){run.completionWrong=run.taskWrong||0;run.remediationId=null;run.practiceId=null;run.awaiting=true;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show();return}
     if(run.practiceId){run.practiceId=null;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show();return}
+    if(EMBED){reportSolved(obs);return}
     run.completionWrong=run.taskWrong||0;run.awaiting=true;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show()
   }));
  }else if(run.revealed){
    app.appendChild(feedbackBox("wrong","Üçüncü yanlış deneme. Bu sorunun çözümünü dikkatle incele."));
-   app.appendChild(mathText("div","solution","Çözüm: "+s.solution+(all.length>1?" • Tam görevin çözümü: "+q.solution:"")));
+   app.appendChild(mathText("div","solution","Çözüm: "+workedSteps(q)+(all.length>1?" • Tam görevin çözümü: "+q.solution:"")));
    app.appendChild(rowButton("Benzer bir soruyla kendimi sına",()=>{
     run.remediationId=pick(q.obstacleId,run.difficulty,q.id);resetStage();show();
    }));
@@ -272,7 +300,7 @@ function show(){window.MTKApprovedQuizV145?.reset();
    app.appendChild(feedbackBox("wrong","Yanlış seçim • "+run.wrong+"/3"+(run.wrong===1?" — İpucu: "+s.hint:" — Benzer çözümlü örneği incele.")));
    if(run.wrong===2){
     const ref=example(q);
-    if(ref){const box=node("div","solution");append(box,node("strong",null,"Benzer sorunun çözülmüş örneği"),mathText("p",null,ref.prompt),mathText("p",null,"Çözüm: "+ref.solution));app.appendChild(box)}
+    if(ref){const box=node("div","solution");append(box,node("strong",null,"Benzer sorunun çözümlü örneği"),mathText("p",null,ref.prompt),mathText("p",null,"İşlem basamakları: "+workedSteps(ref)));app.appendChild(box)}
    }
  }
  if(run.practiceId){app.appendChild(rowButton("Ana göreve dön",()=>{run.practiceId=null;resetStage();show()},true))}
