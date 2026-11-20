@@ -33,7 +33,7 @@ for(const id of ["F01","F02"]){
     assert(Array.isArray(q.visual?.labels)&&q.visual.labels.length>=2&&q.visual.labels.length<=5,q.id+" missing plaque data");
   }
 }
-assert(ui.includes("renderResearchObject(visual,q)"),"3D asset integration must run before the old placeholder");
+assert(/renderResearchObject\(visual,q(?:,text)?\)/.test(ui),"3D asset integration must run before the old placeholder");
 assert(ui.includes("mtk-research-object"),"Reusable object layer missing");
 assert(ui.includes("mtk-research-value"),"Dynamic label layer missing");
 assert(ui.includes('label.textContent=String(item.value??"")'),"Values must come from question data");
