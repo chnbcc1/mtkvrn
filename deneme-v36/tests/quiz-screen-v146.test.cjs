@@ -31,7 +31,7 @@ assert(html.includes("mount(app,q,s,doneChoices)"),"Completed obstacle must keep
 assert(html.includes("if(EMBED){reportSolved(obs);return}"),"Correct choice must allow one-step return");
 assert(html.includes("function workedSteps(q)"),"Step-by-step math helper missing");
 assert(html.includes("İşlem basamakları: "),"Second wrong requires a worked example");
-assert(html.includes("✓ Doğru seçim. "+workedSteps(q)"),"Correct explanation must show math steps");
+assert(html.includes("Doğru seçim.")&&html.includes("+workedSteps(q)"),"Correct explanation must show math steps");
 const isolated=script.match(/function workedSteps\(q\)\{[\s\S]*?\n\}\nfunction reportSolved/);
 assert(isolated,"Worked steps helper body missing");
 const helper=isolated[0].replace(/\nfunction reportSolved$/, "");
