@@ -76,7 +76,31 @@
     .mtk-frame .mtk-vine-emoji{font-size:clamp(17px,3.5cqw,48px)}
     .mtk-frame .mtk-visual-region .mtk-feedback-overlay{font-size:clamp(11px,1.5cqw,17px)!important}
   }
-    `;
+  
+  /* v147: show exact ZIP-pack data as readable movable labels, never on the approved artwork. */
+  .mtk-frame .mtk-scene-labels{height:100%;overflow:auto;scrollbar-width:thin;display:grid;grid-template-rows:auto 1fr;gap:4px;color:#265744;padding:2px}
+  .mtk-frame .mtk-scene-heading{font-size:clamp(10px,1.85cqw,19px);text-align:center;font-weight:850}
+  .mtk-frame .mtk-scene-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;align-content:center;overflow:auto}
+  .mtk-frame .mtk-scene-chip{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;min-height:31px;padding:3px;border:1px solid #c4a368;border-radius:9px;background:#fff7e7e8;overflow-wrap:anywhere;text-align:center;line-height:1.15}
+  .mtk-frame .mtk-scene-chip small{font-size:clamp(8px,1.18cqw,13px);font-weight:650;color:#58705c}
+  .mtk-frame .mtk-scene-chip b{font-size:clamp(11px,2.1cqw,19px);font-weight:900;color:#1d4f39}
+  .mtk-frame .mtk-matching-board{height:100%;overflow:auto;scrollbar-width:thin;display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:1px 2px;align-content:start;color:#274d3a}
+  .mtk-frame .mtk-matching-col{display:grid;grid-template-rows:repeat(5,minmax(26px,auto));gap:3px;min-width:0}
+  .mtk-frame .mtk-match-title{grid-column:1/-1;text-align:center;font-size:clamp(9px,1.6cqw,16px);font-weight:900}
+  .mtk-frame .mtk-matching-col button{font:inherit;min-height:25px;min-width:0;overflow-wrap:anywhere;border:1.5px solid #b59256;border-radius:8px;background:#fff7dcf2;color:#234d36;padding:3px;font-weight:850;font-size:clamp(11px,2cqw,19px);cursor:pointer}
+  .mtk-frame .mtk-matching-col button.selected{outline:3px solid #2486a0;outline-offset:-2px}
+  .mtk-frame .mtk-matching-col button.paired{background:#dbf4d1;border-color:#32815e;color:#265036}
+  .mtk-frame .mtk-match-message{grid-column:1/-1;text-align:center;font-weight:750;font-size:clamp(9px,1.55cqw,15px);line-height:1.2}
+  .mtk-frame .mtk-matching-tip{grid-column:1/-1;font-size:clamp(9px,1.55cqw,15px);font-weight:800;text-align:center}
+  .mtk-frame .choiceGrid>.choice.match-locked{opacity:.7!important;cursor:not-allowed!important}
+  @media(orientation:landscape){
+    .mtk-frame .mtk-scene-heading{font-size:clamp(12px,1.6cqw,19px)}
+    .mtk-frame .mtk-scene-chip small{font-size:clamp(10px,1.2cqw,14px)}
+    .mtk-frame .mtk-scene-chip b{font-size:clamp(12px,1.6cqw,20px)}
+    .mtk-frame .mtk-matching-col{grid-template-rows:repeat(5,minmax(28px,auto))}
+    .mtk-frame .mtk-matching-col button{font-size:clamp(12px,1.5cqw,22px);min-height:28px}
+  }
+  `;
   function elem(tag,cls){const e=document.createElement(tag);if(cls)e.className=cls;return e}
   function tag(container,text,left){const t=elem('span','mtk-image-tag');t.textContent=text;t.style.left=left+'%';container.appendChild(t)}
   function appendText(parent,cls,str){const n=elem('span',cls);n.textContent=String(str);parent.appendChild(n);return n}
@@ -100,6 +124,20 @@
       });
       art.appendChild(row);visual.appendChild(art);return;
     }
+    const originalLabels=Array.isArray(q?.visual?.labels)?q.visual.labels:[];
+    if(originalLabels.length){
+      const scene=elem('div','mtk-scene-labels');
+      const icons={F01:'🌿',F02:'🪨',F03:'⚙️',F04:'💡',F05:'💎',F06:'🍄',F07:'⬜',F08:'🌉',F09:'🪢',F10:'📐',F11:'💦',F12:'🛤️',F13:'🧊',F14:'⚙️',F15:'🔮',F16:'🔢',F17:'✨',F18:'🧭',F19:'🪨',F20:'🔐',F21:'🧩'};
+      appendText(scene,'mtk-scene-heading',(icons[id]||'🧩')+' '+(q?.topic||'Sorudaki matematiksel bilgiler'));
+      const grid=elem('div','mtk-scene-grid');
+      originalLabels.forEach(({anchor,value})=>{
+        const chip=elem('div','mtk-scene-chip');
+        const lbl=elem('small');lbl.textContent=String(anchor||'').replaceAll('_',' ');chip.appendChild(lbl);
+        const val=elem('b');val.textContent=String(value||'');chip.appendChild(val);
+        grid.appendChild(chip);
+      });
+      scene.appendChild(grid);visual.appendChild(scene);return;
+    }
     const names={F01:['🌿','Sarmaşık duvarı'],F02:['🪨','Işıklı basamaklar'],F03:['⚙️','Sis türbini'],F04:['💡','Işık geçidi'],F05:['💎','Güç kristalleri']};
     const [emoji,title]=names[id]||['🧩','Sorudaki bilgiler'];
     const scene=elem('div','mtk-info-scene');
@@ -108,7 +146,53 @@
     if(vals.length){const chips=elem('div','mtk-info-values');vals.forEach(v=>appendText(chips,'',v));scene.appendChild(chips)}
     visual.appendChild(scene);
   }
-  function mount(app,q,s,choices){
+  function matchingBoard(visual,q,choices,run,save){
+    const data=q?.interaction;
+    if(data?.kind!=='matching_unmatched')return false;
+    const state=run?(run.matchingById||(run.matchingById={})):null;
+    const current=state?(state[q.id]||(state[q.id]={pairs:[]})):{pairs:[]};
+    const expected=new Map((data.pairs||[]).map(p=>[p.radical,p.exponent]));
+    const board=elem('div','mtk-matching-board');
+    const msg=elem('div','mtk-match-message');
+    const title=elem('div','mtk-matching-tip');
+    const rootCol=elem('div','mtk-matching-col'),expCol=elem('div','mtk-matching-col');
+    const matched=()=>new Map(current.pairs||[]);
+    let selected=null;
+    const rootButtons=[],expButtons=[];
+    (data.radicalItems||[]).forEach(v=>{
+      const b=elem('button');b.type='button';b.textContent=v;b.setAttribute('aria-label','Köklü taş '+v);
+      b.addEventListener('click',()=>{if(matched().has(v))return;selected=selected===v?null:v;paint()});
+      rootCol.appendChild(b);rootButtons.push([v,b]);
+    });
+    (data.exponentItems||[]).forEach(v=>{
+      const b=elem('button');b.type='button';b.textContent=v;b.setAttribute('aria-label','Üslü taş '+v);
+      b.addEventListener('click',()=>{
+        if(!selected){msg.textContent='Önce soldaki bir köklü taşa dokun.';return}
+        const used=new Set(matched().values());if(used.has(v))return;
+        if(expected.get(selected)===v){
+          current.pairs=[...(current.pairs||[]),[selected,v]];selected=null;
+          if(typeof save==='function')save();msg.textContent='Doğru eşleşme!';paint();
+        }else{msg.textContent='Bu iki taş eşdeğer değil. Başka bir taş dene.';paint()}
+      });
+      expCol.appendChild(b);expButtons.push([v,b]);
+    });
+    const header=elem('div','mtk-match-title');header.textContent='Köklü taşlar · Üslü taşlar';board.appendChild(header);
+    board.append(rootCol,expCol,msg,title);visual.appendChild(board);
+    function paint(){
+      const m=matched(),used=new Set(m.values()),ready=m.size>=Number(data.requiredPairs||4);
+      rootButtons.forEach(([v,b])=>{b.classList.toggle('paired',m.has(v));b.classList.toggle('selected',selected===v);b.disabled=m.has(v)});
+      expButtons.forEach(([v,b])=>{b.classList.toggle('paired',used.has(v));b.disabled=used.has(v)});
+      title.textContent=ready?'Dört çift bulundu. Açıkta kalan iki taşı seç.':m.size+'/4 doğru çift · Önce soldan, sonra sağdan taşı seç.';
+      if(choices)for(const b of choices.children){
+        if(!run?.stageCorrect&&!run?.revealed){
+          b.disabled=!ready||b.classList.contains('wrongChoice');
+          b.classList.toggle('match-locked',!ready);
+        }
+      }
+    }
+    paint();return true;
+  }
+  function mount(app,q,s,choices,run,save){
     const frames=window.MTK_QUIZ_FRAMES_V145;
     if(!frames?.portrait||!frames?.landscape||!app||!choices)return false;
     const prompt=app.querySelector('.prompt');if(!prompt)return false;
@@ -117,11 +201,26 @@
     frame.setAttribute('aria-label','Soru ekranı');
     const text=elem('div','mtk-question-region');text.appendChild(prompt);
     const visual=elem('div','mtk-visual-region');visual.setAttribute('aria-label','Soru görseli ve değişken etiketler');
-    if(q?.visual?.type==='sis-turbini' && window.MTK_QUIZ_MEDIA_V145?.F03){
-      const machine=elem('img','mtk-visual-image');machine.alt='Bir giriş, üç sis filtresi ve bir gözlem tüpünden oluşan filtre sistemi';machine.src=window.MTK_QUIZ_MEDIA_V145.F03;visual.appendChild(machine);
-      const anchors=[15.5,35.3,51.5,67,86.5];
-      (q.visual.values||[]).slice(0,5).forEach((v,i)=>tag(visual,v,anchors[i]));
-    }else{illustrate(visual,q,s)}
+    if(!matchingBoard(visual,q,choices,run,save)){
+      const isF03=q?.obstacleId==='F03'||q?.visual?.type==='sis-turbini';
+      if(isF03 && window.MTK_QUIZ_MEDIA_V145?.F03){
+        const machine=elem('img','mtk-visual-image');machine.alt='Bir giriş, üç sis filtresi ve bir gözlem tüpü';machine.src=window.MTK_QUIZ_MEDIA_V145.F03;
+        visual.appendChild(machine);
+        const labels=q?.visual?.labels||[];
+        const direct=q?.visual?.values||[];
+        const leftFor=(anchor,index)=>{
+          const a=String(anchor||'').toLocaleLowerCase('tr');
+          if(/giriş|türbin/.test(a))return 15.5;
+          if(/birinci|filtre[_ ]?1/.test(a))return 35.3;
+          if(/ikinci|filtre[_ ]?2/.test(a))return 51.5;
+          if(/üçüncü|filtre[_ ]?3/.test(a))return 67;
+          if(/gözlem|tüp|çıkış|dördüncü/.test(a))return 86.5;
+          return [15.5,35.3,51.5,67,86.5][Math.min(index,4)];
+        };
+        if(labels.length)labels.slice(0,5).forEach((item,i)=>tag(visual,item.value,leftFor(item.anchor,i)));
+        else direct.slice(0,5).forEach((value,i)=>tag(visual,value,[15.5,35.3,51.5,67,86.5][i]));
+      }else illustrate(visual,q,s);
+    }
     const extra=elem('section','mtk-feedback-overlay');rest.forEach(x=>extra.appendChild(x));
     frame.append(text,visual,choices);
     if(extra.children.length){
