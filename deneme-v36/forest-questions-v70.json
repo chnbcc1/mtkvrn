@@ -1826,21 +1826,49 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "2^5 enerjinin dörtte biri ayrılıyor. Kalan enerji 2^1 birimlik darbelere bölünüyor. Darbe sayısı hangi ifade?",
-      "correctAnswer": "3×2^2",
-      "solution": "Kullanılabilir enerji 3×2^3; darbe maliyetine bölünür.",
-      "hint": "Önce dörtte üçünü, sonra birim darbe sayısını bul.",
+      "prompt": "Sis türbinine 2¹³ birim sis giriyor. Birinci filtre kendisine ulaşan sisin sekizde birini, ikinci filtre dörtte birini, üçüncü filtre ise on altıda birini geçiriyor. Son filtreden çıkan sisin dörtte biri gözlem tüpüne yönlendiriliyor. Tüpe kaç birim sis ulaşır?",
+      "correctAnswer": "4",
+      "solution": "Gözlem tüpüne ulaşan miktar 2¹³ · 2⁻³ · 2⁻² · 2⁻⁴ · 2⁻² = 2² = 4 birimdir. Her basamakta sis miktarı azalır.",
+      "hint": "Her filtreye gelen miktarın yalnızca bir kısmı geçiyor. Sekizde bir = 2⁻³, dörtte bir = 2⁻², on altıda bir = 2⁻⁴; son yönlendirmeyi de unutma.",
       "inputType": "choice",
       "interaction": {},
       "cognitiveSteps": 3,
       "difficultyNote": "Üç bağlantılı işlem ve muhakeme",
-      "contentVersion": "v69",
+      "contentVersion": "v145-approved-F03",
       "options": [
-        "3×2^2",
-        "2^4",
-        "3×2^3",
-        "2^2"
-      ]
+        "16",
+        "8",
+        "4",
+        "32"
+      ],
+      "fixedChoiceOrder": true,
+      "visual": {
+        "type": "sis-turbini",
+        "values": [
+          "2¹³",
+          "1/8",
+          "1/4",
+          "1/16",
+          "1/4"
+        ],
+        "anchors": [
+          "giris",
+          "filtre1",
+          "filtre2",
+          "filtre3",
+          "gozlem"
+        ],
+        "layout": {
+          "portrait": "stacked",
+          "landscape": "50-50"
+        },
+        "bakedIntoImage": false
+      },
+      "remediation": {
+        "workedExample": "2¹⁰ birim sis önce dörtte bire (2⁻²), sonra sekizde bire (2⁻³) düşerse 2¹⁰ · 2⁻² · 2⁻³ = 2⁵ = 32 birim kalır.",
+        "newQuestion": "2¹⁴ birim sis, sırasıyla sekizde bire, dörtte bire ve on altıda bire düşürülüyor. Son miktarın dörtte biri tüpe ayrılırsa kaç birim ulaşır?",
+        "newAnswer": "8"
+      }
     },
     {
       "id": "F03-zor-02",
