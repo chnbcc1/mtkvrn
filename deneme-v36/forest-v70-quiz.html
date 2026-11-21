@@ -227,13 +227,6 @@ function teachingHint(q,defaultHint){
  if(q?.id==="F01-O-01")return "Sol ve sağ sarmaşığı ayrı incele. Birinci gün başlangıç sayıları vardır; ikinci günde bir kez, üçüncü günde iki kez kendi büyüme katsayısıyla çarpılır.";
  return defaultHint;
 }
-function teachingExample(q){
- if(q?.id==="F01-O-01")return {
-  prompt:"İki kolda ilk gün 2'şer tomurcuk olsun. Sol kol günde 2, sağ kol günde 3 katına çıksın. Üçüncü gün toplam kaç tomurcuk olur?",
-  solution:"1. gün: solda 2, sağda 2. 2. gün: solda 4, sağda 6. 3. gün: solda 8, sağda 18. Toplam: 8 + 18 = 26."
- };
- return example(q);
-}
 function example(q){
  if(q.workedExample&&q.workedExample.solution)return {prompt:q.workedExample.question||"Benzer örnek",solution:q.workedExample.solution,sourceVerified:true};
  const others=bank.questions.filter(o=>o.obstacleId===q.obstacleId&&o.difficulty===q.difficulty&&o.id!==q.id);
@@ -314,7 +307,7 @@ function show(){window.MTKApprovedQuizV145?.reset();
  }else if(run.wrong>0&&run.helpView!==false){
    app.appendChild(feedbackBox("wrong","Yanlış seçim • "+run.wrong+"/3"+(run.wrong===1?" — İpucu: "+teachingHint(q,s.hint):" — Çözümlü örneği incele ve ardından soruyu yeniden dene.")));
    if(run.wrong===2){
-     const ref=teachingExample(q);
+     const ref=example(q);
      if(ref){const box=node("div","solution");append(box,node("strong",null,"Benzer çözümlü örnek"),mathText("p",null,ref.prompt),mathText("p",null,"Çözüm: "+(ref.sourceVerified?ref.solution:(ref.solution||workedSteps(ref)))));app.appendChild(box)}
    }
    app.appendChild(rowButton("Soruyu göster",()=>{run.helpView=false;save();show()},true));
