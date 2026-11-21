@@ -103,7 +103,7 @@ assert(forest.includes('#quizOverlay[data-preparing="1"] .quizWrap{opacity:0!imp
 assert(forest.includes('quizRevealTimer=setTimeout(revealQuizIfMounted,450)'),"Cold magnifier must have a short reveal safety net");
 assert(forest.includes('function revealQuizIfMounted()'),"Magnifier reveal fallback must exist");
 assert(forest.includes('clearTimeout(quizRevealTimer)'),"Closing or finishing a question must cancel recovery timer");
-assert(forest.includes('forest-v70-quiz.html?v=169'),"Forest loads repaired embedded question route");
+assert(forest.includes('forest-v70-quiz.html?v=170'),"Forest loads repaired embedded question route");
 assert(forest.includes('if(!suppressForestExitSave)save(true)'),"Forest reset must disable visibility autosave");
 assert(forest.includes('if(suppressForestExitSave)return;'),"Forest reset must disable stale outgoing saves");
 assert(forest.includes('d.event==="ready"||d.event==="load-error"'),"Parent must reveal only after its child signals readiness or error");
