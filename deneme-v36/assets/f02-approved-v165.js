@@ -234,7 +234,7 @@
   // Practice question return action must reserve its own row instead of covering text.
   const questionArea=frame.querySelector(".mtk-question-region");
   const inlineControls=questionArea?.querySelector(".mtk-feedback-overlay");
-  if(inlineControls && /Ana göreve dön|İpucunu göster|Çözümü göster/.test(inlineControls.textContent||"")){
+  if(inlineControls && !inlineControls.querySelector(".feedback.ok") && /Ana göreve dön|İpucunu göster|Çözümü göster/.test(inlineControls.textContent||"")){
     // In portrait, navigation is a dedicated toolbar, not a child that steals
     // the question text's scroll height. Preserve actual button callbacks.
     frame.classList.add("mtk-f02-toolbar-mode");
