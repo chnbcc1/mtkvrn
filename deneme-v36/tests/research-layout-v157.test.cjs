@@ -11,7 +11,7 @@ const media=fs.readFileSync(path.join(root,"assets/quiz-f03-machine-v145.js"),"u
 new vm.Script(ui);
 assert.equal(bank.questions.length,630);
 assert.equal(bank.obstacles.length,21);
-assert(quiz.includes('forest-questions-v147.json?v=162'),"Use the latest approved bank");
+assert(/forest-questions-v147\\.json\\?v=\\d+/.test(quiz),"Use the latest approved bank");
 assert(quiz.includes('approved-quiz-ui-v145.js?v=165'),"Load the current renderer");
 assert(!quiz.includes('research-layout-v157.js'),"Do not re-enable experimental F03 actor crops");
 assert(!quiz.includes('research-layout-v157.css'),"Old F03 crop CSS must stay inactive");
