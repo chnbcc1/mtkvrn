@@ -118,7 +118,7 @@ const OLD_SAVE_KEY="mathverse-v40-investigation";
 let bank=null,run=null,history={used:{},last:{},seenPrompts:{}};
 const app=document.querySelector("#app"),step=document.querySelector("#step"),bar=document.querySelector("#bar"),fill=document.querySelector("#fill");
 const qs=id=>bank.questions.find(q=>q.id===id);
-function hydrate(q){if(q&&["v66","v69","v70","v145-approved-F03","v147-approved-packs"].includes(q.contentVersion))return q;return window.FOREST_LEVELS_V65(q)}
+function hydrate(q){if(q?.contentVersion==="v147-approved-packs")return q;throw Error("Onaylı 630 soru dışında soru açılamaz.")}
 function node(tag,cl,text){const e=document.createElement(tag);if(cl)e.className=cl;if(text!==undefined)e.textContent=text;return e}
 function append(p,...items){items.forEach(x=>p.appendChild(x));return p}
 function btn(text,handler,secondary=false){let b=node("button","btn"+(secondary?" secondary":""),text);b.type="button";b.addEventListener("click",handler);return b}
