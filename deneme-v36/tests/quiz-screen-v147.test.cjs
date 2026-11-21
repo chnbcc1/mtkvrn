@@ -78,4 +78,18 @@ const f01art=fs.readFileSync(path.join(root,"assets/f01-approved-v159.js"),"utf8
 assert(f01art.includes("top:54.4%!important")&&f01art.includes("height:42.0%!important"),"F01 help must cover both question text and all four answers");
 assert(ui.includes("mtk-help-foot")&&ui.includes("mtk-help-body"),"Navigation controls must stay visible when the hint scrolls");
 assert(ui.includes("mtk-inline-hint-trigger")&&ui.includes("text.appendChild(extra)"),"Closed hint control must sit inside the question panel, not over answer A");
+/* F02 v172: the picture gets half the portrait frame, not 60%+.
+   Hint and practice buttons must not consume the question-scroll viewport. */
+const f02=fs.readFileSync(path.join(root,"assets/f02-approved-v165.js"),"utf8");
+new vm.Script(f02);
+const f02Css=[...f02.matchAll(/style\\.textContent(?:\\+)?="((?:\\\\.|[^"\\\\])*)";/g)]
+ .map(m=>JSON.parse('"'+m[1]+'"')).join("\n");
+assert(f02Css.includes("F02 v172: portrait 50/50 split"),"F02 half-screen split missing");
+assert(/\\.mtk-visual-region\\s*\\{[^}]*height:50%!important/s.test(f02Css),"F02 picture must occupy exactly half the portrait height");
+assert(/\\.mtk-f02-toolbar-mode>\\.mtk-question-region\\s*\\{[^}]*height:21\\.6%!important/s.test(f02Css),"F02 practice text needs its own scroll area");
+assert(/\\.mtk-f02-practice-controls\\s*\\{[^}]*top:73\\.1%!important/s.test(f02Css),"F02 buttons must occupy an independent row");
+assert(/\\.choiceGrid\\s*\\{[^}]*top:81\\.8%!important/s.test(f02Css),"F02 choices must remain below the independent toolbar");
+assert(f02.includes("frame.appendChild(inlineControls)"),"Hint/return buttons cannot remain inside the question text box");
+assert(f02.includes("İpucunu göster")&&f02.includes("Ana göreve dön"),"Both navigation controls must be recognized");
+assert(html.includes("f02-approved-v165.js?v=172"),"F02 v172 must be loaded by the quiz");
 console.log("PASS v147: exactly 630 user-approved questions, source hints/answers, approved layouts, F03 and F21 matching.");
