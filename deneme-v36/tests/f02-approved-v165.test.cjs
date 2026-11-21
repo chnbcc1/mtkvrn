@@ -8,7 +8,7 @@ const source=fs.readFileSync(path.join(root,"assets/f02-approved-v165.js"),"utf8
 const ui=fs.readFileSync(path.join(root,"assets/approved-quiz-ui-v145.js"),"utf8");
 const quiz=fs.readFileSync(path.join(root,"forest-v70-quiz.html"),"utf8");
 const bank=JSON.parse(fs.readFileSync(path.join(root,"forest-questions-v147.json"),"utf8"));
-const image=fs.readFileSync(path.join(root,"assets/f02-approved-v165.avif"));
+const image=fs.readFileSync(path.join(root,"assets/f02-energy-stairs-v174.avif"));
 assert(image.length>25_000&&image.length<180_000,"Approved F02 art missing or corrupted");
 assert(image.toString("ascii",4,12).includes("ftypavif"),"F02 art is not the approved AVIF image");
 assert.equal(bank.questions.length,630,"Never replace or alter approved question pool");
@@ -56,7 +56,7 @@ for(const q of records.filter(q=>q.visual.labels.some(e=>e.anchor==="basamak 4")
 }
 assert(ui.includes('window.MTKF02ApprovedV165?.render(visual,q)'),"F02 renderer must be mounted before legacy art");
 assert(ui.includes("window.MTKF02ApprovedV165?.enhance(frame,q)"),"F02 must apply full-frame responsive layout");
-assert(quiz.includes('f02-approved-v165.js?v=172'),"Quiz must load the portrait 50/50 F02 renderer without stale iPhone cache");
+assert(quiz.includes('f02-approved-v165.js?v=174'),"Quiz must load the portrait 50/50 F02 renderer without stale iPhone cache");
 assert(source.includes('inlineControls?.querySelector(".feedback.ok")'),"F02 correct state must be detected without changing global quiz controls");
 assert(source.includes('frame.appendChild(inlineControls)'),"F02 success feedback must leave the clipping question-text container");
 assert(source.includes('mtk-f02-correct-body')&&source.includes('mtk-f02-correct-foot'),"The success card must separate scrollable content from navigation");
@@ -102,11 +102,11 @@ assert(source.includes('mtk-f02-practice-controls')&&source.includes('mtk-f02-pr
 assert(source.includes('flex:1 1 auto!important')&&source.includes('flex:0 0 auto!important'),"Practice question must scroll independently of fixed return button");
 assert(source.includes('padding:5px 8px 3px 8px!important')&&source.includes('text-indent:0!important'),"Each source question needs inset text to preserve all initial letters");
 assert(source.includes('document.head.appendChild(ownCss)'),"F02 styles must take precedence over generic nth-child button positions");
-assert(source.includes('scene.style.width="100%";scene.style.height="100%"'),"F02 scene must fit the viewport instead of cropping Çiko");
+assert(source.includes('const scale=Math.min(w/sourceWidth,h/sourceHeight)')&&source.includes('scene.style.setProperty("width",imageWidth+"px","important")'),"F02 scene must retain its full intrinsic proportions without cropping Çiko");
 assert(!source.includes('Math.max(w,h*ratio)'),"Never draw an oversized F02 scene then crop it");
 assert(source.includes('grid-template-columns:repeat(2,minmax(0,1fr))!important'),"F02 choices must use two contained columns");
 assert(source.includes('position:static!important')&&source.includes('inset:auto!important'),"F02 choices must reset absolute per-answer positions");
-assert(source.includes('object-fit:fill!important'),"F02 art and dynamic labels must share exactly one fully visible scaling box");
+assert(source.includes('object-fit:contain!important'),"F02 art and dynamic labels must share exactly one fully visible aspect-ratio-preserving box");
 assert(source.includes('left:52%!important;top:63%!important'),"F02 landscape options must be inside the right panel");
 assert(quiz.includes("window.MTKF02ApprovedV165?.guide(q)"),"Hint system must use approved F02 teaching steps");
 assert(quiz.includes('!["F01","F02"].includes(q.obstacleId)'),"Second wrong may not display unrelated practice");
@@ -118,4 +118,11 @@ assert(source.includes("height:50%!important")&&source.includes("top:51.3%!impor
 assert(source.includes("mtk-f02-toolbar-mode")&&source.includes("frame.appendChild(inlineControls)"),"Hint and return controls must be outside the question region");
 assert(source.includes("top:73.1%!important")&&source.includes("top:81.8%!important"),"Toolbar must be below text and above answer choices");
 assert(source.includes("F02 v172 landscape: keep navigation"),"Landscape half-screen navigation must remain usable");
+
+assert(source.includes("F02 v174: true 50/50 split")||source.includes("v174 F02: true 50/50 split"),"F02 latest 50/50 orientation geometry missing");
+assert(source.includes('top:{x:49.9,y:17.4')&&source.includes('one:{x:48.2,y:68.1')&&source.includes('four:{x:78.5,y:32.7'),"F02 dynamic plaques must use the new artwork's calibrated positions");
+assert(source.includes('const IMAGE="./assets/f02-energy-stairs-v174.avif"'),"F02 must use only the new five-blank-plaques image");
+assert(source.includes('scene.style.setProperty("top",(h-imageHeight)/2+"px","important")'),"The full artwork must be centered rather than cropped");
+assert(source.includes('background-image:url(\\"./assets/f02-energy-stairs-v174.avif\\")')||source.includes("background-image:url("),"Empty canvas strips must use the same artwork as their background");
+
 console.log("PASS F02 v165: 30 approved questions, five reusable plaques, pedagogical steps, responsive art, 630-question bank preserved.");
