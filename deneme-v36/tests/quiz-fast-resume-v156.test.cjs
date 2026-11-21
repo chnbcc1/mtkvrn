@@ -44,7 +44,7 @@ const context={
 const api=vm.runInNewContext(source+";({warmUpcomingQuiz,prepareQuiz,openQuiz,closeQuiz,getPrepared:()=>quizPrepared})",context);
 api.warmUpcomingQuiz();
 assert.equal(writes.length,1,"The upcoming obstacle should load before the magnifier click");
-assert(writes[0].includes("obstacle=F01")&&writes[0].includes("v=165"));
+assert(writes[0].includes("obstacle=F01")&&writes[0].includes("v=166"));
 assert(!writes[0].includes("fresh="),"No fresh reset is allowed for an unfinished question");
 api.getPrepared().ready=true;
 api.openQuiz("F01");
