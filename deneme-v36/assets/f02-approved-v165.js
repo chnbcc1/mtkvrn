@@ -68,6 +68,133 @@
   // For two-step question types, show the second step near the first; no fake digits.
   return out;
  }
+
+ // Teacher-grade progressive hints: method first, concrete intermediate computation second.
+ function guide(q){
+  if(q?.obstacleId!=="F02")return null;
+  const entries=q.visual?.labels||[];
+  const map=new Map(entries.map(e=>[normalize(e.anchor),String(e.value)]));
+  const get=k=>map.get(k);
+  const power=value=>{
+    const m=String(value??"").match(/^2([⁰¹²³⁴⁵⁶⁷⁸⁹]+)$/);
+    if(!m)return NaN;
+    const exponent=Number([...m[1]].map(c=>"⁰¹²³⁴⁵⁶⁷⁸⁹".indexOf(c)).join(""));
+    return 2**exponent;
+  };
+  const value=k=>power(get(k));
+  const hint=(first,second)=>({first,second,solution:String(q.solution||"")});
+  const n0=entries.length;
+  if(get("basamak sayısı")&&get("her basamak")){
+    const count=Number(get("basamak sayısı")),single=value("her basamak");
+    return hint([
+      "Her basamağın gücü "+get("her basamak")+" olarak verilmiş. Önce bu üslü ifadenin değerini bul.",
+      "Bütün basamakların gücü eşit olduğundan, bir basamağın gücü ile "+count+" basamak sayısını çarp."
+    ],[
+      get("her basamak")+" = "+single+". Bir basamak "+single+" birim güç üretir.",
+      "Tüm basamaklar için "+count+" × "+single+" işlemini yap; aynı enerjiyi "+count+" kez toplamakla eşdeğerdir."
+    ]);
+  }
+  if(get("basamak 1")&&get("basamak 4")){
+    const keys=["basamak 1","basamak 2","basamak 3","basamak 4"],ns=keys.map(value);
+    return hint([
+      "Dört taşın üzerindeki üslü ifadeleri ayrı ayrı hesapla.",
+      "Son iki basamağın enerjilerini topla. İlk iki basamağın toplamını da bulup iki toplam arasındaki farkı hesapla."
+    ],[
+      "Basamak enerjileri sırasıyla "+ns.join(", ")+" birimdir.",
+      "İlk ikisi için "+ns[0]+" + "+ns[1]+", son ikisi için "+ns[2]+" + "+ns[3]+" toplanır. Son ikinin toplamından ilk ikininkini çıkar."
+    ]);
+  }
+  if(get("ilk basamak levhası")||get("ilk basamak")&&get("güç sayacı")){
+    const raw=get("üst sayaç")||get("güç sayacı")||"",total=Number(String(raw).match(/[0-9]+/)?.[0]);
+    const middle=/ortadaki/i.test(q.prompt);
+    return hint([
+      "Basamaklarda 2 üzeri a (veya n), onun dört katı ve on altı katı bulunuyor.",
+      "Ortak kuvveti paranteze al: 2 üzeri a × (1 + 4 + 16). Toplam enerji buradan hesaplanır."
+    ],[
+      "Parantezin içi 21 eder. Böylece 21 × ortak kuvvet = "+total+" eşitliğini elde edersin.",
+      middle?"Önce "+total+" sayısını 21'e böl; bulunan ilk basamak değerinin 4 katı ortadaki basamağın enerjisidir.":"Önce "+total+" sayısını 21'e böl; sonuç ilk basamağın enerjisidir."
+    ]);
+  }
+  if(get("alt basamak")&&get("üst basamak")&&get("aktarım")){
+    const a=value("alt basamak"),b=value("üst basamak");
+    return hint([
+      "Alt ve üst basamaktaki enerjileri üslü ifadeleri hesaplayarak bul.",
+      "Yedek lambalara enerjinin dörtte biri aktarılacak. İki enerjiyi topla ve toplamı dört eş parçaya böl."
+    ],[
+      "Alt basamak "+get("alt basamak")+" = "+a+", üst basamak "+get("üst basamak")+" = "+b+" birimdir.",
+      "Önce "+a+" + "+b+" işlemini yap, sonra bulunan toplamı 4'e böl."
+    ]);
+  }
+  if(get("ilk")&&get("orta")&&get("son")&&get("çalışma oranları")){
+    const a=value("ilk"),b=value("orta"),c=value("son");
+    return hint([
+      "Üç basamağın güçleri ayrı ayrı verilmiştir. Önce her üslü ifadenin değerini hesapla.",
+      "İlk basamak tamamen; orta basamağın dörtte biri; son basamağın yarısı çalışıyor. Yalnızca çalışan enerjileri topla."
+    ],[
+      "Üç basamağın enerjileri sırasıyla "+a+", "+b+" ve "+c+" birimdir.",
+      "Çalışan toplam enerji için "+a+" + ("+b+" ÷ 4) + ("+c+" ÷ 2) işlemini yap."
+    ]);
+  }
+  if(get("ilk enerji")&&get("kapı tüketimi")&&get("uyarı")&&get("uyarı kullanımı")){
+    const start=value("ilk enerji"),warning=value("uyarı");
+    return hint([
+      "Depolanmış ilk enerjiyi bul. Kapıyı açmak için bunun dörtte biri tüketiliyor.",
+      "Uyarı lambası içinse ayrıca "+get("uyarı")+" enerjisinin yarısı harcanıyor. İki harcamayı başlangıç enerjisinden çıkar."
+    ],[
+      get("ilk enerji")+" = "+start+" ve "+get("uyarı")+" = "+warning+" birim enerji.",
+      "Kapının tüketimi "+start+" ÷ 4; lambanın tüketimi "+warning+" ÷ 2'dir. Önce bu iki tüketimi bul, sonra "+start+" birimden çıkar."
+    ]);
+  }
+  if(get("sol")&&get("sağ")&&get("harcama")){
+    const a=value("sol"),b=value("sağ"),c=value("harcama");
+    return hint([
+      "İlk olarak sol ve sağ basamaklardaki üslü enerji değerlerini hesapla.",
+      "Basamakların toplamı başlangıç enerjisidir. Kapı açılırken harcanan enerjiyi bu toplamdan çıkar."
+    ],[
+      "Sol basamak "+a+", sağ basamak "+b+" birimdir. Birlikte "+a+" + "+b+" enerji verir.",
+      "Kapı için "+get("harcama")+" = "+c+" birim tüketiliyor. Şimdi ("+a+" + "+b+") − "+c+" işlemini yap."
+    ]);
+  }
+  if(get("basamak a")&&get("basamak b")&&get("basamak c")){
+    const ns=["basamak a","basamak b","basamak c"].map(value);
+    return hint([
+      "Üç taşın üzerindeki üslü ifadeleri ayrı ayrı sayıya dönüştür.",
+      "Üç basamak birlikte çalıştığı için elde ettiğin enerji değerlerini topla."
+    ],[
+      "Üç güç değeri sırasıyla "+ns[0]+", "+ns[1]+" ve "+ns[2]+" birimdir.",
+      "Bu üç değeri toplamak için "+ns.join(" + ")+" işlemini tamamla."
+    ]);
+  }
+  if(get("basamak 1")&&get("basamak 2")){
+    const a=value("basamak 1"),b=value("basamak 2");
+    return hint([
+      "İki basamağın üslü ifadelerini ayrı ayrı hesapla; 2 üzeri n, 2'nin n kez çarpımıdır.",
+      "İki basamak birlikte etkinleşiyorsa güçleri toplanır."
+    ],[
+      get("basamak 1")+" = "+a+" ve "+get("basamak 2")+" = "+b+".",
+      "Toplam gücü bulmak için "+a+" + "+b+" işlemini yap."
+    ]);
+  }
+  if(get("giriş")&&get("hasarlı taş")){
+    const a=value("giriş"),b=value("hasarlı taş");
+    return hint([
+      "Giriş basamağındaki depolanmış enerji ile hasarlı taş için harcanan enerjiyi ayrı ayrı bul.",
+      "Harcanan güç başlangıçtaki güçten çıkarılır, toplanmaz."
+    ],[
+      "Depolanan enerji "+get("giriş")+" = "+a+", tüketilen enerji "+get("hasarlı taş")+" = "+b+".",
+      "Geriye kalanı bulmak için "+a+" − "+b+" işlemini yap."
+    ]);
+  }
+  if(n0===0)return null;
+  return hint([
+    "Taş levhalarındaki üslü ifadelerin değerlerini ayrı ayrı bul.",
+    "Soruda toplam mı, fark mı yoksa oran mı istendiğini belirleyip buna göre işlem seç."
+  ],[
+    String(q.hint||"Sorudaki verileri hesapla."),
+    "Bulduğun ara sonuçları sorunun istediği işlemle birleştir."
+  ]);
+ }
+
  function render(visual,q){
   const labels=plan(q);
   if(!labels)return false;
@@ -113,5 +240,5 @@
  style.id="mtk-f02-approved-css-v165";
  style.textContent="\n    body.mtk-approved-active .mtk-frame.mtk-f02-v165 {\n      position:relative!important; isolation:isolate!important; overflow:hidden!important;\n      width:min(100vw,calc(100dvh * 2 / 3))!important;\n      height:auto!important; aspect-ratio:2 / 3!important;\n      max-width:none!important; max-height:100dvh!important; padding:0!important;\n      margin:0 auto!important; border:0!important; border-radius:0!important;\n      box-shadow:none!important; background:#073b33!important; container-type:inline-size;\n    }\n    .mtk-frame.mtk-f02-v165 .f01-approved-portrait {\n      position:absolute;inset:0;width:100%;height:100%;object-fit:fill;z-index:0;\n      pointer-events:none;user-select:none;\n    }\n    .mtk-frame.mtk-f02-v165 .f01-approved-landscape {display:none}\n    .mtk-frame.mtk-f02-v165 .f01-landscape-panel{display:none}\n    .mtk-frame.mtk-f02-v165 .mtk-visual-region {\n      position:absolute!important;left:0!important;top:0!important;width:100%!important;\n      height:52.1%!important;overflow:visible!important;z-index:2!important;\n      transform:none!important;pointer-events:none!important;background:none!important;\n    }\n    .mtk-frame.mtk-f02-v165 .f01-label {\n      position:absolute;z-index:5;transform:translate(-50%,-50%);display:flex;\n      align-items:center;justify-content:center;text-align:center;\n      padding:0 2px;box-sizing:border-box;\n      font:900 clamp(11px,3.25cqw,27px)/1.08 system-ui,-apple-system,sans-serif!important;\n      color:#f9f4d4!important;text-shadow:0 2px 3px #062f2c,0 0 2px #072d23;\n      white-space:normal;overflow-wrap:anywhere;pointer-events:none;\n    }\n    .mtk-frame.mtk-f02-v165 .f01-label.long{font-size:clamp(10px,2.4cqw,21px)!important}\n    .mtk-frame.mtk-f02-v165 .mtk-question-region{\n      position:absolute!important;left:5.2%!important;top:55.7%!important;width:89.6%!important;\n      height:20.6%!important;min-height:0!important;z-index:3!important;\n      display:flex!important;flex-direction:column!important;gap:3px!important;\n      padding:0!important;margin:0!important;overflow-y:auto!important;\n      background:none!important;border:0!important;box-shadow:none!important;\n      overscroll-behavior:contain;\n    }\n    .mtk-frame.mtk-f02-v165 .mtk-question-region .prompt{\n      color:#342a1a!important; background:transparent!important;border:0!important;\n      padding:0!important;margin:0!important;font:750 clamp(12px,3.28cqw,21px)/1.28 system-ui,-apple-system,sans-serif!important;\n      text-align:left!important;white-space:normal!important;overflow-wrap:break-word!important;\n    }\n    .mtk-frame.mtk-f02-v165 .choiceGrid{\n      position:absolute!important;left:4.3%!important;top:77.8%!important;width:91.4%!important;\n      height:17.3%!important;max-height:none!important;min-height:0!important;z-index:6!important;\n      display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;\n      grid-template-rows:repeat(2,minmax(0,1fr))!important;\n      gap:8% 4%!important;padding:0!important;margin:0!important;\n      background:transparent!important;border:0!important;box-shadow:none!important;\n    }\n    .mtk-frame.mtk-f02-v165 .choiceGrid .choice{\n      appearance:none!important;display:flex!important;align-items:center!important;justify-content:center!important;\n      position:relative!important;left:auto!important;top:auto!important;right:auto!important;bottom:auto!important;\n      width:100%!important;height:100%!important;min-height:0!important;\n      background:transparent!important;border:0!important;border-radius:12px!important;\n      box-shadow:none!important;padding:2px 4px!important;margin:0!important;\n      color:#302719!important; font:800 clamp(12px,3.4cqw,25px)/1.1 system-ui,-apple-system,sans-serif!important;\n      gap:8px!important;cursor:pointer;touch-action:manipulation;\n    }\n    .mtk-frame.mtk-f02-v165 .choiceGrid .choice .choiceMark{font:900 1em/1 system-ui!important;color:inherit!important}\n    .mtk-frame.mtk-f02-v165 .choiceGrid .choice:focus-visible{\n      outline:3px solid #078d8b!important;outline-offset:-4px!important;\n    }\n    .mtk-frame.mtk-f02-v165 .choiceGrid .choice.wrongChoice{\n      background:#ea717144!important;box-shadow:inset 0 0 0 3px #b44d3e!important;\n    }\n    .mtk-frame.mtk-f02-v165 .choiceGrid .choice[aria-pressed=\"true\"]{\n      background:#80d2ad50!important;box-shadow:inset 0 0 0 3px #228675!important;\n    }\n    .mtk-frame.mtk-f02-v165 .mtk-feedback-overlay{\n      position:relative!important;inset:auto!important;width:100%!important;\n      height:auto!important;max-height:none!important;overflow:visible!important;\n      background:#fff0cfee!important;color:#40301c!important;z-index:7!important;\n      margin:0!important;padding:5px!important;box-shadow:none!important;border-radius:10px!important;\n    }\n    .mtk-frame.mtk-f02-v165 .mtk-feedback-overlay[hidden]{display:none!important}\n    .mtk-frame.mtk-f02-v165 .mtk-feedback-toggle{\n      position:relative!important;inset:auto!important;min-height:25px!important;\n      font:700 12px system-ui!important;align-self:flex-start!important;pointer-events:auto!important;\n    }\n    @media (orientation:landscape){\n      body.mtk-approved-active .mtk-frame.mtk-f02-v165 {\n        width:100vw!important;height:100dvh!important;aspect-ratio:auto!important;\n        max-height:100dvh!important;max-width:100vw!important;margin:0!important;\n        border-radius:0!important;\n        background:linear-gradient(120deg,#0e3831,#0e5143)!important;\n      }\n      .mtk-frame.mtk-f02-v165 .f01-approved-portrait{display:none}\n      .mtk-frame.mtk-f02-v165 .f01-approved-landscape{\n        display:block;position:absolute;left:0;top:50%;transform:translateY(-50%);\n        width:50%;height:auto;aspect-ratio:1024 / 800;object-fit:contain;z-index:0;\n        pointer-events:none;user-select:none;\n      }\n      .mtk-frame.mtk-f02-v165 .f01-landscape-panel{\n        display:block;position:absolute;left:50%;top:0;width:50%;height:100%;box-sizing:border-box;\n        background:linear-gradient(130deg,#fff5da,#fce5ac)!important;\n        border:5px solid #c99b50;border-radius:14px;box-shadow:inset 0 0 0 2px #fef1cc;\n        z-index:1;pointer-events:none;\n      }\n      .mtk-frame.mtk-f02-v165 .mtk-visual-region{\n        left:0!important;top:50%!important;transform:translateY(-50%)!important;\n        width:50%!important;height:auto!important;aspect-ratio:1024 / 800!important;\n      }\n      .mtk-frame.mtk-f02-v165 .f01-label{\n        font-size:clamp(11px,1.55vw,21px)!important;\n      }\n      .mtk-frame.mtk-f02-v165 .f01-label.long{font-size:clamp(9px,1.25vw,17px)!important}\n      .mtk-frame.mtk-f02-v165 .mtk-question-region{\n        left:52%!important;top:5%!important;width:46%!important;height:55%!important;\n        padding:2px!important;\n      }\n      .mtk-frame.mtk-f02-v165 .mtk-question-region .prompt{\n        font-size:clamp(13px,1.65vw,22px)!important;line-height:1.22!important;\n      }\n      .mtk-frame.mtk-f02-v165 .choiceGrid{\n        left:52%!important;top:63%!important;width:46%!important;height:32%!important;\n        gap:8% 4%!important;\n      }\n      .mtk-frame.mtk-f02-v165 .choiceGrid .choice{\n        background:#fffaf0b6!important;border:2px solid #bd9254!important;\n        box-shadow:0 1px 2px #5c431d45!important;\n        font-size:clamp(12px,1.55vw,21px)!important;\n      }\n    }\n\n    /* F01 bottom parchment extends from 54% to 97%: cover question text AND four choices. */\n    .mtk-frame.mtk-f02-v165.mtk-help-mode .choiceGrid{display:grid!important;pointer-events:none!important}\n    .mtk-frame.mtk-f02-v165.mtk-help-mode .mtk-answer-help-card{\n      box-sizing:border-box!important;position:absolute!important;inset:auto!important;\n      left:4.3%!important;top:54.4%!important;width:91.4%!important;height:42.0%!important;\n      min-height:0!important;max-height:none!important;overflow:hidden!important;\n      display:flex!important;flex-direction:column!important;\n      padding:12px 13px!important;margin:0!important;\n      background:#fff2d4!important;border:2px solid #af8655!important;\n      border-radius:14px!important;z-index:35!important;box-shadow:0 4px 14px #54331544!important;\n    }\n    .mtk-frame.mtk-f02-v165 .mtk-answer-help-card .mtk-help-body{\n      min-height:0!important;flex:1 1 auto!important;overflow-y:auto!important;\n      font-size:clamp(13px,3.0cqw,21px)!important;line-height:1.45!important;\n    }\n    .mtk-frame.mtk-f02-v165 .mtk-answer-help-card .mtk-help-foot{\n      flex:0 0 auto!important;padding-top:8px!important;border-top:1px solid #c4a371!important;\n    }\n    .mtk-frame.mtk-f02-v165.mtk-answer-hint-closed .mtk-question-region{\n      overflow:hidden!important;display:flex!important;flex-direction:column!important;gap:6px!important;\n    }\n    .mtk-frame.mtk-f02-v165.mtk-answer-hint-closed .mtk-question-region>.prompt{\n      flex:1 1 auto!important;min-height:0!important;max-height:none!important;overflow-y:auto!important;\n    }\n    .mtk-frame.mtk-f02-v165.mtk-answer-hint-closed .mtk-inline-hint-trigger{\n      position:relative!important;inset:auto!important;width:100%!important;height:auto!important;\n      flex:0 0 auto!important;overflow:visible!important;max-height:none!important;\n      background:transparent!important;border:0!important;box-shadow:none!important;\n      padding:0!important;margin:0!important;z-index:5!important;\n    }\n    .mtk-frame.mtk-f02-v165.mtk-answer-hint-closed .mtk-inline-hint-trigger .btnRow{\n      justify-content:flex-start!important;margin:0!important;padding:0!important;\n    }\n    .mtk-frame.mtk-f02-v165.mtk-answer-hint-closed .mtk-inline-hint-trigger .btn{\n      min-height:36px!important;padding:5px 12px!important;\n      font-size:clamp(12px,2.8cqw,18px)!important;\n    }\n    @media (orientation:landscape){\n      .mtk-frame.mtk-f02-v165.mtk-help-mode .mtk-answer-help-card{\n        left:51.5%!important;top:4%!important;width:47%!important;height:92%!important;\n        padding:10px 13px!important;\n      }\n      .mtk-frame.mtk-f02-v165 .mtk-answer-help-card .mtk-help-body{\n        font-size:clamp(12px,1.6vw,19px)!important;\n      }\n    }\n    @media (prefers-reduced-motion:reduce){\n      .mtk-frame.mtk-f02-v165 *{transition:none!important;animation:none!important}\n    }\n  \n\n/* F02 retains the first obstacle's answer spacing, tip navigation and two-screen layouts. */\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165{background:#f8e5b7!important}\n.mtk-frame.mtk-f02-v165::before{content:\"\";position:absolute;left:0;top:60.5%;width:100%;height:39.5%;box-sizing:border-box;pointer-events:none;z-index:1;background:linear-gradient(130deg,#fff7e4,#f7dbab);border:6px solid #d7a958;border-radius:14px;box-shadow:inset 0 0 0 2px #fce8bf}\n.mtk-frame.mtk-f02-v165 .mtk-visual-region{left:0!important;top:0!important;width:100%!important;height:60.5%!important;overflow:hidden!important;box-sizing:border-box!important;border:3px solid #d8a550!important;border-radius:14px!important;transform:none!important;z-index:2!important}\n.mtk-frame.mtk-f02-v165 .mtk-question-region{left:5.2%!important;top:62.1%!important;width:89.6%!important;height:17.2%!important;z-index:4!important}\n.mtk-frame.mtk-f02-v165 .choiceGrid{top:81.1%!important;height:15.3%!important}\n.mtk-frame.mtk-f02-v165 .choiceGrid .choice{border:2px solid #b8894c!important;background:#fff9e9b0!important;box-shadow:0 2px 3px #6b451f55!important}\n.mtk-frame.mtk-f02-v165 .mtk-question-region .prompt{font-size:clamp(12px,3.15cqw,21px)!important}\n.mtk-frame.mtk-f02-v165.mtk-help-mode .mtk-answer-help-card{top:61.4%!important;height:35.8%!important;left:4.3%!important;width:91.4%!important}\n.mtk-frame.mtk-f02-v165.mtk-answer-hint-closed .mtk-question-region>.prompt{flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important}\n.mtk-frame .mtk-visual-region .mtk-f02-art{position:absolute;width:100%;height:100%;overflow:hidden;pointer-events:none}\n.mtk-frame .mtk-f02-art .mtk-f02-image{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;user-select:none;pointer-events:none}\n.mtk-frame .mtk-f02-art .mtk-f02-label{position:absolute;z-index:7;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;color:#fff5d5;text-shadow:0 2px 4px #062921,0 1px 1px #05180d;font:950 clamp(13px,3.3cqw,27px)/1.15 system-ui,sans-serif;text-align:center;overflow-wrap:anywhere;white-space:normal;box-sizing:border-box;padding:2px 4px;pointer-events:none}\n.mtk-frame .mtk-f02-art .mtk-f02-label.long{font-size:clamp(11px,2.55cqw,20px)}\n@media(orientation:landscape){\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165{background:linear-gradient(105deg,#0c3b31,#0f4b3d)!important}\n.mtk-frame.mtk-f02-v165::before{left:50%!important;top:0!important;width:50%!important;height:100%!important;border:5px solid #c99b50!important;border-radius:14px!important}\n.mtk-frame.mtk-f02-v165 .mtk-visual-region{left:0!important;top:0!important;width:50%!important;height:100%!important;aspect-ratio:auto!important;transform:none!important;border-radius:0!important}\n.mtk-frame.mtk-f02-v165 .mtk-question-region{left:52%!important;top:5%!important;width:46%!important;height:55%!important}\n.mtk-frame.mtk-f02-v165 .choiceGrid{left:52%!important;top:63%!important;width:46%!important;height:32%!important}\n.mtk-frame.mtk-f02-v165.mtk-help-mode .mtk-answer-help-card{left:51.5%!important;top:4%!important;width:47%!important;height:92%!important}\n.mtk-frame .mtk-f02-art .mtk-f02-label{font-size:clamp(12px,1.55vw,24px)}\n.mtk-frame .mtk-f02-art .mtk-f02-label.long{font-size:clamp(10px,1.3vw,18px)}\n}";
  if(!document.getElementById(style.id))document.head.appendChild(style);
- window.MTKF02ApprovedV165=Object.freeze({render,enhance,plan,positions:POS});
+ window.MTKF02ApprovedV165=Object.freeze({render,enhance,plan,guide,positions:POS});
 })();
