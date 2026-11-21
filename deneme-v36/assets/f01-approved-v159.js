@@ -152,12 +152,12 @@
     const a=String(label||'').toLocaleLowerCase('tr').replaceAll('_',' ').trim();
     let wanted=null;
     if(/(^gün$|kaçıncı gün|toplam|ortak|sayaç|dökülen|kol c)/.test(a))wanted='top';
-    else if(/(sol).*(büyüme|korunma|kopan|geçit|katlanma)/.test(a))wanted='leftUpper';
-    else if(/(sağ).*(büyüme|korunma|kopan|geçit|katlanma)/.test(a))wanted='rightUpper';
-    else if(/(sol|kol a|ilk dal|ilk|sabah|bugün)/.test(a))wanted='leftLower';
-    else if(/(sağ|kol b)/.test(a))wanted='rightLower';
-    else if(/(büyüme|gelişim|akşam|katlanma)/.test(a))wanted='leftUpper';
-    const order=['top','leftLower','rightLower','leftUpper','rightUpper'];
+    else if(/sol/.test(a) && /(büyüme|korunma|kopan|geçit|katlanma)/.test(a))wanted='leftUpper';
+    else if(/sağ/.test(a) && /(büyüme|korunma|kopan|geçit|katlanma)/.test(a))wanted='rightUpper';
+    else if(/sağ|kol b/.test(a))wanted='rightLower';
+    else if(/sol|kol a|ilk dal|ilk|sabah|bugün/.test(a))wanted='leftLower';
+    else if(/büyüme|gelişim|akşam|katlanma/.test(a))wanted='leftUpper';
+    const order=['leftLower','rightLower','leftUpper','rightUpper','top'];
     const choice=(wanted&&!used.has(wanted))?wanted:order.find(x=>!used.has(x));
     if(choice)used.add(choice);
     return PLAQUES.find(x=>x.id===choice)||null;
