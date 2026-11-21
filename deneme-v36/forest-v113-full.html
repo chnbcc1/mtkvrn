@@ -515,7 +515,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 #modal.mtk-restart-confirm #modalActions{flex:0 0 auto!important}
 </style>
 <link rel="stylesheet" href="./assets/game-ui-v127.css?v=133"><link rel="stylesheet" href="./assets/unified-ui-v133.css?v=141"><link rel="stylesheet" href="./assets/settings-standard-v144.css?v=144"><style>html,body{height:100dvh!important}#scene{width:100dvw!important;height:100dvh!important}</style>
-<script src="./settings-v116.js?v=116"></script><script src="./assets/world-map-v133.js?v=140"></script><script src="./assets/map-world-registry-v133.js?v=133"></script><script src="./assets/game-ui-v133.js?v=152"></script>
+<script src="./settings-v116.js?v=116"></script><script src="./assets/world-map-v133.js?v=140"></script><script src="./assets/map-world-registry-v133.js?v=133"></script><script src="./assets/game-ui-v133.js?v=162"></script>
 <style id="mtk-approved-quiz-shell-v145">
 /* v145: expand the quiz iframe to the available mobile display in both orientations. */
 #quizOverlay{padding:0!important;background:#0a2824!important;backdrop-filter:none!important}
@@ -693,6 +693,7 @@ function home(){
  });
 }
 function recordForestExit(){
+ if(suppressForestExitSave)return;
  save(true);
  try{
   const state=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}')||{};
@@ -714,7 +715,7 @@ function confirmForestRestart(scope){
  action('Evet, Yeniden Başlat',()=>{
   suppressForestExitSave=true;
   if(!window.MTKGameUI.resetProgress(all?'game':'chapter','forest')){suppressForestExitSave=false;return}
-  location.replace(all?'./?scene=home&autostart=1&v=152':'./forest-v113-full.html?resume=1&v=152');
+  location.replace(all?'./?scene=home&autostart=1&v=162':'./forest-v113-full.html?resume=1&v=162');
  });
 }
 /* v139 forest settings; share the same saved preferences as the title screen. */
@@ -812,7 +813,7 @@ addEventListener('keydown',e=>{
 });
 addEventListener('keyup',e=>{if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')hold(-1,false,'keyLeft');if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')hold(1,false,'keyRight')});
 addEventListener('blur',()=>{requested=0;activePointers.clear();updatePress()});
-document.addEventListener('visibilitychange',()=>{if(document.hidden){requested=0;activePointers.clear();updatePress();save(true)}last=0});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){requested=0;activePointers.clear();updatePress();if(!suppressForestExitSave)save(true)}last=0});
 function available(){if(modalOpen||!started||heroY<GROUND-50)return null;if(!solved&&Math.abs(heroX-1560)<175)return 'bridge';if(Math.abs(heroX-3000)<155)return 'gate';return null}
 function interact(){if(available()==='bridge')puzzle();else if(available()==='gate')reachGate()}
 let down=null;
@@ -1119,6 +1120,7 @@ function persistCampaign(){
  try{localStorage.setItem(CAMPAIGN_KEY,JSON.stringify({version:92,token:RUN_TOKEN,x:Math.round(heroX),difficulty,solvedIds:[...SOLVED],reachedGate,gateInspected,taskWrongCounts:TASK_WRONG_COUNTS,updatedAt:new Date().toISOString()}))}catch(e){}
 }
 save=function(force=false){
+ if(suppressForestExitSave)return;
  if(!force&&Math.abs(saveLastX-heroX)<32&&saveTimer<2)return;
  saveLastX=heroX;saveTimer=0;persistCampaign();
 };
@@ -1150,7 +1152,7 @@ function prepareQuiz(id){
  if(quizPrepared.key===key)return quizPrepared.ready;
  quizPrepared={key,id,ready:false};
  const qs=new URLSearchParams({embedded:"1",obstacle:id,difficulty,session:RUN_TOKEN});
- $("#quizFrame").src="./forest-v70-quiz.html?v=160&"+qs;
+ $("#quizFrame").src="./forest-v70-quiz.html?v=162&"+qs;
  return false;
 }
 function warmUpcomingQuiz(){
