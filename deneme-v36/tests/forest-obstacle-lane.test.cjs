@@ -363,7 +363,7 @@ assert(sharedJS.includes('window.MTKWorldMap.mount(body,'),"Game HUD retains int
 const sharedRestarts=fs.readFileSync(path.join(root,"assets/game-ui-v133.js"),"utf8");
 assert(sharedRestarts.includes("function resetProgress(scope,chapter"),"Chapter and entire game restart independently");
 assert(sharedRestarts.includes('RestartChapter"')&&sharedRestarts.includes('RestartGame"'),"Settings show two restart buttons");
-assert(home.includes("localStorage.removeItem('mathverse-v128-chapter-milestones')"),"In-home reset clears expansion progress");
+assert(home.includes("window.MTKGameUI?.resetProgress('game')")&&sharedRestarts.includes("mathverse-v128-chapter-milestones"),"In-home reset clears expansion progress through shared reset service");
 assert(forest.includes('$("#progressFill")?.parentElement'),"Forest score update still present");
 assert(forest.includes("const horizontalSpeed=heroY<GROUND-.2?422:245"),"Forest movement/physics preserved");
 assert(home.includes("hero.dy=-505"),"House movement/physics preserved");
