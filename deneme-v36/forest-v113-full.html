@@ -1136,7 +1136,25 @@ available=function(){
  if(campaignProgress()===21&&Math.abs(heroX-(GATE_X-75))<220)return "FINISH";
  return null;
 };
+// v156: pre-create the upcoming question while Erdem walks, then reuse its iframe.
+// Closing an unfinished obstacle preserves the same question and answer state.
 let quizRevealTimer=null;
+let quizPrepared={key:"",id:null,ready:false};
+function quizPreparationKey(id){return RUN_TOKEN+"|"+difficulty+"|"+id}
+function prepareQuiz(id){
+ if(!id||SOLVED.has(id))return false;
+ const key=quizPreparationKey(id);
+ if(quizPrepared.key===key)return quizPrepared.ready;
+ quizPrepared={key,id,ready:false};
+ const qs=new URLSearchParams({embedded:"1",obstacle:id,difficulty,session:RUN_TOKEN});
+ $("#quizFrame").src="./forest-v70-quiz.html?v=156&"+qs;
+ return false;
+}
+function warmUpcomingQuiz(){
+ if(!started||!introDone||modalOpen)return;
+ const next=GATES.find(g=>!SOLVED.has(g.id));
+ if(next)prepareQuiz(next.id);
+}
 function revealQuizIfMounted(){
  if($("#quizOverlay").hidden||!quizActiveId)return;
  let ready=false;
@@ -1144,30 +1162,30 @@ function revealQuizIfMounted(){
   const frameDoc=$("#quizFrame").contentDocument;
   ready=!!frameDoc?.body?.classList.contains("mtk-approved-active")&&!!frameDoc.querySelector(".mtk-frame");
  }catch(e){}
- if(ready){$("#quizOverlay").removeAttribute("data-preparing");return}
- // Fail open with a visible, closeable error instead of a permanently invisible screen.
+ // This is only a brief fail-open safety net; the normal path uses a preloaded, ready iframe.
+ if(ready)quizPrepared.ready=true;
  $("#quizOverlay").removeAttribute("data-preparing");
- try{
-  const frameDoc=$("#quizFrame").contentDocument;
-  if(frameDoc?.body)frameDoc.body.insertAdjacentHTML("beforeend",'<p role="alert" style="position:fixed;inset:auto 12px 12px;z-index:999;padding:12px;background:#fff4d8;color:#503522;border-radius:10px">Soru yüklenemedi. Patikaya dönüp tekrar deneyin.</p>');
- }catch(e){}
 }
 function openQuiz(id){
  const gate=GATES.find(g=>g.id===id);if(!gate||SOLVED.has(id))return;
- const qs=new URLSearchParams({embedded:"1",fresh:"1",obstacle:id,difficulty,session:RUN_TOKEN});
+ const wasReady=prepareQuiz(id);
  quizActiveId=id;requested=0;activePointers.clear();updatePress();modalOpen=true;
  $("#quizTitle").textContent=gate.icon+" · "+(gate.index+1)+"/21 · "+gate.label;
- $("#quizOverlay").dataset.preparing="1";
  $("#quizOverlay").hidden=false;
- $("#quizFrame").src="./forest-v70-quiz.html?v=155&"+qs;
  clearTimeout(quizRevealTimer);
- // iOS WebKit may delay iframe image decoding; never leave the question invisible indefinitely.
- quizRevealTimer=setTimeout(revealQuizIfMounted,2200);
+ if(wasReady){
+  $("#quizOverlay").removeAttribute("data-preparing");
+ }else{
+  $("#quizOverlay").dataset.preparing="1";
+  // The question has already begun loading before this click; do not wait 2.2 seconds.
+  quizRevealTimer=setTimeout(revealQuizIfMounted,450);
+ }
 }
 function closeQuiz(){
  if($("#quizOverlay").hidden)return;
  clearTimeout(quizRevealTimer);
- $("#quizOverlay").hidden=true;$("#quizOverlay").removeAttribute("data-preparing");$("#quizFrame").src="about:blank";quizActiveId=null;
+ $("#quizOverlay").hidden=true;$("#quizOverlay").removeAttribute("data-preparing");quizActiveId=null;
+ // Keep the existing iframe mounted. Reopening F01 must show the same saved question.
  modalOpen=false;requested=0;activePointers.clear();updatePress();last=0;save(true);
 }
 $("#quizClose").onclick=closeQuiz;
@@ -1178,17 +1196,23 @@ $("#quizClose").onclick=closeQuiz;
  });
 window.addEventListener("message",e=>{
  if(e.origin!==location.origin||e.source!==$("#quizFrame").contentWindow)return;
- const d=e.data;if(!d||d.source!=="mathverse-v68-quiz"||d.obstacle!==quizActiveId||d.difficulty!==difficulty)return;
+ const d=e.data;if(!d||d.source!=="mathverse-v68-quiz"||d.difficulty!==difficulty)return;
  if(d.event==="ready"||d.event==="load-error"){
-  clearTimeout(quizRevealTimer);
-  $("#quizOverlay").removeAttribute("data-preparing");
+  // A hidden, prewarmed iframe may finish before the magnifier is pressed.
+  if(d.obstacle!==quizPrepared.id)return;
+  quizPrepared.ready=true;
+  if(d.obstacle===quizActiveId&&!$("#quizOverlay").hidden){
+   clearTimeout(quizRevealTimer);
+   $("#quizOverlay").removeAttribute("data-preparing");
+  }
   return;
  }
- if(d.event!=="solved")return;
+ if(d.event!=="solved"||d.obstacle!==quizActiveId)return;
  const gate=GATES.find(g=>g.id===d.obstacle);if(!gate)return;
  const wrongCount=Math.max(0,Math.floor(Number(d.wrongCount)||0));TASK_WRONG_COUNTS[gate.id]=wrongCount;
  SOLVED.add(gate.id);if(gate.id==="F08"){solved=true;bridgeProgress=0;bridgeBuildStart=clock}
  closeQuiz();chikoSuccessConversation(wrongCount);save(true);
+ warmUpcomingQuiz();
 });
 interact=function(){
  const a=available();if(!a)return;
@@ -1200,7 +1224,7 @@ interact=function(){
 story=function(){
  openModal("Orman Patikası · Tam Bölüm","<p>Çiko, ormanın içindeki <b>21 mühürlü engeli</b> keşfetti. Erdem engelleri matematikle açacak, aralarındaki küçük kayaları, kütükleri ve boşlukları zıplayarak aşacak.</p><p>Oyun boyunca zorluk seviyen sabit kalacak. Hangisini seçiyorsun?</p>");
  for(const [d,label] of [["kolay","🌱 Kolay · Tek kural"],["orta","🌿 Orta · Bağlantılı işlem"],["zor","🌳 Zor · Çok adım"]]){
-  action(label,()=>{difficulty=d;introDone=true;started=true;save(true);closeModal()});
+  action(label,()=>{difficulty=d;introDone=true;started=true;save(true);closeModal();warmUpcomingQuiz()});
  }
 };
 reachGate=function(){
@@ -1786,6 +1810,7 @@ if(!approved){
  action("Dedenin Evine Dön",()=>location.assign("./?scene=home"));
 }else if(resumed){
  started=true;introDone=true;save(true);$("#hint").textContent="Kaldığın yerden devam ediyorsun.";
+ warmUpcomingQuiz();
 }else{started=false;story();}
 
 requestAnimationFrame(loop);
