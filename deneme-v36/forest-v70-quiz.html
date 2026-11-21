@@ -323,10 +323,15 @@ function select(answer,s,q,stageCount){
  run.wrong=(run.wrong||0)+1;if(!run.practiceId)run.taskWrong=(run.taskWrong||0)+1;run.wrongChoices=[...(run.wrongChoices||[]),answer];run.revealed=run.wrong>=3;save();show();
 }
 async function init(){
+ // An old direct quiz-test link is not a game entrance. Open the real title menu.
+ // Explicit ?preview=1 is reserved for isolated testing and always starts fresh.
+ const standalone=EMBED&&window.top===window.self;
+ const preview=standalone&&new URLSearchParams(location.search).get("preview")==="1";
+ if(standalone&&!preview){location.replace("./menu-v116.html?v=152");return}
  try{const r=await fetch(BANK_URL,{cache:"no-store"});if(!r.ok)throw Error("630 soruluk kaynak dosyası yüklenemedi");bank=await r.json();
  if(bank.schema!=="forest-question-bank-v147"||bank.questions.length!==630||bank.obstacles.length!==21||bank.questionsPerObstaclePerDifficulty!==10||typeof window.FOREST_LEVELS_V65!=="function")throw Error("Onaylı 630 soruluk havuz doğrulanamadı");
  const old=read(HISTORY_KEY);if(old)history=old;
- const saved=read(RUN_KEY);
+ const saved=preview?null:read(RUN_KEY);
  if(EMBED){
   const idx=bank.playOrder.indexOf(FORCED);
   if(idx<0||!["kolay","orta","zor"].includes(FORCED_DIFFICULTY))throw Error("Geçersiz engel veya zorluk seviyesi");
