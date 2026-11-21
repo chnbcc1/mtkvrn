@@ -524,6 +524,9 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 #quizOverlay .quizBar{position:absolute!important;z-index:30!important;top:max(7px,env(safe-area-inset-top))!important;right:max(9px,env(safe-area-inset-right))!important;left:auto!important;width:auto!important;min-height:0!important;padding:0!important;background:transparent!important;box-shadow:none!important;pointer-events:none!important}
 #quizOverlay .quizBar #quizTitle{display:none!important}
 #quizOverlay .quizClose{pointer-events:auto!important;min-height:36px!important;padding:6px 11px!important;border:1px solid #ffe8b3!important;border-radius:13px!important;background:#0c3431cf!important;color:#fff9e4!important;font-size:12px!important;box-shadow:0 3px 12px #0005!important}
+/* v154: show the forest, not the old bare HTML, until the illustrated quiz is fully ready. */
+#quizOverlay[data-preparing="1"]{background:transparent!important;backdrop-filter:none!important}
+#quizOverlay[data-preparing="1"] .quizWrap{visibility:hidden!important}
 </style>
 </head>
 <body>
@@ -1136,12 +1139,13 @@ function openQuiz(id){
  const qs=new URLSearchParams({embedded:"1",fresh:"1",obstacle:id,difficulty,session:RUN_TOKEN});
  quizActiveId=id;requested=0;activePointers.clear();updatePress();modalOpen=true;
  $("#quizTitle").textContent=gate.icon+" · "+(gate.index+1)+"/21 · "+gate.label;
- $("#quizFrame").src="./forest-v70-quiz.html?v=153&"+qs;
+ $("#quizOverlay").dataset.preparing="1";
  $("#quizOverlay").hidden=false;
+ $("#quizFrame").src="./forest-v70-quiz.html?v=154&"+qs;
 }
 function closeQuiz(){
  if($("#quizOverlay").hidden)return;
- $("#quizOverlay").hidden=true;$("#quizFrame").src="about:blank";quizActiveId=null;
+ $("#quizOverlay").hidden=true;$("#quizOverlay").removeAttribute("data-preparing");$("#quizFrame").src="about:blank";quizActiveId=null;
  modalOpen=false;requested=0;activePointers.clear();updatePress();last=0;save(true);
 }
 $("#quizClose").onclick=closeQuiz;
@@ -1152,7 +1156,9 @@ $("#quizClose").onclick=closeQuiz;
  });
 window.addEventListener("message",e=>{
  if(e.origin!==location.origin||e.source!==$("#quizFrame").contentWindow)return;
- const d=e.data;if(!d||d.source!=="mathverse-v68-quiz"||d.event!=="solved"||d.obstacle!==quizActiveId||d.difficulty!==difficulty)return;
+ const d=e.data;if(!d||d.source!=="mathverse-v68-quiz"||d.obstacle!==quizActiveId||d.difficulty!==difficulty)return;
+ if(d.event==="ready"||d.event==="load-error"){$("#quizOverlay").removeAttribute("data-preparing");return}
+ if(d.event!=="solved")return;
  const gate=GATES.find(g=>g.id===d.obstacle);if(!gate)return;
  const wrongCount=Math.max(0,Math.floor(Number(d.wrongCount)||0));TASK_WRONG_COUNTS[gate.id]=wrongCount;
  SOLVED.add(gate.id);if(gate.id==="F08"){solved=true;bridgeProgress=0;bridgeBuildStart=clock}
