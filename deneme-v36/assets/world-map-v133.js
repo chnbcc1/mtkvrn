@@ -15,7 +15,7 @@ const art="./assets/mtkv135-base-map.webp?v=135";
 const tiles=[{id:ROOT_TILE,src:art,x:0,y:0,w:W,h:H,overlap:0,side:null,styleKey:STYLE_KEY}];
 const chapters=[
  {id:"home",name:"Dedenin Evi",icon:"🏡",x:323,y:401,rx:169,ry:76,after:null,tileId:ROOT_TILE,fogPolygon:[[0,0],[600,0],[612,95],[596,185],[608,270],[617,350],[647,430],[638,515],[613,590],[654,670],[672,742],[657,845],[620,941],[0,941]],playable:true,route:"./?scene=home&autostart=1&v=139"},
- {id:"forest",name:"Orman Patikası",icon:"🌲",x:846,y:520,rx:190,ry:83,after:"home",tileId:ROOT_TILE,fogPolygon:[[600,0],[612,95],[596,185],[608,270],[617,350],[647,430],[638,515],[613,590],[654,670],[672,742],[657,845],[620,941],[1370,941],[1340,825],[1340,715],[1305,645],[1260,572],[1220,500],[1190,430],[1175,352],[1160,265],[1185,180],[1200,90],[1180,0]],playable:true,route:"./forest-v113-full.html?resume=1&v=164"},
+ {id:"forest",name:"Orman Patikası",icon:"🌲",x:846,y:520,rx:190,ry:83,after:"home",tileId:ROOT_TILE,fogPolygon:[[600,0],[612,95],[596,185],[608,270],[617,350],[647,430],[638,515],[613,590],[654,670],[672,742],[657,845],[620,941],[1370,941],[1340,825],[1340,715],[1305,645],[1260,572],[1220,500],[1190,430],[1175,352],[1160,265],[1185,180],[1200,90],[1180,0]],playable:true,route:"./forest-v113-full.html?resume=1&v=165"},
  {id:"observatory",name:"Gözlemevi",icon:"🔭",x:1418,y:262,rx:194,ry:83,after:"forest",tileId:ROOT_TILE,fogPolygon:[[1180,0],[1200,90],[1185,180],[1160,265],[1175,352],[1190,430],[1220,500],[1260,572],[1305,645],[1340,715],[1340,825],[1370,941],[1671,941],[1671,0]],playable:false,route:null}
 ];
 const PREMIUM_REGION_LAYERS=Object.freeze({
