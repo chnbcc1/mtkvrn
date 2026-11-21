@@ -526,7 +526,9 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 #quizOverlay .quizClose{pointer-events:auto!important;min-height:36px!important;padding:6px 11px!important;border:1px solid #ffe8b3!important;border-radius:13px!important;background:#0c3431cf!important;color:#fff9e4!important;font-size:12px!important;box-shadow:0 3px 12px #0005!important}
 /* v154: show the forest, not the old bare HTML, until the illustrated quiz is fully ready. */
 #quizOverlay[data-preparing="1"]{background:transparent!important;backdrop-filter:none!important}
-#quizOverlay[data-preparing="1"] .quizWrap{visibility:hidden!important}
+#quizOverlay[data-preparing="1"] .quizWrap{opacity:0!important;pointer-events:none!important}
+#quizOverlay[data-preparing="1"]{pointer-events:none!important}
+#quizOverlay[data-preparing="1"]::after{content:"Soru hazırlanıyor…";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff3d1;background:#15473bbf;border:1px solid #bc9b63;border-radius:12px;padding:10px 16px;font:700 14px system-ui;white-space:nowrap;pointer-events:none}
 </style>
 </head>
 <body>
@@ -1134,6 +1136,22 @@ available=function(){
  if(campaignProgress()===21&&Math.abs(heroX-(GATE_X-75))<220)return "FINISH";
  return null;
 };
+let quizRevealTimer=null;
+function revealQuizIfMounted(){
+ if($("#quizOverlay").hidden||!quizActiveId)return;
+ let ready=false;
+ try{
+  const frameDoc=$("#quizFrame").contentDocument;
+  ready=!!frameDoc?.body?.classList.contains("mtk-approved-active")&&!!frameDoc.querySelector(".mtk-frame");
+ }catch(e){}
+ if(ready){$("#quizOverlay").removeAttribute("data-preparing");return}
+ // Fail open with a visible, closeable error instead of a permanently invisible screen.
+ $("#quizOverlay").removeAttribute("data-preparing");
+ try{
+  const frameDoc=$("#quizFrame").contentDocument;
+  if(frameDoc?.body)frameDoc.body.insertAdjacentHTML("beforeend",'<p role="alert" style="position:fixed;inset:auto 12px 12px;z-index:999;padding:12px;background:#fff4d8;color:#503522;border-radius:10px">Soru yüklenemedi. Patikaya dönüp tekrar deneyin.</p>');
+ }catch(e){}
+}
 function openQuiz(id){
  const gate=GATES.find(g=>g.id===id);if(!gate||SOLVED.has(id))return;
  const qs=new URLSearchParams({embedded:"1",fresh:"1",obstacle:id,difficulty,session:RUN_TOKEN});
@@ -1141,10 +1159,14 @@ function openQuiz(id){
  $("#quizTitle").textContent=gate.icon+" · "+(gate.index+1)+"/21 · "+gate.label;
  $("#quizOverlay").dataset.preparing="1";
  $("#quizOverlay").hidden=false;
- $("#quizFrame").src="./forest-v70-quiz.html?v=154&"+qs;
+ $("#quizFrame").src="./forest-v70-quiz.html?v=155&"+qs;
+ clearTimeout(quizRevealTimer);
+ // iOS WebKit may delay iframe image decoding; never leave the question invisible indefinitely.
+ quizRevealTimer=setTimeout(revealQuizIfMounted,2200);
 }
 function closeQuiz(){
  if($("#quizOverlay").hidden)return;
+ clearTimeout(quizRevealTimer);
  $("#quizOverlay").hidden=true;$("#quizOverlay").removeAttribute("data-preparing");$("#quizFrame").src="about:blank";quizActiveId=null;
  modalOpen=false;requested=0;activePointers.clear();updatePress();last=0;save(true);
 }
@@ -1157,7 +1179,11 @@ $("#quizClose").onclick=closeQuiz;
 window.addEventListener("message",e=>{
  if(e.origin!==location.origin||e.source!==$("#quizFrame").contentWindow)return;
  const d=e.data;if(!d||d.source!=="mathverse-v68-quiz"||d.obstacle!==quizActiveId||d.difficulty!==difficulty)return;
- if(d.event==="ready"||d.event==="load-error"){$("#quizOverlay").removeAttribute("data-preparing");return}
+ if(d.event==="ready"||d.event==="load-error"){
+  clearTimeout(quizRevealTimer);
+  $("#quizOverlay").removeAttribute("data-preparing");
+  return;
+ }
  if(d.event!=="solved")return;
  const gate=GATES.find(g=>g.id===d.obstacle);if(!gate)return;
  const wrongCount=Math.max(0,Math.floor(Number(d.wrongCount)||0));TASK_WRONG_COUNTS[gate.id]=wrongCount;
