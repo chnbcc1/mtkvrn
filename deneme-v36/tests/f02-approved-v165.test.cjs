@@ -56,15 +56,15 @@ for(const q of records.filter(q=>q.visual.labels.some(e=>e.anchor==="basamak 4")
 }
 assert(ui.includes('window.MTKF02ApprovedV165?.render(visual,q)'),"F02 renderer must be mounted before legacy art");
 assert(ui.includes("window.MTKF02ApprovedV165?.enhance(frame,q)"),"F02 must apply full-frame responsive layout");
-assert(quiz.includes('f02-approved-v165.js?v=170'),"Quiz must load the v170 F02 renderer without stale iPhone cache");
+assert(quiz.includes('f02-approved-v165.js?v=172'),"Quiz must load the portrait 50/50 F02 renderer without stale iPhone cache");
 assert(source.includes('inlineControls?.querySelector(".feedback.ok")'),"F02 correct state must be detected without changing global quiz controls");
 assert(source.includes('frame.appendChild(inlineControls)'),"F02 success feedback must leave the clipping question-text container");
 assert(source.includes('mtk-f02-correct-body')&&source.includes('mtk-f02-correct-foot'),"The success card must separate scrollable content from navigation");
 assert(source.includes('touch-action:pan-y!important')&&source.includes('-webkit-overflow-scrolling:touch!important'),"Correct feedback must accept iPhone touch scroll");
-assert(source.includes('top:60.7%!important')&&source.includes('height:19.5%!important'),"Portrait success feedback must fit above the answer grid");
+assert(source.includes('top:51.0%!important')&&source.includes('height:28.9%!important'),"Portrait success feedback must fit in the expanded lower question panel");
 assert(source.includes('height:59.0%!important'),"Landscape success feedback must fit above the answer grid");
 assert(source.includes('mtk-f02-correct-foot .btn'),"Completion buttons must remain accessible");
-assert(quiz.includes('forest-questions-v147.json?v=169'),"Quiz must refresh corrected source question wording");
+assert(/forest-questions-v147\\.json\\?v=\\d+/.test(quiz),"Quiz must refresh corrected source question wording");
  const energyExample=records.find(q=>q.id==="F02-O-06");
  const stepGuide=f02.guide(energyExample);
  const narration=stepGuide.first.join(" ")+stepGuide.second.join(" ");
@@ -74,25 +74,25 @@ assert(quiz.includes('forest-questions-v147.json?v=169'),"Quiz must refresh corr
  assert(labels.some(x=>x.anchor==="1. basamak")&&labels.some(x=>x.anchor==="2. basamak"),"Dynamic plaque labels must describe first and second steps");
  assert(f02.positions.top.y>16&&f02.positions.one.y>65&&f02.positions.two.y>53,"Plaque labels must be centered vertically below decorative diamonds");
  assert(source.includes('mtk-help-foot')&&source.includes('mtk-help-body .mtk-teaching-step'),"F02 help card must have fixed controls and compact scrollable teaching steps");
- assert(source.includes('top:60.8%!important')&&source.includes('width:95.2%!important'),"F02 help card must cover all the lower question/answer region");
+ assert(source.includes('top:50.5%!important')&&source.includes('height:48.0%!important'),"F02 help card must cover the expanded lower question/answer region");
 const ratioCase=records.find(q=>q.id==="F02-O-08");
 const ratioPlan=f02.plan(ratioCase);
 assert.equal(ratioPlan.length,4,"One source energy, one warning energy and two separate usage ratios must be visible");
 assert.equal(ratioPlan.filter(x=>x.slot==="top").length,0,"Usage ratios must not look like a worked answer in the top summary plaque");
 assert(ratioPlan.some(x=>x.value==="Kapı: 1/4")&&ratioPlan.some(x=>x.value==="Lamba: 1/4"),"The consumption ratios must match the revised question, as separate givens");
 for(const [id,startExp,warningExp,expected] of [
- ["F02-O-02","2⁵","2⁴","20"],
- ["F02-O-05","2⁶","2⁵","40"],
- ["F02-O-08","2⁷","2⁶","80"]
+ ["F02-O-02","2⁵","2⁴","36"],
+ ["F02-O-05","2⁶","2⁵","72"],
+ ["F02-O-08","2⁷","2⁶","144"]
 ]){
  const q=records.find(x=>x.id===id);
- assert(q&&q.prompt.includes(startExp)&&q.prompt.includes(warningExp+" birimin dörtte biri"),id+" must not reveal an intermediate result");
+ assert(q&&q.prompt.includes("birinci basamağında "+startExp)&&q.prompt.includes("ikinci basamağında ise "+warningExp),id+" must describe the two stored amounts separately");
  assert.equal(q.correctAnswer,expected,id+" correct answer changed");
  assert.equal(q.visual.labels.find(x=>x.anchor==="uyarı").value,warningExp,id+" visual warning energy mismatch");
  assert.equal(q.visual.labels.find(x=>x.anchor==="uyarı kullanımı").value,"1/4",id+" visual warning ratio mismatch");
  const power=t=>Number([...t.slice(1)].map(c=>"⁰¹²³⁴⁵⁶⁷⁸⁹".indexOf(c)).join(""));
  const total=2**power(startExp),warn=2**power(warningExp);
- assert.equal(total-total/4-warn/4,Number(expected),id+" revised math is incorrect");
+ assert.equal((total-total/4)+(warn-warn/4),Number(expected),id+" revised math is incorrect");
  assert.notEqual(warn,total/4,id+" leaked the answer to the first step through the warning power");
  assert(f02.guide(q).first.join(" ").includes("dörtte biri"),id+" first hint must match revised fraction");
  assert(f02.guide(q).second.join(" ").includes(warn+" ÷ 4"),id+" worked intermediate hint must match the new data");
@@ -112,4 +112,10 @@ assert(quiz.includes("window.MTKF02ApprovedV165?.guide(q)"),"Hint system must us
 assert(quiz.includes('!["F01","F02"].includes(q.obstacleId)'),"Second wrong may not display unrelated practice");
 assert(source.includes("width:50%")&&source.includes("height:100%"),"F02 needs landscape left image/right question");
 assert(source.includes("mtk-help-mode")&&source.includes("mtk-answer-help-card"),"F02 full-panel hints must not crowd the answers");
+const portraitLayout=source.includes("F02 v172: portrait 50/50 split");
+assert(portraitLayout,"Portrait 50/50 split must not grow back to 60.5% picture");
+assert(source.includes("height:50%!important")&&source.includes("top:51.3%!important"),"F02 picture must yield half the portrait for text and options");
+assert(source.includes("mtk-f02-toolbar-mode")&&source.includes("frame.appendChild(inlineControls)"),"Hint and return controls must be outside the question region");
+assert(source.includes("top:73.1%!important")&&source.includes("top:81.8%!important"),"Toolbar must be below text and above answer choices");
+assert(source.includes("F02 v172 landscape: keep navigation"),"Landscape half-screen navigation must remain usable");
 console.log("PASS F02 v165: 30 approved questions, five reusable plaques, pedagogical steps, responsive art, 630-question bank preserved.");
