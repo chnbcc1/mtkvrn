@@ -98,7 +98,7 @@ sup{font-size:.7em;line-height:0;vertical-align:super}
 .embedded .choice{box-sizing:border-box!important;min-width:0!important;width:100%!important;height:100%!important;min-height:56px!important}
 .embedded .choiceMark{flex:0 0 29px!important;width:29px!important;height:29px!important}
 @media (orientation:portrait){.embedded .choice{font-size:clamp(12px,3.5vw,17px)!important;padding:8px!important}}
-</style><script src="./assets/quiz-approved-frames-v145.js?v=145"></script><script src="./assets/quiz-f03-machine-v145.js?v=145"></script><script src="./assets/quiz-research-objects-v148.js?v=148"></script><script src="./assets/f01-approved-v159.js?v=160"></script><script src="./assets/approved-quiz-ui-v145.js?v=160"></script><script src="./forest-levels-v65.js?v=65"></script></head>
+</style><script src="./assets/quiz-approved-frames-v145.js?v=145"></script><script src="./assets/quiz-f03-machine-v145.js?v=145"></script><script src="./assets/quiz-research-objects-v148.js?v=148"></script><script src="./assets/f01-approved-v159.js?v=162"></script><script src="./assets/approved-quiz-ui-v145.js?v=162"></script><script src="./forest-levels-v65.js?v=65"></script></head>
 <body><main><nav><a href="./forest-v70-full.html?v=69">‹ Orman Patikasına dön</a><a href="./map-v70.html?v=69">🗺️ Macera Haritası</a></nav>
 <h1>🌲 Orman Patikası</h1><p class="subtitle">21 engelli matematik macerası · dört şıklı sorular · MAT.9.1.1 · Üslü ve köklü gösterimler. Dört seçenek arasından karar ver. Yanlışta ipucu, örnek çözüm ve pekiştirme adımları seni yönlendirecek. Fiziksel engellerin sahne entegrasyonu ayrı geliştirilir.</p>
 <div id="step" class="step" hidden></div><div id="bar" class="bar" hidden><span id="fill"></span></div><section id="app" class="panel" aria-live="polite"></section>
@@ -223,8 +223,23 @@ function welcome(){window.MTKApprovedQuizV145?.reset();
  }));
 }
 function feedbackBox(status,s){return mathText("div","feedback "+status,s)}
+function f01Growth(q){
+ if(q?.obstacleId!=="F01")return null;
+ const data=Array.isArray(q.visual?.labels)?q.visual.labels:[];
+ const get=name=>data.find(x=>String(x.anchor||"").toLocaleLowerCase("tr")===name)?.value;
+ const val=x=>Number(String(x??"").match(/[0-9]+/)?.[0]);
+ const left=val(get("sol ilk gün")),right=val(get("sağ ilk gün")),leftRate=val(get("sol büyüme")),rightRate=val(get("sağ büyüme")),day=val(get("gün"));
+ if(![left,right,leftRate,rightRate,day].every(Number.isFinite)||day<2)return null;
+ return {left,right,leftRate,rightRate,day};
+}
 function teachingHint(q,defaultHint){
- if(q?.id==="F01-O-01")return "Sol ve sağ sarmaşığı ayrı incele. Birinci gün başlangıç sayıları vardır; ikinci günde bir kez, üçüncü günde iki kez kendi büyüme katsayısıyla çarpılır.";
+ const g=f01Growth(q);
+ if(g)return "1. gün solda "+g.left+", sağda "+g.right+" tomurcuk var. 2. gün için soldaki sayıyı "+g.leftRate+" ile, sağdakini "+g.rightRate+" ile çarp. Sonraki günlerde aynı işlemi her kolun yeni sayısına uygula. "+g.day+". günün sonunda iki sonucu topla.";
+ return defaultHint;
+}
+function teachingSecondHint(q,defaultHint){
+ const g=f01Growth(q);
+ if(g)return "Önce 2. günü bul: solda "+g.left+" × "+g.leftRate+" = "+(g.left*g.leftRate)+", sağda "+g.right+" × "+g.rightRate+" = "+(g.right*g.rightRate)+" tomurcuk olur. Sonraki günlerde bu yeni sayıları yine kendi katsayılarıyla çarp ve "+g.day+". güne kadar ilerle.";
  return defaultHint;
 }
 function example(q){
@@ -305,8 +320,8 @@ function show(){window.MTKApprovedQuizV145?.reset();
    controls.appendChild(btn("Benzer soru çöz",()=>{run.remediationId=pick(q.obstacleId,run.difficulty,q.id);resetStage();show()}));
    app.appendChild(controls);
  }else if(run.wrong>0&&run.helpView!==false){
-   app.appendChild(feedbackBox("wrong","Yanlış seçim • "+run.wrong+"/3"+(run.wrong===1?" — İpucu: "+teachingHint(q,s.hint):" — Çözümlü örneği incele ve ardından soruyu yeniden dene.")));
-   if(run.wrong===2){
+   app.appendChild(feedbackBox("wrong","Yanlış seçim • "+run.wrong+"/3 — İpucu: "+(run.wrong===1?teachingHint(q,s.hint):teachingSecondHint(q,s.hint))));
+   if(run.wrong===2&&!f01Growth(q)){
      const ref=example(q);
      if(ref){const box=node("div","solution");append(box,node("strong",null,"Benzer çözümlü örnek"),mathText("p",null,ref.prompt),mathText("p",null,"Çözüm: "+(ref.sourceVerified?ref.solution:(ref.solution||workedSteps(ref)))));app.appendChild(box)}
    }
