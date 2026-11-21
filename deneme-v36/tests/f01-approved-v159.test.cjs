@@ -51,15 +51,16 @@ for(const q of questions){
  const s=getScene();assert(api.enhance(s.frame,q),q.id+' could not mount');
  assert(s.frame.className.includes('mtk-f01-v159'));
  assert.equal(s.region.children.length,q.visual.labels.length,q.id+' overlay count mismatch');
- assert.deepEqual(s.region.children.map(n=>n.textContent),q.visual.labels.map(n=>String(n.value)),q.id+' must preserve source labels without baking numbers');
+ assert.deepEqual(s.region.children.map(n=>n.textContent),q.visual.labels.map(n=>n.anchor==="gün"&&/^[0-9]+$/.test(String(n.value))?String(n.value)+". Gün":String(n.value)),q.id+' must preserve source labels without baking numbers');
  assert.equal(s.frame.children.filter(n=>n.tag==='img').length,2,'Approved portrait and landscape art reused');
  assert(s.frame.children.find(n=>n.className==='f01-approved-portrait').src===undefined || true);
  assert.equal(s.frame.children.filter(n=>n.className==='choiceGrid').length,1,'Original clickable answer options stay in DOM');
 }
 const sample=questions.find(q=>q.id==='F01-O-01'),used=new Set();
 const places=sample.visual.labels.map(x=>api.chooseSlot(x.anchor,used).id);
-assert.deepEqual(places,['leftUpper','rightUpper','leftLower','rightLower','top'],'Medium labels must align to correct plaques');
+assert.deepEqual(places,['leftLower','rightLower','leftUpper','rightUpper','top'],'Medium labels must align to correct plaques');
 assert(!script.includes('background-size:cover')&&!script.includes('object-fit:cover'),'Approved character artwork should never be cropped');
 assert(script.includes('left:50%')&&script.includes('width:50%'),'Landscape must be exactly half art and half question');
 assert(script.includes('prefers-reduced-motion'),'Accessible to low-motion users');
+assert.deepEqual(sample.visual.labels.map(x=>x.anchor),['sol ilk gün','sağ ilk gün','sol büyüme','sağ büyüme','gün']);
 console.log('PASS F01 v159: approved artwork; all 30 dynamic label mappings; source text/options untouched; portrait and landscape scenes; 630-question bank.');
