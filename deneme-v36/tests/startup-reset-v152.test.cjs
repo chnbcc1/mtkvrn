@@ -98,12 +98,18 @@ assert(quiz.includes("mathverse-v147-quiz-"),"Current quiz storage key is covere
 assert.equal(bank.questions.length,630);
 assert.equal(bank.obstacles.length,21);
 assert(forest.includes('$("#quizOverlay").dataset.preparing="1"'),"Forest must hide the old HTML view while the quiz starts");
-assert(forest.includes('#quizOverlay[data-preparing="1"] .quizWrap{visibility:hidden!important}'),"Unstyled quiz must never be painted before the approved frame");
+assert(forest.includes('#quizOverlay[data-preparing="1"] .quizWrap{opacity:0!important;pointer-events:none!important}'),"Preloading iframe must stay paintable on WebKit, rather than invisible");
+assert(forest.includes('quizRevealTimer=setTimeout(revealQuizIfMounted,2200)'),"Magnifier must recover from a stalled iframe handshake");
+assert(forest.includes('function revealQuizIfMounted()'),"Magnifier reveal fallback must exist");
+assert(forest.includes('clearTimeout(quizRevealTimer)'),"Closing or finishing a question must cancel recovery timer");
+assert(forest.includes('forest-v70-quiz.html?v=155'),"Forest loads repaired embedded question route");
 assert(forest.includes('d.event==="ready"||d.event==="load-error"'),"Parent must reveal only after its child signals readiness or error");
 assert(forest.includes('$("#quizOverlay").removeAttribute("data-preparing")'),"Parent must reveal the finished quiz");
 assert(quizCode.includes("function announceQuizVisualReady()"),"Iframe announces when approved art is ready");
 assert(quizCode.includes('pictures.map(decode)'),"Both the approved frame and research object must decode before reveal");
 assert(quizCode.includes('announceQuizVisualReady();'),"Iframe actually sends readiness signal");
+assert(quizCode.includes("Promise.race([imagesReady,safetyLimit])"),"WebKit image decode cannot indefinitely prevent showing the approved frame");
+assert(quizCode.includes("setTimeout(resolve,650)"),"Image decode must have a short fallback");
 assert(!quizCode.includes('requestAnimationFrame(()=>requestAnimationFrame(()=>send("ready")))'),"Hidden iframe animations must not block readiness in WebKit");
 
 assert(gameUI.includes("mathverse-v147-choice-history"));
