@@ -56,7 +56,14 @@ for(const q of records.filter(q=>q.visual.labels.some(e=>e.anchor==="basamak 4")
 }
 assert(ui.includes('window.MTKF02ApprovedV165?.render(visual,q)'),"F02 renderer must be mounted before legacy art");
 assert(ui.includes("window.MTKF02ApprovedV165?.enhance(frame,q)"),"F02 must apply full-frame responsive layout");
-assert(quiz.includes('f02-approved-v165.js?v=165'),"Quiz must load selected F02 renderer");
+assert(quiz.includes('f02-approved-v165.js?v=166'),"Quiz must load the updated F02 renderer without stale iPhone cache");
+assert(source.includes('document.head.appendChild(ownCss)'),"F02 styles must take precedence over generic nth-child button positions");
+assert(source.includes('scene.style.width="100%";scene.style.height="100%"'),"F02 scene must fit the viewport instead of cropping Çiko");
+assert(!source.includes('Math.max(w,h*ratio)'),"Never draw an oversized F02 scene then crop it");
+assert(source.includes('grid-template-columns:repeat(2,minmax(0,1fr))!important'),"F02 choices must use two contained columns");
+assert(source.includes('position:static!important')&&source.includes('inset:auto!important'),"F02 choices must reset absolute per-answer positions");
+assert(source.includes('object-fit:fill!important'),"F02 art and dynamic labels must share exactly one fully visible scaling box");
+assert(source.includes('left:52%!important;top:63%!important'),"F02 landscape options must be inside the right panel");
 assert(quiz.includes("window.MTKF02ApprovedV165?.guide(q)"),"Hint system must use approved F02 teaching steps");
 assert(quiz.includes('!["F01","F02"].includes(q.obstacleId)'),"Second wrong may not display unrelated practice");
 assert(source.includes("width:50%")&&source.includes("height:100%"),"F02 needs landscape left image/right question");
