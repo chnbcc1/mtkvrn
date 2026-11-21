@@ -1,0 +1,27 @@
+name: F01 Approved Visual v159
+on:
+  push:
+    paths:
+      - "deneme-v36/assets/f01-approved-v159.js"
+      - "deneme-v36/assets/f01-approved-portrait-v159.webp"
+      - "deneme-v36/assets/f01-approved-scene-v159.webp"
+      - "deneme-v36/assets/approved-quiz-ui-v145.js"
+      - "deneme-v36/forest-questions-v147.json"
+      - "deneme-v36/forest-v70-quiz.html"
+      - "deneme-v36/tests/f01-approved-v159.test.cjs"
+      - ".github/workflows/f01-approved-v159.yml"
+  pull_request:
+    paths:
+      - "deneme-v36/assets/f01-approved-v159.js"
+      - "deneme-v36/assets/approved-quiz-ui-v145.js"
+      - "deneme-v36/tests/f01-approved-v159.test.cjs"
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate F01 dynamic labels, fixed art, preserved question and choice data
+        run: node deneme-v36/tests/f01-approved-v159.test.cjs
