@@ -301,7 +301,8 @@
         };
         if(labels.length)labels.slice(0,5).forEach((item,i)=>tag(visual,item.value,leftFor(item.anchor,i)));
         else direct.slice(0,5).forEach((value,i)=>tag(visual,value,[15.5,35.3,51.5,67,86.5][i]));
-      }else if(!renderResearchObject(visual,q))illustrate(visual,q,s);
+      }else if(q?.obstacleId==="F01"&&window.MTKF01ApprovedV159){ /* v159 approved art overlays are added after mount */ }
+      else if(!renderResearchObject(visual,q))illustrate(visual,q,s);
     }
     const extra=elem('section','mtk-feedback-overlay');rest.forEach(x=>extra.appendChild(x));
     frame.append(text,visual,choices);
@@ -313,6 +314,7 @@
     }
     app.replaceChildren(frame);document.body.classList.add('mtk-approved-active');
     if(!document.querySelector('#mtk-approved-style-v145')){const s=elem('style');s.id='mtk-approved-style-v145';s.textContent=style;document.head.appendChild(s)}
+    if(q?.obstacleId==='F01')window.MTKF01ApprovedV159?.enhance(frame,q);
     return true;
   }
   function reset(){document.body.classList.remove('mtk-approved-active')}
