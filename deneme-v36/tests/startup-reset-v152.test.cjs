@@ -82,9 +82,10 @@ assert(house.includes("window.MTKGameUI?.resetProgress('game')"),"Home restart u
 assert(house.includes("suppressProgressSave=true"),"Home exit must not restore a deleted save");
 assert(menu.includes("game-ui-v133.js?v=152")&&forest.includes("game-ui-v133.js?v=152")&&house.includes("game-ui-v133.js?v=152"),"iPhone must use current reset code in all chapters");
 assert(quizCode.includes("if(standalone&&!preview){location.replace(\"./menu-v116.html?v=152\");return}"),"Direct historical quiz links open the main menu");
-assert(quizCode.includes('const FRESH_ATTEMPT=EMBED&&new URLSearchParams(location.search).get("fresh")==="1";'),"New magnifier sessions must be explicitly fresh");
-assert(quizCode.includes("const saved=(preview||FRESH_ATTEMPT)?null:read(RUN_KEY)"),"Fresh magnifier session must not restore a revealed answer");
-assert(forest.includes('const qs=new URLSearchParams({embedded:"1",fresh:"1",obstacle:id,difficulty,session:RUN_TOKEN})'),"Only magnifier actions request a new F01/F02 attempt");
+assert(quizCode.includes('const FRESH_ATTEMPT=EMBED&&new URLSearchParams(location.search).get("fresh")==="1";'),"Only explicit legacy preview links may request a forced fresh session");
+assert(quizCode.includes("const saved=(preview||FRESH_ATTEMPT)?null:read(RUN_KEY)"),"Ordinary in-game reentry must restore question while explicitly fresh preview can reset");
+assert(forest.includes('const qs=new URLSearchParams({embedded:"1",obstacle:id,difficulty,session:RUN_TOKEN})'),"In-game magnifier must reopen its existing unfinished question");
+assert(!forest.includes('embedded:"1",fresh:"1"'),"In-game magnifier must not force a fresh question on every click");
 const freshLine=quizCode.match(/const FRESH_ATTEMPT=[^\n]+;/)?.[0];
 const savedLine=quizCode.match(/const saved=\(preview\|\|FRESH_ATTEMPT\)\?null:read\(RUN_KEY\);/)?.[0];
 assert(freshLine&&savedLine);
@@ -113,4 +114,4 @@ assert(quizCode.includes("setTimeout(resolve,650)"),"Image decode must have a sh
 assert(!quizCode.includes('requestAnimationFrame(()=>requestAnimationFrame(()=>send("ready")))'),"Hidden iframe animations must not block readiness in WebKit");
 
 assert(gameUI.includes("mathverse-v147-choice-history"));
-console.log("PASS v152: new game, forest chapter restart, home restart, old direct-quiz redirect, no stale wrong answers; original 630 questions preserved.");
+console.log("PASS v152/v156: full/chapter restart, same unfinished in-game question after leaving, explicit fresh previews, original 630 questions preserved.");
