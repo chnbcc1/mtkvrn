@@ -56,7 +56,17 @@ for(const q of records.filter(q=>q.visual.labels.some(e=>e.anchor==="basamak 4")
 }
 assert(ui.includes('window.MTKF02ApprovedV165?.render(visual,q)'),"F02 renderer must be mounted before legacy art");
 assert(ui.includes("window.MTKF02ApprovedV165?.enhance(frame,q)"),"F02 must apply full-frame responsive layout");
-assert(quiz.includes('f02-approved-v165.js?v=166'),"Quiz must load the updated F02 renderer without stale iPhone cache");
+assert(quiz.includes('f02-approved-v165.js?v=167'),"Quiz must load the current F02 renderer without stale iPhone cache");
+ const energyExample=records.find(q=>q.id==="F02-O-06");
+ const stepGuide=f02.guide(energyExample);
+ const narration=stepGuide.first.join(" ")+stepGuide.second.join(" ");
+ assert(narration.includes("1. basamak")&&narration.includes("2. basamak"),"Pedagogical hints must use ordinal steps");
+ assert(!/sol basamak|sağ basamak|sol ve sağ basamak/i.test(narration),"Do not label the stair sequence as left and right");
+ const labels=f02.plan(energyExample);
+ assert(labels.some(x=>x.anchor==="1. basamak")&&labels.some(x=>x.anchor==="2. basamak"),"Dynamic plaque labels must describe first and second steps");
+ assert(f02.positions.top.y>16&&f02.positions.one.y>65&&f02.positions.two.y>53,"Plaque labels must be centered vertically below decorative diamonds");
+ assert(source.includes('mtk-help-foot')&&source.includes('mtk-help-body .mtk-teaching-step'),"F02 help card must have fixed controls and compact scrollable teaching steps");
+ assert(source.includes('top:60.8%!important')&&source.includes('width:95.2%!important'),"F02 help card must cover all the lower question/answer region");
 assert(source.includes('document.head.appendChild(ownCss)'),"F02 styles must take precedence over generic nth-child button positions");
 assert(source.includes('scene.style.width="100%";scene.style.height="100%"'),"F02 scene must fit the viewport instead of cropping Çiko");
 assert(!source.includes('Math.max(w,h*ratio)'),"Never draw an oversized F02 scene then crop it");
