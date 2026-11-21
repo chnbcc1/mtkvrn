@@ -125,4 +125,4 @@ assert(source.includes('const IMAGE="./assets/f02-energy-stairs-v174.avif"'),"F0
 assert(source.includes('scene.style.setProperty("top",(h-imageHeight)/2+"px","important")'),"The full artwork must be centered rather than cropped");
 assert(source.includes('background-image:url(\\"./assets/f02-energy-stairs-v174.avif\\")')||source.includes("background-image:url("),"Empty canvas strips must use the same artwork as their background");
 
-console.log("PASS F02 v165: 30 approved questions, five reusable plaques, pedagogical steps, responsive art, 630-question bank preserved.");
+console.log("PASS F02 v174: blank 1205x1025 original artwork, 50/50 undistorted visual, calibrated dynamic plaques, 30 questions, 630-question bank preserved.");
