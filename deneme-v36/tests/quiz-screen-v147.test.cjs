@@ -32,15 +32,15 @@ for(const q of bank.questions){
  assert(q.prompt&&q.solution&&q.hint);
 }
 assert(html.includes("forest-questions-v147.json"),"Quiz must load only the new approved bank");
-assert(html.includes('["v66","v69","v70","v145-approved-F03","v147-approved-packs"]'));
+assert(html.includes('item.contentVersion!=="v147-approved-packs"'),"The game accepts only the 630 approved records");
 assert(html.includes("run.matchingById")===false,"Persistent matching state belongs to the UI renderer");
 assert(html.includes("mount(app,q,s,choices,run,save)"));
 assert(html.includes("mount(app,q,s,doneChoices,run,save)"));
 assert(html.includes("q.workedExample"),"Second-wrong worked example must come from the approved ZIP");
 assert(ui.includes("mtk-scene-labels"),"Use exact uploaded dynamic labels");
 assert(ui.includes("matchingBoard(visual,q,choices,run,save)"),"F21 touch matching must work");
-assert(ui.includes("visual.appendChild(extra)"),"Hints cannot cover answer buttons");
-assert(ui.includes("mtk-feedback-toggle"),"Hint can be closed to view source illustration");
+assert(ui.includes("text.appendChild(extra)"),"Hints must be readable in the larger text region");
+assert(html.includes("Soruyu göster")&&html.includes("Benzer soru çöz"),"Hints return to original question; one approved practice action remains");
 assert(ui.includes("aspect-ratio:941/1672")&&ui.includes("aspect-ratio:1672/941"),"Approved portrait and landscape layouts remain");
 const f03=bank.questions.find(q=>q.id==="F03-Z-01");
 assert(f03.prompt.includes("2¹³ birim sis giriyor"));
@@ -55,4 +55,7 @@ for(const q of matching){
  assert.equal(q.interaction.pairs.length,4);
  assert.equal(q.interaction.requiredPairs,4);
 }
+assert(!html.includes("Kaynak paketteki benzer soru"),"The unapproved inline follow-up must not be shown");
+assert(!html.includes("Başka bir onaylı soruyu çöz"),"The duplicate practice action must be removed");
+assert(ui.includes("mtk-help-mode"),"Choices must hide in hint and solution views");
 console.log("PASS v147: exactly 630 user-approved questions, source hints/answers, approved layouts, F03 and F21 matching.");
