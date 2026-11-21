@@ -17,7 +17,7 @@
  function placeValues(scene,q){
   const values=Array.isArray(q?.visual?.labels)?q.visual.labels:[];
   const linear=values.length>=3&&values.every(v=>/giriş|^[1-3]\. filtre|gözlem kolu/i.test(String(v.anchor||"")));
-  const positions={"giriş":[16,27],"1. filtre":[41,31],"2. filtre":[57,31],"3. filtre":[72,31],"gözlem kolu":[90,27]};
+  const positions={"giriş":[30,51],"1. filtre":[49,51],"2. filtre":[63,51],"3. filtre":[77,51],"gözlem kolu":[92,51]};
   const row=linear?null:make("div","mtk-v157-labelrow");
   for(const item of values.slice(0,7)){
    const val=make("span","mtk-v157-label");
