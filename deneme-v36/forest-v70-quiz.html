@@ -232,15 +232,165 @@ function f01Growth(q){
  if(![left,right,leftRate,rightRate,day].every(Number.isFinite)||day<2)return null;
  return {left,right,leftRate,rightRate,day};
 }
+/* F01 pedagogical feedback is derived from the current approved question's exact data.
+   Level 1: method; level 2: concrete intermediate steps; level 3: verified solution.
+   Never use stale one-size-fits-all worked examples for these source questions. */
+function f01Number(value){
+ const text=String(value??"").replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹]/g,c=>"0123456789"["⁰¹²³⁴⁵⁶⁷⁸⁹".indexOf(c)]).replace(/\s+/g,"");
+ if(/^2[0-9]+$/.test(text))return 2**Number(text.slice(1));
+ if(/^3·2[0-9]+$/.test(text))return 3*2**Number(text.slice(3));
+ if(/^[0-9]+$/.test(text))return Number(text);
+ return NaN;
+}
+function f01Guide(q){
+ if(q?.obstacleId!=="F01")return null;
+ const labels=Array.isArray(q.visual?.labels)?q.visual.labels:[];
+ const get=name=>labels.find(e=>String(e.anchor||"").toLocaleLowerCase("tr").replaceAll("_"," ").trim()===name)?.value;
+ const val=name=>f01Number(get(name));
+ const fmt=n=>Number.isInteger(n)?String(n):String(Number(n.toFixed(3)));
+ const result=(first,second,solution)=>({first,second,solution:String(solution||"")});
+ const valid=(answer,first,second,solution)=>{
+   if(!Number.isFinite(answer)||String(q.correctAnswer).trim()!==fmt(answer))return result(first,second,"");
+   return result(first,second,solution);
+ };
+ const growth=f01Growth(q);
+ if(growth){
+   const {left,right,leftRate,rightRate,day}=growth;
+   const first=[
+     "Başlangıç sayıları 1. güne aittir: solda "+left+", sağda "+right+" tomurcuk vardır.",
+     "Bir sonraki güne geçmek için soldaki sayıyı "+leftRate+" ile, sağdakini "+rightRate+" ile çarp. "+day+". güne ulaşınca iki kolun sonucunu topla."
+   ];
+   const second=[
+     "2. gün: sol "+left+" × "+leftRate+" = "+(left*leftRate)+"; sağ "+right+" × "+rightRate+" = "+(right*rightRate)+".",
+     day>3?"3. gün: sol "+(left*leftRate)+" × "+leftRate+" = "+(left*leftRate**2)+"; sağ "+(right*rightRate)+" × "+rightRate+" = "+(right*rightRate**2)+". Şimdi "+day+". güne ilerleyip sonuçları topla.":"Şimdi bu iki sayıyı kendi büyüme katsayılarıyla bir kez daha çarp ve çıkan iki sonucu topla."
+   ];
+   const a=left*leftRate**(day-1),b=right*rightRate**(day-1);
+   return valid(a+b,first,second,"Sol kol: "+left+" × "+leftRate+"^"+(day-1)+" = "+a+". Sağ kol: "+right+" × "+rightRate+"^"+(day-1)+" = "+b+". Toplam: "+a+" + "+b+" = "+(a+b)+".");
+ }
+ const sol=get("sol kol")??get("sol dal"),sag=get("sağ kol")??get("sağ dal");
+ const solNum=f01Number(sol),sagNum=f01Number(sag);
+ const ratioLeft=get("sol korunma"),ratioRight=get("sağ korunma");
+ if(ratioLeft&&ratioRight&&Number.isFinite(solNum)&&Number.isFinite(sagNum)){
+   const denL=Number(String(ratioLeft).split("/")[1]),denR=Number(String(ratioRight).split("/")[1]);
+   const lv=solNum/denL,rv=sagNum/denR;
+   return valid(lv+rv,[
+     "Önce iki üslü ifadeyi normal sayıya dönüştür: "+sol+" ve "+sag+". Örneğin 2⁴, 2 × 2 × 2 × 2 demektir.",
+     "“Yarısı korunuyor” ifadesi ikiye, “dörtte biri korunuyor” ifadesi dörde bölmek demektir. Kalan iki miktarı topla."
+   ],[
+     sol+" = "+solNum+" ve "+sag+" = "+sagNum+".",
+     "Sol kolda korunan: "+solNum+" ÷ "+denL+" = "+fmt(lv)+". Sağ kolda korunanı bulmak için "+sagNum+" ÷ "+denR+" işlemini yap. İki kalanı topla."
+   ],"Sol: "+solNum+" ÷ "+denL+" = "+fmt(lv)+". Sağ: "+sagNum+" ÷ "+denR+" = "+fmt(rv)+". Toplam: "+fmt(lv)+" + "+fmt(rv)+" = "+fmt(lv+rv)+".");
+ }
+ const fallen=get("dökülen");
+ if(fallen&&Number.isFinite(solNum)&&Number.isFinite(sagNum)){
+   const lost=f01Number(fallen),total=solNum+sagNum;
+   return valid(total-lost,[
+     "Önce sol ve sağ koldaki üslü ifadeleri sayıya dönüştür; iki kolun toplamını bul.",
+     "Rüzgârla dökülen tomurcuklar toplamdan çıkarılır. Bu yüzden son işlem çıkarma olmalı."
+   ],[
+     "Sol kol: "+sol+" = "+solNum+". Sağ kol: "+sag+" = "+sagNum+". İkisi birlikte "+total+" tomurcuk.",
+     "Dökülen miktar "+fallen+" = "+lost+". Şimdi "+total+" − "+lost+" işlemini yap."
+   ],"Başlangıçta "+solNum+" + "+sagNum+" = "+total+" tomurcuk vardır. "+lost+" tanesi dökülür: "+total+" − "+lost+" = "+(total-lost)+".");
+ }
+ if(Number.isFinite(solNum)&&Number.isFinite(sagNum)&&!String(sol).includes("ⁿ")&&!String(sag).includes("ⁿ")){
+   return valid(solNum+sagNum,[
+     "Üslü ifadelerdeki küçük sayılar çarpma sayısını belirtir. Önce "+sol+" ve "+sag+" ifadelerini ayrı ayrı hesapla.",
+     "Her iki kolun tomurcuk sayısını bulduktan sonra birleştirmek için toplama yap."
+   ],[
+     sol+" = "+solNum+" ve "+sag+" = "+sagNum+".",
+     "İstenen iki kolun toplamıdır; şimdi "+solNum+" + "+sagNum+" işlemini tamamla."
+   ],"Sol: "+solNum+", sağ: "+sagNum+". Toplam "+solNum+" + "+sagNum+" = "+(solNum+sagNum)+".");
+ }
+ const firstDay=get("ilk dal"),rate=get("büyüme"),targetDay=Number(get("gün"));
+ if(Number.isFinite(f01Number(firstDay))&&Number.isInteger(targetDay)&&/×[0-9]/.test(String(rate))){
+   const start=f01Number(firstDay),factor=Number(String(rate).match(/×([0-9]+)/)?.[1]),answer=start*factor**(targetDay-1);
+   return valid(answer,[
+     "1. gündeki "+start+" tomurcuk başlangıçtır; başlangıç gününde henüz katlama yapma.",
+     "Her yeni güne geçerken bir kez "+factor+" ile çarp. "+targetDay+". güne ulaşıncaya kadar ilerle."
+   ],[
+     "1. gün: "+start+". 2. gün: "+start+" × "+factor+" = "+(start*factor)+".",
+     "Bir sonraki günde elde ettiğin sayıyı yine "+factor+" ile çarp; "+targetDay+". güne dek sürdür."
+   ],"1. gün "+start+", "+targetDay+". gün "+start+" × "+factor+"^"+(targetDay-1)+" = "+answer+" tomurcuk.");
+ }
+ const today=get("bugün"),yesterdayRate=get("gelişim");
+ if(Number.isFinite(f01Number(today))&&/×2/.test(String(yesterdayRate))){
+   const now=f01Number(today);
+   return valid(now/2,[
+     "“Bugün iki katı” demek, dünkü sayının bugün 2 ile çarpıldığı anlamına gelir.",
+     "Geriye, yani düne giderken çarpma işleminin tersi olan bölme işlemini yap."
+   ],[
+     "Dünkü tomurcuk sayısı × 2 = "+now+" olmalı.",
+     "Dünü bulmak için "+now+" ÷ 2 işlemini hesapla."
+   ],"Bugünkü "+now+" tomurcuk, dünün iki katıdır. Dün: "+now+" ÷ 2 = "+(now/2)+".");
+ }
+ const morning=get("sabah"),eve=get("akşam büyüme");
+ if(Number.isFinite(f01Number(morning))&&/×2/.test(String(eve))){
+   const count=f01Number(morning);
+   return valid(count*2,[
+     "Sabahki miktarı başlangıç kabul et. “İki katına çıkmak” başlangıç sayısını 2 ile çarpmaktır.",
+     "Akşam tomurcuk sayısını bulmak için sabahki "+count+" sayısına iki katlama kuralını uygula."
+   ],[
+     "İşlem: "+count+" × 2. Bu, "+count+" + "+count+" demektir.",
+     "Toplamını bul ve seçeneklerle karşılaştır."
+   ],"Sabah "+count+", akşam "+count+" × 2 = "+count*2+" tomurcuk.");
+ }
+ const a=get("kol a"),b=get("kol b"),c=get("kol c");
+ if([a,b,c].every(Boolean)&&[a,b,c].every(v=>Number.isFinite(f01Number(v)))){
+   const nums=[a,b,c].map(f01Number),total=nums.reduce((u,v)=>u+v,0),fraction=get("sol geçit"),half=/1\/2/.test(String(fraction));
+   if(half)return valid(total/2,[
+     "Üç kolu tek tek değerlendir: "+a+", "+b+" ve "+c+". Bunların toplamını bul.",
+     "Toplamın yarısı sol geçide gidiyor; yarısını bulmak için ikiye böl."
+   ],[
+     "Kolların sayıları sırasıyla "+nums.join(", ")+".",
+     "Önce "+nums.join(" + ")+" işlemini hesapla. Ardından bu toplamı 2'ye böl."
+   ],"Üç kol: "+nums.join(" + ")+" = "+total+". Sol geçitte yarısı kalır: "+total+" ÷ 2 = "+total/2+".");
+ }
+ const cutLeft=get("sol kopan"),cutRight=get("sağ kopan");
+ if(cutLeft&&cutRight&&Number.isFinite(solNum)&&Number.isFinite(sagNum)){
+   const dl=Number(String(cutLeft).split("/")[1]),dr=Number(String(cutRight).split("/")[1]);
+   const keepL=solNum*(dl-1)/dl,keepR=sagNum*(dr-1)/dr,answer=Math.abs(keepL-keepR);
+   return valid(answer,[
+     "Önce iki koldaki gerçek tomurcuk sayılarını bul. Ardından kopan miktarı değil, geriye kalan miktarı hesapla.",
+     "Bir kolun 1/8'i koparsa 7/8'i, diğerinin 1/4'ü koparsa 3/4'ü kalır. En son kalanların farkını bul."
+   ],[
+     "Sol başlangıç "+solNum+", sağ başlangıç "+sagNum+".",
+     "Solda "+solNum+" × "+(dl-1)+"/"+dl+", sağda "+sagNum+" × "+(dr-1)+"/"+dr+" kalır. Bu iki sonucu hesapla ve farklarını bul."
+   ],"Sol kalan: "+fmt(keepL)+". Sağ kalan: "+fmt(keepR)+". Fark: "+fmt(answer)+".");
+ }
+ if(/2ⁿ/.test(String(sol))&&/2ⁿ/.test(String(sag))){
+   const sum=Number(String(get("toplam")??get("iki kolun ortak sayacı")??q.prompt).match(/([0-9]+)(?:\s*tomurcuk|\s*$)/)?.[1]);
+   if(q.id==="F01-Z-01")return result([
+     "2ⁿ⁺¹ ile 2ⁿ⁻¹ ifadelerini ortak bir kuvvet cinsinden yaz. Küçük olan 2ⁿ⁻¹'i ortak al.",
+     "2ⁿ⁺¹ = 4 × 2ⁿ⁻¹ olduğundan toplam 5 × 2ⁿ⁻¹ olur."
+   ],[
+     "5 × 2ⁿ⁻¹ = 160. Önce 160'ı 5'e böl.",
+     "Bulduğun sayı hangi 2 kuvvetine eşitse n − 1 o üstür. Buradan n'yi belirle."
+   ],"2ⁿ⁻¹ = 160 ÷ 5 = 32 = 2⁵. n − 1 = 5, yani n = 6.");
+   const m=String(sag).match(/2ⁿ⁺([¹²³])/),shift=m?"¹²³".indexOf(m[1])+1:NaN;
+   if(Number.isInteger(shift)&&Number.isFinite(sum)){
+     const scale=2**shift,base=sum/(1+scale),n=Math.log2(base);
+     return valid(n,[
+       "2ⁿ⁺"+shift+" ifadesi, 2ⁿ sayısının "+scale+" katıdır.",
+       "İki terimde de 2ⁿ ortak olduğundan ortak çarpan parantezine al."
+     ],[
+       "Toplam (1 + "+scale+") × 2ⁿ = "+sum+" eşitliğini verir.",
+       "Önce "+sum+" ÷ "+(1+scale)+" işlemini yap, sonra çıkan sonucun kaçıncı 2 kuvveti olduğunu bul."
+     ],"(1 + "+scale+") × 2ⁿ = "+sum+"; 2ⁿ = "+base+" = 2^"+n+". O hâlde n = "+n+".");
+   }
+ }
+ return null;
+}
 function teachingHint(q,defaultHint){
- const g=f01Growth(q);
- if(g)return "1. gün solda "+g.left+", sağda "+g.right+" tomurcuk var. 2. gün için soldaki sayıyı "+g.leftRate+" ile, sağdakini "+g.rightRate+" ile çarp. Sonraki günlerde aynı işlemi her kolun yeni sayısına uygula. "+g.day+". günün sonunda iki sonucu topla.";
- return defaultHint;
+ const g=f01Guide(q);
+ return g?g.first:[defaultHint||"Sorunun verilenlerini ve istenenini ayır; işlemlerin sırasını belirle."];
 }
 function teachingSecondHint(q,defaultHint){
- const g=f01Growth(q);
- if(g)return "Önce 2. günü bul: solda "+g.left+" × "+g.leftRate+" = "+(g.left*g.leftRate)+", sağda "+g.right+" × "+g.rightRate+" = "+(g.right*g.rightRate)+" tomurcuk olur. Sonraki günlerde bu yeni sayıları yine kendi katsayılarıyla çarp ve "+g.day+". güne kadar ilerle.";
- return defaultHint;
+ const g=f01Guide(q);
+ return g?g.second:[defaultHint||"Verilen matematiksel ifadeleri ayrı ayrı hesaplayarak ilerle."];
+}
+function teachingSolution(q){
+ const guided=f01Guide(q);
+ return guided?.solution||workedSteps(q);
 }
 function example(q){
  if(q.workedExample&&q.workedExample.solution)return {prompt:q.workedExample.question||"Benzer örnek",solution:q.workedExample.solution,sourceVerified:true};
@@ -313,15 +463,17 @@ function show(){window.MTKApprovedQuizV145?.reset();
     run.completionWrong=run.taskWrong||0;run.awaiting=true;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show()
   }));
  }else if(run.revealed&&run.helpView!==false){
-   app.appendChild(feedbackBox("wrong","Üçüncü yanlış deneme. Çözümü adım adım incele."));
-   app.appendChild(mathText("div","solution","Çözüm: "+workedSteps(q)+(all.length>1?" • Tam görevin çözümü: "+q.solution:"")));
+   app.appendChild(feedbackBox("wrong","3. yanlış • Adım adım çözüm"));
+   app.appendChild(mathText("div","solution","Çözüm: "+teachingSolution(q)+(all.length>1?" • Tam görevin çözümü: "+q.solution:"")));
    const controls=node("div","btnRow");
    controls.appendChild(btn("Soruyu göster",()=>{run.helpView=false;save();show()},true));
    controls.appendChild(btn("Benzer soru çöz",()=>{run.remediationId=pick(q.obstacleId,run.difficulty,q.id);resetStage();show()}));
    app.appendChild(controls);
  }else if(run.wrong>0&&run.helpView!==false){
-   app.appendChild(feedbackBox("wrong","Yanlış seçim • "+run.wrong+"/3 — İpucu: "+(run.wrong===1?teachingHint(q,s.hint):teachingSecondHint(q,s.hint))));
-   if(run.wrong===2&&!f01Growth(q)){
+   app.appendChild(feedbackBox("wrong",run.wrong===1?"1. yanlış • Çözüm yolunu keşfet":"2. yanlış • Birlikte ilk adımı yapalım"));
+   const steps=run.wrong===1?teachingHint(q,s.hint):teachingSecondHint(q,s.hint);
+   for(const text of steps)app.appendChild(mathText("p","mtk-teaching-step",text));
+   if(run.wrong===2&&q.obstacleId!=="F01"){
      const ref=example(q);
      if(ref){const box=node("div","solution");append(box,node("strong",null,"Benzer çözümlü örnek"),mathText("p",null,ref.prompt),mathText("p",null,"Çözüm: "+(ref.sourceVerified?ref.solution:(ref.solution||workedSteps(ref)))));app.appendChild(box)}
    }
