@@ -56,7 +56,7 @@ for(const q of records.filter(q=>q.visual.labels.some(e=>e.anchor==="basamak 4")
 }
 assert(ui.includes('window.MTKF02ApprovedV165?.render(visual,q)'),"F02 renderer must be mounted before legacy art");
 assert(ui.includes("window.MTKF02ApprovedV165?.enhance(frame,q)"),"F02 must apply full-frame responsive layout");
-assert(quiz.includes('f02-approved-v165.js?v=167'),"Quiz must load the current F02 renderer without stale iPhone cache");
+assert(quiz.includes('f02-approved-v165.js?v=168'),"Quiz must load the current F02 renderer without stale iPhone cache");
  const energyExample=records.find(q=>q.id==="F02-O-06");
  const stepGuide=f02.guide(energyExample);
  const narration=stepGuide.first.join(" ")+stepGuide.second.join(" ");
@@ -67,6 +67,14 @@ assert(quiz.includes('f02-approved-v165.js?v=167'),"Quiz must load the current F
  assert(f02.positions.top.y>16&&f02.positions.one.y>65&&f02.positions.two.y>53,"Plaque labels must be centered vertically below decorative diamonds");
  assert(source.includes('mtk-help-foot')&&source.includes('mtk-help-body .mtk-teaching-step'),"F02 help card must have fixed controls and compact scrollable teaching steps");
  assert(source.includes('top:60.8%!important')&&source.includes('width:95.2%!important'),"F02 help card must cover all the lower question/answer region");
+const ratioCase=records.find(q=>q.id==="F02-O-08");
+const ratioPlan=f02.plan(ratioCase);
+assert.equal(ratioPlan.length,4,"One source energy, one warning energy and two separate usage ratios must be visible");
+assert.equal(ratioPlan.filter(x=>x.slot==="top").length,0,"Usage ratios must not look like a worked answer in the top summary plaque");
+assert(ratioPlan.some(x=>x.value==="Kapı: 1/4")&&ratioPlan.some(x=>x.value==="Lamba: 1/2"),"The consumption ratios must be identifiable as separate givens");
+assert(source.includes('mtk-f02-practice-controls')&&source.includes('mtk-f02-practice-mode'),"The return-to-main-task button must have a dedicated non-overlapping row");
+assert(source.includes('flex:1 1 auto!important')&&source.includes('flex:0 0 auto!important'),"Practice question must scroll independently of fixed return button");
+assert(source.includes('padding:5px 8px 3px 8px!important')&&source.includes('text-indent:0!important'),"Each source question needs inset text to preserve all initial letters");
 assert(source.includes('document.head.appendChild(ownCss)'),"F02 styles must take precedence over generic nth-child button positions");
 assert(source.includes('scene.style.width="100%";scene.style.height="100%"'),"F02 scene must fit the viewport instead of cropping Çiko");
 assert(!source.includes('Math.max(w,h*ratio)'),"Never draw an oversized F02 scene then crop it");
