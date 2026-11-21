@@ -107,6 +107,7 @@ sup{font-size:.7em;line-height:0;vertical-align:super}
 
 "use strict";
 const EMBED=new URLSearchParams(location.search).get("embedded")==="1";
+const FRESH_ATTEMPT=EMBED&&new URLSearchParams(location.search).get("fresh")==="1";
 const FORCED=new URLSearchParams(location.search).get("obstacle")||"";
 const FORCED_DIFFICULTY=new URLSearchParams(location.search).get("difficulty")||"orta";
 const PREVIEW_QUESTION_ID=new URLSearchParams(location.search).get("previewQuestion")||"";
@@ -331,7 +332,7 @@ async function init(){
  try{const r=await fetch(BANK_URL,{cache:"no-store"});if(!r.ok)throw Error("630 soruluk kaynak dosyası yüklenemedi");bank=await r.json();
  if(bank.schema!=="forest-question-bank-v147"||bank.questions.length!==630||bank.obstacles.length!==21||bank.questionsPerObstaclePerDifficulty!==10||typeof window.FOREST_LEVELS_V65!=="function")throw Error("Onaylı 630 soruluk havuz doğrulanamadı");
  const old=read(HISTORY_KEY);if(old)history=old;
- const saved=preview?null:read(RUN_KEY);
+ const saved=(preview||FRESH_ATTEMPT)?null:read(RUN_KEY);
  if(EMBED){
   const idx=bank.playOrder.indexOf(FORCED);
   if(idx<0||!["kolay","orta","zor"].includes(FORCED_DIFFICULTY))throw Error("Geçersiz engel veya zorluk seviyesi");
