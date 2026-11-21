@@ -334,8 +334,11 @@ function announceQuizVisualReady(){
  const pictures=[...frame.querySelectorAll("img")];
  if(source){const backdrop=new Image();backdrop.src=source;pictures.push(backdrop)}
  const decode=(image)=>typeof image.decode==="function"?image.decode():Promise.resolve();
- // Decode works even when the parent hides the quiz container; iOS may pause hidden iframe animation frames.
- Promise.allSettled(pictures.map(decode)).then(()=>send("ready"));
+ // An image decode can hang in iOS in-app WebKit. Do not make opening the quiz depend on it.
+ // The approved frame and correct 3D DOM are already mounted at this point.
+ const imagesReady=Promise.allSettled(pictures.map(decode));
+ const safetyLimit=new Promise(resolve=>setTimeout(resolve,650));
+ Promise.race([imagesReady,safetyLimit]).then(()=>send("ready"),()=>send("ready"));
 }
 async function init(){
  // An old direct quiz-test link is not a game entrance. Open the real title menu.
