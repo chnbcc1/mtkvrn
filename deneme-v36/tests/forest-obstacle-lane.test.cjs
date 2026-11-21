@@ -276,7 +276,7 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(["145","146","147","148","149","150","151"].some(v=>home.includes("forest-v113-full.html?v="+v)),"Home must load the current forest chapter");
+assert(["145","146","147","148","149","150","151","152"].some(v=>home.includes("forest-v113-full.html?v="+v)),"Home must load the current forest chapter");
 assert(map.includes("forest-v113-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
@@ -353,7 +353,7 @@ for(const chapter of [home,forest]){
  assert(chapter.includes('class="mtk-hud-shell"'),"Existing universal chapter HUD retained");
  assert(chapter.includes("hud-shell-v129.svg?v=133"),"Shared HUD illustration retained");
  assert(chapter.includes("assets/world-map-v133.js?v=140"),"All chapters use the single expanding map engine");
- assert(chapter.includes("assets/game-ui-v133.js?v=144"),"All playable chapters use same settings logic");
+ assert(chapter.includes("assets/game-ui-v133.js?v=152"),"All playable chapters use same settings logic");
  assert(chapter.includes("assets/unified-ui-v133.css?v=141"),"All panels use unified responsive styles");
  assert(chapter.includes("window.MTKGameUI.openMap({"),"Map opens from inside game");
 }
@@ -486,7 +486,7 @@ assert(home.includes("HOME PORTRAIT ONLY")&&home.includes("Erdem LANDSCAPE: keep
 assert(home.includes("#game #dialogue.erdem{")&&home.includes("width:clamp(142px,40vw,176px)!important"),"Portrait Erdem bubble is narrow and taller");
 assert(home.includes("grid-template-columns:repeat(2,minmax(0,1fr))!important"),"Landscape home settings use two balanced columns");
 assert(home.includes("mtk-setting-list>button.mtk-restart-game")&&home.includes("background:linear-gradient(120deg,#fff8df,#e8cd98)"),"Landscape settings and restart rows share the parchment/gold palette");
-assert(menu.includes("assets/game-ui-v133.js?v=144")&&forest.includes("assets/game-ui-v133.js?v=144"),"Menu and forest use same settings logic");
+assert(menu.includes("assets/game-ui-v133.js?v=152")&&forest.includes("assets/game-ui-v133.js?v=152"),"Menu and forest use same settings logic");
 assert(home.includes("inline-size:min(680px,100%)!important")&&home.includes("grid-template-columns:minmax(0,1fr)!important"),"House landscape settings can never exceed available viewport width");
 assert(home.includes("mtk-modal-foot #closeModal,")&&home.includes("mtk-modal-foot #homeMainMenu"),"Footer buttons share identical size and emerald colors");
 assert(home.includes("max-width:100%!important;width:100%!important"),"Landscape setting cards stay inside the panel width");
