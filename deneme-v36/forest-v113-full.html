@@ -532,6 +532,40 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 #quizOverlay[data-preparing="1"] .quizWrap{opacity:0!important;pointer-events:none!important}
 #quizOverlay[data-preparing="1"]{pointer-events:none!important}
 #quizOverlay[data-preparing="1"]::after{content:"Soru hazırlanıyor…";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff3d1;background:#15473bbf;border:1px solid #bc9b63;border-radius:12px;padding:10px 16px;font:700 14px system-ui;white-space:nowrap;pointer-events:none}
+
+/* v164: iPhone landscape requires a real safe-area inset, including in-app browsers.
+   Never use the old full 100vw iframe inside a horizontally padded overlay.
+   Portrait layout remains unchanged. */
+@media (orientation:landscape) and (max-height:650px) {
+  #quizOverlay{
+    box-sizing:border-box!important;
+    padding-top:max(2px,env(safe-area-inset-top))!important;
+    padding-bottom:max(2px,env(safe-area-inset-bottom))!important;
+    padding-left:max(44px,env(safe-area-inset-left))!important;
+    padding-right:max(44px,env(safe-area-inset-right))!important;
+  }
+  #quizOverlay .quizWrap{
+    box-sizing:border-box!important;
+    width:100%!important;
+    max-width:100%!important;
+    height:100%!important;
+    max-height:100%!important;
+  }
+  /* Place forest-return over the trees, never over the question text. */
+  #quizOverlay .quizBar{
+    left:9px!important;
+    right:auto!important;
+    top:8px!important;
+    width:auto!important;
+    z-index:50!important;
+  }
+  #quizOverlay .quizClose{
+    font-size:clamp(11px,1.3vw,14px)!important;
+    min-height:36px!important;
+    padding:6px 10px!important;
+  }
+}
+
 </style>
 </head>
 <body>
