@@ -381,15 +381,15 @@ function f01Guide(q){
  return null;
 }
 function teachingHint(q,defaultHint){
- const g=f01Guide(q);
+ const g=f01Guide(q)||window.MTKF02ApprovedV165?.guide(q);
  return g?g.first:[defaultHint||"Sorunun verilenlerini ve istenenini ayır; işlemlerin sırasını belirle."];
 }
 function teachingSecondHint(q,defaultHint){
- const g=f01Guide(q);
+ const g=f01Guide(q)||window.MTKF02ApprovedV165?.guide(q);
  return g?g.second:[defaultHint||"Verilen matematiksel ifadeleri ayrı ayrı hesaplayarak ilerle."];
 }
 function teachingSolution(q){
- const guided=f01Guide(q);
+ const guided=f01Guide(q)||window.MTKF02ApprovedV165?.guide(q);
  return guided?.solution||workedSteps(q);
 }
 function example(q){
@@ -473,7 +473,7 @@ function show(){window.MTKApprovedQuizV145?.reset();
    app.appendChild(feedbackBox("wrong",run.wrong===1?"1. yanlış • Çözüm yolunu keşfet":"2. yanlış • Birlikte ilk adımı yapalım"));
    const steps=run.wrong===1?teachingHint(q,s.hint):teachingSecondHint(q,s.hint);
    for(const text of steps)app.appendChild(mathText("p","mtk-teaching-step",text));
-   if(run.wrong===2&&q.obstacleId!=="F01"){
+   if(run.wrong===2&&!["F01","F02"].includes(q.obstacleId)){
      const ref=example(q);
      if(ref){const box=node("div","solution");append(box,node("strong",null,"Benzer çözümlü örnek"),mathText("p",null,ref.prompt),mathText("p",null,"Çözüm: "+(ref.sourceVerified?ref.solution:(ref.solution||workedSteps(ref)))));app.appendChild(box)}
    }
