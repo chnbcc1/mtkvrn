@@ -52,6 +52,7 @@
       display:flex!important;flex-direction:column!important;overflow-y:auto!important;
     }
     .mtk-frame.mtk-f01-v159.mtk-help-mode .mtk-question-region .prompt{display:none!important}
+    .mtk-frame.mtk-f01-v159.mtk-help-mode .choiceGrid{display:none!important}
     .mtk-frame.mtk-f01-v159 .choiceGrid{
       position:absolute!important;left:4.3%!important;top:77.8%!important;width:91.4%!important;
       height:17.3%!important;max-height:none!important;min-height:0!important;z-index:6!important;
