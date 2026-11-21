@@ -384,7 +384,7 @@
  }
 }
 
-</style><link rel="stylesheet" href="./assets/settings-standard-v144.css?v=144"><script src="./forest-hd-v67-asset.js?v=67"></script><script src="./erdem-v83-hd-atlas.js?v=83"></script><script src="./erdem-animation-v83.js?v=83"></script><script src="./chiko-v57-hd-atlas.js?v=57"></script><script src="./settings-v116.js?v=116"></script><script src="./assets/world-map-v133.js?v=140"></script><script src="./assets/map-world-registry-v133.js?v=133"></script><script src="./assets/game-ui-v133.js?v=152"></script></head><body>
+</style><link rel="stylesheet" href="./assets/settings-standard-v144.css?v=144"><script src="./forest-hd-v67-asset.js?v=67"></script><script src="./erdem-v83-hd-atlas.js?v=83"></script><script src="./erdem-animation-v83.js?v=83"></script><script src="./chiko-v57-hd-atlas.js?v=57"></script><script src="./settings-v116.js?v=116"></script><script src="./assets/world-map-v133.js?v=140"></script><script src="./assets/map-world-registry-v133.js?v=133"></script><script src="./assets/game-ui-v133.js?v=162"></script></head><body>
 <div id="game"><canvas id="scene" aria-label="Dedenin bahçesinde keşif sahnesi"></canvas><div class="film"></div>
 <div class="mtk-hud-shell" data-chapter="home" aria-label="Ortak oyun üst menüsü">
  <img class="mtk-hud-art" src="./assets/hud-shell-v129.svg?v=133" alt="" aria-hidden="true" draggable="false">
@@ -615,7 +615,7 @@ $('#start').onclick=()=>{
  let saveStage=null,latestState={};
  try{latestState=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}')||{};saveStage=latestState.chapter2||null}catch(e){}
  if(!goHome&&gameOver&&chapter2EntrySeen&&saveStage&&saveStage.stage==='forest-path'&&latestState.activeScene!=='home'){
-  location.assign('./forest-v113-full.html?v=159&resume=1');
+  location.assign('./forest-v113-full.html?v=162&resume=1');
   return;
  }
  const firstVisit=!introSeen&&!found.size&&!visitedStudy&&!gameOver;
