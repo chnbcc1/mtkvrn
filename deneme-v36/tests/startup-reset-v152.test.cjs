@@ -80,7 +80,7 @@ assert(forest.includes("event.persisted&&!$(\"#quizOverlay\").hidden)closeQuiz()
 assert(forest.includes("resetProgress(all?'game':'chapter','forest')"));
 assert(house.includes("window.MTKGameUI?.resetProgress('game')"),"Home restart uses identical reset");
 assert(house.includes("suppressProgressSave=true"),"Home exit must not restore a deleted save");
-assert(menu.includes("game-ui-v133.js?v=152")&&forest.includes("game-ui-v133.js?v=152")&&house.includes("game-ui-v133.js?v=152"),"iPhone must use current reset code in all chapters");
+assert(menu.includes("game-ui-v133.js?v=162")&&forest.includes("game-ui-v133.js?v=162")&&house.includes("game-ui-v133.js?v=162"),"iPhone must use current reset code in all chapters");
 assert(quizCode.includes("if(standalone&&!preview){location.replace(\"./menu-v116.html?v=152\");return}"),"Direct historical quiz links open the main menu");
 assert(quizCode.includes('const FRESH_ATTEMPT=EMBED&&new URLSearchParams(location.search).get("fresh")==="1";'),"Only explicit legacy preview links may request a forced fresh session");
 assert(quizCode.includes("const saved=(preview||FRESH_ATTEMPT)?null:read(RUN_KEY)"),"Ordinary in-game reentry must restore question while explicitly fresh preview can reset");
@@ -103,7 +103,9 @@ assert(forest.includes('#quizOverlay[data-preparing="1"] .quizWrap{opacity:0!imp
 assert(forest.includes('quizRevealTimer=setTimeout(revealQuizIfMounted,450)'),"Cold magnifier must have a short reveal safety net");
 assert(forest.includes('function revealQuizIfMounted()'),"Magnifier reveal fallback must exist");
 assert(forest.includes('clearTimeout(quizRevealTimer)'),"Closing or finishing a question must cancel recovery timer");
-assert(forest.includes('forest-v70-quiz.html?v=160'),"Forest loads repaired embedded question route");
+assert(forest.includes('forest-v70-quiz.html?v=162'),"Forest loads repaired embedded question route");
+assert(forest.includes('if(!suppressForestExitSave)save(true)'),"Forest reset must disable visibility autosave");
+assert(forest.includes('if(suppressForestExitSave)return;'),"Forest reset must disable stale outgoing saves");
 assert(forest.includes('d.event==="ready"||d.event==="load-error"'),"Parent must reveal only after its child signals readiness or error");
 assert(forest.includes('$("#quizOverlay").removeAttribute("data-preparing")'),"Parent must reveal the finished quiz");
 assert(quizCode.includes("function announceQuizVisualReady()"),"Iframe announces when approved art is ready");
