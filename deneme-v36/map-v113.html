@@ -30,12 +30,12 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#081d24;fon
 const from=new URLSearchParams(location.search).get("from")||"home";
 function backToSource(){
  const url=from==="menu"?"./menu-v116.html?v=139":
-  from==="forest"?"./forest-v113-full.html?resume=1&v=166":
+  from==="forest"?"./forest-v113-full.html?resume=1&v=167":
   from==="title"?"./menu-v116.html?v=139":"./?scene=home&autostart=1&v=139";
  location.assign(url);
 }
 document.getElementById("back").addEventListener("click",backToSource);
-const fallbackForest="./forest-v113-full.html?resume=1&v=166";
+const fallbackForest="./forest-v113-full.html?resume=1&v=167";
 window.MTKWorldMap.mount(document.getElementById("map"),{
  from,
  onClose:backToSource,
