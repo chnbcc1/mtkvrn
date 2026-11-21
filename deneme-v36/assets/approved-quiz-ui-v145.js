@@ -22,7 +22,18 @@
     .mtk-frame.mtk-answer-hint-closed .mtk-answer-help-card{left:16%!important;top:59%!important;width:auto!important;height:auto!important}
   }
 
-  body.embedded.mtk-approved-active{height:100dvh!important;min-height:0!important;padding:0!important;background:#102d27!important;overflow:hidden!important}
+  /* Keep the explanation scroll independent of always-visible controls. */
+  .mtk-frame.mtk-help-mode .mtk-answer-help-card{display:flex!important;flex-direction:column!important;gap:8px!important;overflow:hidden!important}
+  .mtk-frame .mtk-answer-help-card .mtk-help-body{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;font-size:clamp(12px,2.45cqw,19px);line-height:1.43}
+  .mtk-frame .mtk-answer-help-card .mtk-help-body .feedback{margin:0!important;padding:8px!important;line-height:1.43!important}
+  .mtk-frame .mtk-answer-help-card .mtk-help-body .solution{margin:8px 0!important;padding:9px!important;line-height:1.48!important}
+  .mtk-frame .mtk-answer-help-card .mtk-help-foot{flex:0 0 auto;border-top:1px solid #c0a779;padding-top:8px;min-height:44px}
+  .mtk-frame .mtk-answer-help-card .mtk-help-foot .btnRow{display:flex!important;flex-wrap:wrap!important;justify-content:space-evenly!important;gap:8px!important;margin:0!important;padding:0!important}
+  .mtk-frame .mtk-answer-help-card .mtk-help-foot .btn{flex:1 1 41%;min-width:0;white-space:normal;text-align:center;min-height:39px!important;font-size:clamp(12px,2.4cqw,18px)!important}
+  .mtk-frame .mtk-inline-hint-trigger{position:relative!important;inset:auto!important;width:auto!important;height:auto!important;max-height:none!important;overflow:visible!important;background:transparent!important;border:0!important;box-shadow:none!important;margin:0!important;padding:0!important}
+  .mtk-frame .mtk-inline-hint-trigger .btnRow{position:relative!important;margin:0!important;padding:0!important;display:flex!important;justify-content:flex-start!important}
+  .mtk-frame .mtk-inline-hint-trigger .btn{min-height:36px!important;padding:5px 11px!important}
+    body.embedded.mtk-approved-active{height:100dvh!important;min-height:0!important;padding:0!important;background:#102d27!important;overflow:hidden!important}
   .mtk-approved-active main{height:100%!important;width:100%!important;max-width:none!important;display:grid!important;place-items:center!important;overflow:hidden!important;margin:0!important}
   .mtk-approved-active #app{height:100%!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important;box-shadow:none!important;border:0!important;background:transparent!important;display:grid!important;place-items:center!important;overflow:hidden!important}
   .mtk-frame{box-sizing:border-box;position:relative;aspect-ratio:941/1672;width:min(100vw,calc(100dvh * 941 / 1672));max-height:100dvh;background-image:var(--portrait-frame);background-repeat:no-repeat;background-size:100% 100%;container-type:inline-size;overflow:hidden;isolation:isolate}
@@ -327,8 +338,17 @@
     const extra=elem('section','mtk-feedback-overlay');rest.forEach(x=>extra.appendChild(x));
     frame.append(text,visual,choices);
     if(extra.children.length){
-      if(wrongHelp){extra.classList.add('mtk-answer-help-card');frame.appendChild(extra)}
-      else text.appendChild(extra);
+      if(wrongHelp&&helpOpen){
+        extra.classList.add('mtk-answer-help-card');
+        const body=elem('div','mtk-help-body'),foot=elem('div','mtk-help-foot');
+        for(const part of [...extra.children]){
+          if(part.classList.contains('btnRow'))foot.appendChild(part);
+          else body.appendChild(part);
+        }
+        extra.append(body,foot);frame.appendChild(extra);
+      }else if(wrongHelp){
+        extra.classList.add('mtk-inline-hint-trigger');text.appendChild(extra);
+      }else text.appendChild(extra);
     }
     app.replaceChildren(frame);document.body.classList.add('mtk-approved-active');
     if(!document.querySelector('#mtk-approved-style-v145')){const s=elem('style');s.id='mtk-approved-style-v145';s.textContent=style;document.head.appendChild(s)}
