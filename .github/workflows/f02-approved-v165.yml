@@ -1,0 +1,23 @@
+name: F02 Approved Stone Steps v165 Regression
+on:
+  push:
+    paths:
+      - "deneme-v36/assets/f02-approved-v165.js"
+      - "deneme-v36/assets/f02-approved-v165.avif"
+      - "deneme-v36/assets/approved-quiz-ui-v145.js"
+      - "deneme-v36/forest-v70-quiz.html"
+      - "deneme-v36/forest-questions-v147.json"
+      - "deneme-v36/tests/f02-approved-v165.test.cjs"
+      - ".github/workflows/f02-approved-v165.yml"
+  workflow_dispatch:
+jobs:
+  test-f02-approved:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify the approved F02 image, all thirty questions and learning flow
+        run: node deneme-v36/tests/f02-approved-v165.test.cjs
+      - name: Preserve approved F01 and the 630-question bank
+        run: |
+          node deneme-v36/tests/f01-approved-v159.test.cjs
+          node deneme-v36/tests/quiz-screen-v147.test.cjs
