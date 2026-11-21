@@ -188,7 +188,7 @@
       const slot=chooseSlot(entry.anchor,used);if(!slot)continue;
       const raw=String(entry.value??'');
       const anchor=String(entry.anchor??'').toLocaleLowerCase('tr').replaceAll('_',' ').trim();
-      const shown=slot.id==='top' && /(^gün$|kaçıncı gün)/.test(anchor) && /^[0-9]+$/.test(raw.trim()) ? raw.trim()+'. Gün' : raw;
+      const shown=/(^gün$|kaçıncı gün)/.test(anchor) && /^[0-9]+$/.test(raw.trim()) ? raw.trim()+'. Gün' : raw;
       const v=make('span','f01-label'+(shown.length>9?' long':''));
       v.style.left=slot.x+'%';v.style.top=slot.y+'%';v.style.width=slot.w+'%';
       v.style.height=slot.h+'%';v.textContent=shown;
