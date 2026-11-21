@@ -1,0 +1,29 @@
+name: Startup and Restart v152 Regression
+on:
+  push:
+    paths:
+      - "deneme-v36/assets/game-ui-v133.js"
+      - "deneme-v36/menu-v116.html"
+      - "deneme-v36/index.html"
+      - "deneme-v36/forest-v113-full.html"
+      - "deneme-v36/forest-v70-quiz.html"
+      - "deneme-v36/tests/startup-reset-v152.test.cjs"
+      - ".github/workflows/startup-reset-v152.yml"
+  pull_request:
+    paths:
+      - "deneme-v36/assets/game-ui-v133.js"
+      - "deneme-v36/menu-v116.html"
+      - "deneme-v36/index.html"
+      - "deneme-v36/forest-v113-full.html"
+      - "deneme-v36/forest-v70-quiz.html"
+      - "deneme-v36/tests/startup-reset-v152.test.cjs"
+jobs:
+  restart:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check new game, chapter restart, saved quiz removal and main menu startup
+        run: node deneme-v36/tests/startup-reset-v152.test.cjs
