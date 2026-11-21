@@ -76,6 +76,7 @@ const fresh={
 assert(menu.includes("window.MTKGameUI.resetProgress('game')"),"Main menu New Game uses full reset");
 assert(menu.includes("menuRestartChapter"),"Main menu chapter button is wired");
 assert(forest.includes("suppressForestExitSave=true"),"Forest exit must not restore a deleted save");
+assert(forest.includes("event.persisted&&!$(\"#quizOverlay\").hidden)closeQuiz()"),"Restoring an old iPhone browser tab must dismiss its stale quiz overlay");
 assert(forest.includes("resetProgress(all?'game':'chapter','forest')"));
 assert(house.includes("window.MTKGameUI?.resetProgress('game')"),"Home restart uses identical reset");
 assert(house.includes("suppressProgressSave=true"),"Home exit must not restore a deleted save");
