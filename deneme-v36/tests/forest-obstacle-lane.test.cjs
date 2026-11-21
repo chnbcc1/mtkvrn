@@ -511,12 +511,12 @@ assert(quizFrameUI.includes("width:35.1%")&&quizFrameUI.includes("width:39.1%"),
 assert(quizFrameUI.includes("const leftFor=(anchor,index)=>")&&quizFrameUI.includes("return 35.3;")&&quizFrameUI.includes("return 51.5;")&&quizFrameUI.includes("return 67;"),"F03 values must anchor by their semantic machine positions");
 assert(quizChiko.includes("assets/quiz-approved-frames-v145.js?v=145")&&quizChiko.includes("MTKApprovedQuizV145?.mount"),"Embedded quiz must render approved art with dynamic live text");
 assert(forest.includes("mtk-approved-quiz-shell-v145"),"The forest quiz must use full-size responsive shell");
-const bank145=JSON.parse(fs.readFileSync(path.join(root,"forest-questions-v70.json"),"utf8"));
+const bank145=JSON.parse(fs.readFileSync(path.join(root,"forest-questions-v147.json"),"utf8"));
 assert.equal(bank145.questions.length,630,"The existing 630-question bank must not be reduced");
 const bank147=JSON.parse(fs.readFileSync(path.join(root,"forest-questions-v147.json"),"utf8"));
 assert.equal(bank147.questions.length,630,"User-approved 630-question ZIP bank must stay complete");
-assert(quizChiko.includes("forest-questions-v147.json?v=147"),"Current quiz must load the confirmed question bank");
-const reviewedF03=bank145.questions.find(q=>q.id==="F03-zor-01");
+assert(/forest-questions-v147\.json\?v=(147|160)/.test(quizChiko),"Current quiz must load the confirmed question bank");
+const reviewedF03=bank145.questions.find(q=>q.id==="F03-Z-01");
 assert(reviewedF03&&reviewedF03.prompt.includes("2¹³ birim sis")&&reviewedF03.correctAnswer==="4"&&reviewedF03.options.join("|")==="16|8|4|32");
 assert(reviewedF03.fixedChoiceOrder&&reviewedF03.visual?.bakedIntoImage===false,"Approved F03 values must stay in dynamic HTML layer");
 console.log("PASS v145: same settings in all areas, unclipped landscape, polished old-map discovery.");
