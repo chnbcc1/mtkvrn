@@ -56,7 +56,8 @@ for(const q of records.filter(q=>q.visual.labels.some(e=>e.anchor==="basamak 4")
 }
 assert(ui.includes('window.MTKF02ApprovedV165?.render(visual,q)'),"F02 renderer must be mounted before legacy art");
 assert(ui.includes("window.MTKF02ApprovedV165?.enhance(frame,q)"),"F02 must apply full-frame responsive layout");
-assert(quiz.includes('f02-approved-v165.js?v=168'),"Quiz must load the current F02 renderer without stale iPhone cache");
+assert(quiz.includes('f02-approved-v165.js?v=169'),"Quiz must load the current F02 renderer without stale iPhone cache");
+assert(quiz.includes('forest-questions-v147.json?v=169'),"Quiz must refresh corrected source question wording");
  const energyExample=records.find(q=>q.id==="F02-O-06");
  const stepGuide=f02.guide(energyExample);
  const narration=stepGuide.first.join(" ")+stepGuide.second.join(" ");
@@ -71,7 +72,25 @@ const ratioCase=records.find(q=>q.id==="F02-O-08");
 const ratioPlan=f02.plan(ratioCase);
 assert.equal(ratioPlan.length,4,"One source energy, one warning energy and two separate usage ratios must be visible");
 assert.equal(ratioPlan.filter(x=>x.slot==="top").length,0,"Usage ratios must not look like a worked answer in the top summary plaque");
-assert(ratioPlan.some(x=>x.value==="Kapı: 1/4")&&ratioPlan.some(x=>x.value==="Lamba: 1/2"),"The consumption ratios must be identifiable as separate givens");
+assert(ratioPlan.some(x=>x.value==="Kapı: 1/4")&&ratioPlan.some(x=>x.value==="Lamba: 1/4"),"The consumption ratios must match the revised question, as separate givens");
+for(const [id,startExp,warningExp,expected] of [
+ ["F02-O-02","2⁵","2⁴","20"],
+ ["F02-O-05","2⁶","2⁵","40"],
+ ["F02-O-08","2⁷","2⁶","80"]
+]){
+ const q=records.find(x=>x.id===id);
+ assert(q&&q.prompt.includes(startExp)&&q.prompt.includes(warningExp+" birimin dörtte biri"),id+" must not reveal an intermediate result");
+ assert.equal(q.correctAnswer,expected,id+" correct answer changed");
+ assert.equal(q.visual.labels.find(x=>x.anchor==="uyarı").value,warningExp,id+" visual warning energy mismatch");
+ assert.equal(q.visual.labels.find(x=>x.anchor==="uyarı kullanımı").value,"1/4",id+" visual warning ratio mismatch");
+ const power=t=>Number([...t.slice(1)].map(c=>"⁰¹²³⁴⁵⁶⁷⁸⁹".indexOf(c)).join(""));
+ const total=2**power(startExp),warn=2**power(warningExp);
+ assert.equal(total-total/4-warn/4,Number(expected),id+" revised math is incorrect");
+ assert.notEqual(warn,total/4,id+" leaked the answer to the first step through the warning power");
+ assert(f02.guide(q).first.join(" ").includes("dörtte biri"),id+" first hint must match revised fraction");
+ assert(f02.guide(q).second.join(" ").includes(warn+" ÷ 4"),id+" worked intermediate hint must match the new data");
+}
+
 assert(source.includes('mtk-f02-practice-controls')&&source.includes('mtk-f02-practice-mode'),"The return-to-main-task button must have a dedicated non-overlapping row");
 assert(source.includes('flex:1 1 auto!important')&&source.includes('flex:0 0 auto!important'),"Practice question must scroll independently of fixed return button");
 assert(source.includes('padding:5px 8px 3px 8px!important')&&source.includes('text-indent:0!important'),"Each source question needs inset text to preserve all initial letters");
