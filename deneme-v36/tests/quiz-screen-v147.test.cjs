@@ -58,4 +58,24 @@ for(const q of matching){
 assert(!html.includes("Kaynak paketteki benzer soru"),"The unapproved inline follow-up must not be shown");
 assert(!html.includes("Başka bir onaylı soruyu çöz"),"The duplicate practice action must be removed");
 assert(ui.includes("mtk-help-mode")&&ui.includes("mtk-answer-help-card"),"Hint must cover, not erase, four choices");
+/* F01: no vague reused hints; all 30 approved variants need two real learning steps
+   and a final dynamically verified explanation. */
+const lessonBegin=script.indexOf('function f01Growth(q){');
+const lessonEnd=script.indexOf('function example(q){',lessonBegin);
+assert(lessonBegin>=0&&lessonEnd>lessonBegin,"F01 teaching methods must be present");
+const lesson={};
+vm.runInNewContext(script.slice(lessonBegin,lessonEnd),lesson);
+const vines=bank.questions.filter(q=>q.obstacleId==="F01");
+assert.equal(vines.length,30);
+for(const q of vines){
+ const guide=lesson.f01Guide(q);
+ assert(guide,q.id+" has no tailored hint");
+ assert(guide.first.length>=2&&guide.second.length>=2,q.id+" needs different progressive explanations");
+ assert(guide.first.every(x=>x.length>=30)&&guide.second.every(x=>x.length>=30),q.id+" has too little information");
+ assert(guide.solution.length>=22,q.id+" needs a computed solution matching the approved answer");
+}
+const f01art=fs.readFileSync(path.join(root,"assets/f01-approved-v159.js"),"utf8");
+assert(f01art.includes("top:54.4%!important")&&f01art.includes("height:42.0%!important"),"F01 help must cover both question text and all four answers");
+assert(ui.includes("mtk-help-foot")&&ui.includes("mtk-help-body"),"Navigation controls must stay visible when the hint scrolls");
+assert(ui.includes("mtk-inline-hint-trigger")&&ui.includes("text.appendChild(extra)"),"Closed hint control must sit inside the question panel, not over answer A");
 console.log("PASS v147: exactly 630 user-approved questions, source hints/answers, approved layouts, F03 and F21 matching.");
