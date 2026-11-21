@@ -145,12 +145,15 @@
   }
   if(get("ilk enerji")&&get("kapı tüketimi")&&get("uyarı")&&get("uyarı kullanımı")){
     const start=value("ilk enerji"),warning=value("uyarı");
+    const doorRatio=get("kapı tüketimi"),lampRatio=get("uyarı kullanımı");
+    const fractionName=r=>r==="1/4"?"dörtte biri":r==="1/2"?"yarısı":r+" kadarı";
+    const divisor=r=>Number(String(r).split("/")[1]);
     return hint([
-      "Depolanmış ilk enerjiyi bul. Kapıyı açmak için bunun dörtte biri tüketiliyor.",
-      "Uyarı lambası içinse ayrıca "+get("uyarı")+" enerjisinin yarısı harcanıyor. İki harcamayı başlangıç enerjisinden çıkar."
+      "Önce "+get("ilk enerji")+" ifadesinin değerini hesapla. Kapıyı açmak için bu enerjinin "+fractionName(doorRatio)+" kullanılıyor.",
+      "Uyarı lambası için ayrıca "+get("uyarı")+" birimin "+fractionName(lampRatio)+" harcanıyor. İki harcamayı ayrı bulup başlangıç enerjisinden çıkar."
     ],[
-      get("ilk enerji")+" = "+start+" ve "+get("uyarı")+" = "+warning+" birim enerji.",
-      "Kapının tüketimi "+start+" ÷ 4; lambanın tüketimi "+warning+" ÷ 2'dir. Önce bu iki tüketimi bul, sonra "+start+" birimden çıkar."
+      get("ilk enerji")+" = "+start+" ve "+get("uyarı")+" = "+warning+" birim enerjidir.",
+      "Kapının tüketimini "+start+" ÷ "+divisor(doorRatio)+", lambanın tüketimini "+warning+" ÷ "+divisor(lampRatio)+" işlemleriyle hesapla. Bulduğun harcamaları "+start+" birimden çıkar."
     ]);
   }
   if(get("sol")&&get("sağ")&&get("harcama")){
