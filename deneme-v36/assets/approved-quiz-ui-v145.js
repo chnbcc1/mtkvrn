@@ -27,6 +27,17 @@
   .mtk-frame .mtk-answer-help-card .mtk-help-body{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;font-size:clamp(12px,2.45cqw,19px);line-height:1.43}
   .mtk-frame .mtk-answer-help-card .mtk-help-body .feedback{margin:0!important;padding:8px!important;line-height:1.43!important}
   .mtk-frame .mtk-answer-help-card .mtk-help-body .solution{margin:8px 0!important;padding:9px!important;line-height:1.48!important}
+  .mtk-frame .mtk-answer-help-card .mtk-help-body .mtk-teaching-step{
+    margin:9px 0!important;padding:9px 10px!important;line-height:1.5!important;
+    border-left:3px solid #a98955!important;border-radius:7px!important;
+    background:#fff8e9!important;color:#352c20!important;font-size:inherit!important;
+    overflow-wrap:break-word!important;
+  }
+  .mtk-frame .mtk-answer-help-card .mtk-help-body .feedback.wrong{
+    margin:0 0 8px!important;padding:8px 10px!important;
+    font-weight:850!important;background:#f7e3be!important;border-radius:9px!important;
+    line-height:1.28!important;
+  }
   .mtk-frame .mtk-answer-help-card .mtk-help-foot{flex:0 0 auto;border-top:1px solid #c0a779;padding-top:8px;min-height:44px}
   .mtk-frame .mtk-answer-help-card .mtk-help-foot .btnRow{display:flex!important;flex-wrap:wrap!important;justify-content:space-evenly!important;gap:8px!important;margin:0!important;padding:0!important}
   .mtk-frame .mtk-answer-help-card .mtk-help-foot .btn{flex:1 1 41%;min-width:0;white-space:normal;text-align:center;min-height:39px!important;font-size:clamp(12px,2.4cqw,18px)!important}
