@@ -2,11 +2,25 @@
 (function(){
   'use strict';
   const style = `
-  .mtk-frame.mtk-help-mode .choiceGrid{display:none!important}
-  .mtk-frame.mtk-help-mode .mtk-question-region{left:22%!important;top:65%!important;width:76%!important;height:30%!important;overflow-y:auto!important;display:block!important}
-  .mtk-frame.mtk-help-mode .mtk-question-region>.prompt{display:none!important}
-  .mtk-frame.mtk-help-mode .mtk-feedback-overlay{position:relative!important;inset:auto!important;width:100%!important;max-height:none!important;overflow:visible!important;box-shadow:none!important;margin:0!important}
-  @media(orientation:landscape){.mtk-frame.mtk-help-mode .mtk-question-region{left:52%!important;top:5%!important;width:46%!important;height:90%!important}}
+  /* Hint and solution cover all four answers. Choices remain underneath; question stays visible. */
+  .mtk-frame.mtk-help-mode .choiceGrid>.choice{pointer-events:none!important}
+  .mtk-frame.mtk-help-mode .mtk-answer-help-card{
+    position:absolute!important;z-index:40!important;left:20%!important;top:64%!important;
+    width:77%!important;height:29%!important;max-height:none!important;box-sizing:border-box;
+    overflow-y:auto!important;overscroll-behavior:contain;background:#fff2d7!important;
+    border:2px solid #b18d58!important;border-radius:14px!important;padding:12px!important;
+    margin:0!important;color:#352a1e!important;box-shadow:0 4px 18px #38241255!important;
+  }
+  .mtk-frame.mtk-answer-hint-closed .mtk-answer-help-card{
+    position:absolute!important;z-index:20!important;left:21%!important;top:62%!important;
+    width:auto!important;height:auto!important;max-height:none!important;overflow:visible!important;
+    background:transparent!important;border:0!important;padding:0!important;margin:0!important;box-shadow:none!important;
+  }
+  .mtk-frame .mtk-answer-help-card .btnRow{position:static!important;background:transparent!important;padding:4px 0!important;margin-top:8px!important}
+  @media(orientation:landscape){
+    .mtk-frame.mtk-help-mode .mtk-answer-help-card{left:15%!important;top:64%!important;width:82%!important;height:31%!important}
+    .mtk-frame.mtk-answer-hint-closed .mtk-answer-help-card{left:16%!important;top:59%!important;width:auto!important;height:auto!important}
+  }
 
   body.embedded.mtk-approved-active{height:100dvh!important;min-height:0!important;padding:0!important;background:#102d27!important;overflow:hidden!important}
   .mtk-approved-active main{height:100%!important;width:100%!important;max-width:none!important;display:grid!important;place-items:center!important;overflow:hidden!important;margin:0!important}
@@ -285,7 +299,7 @@
     if(!frames?.portrait||!frames?.landscape||!app||!choices)return false;
     const prompt=app.querySelector('.prompt');if(!prompt)return false;
     const rest=[...app.children].filter(e=>e!==prompt&&e!==choices&&!e.matches('.eyebrow,h2,.mini'));
-    const frame=elem('section','mtk-frame');frame.classList.toggle('mtk-help-mode',!!run?.helpView&&!run?.stageCorrect&&(run?.wrong>0||run?.revealed));frame.style.setProperty('--portrait-frame','url("'+frames.portrait+'")');frame.style.setProperty('--landscape-frame','url("'+frames.landscape+'")');
+    const frame=elem('section','mtk-frame');const wrongHelp=!run?.stageCorrect&&Number(run?.wrong)>0;const helpOpen=wrongHelp&&run?.helpView!==false;frame.classList.toggle('mtk-help-mode',helpOpen);frame.classList.toggle('mtk-answer-hint-closed',wrongHelp&&!helpOpen);frame.style.setProperty('--portrait-frame','url("'+frames.portrait+'")');frame.style.setProperty('--landscape-frame','url("'+frames.landscape+'")');
     frame.setAttribute('aria-label','Soru ekranı');
     const text=elem('div','mtk-question-region');text.appendChild(prompt);
     const visual=elem('div','mtk-visual-region');visual.setAttribute('aria-label','Soru görseli ve değişken etiketler');
@@ -312,7 +326,10 @@
     }
     const extra=elem('section','mtk-feedback-overlay');rest.forEach(x=>extra.appendChild(x));
     frame.append(text,visual,choices);
-    if(extra.children.length)text.appendChild(extra);
+    if(extra.children.length){
+      if(wrongHelp){extra.classList.add('mtk-answer-help-card');frame.appendChild(extra)}
+      else text.appendChild(extra);
+    }
     app.replaceChildren(frame);document.body.classList.add('mtk-approved-active');
     if(!document.querySelector('#mtk-approved-style-v145')){const s=elem('style');s.id='mtk-approved-style-v145';s.textContent=style;document.head.appendChild(s)}
     if(q?.obstacleId==='F01')window.MTKF01ApprovedV159?.enhance(frame,q);
