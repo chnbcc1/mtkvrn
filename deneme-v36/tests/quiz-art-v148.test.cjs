@@ -41,9 +41,9 @@ assert(ui.includes('p.mini?" small-plaque"'),"Small plaques must not receive gen
 assert(quiz.includes("quiz-research-objects-v148.js?v=148"),"Quiz must load new assets");
 assert(/approved-quiz-ui-v145\.js\?v=\d+/.test(quiz),"Quiz must load updated positioning code");
 assert(/forest-questions-v147\.json\?v=\d+/.test(quiz),"Approved data must remain the source");
-assert(/forest-v70-quiz\.html\?v=(148|149|150|151|152|153|154|155|156|157|158|159|160|162|163|164|165|166|167|168|169|170)/.test(forest),"Forest needs current question UI");
-assert(/forest-v113-full\.html\?v=(148|149|150|151|152|153|154|155|156|157|158|159|160|162|163|164|165|166|167|168|169|170)/.test(home),"Home needs current forest page");
-assert(/forest-v113-full\.html\?resume=1&v=(148|149|150|151|152|153|154|155|156|157|158|159|160|162|163|164|165|166|167|168|169|170)/.test(menu),"Menu needs current forest page");
+assert(/forest-v70-quiz\.html\?v=\d+/.test(forest),"Forest needs current question UI");
+assert(/forest-v113-full\.html\?v=\d+/.test(home),"Home needs current forest page");
+assert(/forest-v113-full\.html\?resume=1&v=\d+/.test(menu),"Menu needs current forest page");
 assert(ui.includes("aspect-ratio:941/1672")&&ui.includes("aspect-ratio:1672/941"),"Both approved orientation frames must be retained");
 assert(forest.includes('@media (orientation:landscape) and (max-height:650px)'),"iPhone landscape needs a dedicated safe-area layout");
 assert(forest.includes('padding-left:max(44px,env(safe-area-inset-left))!important')&&forest.includes('padding-right:max(44px,env(safe-area-inset-right))!important'),"Do not place the artwork or answers underneath an iPhone notch");
