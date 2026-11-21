@@ -120,12 +120,12 @@ body{display:grid;place-items:center;min-height:100vh;min-height:100dvh}
 <button class="hit" id="settings" aria-label="Ayarlar">Ayarlar</button>
 </main>
 <div id="shade" hidden><section class="dialog mtk-ui-dialog" id="dialog" role="dialog" aria-modal="true" aria-labelledby="panelTitle"><h2 id="panelTitle"></h2><div id="panelBody"></div><footer id="panelActions"></footer></section></div>
-<script src="./settings-v116.js?v=116"></script><script src="./assets/world-map-v133.js?v=140"></script><script src="./assets/map-world-registry-v133.js?v=133"></script><script src="./assets/game-ui-v133.js?v=152"></script>
+<script src="./settings-v116.js?v=116"></script><script src="./assets/world-map-v133.js?v=140"></script><script src="./assets/map-world-registry-v133.js?v=133"></script><script src="./assets/game-ui-v133.js?v=162"></script>
 <script>
 'use strict';
 const SAVE_KEY='mathverse-v40-investigation', FOREST_KEY='mathverse-v68-forest-full';
 const $=s=>document.querySelector(s), read=k=>{try{return JSON.parse(localStorage.getItem(k)||'null')||{}}catch(e){return {}}};
-const homeUrl='./?scene=home&autostart=1&v=152',forestUrl='./forest-v113-full.html?resume=1&v=160';
+const homeUrl='./?scene=home&autostart=1&v=152',forestUrl='./forest-v113-full.html?resume=1&v=162';
 const home=()=>read(SAVE_KEY), forest=()=>read(FOREST_KEY);
 let chapterAtlasView=null;
 function hasSave(){const h=home(),f=forest();return !!(h.introSeen||h.visitedStudy||h.complete||(Array.isArray(h.found)&&h.found.length)||f.token||(Array.isArray(f.solvedIds)&&f.solvedIds.length));}
