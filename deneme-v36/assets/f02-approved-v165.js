@@ -149,11 +149,11 @@
     const fractionName=r=>r==="1/4"?"dörtte biri":r==="1/2"?"yarısı":r+" kadarı";
     const divisor=r=>Number(String(r).split("/")[1]);
     return hint([
-      "Önce "+get("ilk enerji")+" ifadesinin değerini hesapla. Kapıyı açmak için bu enerjinin "+fractionName(doorRatio)+" kullanılıyor.",
-      "Uyarı lambası için ayrıca "+get("uyarı")+" birimin "+fractionName(lampRatio)+" harcanıyor. İki harcamayı ayrı bulup başlangıç enerjisinden çıkar."
+      "Birinci basamakta "+get("ilk enerji")+", ikinci basamakta "+get("uyarı")+" birim güç var. İki üslü ifadenin değerini ayrı ayrı hesapla.",
+      "Birinci basamaktan kapı için "+fractionName(doorRatio)+", ikinci basamaktan uyarı lambası için "+fractionName(lampRatio)+" harcanıyor. Her basamakta kalanı hesaplayıp topla."
     ],[
-      get("ilk enerji")+" = "+start+" ve "+get("uyarı")+" = "+warning+" birim enerjidir.",
-      "Kapının tüketimini "+start+" ÷ "+divisor(doorRatio)+", lambanın tüketimini "+warning+" ÷ "+divisor(lampRatio)+" işlemleriyle hesapla. Bulduğun harcamaları "+start+" birimden çıkar."
+      "Birinci basamak "+get("ilk enerji")+" = "+start+", ikinci basamak "+get("uyarı")+" = "+warning+" birim güç içerir.",
+      "Kapı için "+start+" ÷ "+divisor(doorRatio)+", lamba için "+warning+" ÷ "+divisor(lampRatio)+" birim harcanır. Birinci ve ikinci basamaktaki kalanları topla."
     ]);
   }
   if(get("sol")&&get("sağ")&&get("harcama")){
