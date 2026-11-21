@@ -97,5 +97,14 @@ for(const [search,expectFresh] of [["?embedded=1&fresh=1",true],["?embedded=1",f
 assert(quiz.includes("mathverse-v147-quiz-"),"Current quiz storage key is covered");
 assert.equal(bank.questions.length,630);
 assert.equal(bank.obstacles.length,21);
+assert(forest.includes('$("#quizOverlay").dataset.preparing="1"'),"Forest must hide the old HTML view while the quiz starts");
+assert(forest.includes('#quizOverlay[data-preparing="1"] .quizWrap{visibility:hidden!important}'),"Unstyled quiz must never be painted before the approved frame");
+assert(forest.includes('d.event==="ready"||d.event==="load-error"'),"Parent must reveal only after its child signals readiness or error");
+assert(forest.includes('$("#quizOverlay").removeAttribute("data-preparing")'),"Parent must reveal the finished quiz");
+assert(quizCode.includes("function announceQuizVisualReady()"),"Iframe announces when approved art is ready");
+assert(quizCode.includes('pictures.map(decode)'),"Both the approved frame and research object must decode before reveal");
+assert(quizCode.includes('announceQuizVisualReady();'),"Iframe actually sends readiness signal");
+assert(!quizCode.includes('requestAnimationFrame(()=>requestAnimationFrame(()=>send("ready")))'),"Hidden iframe animations must not block readiness in WebKit");
+
 assert(gameUI.includes("mathverse-v147-choice-history"));
 console.log("PASS v152: new game, forest chapter restart, home restart, old direct-quiz redirect, no stale wrong answers; original 630 questions preserved.");
