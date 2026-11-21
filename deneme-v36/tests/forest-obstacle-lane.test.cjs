@@ -515,7 +515,7 @@ const bank145=JSON.parse(fs.readFileSync(path.join(root,"forest-questions-v147.j
 assert.equal(bank145.questions.length,630,"The existing 630-question bank must not be reduced");
 const bank147=JSON.parse(fs.readFileSync(path.join(root,"forest-questions-v147.json"),"utf8"));
 assert.equal(bank147.questions.length,630,"User-approved 630-question ZIP bank must stay complete");
-assert(/forest-questions-v147\.json\?v=(147|160)/.test(quizChiko),"Current quiz must load the confirmed question bank");
+assert(/forest-questions-v147\.json\?v=(147|160|162)/.test(quizChiko),"Current quiz must load the confirmed question bank");
 const reviewedF03=bank145.questions.find(q=>q.id==="F03-Z-01");
 assert(reviewedF03&&reviewedF03.prompt.includes("2¹³ birim sis")&&reviewedF03.correctAnswer==="4"&&reviewedF03.options.join("|")==="16|8|4|32");
 assert(reviewedF03.fixedChoiceOrder&&reviewedF03.visual?.bakedIntoImage===false,"Approved F03 values must stay in dynamic HTML layer");
