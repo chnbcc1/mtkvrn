@@ -22,7 +22,7 @@ for(const asset of ['f01-approved-portrait-v159.webp','f01-approved-scene-v159.w
 }
 assert(host.includes("if(q?.obstacleId==='F01')window.MTKF01ApprovedV159?.enhance(frame,q)"));
 assert(host.includes('q?.obstacleId==="F01"&&window.MTKF01ApprovedV159'), 'Original F01 research art should be skipped');
-assert(quiz.includes('f01-approved-v159.js?v=159'),'Approved F01 layout must be loaded');
+assert(quiz.includes('f01-approved-v159.js?v=160'),'Approved F01 layout must be loaded');
 assert(quiz.indexOf('f01-approved-v159.js')<quiz.indexOf('approved-quiz-ui-v145.js'), 'F01 helper must be available before standard renderer');
 class El{
  constructor(tag){this.tag=tag;this.className='';this.children=[];this.attrs={};this.style={};this.textContent='';this.title='';this.parent=null;this.classList={add:(x)=>{this.className+=' '+x;}};}
