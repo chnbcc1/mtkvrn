@@ -25,8 +25,12 @@
  function resetProgress(scope,chapter="home"){
   const homeKey="mathverse-v40-investigation",forestKey="mathverse-v68-forest-full";
   function clearQuizRuns(){
+   // Include the current v147 embedded F01–F21 sessions and older quiz generations.
+   // Restarting a chapter must never restore old wrong attempts or a revealed solution.
+   const prefixes=["mathverse-v70-quiz-","mathverse-v147-quiz-"];
+   const exact=new Set(["mathverse-v65-choice-run","mathverse-v147-choice-run","mathverse-v147-choice-history"]);
    const keys=[];for(let i=0;i<localStorage.length;i++)keys.push(localStorage.key(i));
-   for(const k of keys)if(k&&(k.startsWith("mathverse-v70-quiz-")||k==="mathverse-v65-choice-run"))localStorage.removeItem(k);
+   for(const k of keys)if(k&&(exact.has(k)||prefixes.some(prefix=>k.startsWith(prefix))))localStorage.removeItem(k);
   }
   try{
    if(scope==="game"){
