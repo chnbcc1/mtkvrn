@@ -515,7 +515,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 #modal.mtk-restart-confirm #modalActions{flex:0 0 auto!important}
 </style>
 <link rel="stylesheet" href="./assets/game-ui-v127.css?v=133"><link rel="stylesheet" href="./assets/unified-ui-v133.css?v=141"><link rel="stylesheet" href="./assets/settings-standard-v144.css?v=144"><style>html,body{height:100dvh!important}#scene{width:100dvw!important;height:100dvh!important}</style>
-<script src="./settings-v116.js?v=116"></script><script src="./assets/world-map-v133.js?v=140"></script><script src="./assets/map-world-registry-v133.js?v=133"></script><script src="./assets/game-ui-v133.js?v=144"></script>
+<script src="./settings-v116.js?v=116"></script><script src="./assets/world-map-v133.js?v=140"></script><script src="./assets/map-world-registry-v133.js?v=133"></script><script src="./assets/game-ui-v133.js?v=152"></script>
 <style id="mtk-approved-quiz-shell-v145">
 /* v145: expand the quiz iframe to the available mobile display in both orientations. */
 #quizOverlay{padding:0!important;background:#0a2824!important;backdrop-filter:none!important}
@@ -706,7 +706,7 @@ function confirmForestRestart(scope){
  action('Evet, Yeniden Başlat',()=>{
   suppressForestExitSave=true;
   if(!window.MTKGameUI.resetProgress(all?'game':'chapter','forest')){suppressForestExitSave=false;return}
-  location.replace(all?'./?scene=home&autostart=1&v=141':'./forest-v113-full.html?resume=1&v=141');
+  location.replace(all?'./?scene=home&autostart=1&v=152':'./forest-v113-full.html?resume=1&v=152');
  });
 }
 /* v139 forest settings; share the same saved preferences as the title screen. */
@@ -717,7 +717,7 @@ function openForestSettings(){
  $('#forestRestartChapter')?.addEventListener('click',()=>confirmForestRestart('chapter'));
  $('#forestRestartGame')?.addEventListener('click',()=>confirmForestRestart('game'));
  action('Oyuna dön',closeModal);
- action('Ana menü',()=>{recordForestExit();location.assign('./menu-v116.html?v=144')},'secondary');
+ action('Ana menü',()=>{recordForestExit();location.assign('./menu-v116.html?v=152')},'secondary');
 }
 $('#settingsBtn').onclick=openForestSettings;
 
@@ -1136,7 +1136,7 @@ function openQuiz(id){
  const qs=new URLSearchParams({embedded:"1",obstacle:id,difficulty,session:RUN_TOKEN});
  quizActiveId=id;requested=0;activePointers.clear();updatePress();modalOpen=true;
  $("#quizTitle").textContent=gate.icon+" · "+(gate.index+1)+"/21 · "+gate.label;
- $("#quizFrame").src="./forest-v70-quiz.html?v=151&"+qs;
+ $("#quizFrame").src="./forest-v70-quiz.html?v=152&"+qs;
  $("#quizOverlay").hidden=false;
 }
 function closeQuiz(){
