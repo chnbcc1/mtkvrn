@@ -267,7 +267,7 @@ function f01Guide(q){
    const a=left*leftRate**(day-1),b=right*rightRate**(day-1);
    return valid(a+b,first,second,"Sol kol: "+left+" × "+leftRate+"^"+(day-1)+" = "+a+". Sağ kol: "+right+" × "+rightRate+"^"+(day-1)+" = "+b+". Toplam: "+a+" + "+b+" = "+(a+b)+".");
  }
- const sol=get("sol kol")??get("sol dal"),sag=get("sağ kol")??get("sağ dal");
+ const sol=get("sol kol")??get("sol dal")??get("sol sarmaşık kolu"),sag=get("sağ kol")??get("sağ dal")??get("sağ sarmaşık kolu");
  const solNum=f01Number(sol),sagNum=f01Number(sag);
  const ratioLeft=get("sol korunma"),ratioRight=get("sağ korunma");
  if(ratioLeft&&ratioRight&&Number.isFinite(solNum)&&Number.isFinite(sagNum)){
