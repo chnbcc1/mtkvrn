@@ -10935,7 +10935,7 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Bir enerji basamağında 2⁵ birim birikmiş. Gücün dörtte biri kapıyı açmaya, 2³ birimin yarısı da uyarı lambasına harcanıyor. Kaç birim kalır?",
+      "prompt": "Bir enerji basamağında 2⁵ birim birikmiş. Gücün dörtte biri kapıyı açmaya, 2⁴ birimin dörtte biri de uyarı lambasına harcanıyor. Kaç birim kalır?",
       "correctAnswer": "20",
       "solution": "32−8−4=20.",
       "hint": "Önce iki ayrı tüketimi hesapla.",
@@ -10965,11 +10965,11 @@
           },
           {
             "anchor": "uyarı",
-            "value": "2³"
+            "value": "2⁴"
           },
           {
             "anchor": "uyarı kullanımı",
-            "value": "1/2"
+            "value": "1/4"
           }
         ],
         "bakedIntoImage": false
@@ -11087,7 +11087,7 @@
       "difficulty": "orta",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Bir enerji basamağında 2⁶ birim birikmiş. Gücün dörtte biri kapıyı açmaya, 2⁴ birimin yarısı da uyarı lambasına harcanıyor. Kaç birim kalır?",
+      "prompt": "Bir enerji basamağında 2⁶ birim birikmiş. Gücün dörtte biri kapıyı açmaya, 2⁵ birimin dörtte biri de uyarı lambasına harcanıyor. Kaç birim kalır?",
       "correctAnswer": "40",
       "solution": "64−16−8=40.",
       "hint": "Önce iki ayrı tüketimi hesapla.",
@@ -11117,11 +11117,11 @@
           },
           {
             "anchor": "uyarı",
-            "value": "2⁴"
+            "value": "2⁵"
           },
           {
             "anchor": "uyarı kullanımı",
-            "value": "1/2"
+            "value": "1/4"
           }
         ],
         "bakedIntoImage": false
@@ -11239,7 +11239,7 @@
       "difficulty": "orta",
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Bir enerji basamağında 2⁷ birim birikmiş. Gücün dörtte biri kapıyı açmaya, 2⁵ birimin yarısı da uyarı lambasına harcanıyor. Kaç birim kalır?",
+      "prompt": "Bir enerji basamağında 2⁷ birim birikmiş. Gücün dörtte biri kapıyı açmaya, 2⁶ birimin dörtte biri de uyarı lambasına harcanıyor. Kaç birim kalır?",
       "correctAnswer": "80",
       "solution": "128−32−16=80.",
       "hint": "Önce iki ayrı tüketimi hesapla.",
@@ -11269,11 +11269,11 @@
           },
           {
             "anchor": "uyarı",
-            "value": "2⁵"
+            "value": "2⁶"
           },
           {
             "anchor": "uyarı kullanımı",
-            "value": "1/2"
+            "value": "1/4"
           }
         ],
         "bakedIntoImage": false
