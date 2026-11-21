@@ -2,6 +2,12 @@
 (function(){
   'use strict';
   const style = `
+  .mtk-frame.mtk-help-mode .choiceGrid{display:none!important}
+  .mtk-frame.mtk-help-mode .mtk-question-region{left:22%!important;top:65%!important;width:76%!important;height:30%!important;overflow-y:auto!important;display:block!important}
+  .mtk-frame.mtk-help-mode .mtk-question-region>.prompt{display:none!important}
+  .mtk-frame.mtk-help-mode .mtk-feedback-overlay{position:relative!important;inset:auto!important;width:100%!important;max-height:none!important;overflow:visible!important;box-shadow:none!important;margin:0!important}
+  @media(orientation:landscape){.mtk-frame.mtk-help-mode .mtk-question-region{left:52%!important;top:5%!important;width:46%!important;height:90%!important}}
+
   body.embedded.mtk-approved-active{height:100dvh!important;min-height:0!important;padding:0!important;background:#102d27!important;overflow:hidden!important}
   .mtk-approved-active main{height:100%!important;width:100%!important;max-width:none!important;display:grid!important;place-items:center!important;overflow:hidden!important;margin:0!important}
   .mtk-approved-active #app{height:100%!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important;box-shadow:none!important;border:0!important;background:transparent!important;display:grid!important;place-items:center!important;overflow:hidden!important}
@@ -279,7 +285,7 @@
     if(!frames?.portrait||!frames?.landscape||!app||!choices)return false;
     const prompt=app.querySelector('.prompt');if(!prompt)return false;
     const rest=[...app.children].filter(e=>e!==prompt&&e!==choices&&!e.matches('.eyebrow,h2,.mini'));
-    const frame=elem('section','mtk-frame');frame.style.setProperty('--portrait-frame','url("'+frames.portrait+'")');frame.style.setProperty('--landscape-frame','url("'+frames.landscape+'")');
+    const frame=elem('section','mtk-frame');frame.classList.toggle('mtk-help-mode',!!run?.helpView&&!run?.stageCorrect&&(run?.wrong>0||run?.revealed));frame.style.setProperty('--portrait-frame','url("'+frames.portrait+'")');frame.style.setProperty('--landscape-frame','url("'+frames.landscape+'")');
     frame.setAttribute('aria-label','Soru ekranı');
     const text=elem('div','mtk-question-region');text.appendChild(prompt);
     const visual=elem('div','mtk-visual-region');visual.setAttribute('aria-label','Soru görseli ve değişken etiketler');
@@ -306,12 +312,7 @@
     }
     const extra=elem('section','mtk-feedback-overlay');rest.forEach(x=>extra.appendChild(x));
     frame.append(text,visual,choices);
-    if(extra.children.length){
-      const toggle=elem('button','mtk-feedback-toggle');toggle.type='button';let expanded=true;
-      const update=()=>{extra.hidden=!expanded;toggle.textContent=expanded?'Görseli göster':'Açıklamayı göster'};
-      toggle.addEventListener('click',()=>{expanded=!expanded;update()});
-      visual.appendChild(extra);visual.appendChild(toggle);update();
-    }
+    if(extra.children.length)text.appendChild(extra);
     app.replaceChildren(frame);document.body.classList.add('mtk-approved-active');
     if(!document.querySelector('#mtk-approved-style-v145')){const s=elem('style');s.id='mtk-approved-style-v145';s.textContent=style;document.head.appendChild(s)}
     if(q?.obstacleId==='F01')window.MTKF01ApprovedV159?.enhance(frame,q);
