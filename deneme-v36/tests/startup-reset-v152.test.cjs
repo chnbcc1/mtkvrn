@@ -82,7 +82,18 @@ assert(house.includes("window.MTKGameUI?.resetProgress('game')"),"Home restart u
 assert(house.includes("suppressProgressSave=true"),"Home exit must not restore a deleted save");
 assert(menu.includes("game-ui-v133.js?v=152")&&forest.includes("game-ui-v133.js?v=152")&&house.includes("game-ui-v133.js?v=152"),"iPhone must use current reset code in all chapters");
 assert(quizCode.includes("if(standalone&&!preview){location.replace(\"./menu-v116.html?v=152\");return}"),"Direct historical quiz links open the main menu");
-assert(quizCode.includes("const saved=preview?null:read(RUN_KEY)"),"Explicit standalone previews must not restore wrong/revealed state");
+assert(quizCode.includes('const FRESH_ATTEMPT=EMBED&&new URLSearchParams(location.search).get("fresh")==="1";'),"New magnifier sessions must be explicitly fresh");
+assert(quizCode.includes("const saved=(preview||FRESH_ATTEMPT)?null:read(RUN_KEY)"),"Fresh magnifier session must not restore a revealed answer");
+assert(forest.includes('const qs=new URLSearchParams({embedded:"1",fresh:"1",obstacle:id,difficulty,session:RUN_TOKEN})'),"Only magnifier actions request a new F01/F02 attempt");
+const freshLine=quizCode.match(/const FRESH_ATTEMPT=[^\n]+;/)?.[0];
+const savedLine=quizCode.match(/const saved=\(preview\|\|FRESH_ATTEMPT\)\?null:read\(RUN_KEY\);/)?.[0];
+assert(freshLine&&savedLine);
+for(const [search,expectFresh] of [["?embedded=1&fresh=1",true],["?embedded=1",false],["?fresh=1",false]]){
+ const state=vm.runInNewContext('const EMBED=new URLSearchParams(location.search).get("embedded")==="1";'+freshLine+'const preview=false;const RUN_KEY="existing";const read=()=>({wrong:3,revealed:true});'+savedLine+'({fresh:FRESH_ATTEMPT,saved})',{location:{search},URLSearchParams});
+ assert.equal(state.fresh,expectFresh);
+ if(expectFresh)assert.equal(state.saved,null,"New magnifier attempt must not show the third-error solution");
+ else assert.equal(state.saved.wrong,3,"Existing session remains resumable when not requesting fresh");
+}
 assert(quiz.includes("mathverse-v147-quiz-"),"Current quiz storage key is covered");
 assert.equal(bank.questions.length,630);
 assert.equal(bank.obstacles.length,21);
