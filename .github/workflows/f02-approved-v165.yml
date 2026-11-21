@@ -4,6 +4,7 @@ on:
     paths:
       - "deneme-v36/assets/f02-approved-v165.js"
       - "deneme-v36/assets/f02-approved-v165.avif"
+      - "deneme-v36/assets/f02-energy-stairs-v174.avif"
       - "deneme-v36/assets/approved-quiz-ui-v145.js"
       - "deneme-v36/forest-v70-quiz.html"
       - "deneme-v36/forest-questions-v147.json"
