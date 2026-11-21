@@ -525,6 +525,9 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 #quizOverlay .quizBar #quizTitle{display:none!important}
 #quizOverlay .quizClose{pointer-events:auto!important;min-height:36px!important;padding:6px 11px!important;border:1px solid #ffe8b3!important;border-radius:13px!important;background:#0c3431cf!important;color:#fff9e4!important;font-size:12px!important;box-shadow:0 3px 12px #0005!important}
 /* v154: show the forest, not the old bare HTML, until the illustrated quiz is fully ready. */
+/* v156: keep the next eager iframe laid out and decoded, but noninteractive and invisible,
+   so a magnifier tap can reveal the already rendered approved quiz immediately. */
+#quizOverlay[hidden]{display:block!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}
 #quizOverlay[data-preparing="1"]{background:transparent!important;backdrop-filter:none!important}
 #quizOverlay[data-preparing="1"] .quizWrap{opacity:0!important;pointer-events:none!important}
 #quizOverlay[data-preparing="1"]{pointer-events:none!important}
