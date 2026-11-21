@@ -15,6 +15,8 @@ assert(!forest.includes('embedded:"1",fresh:"1"'),"Magnifier must not discard qu
 assert(forest.includes('const qs=new URLSearchParams({embedded:"1",obstacle:id,difficulty,session:RUN_TOKEN})'));
 assert(forest.includes('warmUpcomingQuiz();'),"Prepare the upcoming gate while walking");
 assert(!forest.includes('quizRevealTimer=setTimeout(revealQuizIfMounted,2200)'),"Do not wait 2.2s for question");
+assert(forest.includes('#quizOverlay[hidden]{display:block!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}'),"The prewarmed iframe stays laid out without blocking forest controls");
+
 assert(forest.includes('quizRevealTimer=setTimeout(revealQuizIfMounted,450)'),"Cold-iframe safety wait must be short");
 const start=forest.indexOf("let quizRevealTimer=null;"),end=forest.indexOf('$("#quizClose").onclick=closeQuiz;',start);
 assert(start>=0&&end>start,"Warm-up and quiz opening logic must exist");
