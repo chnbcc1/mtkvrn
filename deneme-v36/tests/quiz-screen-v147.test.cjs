@@ -39,7 +39,7 @@ assert(html.includes("mount(app,q,s,doneChoices,run,save)"));
 assert(html.includes("q.workedExample"),"Second-wrong worked example must come from the approved ZIP");
 assert(ui.includes("mtk-scene-labels"),"Use exact uploaded dynamic labels");
 assert(ui.includes("matchingBoard(visual,q,choices,run,save)"),"F21 touch matching must work");
-assert(ui.includes("text.appendChild(extra)"),"Hints must be readable in the larger text region");
+assert(ui.includes("frame.appendChild(extra)"),"Hints must overlay all four answer choices");
 assert(html.includes("Soruyu göster")&&html.includes("Benzer soru çöz"),"Hints return to original question; one approved practice action remains");
 assert(ui.includes("aspect-ratio:941/1672")&&ui.includes("aspect-ratio:1672/941"),"Approved portrait and landscape layouts remain");
 const f03=bank.questions.find(q=>q.id==="F03-Z-01");
@@ -57,5 +57,5 @@ for(const q of matching){
 }
 assert(!html.includes("Kaynak paketteki benzer soru"),"The unapproved inline follow-up must not be shown");
 assert(!html.includes("Başka bir onaylı soruyu çöz"),"The duplicate practice action must be removed");
-assert(ui.includes("mtk-help-mode"),"Choices must hide in hint and solution views");
+assert(ui.includes("mtk-help-mode")&&ui.includes("mtk-answer-help-card"),"Hint must cover, not erase, four choices");
 console.log("PASS v147: exactly 630 user-approved questions, source hints/answers, approved layouts, F03 and F21 matching.");
