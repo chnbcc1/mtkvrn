@@ -56,7 +56,14 @@ for(const q of records.filter(q=>q.visual.labels.some(e=>e.anchor==="basamak 4")
 }
 assert(ui.includes('window.MTKF02ApprovedV165?.render(visual,q)'),"F02 renderer must be mounted before legacy art");
 assert(ui.includes("window.MTKF02ApprovedV165?.enhance(frame,q)"),"F02 must apply full-frame responsive layout");
-assert(quiz.includes('f02-approved-v165.js?v=169'),"Quiz must load the current F02 renderer without stale iPhone cache");
+assert(quiz.includes('f02-approved-v165.js?v=170'),"Quiz must load the v170 F02 renderer without stale iPhone cache");
+assert(source.includes('inlineControls?.querySelector(".feedback.ok")'),"F02 correct state must be detected without changing global quiz controls");
+assert(source.includes('frame.appendChild(inlineControls)'),"F02 success feedback must leave the clipping question-text container");
+assert(source.includes('mtk-f02-correct-body')&&source.includes('mtk-f02-correct-foot'),"The success card must separate scrollable content from navigation");
+assert(source.includes('touch-action:pan-y!important')&&source.includes('-webkit-overflow-scrolling:touch!important'),"Correct feedback must accept iPhone touch scroll");
+assert(source.includes('top:60.7%!important')&&source.includes('height:19.5%!important'),"Portrait success feedback must fit above the answer grid");
+assert(source.includes('height:59.0%!important'),"Landscape success feedback must fit above the answer grid");
+assert(source.includes('mtk-f02-correct-foot .btn'),"Completion buttons must remain accessible");
 assert(quiz.includes('forest-questions-v147.json?v=169'),"Quiz must refresh corrected source question wording");
  const energyExample=records.find(q=>q.id==="F02-O-06");
  const stepGuide=f02.guide(energyExample);
