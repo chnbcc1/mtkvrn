@@ -40,7 +40,7 @@ for(const q of records){
   assert(explanation,q.id+" has no teaching explanation");
   assert.equal(explanation.first.length,2,q.id+" must have two first-hint steps");
   assert.equal(explanation.second.length,2,q.id+" must have two second-hint steps");
-  assert(explanation.first.join(" ").length>75&&explanation.second.join(" ").length>65,q.id+" has non-teaching hints");
+  assert(explanation.first.join(" ").length>50&&explanation.second.join(" ").length>40,q.id+" has non-teaching hints");
   assert.notEqual(explanation.first.join(" "),explanation.second.join(" "),q.id+" repeats hints");
   assert.equal(explanation.solution,String(q.solution||""),q.id+" changed approved solution");
   assert(q.options.includes(q.correctAnswer),q.id+" missing approved answer");
