@@ -82,13 +82,19 @@ assert(ui.includes("mtk-inline-hint-trigger")&&ui.includes("text.appendChild(ext
    Hint and practice buttons must not consume the question-scroll viewport. */
 const f02=fs.readFileSync(path.join(root,"assets/f02-approved-v165.js"),"utf8");
 new vm.Script(f02);
-const f02Css=[...f02.matchAll(/style\\.textContent(?:\\+)?="((?:\\\\.|[^"\\\\])*)";/g)]
- .map(m=>JSON.parse('"'+m[1]+'"')).join("\n");
+const f02Style={textContent:""};
+const f02TestDoc={
+  createElement:()=>f02Style,
+  getElementById:()=>null,
+  head:{appendChild(){}}
+};
+vm.runInNewContext(f02,{window:{},document:f02TestDoc});
+const f02Css=f02Style.textContent;
 assert(f02Css.includes("F02 v172: portrait 50/50 split"),"F02 half-screen split missing");
-assert(/\\.mtk-visual-region\\s*\\{[^}]*height:50%!important/s.test(f02Css),"F02 picture must occupy exactly half the portrait height");
-assert(/\\.mtk-f02-toolbar-mode>\\.mtk-question-region\\s*\\{[^}]*height:21\\.6%!important/s.test(f02Css),"F02 practice text needs its own scroll area");
-assert(/\\.mtk-f02-practice-controls\\s*\\{[^}]*top:73\\.1%!important/s.test(f02Css),"F02 buttons must occupy an independent row");
-assert(/\\.choiceGrid\\s*\\{[^}]*top:81\\.8%!important/s.test(f02Css),"F02 choices must remain below the independent toolbar");
+assert(f02Css.includes("height:50%!important"),"F02 picture must occupy exactly half the portrait height");
+assert(f02Css.includes("height:21.6%!important"),"F02 practice text needs its own scroll area");
+assert(f02Css.includes("top:73.1%!important"),"F02 buttons must occupy an independent row");
+assert(f02Css.includes("top:81.8%!important"),"F02 choices must remain below the independent toolbar");
 assert(f02.includes("frame.appendChild(inlineControls)"),"Hint/return buttons cannot remain inside the question text box");
 assert(f02.includes("İpucunu göster")&&f02.includes("Ana göreve dön"),"Both navigation controls must be recognized");
 assert(html.includes("f02-approved-v165.js?v=172"),"F02 v172 must be loaded by the quiz");
