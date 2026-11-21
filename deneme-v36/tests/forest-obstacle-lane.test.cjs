@@ -276,7 +276,7 @@ assert(forest.includes("vy=-560;jumpStartClock=clock"));
 assert(forest.includes("horizontalSpeed=heroY<GROUND-.2?422:245"));
 assert(forest.includes("erdem-animation-v83.js?v=83"));
 assert(home.includes("erdem-animation-v83.js?v=83"));
-assert(["145","146","147","148","149","150","151","152","153","154"].some(v=>home.includes("forest-v113-full.html?v="+v)),"Home must load the current forest chapter");
+assert(["145","146","147","148","149","150","151","152","153","154","155"].some(v=>home.includes("forest-v113-full.html?v="+v)),"Home must load the current forest chapter");
 assert(map.includes("forest-v113-full.html"));
 assert(!forest.includes("for(const row of laneRows)"));
 assert(!forest.includes("scenicScatter()"));
