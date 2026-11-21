@@ -1133,10 +1133,10 @@ available=function(){
 };
 function openQuiz(id){
  const gate=GATES.find(g=>g.id===id);if(!gate||SOLVED.has(id))return;
- const qs=new URLSearchParams({embedded:"1",obstacle:id,difficulty,session:RUN_TOKEN});
+ const qs=new URLSearchParams({embedded:"1",fresh:"1",obstacle:id,difficulty,session:RUN_TOKEN});
  quizActiveId=id;requested=0;activePointers.clear();updatePress();modalOpen=true;
  $("#quizTitle").textContent=gate.icon+" · "+(gate.index+1)+"/21 · "+gate.label;
- $("#quizFrame").src="./forest-v70-quiz.html?v=152&"+qs;
+ $("#quizFrame").src="./forest-v70-quiz.html?v=153&"+qs;
  $("#quizOverlay").hidden=false;
 }
 function closeQuiz(){
