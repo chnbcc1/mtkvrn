@@ -40,7 +40,7 @@ assert(ui.includes('label.textContent=String(item.value??"")'),"Values must come
 assert(ui.includes('p.mini?" small-plaque"'),"Small plaques must not receive generic badge CSS");
 assert(quiz.includes("quiz-research-objects-v148.js?v=148"),"Quiz must load new assets");
 assert(/approved-quiz-ui-v145\.js\?v=(148|149|150|151|152|153|154|155|156|157|158|159|160|162)/.test(quiz),"Quiz must load updated positioning code");
-assert(/forest-questions-v147\.json\?v=(147|160)/.test(quiz),"Approved data must remain the source");
+assert(/forest-questions-v147\.json\?v=(147|160|162)/.test(quiz),"Approved data must remain the source");
 assert(/forest-v70-quiz\.html\?v=(148|149|150|151|152|153|154|155|156|157|158|159|160|162)/.test(forest),"Forest needs current question UI");
 assert(/forest-v113-full\.html\?v=(148|149|150|151|152|153|154|155|156|157|158|159|160|162)/.test(home),"Home needs current forest page");
 assert(/forest-v113-full\.html\?resume=1&v=(148|149|150|151|152|153|154|155|156|157|158|159|160|162)/.test(menu),"Menu needs current forest page");
