@@ -323,6 +323,21 @@ function select(answer,s,q,stageCount){
  if(answer.toLocaleLowerCase("tr")===String(s.answer).toLocaleLowerCase("tr")){run.stageCorrect=true;run.feedback="ok";save();show();return}
  run.wrong=(run.wrong||0)+1;if(!run.practiceId)run.taskWrong=(run.taskWrong||0)+1;run.wrongChoices=[...(run.wrongChoices||[]),answer];run.revealed=run.wrong>=3;save();show();
 }
+// v154: parent keeps the forest visible while the approved quiz and illustrations load.
+function announceQuizVisualReady(){
+ if(!EMBED||window.parent===window)return;
+ const frame=app.querySelector(".mtk-frame");
+ const send=(event)=>window.parent.postMessage({source:"mathverse-v68-quiz",event,obstacle:FORCED,difficulty:FORCED_DIFFICULTY},location.origin);
+ if(!frame||!document.body.classList.contains("mtk-approved-active")){send("load-error");return}
+ const orientation=window.matchMedia("(orientation:landscape)").matches?"landscape":"portrait";
+ const source=window.MTK_QUIZ_FRAMES_V145?.[orientation];
+ const pictures=[...frame.querySelectorAll("img")];
+ if(source){const backdrop=new Image();backdrop.src=source;pictures.push(backdrop)}
+ const decode=(image)=>typeof image.decode==="function"?image.decode():Promise.resolve();
+ Promise.allSettled(pictures.map(decode)).then(()=>{
+  requestAnimationFrame(()=>requestAnimationFrame(()=>send("ready")));
+ });
+}
 async function init(){
  // An old direct quiz-test link is not a game entrance. Open the real title menu.
  // Explicit ?preview=1 is reserved for isolated testing and always starts fresh.
@@ -342,8 +357,9 @@ async function init(){
   ensure();save();show();
   document.body.classList.add("embedded");
   document.title="Matematik engeli · "+FORCED;
+  announceQuizVisualReady();
  }else{if(saved&&["kolay","orta","zor"].includes(saved.difficulty)&&Number.isInteger(saved.index)&&saved.index>=0&&saved.index<=21)run=saved;welcome();}
- }catch(e){app.replaceChildren();append(app,node("h2",null,"Soru sistemi açılamadı"),node("p",null,e.message),rowButton("Tekrar dene",()=>location.reload()))}
+ }catch(e){app.replaceChildren();append(app,node("h2",null,"Soru sistemi açılamadı"),node("p",null,e.message),rowButton("Tekrar dene",()=>location.reload()));if(EMBED&&window.parent!==window)window.parent.postMessage({source:"mathverse-v68-quiz",event:"load-error",obstacle:FORCED,difficulty:FORCED_DIFFICULTY},location.origin)}
 }
 init();
 
