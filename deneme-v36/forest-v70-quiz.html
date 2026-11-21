@@ -346,7 +346,7 @@ async function init(){
  const standalone=EMBED&&window.top===window.self;
  const preview=standalone&&new URLSearchParams(location.search).get("preview")==="1";
  if(standalone&&!preview){location.replace("./menu-v116.html?v=152");return}
- try{const r=await fetch(BANK_URL,{cache:"no-store"});if(!r.ok)throw Error("630 soruluk kaynak dosyası yüklenemedi");bank=await r.json();
+ try{const r=await fetch(BANK_URL,{cache:"force-cache"});if(!r.ok)throw Error("630 soruluk kaynak dosyası yüklenemedi");bank=await r.json();
  if(bank.schema!=="forest-question-bank-v147"||bank.questions.length!==630||bank.obstacles.length!==21||bank.questionsPerObstaclePerDifficulty!==10||typeof window.FOREST_LEVELS_V65!=="function")throw Error("Onaylı 630 soruluk havuz doğrulanamadı");
  const old=read(HISTORY_KEY);if(old)history=old;
  const saved=(preview||FRESH_ATTEMPT)?null:read(RUN_KEY);
