@@ -1145,6 +1145,11 @@ function closeQuiz(){
  modalOpen=false;requested=0;activePointers.clear();updatePress();last=0;save(true);
 }
 $("#quizClose").onclick=closeQuiz;
+ // iPhone in-app browsers can restore a previous tab from the back-forward cache.
+ // Never reopen an old solved/revealed quiz as the chapter's startup screen.
+ window.addEventListener("pageshow",event=>{
+  if(event.persisted&&!$("#quizOverlay").hidden)closeQuiz();
+ });
 window.addEventListener("message",e=>{
  if(e.origin!==location.origin||e.source!==$("#quizFrame").contentWindow)return;
  const d=e.data;if(!d||d.source!=="mathverse-v68-quiz"||d.event!=="solved"||d.obstacle!==quizActiveId||d.difficulty!==difficulty)return;
