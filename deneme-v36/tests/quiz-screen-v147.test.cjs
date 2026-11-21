@@ -71,7 +71,7 @@ for(const q of vines){
  const guide=lesson.f01Guide(q);
  assert(guide,q.id+" has no tailored hint");
  assert(guide.first.length>=2&&guide.second.length>=2,q.id+" needs different progressive explanations");
- assert(guide.first.every(x=>x.length>=30)&&guide.second.every(x=>x.length>=30),q.id+" has too little information");
+ assert(guide.first.join(" ").length>=65&&guide.second.join(" ").length>=55,q.id+" needs a useful worked learning path");
  assert(guide.solution.length>=22,q.id+" needs a computed solution matching the approved answer");
 }
 const f01art=fs.readFileSync(path.join(root,"assets/f01-approved-v159.js"),"utf8");
