@@ -1,0 +1,26 @@
+name: F03 Reference Layout v157 Regression
+on:
+  push:
+    paths:
+      - "deneme-v36/assets/research-layout-v157.css"
+      - "deneme-v36/assets/research-layout-v157.js"
+      - "deneme-v36/forest-v70-quiz.html"
+      - "deneme-v36/forest-questions-v147.json"
+      - "deneme-v36/tests/research-layout-v157.test.cjs"
+      - ".github/workflows/research-layout-v157.yml"
+  pull_request:
+    paths:
+      - "deneme-v36/assets/research-layout-v157.css"
+      - "deneme-v36/assets/research-layout-v157.js"
+      - "deneme-v36/forest-v70-quiz.html"
+      - "deneme-v36/tests/research-layout-v157.test.cjs"
+jobs:
+  layout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check reference identities, 50-50 landscape and F03 dynamic quiz data
+        run: node deneme-v36/tests/research-layout-v157.test.cjs
