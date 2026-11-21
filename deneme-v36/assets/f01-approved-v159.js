@@ -47,6 +47,11 @@
       padding:0!important;margin:0!important;font:750 clamp(12px,3.28cqw,21px)/1.28 system-ui,-apple-system,sans-serif!important;
       text-align:left!important;white-space:normal!important;overflow-wrap:break-word!important;
     }
+    .mtk-frame.mtk-f01-v159.mtk-help-mode .mtk-question-region{
+      left:5.2%!important;top:55.7%!important;width:89.6%!important;height:40.5%!important;
+      display:flex!important;flex-direction:column!important;overflow-y:auto!important;
+    }
+    .mtk-frame.mtk-f01-v159.mtk-help-mode .mtk-question-region .prompt{display:none!important}
     .mtk-frame.mtk-f01-v159 .choiceGrid{
       position:absolute!important;left:4.3%!important;top:77.8%!important;width:91.4%!important;
       height:17.3%!important;max-height:none!important;min-height:0!important;z-index:6!important;
@@ -119,6 +124,9 @@
       .mtk-frame.mtk-f01-v159 .mtk-question-region .prompt{
         font-size:clamp(13px,1.65vw,22px)!important;line-height:1.22!important;
       }
+      .mtk-frame.mtk-f01-v159.mtk-help-mode .mtk-question-region{
+        left:52%!important;top:5%!important;width:46%!important;height:90%!important;
+      }
       .mtk-frame.mtk-f01-v159 .choiceGrid{
         left:52%!important;top:63%!important;width:46%!important;height:32%!important;
         gap:8% 4%!important;
@@ -141,16 +149,15 @@
     {id:'rightLower',x:79.7,y:67.4,w:20,h:10}
   ];
   function chooseSlot(label,used){
-    const a=String(label||'').toLocaleLowerCase('tr').replaceAll('_',' ');
+    const a=String(label||'').toLocaleLowerCase('tr').replaceAll('_',' ').trim();
     let wanted=null;
-    if(/^(kol c)\b/.test(a))wanted='top';
-    else if(/(sol).*(büyüme|korunma|kopan|geçit)/.test(a))wanted='leftLower';
-    else if(/(sağ).*(büyüme|korunma|kopan|geçit)/.test(a))wanted='rightLower';
-    else if(/(sol|kol a|ilk dal|ilk|sabah|bugün)/.test(a))wanted='leftUpper';
-    else if(/(sağ|kol b)/.test(a))wanted='rightUpper';
-    else if(/(toplam|ortak|sayaç|gün|dökülen|geçit)/.test(a))wanted='top';
-    else if(/(büyüme|gelişim|akşam)/.test(a))wanted='leftLower';
-    const order=['leftUpper','rightUpper','top','leftLower','rightLower'];
+    if(/(^gün$|kaçıncı gün|toplam|ortak|sayaç|dökülen|kol c)/.test(a))wanted='top';
+    else if(/(sol).*(büyüme|korunma|kopan|geçit|katlanma)/.test(a))wanted='leftUpper';
+    else if(/(sağ).*(büyüme|korunma|kopan|geçit|katlanma)/.test(a))wanted='rightUpper';
+    else if(/(sol|kol a|ilk dal|ilk|sabah|bugün)/.test(a))wanted='leftLower';
+    else if(/(sağ|kol b)/.test(a))wanted='rightLower';
+    else if(/(büyüme|gelişim|akşam|katlanma)/.test(a))wanted='leftUpper';
+    const order=['top','leftLower','rightLower','leftUpper','rightUpper'];
     const choice=(wanted&&!used.has(wanted))?wanted:order.find(x=>!used.has(x));
     if(choice)used.add(choice);
     return PLAQUES.find(x=>x.id===choice)||null;
@@ -179,9 +186,12 @@
     const used=new Set();
     for(const entry of (Array.isArray(q?.visual?.labels)?q.visual.labels:[])){
       const slot=chooseSlot(entry.anchor,used);if(!slot)continue;
-      const v=make('span','f01-label'+(String(entry.value??'').length>9?' long':''));
+      const raw=String(entry.value??'');
+      const anchor=String(entry.anchor??'').toLocaleLowerCase('tr').replaceAll('_',' ').trim();
+      const shown=slot.id==='top' && /(^gün$|kaçıncı gün)/.test(anchor) && /^[0-9]+$/.test(raw.trim()) ? raw.trim()+'. Gün' : raw;
+      const v=make('span','f01-label'+(shown.length>9?' long':''));
       v.style.left=slot.x+'%';v.style.top=slot.y+'%';v.style.width=slot.w+'%';
-      v.style.height=slot.h+'%';v.textContent=String(entry.value??'');
+      v.style.height=slot.h+'%';v.textContent=shown;
       v.title=String(entry.anchor??'');
       v.setAttribute('aria-label',String(entry.anchor??'')+': '+String(entry.value??''));
       region.appendChild(v);
