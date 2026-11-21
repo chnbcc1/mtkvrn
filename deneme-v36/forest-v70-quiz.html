@@ -98,7 +98,7 @@ sup{font-size:.7em;line-height:0;vertical-align:super}
 .embedded .choice{box-sizing:border-box!important;min-width:0!important;width:100%!important;height:100%!important;min-height:56px!important}
 .embedded .choiceMark{flex:0 0 29px!important;width:29px!important;height:29px!important}
 @media (orientation:portrait){.embedded .choice{font-size:clamp(12px,3.5vw,17px)!important;padding:8px!important}}
-</style><script src="./assets/quiz-approved-frames-v145.js?v=145"></script><script src="./assets/quiz-f03-machine-v145.js?v=145"></script><script src="./assets/quiz-research-objects-v148.js?v=148"></script><script src="./assets/f01-approved-v159.js?v=159"></script><script src="./assets/approved-quiz-ui-v145.js?v=159"></script><script src="./forest-levels-v65.js?v=65"></script></head>
+</style><script src="./assets/quiz-approved-frames-v145.js?v=145"></script><script src="./assets/quiz-f03-machine-v145.js?v=145"></script><script src="./assets/quiz-research-objects-v148.js?v=148"></script><script src="./assets/f01-approved-v159.js?v=160"></script><script src="./assets/approved-quiz-ui-v145.js?v=160"></script><script src="./forest-levels-v65.js?v=65"></script></head>
 <body><main><nav><a href="./forest-v70-full.html?v=69">‹ Orman Patikasına dön</a><a href="./map-v70.html?v=69">🗺️ Macera Haritası</a></nav>
 <h1>🌲 Orman Patikası</h1><p class="subtitle">21 engelli matematik macerası · dört şıklı sorular · MAT.9.1.1 · Üslü ve köklü gösterimler. Dört seçenek arasından karar ver. Yanlışta ipucu, örnek çözüm ve pekiştirme adımları seni yönlendirecek. Fiziksel engellerin sahne entegrasyonu ayrı geliştirilir.</p>
 <div id="step" class="step" hidden></div><div id="bar" class="bar" hidden><span id="fill"></span></div><section id="app" class="panel" aria-live="polite"></section>
@@ -112,7 +112,7 @@ const FORCED=new URLSearchParams(location.search).get("obstacle")||"";
 const FORCED_DIFFICULTY=new URLSearchParams(location.search).get("difficulty")||"orta";
 const PREVIEW_QUESTION_ID=new URLSearchParams(location.search).get("previewQuestion")||"";
 const CAMPAIGN_SESSION=new URLSearchParams(location.search).get("session")||"direct-preview";
-const BANK_URL="./forest-questions-v147.json?v=147";
+const BANK_URL="./forest-questions-v147.json?v=160";
 const RUN_KEY=EMBED?"mathverse-v147-quiz-"+CAMPAIGN_SESSION+"-"+FORCED+"-"+FORCED_DIFFICULTY:"mathverse-v147-choice-run",HISTORY_KEY="mathverse-v147-choice-history";
 const OLD_SAVE_KEY="mathverse-v40-investigation";
 let bank=null,run=null,history={used:{},last:{},seenPrompts:{}};
@@ -152,7 +152,7 @@ function pick(obId,difficulty,exceptId){
 function ensure(){if(run&&run.index<21&&!run.activeId)run.activeId=pick(bank.playOrder[run.index],run.difficulty)}
 function currentId(){return run.remediationId||run.practiceId||run.activeId}
 function current(){return hydrate(qs(currentId()))}
-function resetStage(){run.stage=0;run.wrong=0;run.wrongChoices=[];run.stageCorrect=false;run.revealed=false;run.feedback="";save()}
+function resetStage(){run.helpView=false;run.stage=0;run.wrong=0;run.wrongChoices=[];run.stageCorrect=false;run.revealed=false;run.feedback="";save()}
 function hash(s){let h=2166136261;for(let c of s){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0}
 function shuffle(list,seed){let a=[...list],n=hash(seed);for(let i=a.length-1;i>0;i--){n=(Math.imul(1664525,n)+1013904223)>>>0;const j=n%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
 function uniq4(answer,list,seed){
@@ -223,6 +223,17 @@ function welcome(){window.MTKApprovedQuizV145?.reset();
  }));
 }
 function feedbackBox(status,s){return mathText("div","feedback "+status,s)}
+function teachingHint(q,defaultHint){
+ if(q?.id==="F01-O-01")return "Sol ve sağ sarmaşığı ayrı incele. Birinci gün başlangıç sayıları vardır; ikinci günde bir kez, üçüncü günde iki kez kendi büyüme katsayısıyla çarpılır.";
+ return defaultHint;
+}
+function teachingExample(q){
+ if(q?.id==="F01-O-01")return {
+  prompt:"İki kolda ilk gün 2'şer tomurcuk olsun. Sol kol günde 2, sağ kol günde 3 katına çıksın. Üçüncü gün toplam kaç tomurcuk olur?",
+  solution:"1. gün: solda 2, sağda 2. 2. gün: solda 4, sağda 6. 3. gün: solda 8, sağda 18. Toplam: 8 + 18 = 26."
+ };
+ return example(q);
+}
 function example(q){
  if(q.workedExample&&q.workedExample.solution)return {prompt:q.workedExample.question||"Benzer örnek",solution:q.workedExample.solution,sourceVerified:true};
  const others=bank.questions.filter(o=>o.obstacleId===q.obstacleId&&o.difficulty===q.difficulty&&o.id!==q.id);
@@ -293,35 +304,31 @@ function show(){window.MTKApprovedQuizV145?.reset();
     if(EMBED){reportSolved(obs);return}
     run.completionWrong=run.taskWrong||0;run.awaiting=true;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show()
   }));
- }else if(run.revealed){
-   app.appendChild(feedbackBox("wrong","Üçüncü yanlış deneme. Bu sorunun çözümünü dikkatle incele."));
+ }else if(run.revealed&&run.helpView!==false){
+   app.appendChild(feedbackBox("wrong","Üçüncü yanlış deneme. Çözümü adım adım incele."));
    app.appendChild(mathText("div","solution","Çözüm: "+workedSteps(q)+(all.length>1?" • Tam görevin çözümü: "+q.solution:"")));
-   if(q.followUp?.question){
-     const practice=node("div","solution");
-     append(practice,node("strong",null,"Kaynak paketteki benzer soru"),mathText("p",null,q.followUp.question));
-     const check=btn("Cevabımı kontrol et",()=>{
-       append(practice,mathText("p",null,"Doğru cevap: "+(q.followUp.correct_answer||"")),mathText("p",null,"Çözüm: "+(q.followUp.solution||"")));
-       check.disabled=true;
-     },true);
-     practice.appendChild(check);app.appendChild(practice);
-   }
-   app.appendChild(rowButton("Başka bir onaylı soruyu çöz",()=>{
-    run.remediationId=pick(q.obstacleId,run.difficulty,q.id);resetStage();show();
-   }));
- }else if(run.wrong>0){
-   app.appendChild(feedbackBox("wrong","Yanlış seçim • "+run.wrong+"/3"+(run.wrong===1?" — İpucu: "+s.hint:" — Benzer çözümlü örneği incele.")));
+   const controls=node("div","btnRow");
+   controls.appendChild(btn("Soruyu göster",()=>{run.helpView=false;save();show()},true));
+   controls.appendChild(btn("Benzer soru çöz",()=>{run.remediationId=pick(q.obstacleId,run.difficulty,q.id);resetStage();show()}));
+   app.appendChild(controls);
+ }else if(run.wrong>0&&run.helpView!==false){
+   app.appendChild(feedbackBox("wrong","Yanlış seçim • "+run.wrong+"/3"+(run.wrong===1?" — İpucu: "+teachingHint(q,s.hint):" — Çözümlü örneği incele ve ardından soruyu yeniden dene.")));
    if(run.wrong===2){
-    const ref=example(q);
-    if(ref){const box=node("div","solution");append(box,node("strong",null,"Benzer sorunun çözümlü örneği"),mathText("p",null,ref.prompt),mathText("p",null,"İşlem basamakları: "+(ref.sourceVerified?ref.solution:workedSteps(ref))));app.appendChild(box)}
+     const ref=teachingExample(q);
+     if(ref){const box=node("div","solution");append(box,node("strong",null,"Benzer çözümlü örnek"),mathText("p",null,ref.prompt),mathText("p",null,"Çözüm: "+(ref.sourceVerified?ref.solution:(ref.solution||workedSteps(ref)))));app.appendChild(box)}
    }
+   app.appendChild(rowButton("Soruyu göster",()=>{run.helpView=false;save();show()},true));
+ }else if(run.wrong>0){
+   app.appendChild(rowButton(run.revealed?"Çözümü göster":"İpucunu göster",()=>{run.helpView=true;save();show()},true));
  }
+
  if(run.practiceId){app.appendChild(rowButton("Ana göreve dön",()=>{run.practiceId=null;resetStage();show()},true))}
  if(EMBED)window.MTKApprovedQuizV145?.mount(app,q,s,choices,run,save);
 }
 function select(answer,s,q,stageCount){
  if(!run||run.stageCorrect||run.revealed)return;
  if(answer.toLocaleLowerCase("tr")===String(s.answer).toLocaleLowerCase("tr")){run.stageCorrect=true;run.feedback="ok";save();show();return}
- run.wrong=(run.wrong||0)+1;if(!run.practiceId)run.taskWrong=(run.taskWrong||0)+1;run.wrongChoices=[...(run.wrongChoices||[]),answer];run.revealed=run.wrong>=3;save();show();
+ run.wrong=(run.wrong||0)+1;if(!run.practiceId)run.taskWrong=(run.taskWrong||0)+1;run.wrongChoices=[...(run.wrongChoices||[]),answer];run.revealed=run.wrong>=3;run.helpView=true;save();show();
 }
 // v154: parent keeps the forest visible while the approved quiz and illustrations load.
 function announceQuizVisualReady(){
@@ -348,6 +355,13 @@ async function init(){
  if(standalone&&!preview){location.replace("./menu-v116.html?v=152");return}
  try{const r=await fetch(BANK_URL,{cache:"force-cache"});if(!r.ok)throw Error("630 soruluk kaynak dosyası yüklenemedi");bank=await r.json();
  if(bank.schema!=="forest-question-bank-v147"||bank.questions.length!==630||bank.obstacles.length!==21||bank.questionsPerObstaclePerDifficulty!==10||typeof window.FOREST_LEVELS_V65!=="function")throw Error("Onaylı 630 soruluk havuz doğrulanamadı");
+ const exact=new Map();
+ for(const item of bank.questions){
+   const key=item.obstacleId+"|"+item.difficulty;
+   exact.set(key,(exact.get(key)||0)+1);
+   if(item.contentVersion!=="v147-approved-packs"||!item.options?.includes(item.correctAnswer)||item.options?.length!==4)throw Error("Havuzda onaysız soru var: "+item.id);
+ }
+ for(const id of bank.playOrder)for(const difficulty of ["kolay","orta","zor"])if(exact.get(id+"|"+difficulty)!==10)throw Error("Eksik veya fazla soru: "+id+" / "+difficulty);
  const old=read(HISTORY_KEY);if(old)history=old;
  const saved=(preview||FRESH_ATTEMPT)?null:read(RUN_KEY);
  if(EMBED){
