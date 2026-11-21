@@ -64,7 +64,7 @@ assert(source.includes('touch-action:pan-y!important')&&source.includes('-webkit
 assert(source.includes('top:51.0%!important')&&source.includes('height:28.9%!important'),"Portrait success feedback must fit in the expanded lower question panel");
 assert(source.includes('height:59.0%!important'),"Landscape success feedback must fit above the answer grid");
 assert(source.includes('mtk-f02-correct-foot .btn'),"Completion buttons must remain accessible");
-assert(/forest-questions-v147\\.json\\?v=\\d+/.test(quiz),"Quiz must refresh corrected source question wording");
+assert(quiz.includes("forest-questions-v147.json?v="),"Quiz must refresh corrected source question wording");
  const energyExample=records.find(q=>q.id==="F02-O-06");
  const stepGuide=f02.guide(energyExample);
  const narration=stepGuide.first.join(" ")+stepGuide.second.join(" ");
