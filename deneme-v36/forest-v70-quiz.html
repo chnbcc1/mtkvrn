@@ -292,7 +292,7 @@ function f01Guide(q){
      "Dökülen miktar "+fallen+" = "+lost+". Şimdi "+total+" − "+lost+" işlemini yap."
    ],"Başlangıçta "+solNum+" + "+sagNum+" = "+total+" tomurcuk vardır. "+lost+" tanesi dökülür: "+total+" − "+lost+" = "+(total-lost)+".");
  }
- if(Number.isFinite(solNum)&&Number.isFinite(sagNum)&&!String(sol).includes("ⁿ")&&!String(sag).includes("ⁿ")){
+ if(Number.isFinite(solNum)&&Number.isFinite(sagNum)&&!String(sol).includes("ⁿ")&&!String(sag).includes("ⁿ")&&!get("sol kopan")&&!get("sağ kopan")){
    return valid(solNum+sagNum,[
      "Üslü ifadelerdeki küçük sayılar çarpma sayısını belirtir. Önce "+sol+" ve "+sag+" ifadelerini ayrı ayrı hesapla.",
      "Her iki kolun tomurcuk sayısını bulduktan sonra birleştirmek için toplama yap."
