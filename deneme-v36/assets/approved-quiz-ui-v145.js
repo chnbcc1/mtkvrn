@@ -164,7 +164,7 @@
   }
 
   /* Named semantic anchors have priority; every unknown anchor receives a free plaque. */
-  function renderResearchObject(visual,q,textRegion){
+  function renderResearchObject(visual,q){
     const id=String(q?.obstacleId||"");
     if(id!=="F01"&&id!=="F02")return false;
     const data=window.MTK_RESEARCH_OBJECTS_V148?.[id];
@@ -213,7 +213,7 @@
         n.style.left=p.x+"%";n.style.top=p.y+"%";n.style.width=p.w+"%";
         n.textContent=String(perStep.value);n.title="Basamak "+(i+1);visual.appendChild(n);
       }
-      window.MTKResearchMeaningfulV150?.mount(visual,q,textRegion);
+      
       return true;
     }
     for(let i=0;i<entries.length;i++){
@@ -225,7 +225,7 @@
       label.setAttribute("aria-label",String(item.anchor||"")+" "+String(item.value??""));
       visual.appendChild(label);
     }
-    window.MTKResearchMeaningfulV150?.mount(visual,q,textRegion);
+    
     return true;
   }
   function matchingBoard(visual,q,choices,run,save){
@@ -301,7 +301,7 @@
         };
         if(labels.length)labels.slice(0,5).forEach((item,i)=>tag(visual,item.value,leftFor(item.anchor,i)));
         else direct.slice(0,5).forEach((value,i)=>tag(visual,value,[15.5,35.3,51.5,67,86.5][i]));
-      }else if(!renderResearchObject(visual,q,text))illustrate(visual,q,s);
+      }else if(!renderResearchObject(visual,q))illustrate(visual,q,s);
     }
     const extra=elem('section','mtk-feedback-overlay');rest.forEach(x=>extra.appendChild(x));
     frame.append(text,visual,choices);
