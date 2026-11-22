@@ -1,0 +1,24 @@
+name: Notebook v196 Typography and Right Actions
+on:
+  push:
+    branches: [main]
+    paths:
+      - "deneme-v36/assets/math-notebook-v187.js"
+      - "deneme-v36/assets/math-notebook-layout-v196.css"
+      - "deneme-v36/forest-v70-quiz.html"
+      - "deneme-v36/tests/math-notebook-v196.test.cjs"
+      - ".github/workflows/math-notebook-v196.yml"
+  pull_request:
+    paths:
+      - "deneme-v36/assets/math-notebook-v187.js"
+      - "deneme-v36/assets/math-notebook-layout-v196.css"
+      - "deneme-v36/tests/math-notebook-v196.test.cjs"
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node deneme-v36/tests/math-notebook-v196.test.cjs

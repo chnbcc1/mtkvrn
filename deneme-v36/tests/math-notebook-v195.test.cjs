@@ -15,7 +15,7 @@ assert.equal(util.questionHeightBudget(390,30,0,true,8),238,"Landscape should re
 assert.equal(util.questionHeightBudget(680,42,100,false,12),338,"Portrait should let longer questions grow");
 assert.equal(util.questionHeightBudget(180,50,120,true,15),60,"Tiny landscapes must retain minimum question height");
 assert(js.includes('function fitQuestionBlock()'),"Must measure the actual rendered text");
-assert(js.includes('block.scrollHeight<=budget+1'),"Use real wrapped height including superscripts and Turkish characters");
+assert(js.includes('block.scrollHeight>budget+1'),"Use real wrapped height including superscripts and Turkish characters");
 assert(js.includes('block.dataset.longQuestion=long?"scroll":"full"'),"Full-text mode must be default");
 assert(js.includes('block.style.setProperty("max-height","none","important")'),"Remove previous fixed height constraints");
 assert(js.includes('block.style.setProperty("overflow-y","auto","important")'),"Only excessively long questions may scroll");
@@ -27,9 +27,9 @@ assert(css.includes("overflow-wrap:anywhere!important"),"Long math expressions m
 assert(css.includes(".mn-root .mn-question-block[data-long-question=\"scroll\"]"),"Fallback for exceptionally long questions missing");
 assert(css.includes("grid-template-rows:min-content max-content minmax(0,1fr)"),"Landscape question must grow while paper fills remaining space");
 assert(css.includes(".mn-root .mn-workspace")&&css.includes("min-height:0!important"),"Worksheet should flex to take remaining space");
-assert(quiz.includes('math-notebook-question-v195.css?v=195')&&quiz.includes('math-notebook-v187.js?v=195'),"Assets must be cache-busted");
+assert(quiz.includes('math-notebook-question-v195.css?v=195')&&quiz.includes('math-notebook-v187.js?v=196'),"Assets must be cache-busted");
 assert(quiz.indexOf("math-notebook-retina-v194.css")<quiz.indexOf("math-notebook-question-v195.css"),"Question CSS should load last");
-assert(forest.includes("forest-v70-quiz.html?v=195"),"Live forest route must load v195");
+assert(forest.includes("forest-v70-quiz.html?v=196"),"Live forest route must load v195");
 assert(js.includes("localStorage.setItem(key,JSON.stringify(note))"),"Preserve saved student calculations");
 assert.equal(bank.questions.length,630,"Preserve all 630 approved questions");
 console.log("PASS v195: adaptive complete question display, iPhone orientation reflow, overflow fallback, writing space and all questions preserved.");

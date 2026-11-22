@@ -148,14 +148,14 @@
   block.style.setProperty("height","auto","important");
   block.style.setProperty("max-height","none","important");
   block.style.setProperty("overflow-y","visible","important");
-  textNode.style.removeProperty("font-size");
-  textNode.style.removeProperty("line-height");
-  const sizes=landscape?[16,15,14,13,12]:[17,16,15,14,13];
-  for(const size of sizes){
-   textNode.style.setProperty("font-size",size+"px","important");
-   textNode.style.setProperty("line-height","1.24","important");
-   if(block.scrollHeight<=budget+1)break;
-  }
+  // Copy the current quiz prompt's computed typography so the student sees
+  // exactly the same font size and weight in the game and the worksheet.
+  const sourcePrompt=launcher?.closest(".prompt")||document.querySelector(".mtk-question-region .prompt")||document.querySelector(".prompt");
+  const promptFontStyle=sourcePrompt?global.getComputedStyle(sourcePrompt):null;
+  textNode.style.setProperty("font-size",promptFontStyle?.fontSize||(landscape?"14px":"15px"),"important");
+  textNode.style.setProperty("line-height",promptFontStyle?.lineHeight||"1.38","important");
+  textNode.style.setProperty("font-weight",promptFontStyle?.fontWeight||"650","important");
+  textNode.style.setProperty("letter-spacing",promptFontStyle?.letterSpacing||"normal","important");
   const long=block.scrollHeight>budget+1;
   if(long){
    block.style.setProperty("max-height",budget+"px","important");
@@ -185,6 +185,10 @@
    '<button type="button" id="mn-undo" aria-label="Geri al" title="Geri al">↶</button>',
    '<button type="button" id="mn-redo" aria-label="İleri al" title="İleri al">↷</button>',
    '<button type="button" id="mn-clear" aria-label="Defterdeki işlemleri temizle" title="İşlemleri temizle">🗑</button></nav>',
+   '<aside class="mn-landscape-actions" aria-label="Geri al, ileri al ve defteri temizle">',
+   '<button type="button" id="mn-undo-landscape" aria-label="Geri al" title="Geri al">↶</button>',
+   '<button type="button" id="mn-redo-landscape" aria-label="İleri al" title="İleri al">↷</button>',
+   '<button type="button" id="mn-clear-landscape" aria-label="İşlemleri temizle" title="İşlemleri temizle">🗑</button></aside>',
    '<div class="mn-settings" aria-label="Seçili aracın ayarları">',
    '<div id="mn-pen-options" class="mn-option-panel"><div id="mn-colors" class="mn-colors"></div>',
    '<label>Kalınlık<input id="mn-pen-size" type="range" min="2" max="24" step="1" value="5"></label>',
@@ -215,6 +219,9 @@
   el("mn-undo").addEventListener("click",undo);
   el("mn-redo").addEventListener("click",redo);
   el("mn-clear").addEventListener("click",clearAll);
+  el("mn-undo-landscape").addEventListener("click",undo);
+  el("mn-redo-landscape").addEventListener("click",redo);
+  el("mn-clear-landscape").addEventListener("click",clearAll);
   el("mn-pen-size").addEventListener("input",e=>{note.penSize=+e.target.value;scheduleSave()});
   el("mn-erase-size").addEventListener("input",e=>{note.eraserSize=+e.target.value;scheduleSave()});
   el("mn-paper-type").addEventListener("change",e=>setPaperType(e.target.value));
@@ -296,8 +303,8 @@
   el("mn-hand-options").hidden=!hand;
   el("mn-pen-size").value=note.penSize;
   el("mn-erase-size").value=note.eraserSize;
-  el("mn-undo").disabled=!note.strokes.length;
-  el("mn-redo").disabled=!redoStack.length;
+  for(const id of ["mn-undo","mn-undo-landscape"])el(id).disabled=!note.strokes.length;
+  for(const id of ["mn-redo","mn-redo-landscape"])el(id).disabled=!redoStack.length;
   for(const b of el("mn-colors").children)b.classList.toggle("mn-selected",b.dataset.color===note.color);
   for(const b of root.querySelectorAll("[data-paper-choice]")){
    const selected=b.dataset.paperChoice===note.paper;

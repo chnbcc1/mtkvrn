@@ -1,0 +1,37 @@
+"use strict";
+const assert=require("node:assert/strict"),fs=require("node:fs"),path=require("node:path"),vm=require("node:vm");
+const root=path.resolve(__dirname,"..");
+const js=fs.readFileSync(path.join(root,"assets/math-notebook-v187.js"),"utf8");
+const css=fs.readFileSync(path.join(root,"assets/math-notebook-layout-v196.css"),"utf8");
+const quiz=fs.readFileSync(path.join(root,"forest-v70-quiz.html"),"utf8");
+const host=fs.readFileSync(path.join(root,"forest-v113-full.html"),"utf8");
+const originalVine=fs.readFileSync(path.join(root,"assets/ivy-original-retina-v194.webp"));
+const bank=JSON.parse(fs.readFileSync(path.join(root,"forest-questions-v147.json"),"utf8"));
+new vm.Script(js,{filename:"math-notebook-v187.js"});
+assert(js.includes('launcher?.closest(".prompt")'),"Read font from the actual question in the game");
+assert(js.includes('global.getComputedStyle(sourcePrompt)'),"Use computed styles to match all screen sizes");
+for(const prop of ["fontSize","lineHeight","fontWeight","letterSpacing"])
+ assert(js.includes('promptFontStyle?.'+prop),"Match original prompt property "+prop);
+assert(!js.includes("const sizes=landscape?"),"Do not arbitrarily shrink or enlarge worksheet fonts");
+assert(js.includes('const long=block.scrollHeight>budget+1'),"Allow full question with scrolling as last resort");
+assert(css.includes("font-size:15px!important")&&css.includes("font-size:14px!important"),"Fallbacks match quiz portrait and landscape");
+assert(quiz.includes(".embedded .prompt{font-size:14px;line-height:1.38"),"Landscape question style must still match source");
+for(const name of ["undo","redo","clear"])
+ assert(js.includes('id="mn-'+name+'-landscape"'),"Missing landscape control "+name);
+assert(js.includes('el("mn-undo-landscape").addEventListener("click",undo)'),"Landscape undo must be wired");
+assert(js.includes('el("mn-redo-landscape").addEventListener("click",redo)'),"Landscape redo must be wired");
+assert(js.includes('el("mn-clear-landscape").addEventListener("click",clearAll)'),"Landscape trash must be wired");
+assert(js.includes('for(const id of ["mn-undo","mn-undo-landscape"])'),"Undo buttons share disabled state");
+assert(js.includes('for(const id of ["mn-redo","mn-redo-landscape"])'),"Redo buttons share disabled state");
+assert(css.includes("grid-template-columns:clamp(48px,6.4vw,62px) minmax(0,1fr) clamp(39px,4.2vw,46px)"),"Reserve slim right rail outside paper");
+assert(css.includes("grid-column:3!important;grid-row:3!important"),"Actions must appear in right column");
+assert(css.includes("justify-content:flex-end!important"),"Right actions must be bottom-aligned");
+assert(css.includes(".mn-root .mn-toolbar #mn-clear{display:none!important}"),"Hide left trash in landscape");
+assert(css.includes(".mn-root .mn-landscape-actions{display:none!important}"),"Portrait retains normal toolbar");
+assert(quiz.includes("math-notebook-layout-v196.css?v=196")&&quiz.includes("math-notebook-v187.js?v=196"),"Bust old CSS and script caches");
+assert(quiz.indexOf("math-notebook-question-v195.css")<quiz.indexOf("math-notebook-layout-v196.css"),"CSS override must load last");
+assert(host.includes("forest-v70-quiz.html?v=196"),"Forest should load updated quiz");
+assert(originalVine.toString("ascii",0,4)==="RIFF","Original vines must remain unchanged");
+assert(js.includes("localStorage.setItem(key,JSON.stringify(note))"),"Preserve saved ink");
+assert.equal(bank.questions.length,630,"Keep all approved questions untouched");
+console.log("PASS v196: matched question typography, full text and independent right-bottom undo/redo/trash; original vines and 630 questions intact.");
