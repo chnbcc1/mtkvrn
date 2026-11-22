@@ -96,6 +96,8 @@ assert(f02Css.includes("height:21.6%!important"),"F02 practice text needs its ow
 assert(f02Css.includes("top:73.1%!important"),"F02 buttons must occupy an independent row");
 assert(f02Css.includes("top:81.8%!important"),"F02 choices must remain below the independent toolbar");
 assert(f02.includes("frame.appendChild(inlineControls)"),"Hint/return buttons cannot remain inside the question text box");
+assert(f02Css.includes("v175 F02 only")&&f02Css.includes("background-image:none!important"),"F02 must not show duplicate backdrop artwork");
+assert(f02Css.includes("top:92.3%!important")&&f02Css.includes("top:92%!important"),"F02 hint/return controls must appear beneath options on both orientations");
 assert(f02.includes("İpucunu göster")&&f02.includes("Ana göreve dön"),"Both navigation controls must be recognized");
-assert(html.includes("f02-approved-v165.js?v=174"),"F02 v172 must be loaded by the quiz");
+assert(html.includes("f02-approved-v165.js?v=175"),"F02 latest controls-and-image-fix must load in the quiz");
 console.log("PASS v147: exactly 630 user-approved questions, source hints/answers, approved layouts, F03 and F21 matching.");
