@@ -6,12 +6,15 @@
  const CHARACTER_SCENE="./assets/f02-background-no-characters-v180.webp";
  const CHARACTER_REFERENCE="./assets/erdem-ciko-onayli-v180.png";
  const IMAGE_VERSION="?v=181";
+ // v185 centers measured against the approved scene's diamond plaques.
+ // Each x/y is the CENTER of the label, never its top-left corner.
+ // Original scene, characters and question data remain unchanged.
  const POS_APPROVED={
-   top:{x:49.6,y:17.5,w:38.0,h:10.0},
-   one:{x:47.0,y:67.3,w:30.0,h:7.0},
-   two:{x:75.3,y:54.0,w:29.0,h:7.0},
-   three:{x:50.5,y:43.8,w:27.0,h:7.0},
-   four:{x:77.4,y:31.4,w:27.0,h:7.0}
+   top:{x:49.9,y:17.9,w:38.0,h:10.0},
+   one:{x:48.8,y:68.0,w:30.0,h:7.0},
+   two:{x:76.4,y:55.6,w:29.0,h:7.0},
+   three:{x:52.1,y:44.3,w:27.0,h:7.0},
+   four:{x:78.3,y:33.1,w:27.0,h:7.0}
  };
  const POS={
   top:{x:49.9,y:17.4,w:43.0,h:10.0},
@@ -376,6 +379,8 @@
  style.textContent+="\n/* F02 v178: edge-complete immersive artwork without crop/distortion.\n   The ONLY full illustration remains the approved 1205x1025 asset. */\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 {\n  width:100%!important;height:100%!important;\n  max-width:100%!important;max-height:100%!important;\n  aspect-ratio:auto!important;margin:0!important;\n  border:0!important;border-radius:0!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region {\n  background-image:none!important; background-color:#133c2e!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region>.mtk-f02-edge-fill {\n  position:absolute!important;inset:0!important;z-index:0!important;\n  display:block!important;width:100%!important;height:100%!important;\n  pointer-events:none!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region>.mtk-f02-art {\n  z-index:1!important;\n}\n@media(orientation:portrait){\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region {\n    left:0!important;top:0!important;width:100%!important;height:50%!important;\n  }\n}\n@media(orientation:landscape){\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region {\n    left:0!important;top:0!important;width:50%!important;height:100%!important;\n  }\n}\n";
  style.textContent+="\n/* F02 v178a: secondary controls follow the clean shared parchment palette. */\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls {\n  justify-content:flex-start!important;align-items:center!important;\n  gap:9px!important;overflow:visible!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls>.btnRow{\n  flex:0 1 auto!important;max-width:49%!important;min-width:0!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls .btn{\n  box-sizing:border-box!important;\n  border:1px solid #b2966e!important;border-radius:11px!important;\n  background:linear-gradient(180deg,#fff8e7,#f3e3c5)!important;\n  color:#365448!important;\n  box-shadow:0 2px 4px #66452122!important;\n  font-weight:750!important;letter-spacing:0!important;\n  min-height:clamp(31px,5.2cqw,38px)!important;\n  font-size:clamp(11px,2.35cqw,15px)!important;\n  line-height:1.15!important;padding:5px 11px!important;\n  white-space:normal!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls .btn:focus-visible{\n  outline:3px solid #2d8981!important;outline-offset:2px!important;\n}\n@media (orientation:landscape){\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls .btn{\n    min-height:clamp(26px,3.5cqh,36px)!important;\n    font-size:clamp(10px,1.1vw,14px)!important;\n    padding:3px 10px!important;\n  }\n}\n";
  style.textContent+="\n/* F02 v180: exact PNG character identity (only if both assets are available). */\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-f02-reference-active>.mtk-f02-approved-character {\n  display:block!important;position:absolute!important;\n  left:-2.1%!important;top:41.9%!important;\n  width:38.9%!important;height:57.3%!important;\n  max-width:none!important;object-fit:contain!important;\n  pointer-events:none!important;user-select:none!important;\n  z-index:2!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-f02-reference-active>.mtk-f02-image{z-index:0!important}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-f02-reference-active>.mtk-f02-label{z-index:3!important}\n";
+ // v185: position each text box precisely by its center, in both orientations.
+ style.textContent+="\n/* v185: exact plaque-center anchors on iPhone/landscape. */\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-f02-art>.mtk-f02-label{\n  position:absolute!important;transform:translate(-50%,-50%)!important;transform-origin:center center!important;\n  display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;\n  box-sizing:border-box!important;max-width:none!important;pointer-events:none!important;\n}\n";
  if(!document.getElementById(style.id))document.head.appendChild(style);
- window.MTKF02ApprovedV165=Object.freeze({render,enhance,plan,guide,positions:POS});
+ window.MTKF02ApprovedV165=Object.freeze({render,enhance,plan,guide,positions:POS,approvedPositions:POS_APPROVED});
 })();

@@ -70,7 +70,7 @@ for(const q of records.filter(q=>q.visual.labels.some(e=>e.anchor==="basamak 4")
 }
 assert(ui.includes('window.MTKF02ApprovedV165?.render(visual,q)'),"F02 renderer must be mounted before legacy art");
 assert(ui.includes("window.MTKF02ApprovedV165?.enhance(frame,q)"),"F02 must apply full-frame responsive layout");
-assert(quiz.includes('f02-approved-v165.js?v=181'),"Quiz must load the updated F02 v175 scene without stale iPhone cache");
+assert(quiz.includes('f02-approved-v165.js?v=185'),"Quiz must load the updated F02 v175 scene without stale iPhone cache");
 assert(source.includes('const CHARACTER_SCENE="./assets/f02-background-no-characters-v180.webp"'),"F02 must use a clean character-free scene");
 assert(source.includes('const CHARACTER_REFERENCE="./assets/erdem-ciko-onayli-v180.png"'),"F02 must use the EXACT stored transparent PNG");
 assert(source.includes('Promise.all([readyBackground,readyCharacters])'),"F02 must never combine original characters with a partially loaded new scene");
@@ -141,7 +141,18 @@ assert(latest.includes("top:64%!important")&&latest.includes("top:92%!important"
 assert(source.includes("F02 v172 landscape: keep navigation"),"Landscape half-screen navigation must remain usable");
 
 assert(source.includes("F02 v174: true 50/50 split")||source.includes("v174 F02: true 50/50 split"),"F02 latest 50/50 orientation geometry missing");
-assert(source.includes('top:{x:49.9,y:17.4')&&source.includes('one:{x:48.2,y:68.1')&&source.includes('four:{x:78.5,y:32.7'),"F02 dynamic plaques must use the new artwork's calibrated positions");
+assert(source.includes('top:{x:49.9,y:17.4')&&source.includes('one:{x:48.2,y:68.1')&&source.includes('four:{x:78.5,y:32.7'),"F02 safe fallback positions must remain unchanged");
+const aligned={
+ top:[49.9,17.9],one:[48.8,68.0],two:[76.4,55.6],three:[52.1,44.3],four:[78.3,33.1]
+};
+for(const [slot,[x,y]] of Object.entries(aligned)){
+ const actual=f02.approvedPositions?.[slot];
+ assert(actual&&Math.abs(actual.x-x)<.01&&Math.abs(actual.y-y)<.01,
+   "F02 "+slot+" center must match approved stone plaque");
+ assert(actual.w>=24&&actual.h>=6.5,"F02 "+slot+" text area remains readable");
+}
+assert(source.includes('transform:translate(-50%,-50%)!important'),
+  "F02 text labels must be anchored at their exact centers on iOS");
 assert(source.includes('const IMAGE="./assets/f02-energy-stairs-v174.avif"'),"F02 must use only the new five-blank-plaques image");
 assert(source.includes('scene.style.setProperty("top",(h-imageHeight)/2+"px","important")'),"The full artwork must be centered rather than cropped");
 assert(latest.includes("background-image:none!important"),"F02 must not repeat the illustration as a background image");
