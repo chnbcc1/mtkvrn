@@ -99,7 +99,7 @@ assert(f02.includes("frame.appendChild(inlineControls)"),"Hint/return buttons ca
 assert(f02Css.includes("v175 F02 only")&&f02Css.includes("background-image:none!important"),"F02 must not show duplicate backdrop artwork");
 assert(f02Css.includes("top:92.3%!important")&&f02Css.includes("top:92%!important"),"F02 hint/return controls must appear beneath options on both orientations");
 assert(f02.includes("İpucunu göster")&&f02.includes("Ana göreve dön"),"Both navigation controls must be recognized");
-assert(html.includes("f02-approved-v165.js?v=175"),"F02 latest controls-and-image-fix must load in the quiz");
+assert(html.includes("f02-approved-v165.js?v=178"),"F02 latest controls-and-image-fix must load in the quiz");
 /* Prevent a future global 50/50 redesign from claiming nonexistent images. */
 const artManifest=JSON.parse(fs.readFileSync(path.join(root,"quiz-artwork-manifest-v176.json"),"utf8"));
 assert.equal(artManifest.expectedQuestions,630);
@@ -114,4 +114,6 @@ for(const item of artManifest.obstacles){
 }
 assert(artManifest.fixedRules.portrait.visual.includes("50%")&&artManifest.fixedRules.landscape.visual.includes("50%"));
 assert(artManifest.fixedRules.data.includes("Never bake text"),"Math data must remain dynamic, never embedded in images");
+assert(f02Css.includes("F02 v178: edge-complete immersive artwork"),"F02 must use complete half-screen art without green letterbox bands");
+assert(f02.includes('edgeCanvas.className="mtk-f02-edge-fill"'),"F02 must use only source image edge pixels, never re-create the characters");
 console.log("PASS v147: exactly 630 user-approved questions, source hints/answers, approved layouts, F03 and F21 matching.");
