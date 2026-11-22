@@ -264,26 +264,64 @@
   if(ownCss&&document.head)document.head.appendChild(ownCss);
   const visual=frame.querySelector(".mtk-visual-region"),scene=visual?.querySelector(".mtk-f02-art");
   if(!visual||!scene)return false;
+  // The approved Erdem, Ciko and five plaques remain pixel-for-pixel unchanged.
+  // When screen ratio differs from source ratio, extend only the OUTER edge
+  // texture. Never crop, compress, duplicate the art, or move live math labels.
+  const artImage=scene.querySelector(".mtk-f02-image");
+  let edgeCanvas=visual.querySelector(".mtk-f02-edge-fill");
+  if(!edgeCanvas){
+    edgeCanvas=document.createElement("canvas");
+    edgeCanvas.className="mtk-f02-edge-fill";
+    edgeCanvas.setAttribute("aria-hidden","true");
+    visual.insertBefore(edgeCanvas,scene);
+  }
   const sync=()=>{
     if(!frame.isConnected)return;
     const w=visual.clientWidth,h=visual.clientHeight;
     if(w<=0||h<=0)return;
-    // F02 images and labels occupy the EXACT SAME visible box.
-    // Never scale beyond the available frame: this previously cropped Çiko and
-    // moved numbers relative to the ornamental plaques.
-    // Both portrait and landscape: never crop or stretch the approved
-    // 1205 x 1025 composition; keep DOM plaque percentages in this same box.
-    const sourceWidth=1205,sourceHeight=1025;
+    const sourceWidth=artImage?.naturalWidth||1205,sourceHeight=artImage?.naturalHeight||1025;
     const scale=Math.min(w/sourceWidth,h/sourceHeight);
     const imageWidth=sourceWidth*scale,imageHeight=sourceHeight*scale;
+    const left=(w-imageWidth)/2,top=(h-imageHeight)/2;
     scene.style.setProperty("inset","auto","important");
     scene.style.setProperty("width",imageWidth+"px","important");
     scene.style.setProperty("height",imageHeight+"px","important");
-    scene.style.setProperty("left",(w-imageWidth)/2+"px","important");
+    scene.style.setProperty("left",left+"px","important");
     scene.style.setProperty("top",(h-imageHeight)/2+"px","important");
     scene.style.setProperty("transform","none","important");
+    // Bleed the scene's narrow outside border into remaining screen pixels.
+    // Only edges are drawn: the original complete scene is rendered exactly
+    // ONCE in the centered foreground, together with its DOM labels.
+    if(!artImage?.complete||!artImage.naturalWidth)return;
+    const ratio=Math.min(2,window.devicePixelRatio||1);
+    edgeCanvas.width=Math.max(1,Math.round(w*ratio));
+    edgeCanvas.height=Math.max(1,Math.round(h*ratio));
+    const ctx=edgeCanvas.getContext("2d");
+    if(!ctx)return;
+    ctx.setTransform(ratio,0,0,ratio,0,0);
+    ctx.clearRect(0,0,w,h);
+    const right=Math.max(0,w-left-imageWidth);
+    const bottom=Math.max(0,h-top-imageHeight);
+    const stripW=Math.min(32,sourceWidth/12),stripH=Math.min(32,sourceHeight/12);
+    const draw=(sx,sy,sw,sh,dx,dy,dw,dh,fx,fy)=>{
+      if(dw<0.1||dh<0.1)return;
+      ctx.save();
+      ctx.translate(dx+(fx?dw:0),dy+(fy?dh:0));
+      ctx.scale(fx?-1:1,fy?-1:1);
+      ctx.drawImage(artImage,sx,sy,sw,sh,0,0,dw,dh);
+      ctx.restore();
+    };
+    draw(0,0,stripW,sourceHeight,0,top,left,imageHeight,true,false);
+    draw(sourceWidth-stripW,0,stripW,sourceHeight,left+imageWidth,top,right,imageHeight,true,false);
+    draw(0,0,sourceWidth,stripH,left,0,imageWidth,top,false,true);
+    draw(0,sourceHeight-stripH,sourceWidth,stripH,left,top+imageHeight,imageWidth,bottom,false,true);
+    draw(0,0,stripW,stripH,0,0,left,top,true,true);
+    draw(sourceWidth-stripW,0,stripW,stripH,left+imageWidth,0,right,top,true,true);
+    draw(0,sourceHeight-stripH,stripW,stripH,0,top+imageHeight,left,bottom,true,true);
+    draw(sourceWidth-stripW,sourceHeight-stripH,stripW,stripH,left+imageWidth,top+imageHeight,right,bottom,true,true);
   };
   requestAnimationFrame(sync);
+  if(artImage&&!artImage.complete)artImage.addEventListener("load",sync,{once:true});
   if(window.ResizeObserver)new ResizeObserver(sync).observe(visual);
   else window.addEventListener("resize",sync,{passive:true});
   return true;
@@ -299,6 +337,7 @@
  style.textContent+="\n/* F02 v172 landscape: keep navigation on the question half after DOM relocation. */\n@media (orientation:landscape) {\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165.mtk-f02-toolbar-mode>.mtk-question-region {\n    left:52%!important;top:5%!important;width:46%!important;height:46%!important;\n    overflow:hidden!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls {\n    box-sizing:border-box!important;position:absolute!important;\n    inset:auto!important;left:52%!important;top:52%!important;\n    width:46%!important;height:10%!important;\n    display:flex!important;align-items:center!important;justify-content:flex-start!important;\n    gap:6px!important;flex-wrap:nowrap!important;\n    margin:0!important;padding:0!important;min-height:0!important;\n    background:transparent!important;border:0!important;box-shadow:none!important;\n    z-index:20!important;overflow:visible!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls>.btnRow {\n    position:static!important;display:flex!important;flex:0 1 auto!important;\n    margin:0!important;padding:0!important;min-width:0!important;\n    background:transparent!important;box-shadow:none!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls .btn {\n    position:static!important;min-width:0!important;width:auto!important;\n    max-width:100%!important;min-height:28px!important;\n    padding:4px 8px!important;margin:0!important;\n    font-size:clamp(10px,1.25vw,15px)!important;line-height:1.15!important;\n    white-space:normal!important;pointer-events:auto!important;\n  }\n}\n";
  style.textContent+="\n/* v174 F02: true 50/50 split and untouched aspect ratio in both orientations.\n   Letterbox edges use a scene-colour continuation; the full main picture remains\n   fully visible and each label shares the image's exact scale. */\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region {\n box-sizing:border-box!important;border:0!important;border-radius:0!important;\n padding:0!important;margin:0!important;overflow:hidden!important;\n background-image:none!important;\n background-size:cover!important;background-position:center!important;\n background-repeat:no-repeat!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region .mtk-f02-art {\n position:absolute!important;\n border:0!important;padding:0!important;\n box-sizing:border-box!important;overflow:hidden!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region .mtk-f02-image{\n display:block!important;position:absolute!important;inset:0!important;\n width:100%!important;height:100%!important;object-fit:contain!important;\n object-position:center!important;\n}\n@media (orientation:portrait) {\n body.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region {\n   left:0!important;top:0!important;width:100%!important;height:50%!important;\n   aspect-ratio:auto!important;transform:none!important;\n }\n}\n@media (orientation:landscape) {\n body.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region {\n   left:0!important;top:0!important;width:50%!important;height:100%!important;\n   aspect-ratio:auto!important;transform:none!important;\n }\n}\n";
  style.textContent+="\n/* v175 F02 only: one image, no duplicate image in the letterbox margins.\n   Preserve a uniformly scaled (not stretched/cropped) visual + live plaques.\n   Navigation belongs in its own footer BELOW the answer grid, never over\n   the question, the image, or an answer button. */\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 {\n  background-image:none!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .f01-approved-portrait,\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .f01-approved-landscape {\n  display:none!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region {\n  background-image:none!important;\n  background-color:#133c2e!important;\n  background-size:auto!important;\n  background-repeat:no-repeat!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region .mtk-f02-image {\n  object-fit:contain!important;\n}\n@media(orientation:portrait) {\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-question-region {\n    left:4.6%!important;top:51%!important;width:90.8%!important;\n    height:25.7%!important;min-height:0!important;overflow:hidden!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165.mtk-f02-toolbar-mode>.mtk-question-region {\n    height:25.7%!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-question-region>.prompt {\n    overflow-y:auto!important;overflow-x:hidden!important;\n    touch-action:pan-y!important;\n    min-height:0!important;flex:1 1 auto!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.choiceGrid {\n    left:4.3%!important;top:78.0%!important;width:91.4%!important;\n    height:13.8%!important;max-width:91.4%!important;\n    grid-template-rows:repeat(2,minmax(0,1fr))!important;\n    row-gap:5%!important;column-gap:3.5%!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls {\n    position:absolute!important;inset:auto!important;\n    left:4.3%!important;top:92.3%!important;\n    width:91.4%!important;height:6.7%!important;\n    display:flex!important;flex-flow:row nowrap!important;\n    align-items:center!important;justify-content:flex-start!important;\n    gap:7px!important;margin:0!important;padding:0!important;\n    z-index:12!important;overflow:hidden!important;\n    background:transparent!important;border:0!important;box-shadow:none!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls>.btnRow {\n    display:flex!important;position:static!important;min-width:0!important;\n    flex:0 1 auto!important;max-width:50%!important;\n    margin:0!important;padding:0!important;\n    background:transparent!important;box-shadow:none!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls .btn {\n    min-width:0!important;max-width:100%!important;\n    min-height:34px!important;padding:5px 9px!important;margin:0!important;\n    font-size:clamp(11px,2.6cqw,16px)!important;line-height:1.14!important;\n    white-space:normal!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165.mtk-f02-correct-mode>.mtk-f02-correct-card {\n    top:51%!important;height:25.7%!important;\n  }\n}\n@media(orientation:landscape) {\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-question-region {\n    left:52%!important;top:5%!important;width:46%!important;\n    height:57%!important;min-height:0!important;overflow:hidden!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165.mtk-f02-toolbar-mode>.mtk-question-region {\n    left:52%!important;top:5%!important;width:46%!important;\n    height:57%!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-question-region>.prompt {\n    overflow-y:auto!important;overflow-x:hidden!important;touch-action:pan-y!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.choiceGrid {\n    left:52%!important;top:64%!important;width:46%!important;\n    height:27%!important;max-width:46%!important;\n    grid-template-rows:repeat(2,minmax(0,1fr))!important;\n    row-gap:6%!important;column-gap:4%!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls {\n    position:absolute!important;inset:auto!important;\n    left:52%!important;top:92%!important;width:46%!important;height:7%!important;\n    display:flex!important;flex-flow:row nowrap!important;\n    align-items:center!important;justify-content:flex-start!important;\n    gap:7px!important;margin:0!important;padding:0!important;\n    z-index:12!important;overflow:hidden!important;\n    background:transparent!important;border:0!important;box-shadow:none!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls>.btnRow {\n    display:flex!important;position:static!important;min-width:0!important;\n    flex:0 1 auto!important;max-width:50%!important;\n    margin:0!important;padding:0!important;\n    background:transparent!important;box-shadow:none!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls .btn {\n    min-width:0!important;max-width:100%!important;\n    min-height:26px!important;padding:3px 7px!important;margin:0!important;\n    font-size:clamp(10px,1.16vw,14px)!important;line-height:1.12!important;\n    white-space:normal!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165.mtk-f02-correct-mode>.mtk-f02-correct-card {\n    top:4%!important;height:57%!important;\n  }\n}\n";
+ style.textContent+="\n/* F02 v178: edge-complete immersive artwork without crop/distortion.\n   The ONLY full illustration remains the approved 1205x1025 asset. */\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 {\n  width:100%!important;height:100%!important;\n  max-width:100%!important;max-height:100%!important;\n  aspect-ratio:auto!important;margin:0!important;\n  border:0!important;border-radius:0!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region {\n  background-image:none!important; background-color:#133c2e!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region>.mtk-f02-edge-fill {\n  position:absolute!important;inset:0!important;z-index:0!important;\n  display:block!important;width:100%!important;height:100%!important;\n  pointer-events:none!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region>.mtk-f02-art {\n  z-index:1!important;\n}\n@media(orientation:portrait){\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region {\n    left:0!important;top:0!important;width:100%!important;height:50%!important;\n  }\n}\n@media(orientation:landscape){\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region {\n    left:0!important;top:0!important;width:50%!important;height:100%!important;\n  }\n}\n";
  if(!document.getElementById(style.id))document.head.appendChild(style);
  window.MTKF02ApprovedV165=Object.freeze({render,enhance,plan,guide,positions:POS});
 })();
