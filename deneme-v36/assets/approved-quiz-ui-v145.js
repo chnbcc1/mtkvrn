@@ -366,6 +366,8 @@
     if(!document.querySelector('#mtk-approved-style-v145')){const s=elem('style');s.id='mtk-approved-style-v145';s.textContent=style;document.head.appendChild(s)}
     if(q?.obstacleId==='F01')window.MTKF01ApprovedV159?.enhance(frame,q);
     if(q?.obstacleId==='F02')window.MTKF02ApprovedV165?.enhance(frame,q);
+    // One layout owns ALL 21 obstacle screens, after approved scene/label mounts.
+    window.MTKQuizUniversalV176?.apply(frame,q);
     return true;
   }
   function reset(){document.body.classList.remove('mtk-approved-active')}
