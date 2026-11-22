@@ -523,6 +523,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 #quizOverlay iframe{display:block!important;width:100%!important;height:100%!important;min-height:0!important;border:0!important;flex:1!important}
 #quizOverlay .quizBar{position:absolute!important;z-index:30!important;top:max(7px,env(safe-area-inset-top))!important;right:max(9px,env(safe-area-inset-right))!important;left:auto!important;width:auto!important;min-height:0!important;padding:0!important;background:transparent!important;box-shadow:none!important;pointer-events:none!important}
 #quizOverlay .quizBar #quizTitle{display:none!important}
+#quizOverlay[data-notebook-open="1"] .quizBar{display:none!important}
 #quizOverlay .quizClose{pointer-events:auto!important;min-height:36px!important;padding:6px 11px!important;border:1px solid #ffe8b3!important;border-radius:13px!important;background:#0c3431cf!important;color:#fff9e4!important;font-size:12px!important;box-shadow:0 3px 12px #0005!important}
 /* v154: show the forest, not the old bare HTML, until the illustrated quiz is fully ready. */
 /* v156: keep the next eager iframe laid out and decoded, but noninteractive and invisible,
@@ -1183,7 +1184,7 @@ function prepareQuiz(id){
  if(quizPrepared.key===key)return quizPrepared.ready;
  quizPrepared={key,id,ready:false};
  const qs=new URLSearchParams({embedded:"1",obstacle:id,difficulty,session:RUN_TOKEN});
- $("#quizFrame").src="./forest-v70-quiz.html?v=186&"+qs;
+ $("#quizFrame").src="./forest-v70-quiz.html?v=187&"+qs;
  return false;
 }
 function warmUpcomingQuiz(){
@@ -1220,7 +1221,7 @@ function openQuiz(id){
 function closeQuiz(){
  if($("#quizOverlay").hidden)return;
  clearTimeout(quizRevealTimer);
- $("#quizOverlay").hidden=true;$("#quizOverlay").removeAttribute("data-preparing");quizActiveId=null;
+ $("#quizOverlay").hidden=true;$("#quizOverlay").removeAttribute("data-preparing");delete $("#quizOverlay").dataset.notebookOpen;quizActiveId=null;
  // Keep the existing iframe mounted. Reopening F01 must show the same saved question.
  modalOpen=false;requested=0;activePointers.clear();updatePress();last=0;save(true);
 }
@@ -1241,6 +1242,12 @@ window.addEventListener("message",e=>{
    clearTimeout(quizRevealTimer);
    $("#quizOverlay").removeAttribute("data-preparing");
   }
+  return;
+ }
+ if(d.event==="notebook-open"||d.event==="notebook-close"){
+  if(d.obstacle!==quizActiveId)return;
+  if(d.event==="notebook-open")$("#quizOverlay").dataset.notebookOpen="1";
+  else delete $("#quizOverlay").dataset.notebookOpen;
   return;
  }
  if(d.event!=="solved"||d.obstacle!==quizActiveId)return;
