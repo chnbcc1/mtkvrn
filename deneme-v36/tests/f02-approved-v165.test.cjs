@@ -126,6 +126,7 @@ assert(source.includes('top:{x:49.9,y:17.4')&&source.includes('one:{x:48.2,y:68.
 assert(source.includes('const IMAGE="./assets/f02-energy-stairs-v174.avif"'),"F02 must use only the new five-blank-plaques image");
 assert(source.includes('scene.style.setProperty("top",(h-imageHeight)/2+"px","important")'),"The full artwork must be centered rather than cropped");
 assert(latest.includes("background-image:none!important"),"F02 must not repeat the illustration as a background image");
+assert(!source.includes("background-image:url("),"F02 must have exactly one drawn scene, never the same photo underneath itself");
 assert(latest.includes(".f01-approved-portrait")&&latest.includes("display:none!important"),"F02 must hide old frame artwork");
 assert(source.includes('const scale=Math.min(w/sourceWidth,h/sourceHeight)'),"The foreground scene and dynamic labels must retain image aspect ratio");
 const verticalRows=[[0,50],[51,76.7],[78,91.8],[92.3,99]];
