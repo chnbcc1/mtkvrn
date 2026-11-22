@@ -98,7 +98,7 @@ sup{font-size:.7em;line-height:0;vertical-align:super}
 .embedded .choice{box-sizing:border-box!important;min-width:0!important;width:100%!important;height:100%!important;min-height:56px!important}
 .embedded .choiceMark{flex:0 0 29px!important;width:29px!important;height:29px!important}
 @media (orientation:portrait){.embedded .choice{font-size:clamp(12px,3.5vw,17px)!important;padding:8px!important}}
-</style><script src="./assets/quiz-approved-frames-v145.js?v=145"></script><script src="./assets/quiz-f03-machine-v145.js?v=145"></script><script src="./assets/quiz-research-objects-v148.js?v=148"></script><script src="./assets/f01-approved-v159.js?v=163"></script><script src="./assets/f02-approved-v165.js?v=185"></script><script src="./assets/approved-quiz-ui-v145.js?v=176"></script><script src="./assets/quiz-universal-layout-v176.js?v=179"></script><script src="./forest-levels-v65.js?v=65"></script></head>
+</style><link rel="stylesheet" href="./assets/math-notebook-v186.css?v=186"><link rel="stylesheet" href="./assets/math-notebook-forest-v186.css?v=186"><script src="./assets/math-notebook-v186.js?v=186"></script><script src="./assets/quiz-approved-frames-v145.js?v=145"></script><script src="./assets/quiz-f03-machine-v145.js?v=145"></script><script src="./assets/quiz-research-objects-v148.js?v=148"></script><script src="./assets/f01-approved-v159.js?v=163"></script><script src="./assets/f02-approved-v165.js?v=185"></script><script src="./assets/approved-quiz-ui-v145.js?v=176"></script><script src="./assets/quiz-universal-layout-v176.js?v=179"></script><script src="./forest-levels-v65.js?v=65"></script></head>
 <body><main><nav><a href="./forest-v70-full.html?v=69">‹ Orman Patikasına dön</a><a href="./map-v70.html?v=69">🗺️ Macera Haritası</a></nav>
 <h1>🌲 Orman Patikası</h1><p class="subtitle">21 engelli matematik macerası · dört şıklı sorular · MAT.9.1.1 · Üslü ve köklü gösterimler. Dört seçenek arasından karar ver. Yanlışta ipucu, örnek çözüm ve pekiştirme adımları seni yönlendirecek. Fiziksel engellerin sahne entegrasyonu ayrı geliştirilir.</p>
 <div id="step" class="step" hidden></div><div id="bar" class="bar" hidden><span id="fill"></span></div><section id="app" class="panel" aria-live="polite"></section>
@@ -211,7 +211,7 @@ function stages(q){
 }
 function options(stg,q){return stg.options?(q.fixedChoiceOrder?[...stg.options]:shuffle(stg.options,q.id+"|"+run.stage)):decoys(stg.answer,{id:q.id+"|"+run.stage,inputType:stg.kind})}
 function rowButton(text,fn,secondary=false){let row=node("div","btnRow");row.appendChild(btn(text,fn,secondary));return row}
-function welcome(){window.MTKApprovedQuizV145?.reset();
+function welcome(){window.MTKMathNotebook?.hide();window.MTKApprovedQuizV145?.reset();
  step.hidden=true;bar.hidden=true;app.replaceChildren();
  append(app,node("div","eyebrow","MATEMATİK EVRENİ • v70"),node("h2",null,"Zorluğunu seç"),node("p","note","Kolay: tek kural · Orta: iki bağlantılı işlem · Zor: çok aşamalı muhakeme. Klavye kullanılmaz; yanıtlar dört şıktan seçilir."));
  if(run&&run.index<21){const b=btn("Kaldığım yerden devam et",show);b.style.width="100%";app.appendChild(b)}
@@ -482,9 +482,10 @@ function reportSolved(obs){
 }
 function show(){window.MTKApprovedQuizV145?.reset();
  if(!bank){return}if(!run){welcome();return}
- if(run.index>=21){step.hidden=false;bar.hidden=false;fill.style.width="100%";step.textContent="21/21 tamamlandı";app.replaceChildren();append(app,node("h2",null,"🎉 Ormanı tamamladın!"),node("p",null,"21 engel bitti. Yeni oyunda daha önce görülmeyen soru varyasyonları seçilir."),rowButton("Yeniden başla",()=>{run=null;save();welcome()}));return}
+ if(run.index>=21){window.MTKMathNotebook?.hide();step.hidden=false;bar.hidden=false;fill.style.width="100%";step.textContent="21/21 tamamlandı";app.replaceChildren();append(app,node("h2",null,"🎉 Ormanı tamamladın!"),node("p",null,"21 engel bitti. Yeni oyunda daha önce görülmeyen soru varyasyonları seçilir."),rowButton("Yeniden başla",()=>{run=null;save();welcome()}));return}
  ensure();const obs=bank.obstacles.find(o=>o.id===bank.playOrder[run.index]);
  const q=current(),all=stages(q),s=all[Math.min(run.stage||0,all.length-1)];
+ window.MTKMathNotebook?.attach({questionId:q.id,questionText:s.prompt,scene:"forest"});
  step.hidden=false;bar.hidden=false;step.textContent=(run.index+1)+"/21 • "+obs.title+" • "+run.difficulty.toUpperCase()+(run.practiceId?" · PEKİŞTİRME":run.remediationId?" · YENİDEN DENE":"");
  fill.style.width=(((run.index)+(run.awaiting?1:0))/21*100)+"%";
  app.replaceChildren();
@@ -607,7 +608,7 @@ async function init(){
   document.title="Matematik engeli · "+FORCED;
   announceQuizVisualReady();
  }else{if(saved&&["kolay","orta","zor"].includes(saved.difficulty)&&Number.isInteger(saved.index)&&saved.index>=0&&saved.index<=21)run=saved;welcome();}
- }catch(e){app.replaceChildren();append(app,node("h2",null,"Soru sistemi açılamadı"),node("p",null,e.message),rowButton("Tekrar dene",()=>location.reload()));if(EMBED&&window.parent!==window)window.parent.postMessage({source:"mathverse-v68-quiz",event:"load-error",obstacle:FORCED,difficulty:FORCED_DIFFICULTY},location.origin)}
+ }catch(e){window.MTKMathNotebook?.hide();app.replaceChildren();append(app,node("h2",null,"Soru sistemi açılamadı"),node("p",null,e.message),rowButton("Tekrar dene",()=>location.reload()));if(EMBED&&window.parent!==window)window.parent.postMessage({source:"mathverse-v68-quiz",event:"load-error",obstacle:FORCED,difficulty:FORCED_DIFFICULTY},location.origin)}
 }
 init();
 

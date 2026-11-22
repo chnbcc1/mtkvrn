@@ -72,7 +72,7 @@
   if(!info||!info.questionId){hide();return}
   const id=String(info.questionId),text=String(info.questionText||"").trim();
   if(question&&question.id!==id&&open)closeNotebook();
-  question={id,text};
+  question={id,text,scene:String(info.scene||"")};
   ensureLauncher();
   launcher.hidden=false;
   launcher.style.display="";
@@ -166,7 +166,7 @@
   if(open)return;
   lastFocus=document.activeElement;
   note=load();redone=new Map();active=null;activePointer=null;tool="pen";
-  open=true;root.hidden=false;document.body.classList.add("mn-open");
+  open=true;root.classList.toggle("mn-forest",question.scene==="forest");root.hidden=false;document.body.classList.add("mn-open");
   $("mn-question").textContent=question.text;
   paper.dataset.paper=note.paper;
   $("mn-paper-type").value=note.paper;
@@ -217,6 +217,7 @@
  }
  function addPage(){
   if(!note)return;finishStroke();
+  if(note.pages.length>=250){status("Bu defterin sayfa sınırına ulaşıldı.",true);return}
   note.pages.push({strokes:[]});note.page=note.pages.length-1;
   save();refreshPages();repaint();
   workspace.scrollTop=0;workspace.scrollLeft=0;
@@ -262,7 +263,7 @@
   const samples=events.length?events:[e];
   for(const item of samples){
    const pt=logicalPoint(item,rect),last=active.points[active.points.length-1];
-   if(Math.abs(pt[0]-last[0])+Math.abs(pt[1]-last[1])>=1)active.points.push(pt);
+   if(active.points.length<18000&&Math.abs(pt[0]-last[0])+Math.abs(pt[1]-last[1])>=2)active.points.push(pt);
   }
   if(!raf)raf=requestAnimationFrame(()=>{raf=0;repaint()});
  }
