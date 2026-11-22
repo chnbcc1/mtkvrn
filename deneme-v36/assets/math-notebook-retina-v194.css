@@ -1,0 +1,44 @@
+/* v194 — exact left/right ivy from the user's original 1024×1536 paper.
+   Each native 128px strip is painted into 40 CSS px (3.2 source pixels per
+   CSS pixel). Retina 3× iPhones never upscale the leaf artwork. */
+.mn-root.mn-forest .mn-paper::before,
+.mn-root.mn-forest .mn-paper::after{
+  display:block!important;
+  content:""!important;
+  position:absolute!important;
+  top:0!important;bottom:0!important;height:auto!important;
+  width:40px!important;
+  z-index:0!important;
+  pointer-events:none!important;
+  background-image:url("./ivy-original-retina-v194.webp")!important;
+  background-size:80px auto!important;
+  background-repeat:repeat-y!important;
+  opacity:.76!important;
+  mix-blend-mode:multiply!important;
+  image-rendering:auto!important;
+  filter:none!important;
+  user-select:none!important;
+}
+.mn-root.mn-forest .mn-paper::before{
+  left:0!important;right:auto!important;
+  background-position:left top!important;
+  transform:none!important;
+}
+.mn-root.mn-forest .mn-paper::after{
+  right:0!important;left:auto!important;
+  background-position:right top!important;
+  transform:none!important;
+}
+@media(orientation:landscape){
+  .mn-root.mn-forest .mn-paper::before,
+  .mn-root.mn-forest .mn-paper::after{
+    width:40px!important;
+    background-size:80px auto!important;
+    opacity:.72!important;
+  }
+}
+/* Keep the drawing and all touch operations above the non-interactive leaf art. */
+.mn-root.mn-forest .mn-paper .mn-segment{
+  position:absolute!important;
+  z-index:2!important;
+}
