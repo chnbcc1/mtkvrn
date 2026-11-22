@@ -1,8 +1,8 @@
 # F02 v180 — Onaylı Erdem ve Çiko katmanları
 
-**Durum:** GitHub'daki metin tabanlı oyun kodu hazır. İki ikili (binary) görsel dosyasının yüklenmesi bekleniyor; bu dosyalar yüklenene kadar oyunun önceki F02 görseli güvenli şekilde kullanılmaya devam eder.
+**Durum:** İki özgün ikili görsel dosyası GitHub `main` dalına yüklendi. Oyun onaylı karakter PNG'sini ve karakter içermeyen F02 sahnesini ayrı katmanlar hâlinde kullanır. Dosyalardan herhangi biri yüklenemezse önceki F02 görseline güvenli dönüş yapılır.
 
-GitHub deposundaki `deneme-v36/assets/` klasörüne **aynen bu dosya adlarıyla** eklenmesi gereken görseller:
+GitHub deposunun `deneme-v36/assets/` klasöründe bulunan görseller:
 - `erdem-ciko-onayli-v180.png` — Önceden onaylanan `Erdem_Ciko_Onayli_Seffaf.png` dosyasının aynen korunmuş kopyası. SHA-256: `b0e1a903b1bc0171785eebaa6b50a41900c7fa17f5d7d471509583ac4229eba5`
 - `f02-background-no-characters-v180.webp` — Sadece boş etiketli enerji merdiveni arka planı; Erdem ya da Çiko bu arka planda çizili değildir.
 

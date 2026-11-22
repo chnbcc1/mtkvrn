@@ -9,6 +9,20 @@ const ui=fs.readFileSync(path.join(root,"assets/approved-quiz-ui-v145.js"),"utf8
 const quiz=fs.readFileSync(path.join(root,"forest-v70-quiz.html"),"utf8");
 const bank=JSON.parse(fs.readFileSync(path.join(root,"forest-questions-v147.json"),"utf8"));
 const image=fs.readFileSync(path.join(root,"assets/f02-energy-stairs-v174.avif"));
+const crypto=require("node:crypto");
+const approvedCharacter=fs.readFileSync(path.join(root,"assets/erdem-ciko-onayli-v180.png"));
+const cleanBackground=fs.readFileSync(path.join(root,"assets/f02-background-no-characters-v180.webp"));
+const digest=data=>crypto.createHash("sha256").update(data).digest("hex");
+assert.equal(digest(approvedCharacter),"b0e1a903b1bc0171785eebaa6b50a41900c7fa17f5d7d471509583ac4229eba5","Erdem and Ciko must be pixel-identical to the approved PNG");
+assert.equal(approvedCharacter.readUInt32BE(16),1122,"Approved character reference width changed");
+assert.equal(approvedCharacter.readUInt32BE(20),1402,"Approved character reference height changed");
+assert.equal(approvedCharacter[25],6,"Approved character reference must preserve RGBA transparency");
+assert.equal(digest(cleanBackground),"5f7bc4044e1cb70fb699b5a436b34ede339fd71e8076d1d8bb3d87a8f7324d35","F02 character-free background changed");
+assert.equal(cleanBackground.toString("ascii",0,4),"RIFF");
+assert.equal(cleanBackground.toString("ascii",8,12),"WEBP");
+assert(source.includes('const IMAGE_VERSION="?v=181"'),"F02 must bypass previously cached missing image responses");
+assert(source.includes('object-fit:contain!important'),"Do not stretch the approved character layer");
+
 assert(image.length>25_000&&image.length<180_000,"Approved F02 art missing or corrupted");
 assert(image.toString("ascii",4,12).includes("ftypavif"),"F02 art is not the approved AVIF image");
 assert.equal(bank.questions.length,630,"Never replace or alter approved question pool");
@@ -56,7 +70,7 @@ for(const q of records.filter(q=>q.visual.labels.some(e=>e.anchor==="basamak 4")
 }
 assert(ui.includes('window.MTKF02ApprovedV165?.render(visual,q)'),"F02 renderer must be mounted before legacy art");
 assert(ui.includes("window.MTKF02ApprovedV165?.enhance(frame,q)"),"F02 must apply full-frame responsive layout");
-assert(quiz.includes('f02-approved-v165.js?v=180'),"Quiz must load the updated F02 v175 scene without stale iPhone cache");
+assert(quiz.includes('f02-approved-v165.js?v=181'),"Quiz must load the updated F02 v175 scene without stale iPhone cache");
 assert(source.includes('const CHARACTER_SCENE="./assets/f02-background-no-characters-v180.webp"'),"F02 must use a clean character-free scene");
 assert(source.includes('const CHARACTER_REFERENCE="./assets/erdem-ciko-onayli-v180.png"'),"F02 must use the EXACT stored transparent PNG");
 assert(source.includes('Promise.all([readyBackground,readyCharacters])'),"F02 must never combine original characters with a partially loaded new scene");

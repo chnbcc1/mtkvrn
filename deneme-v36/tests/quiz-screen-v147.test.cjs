@@ -99,7 +99,7 @@ assert(f02.includes("frame.appendChild(inlineControls)"),"Hint/return buttons ca
 assert(f02Css.includes("v175 F02 only")&&f02Css.includes("background-image:none!important"),"F02 must not show duplicate backdrop artwork");
 assert(f02Css.includes("top:92.3%!important")&&f02Css.includes("top:92%!important"),"F02 hint/return controls must appear beneath options on both orientations");
 assert(f02.includes("İpucunu göster")&&f02.includes("Ana göreve dön"),"Both navigation controls must be recognized");
-assert(html.includes("f02-approved-v165.js?v=180"),"F02 latest controls-and-image-fix must load in the quiz");
+assert(html.includes("f02-approved-v165.js?v=181"),"F02 latest controls-and-image-fix must load in the quiz");
 /* Prevent a future global 50/50 redesign from claiming nonexistent images. */
 const artManifest=JSON.parse(fs.readFileSync(path.join(root,"quiz-artwork-manifest-v176.json"),"utf8"));
 assert.equal(artManifest.expectedQuestions,630);
