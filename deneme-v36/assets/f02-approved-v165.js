@@ -2,7 +2,16 @@
    All values are sourced from the selected approved 630-question pack; no text is baked into art.
    Screen coordinates are percentages of the approved F02 image itself. */
 (()=>{"use strict";
- const IMAGE="./assets/f02-energy-stairs-v174.avif";
+ const IMAGE="./assets/f02-energy-stairs-v174.avif"; // F02 safe fallback until both approved assets exist
+ const CHARACTER_SCENE="./assets/f02-background-no-characters-v180.webp";
+ const CHARACTER_REFERENCE="./assets/erdem-ciko-onayli-v180.png";
+ const POS_APPROVED={
+   top:{x:49.6,y:17.5,w:38.0,h:10.0},
+   one:{x:47.0,y:67.3,w:30.0,h:7.0},
+   two:{x:75.3,y:54.0,w:29.0,h:7.0},
+   three:{x:50.5,y:43.8,w:27.0,h:7.0},
+   four:{x:77.4,y:31.4,w:27.0,h:7.0}
+ };
  const POS={
   top:{x:49.9,y:17.4,w:43.0,h:10.0},
   one:{x:48.2,y:68.1,w:24.6,h:7.0},
@@ -221,10 +230,36 @@
     node.className="mtk-f02-label"+(String(value).length>13?" long":"");
     node.style.left=pos.x+"%";node.style.top=pos.y+"%";
     node.style.width=pos.w+"%";node.style.height=pos.h+"%";
+    node.dataset.slot=slot;
     node.textContent=value;node.title=anchor;
     node.setAttribute("aria-label",anchor+" "+value);scene.appendChild(node);
   }
   visual.appendChild(scene);
+  // F02 identity v180: original approved transparent PNG, never AI-redrawn.
+  // Load background + character image as a pair to avoid duplicated figures.
+  // A missing asset leaves the original playable artwork untouched.
+  const bgProbe=new Image(),characterProbe=new Image();
+  const load=img=>new Promise((resolve,reject)=>{
+    img.onload=()=>resolve();img.onerror=reject;
+  });
+  const readyBackground=load(bgProbe),readyCharacters=load(characterProbe);
+  bgProbe.src=CHARACTER_SCENE;characterProbe.src=CHARACTER_REFERENCE;
+  Promise.all([readyBackground,readyCharacters]).then(()=>{
+    if(!scene.isConnected)return;
+    const character=document.createElement("img");
+    character.className="mtk-f02-approved-character";
+    character.src=CHARACTER_REFERENCE;
+    character.alt="Onaylı şeffaf dosyadan Erdem ve Çiko";
+    character.draggable=false;
+    scene.insertBefore(character,scene.querySelector(".mtk-f02-label"));
+    art.src=CHARACTER_SCENE;
+    for(const label of scene.querySelectorAll(".mtk-f02-label")){
+      const pos=POS_APPROVED[label.dataset.slot];if(!pos)continue;
+      label.style.left=pos.x+"%";label.style.top=pos.y+"%";
+      label.style.width=pos.w+"%";label.style.height=pos.h+"%";
+    }
+    scene.classList.add("mtk-f02-reference-active");
+  }).catch(()=>{/* Keep the current tested scene until the assets are hosted. */});
   return true;
  }
 
@@ -321,7 +356,7 @@
     draw(sourceWidth-stripW,sourceHeight-stripH,stripW,stripH,left+imageWidth,top+imageHeight,right,bottom,true,true);
   };
   requestAnimationFrame(sync);
-  if(artImage&&!artImage.complete)artImage.addEventListener("load",sync,{once:true});
+  if(artImage)artImage.addEventListener("load",sync);
   if(window.ResizeObserver)new ResizeObserver(sync).observe(visual);
   else window.addEventListener("resize",sync,{passive:true});
   return true;
@@ -339,6 +374,7 @@
  style.textContent+="\n/* v175 F02 only: one image, no duplicate image in the letterbox margins.\n   Preserve a uniformly scaled (not stretched/cropped) visual + live plaques.\n   Navigation belongs in its own footer BELOW the answer grid, never over\n   the question, the image, or an answer button. */\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 {\n  background-image:none!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .f01-approved-portrait,\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .f01-approved-landscape {\n  display:none!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region {\n  background-image:none!important;\n  background-color:#133c2e!important;\n  background-size:auto!important;\n  background-repeat:no-repeat!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region .mtk-f02-image {\n  object-fit:contain!important;\n}\n@media(orientation:portrait) {\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-question-region {\n    left:4.6%!important;top:51%!important;width:90.8%!important;\n    height:25.7%!important;min-height:0!important;overflow:hidden!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165.mtk-f02-toolbar-mode>.mtk-question-region {\n    height:25.7%!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-question-region>.prompt {\n    overflow-y:auto!important;overflow-x:hidden!important;\n    touch-action:pan-y!important;\n    min-height:0!important;flex:1 1 auto!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.choiceGrid {\n    left:4.3%!important;top:78.0%!important;width:91.4%!important;\n    height:13.8%!important;max-width:91.4%!important;\n    grid-template-rows:repeat(2,minmax(0,1fr))!important;\n    row-gap:5%!important;column-gap:3.5%!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls {\n    position:absolute!important;inset:auto!important;\n    left:4.3%!important;top:92.3%!important;\n    width:91.4%!important;height:6.7%!important;\n    display:flex!important;flex-flow:row nowrap!important;\n    align-items:center!important;justify-content:flex-start!important;\n    gap:7px!important;margin:0!important;padding:0!important;\n    z-index:12!important;overflow:hidden!important;\n    background:transparent!important;border:0!important;box-shadow:none!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls>.btnRow {\n    display:flex!important;position:static!important;min-width:0!important;\n    flex:0 1 auto!important;max-width:50%!important;\n    margin:0!important;padding:0!important;\n    background:transparent!important;box-shadow:none!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls .btn {\n    min-width:0!important;max-width:100%!important;\n    min-height:34px!important;padding:5px 9px!important;margin:0!important;\n    font-size:clamp(11px,2.6cqw,16px)!important;line-height:1.14!important;\n    white-space:normal!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165.mtk-f02-correct-mode>.mtk-f02-correct-card {\n    top:51%!important;height:25.7%!important;\n  }\n}\n@media(orientation:landscape) {\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-question-region {\n    left:52%!important;top:5%!important;width:46%!important;\n    height:57%!important;min-height:0!important;overflow:hidden!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165.mtk-f02-toolbar-mode>.mtk-question-region {\n    left:52%!important;top:5%!important;width:46%!important;\n    height:57%!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-question-region>.prompt {\n    overflow-y:auto!important;overflow-x:hidden!important;touch-action:pan-y!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.choiceGrid {\n    left:52%!important;top:64%!important;width:46%!important;\n    height:27%!important;max-width:46%!important;\n    grid-template-rows:repeat(2,minmax(0,1fr))!important;\n    row-gap:6%!important;column-gap:4%!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls {\n    position:absolute!important;inset:auto!important;\n    left:52%!important;top:92%!important;width:46%!important;height:7%!important;\n    display:flex!important;flex-flow:row nowrap!important;\n    align-items:center!important;justify-content:flex-start!important;\n    gap:7px!important;margin:0!important;padding:0!important;\n    z-index:12!important;overflow:hidden!important;\n    background:transparent!important;border:0!important;box-shadow:none!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls>.btnRow {\n    display:flex!important;position:static!important;min-width:0!important;\n    flex:0 1 auto!important;max-width:50%!important;\n    margin:0!important;padding:0!important;\n    background:transparent!important;box-shadow:none!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls .btn {\n    min-width:0!important;max-width:100%!important;\n    min-height:26px!important;padding:3px 7px!important;margin:0!important;\n    font-size:clamp(10px,1.16vw,14px)!important;line-height:1.12!important;\n    white-space:normal!important;\n  }\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165.mtk-f02-correct-mode>.mtk-f02-correct-card {\n    top:4%!important;height:57%!important;\n  }\n}\n";
  style.textContent+="\n/* F02 v178: edge-complete immersive artwork without crop/distortion.\n   The ONLY full illustration remains the approved 1205x1025 asset. */\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 {\n  width:100%!important;height:100%!important;\n  max-width:100%!important;max-height:100%!important;\n  aspect-ratio:auto!important;margin:0!important;\n  border:0!important;border-radius:0!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region {\n  background-image:none!important; background-color:#133c2e!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region>.mtk-f02-edge-fill {\n  position:absolute!important;inset:0!important;z-index:0!important;\n  display:block!important;width:100%!important;height:100%!important;\n  pointer-events:none!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region>.mtk-f02-art {\n  z-index:1!important;\n}\n@media(orientation:portrait){\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region {\n    left:0!important;top:0!important;width:100%!important;height:50%!important;\n  }\n}\n@media(orientation:landscape){\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-visual-region {\n    left:0!important;top:0!important;width:50%!important;height:100%!important;\n  }\n}\n";
  style.textContent+="\n/* F02 v178a: secondary controls follow the clean shared parchment palette. */\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls {\n  justify-content:flex-start!important;align-items:center!important;\n  gap:9px!important;overflow:visible!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls>.btnRow{\n  flex:0 1 auto!important;max-width:49%!important;min-width:0!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls .btn{\n  box-sizing:border-box!important;\n  border:1px solid #b2966e!important;border-radius:11px!important;\n  background:linear-gradient(180deg,#fff8e7,#f3e3c5)!important;\n  color:#365448!important;\n  box-shadow:0 2px 4px #66452122!important;\n  font-weight:750!important;letter-spacing:0!important;\n  min-height:clamp(31px,5.2cqw,38px)!important;\n  font-size:clamp(11px,2.35cqw,15px)!important;\n  line-height:1.15!important;padding:5px 11px!important;\n  white-space:normal!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls .btn:focus-visible{\n  outline:3px solid #2d8981!important;outline-offset:2px!important;\n}\n@media (orientation:landscape){\n  body.mtk-approved-active .mtk-frame.mtk-f02-v165>.mtk-f02-practice-controls .btn{\n    min-height:clamp(26px,3.5cqh,36px)!important;\n    font-size:clamp(10px,1.1vw,14px)!important;\n    padding:3px 10px!important;\n  }\n}\n";
+ style.textContent+="\n/* F02 v180: exact PNG character identity (only if both assets are available). */\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-f02-reference-active>.mtk-f02-approved-character {\n  display:block!important;position:absolute!important;\n  left:-2.1%!important;top:41.9%!important;\n  width:38.9%!important;height:57.3%!important;\n  max-width:none!important;object-fit:fill!important;\n  pointer-events:none!important;user-select:none!important;\n  z-index:2!important;\n}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-f02-reference-active>.mtk-f02-image{z-index:0!important}\nbody.mtk-approved-active .mtk-frame.mtk-f02-v165 .mtk-f02-reference-active>.mtk-f02-label{z-index:3!important}\n";
  if(!document.getElementById(style.id))document.head.appendChild(style);
  window.MTKF02ApprovedV165=Object.freeze({render,enhance,plan,guide,positions:POS});
 })();
