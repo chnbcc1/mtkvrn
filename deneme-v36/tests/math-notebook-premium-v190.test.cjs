@@ -24,6 +24,6 @@ assert(layout.includes("grid-template-columns:clamp(56px,7.7vw,77px) minmax(0,1f
 assert(js.includes("liveSegments=new Map()"),"Keep the virtualized long paper");
 assert(js.includes("localStorage.setItem(key,JSON.stringify(note))"),"Preserve previously written ink");
 assert(quiz.includes("math-notebook-premium-v190.css?v=190"),"Load the new premium paper on real questions");
-assert(forest.includes("forest-v70-quiz.html?v=192"),"Invalidate the forest quiz cache");
+assert(forest.includes("forest-v70-quiz.html?v=193"),"Invalidate the forest quiz cache");
 assert.equal(bank.questions.length,630,"Keep the 630 approved original questions");
 console.log("PASS v190: premium ornate sage paper, protected handwriting, landscape layout and 630 questions.");
