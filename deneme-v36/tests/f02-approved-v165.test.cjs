@@ -56,7 +56,7 @@ for(const q of records.filter(q=>q.visual.labels.some(e=>e.anchor==="basamak 4")
 }
 assert(ui.includes('window.MTKF02ApprovedV165?.render(visual,q)'),"F02 renderer must be mounted before legacy art");
 assert(ui.includes("window.MTKF02ApprovedV165?.enhance(frame,q)"),"F02 must apply full-frame responsive layout");
-assert(quiz.includes('f02-approved-v165.js?v=174'),"Quiz must load the portrait 50/50 F02 renderer without stale iPhone cache");
+assert(quiz.includes('f02-approved-v165.js?v=175'),"Quiz must load the updated F02 v175 scene without stale iPhone cache");
 assert(source.includes('inlineControls?.querySelector(".feedback.ok")'),"F02 correct state must be detected without changing global quiz controls");
 assert(source.includes('frame.appendChild(inlineControls)'),"F02 success feedback must leave the clipping question-text container");
 assert(source.includes('mtk-f02-correct-body')&&source.includes('mtk-f02-correct-foot'),"The success card must separate scrollable content from navigation");
@@ -116,13 +116,20 @@ const portraitLayout=source.includes("F02 v172: portrait 50/50 split");
 assert(portraitLayout,"Portrait 50/50 split must not grow back to 60.5% picture");
 assert(source.includes("height:50%!important")&&source.includes("top:51.3%!important"),"F02 picture must yield half the portrait for text and options");
 assert(source.includes("mtk-f02-toolbar-mode")&&source.includes("frame.appendChild(inlineControls)"),"Hint and return controls must be outside the question region");
-assert(source.includes("top:73.1%!important")&&source.includes("top:81.8%!important"),"Toolbar must be below text and above answer choices");
+const latest=source.slice(source.indexOf("/* v175 F02 only"));
+assert(latest.includes("top:78.0%!important")&&latest.includes("top:92.3%!important"),"Portrait navigation must be BELOW the answers");
+assert(latest.includes("top:64%!important")&&latest.includes("top:92%!important"),"Landscape navigation must be BELOW the answers");
 assert(source.includes("F02 v172 landscape: keep navigation"),"Landscape half-screen navigation must remain usable");
 
 assert(source.includes("F02 v174: true 50/50 split")||source.includes("v174 F02: true 50/50 split"),"F02 latest 50/50 orientation geometry missing");
 assert(source.includes('top:{x:49.9,y:17.4')&&source.includes('one:{x:48.2,y:68.1')&&source.includes('four:{x:78.5,y:32.7'),"F02 dynamic plaques must use the new artwork's calibrated positions");
 assert(source.includes('const IMAGE="./assets/f02-energy-stairs-v174.avif"'),"F02 must use only the new five-blank-plaques image");
 assert(source.includes('scene.style.setProperty("top",(h-imageHeight)/2+"px","important")'),"The full artwork must be centered rather than cropped");
-assert(source.includes('background-image:url(\\"./assets/f02-energy-stairs-v174.avif\\")')||source.includes("background-image:url("),"Empty canvas strips must use the same artwork as their background");
+assert(latest.includes("background-image:none!important"),"F02 must not repeat the illustration as a background image");
+assert(latest.includes(".f01-approved-portrait")&&latest.includes("display:none!important"),"F02 must hide old frame artwork");
+assert(source.includes('const scale=Math.min(w/sourceWidth,h/sourceHeight)'),"The foreground scene and dynamic labels must retain image aspect ratio");
+const verticalRows=[[0,50],[51,76.7],[78,91.8],[92.3,99]];
+const horizontalRows=[[5,62],[64,91],[92,99]];
+for(const rows of [verticalRows,horizontalRows])for(let i=1;i<rows.length;i++)assert(rows[i][0]>rows[i-1][1],"Question, choices and navigation must not overlap");
 
-console.log("PASS F02 v174: blank 1205x1025 original artwork, 50/50 undistorted visual, calibrated dynamic plaques, 30 questions, 630-question bank preserved.");
+console.log("PASS F02 v175: blank 1205x1025 original artwork, 50/50 undistorted visual, calibrated dynamic plaques, 30 questions, 630-question bank preserved.");
