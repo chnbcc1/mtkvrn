@@ -126,30 +126,34 @@
    '<button type="button" id="mn-pen" aria-label="Kalem" title="Kalem" aria-pressed="true">✎</button>',
    '<button type="button" id="mn-erase" aria-label="Silgi" title="Silgi" aria-pressed="false">▤</button>',
    '<button type="button" id="mn-hand" aria-label="Sayfayı kaydır" title="El ile kaydır" aria-pressed="false">✋</button>',
+   '<button type="button" id="mn-paper-choose" aria-label="Kâğıt türünü değiştir" title="Kâğıt türü" aria-expanded="false">▦</button>',
+   '<button type="button" id="mn-zoom-choose" aria-label="Yakınlaştırma ayarını aç" title="Yakınlaştırma" aria-expanded="false">⊕</button>',
    '<span class="mn-toolspace"></span>',
    '<button type="button" id="mn-undo" aria-label="Geri al" title="Geri al">↶</button>',
-   '<button type="button" id="mn-redo" aria-label="İleri al" title="İleri al">↷</button></nav>',
+   '<button type="button" id="mn-redo" aria-label="İleri al" title="İleri al">↷</button>',
+   '<button type="button" id="mn-clear" aria-label="Defterdeki işlemleri temizle" title="İşlemleri temizle">🗑</button></nav>',
    '<div class="mn-settings" aria-label="Seçili aracın ayarları">',
    '<div id="mn-pen-options" class="mn-option-panel"><div id="mn-colors" class="mn-colors"></div>',
    '<label>Kalınlık<input id="mn-pen-size" type="range" min="2" max="24" step="1" value="5"></label>',
-   '<label>Zemin<select id="mn-paper-type"><option value="grid">Kareli</option><option value="lined">Çizgili</option><option value="plain">Düz</option></select></label></div>',
+   '<label class="mn-legacy-paper" hidden>Zemin<select id="mn-paper-type"><option value="grid">Kareli</option><option value="lined">Çizgili</option><option value="plain">Düz</option></select></label></div>',
    '<div id="mn-erase-options" class="mn-option-panel" hidden><label>Silgi boyutu<input id="mn-erase-size" type="range" min="10" max="90" step="2" value="28"></label></div>',
-   '<div id="mn-hand-options" class="mn-option-panel" hidden><span>↕ Sayfayı sürükleyerek kaydır</span>',
-   '<label>Yakınlaştır<input id="mn-zoom" type="range" min="70" max="200" step="10" value="100"></label>',
-   '<span id="mn-zoom-label">100%</span></div></div>',
+   '<div id="mn-hand-options" class="mn-option-panel" hidden><span>↕ Sayfayı sürükleyerek kaydır</span></div></div>',
+   '<section id="mn-paper-picker" class="mn-float-popup" hidden aria-label="Kâğıt türü"><strong>Kâğıt türü</strong>',
+   '<div class="mn-choice-row"><button type="button" data-paper-choice="grid">▦ Kareli</button><button type="button" data-paper-choice="lined">☰ Çizgili</button><button type="button" data-paper-choice="plain">□ Boş</button></div></section>',
+   '<section id="mn-zoom-picker" class="mn-float-popup" hidden aria-label="Yakınlaştırma"><strong>Yakınlaştırma</strong>',
+   '<div class="mn-choice-row"><button type="button" id="mn-zoom-minus" aria-label="Küçült">−</button>',
+   '<input id="mn-zoom" aria-label="Yakınlaştırma yüzdesi" type="range" min="70" max="200" step="10" value="100">',
+   '<button type="button" id="mn-zoom-plus" aria-label="Büyüt">+</button><strong id="mn-zoom-label">100%</strong></div></section>',
    '<div id="mn-workspace" class="mn-workspace" aria-label="Uzun kaydırılabilir işlem sayfası">',
    '<div class="mn-paper-track"><div id="mn-paper" class="mn-paper" data-paper="grid"></div></div></div>',
-   '<footer class="mn-footer"><button type="button" id="mn-clear" title="Tüm işlemleri temizle" aria-label="Tüm işlemleri temizle">🗑</button>',
-   '<small id="mn-status" role="status" aria-live="polite">İşlemler bu cihazda kaydedilir</small></footer>'
+   '<span id="mn-status" class="mn-status" role="status" aria-live="polite"></span>'
   ].join("");
   // v189: reuse the working controls in a responsive landscape side rail.
   const side=element("aside","mn-side-rail");
   side.setAttribute("aria-label","Kalem, silgi, el ve defter ayarları");
-  for(const selector of [".mn-toolbar",".mn-settings",".mn-footer"]){
-   const child=root.querySelector(selector);
-   if(child)side.appendChild(child);
-  }
-  root.insertBefore(side,root.querySelector(".mn-workspace"));
+  const nav=root.querySelector(".mn-toolbar");
+  if(nav)side.appendChild(nav);
+  root.insertBefore(side,root.querySelector(".mn-settings"));
   document.body.appendChild(root);
   workspace=el("mn-workspace");paper=el("mn-paper");
   el("mn-back").addEventListener("click",closeNotebook);
@@ -160,13 +164,15 @@
   el("mn-clear").addEventListener("click",clearAll);
   el("mn-pen-size").addEventListener("input",e=>{note.penSize=+e.target.value;scheduleSave()});
   el("mn-erase-size").addEventListener("input",e=>{note.eraserSize=+e.target.value;scheduleSave()});
-  el("mn-paper-type").addEventListener("change",e=>{note.paper=e.target.value;paper.dataset.paper=note.paper;scheduleSave()});
-  el("mn-zoom").addEventListener("input",e=>{
-   finishStroke();
-   const position=workspace.scrollTop/scale;
-   note.zoom=+e.target.value/100;el("mn-zoom-label").textContent=Math.round(note.zoom*100)+"%";
-   fitPaper(position);scheduleSave();
-  });
+  el("mn-paper-type").addEventListener("change",e=>setPaperType(e.target.value));
+  for(const choice of root.querySelectorAll("[data-paper-choice]")){
+   choice.addEventListener("click",()=>{setPaperType(choice.dataset.paperChoice);closePopovers()});
+  }
+  el("mn-paper-choose").addEventListener("click",()=>togglePopover("mn-paper-picker"));
+  el("mn-zoom-choose").addEventListener("click",()=>togglePopover("mn-zoom-picker"));
+  el("mn-zoom-minus").addEventListener("click",()=>applyZoom(note.zoom-.1));
+  el("mn-zoom-plus").addEventListener("click",()=>applyZoom(note.zoom+.1));
+  el("mn-zoom").addEventListener("input",e=>applyZoom(+e.target.value/100));
   for(const color of COLORS){
    const b=element("button","mn-color");
    b.type="button";b.dataset.color=color;b.style.backgroundColor=color;
@@ -175,6 +181,7 @@
    el("mn-colors").appendChild(b);
   }
   workspace.addEventListener("scroll",onScroll,{passive:true});
+  workspace.addEventListener("pointerdown",()=>{closePopovers();root.classList.remove("mn-show-settings")},{passive:true});
   if(global.ResizeObserver)new ResizeObserver(()=>{if(opened)fitPaper()}).observe(workspace);
   else global.addEventListener("resize",()=>{if(opened)fitPaper()},{passive:true});
   document.addEventListener("visibilitychange",()=>{if(document.hidden&&opened)flush()});
@@ -194,6 +201,7 @@
   focusBefore=document.activeElement;
   note=load();redoStack=[];active=null;pointer=null;
   opened=true;root.hidden=false;root.classList.toggle("mn-forest",question.scene==="forest");
+  root.classList.remove("mn-show-settings");closePopovers();
   document.body.classList.add("mn-open");
   el("mn-question").textContent=question.text;
   el("mn-paper-type").value=note.paper;paper.dataset.paper=note.paper;
@@ -208,7 +216,7 @@
  function closeNotebook(){
   if(!opened)return;
   note.scrollY=workspace.scrollTop/scale;
-  flush();opened=false;root.hidden=true;
+  flush();opened=false;root.hidden=true;root.classList.remove("mn-show-settings");closePopovers();
   document.body.classList.remove("mn-open");
   for(const canvas of liveSegments.values())canvas.remove();
   liveSegments.clear();
@@ -233,11 +241,42 @@
   el("mn-undo").disabled=!note.strokes.length;
   el("mn-redo").disabled=!redoStack.length;
   for(const b of el("mn-colors").children)b.classList.toggle("mn-selected",b.dataset.color===note.color);
+  for(const b of root.querySelectorAll("[data-paper-choice]")){
+   const selected=b.dataset.paperChoice===note.paper;
+   b.classList.toggle("mn-active",selected);b.setAttribute("aria-pressed",String(selected));
+  }
+ }
+ function closePopovers(){
+  if(!root)return;
+  for(const name of ["mn-paper-picker","mn-zoom-picker"])el(name).hidden=true;
+  for(const name of ["mn-paper-choose","mn-zoom-choose"])el(name).setAttribute("aria-expanded","false");
+ }
+ function togglePopover(name){
+  const wasHidden=el(name).hidden;
+  closePopovers();root.classList.remove("mn-show-settings");
+  if(wasHidden){el(name).hidden=false;el(name==="mn-paper-picker"?"mn-paper-choose":"mn-zoom-choose").setAttribute("aria-expanded","true")}
+ }
+ function setPaperType(value){
+  if(!note||!["grid","lined","plain"].includes(value))return;
+  note.paper=value;paper.dataset.paper=value;el("mn-paper-type").value=value;
+  refresh();scheduleSave();
+ }
+ function applyZoom(value){
+  if(!note||!workspace)return;
+  finishStroke();
+  const position=workspace.scrollTop/scale;
+  note.zoom=Math.round(clamp(value,.7,2)*10)/10;
+  el("mn-zoom").value=String(Math.round(note.zoom*100));
+  el("mn-zoom-label").textContent=Math.round(note.zoom*100)+"%";
+  fitPaper(position);scheduleSave();
  }
  function setTool(value){
   if(!note)return;
   finishStroke();
+  const wasSelected=note.tool===value;
   note.tool=value;
+  closePopovers();
+  root.classList.toggle("mn-show-settings",value!=="hand"&&(!wasSelected||!root.classList.contains("mn-show-settings")));
   refresh();scheduleSave();
  }
  function undo(){
@@ -271,7 +310,8 @@
  function sizePaper(){
   paper.style.width=Math.round(WIDTH*scale)+"px";
   paper.style.height=Math.round(note.height*scale)+"px";
-  paper.style.setProperty("--mn-grid-step",Math.max(8,Math.round(60*scale))+"px");
+  // v191: larger reusable grid, independent of uploaded paper's tiny printed squares.
+  paper.style.setProperty("--mn-grid-step",clamp(Math.round(84*scale),26,58)+"px");
  }
  function fitPaper(toLogicalY){
   if(!opened||!workspace||!paper)return;

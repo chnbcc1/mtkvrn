@@ -1,0 +1,190 @@
+/* v191 — Original user-supplied ivy paper, properly scaled mathematics grid,
+   independent Kareli/Çizgili/Boş buttons and touchable zoom controls.
+   Original image is lightly cleaned to remove its tiny baked-in grid; grid lines
+   are drawn as independent CSS layers, never embedded into handwriting. */
+
+.mn-root .mn-legacy-paper{display:none!important}
+.mn-root .mn-side-rail{display:contents!important}
+.mn-root .mn-toolbar{
+  flex:0 0 auto!important;flex-wrap:nowrap!important;
+  justify-content:space-between!important;gap:4px!important;
+  min-height:39px!important;padding:4px 6px!important;
+}
+.mn-root .mn-toolbar button,
+.mn-root .mn-toolbar #mn-undo,
+.mn-root .mn-toolbar #mn-redo{
+  flex:0 0 auto!important;width:clamp(30px,8vw,38px)!important;
+  min-width:30px!important;height:33px!important;min-height:33px!important;
+  padding:0!important;margin:0!important;font-size:21px!important;
+}
+.mn-root .mn-toolbar #mn-clear{font-size:20px!important;color:#8e4636!important}
+.mn-root .mn-toolbar .mn-toolspace{flex:1 1 auto!important;min-width:0!important}
+.mn-root .mn-settings{max-height:67px!important}
+.mn-root .mn-status:not([data-error="true"]){
+  position:absolute!important;width:1px!important;height:1px!important;
+  overflow:hidden!important;clip-path:inset(50%)!important;white-space:nowrap!important;
+}
+.mn-root .mn-status[data-error="true"]{
+  position:absolute!important;z-index:33!important;right:8px!important;bottom:8px!important;
+  max-width:min(80vw,330px)!important;padding:7px 10px!important;
+  background:#fff2da!important;color:#983f32!important;border:1px solid #bf8e73!important;
+  border-radius:8px!important;box-shadow:0 2px 9px #0002!important;
+}
+
+/* Popovers stay OUTSIDE the slim rail, so range input remains finger-friendly. */
+.mn-root .mn-float-popup{
+ position:absolute!important;z-index:32!important;top:clamp(140px,26dvh,245px)!important;
+ right:8px!important;left:auto!important;
+ width:min(91vw,345px)!important;max-width:calc(100vw - 16px)!important;
+ max-height:min(49dvh,230px)!important;overflow-y:auto!important;
+ display:flex!important;flex-direction:column!important;gap:8px!important;
+ padding:12px!important;border:2px solid #b3a06c!important;border-radius:12px!important;
+ background:#fff3d6!important;box-shadow:0 5px 19px #082d2959!important;
+}
+.mn-root .mn-float-popup[hidden]{display:none!important}
+.mn-root .mn-float-popup>strong{font:850 14px/1.15 system-ui,sans-serif!important;color:#295849!important}
+.mn-root .mn-choice-row{
+ display:flex!important;align-items:center!important;justify-content:space-between!important;
+ gap:7px!important;width:100%!important;flex-wrap:nowrap!important;
+}
+.mn-root .mn-choice-row button{
+ flex:1 1 auto!important;min-width:37px!important;min-height:43px!important;
+ padding:7px 6px!important;border:1.5px solid #bca778!important;border-radius:9px!important;
+ background:#fffdf4!important;color:#285849!important;
+ font:750 13px/1.1 system-ui,sans-serif!important;white-space:nowrap!important;
+}
+.mn-root #mn-paper-picker .mn-choice-row button.mn-active{
+ background:#225f55!important;color:#fff8e2!important;border-color:#175247!important;
+}
+.mn-root #mn-zoom-picker .mn-choice-row button{
+ flex:0 0 45px!important;font-size:24px!important;
+}
+.mn-root #mn-zoom-picker input[type="range"]{
+ flex:1 1 auto!important;min-width:80px!important;width:100%!important;
+ height:38px!important;margin:0!important;accent-color:#257e6c!important;
+}
+.mn-root #mn-zoom-label{flex:0 0 auto!important;font:850 13px/1.15 system-ui,sans-serif!important}
+.mn-root .mn-workspace{background:#fbfaf6!important;border-color:#b7b9a4!important}
+.mn-root .mn-paper-track{background:#fbfaf6!important;padding:1px!important}
+.mn-root .mn-paper{
+ background-color:#fbfaf6!important;border:0!important;box-shadow:none!important;
+}
+/* One uploaded image adapted to a lightweight WebP; source grid is suppressed
+   centrally. Transparent pale plants remain in the outer margins. */
+.mn-root.mn-forest .mn-paper::before,
+.mn-root.mn-forest .mn-paper::after{display:none!important;content:none!important}
+.mn-root.mn-forest .mn-paper[data-paper="grid"]{
+ background-color:#fbfaf6!important;
+ background-image:
+  linear-gradient(rgba(108,142,128,.26) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(108,142,128,.26) 1px,transparent 1px),
+  linear-gradient(90deg,transparent 0%,#fbfaf6 12%,#fbfaf6 88%,transparent 100%),
+  url("./erdem-ivy-paper-v191.webp")!important;
+ background-size:
+  var(--mn-grid-step,30px) var(--mn-grid-step,30px),
+  var(--mn-grid-step,30px) var(--mn-grid-step,30px),
+  100% 100%,
+  100% auto!important;
+ background-position:left top,left top,left top,center top!important;
+ background-repeat:repeat,repeat,no-repeat,repeat-y!important;
+}
+.mn-root.mn-forest .mn-paper[data-paper="lined"]{
+ background-color:#fbfaf6!important;
+ background-image:
+  repeating-linear-gradient(to bottom,transparent 0,
+    transparent calc(var(--mn-grid-step,30px) - 1px),
+    rgba(108,142,128,.30) calc(var(--mn-grid-step,30px) - 1px),
+    rgba(108,142,128,.30) var(--mn-grid-step,30px)),
+  linear-gradient(90deg,transparent 0%,#fbfaf6 12%,#fbfaf6 88%,transparent 100%),
+  url("./erdem-ivy-paper-v191.webp")!important;
+ background-size:100% auto,100% 100%,100% auto!important;
+ background-position:left top,left top,center top!important;
+ background-repeat:repeat,no-repeat,repeat-y!important;
+}
+.mn-root.mn-forest .mn-paper[data-paper="plain"]{
+ background-color:#fbfaf6!important;
+ background-image:
+  linear-gradient(90deg,transparent 0%,#fbfaf6 12%,#fbfaf6 88%,transparent 100%),
+  url("./erdem-ivy-paper-v191.webp")!important;
+ background-size:100% 100%,100% auto!important;
+ background-position:left top,center top!important;
+ background-repeat:no-repeat,repeat-y!important;
+}
+.mn-root.mn-forest .mn-paper .mn-segment{z-index:2!important;touch-action:none!important}
+.mn-root.mn-forest.mn-hand .mn-paper .mn-segment{pointer-events:none!important;touch-action:pan-x pan-y!important}
+
+/* Short landscape iPhones: the same icons occupy a scrollable LEFT rail.
+   There are no horizontal control rows or footers above/below the worksheet. */
+@media(orientation:landscape){
+ .mn-root .mn-side-rail{
+  display:flex!important;grid-column:1!important;grid-row:3!important;
+  min-height:0!important;overflow:hidden!important;
+  padding:3px 2px!important;
+ }
+ .mn-root .mn-toolbar{
+  display:flex!important;flex:1 1 auto!important;flex-flow:column nowrap!important;
+  width:100%!important;min-height:0!important;max-height:100%!important;
+  justify-content:flex-start!important;align-items:center!important;
+  gap:4px!important;padding:0!important;margin:0!important;
+  overflow-x:hidden!important;overflow-y:auto!important;
+  -webkit-overflow-scrolling:touch!important;scrollbar-width:thin!important;
+  overscroll-behavior:contain!important;
+  background:transparent!important;border:0!important;
+ }
+ .mn-root .mn-toolbar button,
+ .mn-root .mn-toolbar #mn-undo,
+ .mn-root .mn-toolbar #mn-redo{
+  flex:0 0 auto!important;width:38px!important;min-width:35px!important;
+  height:34px!important;min-height:34px!important;font-size:21px!important;
+ }
+ .mn-root .mn-toolbar .mn-toolspace{display:none!important}
+ .mn-root .mn-settings{display:none!important}
+ .mn-root.mn-show-settings .mn-settings{
+  display:block!important;position:absolute!important;
+  z-index:30!important;grid-column:auto!important;grid-row:auto!important;
+  top:clamp(78px,18dvh,124px)!important;
+  left:calc(10px + clamp(56px,7.7vw,77px))!important;
+  width:min(275px,45vw)!important;max-width:calc(100vw - 90px)!important;
+  min-height:60px!important;max-height:min(53dvh,195px)!important;
+  overflow-y:auto!important;padding:9px!important;
+  border:2px solid #b6a177!important;border-radius:12px!important;
+  background:#fff3d9!important;box-shadow:0 4px 16px #09292566!important;
+ }
+ .mn-root.mn-show-settings .mn-option-panel{flex-flow:row wrap!important;gap:8px!important}
+ .mn-root.mn-show-settings .mn-option-panel>label{
+  min-width:120px!important;width:auto!important;max-width:none!important;
+  flex:1 1 135px!important;align-items:center!important;font-size:12px!important;
+ }
+ .mn-root.mn-show-settings .mn-colors{display:flex!important;gap:5px!important}
+ .mn-root .mn-float-popup{
+  top:clamp(79px,19dvh,124px)!important;
+  left:calc(10px + clamp(56px,7.7vw,77px))!important;
+  right:auto!important;
+  width:min(330px,50vw)!important;max-width:calc(100vw - 95px)!important;
+  min-height:0!important;max-height:min(60dvh,210px)!important;
+ }
+ .mn-root .mn-workspace{
+  grid-column:2!important;grid-row:3!important;
+  min-height:0!important;height:100%!important;
+ }
+ .mn-root .mn-question-block{grid-column:1/-1!important;grid-row:2!important}
+ .mn-root .mn-header{grid-column:1/-1!important;grid-row:1!important}
+}
+@media(orientation:landscape) and (max-height:390px){
+ .mn-root .mn-toolbar{gap:3px!important}
+ .mn-root .mn-toolbar button,
+ .mn-root .mn-toolbar #mn-undo,
+ .mn-root .mn-toolbar #mn-redo{
+   height:30px!important;min-height:30px!important;width:34px!important;font-size:20px!important;
+ }
+ .mn-root .mn-float-popup{top:72px!important;max-height:62dvh!important}
+}
+@media(orientation:portrait) and (max-width:375px){
+ .mn-root .mn-toolbar{gap:3px!important;padding:4px!important}
+ .mn-root .mn-toolbar button,
+ .mn-root .mn-toolbar #mn-undo,
+ .mn-root .mn-toolbar #mn-redo{
+  width:30px!important;min-width:30px!important;height:32px!important;min-height:32px!important;
+  font-size:20px!important;
+ }
+}

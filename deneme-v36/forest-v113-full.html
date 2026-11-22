@@ -1184,7 +1184,7 @@ function prepareQuiz(id){
  if(quizPrepared.key===key)return quizPrepared.ready;
  quizPrepared={key,id,ready:false};
  const qs=new URLSearchParams({embedded:"1",obstacle:id,difficulty,session:RUN_TOKEN});
- $("#quizFrame").src="./forest-v70-quiz.html?v=190&"+qs;
+ $("#quizFrame").src="./forest-v70-quiz.html?v=191&"+qs;
  return false;
 }
 function warmUpcomingQuiz(){
