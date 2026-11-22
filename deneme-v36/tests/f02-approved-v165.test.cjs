@@ -61,7 +61,7 @@ assert(source.includes('const CHARACTER_SCENE="./assets/f02-background-no-charac
 assert(source.includes('const CHARACTER_REFERENCE="./assets/erdem-ciko-onayli-v180.png"'),"F02 must use the EXACT stored transparent PNG");
 assert(source.includes('Promise.all([readyBackground,readyCharacters])'),"F02 must never combine original characters with a partially loaded new scene");
 assert(source.includes('art.src=CHARACTER_SCENE')&&source.includes('character.src=CHARACTER_REFERENCE'),"The fixed background and identity layers must be separate");
-assert(source.includes('label.dataset.slot=slot')&&source.includes('POS_APPROVED[label.dataset.slot]'),"Dynamic label anchors must follow the clean F02 artwork");
+assert(source.includes('node.dataset.slot=slot')&&source.includes('POS_APPROVED[label.dataset.slot]'),"Dynamic label anchors must follow the clean F02 artwork");
 assert(source.includes('inlineControls?.querySelector(".feedback.ok")'),"F02 correct state must be detected without changing global quiz controls");
 assert(source.includes('frame.appendChild(inlineControls)'),"F02 success feedback must leave the clipping question-text container");
 assert(source.includes('mtk-f02-correct-body')&&source.includes('mtk-f02-correct-foot'),"The success card must separate scrollable content from navigation");
