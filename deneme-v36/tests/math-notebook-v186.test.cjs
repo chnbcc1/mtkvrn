@@ -45,7 +45,7 @@ assert(js.includes('note.pages.length>=250'),"Storage-aware page limit missing")
 assert(base.includes('touch-action:none!important')&&base.includes('.mn-root[hidden]{display:none!important}'),"Touch-first modal missing");
 assert(base.includes('overflow:auto!important')&&base.includes('@media(orientation:landscape)'),"Notebook must support zoom and landscape");
 assert(vines.includes('.mn-root.mn-forest .mn-paper::before')&&vines.includes('pointer-events:none!important'),"Non-obstructing forest vines missing");
-assert(vines.includes('canvas{z-index:1!important'),"Handwriting must paint above forest decoration");
+assert(vines.includes('z-index:2!important')&&vines.includes('.mn-segment'),"Handwriting must paint above forest decoration");
 assert(quiz.includes('math-notebook-v187.js?v=188')&&quiz.includes('math-notebook-v187.css?v=187')&&quiz.includes('math-notebook-forest-v186.css?v=188'),"Notebook resources not loaded");
 assert(quiz.includes('window.MTKMathNotebook?.attach({questionId:q.id,questionText:s.prompt,scene:"forest"})'),"Actual staged question must connect to its own notebook");
 assert(quiz.includes('window.MTKMathNotebook?.hide();window.MTKApprovedQuizV145?.reset()'),"Notebook must hide in home menu");
