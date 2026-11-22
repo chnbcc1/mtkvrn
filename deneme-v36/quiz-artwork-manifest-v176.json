@@ -1,0 +1,195 @@
+{
+  "version": 176,
+  "purpose": "Permanent art readiness and rendering contract for Matematik Evreni 630-question quiz",
+  "fixedRules": {
+    "portrait": {
+      "visual": "top exactly 50% of frame",
+      "questionAndAnswers": "bottom exactly 50%"
+    },
+    "landscape": {
+      "visual": "left exactly 50% of frame",
+      "questionAndAnswers": "right exactly 50%"
+    },
+    "image": "No crop, no nonuniform stretch, no duplicated cover or blurred underlying copies. Produce composition-specific portrait and landscape images where aspect ratios do not match.",
+    "data": "Never bake text, powers, fractions, numbers, labels, or answers into image pixels. Read each from the selected question data and place on its approved anchor.",
+    "characters": "Use exact already approved Erdem and Ciko artwork, preserving colors, forms and relative scale. Do not regenerate substitutes.",
+    "actions": "Hint and return controls are small, visually secondary, accessible, and below the A-D choices without covering any text or image.",
+    "pending": "A missing image must remain marked pending and must not be replaced with a guessed illustration. Existing functional fallback remains until corresponding scene passes review.",
+    "qualityGate": "For each approved obstacle, validate 30 question variants, all dynamic plaque labels, portrait/landscape positioning and touch scrolling before declaring published."
+  },
+  "expectedObstacles": 21,
+  "expectedQuestions": 630,
+  "obstacles": [
+    {
+      "id": "F01",
+      "questionCount": 30,
+      "visualState": "existing_approved_artwork",
+      "portraitAsset": "./assets/f01-approved-portrait-v159.webp",
+      "landscapeAsset": "./assets/f01-approved-scene-v159.webp",
+      "dynamicLabels": true
+    },
+    {
+      "id": "F02",
+      "questionCount": 30,
+      "visualState": "existing_approved_artwork",
+      "portraitAsset": "./assets/f02-energy-stairs-v174.avif",
+      "landscapeAsset": "./assets/f02-energy-stairs-v174.avif",
+      "dynamicLabels": true,
+      "note": "Existing single source artwork. Two composition-specific assets are still needed for perfect edge-to-edge fit at incompatible aspect ratios."
+    },
+    {
+      "id": "F03",
+      "questionCount": 30,
+      "visualState": "existing_machine_visual_needs_review",
+      "portraitAsset": null,
+      "landscapeAsset": null,
+      "dynamicLabels": true,
+      "visualSource": "./assets/quiz-f03-machine-v145.js"
+    },
+    {
+      "id": "F04",
+      "questionCount": 30,
+      "visualState": "pending_artwork",
+      "portraitAsset": null,
+      "landscapeAsset": null,
+      "dynamicLabels": true
+    },
+    {
+      "id": "F05",
+      "questionCount": 30,
+      "visualState": "pending_artwork",
+      "portraitAsset": null,
+      "landscapeAsset": null,
+      "dynamicLabels": true
+    },
+    {
+      "id": "F06",
+      "questionCount": 30,
+      "visualState": "pending_artwork",
+      "portraitAsset": null,
+      "landscapeAsset": null,
+      "dynamicLabels": true
+    },
+    {
+      "id": "F07",
+      "questionCount": 30,
+      "visualState": "pending_artwork",
+      "portraitAsset": null,
+      "landscapeAsset": null,
+      "dynamicLabels": true
+    },
+    {
+      "id": "F08",
+      "questionCount": 30,
+      "visualState": "pending_artwork",
+      "portraitAsset": null,
+      "landscapeAsset": null,
+      "dynamicLabels": true
+    },
+    {
+      "id": "F09",
+      "questionCount": 30,
+      "visualState": "pending_artwork",
+      "portraitAsset": null,
+      "landscapeAsset": null,
+      "dynamicLabels": true
+    },
+    {
+      "id": "F10",
+      "questionCount": 30,
+      "visualState": "pending_artwork",
+      "portraitAsset": null,
+      "landscapeAsset": null,
+      "dynamicLabels": true
+    },
+    {
+      "id": "F11",
+      "questionCount": 30,
+      "visualState": "pending_artwork",
+      "portraitAsset": null,
+      "landscapeAsset": null,
+      "dynamicLabels": true
+    },
+    {
+      "id": "F12",
+      "questionCount": 30,
+      "visualState": "pending_artwork",
+      "portraitAsset": null,
+      "landscapeAsset": null,
+      "dynamicLabels": true
+    },
+    {
+      "id": "F13",
+      "questionCount": 30,
+      "visualState": "pending_artwork",
+      "portraitAsset": null,
+      "landscapeAsset": null,
+      "dynamicLabels": true
+    },
+    {
+      "id": "F14",
+      "questionCount": 30,
+      "visualState": "pending_artwork",
+      "portraitAsset": null,
+      "landscapeAsset": null,
+      "dynamicLabels": true
+    },
+    {
+      "id": "F15",
+      "questionCount": 30,
+      "visualState": "pending_artwork",
+      "portraitAsset": null,
+      "landscapeAsset": null,
+      "dynamicLabels": true
+    },
+    {
+      "id": "F16",
+      "questionCount": 30,
+      "visualState": "pending_artwork",
+      "portraitAsset": null,
+      "landscapeAsset": null,
+      "dynamicLabels": true
+    },
+    {
+      "id": "F17",
+      "questionCount": 30,
+      "visualState": "pending_artwork",
+      "portraitAsset": null,
+      "landscapeAsset": null,
+      "dynamicLabels": true
+    },
+    {
+      "id": "F18",
+      "questionCount": 30,
+      "visualState": "pending_artwork",
+      "portraitAsset": null,
+      "landscapeAsset": null,
+      "dynamicLabels": true
+    },
+    {
+      "id": "F19",
+      "questionCount": 30,
+      "visualState": "pending_artwork",
+      "portraitAsset": null,
+      "landscapeAsset": null,
+      "dynamicLabels": true
+    },
+    {
+      "id": "F20",
+      "questionCount": 30,
+      "visualState": "pending_artwork",
+      "portraitAsset": null,
+      "landscapeAsset": null,
+      "dynamicLabels": true
+    },
+    {
+      "id": "F21",
+      "questionCount": 30,
+      "visualState": "interactive_matching_no_final_art",
+      "portraitAsset": null,
+      "landscapeAsset": null,
+      "dynamicLabels": true,
+      "interaction": "matching_unmatched"
+    }
+  ]
+}
