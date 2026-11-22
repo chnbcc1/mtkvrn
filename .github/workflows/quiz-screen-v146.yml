@@ -4,6 +4,8 @@ on:
     paths:
       - "deneme-v36/forest-v70-quiz.html"
       - "deneme-v36/assets/approved-quiz-ui-v145.js"
+      - "deneme-v36/assets/quiz-universal-layout-v176.js"
+      - "deneme-v36/tests/quiz-universal-layout-v176.test.cjs"
       - "deneme-v36/assets/quiz-approved-frames-v145.js"
       - "deneme-v36/forest-questions-v70.json"
       - "deneme-v36/forest-questions-v147.json"
@@ -13,6 +15,8 @@ on:
     paths:
       - "deneme-v36/forest-v70-quiz.html"
       - "deneme-v36/assets/approved-quiz-ui-v145.js"
+      - "deneme-v36/assets/quiz-universal-layout-v176.js"
+      - "deneme-v36/tests/quiz-universal-layout-v176.test.cjs"
       - "deneme-v36/forest-questions-v70.json"
       - "deneme-v36/tests/quiz-screen-v147.test.cjs"
 jobs:
