@@ -17,12 +17,12 @@
  let loaded=false;
  const atlas=new Image();
  atlas.decoding="async";
- // Exact approved v83 image. Forest loads it as a native AVIF instead of huge
- // inline base64; an existing WebP atlas is the final real-art fallback.
+ // Identical approved 18 poses. The lossless WebP is pixel-verified,
+ // original AVIF remains fallback; legacy scenes retain their own source.
  const sources=[
   global.ERDEM_V83_HD_ATLAS,
-  "./assets/erdem-v83-hd-atlas-v182.avif?v=182",
-  "./assets/erdem-v83-atlas-preview.webp?v=182"
+  "./assets/erdem-v83-hd-atlas-v183.webp?v=183",
+  "./assets/erdem-v83-hd-atlas-v182.avif?v=183"
  ].filter(Boolean);
  let sourceIndex=0;
  function loadNext(){if(sourceIndex<sources.length)atlas.src=sources[sourceIndex++];}

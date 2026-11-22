@@ -611,7 +611,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 <!-- v182: original prop images now load as a native image rather than a base64 JS string. -->
 <script src="./assets/v73-premium-assets.js?v=73"></script>
 <!-- v182: original Erdem atlas now loads as a native image. -->
-<script src="./erdem-animation-v83.js?v=83&hotfix=182"></script>
+<script src="./erdem-animation-v83.js?v=83&hotfix=183"></script>
 <script src="./chiko-v57-hd-atlas.js?v=57"></script>
 <script src="./forest-obstacle-art-v85.js?v=85"></script>
 <script src="./forest-obstacle-art-v98.js?v=98"></script>
@@ -976,12 +976,9 @@ function heroSprite(){
   x:px,y:py,width:size.width,height:size.height,face,
   state,distance:travel,jumpAge:Math.max(0,clock-jumpStartClock),jumpImpulse:560
  }))return;
- // Visible fallback until the shared atlas finishes decoding.
- const h=size.height;
- ctx.save();ctx.translate(px,py);ctx.scale(face,1);
- ctx.fillStyle="#b88c68";ctx.beginPath();ctx.arc(0,-h*.74,25*scale,0,Math.PI*2);ctx.fill();
- ctx.fillStyle="#4e7790";ctx.fillRect(-25*scale,-h*.68,50*scale,h*.68);
- ctx.restore();
+ // Wait for the original sprite: never replace Erdem with unapproved
+ // blue rectangle, circle or a distorted illustration on a slow phone.
+ return;
 }
 function birdSprite(){
  const dx=heroX+Math.sin(clock*1.0)*69,dy=heroY-305+Math.cos(clock*1.17)*21;
@@ -993,7 +990,7 @@ function birdSprite(){
  const ready=chiko.complete&&chiko.naturalWidth>=1152&&chiko.naturalHeight>=576;
  ctx.save();ctx.translate(x,y);ctx.scale(flyingFace,1);
  if(ready)ctx.drawImage(chiko,(frame%6)*192,Math.floor(frame/6)*192,192,192,-size/2,-size/2,size,size);
- else{ctx.fillStyle='#ffbc4d';ctx.beginPath();ctx.ellipse(0,0,25*scale,35*scale,0,0,Math.PI*2);ctx.fill()}
+ else{/* Wait for the original Çiko image: do not substitute an orange oval. */}
  ctx.restore();
 }
 function render(){
