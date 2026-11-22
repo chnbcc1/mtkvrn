@@ -29,7 +29,7 @@ assert(css.includes("background-repeat:repeat-y!important"),"Ivy must remain con
 assert(css.includes("pointer-events:none!important")&&css.includes("z-index:2!important"),"Decor must not cover handwriting");
 assert(quiz.includes('math-notebook-fix-v192.css?v=192')&&quiz.includes('math-notebook-v187.js?v=192'),"Latest assets must load after legacy CSS");
 assert(quiz.indexOf("math-notebook-ui-v191.css")<quiz.indexOf("math-notebook-fix-v192.css"),"Last stylesheet must override old white paper");
-assert(forest.includes('forest-v70-quiz.html?v=193'),"Host must load v192 on iPhone");
+assert(forest.includes('forest-v70-quiz.html?v=194'),"Host must load v192 on iPhone");
 assert(forest.includes('#quizOverlay[data-notebook-open="1"]{padding:0!important;inset:0!important}'),"Landscape notebook should use the unused outer margins");
 assert(css.includes("grid-template-rows:min-content min-content minmax(0,1fr)"),"Writing area must use remaining landscape height");
 assert(js.includes('note.tool==="hand"||pointer!==null')&&js.includes('localStorage.setItem(key,JSON.stringify(note))'),"Keep hand lock and saved ink");
