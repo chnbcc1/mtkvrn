@@ -1,0 +1,33 @@
+/* Premium v190: watercolor-sage notebook, fine botanical engraving, antiqued gold accents.
+   Ornamental CSS is below the separate handwriting canvas and cannot intercept touches. */
+.mn-root.mn-forest .mn-workspace{
+ background:#f2f8ef!important;
+ border-color:#adbb9b!important;
+ box-shadow:inset 0 0 0 1px #d7e3cf!important;
+}
+.mn-root.mn-forest .mn-paper-track{background:#f2f8ef!important;padding:1px!important}
+.mn-root.mn-forest .mn-paper{
+ background-color:#f2f8ef!important;
+ border:0!important;border-radius:0!important;
+ box-shadow:inset 0 0 0 1px #baaa8440,inset 0 0 0 4px #eadfb922!important;
+}
+.mn-root.mn-forest .mn-paper::before,
+.mn-root.mn-forest .mn-paper::after{
+ content:"";position:absolute!important;top:0!important;bottom:0!important;
+ width:min(12%,56px)!important;height:auto!important;
+ background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20104%20134%22%3E%3Cg%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M5%20125Q6%2062%2023%2033Q43%206%20100%205%22%20stroke%3D%22%23bf9f69%22%20stroke-width%3D%221.6%22%2F%3E%3Cpath%20d%3D%22M12%20120Q13%2062%2030%2039Q52%2013%2099%2012%22%20stroke%3D%22%2371977e%22%20stroke-width%3D%22.85%22%2F%3E%3Cpath%20d%3D%22M23%2052C25%2026%2048%2020%2056%2031C63%2045%2045%2050%2041%2039C38%2030%2048%2030%2048%2037%22%20stroke%3D%22%23c0a270%22%20stroke-width%3D%221.2%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23759c7c%22%20stroke%3D%22%23638a6d%22%20stroke-width%3D%22.6%22%3E%3Cpath%20d%3D%22M22%2071C48%2046%2058%2060%2048%2073C37%2080%2028%2079%2022%2071Z%22%2F%3E%3Cpath%20d%3D%22M39%2022C55%205%2073%2012%2067%2029C52%2035%2044%2030%2039%2022Z%22%2F%3E%3Cpath%20d%3D%22M11%20101C24%2081%2037%2091%2029%20104C18%20113%2013%20108%2011%20101Z%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23bd9b66%22%3E%3Cpath%20d%3D%22M17%2017l4%206-4%206-4-6z%22%2F%3E%3Ccircle%20cx%3D%2283%22%20cy%3D%2215%22%20r%3D%222%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"),url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2080%20620%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23688c72%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M4%20-12%20C34%2025%205%2071%2023%20116%20S9%20199%2023%20257%20S10%20344%2024%20415%20S6%20502%2017%20570%20S27%20622%2012%20636%22%20stroke-width%3D%221.7%22%2F%3E%3Cpath%20d%3D%22M7%2011%20C25%2045%201%2085%2017%20118%20S6%20197%2016%20244%20S7%20351%2017%20405%22%20stroke-width%3D%22.55%22%20stroke%3D%22%23c0a06b%22%2F%3E%3Cpath%20d%3D%22M20%2048Q46%2025%2052%2039M21%20159Q48%20170%2055%20186M17%20290Q44%20263%2054%20278M20%20433Q47%20447%2056%20456M18%20552Q47%20526%2058%20538%22%20stroke-width%3D%221.1%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%2376977a%22%20stroke%3D%22%23638c71%22%20stroke-width%3D%22.6%22%3E%3Cpath%20d%3D%22M22%2044C39%2021%2062%2028%2054%2047C40%2059%2030%2054%2022%2044Z%22%2F%3E%3Cpath%20d%3D%22M18%20103C-4%2090%200%20117%2021%20126C29%20118%2027%20109%2018%20103Z%22%2F%3E%3Cpath%20d%3D%22M27%20167C51%20149%2068%20166%2053%20183C39%20191%2029%20179%2027%20167Z%22%2F%3E%3Cpath%20d%3D%22M22%20245C1%20227%201%20255%2023%20265C29%20259%2029%20253%2022%20245Z%22%2F%3E%3Cpath%20d%3D%22M24%20293C47%20271%2065%20283%2054%20303C39%20308%2028%20302%2024%20293Z%22%2F%3E%3Cpath%20d%3D%22M22%20388C2%20369%200%20396%2024%20407C32%20402%2031%20395%2022%20388Z%22%2F%3E%3Cpath%20d%3D%22M28%20440C50%20419%2066%20434%2057%20451C44%20458%2035%20450%2028%20440Z%22%2F%3E%3Cpath%20d%3D%22M21%20536C1%20517%20-3%20549%2023%20556C29%20550%2027%20544%2021%20536Z%22%2F%3E%3Cpath%20d%3D%22M22%20575C45%20558%2063%20568%2052%20587C40%20594%2030%20586%2022%20575Z%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23bb9b69%22%20stroke-width%3D%221.2%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M15%20344C31%20329%2042%20337%2035%20350C27%20360%2020%20355%2024%20347C26%20342%2033%20343%2031%20349%22%2F%3E%3Cpath%20d%3D%22M15%20497C30%20481%2044%20494%2037%20508C30%20518%2020%20509%2025%20502%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23c0a269%22%3E%3Ccircle%20cx%3D%2243%22%20cy%3D%22352%22%20r%3D%221.8%22%2F%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%22506%22%20r%3D%221.6%22%2F%3E%3Cpath%20d%3D%22M44%2084l3%204-3%204-3-4z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")!important;
+ background-size:54px 74px,40px 560px!important;
+ background-position:left top,left top!important;
+ background-repeat:no-repeat,repeat-y!important;
+ opacity:.19!important;z-index:0!important;pointer-events:none!important;
+}
+.mn-root.mn-forest .mn-paper::before{left:0!important;right:auto!important}
+.mn-root.mn-forest .mn-paper::after{right:0!important;left:auto!important;transform:scaleX(-1)!important}
+.mn-root.mn-forest .mn-paper .mn-segment{z-index:2!important;touch-action:none!important}
+.mn-root.mn-forest.mn-hand .mn-paper .mn-segment{pointer-events:none!important;touch-action:pan-x pan-y!important}
+@media(orientation:landscape){
+ .mn-root.mn-forest .mn-paper::before,
+ .mn-root.mn-forest .mn-paper::after{
+  width:min(7%,48px)!important;opacity:.16!important;
+ }
+}
