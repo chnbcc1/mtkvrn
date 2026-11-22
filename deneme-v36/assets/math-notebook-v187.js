@@ -124,7 +124,7 @@
    '<section class="mn-question-block"><span>SORU</span><div id="mn-question"></div></section>',
    '<nav class="mn-toolbar" aria-label="Defter araçları">',
    '<button type="button" id="mn-pen" aria-label="Kalem" title="Kalem" aria-pressed="true">✎</button>',
-   '<button type="button" id="mn-erase" aria-label="Silgi" title="Silgi" aria-pressed="false">▤</button>',
+   '<button type="button" id="mn-erase" aria-label="Silgi" title="Silgi" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 21-4-4c-1.1-1.1-1.1-2.9 0-4L13 3c1.1-1.1 2.9-1.1 4 0l4 4c1.1 1.1 1.1 2.9 0 4L11 21H7Z"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg></button>',
    '<button type="button" id="mn-hand" aria-label="Sayfayı kaydır" title="El ile kaydır" aria-pressed="false">✋</button>',
    '<button type="button" id="mn-paper-choose" aria-label="Kâğıt türünü değiştir" title="Kâğıt türü" aria-expanded="false">▦</button>',
    '<button type="button" id="mn-zoom-choose" aria-label="Yakınlaştırma ayarını aç" title="Yakınlaştırma" aria-expanded="false">⊕</button>',
@@ -307,11 +307,13 @@
   note.scrollY=workspace.scrollTop/scale;
   renderVisible();scheduleSave();
  }
+ // Fixed on-screen spacing: keep notebook squares the same comfortable size
+ // when the phone switches between portrait and landscape. Zoom still scales them.
+ function gridStepPx(zoom=1){return clamp(Math.round(26*zoom),22,42)}
  function sizePaper(){
   paper.style.width=Math.round(WIDTH*scale)+"px";
   paper.style.height=Math.round(note.height*scale)+"px";
-  // v191: larger reusable grid, independent of uploaded paper's tiny printed squares.
-  paper.style.setProperty("--mn-grid-step",clamp(Math.round(84*scale),26,58)+"px");
+  paper.style.setProperty("--mn-grid-step",gridStepPx(note.zoom)+"px");
  }
  function fitPaper(toLogicalY){
   if(!opened||!workspace||!paper)return;
@@ -429,5 +431,5 @@
   getStatus:()=>({open:opened,questionId:question?.id||null,saved:!saveError,
    strokes:note?.strokes.length||0,height:note?.height||0})
  });
- global.MTKMathNotebookTest=Object.freeze({keyFor,blank,normalize,docWidth:WIDTH,segmentHeight:SEGMENT,initialHeight:INITIAL_HEIGHT});
+ global.MTKMathNotebookTest=Object.freeze({keyFor,blank,normalize,gridStepPx,docWidth:WIDTH,segmentHeight:SEGMENT,initialHeight:INITIAL_HEIGHT});
 })(window);
