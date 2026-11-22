@@ -1,0 +1,32 @@
+"use strict";
+const assert=require("node:assert/strict");
+const fs=require("node:fs"),path=require("node:path"),vm=require("node:vm");
+const root=path.resolve(__dirname,"..");
+const js=fs.readFileSync(path.join(root,"assets/math-notebook-v187.js"),"utf8");
+const css=fs.readFileSync(path.join(root,"assets/math-notebook-ui-v191.css"),"utf8");
+const image=fs.readFileSync(path.join(root,"assets/erdem-ivy-paper-v191.webp"));
+const quiz=fs.readFileSync(path.join(root,"forest-v70-quiz.html"),"utf8");
+const forest=fs.readFileSync(path.join(root,"forest-v113-full.html"),"utf8");
+const bank=JSON.parse(fs.readFileSync(path.join(root,"forest-questions-v147.json"),"utf8"));
+new vm.Script(js,{filename:"math-notebook-v187.js"});
+assert(image.subarray(0,4).toString()==="RIFF"&&image.subarray(8,12).toString()==="WEBP","Actual optimized user-supplied ivy paper must exist");
+assert(image.length<10000,"Image must remain lightweight on iPhones");
+assert(css.includes('url("./erdem-ivy-paper-v191.webp")'),"Use uploaded reference paper, not a synthetic replacement");
+for(const t of ["grid","lined","plain"]){
+ assert(css.includes('.mn-paper[data-paper="'+t+'"]'),"Missing paper style: "+t);
+ assert(js.includes('data-paper-choice="'+t+'"'),"Missing independent paper selection: "+t);
+}
+assert(js.includes("84*scale")&&css.includes("--mn-grid-step"),"Larger dynamically generated maths grid required");
+assert(css.includes("repeat,repeat,no-repeat,repeat-y"),"Original ivy must repeat down endless page behind the grid");
+assert(js.includes('id="mn-clear"')&&js.includes('id="mn-paper-choose"')&&js.includes('id="mn-zoom-choose"'),"Trash, paper and zoom controls must be in toolbar");
+assert(!js.includes("İşlemler bu cihazda kaydedilir"),"Old saved-on-device text must disappear");
+assert(!js.includes('<footer class="mn-footer">'),"Footer must not steal writing height");
+assert(js.includes("function setPaperType(value)")&&js.includes("paper.dataset.paper=value"),"Paper switching must not erase handwriting");
+assert(js.includes("function applyZoom(value)")&&js.includes('id="mn-zoom-minus"')&&js.includes('id="mn-zoom-plus"'),"Touchable +/- landscape zoom must be available");
+assert(css.includes(".mn-root .mn-float-popup")&&css.includes("min-height:43px"),"Zoom and paper popovers should be finger-friendly");
+assert(css.includes("overflow-y:auto!important"),"Short landscape screens must support scrolling tool rail");
+assert(js.includes("liveSegments=new Map()")&&js.includes("localStorage.setItem(key,JSON.stringify(note))"),"Keep the saved, virtualized handwriting surface");
+assert(quiz.includes("math-notebook-ui-v191.css?v=191")&&quiz.includes("math-notebook-v187.js?v=191"),"Latest assets must bypass stale iPhone caches");
+assert(forest.includes("forest-v70-quiz.html?v=191"),"Forest iframe must load latest quiz");
+assert.equal(bank.questions.length,630,"Original approved question bank must stay intact");
+console.log("PASS v191: ivy-paper image, large grid, independent graph/lined/blank controls, top-row trash, accessible landscape zoom, 630 questions.");
