@@ -12,7 +12,7 @@ new vm.Script(ui);
 assert.equal(bank.questions.length,630);
 assert.equal(bank.obstacles.length,21);
 assert(quiz.includes("forest-questions-v147.json?v="),"Use the latest approved bank");
-assert(quiz.includes('approved-quiz-ui-v145.js?v=165'),"Load the current renderer");
+assert(quiz.includes('approved-quiz-ui-v145.js?v=176'),"Load the current renderer");
 assert(!quiz.includes('research-layout-v157.js'),"Do not re-enable experimental F03 actor crops");
 assert(!quiz.includes('research-layout-v157.css'),"Old F03 crop CSS must stay inactive");
 assert(frames.includes('"portrait"')&&frames.includes('"landscape"'),"Approved character frames stay intact");
