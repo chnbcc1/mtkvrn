@@ -1,0 +1,119 @@
+/* v193 — restore the user's ORIGINAL photographed ivy, not an invented SVG.
+   The original artwork is cropped optically from the v191 paper asset without
+   stretching it to landscape screen width. Keep SVG handwriting untouched. */
+.mn-root.mn-forest .mn-paper::before,
+.mn-root.mn-forest .mn-paper::after{
+ content:""!important;display:block!important;
+ position:absolute!important;top:0!important;bottom:0!important;
+ height:auto!important;width:min(14%,65px)!important;
+ background-image:url("./erdem-ivy-paper-v191.webp")!important;
+ background-size:630px auto!important;
+ background-repeat:repeat-y!important;
+ opacity:.72!important;
+ filter:none!important;
+ mix-blend-mode:darken!important;
+ z-index:0!important;pointer-events:none!important;
+}
+.mn-root.mn-forest .mn-paper::before{
+ left:0!important;right:auto!important;transform:none!important;
+ background-position:left top!important;
+}
+.mn-root.mn-forest .mn-paper::after{
+ right:0!important;left:auto!important;transform:none!important;
+ background-position:right top!important;
+}
+/* Keep the pale sage under the source artwork. Grid and handwriting remain separate. */
+.mn-root.mn-forest .mn-paper,
+.mn-root.mn-forest .mn-paper[data-paper="grid"],
+.mn-root.mn-forest .mn-paper[data-paper="lined"],
+.mn-root.mn-forest .mn-paper[data-paper="plain"],
+.mn-root.mn-forest .mn-paper-track,
+.mn-root.mn-forest .mn-workspace{
+ background-color:#eef5ea!important;
+}
+.mn-root.mn-forest .mn-paper .mn-segment{
+ z-index:2!important;
+}
+
+/* On an iPhone in landscape the notch and home-indicator can be on either side.
+   Take safe-area insets into account instead of forcing 2px page padding.
+   The minimum physical gutter is symmetric so either rotation is usable. */
+@media (orientation:landscape) and (max-height:650px){
+ .mn-root{
+  box-sizing:border-box!important;
+  width:100%!important;height:100dvh!important;
+  max-width:100%!important;max-height:100dvh!important;
+  inset:0!important;
+  padding-top:max(3px,env(safe-area-inset-top,0px))!important;
+  padding-bottom:max(3px,env(safe-area-inset-bottom,0px))!important;
+  padding-left:max(42px,env(safe-area-inset-left,0px))!important;
+  padding-right:max(42px,env(safe-area-inset-right,0px))!important;
+  margin:0!important;
+  display:grid!important;
+  grid-template-columns:clamp(48px,6.4vw,62px) minmax(0,1fr)!important;
+  grid-template-rows:min-content min-content minmax(0,1fr)!important;
+  gap:3px!important;
+  overflow:hidden!important;
+ }
+ .mn-root .mn-header{
+  grid-column:1/-1!important;grid-row:1!important;
+  margin:0!important;padding:2px 7px!important;
+  min-height:28px!important;
+ }
+ .mn-root .mn-header button{min-height:26px!important}
+ .mn-root .mn-question-block{
+  grid-column:1/-1!important;grid-row:2!important;
+  min-height:0!important;max-height:13dvh!important;
+  padding:3px 7px!important;
+ }
+ .mn-root .mn-side-rail{
+  grid-column:1!important;grid-row:3!important;
+  width:100%!important;height:100%!important;
+  min-height:0!important;max-height:100%!important;
+  overflow:hidden!important;padding:3px 2px!important;
+ }
+ .mn-root .mn-toolbar{
+  display:flex!important;flex-direction:column!important;
+  flex-wrap:nowrap!important;align-items:center!important;
+  width:100%!important;height:100%!important;min-height:0!important;
+  gap:2px!important;padding:0!important;
+  overflow-y:auto!important;overscroll-behavior:contain!important;
+ }
+ .mn-root .mn-toolbar button,
+ .mn-root .mn-toolbar #mn-undo,
+ .mn-root .mn-toolbar #mn-redo{
+  flex:0 0 auto!important;
+  width:min(100%,34px)!important;min-width:30px!important;
+  height:27px!important;min-height:27px!important;
+  padding:0!important;margin:0!important;
+  font-size:19px!important;line-height:1!important;
+ }
+ .mn-root #mn-erase svg{
+  width:21px!important;height:21px!important;
+ }
+ .mn-root #mn-clear{
+  position:sticky!important;bottom:0!important;
+  background:#fff7e9!important;z-index:5!important;
+ }
+ .mn-root .mn-workspace{
+  grid-column:2!important;grid-row:3!important;
+  height:100%!important;min-height:0!important;min-width:0!important;
+  max-height:none!important;max-width:none!important;
+  margin:0!important;align-self:stretch!important;
+ }
+ .mn-root .mn-paper-track{padding:0!important}
+ .mn-root .mn-float-popup,
+ .mn-root.mn-show-settings .mn-settings{
+  left:calc(max(42px,env(safe-area-inset-left,0px)) + clamp(48px,6.4vw,62px) + 7px)!important;
+  right:auto!important;
+  max-width:calc(100vw - max(42px,env(safe-area-inset-left,0px)) - max(42px,env(safe-area-inset-right,0px)) - 74px)!important;
+  top:clamp(73px,19dvh,110px)!important;
+  max-height:min(54dvh,205px)!important;
+ }
+ .mn-root.mn-forest .mn-paper::before,
+ .mn-root.mn-forest .mn-paper::after{
+  width:min(10%,62px)!important;
+  background-size:630px auto!important;
+  opacity:.69!important;
+ }
+}
