@@ -257,12 +257,14 @@ function f01Guide(q){
  if(growth){
    const {left,right,leftRate,rightRate,day}=growth;
    const first=[
-     "Başlangıç sayıları 1. güne aittir: solda "+left+", sağda "+right+" tomurcuk vardır.",
-     "Bir sonraki güne geçmek için soldaki sayıyı "+leftRate+" ile, sağdakini "+rightRate+" ile çarp. "+day+". güne ulaşınca iki kolun sonucunu topla."
+     "1. gün başlangıçtır: sol kolda "+left+", sağ kolda "+right+" tomurcuk bulunur. Bunları birbirine karıştırmadan not al.",
+     "Her yeni gün sol koldaki sayı "+leftRate+" ile, sağ koldaki sayı "+rightRate+" ile çarpılır. İki kol farklı hızlarda büyür.",
+     day+". güne giderken "+day+" defa değil, "+(day-1)+" defa büyüme olur. Neden? Çünkü 1. günde başlangıç değerleri zaten verilmiştir."
    ];
    const second=[
-     "2. gün: sol "+left+" × "+leftRate+" = "+(left*leftRate)+"; sağ "+right+" × "+rightRate+" = "+(right*rightRate)+".",
-     day>3?"3. gün: sol "+(left*leftRate)+" × "+leftRate+" = "+(left*leftRate**2)+"; sağ "+(right*rightRate)+" × "+rightRate+" = "+(right*rightRate**2)+". Şimdi "+day+". güne ilerleyip sonuçları topla.":"Şimdi bu iki sayıyı kendi büyüme katsayılarıyla bir kez daha çarp ve çıkan iki sonucu topla."
+     "Önce 1. günden 2. güne geç: sol "+left+" × "+leftRate+" = "+(left*leftRate)+", sağ "+right+" × "+rightRate+" = "+(right*rightRate)+".",
+     day>2?"Aynı kuralı sonraki güne bir kez daha uygula. Solda önceki günün değerini "+leftRate+" ile, sağda "+rightRate+" ile çarpmalısın.":"Bu miktarları hesaplayıp iki kolun değerlerini son adımda birleştir.",
+     "Kısa yol: başlangıç × günlük büyüme katsayısı^(gün − 1). Sol ve sağ kolun sonuçlarını ayrı bulmadan toplama yapma."
    ];
    const a=left*leftRate**(day-1),b=right*rightRate**(day-1);
    return valid(a+b,first,second,"Sol kol: "+left+" × "+leftRate+"^"+(day-1)+" = "+a+". Sağ kol: "+right+" × "+rightRate+"^"+(day-1)+" = "+b+". Toplam: "+a+" + "+b+" = "+(a+b)+".");
@@ -380,17 +382,82 @@ function f01Guide(q){
  }
  return null;
 }
+/* v184: source-grounded, progressive mathematics teaching.
+   Keep all 630 approved questions, answers, choices and art immutable.
+   Hint 1: identify the idea; hint 2: show a partial path without the answer;
+   third wrong: explain why, calculate visibly and check the supplied result. */
+function teachingRule(q){
+ const topic=String(q?.topic||"").toLocaleLowerCase("tr");
+ if(/eşlenik/.test(topic))return "Eşlenik iki ifadenin çarpımında (a+b)(a−b)=a²−b² özdeşliği kullanılır; çapraz terimler birbirini yok eder.";
+ if(/bilimsel/.test(topic))return "Bilimsel gösterimde sayı a×10^n biçimindedir ve sıfır olmayan a için 1 ≤ |a| < 10 olmalıdır. Önce işlemi, sonra gösterimi düzenle.";
+ if(/negatif.*üs|negatif.*kuvvet/.test(topic))return "Negatif tam sayı üssü sayıyı negatif yapmaz; sıfırdan farklı a için a^(−n)=1/a^n kuralını kullan.";
+ if(/sıfırıncı/.test(topic))return "Sıfırdan farklı bir sayının sıfırıncı kuvveti 1'dir: a⁰=1. Önce üsleri uygun kuralla birleştir.";
+ if(/kesirli.*üs|üslü.köklü.*eşleştirme|köklü.üslü.*eşleştirme/.test(topic))return "Kesirli üslerde pay kuvveti, payda kökün derecesini gösterir. Eşleştirme için iki gösterimi aynı sayısal değere indir.";
+ if(/köklü.*(sadeleştir|yazıt)/.test(topic))return "Kök içindeki tam kare çarpanını ayır: √(k²×m)=k√m (k ≥ 0). Tam kare olmayan çarpanı kök içinde bırak.";
+ if(/köklü.*(karşılaştır|uzunluk karşılaştır)/.test(topic))return "Önce kökleri sadeleştir. Kök içleri aynıysa pozitif katsayıları karşılaştır; kökler farklıysa değerleri uygun biçimde eşitle.";
+ if(/köklü.*(toplama|örtüşme)/.test(topic))return "Kök içleri aynı olan terimlerde katsayılar toplanır veya çıkarılır. Ortak/örtüşen parçayı iki kez sayma.";
+ if(/köklü.*çevre/.test(topic))return "Dikdörtgende çevre, uzun ve kısa kenarın toplamının iki katıdır: 2×(uzun+kısa). Benzer köklü terimleri birleştir.";
+ if(/kare|alan/.test(topic))return "Karede alan, kenarın kendisiyle çarpılmasıyla bulunur. Kökün karesini alırken hem katsayıyı hem köklü kısmı hesaba kat.";
+ if(/bölme|yarıya|kesir|oran/.test(topic))return "Bölmede önce toplam miktarı veya başlangıç değerini belirle. Kaç kez bölündüğünü ve her aşamada kalan miktarı izle.";
+ if(/toplama|birlikte|toplam/.test(topic))return "Önce ayrı ayrı verilen miktarları aynı tür birime dönüştür. Ardından gerçekten birlikte istenen miktarları topla.";
+ if(/fark|çıkarma|eksik/.test(topic))return "İki miktarın farkında çıkarma sırası önemlidir: soruda istenen bütünden çıkarılacak kısmı ayır.";
+ if(/çarpma|katman|dizilim|debi|süre/.test(topic))return "Eş gruplarda bir grubun miktarı ile grup sayısını çarp. Sorudaki süre, katman veya parça sayısını kontrol et.";
+ if(/üslü|kuvvet|üs/.test(topic))return "Üslü ifadede taban tekrarlanan çarpandır, üs ise kaç kez çarpılacağını belirtir. Önce kuvvetin değerini, sonra istenen işlemi bul.";
+ if(/şifre|halka|eşleştirme/.test(topic))return "Her parçayı kendi konumunda değerlendir; çıkan değerleri sorunun istediği sıra veya eşleştirmeye göre yerleştir.";
+ return "Verilenleri istenenden ayır; önce hangi işlemin neden gerektiğini belirle. Ara sonuçları soruda belirtilen sıra ve birimle karşılaştır.";
+}
+function teachingGoal(q,s){
+ const prompt=String(s?.prompt||q?.prompt||"").trim();
+ const questions=prompt.match(/[^.!?\n]*\?/g);
+ return (questions?.at(-1)?.trim()||q?.topic||"Soruda istenen nicelik").slice(0,245);
+}
 function teachingHint(q,defaultHint){
  const g=f01Guide(q)||window.MTKF02ApprovedV165?.guide(q);
- return g?g.first:[defaultHint||"Sorunun verilenlerini ve istenenini ayır; işlemlerin sırasını belirle."];
+ if(g)return g.first;
+ return [
+  "Önce neyin sorulduğunu belirle: "+teachingGoal(q)+". Sonucu henüz hesaplamadan verilenleri ayır.",
+  "Kullanacağın temel düşünce: "+teachingRule(q),
+  "İşlem sonucunu hemen seçme; hangi sayının nereden geldiğini ve işlem sırasını kontrol et."
+ ];
 }
 function teachingSecondHint(q,defaultHint){
  const g=f01Guide(q)||window.MTKF02ApprovedV165?.guide(q);
- return g?g.second:[defaultHint||"Verilen matematiksel ifadeleri ayrı ayrı hesaplayarak ilerle."];
+ if(g)return g.second;
+ return [
+  "İlk adımı birlikte kuralım: "+String(defaultHint||q?.hint||"Sorunun verilenlerini düzenle."),
+  "Bu adımın gerekçesi: "+teachingRule(q),
+  "İlk ara değeri bulduktan sonra kalan işlemi kendin sürdür. Özellikle üs, kök, çıkarma sırası ve birimleri yeniden kontrol et."
+ ];
 }
-function teachingSolution(q){
+function teachingSolutionSteps(q,s){
+ const growth=f01Growth(q);
+ if(growth){
+  const {left,right,leftRate,rightRate,day}=growth;
+  const l=left*leftRate**(day-1),r=right*rightRate**(day-1);
+  if(String(q.correctAnswer).trim()===String(l+r)){
+   const walk=(start,rate)=>Array.from({length:day},(_,i)=>(i+1)+". gün "+(start*rate**i)).join(" → ");
+   return [
+    "1. Verilenleri ayıralım: sol kol ilk gün "+left+" tomurcukla başlar ve her yeni gün "+leftRate+" katına çıkar. Sağ kol "+right+" tomurcukla başlar ve her gün "+rightRate+" katına çıkar.",
+    "2. Günleri doğru sayalım: ilk gün başlangıç olduğundan "+day+". güne ulaşmak için "+day+" değil "+(day-1)+" büyüme geçişi vardır. Bu yüzden üslü kısa yolda üs "+day+" − 1 = "+(day-1)+" olur.",
+    "3. Sol kolu gün gün bulalım: "+walk(left,leftRate)+". Kısa gösterimi: "+left+" × "+leftRate+"^"+(day-1)+" = "+l+".",
+    "4. Sağ kolu gün gün bulalım: "+walk(right,rightRate)+". Kısa gösterimi: "+right+" × "+rightRate+"^"+(day-1)+" = "+r+".",
+    "5. İstenen iki kolun toplamıdır. "+l+" + "+r+" = "+(l+r)+" tomurcuk. İki kolun büyüme katsayıları farklı olduğu için sayıları ayrı ayrı büyütüp sonra topladık.",
+    "6. Kontrol: başlangıç günü birinci gün olarak sayıldı; her kola yalnızca "+(day-1)+" kez büyüme uygulandı. Sonuç verilen doğru cevapla tutarlıdır: "+(l+r)+"."
+   ];
+  }
+ }
  const guided=f01Guide(q)||window.MTKF02ApprovedV165?.guide(q);
- return guided?.solution||workedSteps(q);
+ const source=String(guided?.solution||s?.solution||q?.solution||workedSteps(q)||"").trim();
+ const fragments=source.split(/\s*;\s*|\.\s+(?=[A-ZÇĞİÖŞÜ])/).map(t=>t.trim().replace(/\.$/,"")).filter(Boolean);
+ const steps=[
+  "1. Neyi bulacağız? "+teachingGoal(q,s),
+  "2. Hangi kuralı neden kullanacağız? "+teachingRule(q),
+  "3. İşlem sırasını belirleyelim: "+String(s?.hint||q?.hint||"Verilenlerden başlayıp gereken ara işlemleri yap.")
+ ];
+ fragments.forEach((part,i)=>steps.push((i+4)+". Hesaplama"+(fragments.length>1?" "+(i+1):"")+": "+part+"."));
+ const answer=String(s?.answer??q?.correctAnswer??"").trim();
+ if(answer)steps.push((steps.length+1)+". Sonuç ve kontrol: bulduğumuz değeri sorunun istediği sıra, ölçü birimi veya gösterimle karşılaştıralım. Doğru yanıt: "+answer+".");
+ return steps;
 }
 function example(q){
  if(q.workedExample&&q.workedExample.solution)return {prompt:q.workedExample.question||"Benzer örnek",solution:q.workedExample.solution,sourceVerified:true};
@@ -463,8 +530,13 @@ function show(){window.MTKApprovedQuizV145?.reset();
     run.completionWrong=run.taskWrong||0;run.awaiting=true;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show()
   }));
  }else if(run.revealed&&run.helpView!==false){
-   app.appendChild(feedbackBox("wrong","3. yanlış • Adım adım çözüm"));
-   app.appendChild(mathText("div","solution","Çözüm: "+teachingSolution(q)+(all.length>1?" • Tam görevin çözümü: "+q.solution:"")));
+   app.appendChild(feedbackBox("wrong","3. yanlış • Neden ve nasıl? Adım adım öğrenelim"));
+   const solutionCard=node("div","solution mtk-teaching-solution");
+   solutionCard.setAttribute("aria-label","Açıklamalı adım adım matematik çözümü");
+   for(const explanation of teachingSolutionSteps(q,s)){
+    solutionCard.appendChild(mathText("p","mtk-teaching-step",explanation));
+   }
+   app.appendChild(solutionCard);
    const controls=node("div","btnRow");
    controls.appendChild(btn("Soruyu göster",()=>{run.helpView=false;save();show()},true));
    controls.appendChild(btn("Benzer soru çöz",()=>{run.remediationId=pick(q.obstacleId,run.difficulty,q.id);resetStage();show()}));

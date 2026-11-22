@@ -1,0 +1,21 @@
+name: Pedagogical Hints and Solutions v184 Regression
+on:
+  push:
+    branches: [main]
+    paths:
+      - "deneme-v36/forest-v70-quiz.html"
+      - "deneme-v36/tests/pedagogical-feedback-v184.test.cjs"
+      - ".github/workflows/pedagogical-feedback-v184.yml"
+  pull_request:
+    paths:
+      - "deneme-v36/forest-v70-quiz.html"
+      - "deneme-v36/tests/pedagogical-feedback-v184.test.cjs"
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node deneme-v36/tests/pedagogical-feedback-v184.test.cjs
