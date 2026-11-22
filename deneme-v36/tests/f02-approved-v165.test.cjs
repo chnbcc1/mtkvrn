@@ -56,7 +56,7 @@ for(const q of records.filter(q=>q.visual.labels.some(e=>e.anchor==="basamak 4")
 }
 assert(ui.includes('window.MTKF02ApprovedV165?.render(visual,q)'),"F02 renderer must be mounted before legacy art");
 assert(ui.includes("window.MTKF02ApprovedV165?.enhance(frame,q)"),"F02 must apply full-frame responsive layout");
-assert(quiz.includes('f02-approved-v165.js?v=175'),"Quiz must load the updated F02 v175 scene without stale iPhone cache");
+assert(quiz.includes('f02-approved-v165.js?v=178'),"Quiz must load the updated F02 v175 scene without stale iPhone cache");
 assert(source.includes('inlineControls?.querySelector(".feedback.ok")'),"F02 correct state must be detected without changing global quiz controls");
 assert(source.includes('frame.appendChild(inlineControls)'),"F02 success feedback must leave the clipping question-text container");
 assert(source.includes('mtk-f02-correct-body')&&source.includes('mtk-f02-correct-foot'),"The success card must separate scrollable content from navigation");
@@ -133,4 +133,11 @@ const verticalRows=[[0,50],[51,76.7],[78,91.8],[92.3,99]];
 const horizontalRows=[[5,62],[64,91],[92,99]];
 for(const rows of [verticalRows,horizontalRows])for(let i=1;i<rows.length;i++)assert(rows[i][0]>rows[i-1][1],"Question, choices and navigation must not overlap");
 
-console.log("PASS F02 v175: blank 1205x1025 original artwork, 50/50 undistorted visual, calibrated dynamic plaques, 30 questions, 630-question bank preserved.");
+assert(source.includes("F02 v178: edge-complete immersive artwork"),"F02 half-screen extension rules missing");
+assert(source.includes('edgeCanvas.className="mtk-f02-edge-fill"'),"F02 must paint only original scene edge pixels into surplus space");
+assert(source.includes("ctx.drawImage(artImage,sx,sy,sw,sh,0,0,dw,dh)"),"F02 edge texture must come from original image, not another illustration");
+assert(source.includes('const scale=Math.min(w/sourceWidth,h/sourceHeight)'),"Do not crop or distort Erdem, Ciko or the plaques");
+assert(source.includes("width:100%!important;height:100%!important"),"F02 frame must occupy full viewport without top/bottom empty bands");
+assert(source.includes("left:0!important;top:0!important;width:100%!important;height:50%!important"),"Portrait F02 must occupy exactly upper half");
+assert(source.includes("left:0!important;top:0!important;width:50%!important;height:100%!important"),"Landscape F02 must occupy exactly left half");
+console.log("PASS F02 v178: blank 1205x1025 original artwork, 50/50 undistorted visual, calibrated dynamic plaques, 30 questions, 630-question bank preserved.");
