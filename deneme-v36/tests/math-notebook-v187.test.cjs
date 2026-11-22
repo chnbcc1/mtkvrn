@@ -66,10 +66,10 @@ assert(css.includes('.mn-root [hidden]{display:none!important}'),"Only selected 
 assert(css.includes(".mn-root[hidden]")&&css.includes(".mn-footer"),"Compact worksheet controls must exist");
 assert(!css.includes(".mn-page-nav")&&!js.includes("Yeni sayfa"),"Remove the former multiple-page controls");
 assert(vines.includes(".mn-root.mn-forest .mn-paper::before"),"Approved subtle forest ivy missing");
-assert(quiz.includes('math-notebook-v187.js?v=188')&&quiz.includes('math-notebook-v187.css?v=187'),"Live quiz still points to old notebook");
+assert(quiz.includes('math-notebook-v187.js?v=189')&&quiz.includes('math-notebook-v187.css?v=189'),"Live quiz still points to old notebook");
 assert.equal((quiz.match(/window\.MTKMathNotebook\?\.placeButton\(app\)/g)||[]).length,2,"Pen icon must attach in both answer and completed views");
 assert(quiz.includes('window.MTKMathNotebook?.attach({questionId:q.id,questionText:s.prompt,scene:"forest"})'),"Notes must follow current question");
-assert(forest.includes('forest-v70-quiz.html?v=188'),"Forest entry must load new quiz version");
+assert(forest.includes('forest-v70-quiz.html?v=189'),"Forest entry must load new quiz version");
 assert(forest.includes('d.event==="notebook-open"||d.event==="notebook-close"'),"Parent must receive notebook visibility");
 assert(forest.includes('#quizOverlay[data-notebook-open="1"] .quizBar{display:none!important}'),"Forest top-right back button must not cover notebook");
 console.log("PASS v187: endless virtualized scrolling, icon-only tools, hand mode, inline question icon, v186 migration, 630 questions preserved.");

@@ -184,3 +184,117 @@
  .mn-footer{min-height:29px!important;max-height:33px!important;padding:2px 7px!important}
 }
 @media(prefers-reduced-motion:reduce){.mn-root *{scroll-behavior:auto!important}}
+
+
+/* v189: In portrait the grouping has no visual box; existing layout is preserved. */
+.mn-side-rail{display:contents!important}
+@media(orientation:landscape){
+ .mn-root{
+  display:grid!important;
+  grid-template-columns:clamp(56px,7.7vw,77px) minmax(0,1fr)!important;
+  grid-template-rows:auto auto minmax(0,1fr)!important;
+  column-gap:5px!important;row-gap:4px!important;
+  align-items:stretch!important;
+  padding:max(3px,env(safe-area-inset-top)) max(5px,env(safe-area-inset-right))
+   max(3px,env(safe-area-inset-bottom)) max(5px,env(safe-area-inset-left))!important;
+  overflow:hidden!important;
+ }
+ .mn-header{
+  grid-column:1/-1!important;grid-row:1!important;
+  min-height:34px!important;min-width:0!important;margin:0!important;padding:3px 8px!important;
+ }
+ .mn-header button{min-height:29px!important;padding:3px 8px!important}
+ .mn-question-block{
+  grid-column:1/-1!important;grid-row:2!important;
+  min-height:0!important;max-height:clamp(42px,14dvh,72px)!important;
+  margin:0!important;padding:3px 8px!important;overflow-y:auto!important;
+ }
+ .mn-question-block>span{font-size:9px!important}
+ #mn-question{font-size:clamp(11px,1.55vw,16px)!important;line-height:1.2!important}
+ .mn-side-rail{
+  display:flex!important;grid-column:1!important;grid-row:3!important;
+  flex-direction:column!important;justify-content:flex-start!important;align-items:stretch!important;
+  width:100%!important;min-width:0!important;min-height:0!important;max-height:100%!important;
+  margin:0!important;padding:4px 3px!important;gap:4px!important;
+  border:1px solid #bda275!important;border-radius:9px!important;
+  background:#f2e3c1!important;overflow:hidden!important;
+ }
+ .mn-toolbar{
+  flex:0 0 auto!important;display:flex!important;flex-direction:column!important;
+  align-items:center!important;justify-content:flex-start!important;
+  width:100%!important;min-height:0!important;gap:4px!important;
+  padding:0!important;margin:0!important;border:0!important;
+  background:transparent!important;box-shadow:none!important;
+ }
+ .mn-toolbar button,.mn-toolbar #mn-undo,.mn-toolbar #mn-redo{
+  display:grid!important;place-items:center!important;flex:0 0 auto!important;
+  width:min(100%,40px)!important;height:33px!important;min-height:33px!important;
+  margin:0!important;padding:0!important;font-size:22px!important;
+ }
+ .mn-toolbar .mn-toolspace{display:none!important}
+ .mn-settings{
+  flex:1 1 auto!important;display:block!important;
+  min-width:0!important;min-height:0!important;max-width:100%!important;max-height:none!important;
+  width:100%!important;margin:0!important;padding:3px 2px!important;
+  overflow-y:auto!important;overflow-x:hidden!important;scrollbar-width:none!important;
+  background:#faf2dd!important;border:1px solid #d3b991!important;border-radius:7px!important;
+ }
+ .mn-settings::-webkit-scrollbar{display:none}
+ .mn-option-panel{
+  display:flex!important;flex-flow:column nowrap!important;
+  align-items:center!important;justify-content:flex-start!important;
+  width:100%!important;min-height:0!important;gap:5px!important;
+ }
+ .mn-option-panel[hidden]{display:none!important}
+ .mn-option-panel>label{
+  display:flex!important;flex-direction:column!important;align-items:stretch!important;
+  flex:0 0 auto!important;gap:2px!important;min-width:0!important;
+  width:100%!important;max-width:none!important;margin:0!important;padding:0!important;
+  text-align:center!important;font-size:10px!important;line-height:1.2!important;
+ }
+ .mn-option-panel input[type=range]{
+  flex:0 0 auto!important;width:100%!important;min-width:0!important;
+  height:22px!important;min-height:22px!important;margin:0!important;
+ }
+ .mn-colors{
+  display:grid!important;grid-template-columns:repeat(2,19px)!important;
+  gap:5px!important;justify-items:center!important;align-items:center!important;
+  max-width:100%!important;flex:0 0 auto!important;
+ }
+ .mn-color{width:19px!important;height:19px!important;min-width:19px!important;min-height:19px!important}
+ .mn-option-panel select{width:100%!important;max-width:100%!important;min-height:25px!important;font-size:10px!important;padding:2px 0!important}
+ .mn-option-panel>span{text-align:center!important;width:100%!important;font-size:9px!important;overflow-wrap:anywhere!important}
+ .mn-footer{
+  flex:0 0 31px!important;width:100%!important;min-height:31px!important;max-height:31px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  margin:0!important;padding:0!important;border:0!important;
+  background:transparent!important;box-shadow:none!important;
+ }
+ .mn-footer button{height:28px!important;min-height:28px!important;width:36px!important;min-width:36px!important;margin:0!important;padding:0!important}
+ .mn-footer #mn-status:not([data-error="true"]){display:none!important}
+ .mn-footer #mn-status[data-error="true"]{
+  position:fixed!important;right:10px!important;bottom:8px!important;z-index:20!important;
+  max-width:min(46vw,280px)!important;border-radius:7px!important;
+  padding:5px 8px!important;background:#fff0d8!important;
+  color:#913c2b!important;font-size:11px!important;
+ }
+ .mn-workspace{
+  grid-column:2!important;grid-row:3!important;flex:none!important;
+  width:100%!important;min-width:0!important;min-height:0!important;
+  max-height:none!important;height:100%!important;margin:0!important;align-self:stretch!important;
+ }
+ .mn-paper-track{padding:1px!important}
+}
+@media(orientation:landscape) and (max-height:380px){
+ .mn-root{row-gap:3px!important}
+ .mn-header{min-height:30px!important;padding:2px 7px!important}
+ .mn-header button{min-height:26px!important}
+ .mn-question-block{max-height:clamp(35px,13dvh,53px)!important;padding:3px 7px!important}
+ .mn-side-rail{gap:3px!important;padding:3px 2px!important}
+ .mn-toolbar{gap:3px!important}
+ .mn-toolbar button,.mn-toolbar #mn-undo,.mn-toolbar #mn-redo{
+  height:29px!important;min-height:29px!important;width:min(100%,35px)!important;font-size:20px!important;
+ }
+ .mn-footer{flex-basis:27px!important;min-height:27px!important;max-height:27px!important}
+ .mn-footer button{height:26px!important;min-height:26px!important}
+}

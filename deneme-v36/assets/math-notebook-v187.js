@@ -142,6 +142,14 @@
    '<footer class="mn-footer"><button type="button" id="mn-clear" title="Tüm işlemleri temizle" aria-label="Tüm işlemleri temizle">🗑</button>',
    '<small id="mn-status" role="status" aria-live="polite">İşlemler bu cihazda kaydedilir</small></footer>'
   ].join("");
+  // v189: reuse the working controls in a responsive landscape side rail.
+  const side=element("aside","mn-side-rail");
+  side.setAttribute("aria-label","Kalem, silgi, el ve defter ayarları");
+  for(const selector of [".mn-toolbar",".mn-settings",".mn-footer"]){
+   const child=root.querySelector(selector);
+   if(child)side.appendChild(child);
+  }
+  root.insertBefore(side,root.querySelector(".mn-workspace"));
   document.body.appendChild(root);
   workspace=el("mn-workspace");paper=el("mn-paper");
   el("mn-back").addEventListener("click",closeNotebook);
