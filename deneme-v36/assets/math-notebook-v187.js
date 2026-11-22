@@ -268,8 +268,10 @@
  function fitPaper(toLogicalY){
   if(!opened||!workspace||!paper)return;
   const oldPosition=Number.isFinite(toLogicalY)?toLogicalY:workspace.scrollTop/(scale||1);
-  const available=Math.max(240,workspace.clientWidth-24);
-  const basis=Math.min(720,available);
+  // Fill the writing area almost edge-to-edge at 100% zoom.
+  // Smaller zoom levels retain the same sage-green surface on both sides.
+  const available=Math.max(240,workspace.clientWidth-4);
+  const basis=available;
   scale=basis*note.zoom/WIDTH;
   sizePaper();
   for(const canvas of liveSegments.values())canvas.remove();
