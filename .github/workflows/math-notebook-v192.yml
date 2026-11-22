@@ -1,0 +1,26 @@
+name: Forest Notebook v192 Layout and Grid Regression
+on:
+  push:
+    branches: [main]
+    paths:
+      - "deneme-v36/assets/math-notebook-v187.js"
+      - "deneme-v36/assets/math-notebook-fix-v192.css"
+      - "deneme-v36/assets/forest-ivy-v192.svg"
+      - "deneme-v36/forest-v70-quiz.html"
+      - "deneme-v36/forest-v113-full.html"
+      - "deneme-v36/tests/math-notebook-v192.test.cjs"
+      - ".github/workflows/math-notebook-v192.yml"
+  pull_request:
+    paths:
+      - "deneme-v36/assets/math-notebook-v187.js"
+      - "deneme-v36/assets/math-notebook-fix-v192.css"
+      - "deneme-v36/tests/math-notebook-v192.test.cjs"
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node deneme-v36/tests/math-notebook-v192.test.cjs

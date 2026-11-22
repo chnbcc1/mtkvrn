@@ -16,7 +16,7 @@ for(const t of ["grid","lined","plain"]){
  assert(css.includes('.mn-paper[data-paper="'+t+'"]'),"Missing paper style: "+t);
  assert(js.includes('data-paper-choice="'+t+'"'),"Missing independent paper selection: "+t);
 }
-assert(js.includes("84*scale")&&css.includes("--mn-grid-step"),"Larger dynamically generated maths grid required");
+assert(js.includes("gridStepPx(note.zoom)")&&css.includes("--mn-grid-step"),"Balanced orientation-independent maths grid required");
 assert(css.includes("repeat,repeat,no-repeat,repeat-y"),"Original ivy must repeat down endless page behind the grid");
 assert(js.includes('id="mn-clear"')&&js.includes('id="mn-paper-choose"')&&js.includes('id="mn-zoom-choose"'),"Trash, paper and zoom controls must be in toolbar");
 assert(!js.includes("İşlemler bu cihazda kaydedilir"),"Old saved-on-device text must disappear");
@@ -26,7 +26,7 @@ assert(js.includes("function applyZoom(value)")&&js.includes('id="mn-zoom-minus"
 assert(css.includes(".mn-root .mn-float-popup")&&css.includes("min-height:43px"),"Zoom and paper popovers should be finger-friendly");
 assert(css.includes("overflow-y:auto!important"),"Short landscape screens must support scrolling tool rail");
 assert(js.includes("liveSegments=new Map()")&&js.includes("localStorage.setItem(key,JSON.stringify(note))"),"Keep the saved, virtualized handwriting surface");
-assert(quiz.includes("math-notebook-ui-v191.css?v=191")&&quiz.includes("math-notebook-v187.js?v=191"),"Latest assets must bypass stale iPhone caches");
-assert(forest.includes("forest-v70-quiz.html?v=191"),"Forest iframe must load latest quiz");
+assert(quiz.includes("math-notebook-ui-v191.css?v=191")&&quiz.includes("math-notebook-v187.js?v=192"),"Latest assets must bypass stale iPhone caches");
+assert(forest.includes("forest-v70-quiz.html?v=192"),"Forest iframe must load latest quiz");
 assert.equal(bank.questions.length,630,"Original approved question bank must stay intact");
 console.log("PASS v191: ivy-paper image, large grid, independent graph/lined/blank controls, top-row trash, accessible landscape zoom, 630 questions.");
