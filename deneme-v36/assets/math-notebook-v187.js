@@ -92,7 +92,10 @@
   if(opened&&question&&question.id!==id)closeNotebook();
   question={id,text,scene:info.scene||"forest"};
   ensureLauncher();
-  if(opened&&el("mn-question"))el("mn-question").textContent=text;
+  if(opened&&el("mn-question")){
+   el("mn-question").textContent=text;
+   scheduleQuestionLayout();
+  }
  }
  function placeButton(host){
   if(!host||!question)return;
@@ -114,6 +117,56 @@
    global.parent.postMessage({source:"mathverse-v68-quiz",event,
     obstacle:url.get("obstacle")||"",difficulty:url.get("difficulty")||"orta"},location.origin);
   }catch(e){}
+ }
+ // Allow every normal question its full measured height. Keep some paper.
+ // On extremely long prompts only, the question card scrolls as a fallback.
+ function questionHeightBudget(height,header,accessories,landscape,padding=0){
+  const minPaper=landscape?100:160;
+  const spacing=landscape?14:28;
+  return Math.max(landscape?60:88,Math.floor(height-header-accessories-padding-minPaper-spacing));
+ }
+ let questionLayoutFrame=0;
+ function scheduleQuestionLayout(){
+  if(!opened||!root||questionLayoutFrame)return;
+  questionLayoutFrame=requestAnimationFrame(()=>{
+   questionLayoutFrame=0;
+   if(opened)fitQuestionBlock();
+  });
+ }
+ function fitQuestionBlock(){
+  if(!opened||!root)return;
+  const block=root.querySelector(".mn-question-block"),textNode=el("mn-question");
+  const header=root.querySelector(".mn-header");
+  if(!block||!textNode||!header)return;
+  const landscape=global.innerWidth>global.innerHeight;
+  const style=global.getComputedStyle(root);
+  const padding=(parseFloat(style.paddingTop)||0)+(parseFloat(style.paddingBottom)||0);
+  const accessories=landscape?0:
+   (root.querySelector(".mn-toolbar")?.offsetHeight||0)+
+   (root.querySelector(".mn-settings")?.offsetHeight||0);
+  const budget=questionHeightBudget(root.clientHeight,header.offsetHeight,accessories,landscape,padding);
+  block.style.setProperty("height","auto","important");
+  block.style.setProperty("max-height","none","important");
+  block.style.setProperty("overflow-y","visible","important");
+  textNode.style.removeProperty("font-size");
+  textNode.style.removeProperty("line-height");
+  const sizes=landscape?[16,15,14,13,12]:[17,16,15,14,13];
+  for(const size of sizes){
+   textNode.style.setProperty("font-size",size+"px","important");
+   textNode.style.setProperty("line-height","1.24","important");
+   if(block.scrollHeight<=budget+1)break;
+  }
+  const long=block.scrollHeight>budget+1;
+  if(long){
+   block.style.setProperty("max-height",budget+"px","important");
+   block.style.setProperty("overflow-y","auto","important");
+   block.setAttribute("tabindex","0");
+   block.setAttribute("aria-label","Soru metninin tamamını okumak için kaydırın");
+  }else{
+   block.removeAttribute("tabindex");
+   block.removeAttribute("aria-label");
+  }
+  block.dataset.longQuestion=long?"scroll":"full";
  }
  function createUI(){
   root=element("section","mn-root");
@@ -184,6 +237,10 @@
   workspace.addEventListener("pointerdown",()=>{closePopovers();root.classList.remove("mn-show-settings")},{passive:true});
   if(global.ResizeObserver)new ResizeObserver(()=>{if(opened)fitPaper()}).observe(workspace);
   else global.addEventListener("resize",()=>{if(opened)fitPaper()},{passive:true});
+  global.addEventListener("resize",scheduleQuestionLayout,{passive:true});
+  global.addEventListener("orientationchange",scheduleQuestionLayout,{passive:true});
+  global.visualViewport?.addEventListener?.("resize",scheduleQuestionLayout,{passive:true});
+  document.fonts?.ready?.then(()=>{if(opened)scheduleQuestionLayout()});
   document.addEventListener("visibilitychange",()=>{if(document.hidden&&opened)flush()});
   global.addEventListener("pagehide",()=>{if(opened)flush()});
   document.addEventListener("keydown",e=>{
@@ -209,6 +266,7 @@
   el("mn-zoom-label").textContent=Math.round(note.zoom*100)+"%";
   refresh();notify("notebook-open");
   requestAnimationFrame(()=>{
+   fitQuestionBlock();
    fitPaper(note.scrollY);
    el("mn-back").focus({preventScroll:true});
   });
@@ -431,5 +489,5 @@
   getStatus:()=>({open:opened,questionId:question?.id||null,saved:!saveError,
    strokes:note?.strokes.length||0,height:note?.height||0})
  });
- global.MTKMathNotebookTest=Object.freeze({keyFor,blank,normalize,gridStepPx,docWidth:WIDTH,segmentHeight:SEGMENT,initialHeight:INITIAL_HEIGHT});
+ global.MTKMathNotebookTest=Object.freeze({keyFor,blank,normalize,gridStepPx,questionHeightBudget,docWidth:WIDTH,segmentHeight:SEGMENT,initialHeight:INITIAL_HEIGHT});
 })(window);

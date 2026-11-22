@@ -20,7 +20,7 @@ assert(notebook.includes("liveSegments=new Map()"),"Keep iPhone-safe chunked can
 assert(notebook.includes('note.tool==="hand"||pointer!==null'),"Hand and pen modes must still be distinct");
 assert(notebook.includes("localStorage.setItem(key,JSON.stringify(note))"),"Writing must be stored");
 assert(quiz.includes("math-notebook-forest-v186.css?v=188"),"New decoration must bypass iPhone cache");
-assert(quiz.includes("math-notebook-v187.js?v=192"),"New paper fit must bypass iPhone cache");
-assert(forest.includes("forest-v70-quiz.html?v=194"),"Live forest should load updated worksheet");
+assert(quiz.includes("math-notebook-v187.js?v=195"),"New paper fit must bypass iPhone cache");
+assert(forest.includes("forest-v70-quiz.html?v=195"),"Live forest should load updated worksheet");
 assert.equal(bank.questions.length,630,"Original question bank must remain unchanged");
 console.log("PASS v188: edge-to-edge sage paper, subtle repeating ivy, readable grids, durable writing, unchanged 630 questions.");

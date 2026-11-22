@@ -1,0 +1,42 @@
+/* v195 — Expand the question area to fit the full text. The writing
+   surface consumes remaining space. Only exceptionally long prompts scroll. */
+.mn-root .mn-question-block{
+ display:flex!important;flex-direction:column!important;
+ box-sizing:border-box!important;flex:0 0 auto!important;
+ height:auto!important;min-height:0!important;max-height:none!important;
+ overflow:visible!important;white-space:normal!important;
+ padding:7px 9px!important;
+}
+.mn-root #mn-question{
+ display:block!important;width:100%!important;height:auto!important;
+ min-height:0!important;max-height:none!important;overflow:visible!important;
+ white-space:pre-wrap!important;overflow-wrap:anywhere!important;
+ word-break:normal!important;text-align:left!important;
+ line-height:1.24!important;letter-spacing:0!important;
+ text-overflow:clip!important;
+}
+.mn-root .mn-question-block[data-long-question="scroll"]{
+ overflow-y:auto!important;overscroll-behavior:contain!important;
+ -webkit-overflow-scrolling:touch!important;scrollbar-width:thin!important;
+}
+@media(orientation:portrait){
+ .mn-root .mn-question-block{max-height:none!important;min-height:0!important;padding:7px 9px!important}
+ .mn-root .mn-workspace{flex:1 1 auto!important;min-height:0!important;max-height:none!important}
+}
+@media(orientation:landscape){
+ .mn-root{grid-template-rows:min-content max-content minmax(0,1fr)!important}
+ .mn-root .mn-question-block{
+  grid-column:1/-1!important;grid-row:2!important;
+  height:auto!important;min-height:0!important;max-height:none!important;
+  overflow:visible!important;padding:3px 8px!important;
+ }
+ .mn-root .mn-side-rail{
+  grid-column:1!important;grid-row:3!important;
+  min-height:0!important;max-height:100%!important;
+ }
+ .mn-root .mn-workspace{
+  grid-column:2!important;grid-row:3!important;
+  min-height:0!important;height:100%!important;max-height:none!important;
+ }
+ .mn-root .mn-question-block[data-long-question="scroll"]{overflow-y:auto!important}
+}
