@@ -202,6 +202,62 @@ body.mtk-approved-active .mtk-frame.mtk-universal-v176.mtk-f02-toolbar-mode>.mtk
     left:51.6%!important;top:4%!important;width:46.8%!important;height:56%!important;
   }
 }
+
+/* v179: every obstacle, every question. Both completion/practice actions
+   are true choice-column peers (not little buttons in a half-width btnRow).
+   Existing handlers and saved question state are never replaced. */
+body.mtk-approved-active .mtk-frame.mtk-universal-v176>.mtk-universal-actions {
+  box-sizing:border-box!important;
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:minmax(0,1fr)!important;
+  column-gap:3.6%!important;row-gap:0!important;
+  align-items:stretch!important;justify-content:stretch!important;
+  justify-items:stretch!important;
+  overflow:hidden!important;
+}
+body.mtk-approved-active .mtk-frame.mtk-universal-v176>.mtk-universal-actions>.btn,
+body.mtk-approved-active .mtk-frame.mtk-universal-v176>.mtk-universal-actions>.btnRow>.btn {
+  box-sizing:border-box!important;position:static!important;inset:auto!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;
+  max-width:100%!important;max-height:100%!important;
+  margin:0!important;padding:3px 8px!important;
+  font-size:clamp(11px,2.55cqw,17px)!important;line-height:1.12!important;
+  font-weight:750!important;text-align:center!important;white-space:normal!important;
+  border:1.7px solid #b88c51!important;border-radius:12px!important;
+  background:#fff8e9!important;color:#445744!important;
+  box-shadow:0 2px 4px #76542c30!important;
+  overflow-wrap:break-word!important;overflow:hidden!important;
+  pointer-events:auto!important;
+}
+body.mtk-approved-active .mtk-frame.mtk-universal-v176>.mtk-universal-actions>.btnRow {
+  display:contents!important;
+}
+/* Open instructional panel: use equal-width buttons as well. */
+body.mtk-approved-active .mtk-frame.mtk-universal-v176 .mtk-answer-help-card .mtk-help-foot>.btnRow {
+  box-sizing:border-box!important;width:100%!important;
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:3.6%!important;align-items:stretch!important;
+}
+body.mtk-approved-active .mtk-frame.mtk-universal-v176 .mtk-answer-help-card .mtk-help-foot>.btnRow>.btn {
+  box-sizing:border-box!important;width:100%!important;min-width:0!important;
+  min-height:34px!important;margin:0!important;
+  border:1.7px solid #b88c51!important;border-radius:12px!important;
+  background:#fff8e9!important;color:#445744!important;
+  font-weight:750!important;white-space:normal!important;
+}
+@media(orientation:landscape) {
+  body.mtk-approved-active .mtk-frame.mtk-universal-v176>.mtk-universal-actions {
+    column-gap:4%!important;
+  }
+  body.mtk-approved-active .mtk-frame.mtk-universal-v176>.mtk-universal-actions>.btn {
+    font-size:clamp(10px,1.12vw,15px)!important;
+    padding:2px 5px!important;
+  }
+  body.mtk-approved-active .mtk-frame.mtk-universal-v176 .mtk-answer-help-card .mtk-help-foot>.btnRow {
+    gap:4%!important;
+  }
+}
 `;
 function apply(frame,q){
   if(!frame||!q||!/^F(?:0[1-9]|1[0-9]|2[01])$/.test(String(q.obstacleId||"")))return false;
@@ -229,7 +285,13 @@ function apply(frame,q){
       const actions=document.createElement("nav");
       actions.className="mtk-universal-actions";
       actions.setAttribute("aria-label","Soru işlemleri");
-      for(const group of groups)actions.appendChild(group);
+      // Use real buttons as direct grid items. A completed question supplies
+      // two buttons inside ONE btnRow; moving that row as one item used to
+      // squeeze both actions into a single option-column width.
+      for(const group of groups){
+        for(const child of [...group.children])actions.appendChild(child);
+        group.remove();
+      }
       frame.appendChild(actions);
       for(const extra of frame.querySelectorAll(".mtk-feedback-overlay")){
         if(!extra.textContent.trim())extra.remove();
@@ -238,5 +300,5 @@ function apply(frame,q){
   }
   return true;
 }
-window.MTKQuizUniversalV176=Object.freeze({apply,version:"176",styleId:ID});
+window.MTKQuizUniversalV176=Object.freeze({apply,version:"179",styleId:ID});
 })();
