@@ -49,7 +49,7 @@ assert(vines.includes('z-index:2!important')&&vines.includes('.mn-segment'),"Han
 assert(quiz.includes('math-notebook-v187.js?v=189')&&quiz.includes('math-notebook-v187.css?v=189')&&quiz.includes('math-notebook-forest-v186.css?v=188'),"Notebook resources not loaded");
 assert(quiz.includes('window.MTKMathNotebook?.attach({questionId:q.id,questionText:s.prompt,scene:"forest"})'),"Actual staged question must connect to its own notebook");
 assert(quiz.includes('window.MTKMathNotebook?.hide();window.MTKApprovedQuizV145?.reset()'),"Notebook must hide in home menu");
-assert(forest.includes('forest-v70-quiz.html?v=189'),"Forest chapter must load the updated quiz");
+assert(forest.includes('forest-v70-quiz.html?v=190'),"Forest chapter must load the updated quiz");
 assert.equal(bank.questions.length,630);
 for(const q of bank.questions)assert(q.id&&q.prompt&&q.correctAnswer,"Missing approved question data: "+q.id);
 console.log("PASS v186: forest ivy, touch pen/eraser, undo/redo, multi-page note persistence, per-question restore and unchanged 630 questions.");
