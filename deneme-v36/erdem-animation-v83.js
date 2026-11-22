@@ -17,10 +17,21 @@
  let loaded=false;
  const atlas=new Image();
  atlas.decoding="async";
- atlas.onload=()=>{loaded=atlas.naturalWidth>=COLS*CELL_WIDTH&&atlas.naturalHeight>=5*CELL_HEIGHT};
- atlas.onerror=()=>{loaded=false};
- if(global.ERDEM_V83_HD_ATLAS)atlas.src=global.ERDEM_V83_HD_ATLAS;
- if(atlas.complete&&atlas.naturalWidth)atlas.onload();
+ // Exact approved v83 image. Forest loads it as a native AVIF instead of huge
+ // inline base64; an existing WebP atlas is the final real-art fallback.
+ const sources=[
+  global.ERDEM_V83_HD_ATLAS,
+  "./assets/erdem-v83-hd-atlas-v182.avif?v=182",
+  "./assets/erdem-v83-atlas-preview.webp?v=182"
+ ].filter(Boolean);
+ let sourceIndex=0;
+ function loadNext(){if(sourceIndex<sources.length)atlas.src=sources[sourceIndex++];}
+ atlas.onload=()=>{
+  loaded=atlas.naturalWidth>=COLS*CELL_WIDTH&&atlas.naturalHeight>=5*CELL_HEIGHT;
+  if(!loaded)loadNext();
+ };
+ atlas.onerror=()=>{loaded=false;loadNext()};
+ loadNext();
  const clamp=(value,min,max)=>Math.max(min,Math.min(max,value));
  const num=(value,fallback)=>Number.isFinite(Number(value))?Number(value):fallback;
  function selectFrame(o){
@@ -56,10 +67,14 @@
   ctx.imageSmoothingQuality="high";
   // No runtime alpha scanning, per-frame image scaling, crop modulation,
   // interpolation or changing pivot. Prevents size/position pulsation.
-  ctx.drawImage(atlas,(frame%COLS)*CELL_WIDTH,Math.floor(frame/COLS)*CELL_HEIGHT,
-   CELL_WIDTH,CELL_HEIGHT,-width/2,-height*FOOT_ANCHOR,width,height);
-  ctx.restore();
-  return true;
+  try{
+   ctx.drawImage(atlas,(frame%COLS)*CELL_WIDTH,Math.floor(frame/COLS)*CELL_HEIGHT,
+    CELL_WIDTH,CELL_HEIGHT,-width/2,-height*FOOT_ANCHOR,width,height);
+   ctx.restore();
+   return true;
+  }catch(error){
+   ctx.restore();loaded=false;loadNext();return false;
+  }
  }
  global.MTK_ERDEM_ANIMATION=Object.freeze({
   version:83,draw,selectFrame,frameGeometry,

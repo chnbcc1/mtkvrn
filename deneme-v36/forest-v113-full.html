@@ -608,10 +608,10 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 </section>
 
 <script src="./forest-hd-v67-asset.js?v=67"></script>
-<script src="./forest-props-v69-asset.js?v=69"></script>
+<!-- v182: original prop images now load as a native image rather than a base64 JS string. -->
 <script src="./assets/v73-premium-assets.js?v=73"></script>
-<script src="./erdem-v83-hd-atlas.js?v=83"></script>
-<script src="./erdem-animation-v83.js?v=83"></script>
+<!-- v182: original Erdem atlas now loads as a native image. -->
+<script src="./erdem-animation-v83.js?v=83&hotfix=182"></script>
 <script src="./chiko-v57-hd-atlas.js?v=57"></script>
 <script src="./forest-obstacle-art-v85.js?v=85"></script>
 <script src="./forest-obstacle-art-v98.js?v=98"></script>
@@ -1500,12 +1500,26 @@ background=function(){baseBackground();
 
 /* Premium hand-painted object atlas. Each cell holds a separate forest mechanism. */
 const propAtlas=new Image();
-if(window.FOREST_PROPS_V69)propAtlas.src=window.FOREST_PROPS_V69;
+propAtlas.decoding="async";
+let propFallbackStarted=false;
+// The external WebP has precisely the same approved v69 bytes as the former
+// inlined base64; avoid mobile WebKit's huge JS/data URI memory overhead.
+function tryLegacyPropAtlas(){
+ if(propFallbackStarted)return;
+ propFallbackStarted=true;
+ const script=document.createElement("script");
+ script.src="./forest-props-v69-asset.js?v=69&fallback=182";
+ script.onload=()=>{if(window.FOREST_PROPS_V69)propAtlas.src=window.FOREST_PROPS_V69};
+ document.head.appendChild(script);
+}
+propAtlas.onerror=tryLegacyPropAtlas;
+propAtlas.onload=()=>{if(propAtlas.naturalWidth<1448||propAtlas.naturalHeight<1086)tryLegacyPropAtlas()};
+propAtlas.src="./assets/forest-props-v69-v182.webp?v=182";
 const propIndex={F01:0,F02:1,F03:2,F04:3,F05:4,F06:5,F07:6,F09:8,F10:9,F11:10,F12:11,F13:6,F14:8,F21:3,F15:3,F16:6,F17:4,F18:2,F19:9,F20:3};
 const originalDrawMain=drawMain;
 drawMain=function(g){
  if(g.id==="F08")return;
- if(!propAtlas.complete||propAtlas.naturalWidth<1200){originalDrawMain(g);return}
+ if(!propAtlas.complete||propAtlas.naturalWidth<1200){return} // never paint unapproved vector bars while loading
  let index=propIndex[g.id],srcX=(index%4)*362,srcY=Math.floor(index/4)*362;
  const done=SOLVED.has(g.id);
  worldObject(g.x,GROUND,()=>{
