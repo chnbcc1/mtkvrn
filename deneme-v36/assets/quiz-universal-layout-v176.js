@@ -191,6 +191,17 @@ body.mtk-approved-active .mtk-frame.mtk-universal-v176 .mtk-f02-correct-foot:emp
     left:51.6%!important;top:4%!important;width:46.8%!important;height:56%!important;
   }
 }
+
+/* F02 practice mode formerly used a more specific per-obstacle text height.
+   Global geometry takes precedence, in either orientation, with no overlay. */
+body.mtk-approved-active .mtk-frame.mtk-universal-v176.mtk-f02-toolbar-mode>.mtk-question-region{
+  left:4.2%!important;top:51.1%!important;width:91.6%!important;height:25.1%!important;
+}
+@media(orientation:landscape){
+  body.mtk-approved-active .mtk-frame.mtk-universal-v176.mtk-f02-toolbar-mode>.mtk-question-region{
+    left:51.6%!important;top:4%!important;width:46.8%!important;height:56%!important;
+  }
+}
 `;
 function apply(frame,q){
   if(!frame||!q||!/^F(?:0[1-9]|1[0-9]|2[01])$/.test(String(q.obstacleId||"")))return false;
