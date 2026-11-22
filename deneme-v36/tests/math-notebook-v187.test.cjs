@@ -1,0 +1,75 @@
+"use strict";
+const assert=require("node:assert/strict");
+const fs=require("node:fs");
+const path=require("node:path");
+const vm=require("node:vm");
+const root=path.resolve(__dirname,"..");
+const js=fs.readFileSync(path.join(root,"assets/math-notebook-v187.js"),"utf8");
+const css=fs.readFileSync(path.join(root,"assets/math-notebook-v187.css"),"utf8");
+const vines=fs.readFileSync(path.join(root,"assets/math-notebook-forest-v186.css"),"utf8");
+const quiz=fs.readFileSync(path.join(root,"forest-v70-quiz.html"),"utf8");
+const forest=fs.readFileSync(path.join(root,"forest-v113-full.html"),"utf8");
+const bank=JSON.parse(fs.readFileSync(path.join(root,"forest-questions-v147.json"),"utf8"));
+new vm.Script(js,{filename:"math-notebook-v187.js"});
+const scope={window:{},Math,Number,Map,encodeURIComponent};
+vm.runInNewContext(js,scope);
+const app=scope.window.MTKMathNotebook;
+const u=scope.window.MTKMathNotebookTest;
+assert(app&&u);
+for(const f of ["attach","placeButton","hide","open","close","getStatus"])assert.equal(typeof app[f],"function");
+assert.equal(u.docWidth,1000);
+assert.equal(u.segmentHeight,720);
+assert.equal(u.initialHeight,2880);
+assert.notEqual(u.keyFor("F01-K-01"),u.keyFor("F01-K-02"));
+assert(u.keyFor("F01-K-01").startsWith("mathverse-notebook-v186:"),"Legacy note storage key cannot change");
+const old={version:1,pages:[
+ {strokes:[{tool:"pen",color:"#173b36",size:5,points:[[100,200],[110,220]]},
+  {tool:"erase",color:"#173b36",size:25,points:[[102,202]]}]},
+ {strokes:[{tool:"pen",color:"#164b83",size:4,points:[[12,24],[25,28]]}]}
+],page:1,paper:"lined",zoom:1.3,penSize:6,eraserSize:38,color:"#164b83"};
+const migrated=u.normalize(old);
+assert.equal(migrated.version,2,"Existing notebook must migrate");
+assert.equal(migrated.strokes.length,3,"Existing handwriting and erasers must be preserved");
+assert.equal(migrated.strokes[0].points[0][1],200);
+assert.equal(migrated.strokes[1].tool,"erase");
+assert.equal(migrated.strokes[2].points[0][1],1438,"Second sheet must continue below first");
+assert.equal(migrated.scrollY,1414);
+assert.equal(migrated.paper,"lined");
+assert.equal(migrated.zoom,1.3);
+assert.equal(migrated.color,"#164b83");
+const restored=u.normalize({version:2,strokes:[
+ {tool:"pen",color:"#173b36",size:5,points:[[1,1],[25,3200]]}
+],height:2880,scrollY:1250,tool:"hand",paper:"grid",zoom:1.7});
+assert.equal(restored.tool,"hand");
+assert(restored.height>3200,"Continuous sheet must extend to contain saved ink");
+assert.equal(restored.scrollY,1250,"Position must survive navigation");
+assert.equal(restored.strokes[0].points[1][1],3200);
+assert.equal(u.normalize(null).height,2880);
+assert.equal(u.normalize({...restored,zoom:99}).zoom,2);
+assert.equal(bank.questions.length,630,"Approved question bank changed");
+assert(js.includes("workspace.addEventListener(\"scroll\",onScroll"),"Hand scrolling must update visible chunks");
+assert(js.includes('note.height+2*SEGMENT'),"Sheet must grow automatically on reaching its lower end");
+assert(js.includes("liveSegments=new Map()"),"Must virtualize canvases instead of one massive iOS drawing surface");
+assert(js.includes('for(const [index,c] of [...liveSegments.entries()])'),"Offscreen drawing surfaces must be released");
+assert(js.includes('c.addEventListener("pointerdown",pointerDown)'),"Touch pen must work");
+assert(js.includes('e.getCoalescedEvents()'),"Touch strokes must be smoothed by coalesced samples");
+assert(js.includes('note.tool==="hand"||pointer!==null'),"Hand mode must not draw");
+assert(js.includes('ctx.globalCompositeOperation=stroke.tool==="erase"?"destination-out":"source-over"'),"Eraser must remove existing ink");
+assert(js.includes('function undo()')&&js.includes('function redo()'),"Undo and redo missing");
+assert(js.includes('note.scrollY=workspace.scrollTop/scale'),"Scroll position must persist");
+assert(js.includes('global.confirm("Bu sorunun defterindeki bütün yazılar silinecek.'),"Clear all must request confirmation");
+assert(js.includes('root.classList.toggle("mn-forest",question.scene==="forest")'),"Forest decoration must remain contextual");
+assert(css.includes(".mn-launcher{")&&css.includes("float:right!important"),"Pen launcher must float inside question text");
+assert(css.includes(".mn-root.mn-hand .mn-segment{pointer-events:none"),"Hand mode must unlock native touch scrolling");
+assert(css.includes(".mn-root:not(.mn-hand) .mn-workspace{touch-action:none"),"Pen mode must lock scrolling");
+assert(css.includes('.mn-root [hidden]{display:none!important}'),"Only selected tool settings may show");
+assert(css.includes(".mn-root[hidden]")&&css.includes(".mn-footer"),"Compact worksheet controls must exist");
+assert(!css.includes(".mn-page-nav")&&!js.includes("Yeni sayfa"),"Remove the former multiple-page controls");
+assert(vines.includes(".mn-root.mn-forest .mn-paper::before"),"Approved subtle forest ivy missing");
+assert(quiz.includes('math-notebook-v187.js?v=187')&&quiz.includes('math-notebook-v187.css?v=187'),"Live quiz still points to old notebook");
+assert.equal((quiz.match(/window\.MTKMathNotebook\?\.placeButton\(app\)/g)||[]).length,2,"Pen icon must attach in both answer and completed views");
+assert(quiz.includes('window.MTKMathNotebook?.attach({questionId:q.id,questionText:s.prompt,scene:"forest"})'),"Notes must follow current question");
+assert(forest.includes('forest-v70-quiz.html?v=187'),"Forest entry must load new quiz version");
+assert(forest.includes('d.event==="notebook-open"||d.event==="notebook-close"'),"Parent must receive notebook visibility");
+assert(forest.includes('#quizOverlay[data-notebook-open="1"] .quizBar{display:none!important}'),"Forest top-right back button must not cover notebook");
+console.log("PASS v187: endless virtualized scrolling, icon-only tools, hand mode, inline question icon, v186 migration, 630 questions preserved.");
