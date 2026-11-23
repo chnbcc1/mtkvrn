@@ -73,7 +73,7 @@ for(const q of f03){
  assert(g?.first?.length===3&&g?.second?.length===3&&g?.solution?.length>=4,q.id+" must have question-specific clear Turkish explanations");
  assert(q.options.includes(q.correctAnswer)&&new Set(q.options).size===4,q.id+" answers and distractors must be valid");
  assert(/[²³⁴⁵⁶⁷⁸⁹]/.test(q.workedExample?.question||""),q.id+" worked example should use powers");
- if(q.id!=="F03-Z-01")assert(!/\b[12]\. filtreden miktarın|\bfiltre gelen sisin .*aktarıyor/.test(q.prompt),q.id+" incorrect flow grammar");
+ if(q.id!=="F03-Z-01")assert(!/\b[12]\. filtreden miktarın|Sisinin|\bfiltre gelen sisin 1\/\d+[’\x27](?:ü|i|sı) \d+\. filtreye aktarıyor/.test(q.prompt),q.id+" incorrect flow grammar");
 }
 const charBottom=1297*.499 + (1213*.234)*(1402/1122);
 assert(charBottom < 1010,"Approved transparent reference must remain in landscape vertical safe area");
