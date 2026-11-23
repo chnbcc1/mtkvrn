@@ -37,6 +37,10 @@ for(const difficulty of ["kolay","orta","zor"]){
   assert.equal(f03.filter(q=>q.difficulty===difficulty).length,10);
 }
 assert.equal(Object.keys(api.PLAQUES).length,5,"ONLY five empty data plaques in new illustration");
+const outputOnly=bank.questions.find(q=>q.id==="F03-K-06");
+assert.equal(api.plan(outputOnly)[0].slot,"filter_2","Exit flow cannot be shown on an incoming pipe");
+assert.equal(api.plan(outputOnly)[1].slot,"filter_3","Observation share must be beside final observation tube");
+assert(api.PLAQUES.filter_1[1]>825,"Numeric text must be centered below the top gemstone");
 const slotNames=new Set(Object.keys(api.PLAQUES));
 let numberCount=0;
 for(const q of f03){
