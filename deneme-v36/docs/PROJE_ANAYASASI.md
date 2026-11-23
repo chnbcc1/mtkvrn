@@ -37,18 +37,18 @@
 ## 3. GÖRSEL EKRAN YERLEŞİMİ
 - **DİKEY (portrait):** Sahneli soru ekranının **üst %50'si görsel**, alt %50 soru + şıklar / yardımcı araçlar.
 - **YATAY (landscape):** **SOL %50 görsel**, sağ %50 soru + şıklar / yardımcı araçlar. **Yatayda üst %50 değil.**
-- İki bağımsız oran/kompozisyon kullanılır. Yan yana iki taslak, başlık, cevap şablonu veya büyük infografik olarak tek görsel üretme; oyuna takılabilen *yalnız sahne görseli* üret.
+- **TEK ANA SAHNE KURALI (24.11.2026 kullanıcı onayı):** Her araştırma görevi için önce dikey ekranda kullanılacak **tek ana sahne görseli** hazırlanır. Yatay için farklı sahne veya yeniden çizilmiş kompozisyon üretilmez; **dikey için üretilmiş aynı görüntü** kullanılır. Yatayın sol %50'lik görsel çerçevesine orantılı sığdırılır; gerekiyorsa **yalnızca üstünden veya altından bir miktar kırpılır**. Görsel yatayda gerilmez, yeniden oluşturulmaz, filtre/makine/arka plan nesnelerinin şekli ve konumu değiştirilmez. İki konumda da aynı sahne kimliği korunur. Yan yana iki taslak, başlık, cevap şablonu veya büyük infografik olarak tek görsel üretme; oyuna takılabilen *yalnız sahne görseli* üret.
 - Görselin içine soru, cevap, sonuç, üs, kesir, değer, plaket sayıları, “F03 Zor”, “Sis Türbini” başlığı gibi statik metin yerleştirme. Gerekli konumsal boş plaketler ve veri ankrajları önceden tasarlanabilir; değerler sonradan dinamik yazılır.
-- Sahneler bozulmadan/kırpılmadan/esnetilmeden görüntülenecek. Kısa/uzun sorular ekrana uyarlanacak; gerekli çok uzun metinler için kontrollü kaydırma olabilir.
+- Görselin en-boy oranı korunur; görüntü **esnetilmez**. Dikey ana görüntü yataya uyarlanırken sadece **üst veya alt kısmından gerekli kadar kırpma** yapılabilir; kritik türbin/filtre/veri alanları ve Erdem-Çiko için ayrılan boş yerler kesilmez. Sağdan/soldan kırpma, yapay genişletme ve yeni sahne oluşturma yapılmaz. Ana sahne hazırlanırken bu iki kullanımın güvenli kırpma payları önceden tasarlanır. Kısa/uzun sorular ekrana uyarlanacak; gerekli çok uzun metinler için kontrollü kaydırma olabilir.
 - Yüksek kaliteli, oyunun mevcut sinematik orman ve altın çerçeve kimliğine uyumlu sahne; Erdem/Çiko'yu kapatmayan 3B engel/makine arka planda.
-- Görsel üretimi sırası: (1) doğrulanmış görev ve onaylı mevcut soruyu oku, (2) dikey **karaktersiz** sahne, (3) yatay **karaktersiz** sahne, (4) onaylı karakterleri aynen bindir, (5) soru verilerini ayrı katmanla bağla, (6) iki ekranda iPhone testi.
+- Görsel üretimi sırası: (1) doğrulanmış görev ve onaylı mevcut soruları oku, (2) dikey üst %50 için Erdem/Çiko'suz **tek ana sahneyi** üret, iki yön için kritik unsurların ve karakter boşluklarının korunacağını kontrol et, (3) yatay sol %50 için **aynı sahneyi sadece gerekirse üstten/alttan kırparak** kullan, **yeniden çizme/üretme**, (4) onaylı Erdem ve Çiko referanslarını ayrı katman olarak iki yerleşime de uygula, (5) soru verilerini ayrı katmanla bağla, (6) iki ekranda gerçek iPhone testi yap.
 
 ## 4. F03 — ÜÇÜNCÜ ARAŞTIRMA GÖREVİ
 - **Adı: Sis Türbini.** Sis miktarının giriş, filtre(ler), çıkış dönüşümünü konu edinen sorular. `deneme-v36/forest-questions-v147.json` içinde `obstacleId: F03` ile doğrulandı.
 - Var olan F03 makine illüstrasyonu: `deneme-v36/assets/quiz-f03-machine-v145.js`; sahne geliştirmeden önce gerçek mevcut görsel/HTML bağlantıları incelenecek.
 - Kullanıcı yeni sahnede ilk aşamada Erdem/Çiko istemiyor. Karakterlerin sonradan eklenebileceği boş alanlar bırakılacak.
 - **Kaya/kütük** gibi zıplama engellerini yanlışlıkla “3. Engel” başlıklı F03 görselinin yerine üretme. Bu hata önceki taslaklarda yaşandı ve kabul edilmedi.
-- Dikey üst %50, yatay sol %50 görsel. Bu görseller sadece makine/sahne olacak, soru/şıklar oyun arayüzünde yer alacak.
+- Dikey üst %50, yatay sol %50 görsel. **F03 Sis Türbini için de dikey ana görselin aynısı yatayda kullanılacak; sadece üst/alt kırpma serbest, ikinci bir türbin sahnesi üretmek yasak.** Bu görseller sadece makine/sahne olacak, soru/şıklar oyun arayüzünde yer alacak.
 - Yeni F03 taslağı kullanıcı açıkça onaylamadan onaylı final sahne olarak kaydedilmez veya canlıya bağlanmaz.
 
 ## 5. Defter / soru ekranı (kabul edilmiş davranış)
@@ -80,4 +80,5 @@
 **Kural değişirse:** Eski cümleyi sessizce silip yerine başka karar koyma. Kararın nedenini, yeni onayı ve tarihi kısa değişiklik kaydıyla ekle.
 
 ## 8. Proje kuralı değişiklik günlüğü
+- **24.11.2026 — Tek ana sahne kararı.** Kullanıcı, dikey görev görselinin yatayda da aynen kullanılmasını; yalnızca üstten/alttan gerektiği kadar kırpılmasını onayladı. Eskiden yazılı olan iki bağımsız kompozisyon ve tamamen kırpmasız yerleşim kuralları bu karara göre güncellendi. Erdem/Çiko ayrı referans katmanı, dinamik sayılar ve dikey üst %50 / yatay sol %50 değişmedi.
 - **23.11.2026 — İlk ana kural derlemesi.** Küçük zıplama engelleri / 21 araştırma görevi ayrımı ve F03 bağlamı yeniden doğrulandı. Dikey/yatay %50 yerleşim ve onaylı Erdem/Çiko referansı eklendi. Bu belge kodu veya soru bankasını değiştirmez.
