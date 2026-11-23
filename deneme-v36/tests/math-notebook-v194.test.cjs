@@ -27,7 +27,7 @@ assert(css.includes("pointer-events:none!important"),"Ivy must not intercept tou
 assert(css.includes("mix-blend-mode:multiply!important"),"Leaf background must not overwrite sage paper");
 assert(quiz.includes("math-notebook-retina-v194.css?v=194"),"Cache-bust the retina fix");
 assert(quiz.indexOf("math-notebook-iphone-v193.css")<quiz.indexOf("math-notebook-retina-v194.css"),"Retina fix must load last");
-assert(forest.includes("forest-v70-quiz.html?v=196"),"Active forest must open the new notebook");
+assert(forest.includes("forest-v70-quiz.html?v=197"),"Active forest must open the new notebook");
 assert(js.includes("gridStepPx(note.zoom)")&&js.includes("localStorage.setItem(key,JSON.stringify(note))"),"Keep stable squares and stored student ink");
 assert.equal(bank.questions.length,630,"Keep the original question bank intact");
 console.log("PASS v194: native original ivy at 3.2x source/Retina density, preserved paper and all 630 questions.");

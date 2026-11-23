@@ -29,7 +29,7 @@ assert(css.includes("grid-template-rows:min-content max-content minmax(0,1fr)"),
 assert(css.includes(".mn-root .mn-workspace")&&css.includes("min-height:0!important"),"Worksheet should flex to take remaining space");
 assert(quiz.includes('math-notebook-question-v195.css?v=195')&&quiz.includes('math-notebook-v187.js?v=196'),"Assets must be cache-busted");
 assert(quiz.indexOf("math-notebook-retina-v194.css")<quiz.indexOf("math-notebook-question-v195.css"),"Question CSS should load last");
-assert(forest.includes("forest-v70-quiz.html?v=196"),"Live forest route must load v195");
+assert(forest.includes("forest-v70-quiz.html?v=197"),"Live forest route must load v195");
 assert(js.includes("localStorage.setItem(key,JSON.stringify(note))"),"Preserve saved student calculations");
 assert.equal(bank.questions.length,630,"Preserve all 630 approved questions");
 console.log("PASS v195: adaptive complete question display, iPhone orientation reflow, overflow fallback, writing space and all questions preserved.");

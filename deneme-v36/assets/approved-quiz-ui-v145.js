@@ -368,6 +368,9 @@
     if(q?.obstacleId==='F02')window.MTKF02ApprovedV165?.enhance(frame,q);
     // One layout owns ALL 21 obstacle screens, after approved scene/label mounts.
     window.MTKQuizUniversalV176?.apply(frame,q);
+    // F03: the same approved portrait scene in both orientations.
+    // Mount after the universal geometry; values stay in live DOM plaques.
+    if(q?.obstacleId==="F03")window.MTKF03ApprovedV197?.enhance(frame,q);
     return true;
   }
   function reset(){document.body.classList.remove('mtk-approved-active')}

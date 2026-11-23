@@ -23,6 +23,6 @@ assert(css.includes("@media(orientation:landscape) and (max-height:380px)"),"Sma
 assert(js.includes("liveSegments=new Map()")&&js.includes("localStorage.setItem(key,JSON.stringify(note))"),"Save and virtualize writing");
 assert(js.includes('note.tool==="hand"||pointer!==null'),"Hand tool must not draw");
 assert(quiz.includes("math-notebook-v187.css?v=189")&&quiz.includes("math-notebook-v187.js?v=196"),"Cache bust missing");
-assert(forest.includes("forest-v70-quiz.html?v=196"),"Live forest route not updated");
+assert(forest.includes("forest-v70-quiz.html?v=197"),"Live forest route not updated");
 assert.equal(bank.questions.length,630,"Original approved question bank must stay intact");
 console.log("PASS v189: vertical landscape rail, wide paper under question, intact portrait and persistent notes.");

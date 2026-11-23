@@ -1,0 +1,25 @@
+name: F03 Sis Turbini v197 Scene and Label Regression
+on:
+  push:
+    branches: [main]
+    paths:
+      - "deneme-v36/assets/f03-approved-v197.js"
+      - "deneme-v36/assets/f03-sis-turbini-master-v197.avif"
+      - "deneme-v36/assets/approved-quiz-ui-v145.js"
+      - "deneme-v36/forest-v70-quiz.html"
+      - "deneme-v36/tests/f03-approved-v197.test.cjs"
+      - ".github/workflows/f03-approved-v197.yml"
+  pull_request:
+    paths:
+      - "deneme-v36/assets/f03-approved-v197.js"
+      - "deneme-v36/assets/f03-sis-turbini-master-v197.avif"
+      - "deneme-v36/tests/f03-approved-v197.test.cjs"
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node deneme-v36/tests/f03-approved-v197.test.cjs
