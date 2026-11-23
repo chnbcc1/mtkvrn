@@ -1057,10 +1057,10 @@
       "difficulty": "kolay",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sis türbinine 64 birim sis giriyor. Birinci filtre sis miktarını 2 eşit parçaya bölüp bir parçayı bırakıyor; ikinci filtre kalan miktarı 8 eşit parçaya bölüp bir parçayı bırakıyor. Çıkışta kaç birim sis bulunur?",
+      "prompt": "Sis türbinine 64 birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre kendisine gelen sisin yarısı 2. filtreye aktarıyor. 2. filtre de bu miktarın 1/8’i geçiriyor. Türbin çıkışında kaç birim sis kalır?",
       "correctAnswer": "4",
       "solution": "64 ÷ 2 ÷ 8 = 4.",
-      "hint": "Her işlemde kalan miktar azalmalıdır.",
+      "hint": "Sırasıyla 1/2 → 1/8 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
       "inputType": "choice",
       "options": [
         "8",
@@ -1093,11 +1093,29 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "64 birim sis iki filtreden geçip sırasıyla yarıya ve dörtte bire iniyor. Ne kadar kalır?",
+        "question": "Sis türbinine 64 birim sis giriyor. Bu sisin tamamı 1. filtreden geçiyor; ilk filtre gelen miktarın yarısını 2. filtreye aktarıyor. 2. filtre kendisine gelen sisin dörtte birini geçiriyor. Çıkışta kaç birim sis kalır?",
         "solution": "64 ÷ 2 ÷ 4 = 8."
       },
       "sourceQuestionId": "F03-K-01",
-      "sourceDifficulty": "Kolay"
+      "sourceDifficulty": "Kolay",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: son filtre veya çıkıştan ulaşan sis miktarı. Başlangıçta 64 birim sis var.",
+          "Sırasıyla 1/2 → 1/8 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 64 = 64 birim.",
+          "İlk süzme: 64 ÷ 2 = 32 birim.",
+          "Şimdi 32 birime 1/8 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 64 = 64 birim.",
+          "2. 1. filtre: 64 ÷ 2 = 32 birim.",
+          "3. 2. filtre: 32 ÷ 8 = 4 birim.",
+          "4. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 4 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-K-02",
@@ -1105,10 +1123,10 @@
       "difficulty": "kolay",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Türbine 128 birim sis giriyor. Her filtre kalan sisin yarısını bırakıyor. Sis 3 filtreden geçince kaç birim kalır?",
+      "prompt": "Sis türbinine 128 birim sis giriyor. Sis sırayla 3 süzme aşamasından geçiyor. Her aşamada gelen sisin yarısı bir sonraki aşamaya aktarılıyor. Son aşamadan sonra kaç birim sis kalır?",
       "correctAnswer": "16",
       "solution": "128 ÷ 2³ = 16.",
-      "hint": "Her filtreden sonra ikiye böl.",
+      "hint": "Sis art arda 3 süzme aşamasından geçer; her aşamada o anki sis miktarının yarısı kalır.",
       "inputType": "choice",
       "options": [
         "32",
@@ -1141,11 +1159,30 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "64 birim sis iki filtreden geçip sırasıyla yarıya ve dörtte bire iniyor. Ne kadar kalır?",
+        "question": "Sis türbinine 64 birim sis giriyor. Bu sisin tamamı 1. filtreden geçiyor; ilk filtre gelen miktarın yarısını 2. filtreye aktarıyor. 2. filtre kendisine gelen sisin dörtte birini geçiriyor. Çıkışta kaç birim sis kalır?",
         "solution": "64 ÷ 2 ÷ 4 = 8."
       },
       "sourceQuestionId": "F03-K-02",
-      "sourceDifficulty": "Kolay"
+      "sourceDifficulty": "Kolay",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: süzme işlemleri sonunda kalan sis miktarı. Başlangıçta 128 birim sis var.",
+          "Sis art arda 3 süzme aşamasından geçer; her aşamada o anki sis miktarının yarısı kalır.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 128 = 128 birim.",
+          "İlk süzme: 128 ÷ 2 = 64 birim.",
+          "Şimdi 64 birime 1/2, sonra 1/2 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 128 = 128 birim.",
+          "2. 1. süzme aşaması: 128 ÷ 2 = 64 birim.",
+          "3. 2. süzme aşaması: 64 ÷ 2 = 32 birim.",
+          "4. 3. süzme aşaması: 32 ÷ 2 = 16 birim.",
+          "5. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 16 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-K-03",
@@ -1153,10 +1190,10 @@
       "difficulty": "kolay",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlem tüpüne giden hat, türbinin çıkışındaki 128 birim sisin sekizde birini alıyor. Tüpe kaç birim sis ulaşır?",
+      "prompt": "Sis türbininin çıkışında 128 birim sis bulunuyor. Bu sisin 1/8’i gözlem tüpüne yönlendiriliyor. Gözlem tüpüne kaç birim sis ulaşır?",
       "correctAnswer": "16",
       "solution": "128 ÷ 8 = 16.",
-      "hint": "Sekizde birini almak sekize bölmektir.",
+      "hint": "Tüp yalnızca çıkıştaki sisin 1/8’i alır. Tamamı gözlem tüpüne gitmez.",
       "inputType": "choice",
       "options": [
         "16",
@@ -1185,11 +1222,29 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "64 birim sis iki filtreden geçip sırasıyla yarıya ve dörtte bire iniyor. Ne kadar kalır?",
+        "question": "Sis türbinine 64 birim sis giriyor. Bu sisin tamamı 1. filtreden geçiyor; ilk filtre gelen miktarın yarısını 2. filtreye aktarıyor. 2. filtre kendisine gelen sisin dörtte birini geçiriyor. Çıkışta kaç birim sis kalır?",
         "solution": "64 ÷ 2 ÷ 4 = 8."
       },
       "sourceQuestionId": "F03-K-03",
-      "sourceDifficulty": "Kolay"
+      "sourceDifficulty": "Kolay",
+      "f03Guide": {
+        "first": [
+          "Sorulan gözlem tüpüne gelen miktardır; türbin çıkışında 128 birim sis bulunuyor.",
+          "Tüp yalnızca çıkıştaki sisin 1/8’i alır. Tamamı gözlem tüpüne gitmez.",
+          "Bir miktarın 1/8’ini bulmak için 8 eşit parçaya bölüp yalnızca bir parçayı düşün."
+        ],
+        "second": [
+          "Önce türbin çıkışındaki miktarı sayısal olarak yaz: 128 = 128 birim.",
+          "128 birimi 8 eşit parçaya ayır; gözlem tüpü bu parçalardan yalnızca birini alacak.",
+          "Her bir parçaya düşen miktarı hesapla. Çözümü bulduğunda kaç parça alındığını kontrol et."
+        ],
+        "solution": [
+          "1. Türbin çıkışındaki sis miktarı 128 birim.",
+          "2. Gözlem tüpünün aldığı pay 1/8.",
+          "3. Gözlem tüpüne ulaşan miktar: 128 ÷ 8 = 16 birim.",
+          "4. Kontrol: Tüp yalnızca bir pay alır; sonuç 16 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-K-04",
@@ -1197,10 +1252,10 @@
       "difficulty": "kolay",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sis türbinine 128 birim sis giriyor. Birinci filtre sis miktarını 4 eşit parçaya bölüp bir parçayı bırakıyor; ikinci filtre kalan miktarı 4 eşit parçaya bölüp bir parçayı bırakıyor. Çıkışta kaç birim sis bulunur?",
+      "prompt": "Sis türbinine 128 birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre kendisine gelen sisin 1/4’ü 2. filtreye aktarıyor. 2. filtre de bu miktarın 1/4’ü geçiriyor. Türbin çıkışında kaç birim sis kalır?",
       "correctAnswer": "8",
       "solution": "128 ÷ 4 ÷ 4 = 8.",
-      "hint": "Her işlemde kalan miktar azalmalıdır.",
+      "hint": "Sırasıyla 1/4 → 1/4 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
       "inputType": "choice",
       "options": [
         "16",
@@ -1233,11 +1288,29 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "64 birim sis iki filtreden geçip sırasıyla yarıya ve dörtte bire iniyor. Ne kadar kalır?",
+        "question": "Sis türbinine 64 birim sis giriyor. Bu sisin tamamı 1. filtreden geçiyor; ilk filtre gelen miktarın yarısını 2. filtreye aktarıyor. 2. filtre kendisine gelen sisin dörtte birini geçiriyor. Çıkışta kaç birim sis kalır?",
         "solution": "64 ÷ 2 ÷ 4 = 8."
       },
       "sourceQuestionId": "F03-K-04",
-      "sourceDifficulty": "Kolay"
+      "sourceDifficulty": "Kolay",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: son filtre veya çıkıştan ulaşan sis miktarı. Başlangıçta 128 birim sis var.",
+          "Sırasıyla 1/4 → 1/4 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 128 = 128 birim.",
+          "İlk süzme: 128 ÷ 4 = 32 birim.",
+          "Şimdi 32 birime 1/4 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 128 = 128 birim.",
+          "2. 1. filtre: 128 ÷ 4 = 32 birim.",
+          "3. 2. filtre: 32 ÷ 4 = 8 birim.",
+          "4. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 8 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-K-05",
@@ -1245,10 +1318,10 @@
       "difficulty": "kolay",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Türbine 256 birim sis giriyor. Her filtre kalan sisin yarısını bırakıyor. Sis 4 filtreden geçince kaç birim kalır?",
+      "prompt": "Sis türbinine 256 birim sis giriyor. Sis sırayla 4 süzme aşamasından geçiyor. Her aşamada gelen sisin yarısı bir sonraki aşamaya aktarılıyor. Son aşamadan sonra kaç birim sis kalır?",
       "correctAnswer": "16",
       "solution": "256 ÷ 2⁴ = 16.",
-      "hint": "Her filtreden sonra ikiye böl.",
+      "hint": "Sis art arda 4 süzme aşamasından geçer; her aşamada o anki sis miktarının yarısı kalır.",
       "inputType": "choice",
       "options": [
         "32",
@@ -1281,11 +1354,31 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "64 birim sis iki filtreden geçip sırasıyla yarıya ve dörtte bire iniyor. Ne kadar kalır?",
+        "question": "Sis türbinine 64 birim sis giriyor. Bu sisin tamamı 1. filtreden geçiyor; ilk filtre gelen miktarın yarısını 2. filtreye aktarıyor. 2. filtre kendisine gelen sisin dörtte birini geçiriyor. Çıkışta kaç birim sis kalır?",
         "solution": "64 ÷ 2 ÷ 4 = 8."
       },
       "sourceQuestionId": "F03-K-05",
-      "sourceDifficulty": "Kolay"
+      "sourceDifficulty": "Kolay",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: süzme işlemleri sonunda kalan sis miktarı. Başlangıçta 256 birim sis var.",
+          "Sis art arda 4 süzme aşamasından geçer; her aşamada o anki sis miktarının yarısı kalır.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 256 = 256 birim.",
+          "İlk süzme: 256 ÷ 2 = 128 birim.",
+          "Şimdi 128 birime 1/2, sonra 1/2, sonra 1/2 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 256 = 256 birim.",
+          "2. 1. süzme aşaması: 256 ÷ 2 = 128 birim.",
+          "3. 2. süzme aşaması: 128 ÷ 2 = 64 birim.",
+          "4. 3. süzme aşaması: 64 ÷ 2 = 32 birim.",
+          "5. 4. süzme aşaması: 32 ÷ 2 = 16 birim.",
+          "6. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 16 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-K-06",
@@ -1293,10 +1386,10 @@
       "difficulty": "kolay",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlem tüpüne giden hat, türbinin çıkışındaki 256 birim sisin sekizde birini alıyor. Tüpe kaç birim sis ulaşır?",
+      "prompt": "Sis türbininin çıkışında 256 birim sis bulunuyor. Bu sisin 1/8’i gözlem tüpüne yönlendiriliyor. Gözlem tüpüne kaç birim sis ulaşır?",
       "correctAnswer": "32",
       "solution": "256 ÷ 8 = 32.",
-      "hint": "Sekizde birini almak sekize bölmektir.",
+      "hint": "Tüp yalnızca çıkıştaki sisin 1/8’i alır. Tamamı gözlem tüpüne gitmez.",
       "inputType": "choice",
       "options": [
         "16",
@@ -1325,11 +1418,29 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "64 birim sis iki filtreden geçip sırasıyla yarıya ve dörtte bire iniyor. Ne kadar kalır?",
+        "question": "Sis türbinine 64 birim sis giriyor. Bu sisin tamamı 1. filtreden geçiyor; ilk filtre gelen miktarın yarısını 2. filtreye aktarıyor. 2. filtre kendisine gelen sisin dörtte birini geçiriyor. Çıkışta kaç birim sis kalır?",
         "solution": "64 ÷ 2 ÷ 4 = 8."
       },
       "sourceQuestionId": "F03-K-06",
-      "sourceDifficulty": "Kolay"
+      "sourceDifficulty": "Kolay",
+      "f03Guide": {
+        "first": [
+          "Sorulan gözlem tüpüne gelen miktardır; türbin çıkışında 256 birim sis bulunuyor.",
+          "Tüp yalnızca çıkıştaki sisin 1/8’i alır. Tamamı gözlem tüpüne gitmez.",
+          "Bir miktarın 1/8’ini bulmak için 8 eşit parçaya bölüp yalnızca bir parçayı düşün."
+        ],
+        "second": [
+          "Önce türbin çıkışındaki miktarı sayısal olarak yaz: 256 = 256 birim.",
+          "256 birimi 8 eşit parçaya ayır; gözlem tüpü bu parçalardan yalnızca birini alacak.",
+          "Her bir parçaya düşen miktarı hesapla. Çözümü bulduğunda kaç parça alındığını kontrol et."
+        ],
+        "solution": [
+          "1. Türbin çıkışındaki sis miktarı 256 birim.",
+          "2. Gözlem tüpünün aldığı pay 1/8.",
+          "3. Gözlem tüpüne ulaşan miktar: 256 ÷ 8 = 32 birim.",
+          "4. Kontrol: Tüp yalnızca bir pay alır; sonuç 32 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-K-07",
@@ -1337,10 +1448,10 @@
       "difficulty": "kolay",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sis türbinine 256 birim sis giriyor. Birinci filtre sis miktarını 2 eşit parçaya bölüp bir parçayı bırakıyor; ikinci filtre kalan miktarı 8 eşit parçaya bölüp bir parçayı bırakıyor. Çıkışta kaç birim sis bulunur?",
+      "prompt": "Sis türbinine 256 birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre kendisine gelen sisin yarısı 2. filtreye aktarıyor. 2. filtre de bu miktarın 1/8’i geçiriyor. Türbin çıkışında kaç birim sis kalır?",
       "correctAnswer": "16",
       "solution": "256 ÷ 2 ÷ 8 = 16.",
-      "hint": "Her işlemde kalan miktar azalmalıdır.",
+      "hint": "Sırasıyla 1/2 → 1/8 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
       "inputType": "choice",
       "options": [
         "16",
@@ -1373,11 +1484,29 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "64 birim sis iki filtreden geçip sırasıyla yarıya ve dörtte bire iniyor. Ne kadar kalır?",
+        "question": "Sis türbinine 64 birim sis giriyor. Bu sisin tamamı 1. filtreden geçiyor; ilk filtre gelen miktarın yarısını 2. filtreye aktarıyor. 2. filtre kendisine gelen sisin dörtte birini geçiriyor. Çıkışta kaç birim sis kalır?",
         "solution": "64 ÷ 2 ÷ 4 = 8."
       },
       "sourceQuestionId": "F03-K-07",
-      "sourceDifficulty": "Kolay"
+      "sourceDifficulty": "Kolay",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: son filtre veya çıkıştan ulaşan sis miktarı. Başlangıçta 256 birim sis var.",
+          "Sırasıyla 1/2 → 1/8 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 256 = 256 birim.",
+          "İlk süzme: 256 ÷ 2 = 128 birim.",
+          "Şimdi 128 birime 1/8 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 256 = 256 birim.",
+          "2. 1. filtre: 256 ÷ 2 = 128 birim.",
+          "3. 2. filtre: 128 ÷ 8 = 16 birim.",
+          "4. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 16 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-K-08",
@@ -1385,10 +1514,10 @@
       "difficulty": "kolay",
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Türbine 64 birim sis giriyor. Her filtre kalan sisin yarısını bırakıyor. Sis 2 filtreden geçince kaç birim kalır?",
+      "prompt": "Sis türbinine 64 birim sis giriyor. Sis sırayla 2 süzme aşamasından geçiyor. Her aşamada gelen sisin yarısı bir sonraki aşamaya aktarılıyor. Son aşamadan sonra kaç birim sis kalır?",
       "correctAnswer": "16",
       "solution": "64 ÷ 2² = 16.",
-      "hint": "Her filtreden sonra ikiye böl.",
+      "hint": "Sis art arda 2 süzme aşamasından geçer; her aşamada o anki sis miktarının yarısı kalır.",
       "inputType": "choice",
       "options": [
         "32",
@@ -1421,11 +1550,29 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "64 birim sis iki filtreden geçip sırasıyla yarıya ve dörtte bire iniyor. Ne kadar kalır?",
+        "question": "Sis türbinine 64 birim sis giriyor. Bu sisin tamamı 1. filtreden geçiyor; ilk filtre gelen miktarın yarısını 2. filtreye aktarıyor. 2. filtre kendisine gelen sisin dörtte birini geçiriyor. Çıkışta kaç birim sis kalır?",
         "solution": "64 ÷ 2 ÷ 4 = 8."
       },
       "sourceQuestionId": "F03-K-08",
-      "sourceDifficulty": "Kolay"
+      "sourceDifficulty": "Kolay",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: süzme işlemleri sonunda kalan sis miktarı. Başlangıçta 64 birim sis var.",
+          "Sis art arda 2 süzme aşamasından geçer; her aşamada o anki sis miktarının yarısı kalır.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 64 = 64 birim.",
+          "İlk süzme: 64 ÷ 2 = 32 birim.",
+          "Şimdi 32 birime 1/2 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 64 = 64 birim.",
+          "2. 1. süzme aşaması: 64 ÷ 2 = 32 birim.",
+          "3. 2. süzme aşaması: 32 ÷ 2 = 16 birim.",
+          "4. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 16 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-K-09",
@@ -1433,10 +1580,10 @@
       "difficulty": "kolay",
       "variant": 9,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Turbinden çıkan 2⁷ birim sisin dörtte biri gözlem tüpüne aktarılıyor. Tüpe kaç birim sis ulaşır?",
+      "prompt": "Sis türbininin çıkışında 2⁷ birim sis bulunuyor. Bu sisin 1/4’ü gözlem tüpüne yönlendiriliyor. Gözlem tüpüne kaç birim sis ulaşır?",
       "correctAnswer": "32",
       "solution": "128 ÷ 4 = 32.",
-      "hint": "Dörtte birini almak dörde bölmektir.",
+      "hint": "Tüp yalnızca çıkıştaki sisin 1/4’ü alır. Tamamı gözlem tüpüne gitmez.",
       "inputType": "choice",
       "options": [
         "16",
@@ -1465,11 +1612,29 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "64 birim sis iki filtreden geçip sırasıyla yarıya ve dörtte bire iniyor. Ne kadar kalır?",
+        "question": "Sis türbinine 64 birim sis giriyor. Bu sisin tamamı 1. filtreden geçiyor; ilk filtre gelen miktarın yarısını 2. filtreye aktarıyor. 2. filtre kendisine gelen sisin dörtte birini geçiriyor. Çıkışta kaç birim sis kalır?",
         "solution": "64 ÷ 2 ÷ 4 = 8."
       },
       "sourceQuestionId": "F03-K-09",
-      "sourceDifficulty": "Kolay"
+      "sourceDifficulty": "Kolay",
+      "f03Guide": {
+        "first": [
+          "Sorulan gözlem tüpüne gelen miktardır; türbin çıkışında 2⁷ birim sis bulunuyor.",
+          "Tüp yalnızca çıkıştaki sisin 1/4’ü alır. Tamamı gözlem tüpüne gitmez.",
+          "Bir miktarın 1/4’ini bulmak için 4 eşit parçaya bölüp yalnızca bir parçayı düşün."
+        ],
+        "second": [
+          "Önce türbin çıkışındaki miktarı sayısal olarak yaz: 2⁷ = 128 birim.",
+          "128 birimi 4 eşit parçaya ayır; gözlem tüpü bu parçalardan yalnızca birini alacak.",
+          "Her bir parçaya düşen miktarı hesapla. Çözümü bulduğunda kaç parça alındığını kontrol et."
+        ],
+        "solution": [
+          "1. Türbin çıkışındaki sis miktarı 128 birim.",
+          "2. Gözlem tüpünün aldığı pay 1/4.",
+          "3. Gözlem tüpüne ulaşan miktar: 128 ÷ 4 = 32 birim.",
+          "4. Kontrol: Tüp yalnızca bir pay alır; sonuç 32 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-K-10",
@@ -1477,10 +1642,10 @@
       "difficulty": "kolay",
       "variant": 10,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sis türbinine 64 birim sis giriyor. Birinci filtre sis miktarını 4 eşit parçaya bölüp bir parçayı bırakıyor; ikinci filtre kalan miktarı 4 eşit parçaya bölüp bir parçayı bırakıyor. Çıkışta kaç birim sis bulunur?",
+      "prompt": "Sis türbinine 64 birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre kendisine gelen sisin 1/4’ü 2. filtreye aktarıyor. 2. filtre de bu miktarın 1/4’ü geçiriyor. Türbin çıkışında kaç birim sis kalır?",
       "correctAnswer": "4",
       "solution": "64 ÷ 4 ÷ 4 = 4.",
-      "hint": "Her işlemde kalan miktar azalmalıdır.",
+      "hint": "Sırasıyla 1/4 → 1/4 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
       "inputType": "choice",
       "options": [
         "8",
@@ -1513,11 +1678,29 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "64 birim sis iki filtreden geçip sırasıyla yarıya ve dörtte bire iniyor. Ne kadar kalır?",
+        "question": "Sis türbinine 64 birim sis giriyor. Bu sisin tamamı 1. filtreden geçiyor; ilk filtre gelen miktarın yarısını 2. filtreye aktarıyor. 2. filtre kendisine gelen sisin dörtte birini geçiriyor. Çıkışta kaç birim sis kalır?",
         "solution": "64 ÷ 2 ÷ 4 = 8."
       },
       "sourceQuestionId": "F03-K-10",
-      "sourceDifficulty": "Kolay"
+      "sourceDifficulty": "Kolay",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: son filtre veya çıkıştan ulaşan sis miktarı. Başlangıçta 64 birim sis var.",
+          "Sırasıyla 1/4 → 1/4 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 64 = 64 birim.",
+          "İlk süzme: 64 ÷ 4 = 16 birim.",
+          "Şimdi 16 birime 1/4 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 64 = 64 birim.",
+          "2. 1. filtre: 64 ÷ 4 = 16 birim.",
+          "3. 2. filtre: 16 ÷ 4 = 4 birim.",
+          "4. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 4 birimdir."
+        ]
+      }
     },
     {
       "id": "F04-K-01",
@@ -11391,10 +11574,10 @@
       "difficulty": "orta",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sis türbinine 2¹⁰ birim sis giriyor. İlk filtre kalan miktarın 1/4’ini, ikinci filtre 1/8’ini geçiriyor. Çıkışın yarısı gözlem tüpüne ayrılıyor. Tüpe kaç birim sis ulaşır?",
+      "prompt": "Sis türbinine 2¹⁰ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; çıkan miktarın 1/4’ü bir sonraki aşamaya aktarılıyor. Bu miktarın 1/8’i 2. filtreden geçiyor. Son olarak çıkan sisin yarısı gözlem tüpüne yönlendiriliyor. Gözlem tüpüne kaç birim sis ulaşır?",
       "correctAnswer": "16",
       "solution": "1024÷4÷8÷2=16.",
-      "hint": "Her adımda önceki miktarın belirtilen kesri kalır; miktar artmaz.",
+      "hint": "Sırasıyla 1/4 → 1/8 → 1/2 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
       "inputType": "choice",
       "options": [
         "16",
@@ -11431,11 +11614,30 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2⁸ birim sis önce 1/4 sonra 1/8 kalırsa ne olur?",
+        "question": "Sis türbinine 2⁸ birim sis giriyor. 1. filtre gelen sisin 1/4’ünü 2. filtreye aktarıyor; 2. filtre bu miktarın 1/8’ini geçiriyor. Çıkışta kaç birim sis kalır?",
         "solution": "256÷4÷8=8."
       },
       "sourceQuestionId": "F03-O-01",
-      "sourceDifficulty": "Orta"
+      "sourceDifficulty": "Orta",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: son filtre veya çıkıştan ulaşan sis miktarı. Başlangıçta 2¹⁰ birim sis var.",
+          "Sırasıyla 1/4 → 1/8 → 1/2 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 2¹⁰ = 1024 birim.",
+          "İlk süzme: 1024 ÷ 4 = 256 birim.",
+          "Şimdi 256 birime 1/8, sonra 1/2 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 2¹⁰ = 1024 birim.",
+          "2. 1. filtre: 1024 ÷ 4 = 256 birim.",
+          "3. 2. filtre: 256 ÷ 8 = 32 birim.",
+          "4. Son aktarım: 32 ÷ 2 = 16 birim.",
+          "5. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 16 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-O-02",
@@ -11443,10 +11645,10 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki sis borusuna sırasıyla 2⁸ ve 2⁷ birim sis giriyor. Birincisinin sekizde biri, ikincisinin dörtte biri gözlem tüplerine ulaşırsa toplam kaç birim sis olur?",
+      "prompt": "Sis türbinine A ve B borularından sırasıyla 2⁸ ve 2⁷ birim sis giriyor. A borusuna bağlı filtre bu koldaki sisin 1/8’i gözlem tüpüne aktarıyor. B borusuna bağlı filtre de kendi kolundaki sisin 1/4’ü gözlem tüpüne yönlendiriyor. İki gözlem tüpüne ulaşan toplam sis kaç birimdir?",
       "correctAnswer": "64",
       "solution": "256÷8 + 128÷4=64.",
-      "hint": "İki borunun geçirdiği miktarı ayrı hesaplayıp topla.",
+      "hint": "A filtresi kendi girişindeki sisin 1/8’ini, B filtresi kendi girişindeki sisin 1/4’ini geçirir. Biri diğerinden sonra çalışmaz.",
       "inputType": "choice",
       "options": [
         "66",
@@ -11483,11 +11685,30 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Bir sis hattına 2⁷, diğerine 2⁶ birim girer; her biri dörtte bire inerse toplam kaç?",
+        "question": "A borusundan 2⁷, B borusundan 2⁶ birim sis giriyor. Her borunun filtresi kendisine gelen sisin dörtte birini geçiriyor. İki tüpe toplam kaç birim sis ulaşır?",
         "solution": "32+16=48."
       },
       "sourceQuestionId": "F03-O-02",
-      "sourceDifficulty": "Orta"
+      "sourceDifficulty": "Orta",
+      "f03Guide": {
+        "first": [
+          "İki ayrı giriş var: A borusu 2⁸, B borusu 2⁷ birim sis taşıyor.",
+          "A filtresi kendi girişindeki sisin 1/8’ini, B filtresi kendi girişindeki sisin 1/4’ini geçirir. Biri diğerinden sonra çalışmaz.",
+          "Her boruyu ayrı hesaplayıp yalnızca sonunda topla; önce iki giriş miktarını toplama."
+        ],
+        "second": [
+          "A girişinde 2⁸ = 256, B girişinde 2⁷ = 128 birim var.",
+          "İlk kolu hesapla: 256 ÷ 8 = 32 birim.",
+          "İkinci kol için 128 ÷ 4 işlemini yap; sonra bulduğun iki payı topla."
+        ],
+        "solution": [
+          "1. A borusu 256, B borusu 128 birim sis taşıyor.",
+          "2. A filtresinden geçen: 256 ÷ 8 = 32.",
+          "3. B filtresinden geçen: 128 ÷ 4 = 32.",
+          "4. Gözlem tüplerinin toplamı: 32 + 32 = 64.",
+          "5. Kontrol: Borular ayrı işlenip en son toplandı; sonuç 64 birim."
+        ]
+      }
     },
     {
       "id": "F03-O-03",
@@ -11495,10 +11716,10 @@
       "difficulty": "orta",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "2⁸ birim sis taşıyan boru, miktarın 1/4’ini yan filtreye bırakıyor. Ana boruda kaç birim sis kalır?",
+      "prompt": "Sis türbinine 2⁸ birim sis giriyor. Ana borudaki sisin 1/4’ü yan filtreye ayrılıyor. Geriye kalan sis ana borudan ilerlemeye devam ediyor. Ana boruda kaç birim sis kalır?",
       "correctAnswer": "192",
       "solution": "256−256÷4=192.",
-      "hint": "Yan filtreye ayrılan miktarı bulup başlangıçtan çıkar.",
+      "hint": "Sorulan yan filtrenin aldığı sis değil, ana boruda kalan miktardır.",
       "inputType": "choice",
       "options": [
         "194",
@@ -11531,11 +11752,30 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2⁹ birim sisin sekizde biri ayrılırsa kaç birim kalır?",
+        "question": "Sis türbinine 2⁹ birim sis giriyor. Girişteki sisin sekizde biri yan filtreye ayrılıyor; geri kalanı ana boruda ilerliyor. Ana boruda kaç birim sis kalır?",
         "solution": "512−64=448."
       },
       "sourceQuestionId": "F03-O-03",
-      "sourceDifficulty": "Orta"
+      "sourceDifficulty": "Orta",
+      "f03Guide": {
+        "first": [
+          "Ana boruya 2⁸ birim sis giriyor; bunun 1/4’i yan filtreye ayrılıyor.",
+          "Sorulan yan filtrenin aldığı sis değil, ana boruda kalan miktardır.",
+          "Önce ayrılan kısmı hesapla; sonra başlangıçtaki miktardan çıkar."
+        ],
+        "second": [
+          "Giriş miktarı 2⁸ = 256 birimdir.",
+          "Yan filtreye ayrılan sis: 256 ÷ 4 = 64 birim.",
+          "Ana boruda kalan için 256 − 64 çıkarma işlemini tamamla."
+        ],
+        "solution": [
+          "1. Giriş miktarı 256 birimdir.",
+          "2. Yan filtreye ayrılan oran: 1/4.",
+          "3. Ayrılan miktar: 256 ÷ 4 = 64 birim.",
+          "4. Ana boruda kalan: 256 − 64 = 192 birim.",
+          "5. Kontrol: Ayrılan ve kalan miktarın toplamı 256 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-O-04",
@@ -11543,10 +11783,10 @@
       "difficulty": "orta",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sis türbinine 2¹¹ birim sis giriyor. İlk filtre kalan miktarın 1/8’ini, ikinci filtre 1/16’ini geçiriyor. Çıkışın yarısı gözlem tüpüne ayrılıyor. Tüpe kaç birim sis ulaşır?",
+      "prompt": "Sis türbinine 2¹¹ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; çıkan miktarın 1/8’i bir sonraki aşamaya aktarılıyor. Bu miktarın 1/16’sı 2. filtreden geçiyor. Son olarak çıkan sisin yarısı gözlem tüpüne yönlendiriliyor. Gözlem tüpüne kaç birim sis ulaşır?",
       "correctAnswer": "8",
       "solution": "2048÷8÷16÷2=8.",
-      "hint": "Her adımda önceki miktarın belirtilen kesri kalır; miktar artmaz.",
+      "hint": "Sırasıyla 1/8 → 1/16 → 1/2 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
       "inputType": "choice",
       "options": [
         "10",
@@ -11583,11 +11823,30 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2⁸ birim sis önce 1/4 sonra 1/8 kalırsa ne olur?",
+        "question": "Sis türbinine 2⁸ birim sis giriyor. 1. filtre gelen sisin 1/4’ünü 2. filtreye aktarıyor; 2. filtre bu miktarın 1/8’ini geçiriyor. Çıkışta kaç birim sis kalır?",
         "solution": "256÷4÷8=8."
       },
       "sourceQuestionId": "F03-O-04",
-      "sourceDifficulty": "Orta"
+      "sourceDifficulty": "Orta",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: son filtre veya çıkıştan ulaşan sis miktarı. Başlangıçta 2¹¹ birim sis var.",
+          "Sırasıyla 1/8 → 1/16 → 1/2 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 2¹¹ = 2048 birim.",
+          "İlk süzme: 2048 ÷ 8 = 256 birim.",
+          "Şimdi 256 birime 1/16, sonra 1/2 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 2¹¹ = 2048 birim.",
+          "2. 1. filtre: 2048 ÷ 8 = 256 birim.",
+          "3. 2. filtre: 256 ÷ 16 = 16 birim.",
+          "4. Son aktarım: 16 ÷ 2 = 8 birim.",
+          "5. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 8 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-O-05",
@@ -11595,10 +11854,10 @@
       "difficulty": "orta",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki sis borusuna sırasıyla 2⁹ ve 2⁸ birim sis giriyor. Birincisinin sekizde biri, ikincisinin dörtte biri gözlem tüplerine ulaşırsa toplam kaç birim sis olur?",
+      "prompt": "Sis türbinine A ve B borularından sırasıyla 2⁹ ve 2⁸ birim sis giriyor. A borusuna bağlı filtre bu koldaki sisin 1/8’i gözlem tüpüne aktarıyor. B borusuna bağlı filtre de kendi kolundaki sisin 1/4’ü gözlem tüpüne yönlendiriyor. İki gözlem tüpüne ulaşan toplam sis kaç birimdir?",
       "correctAnswer": "128",
       "solution": "512÷8 + 256÷4=128.",
-      "hint": "İki borunun geçirdiği miktarı ayrı hesaplayıp topla.",
+      "hint": "A filtresi kendi girişindeki sisin 1/8’ini, B filtresi kendi girişindeki sisin 1/4’ini geçirir. Biri diğerinden sonra çalışmaz.",
       "inputType": "choice",
       "options": [
         "128",
@@ -11635,11 +11894,30 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Bir sis hattına 2⁷, diğerine 2⁶ birim girer; her biri dörtte bire inerse toplam kaç?",
+        "question": "A borusundan 2⁷, B borusundan 2⁶ birim sis giriyor. Her borunun filtresi kendisine gelen sisin dörtte birini geçiriyor. İki tüpe toplam kaç birim sis ulaşır?",
         "solution": "32+16=48."
       },
       "sourceQuestionId": "F03-O-05",
-      "sourceDifficulty": "Orta"
+      "sourceDifficulty": "Orta",
+      "f03Guide": {
+        "first": [
+          "İki ayrı giriş var: A borusu 2⁹, B borusu 2⁸ birim sis taşıyor.",
+          "A filtresi kendi girişindeki sisin 1/8’ini, B filtresi kendi girişindeki sisin 1/4’ini geçirir. Biri diğerinden sonra çalışmaz.",
+          "Her boruyu ayrı hesaplayıp yalnızca sonunda topla; önce iki giriş miktarını toplama."
+        ],
+        "second": [
+          "A girişinde 2⁹ = 512, B girişinde 2⁸ = 256 birim var.",
+          "İlk kolu hesapla: 512 ÷ 8 = 64 birim.",
+          "İkinci kol için 256 ÷ 4 işlemini yap; sonra bulduğun iki payı topla."
+        ],
+        "solution": [
+          "1. A borusu 512, B borusu 256 birim sis taşıyor.",
+          "2. A filtresinden geçen: 512 ÷ 8 = 64.",
+          "3. B filtresinden geçen: 256 ÷ 4 = 64.",
+          "4. Gözlem tüplerinin toplamı: 64 + 64 = 128.",
+          "5. Kontrol: Borular ayrı işlenip en son toplandı; sonuç 128 birim."
+        ]
+      }
     },
     {
       "id": "F03-O-06",
@@ -11647,10 +11925,10 @@
       "difficulty": "orta",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "2⁹ birim sis taşıyan boru, miktarın 1/8’ini yan filtreye bırakıyor. Ana boruda kaç birim sis kalır?",
+      "prompt": "Sis türbinine 2⁹ birim sis giriyor. Ana borudaki sisin 1/8’i yan filtreye ayrılıyor. Geriye kalan sis ana borudan ilerlemeye devam ediyor. Ana boruda kaç birim sis kalır?",
       "correctAnswer": "448",
       "solution": "512−512÷8=448.",
-      "hint": "Yan filtreye ayrılan miktarı bulup başlangıçtan çıkar.",
+      "hint": "Sorulan yan filtrenin aldığı sis değil, ana boruda kalan miktardır.",
       "inputType": "choice",
       "options": [
         "450",
@@ -11683,11 +11961,30 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2⁹ birim sisin sekizde biri ayrılırsa kaç birim kalır?",
+        "question": "Sis türbinine 2⁹ birim sis giriyor. Girişteki sisin sekizde biri yan filtreye ayrılıyor; geri kalanı ana boruda ilerliyor. Ana boruda kaç birim sis kalır?",
         "solution": "512−64=448."
       },
       "sourceQuestionId": "F03-O-06",
-      "sourceDifficulty": "Orta"
+      "sourceDifficulty": "Orta",
+      "f03Guide": {
+        "first": [
+          "Ana boruya 2⁹ birim sis giriyor; bunun 1/8’i yan filtreye ayrılıyor.",
+          "Sorulan yan filtrenin aldığı sis değil, ana boruda kalan miktardır.",
+          "Önce ayrılan kısmı hesapla; sonra başlangıçtaki miktardan çıkar."
+        ],
+        "second": [
+          "Giriş miktarı 2⁹ = 512 birimdir.",
+          "Yan filtreye ayrılan sis: 512 ÷ 8 = 64 birim.",
+          "Ana boruda kalan için 512 − 64 çıkarma işlemini tamamla."
+        ],
+        "solution": [
+          "1. Giriş miktarı 512 birimdir.",
+          "2. Yan filtreye ayrılan oran: 1/8.",
+          "3. Ayrılan miktar: 512 ÷ 8 = 64 birim.",
+          "4. Ana boruda kalan: 512 − 64 = 448 birim.",
+          "5. Kontrol: Ayrılan ve kalan miktarın toplamı 512 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-O-07",
@@ -11695,10 +11992,10 @@
       "difficulty": "orta",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sis türbinine 2¹² birim sis giriyor. İlk filtre kalan miktarın 1/4’ini, ikinci filtre 1/8’ini geçiriyor. Çıkışın yarısı gözlem tüpüne ayrılıyor. Tüpe kaç birim sis ulaşır?",
+      "prompt": "Sis türbinine 2¹² birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; çıkan miktarın 1/4’ü bir sonraki aşamaya aktarılıyor. Bu miktarın 1/8’i 2. filtreden geçiyor. Son olarak çıkan sisin yarısı gözlem tüpüne yönlendiriliyor. Gözlem tüpüne kaç birim sis ulaşır?",
       "correctAnswer": "64",
       "solution": "4096÷4÷8÷2=64.",
-      "hint": "Her adımda önceki miktarın belirtilen kesri kalır; miktar artmaz.",
+      "hint": "Sırasıyla 1/4 → 1/8 → 1/2 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
       "inputType": "choice",
       "options": [
         "66",
@@ -11735,11 +12032,30 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2⁸ birim sis önce 1/4 sonra 1/8 kalırsa ne olur?",
+        "question": "Sis türbinine 2⁸ birim sis giriyor. 1. filtre gelen sisin 1/4’ünü 2. filtreye aktarıyor; 2. filtre bu miktarın 1/8’ini geçiriyor. Çıkışta kaç birim sis kalır?",
         "solution": "256÷4÷8=8."
       },
       "sourceQuestionId": "F03-O-07",
-      "sourceDifficulty": "Orta"
+      "sourceDifficulty": "Orta",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: son filtre veya çıkıştan ulaşan sis miktarı. Başlangıçta 2¹² birim sis var.",
+          "Sırasıyla 1/4 → 1/8 → 1/2 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 2¹² = 4096 birim.",
+          "İlk süzme: 4096 ÷ 4 = 1024 birim.",
+          "Şimdi 1024 birime 1/8, sonra 1/2 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 2¹² = 4096 birim.",
+          "2. 1. filtre: 4096 ÷ 4 = 1024 birim.",
+          "3. 2. filtre: 1024 ÷ 8 = 128 birim.",
+          "4. Son aktarım: 128 ÷ 2 = 64 birim.",
+          "5. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 64 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-O-08",
@@ -11747,10 +12063,10 @@
       "difficulty": "orta",
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki sis borusuna sırasıyla 2¹⁰ ve 2⁹ birim sis giriyor. Birincisinin sekizde biri, ikincisinin dörtte biri gözlem tüplerine ulaşırsa toplam kaç birim sis olur?",
+      "prompt": "Sis türbinine A ve B borularından sırasıyla 2¹⁰ ve 2⁹ birim sis giriyor. A borusuna bağlı filtre bu koldaki sisin 1/8’i gözlem tüpüne aktarıyor. B borusuna bağlı filtre de kendi kolundaki sisin 1/4’ü gözlem tüpüne yönlendiriyor. İki gözlem tüpüne ulaşan toplam sis kaç birimdir?",
       "correctAnswer": "256",
       "solution": "1024÷8 + 512÷4=256.",
-      "hint": "İki borunun geçirdiği miktarı ayrı hesaplayıp topla.",
+      "hint": "A filtresi kendi girişindeki sisin 1/8’ini, B filtresi kendi girişindeki sisin 1/4’ini geçirir. Biri diğerinden sonra çalışmaz.",
       "inputType": "choice",
       "options": [
         "258",
@@ -11787,11 +12103,30 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Bir sis hattına 2⁷, diğerine 2⁶ birim girer; her biri dörtte bire inerse toplam kaç?",
+        "question": "A borusundan 2⁷, B borusundan 2⁶ birim sis giriyor. Her borunun filtresi kendisine gelen sisin dörtte birini geçiriyor. İki tüpe toplam kaç birim sis ulaşır?",
         "solution": "32+16=48."
       },
       "sourceQuestionId": "F03-O-08",
-      "sourceDifficulty": "Orta"
+      "sourceDifficulty": "Orta",
+      "f03Guide": {
+        "first": [
+          "İki ayrı giriş var: A borusu 2¹⁰, B borusu 2⁹ birim sis taşıyor.",
+          "A filtresi kendi girişindeki sisin 1/8’ini, B filtresi kendi girişindeki sisin 1/4’ini geçirir. Biri diğerinden sonra çalışmaz.",
+          "Her boruyu ayrı hesaplayıp yalnızca sonunda topla; önce iki giriş miktarını toplama."
+        ],
+        "second": [
+          "A girişinde 2¹⁰ = 1024, B girişinde 2⁹ = 512 birim var.",
+          "İlk kolu hesapla: 1024 ÷ 8 = 128 birim.",
+          "İkinci kol için 512 ÷ 4 işlemini yap; sonra bulduğun iki payı topla."
+        ],
+        "solution": [
+          "1. A borusu 1024, B borusu 512 birim sis taşıyor.",
+          "2. A filtresinden geçen: 1024 ÷ 8 = 128.",
+          "3. B filtresinden geçen: 512 ÷ 4 = 128.",
+          "4. Gözlem tüplerinin toplamı: 128 + 128 = 256.",
+          "5. Kontrol: Borular ayrı işlenip en son toplandı; sonuç 256 birim."
+        ]
+      }
     },
     {
       "id": "F03-O-09",
@@ -11799,10 +12134,10 @@
       "difficulty": "orta",
       "variant": 9,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "2¹⁰ birim sis taşıyan boru, miktarın 1/4’ini yan filtreye bırakıyor. Ana boruda kaç birim sis kalır?",
+      "prompt": "Sis türbinine 2¹⁰ birim sis giriyor. Ana borudaki sisin 1/4’ü yan filtreye ayrılıyor. Geriye kalan sis ana borudan ilerlemeye devam ediyor. Ana boruda kaç birim sis kalır?",
       "correctAnswer": "768",
       "solution": "1024−1024÷4=768.",
-      "hint": "Yan filtreye ayrılan miktarı bulup başlangıçtan çıkar.",
+      "hint": "Sorulan yan filtrenin aldığı sis değil, ana boruda kalan miktardır.",
       "inputType": "choice",
       "options": [
         "768",
@@ -11835,11 +12170,30 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2⁹ birim sisin sekizde biri ayrılırsa kaç birim kalır?",
+        "question": "Sis türbinine 2⁹ birim sis giriyor. Girişteki sisin sekizde biri yan filtreye ayrılıyor; geri kalanı ana boruda ilerliyor. Ana boruda kaç birim sis kalır?",
         "solution": "512−64=448."
       },
       "sourceQuestionId": "F03-O-09",
-      "sourceDifficulty": "Orta"
+      "sourceDifficulty": "Orta",
+      "f03Guide": {
+        "first": [
+          "Ana boruya 2¹⁰ birim sis giriyor; bunun 1/4’i yan filtreye ayrılıyor.",
+          "Sorulan yan filtrenin aldığı sis değil, ana boruda kalan miktardır.",
+          "Önce ayrılan kısmı hesapla; sonra başlangıçtaki miktardan çıkar."
+        ],
+        "second": [
+          "Giriş miktarı 2¹⁰ = 1024 birimdir.",
+          "Yan filtreye ayrılan sis: 1024 ÷ 4 = 256 birim.",
+          "Ana boruda kalan için 1024 − 256 çıkarma işlemini tamamla."
+        ],
+        "solution": [
+          "1. Giriş miktarı 1024 birimdir.",
+          "2. Yan filtreye ayrılan oran: 1/4.",
+          "3. Ayrılan miktar: 1024 ÷ 4 = 256 birim.",
+          "4. Ana boruda kalan: 1024 − 256 = 768 birim.",
+          "5. Kontrol: Ayrılan ve kalan miktarın toplamı 1024 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-O-10",
@@ -11847,10 +12201,10 @@
       "difficulty": "orta",
       "variant": 10,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sis türbinine 2¹³ birim sis giriyor. İlk filtre kalan miktarın 1/8’ini, ikinci filtre 1/16’ini geçiriyor. Çıkışın yarısı gözlem tüpüne ayrılıyor. Tüpe kaç birim sis ulaşır?",
+      "prompt": "Sis türbinine 2¹³ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; çıkan miktarın 1/8’i bir sonraki aşamaya aktarılıyor. Bu miktarın 1/16’sı 2. filtreden geçiyor. Son olarak çıkan sisin yarısı gözlem tüpüne yönlendiriliyor. Gözlem tüpüne kaç birim sis ulaşır?",
       "correctAnswer": "32",
       "solution": "8192÷8÷16÷2=32.",
-      "hint": "Her adımda önceki miktarın belirtilen kesri kalır; miktar artmaz.",
+      "hint": "Sırasıyla 1/8 → 1/16 → 1/2 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
       "inputType": "choice",
       "options": [
         "34",
@@ -11887,11 +12241,30 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2⁸ birim sis önce 1/4 sonra 1/8 kalırsa ne olur?",
+        "question": "Sis türbinine 2⁸ birim sis giriyor. 1. filtre gelen sisin 1/4’ünü 2. filtreye aktarıyor; 2. filtre bu miktarın 1/8’ini geçiriyor. Çıkışta kaç birim sis kalır?",
         "solution": "256÷4÷8=8."
       },
       "sourceQuestionId": "F03-O-10",
-      "sourceDifficulty": "Orta"
+      "sourceDifficulty": "Orta",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: son filtre veya çıkıştan ulaşan sis miktarı. Başlangıçta 2¹³ birim sis var.",
+          "Sırasıyla 1/8 → 1/16 → 1/2 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 2¹³ = 8192 birim.",
+          "İlk süzme: 8192 ÷ 8 = 1024 birim.",
+          "Şimdi 1024 birime 1/16, sonra 1/2 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 2¹³ = 8192 birim.",
+          "2. 1. filtre: 8192 ÷ 8 = 1024 birim.",
+          "3. 2. filtre: 1024 ÷ 16 = 64 birim.",
+          "4. Son aktarım: 64 ÷ 2 = 32 birim.",
+          "5. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 32 birimdir."
+        ]
+      }
     },
     {
       "id": "F04-O-01",
@@ -22173,10 +22546,10 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sis türbinine 2¹³ birim sis giriyor. Birinci filtre kendisine ulaşan sisin sekizde birini, ikinci filtre dörtte birini, üçüncü filtre ise on altıda birini geçiriyor. Son filtreden çıkan sisin dörtte biri gözlem tüpüne yönlendiriliyor. Tüpe kaç birim sis ulaşır?",
+      "prompt": "Sis türbinine 2¹³ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre gelen miktarın 1/8’i 2. filtreye aktarıyor. 2. filtre kendisine ulaşan sisin 1/4’ü 3. filtreye aktarıyor. 3. filtre ise bu miktarın 1/16’sı geçiriyor. Son olarak çıkan sisin 1/4’ü gözlem tüpüne yönlendiriliyor. Gözlem tüpüne kaç birim sis ulaşır?",
       "correctAnswer": "4",
       "solution": "Gözlem tüpüne ulaşan miktar 2¹³ · 2⁻³ · 2⁻² · 2⁻⁴ · 2⁻² = 2² = 4 birimdir. Her basamakta sis miktarı azalır.",
-      "hint": "Her filtreye gelen miktarın yalnızca bir kısmı geçiyor. Sekizde bir = 2⁻³, dörtte bir = 2⁻², on altıda bir = 2⁻⁴; son yönlendirmeyi de unutma.",
+      "hint": "Sırasıyla 1/8 → 1/4 → 1/16 → 1/4 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
       "inputType": "choice",
       "options": [
         "16",
@@ -22217,11 +22590,31 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Çözülmüş benzer örnek",
+        "question": "Sis türbinine 2¹⁰ birim sis giriyor. 1. filtre gelen miktarın dörtte birini 2. filtreye, 2. filtre de bu miktarın sekizde birini çıkışa aktarıyor. Çıkışta kaç birim sis kalır?",
         "solution": "2¹⁰ birim sis önce dörtte bire (2⁻²), sonra sekizde bire (2⁻³) düşerse 2¹⁰ · 2⁻² · 2⁻³ = 2⁵ = 32 birim kalır."
       },
       "sourceQuestionId": "F03-Z-01",
-      "sourceDifficulty": "Zor"
+      "sourceDifficulty": "Zor",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: son filtre veya çıkıştan ulaşan sis miktarı. Başlangıçta 2¹³ birim sis var.",
+          "Sırasıyla 1/8 → 1/4 → 1/16 → 1/4 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 2¹³ = 8192 birim.",
+          "İlk süzme: 8192 ÷ 8 = 1024 birim.",
+          "Şimdi 1024 birime 1/4, sonra 1/16, sonra 1/4 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 2¹³ = 8192 birim.",
+          "2. 1. filtre: 8192 ÷ 8 = 1024 birim.",
+          "3. 2. filtre: 1024 ÷ 4 = 256 birim.",
+          "4. 3. filtre: 256 ÷ 16 = 16 birim.",
+          "5. Son aktarım: 16 ÷ 4 = 4 birim.",
+          "6. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 4 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-Z-02",
@@ -22229,10 +22622,10 @@
       "difficulty": "zor",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sis türbinine 2¹³ birim sis giriyor. Üç filtre sisin sırasıyla 1/4, 1/8 ve 1/16 bölümünü geçiriyor. Son sisin dörtte biri gözlem tüpüne ayrılırsa tüpte kaç birim kalır?",
+      "prompt": "Sis türbinine 2¹³ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre gelen miktarın 1/4’ü 2. filtreye aktarıyor. 2. filtre kendisine ulaşan sisin 1/8’i 3. filtreye aktarıyor. 3. filtre ise bu miktarın 1/16’sı geçiriyor. Son olarak çıkan sisin 1/4’ü gözlem tüpüne yönlendiriliyor. Gözlem tüpüne kaç birim sis ulaşır?",
       "correctAnswer": "4",
       "solution": "Her filtrenin oranı 2’nin negatif kuvvetidir. 2¹³ × 2⁻² × 2⁻³ × 2⁻⁴ × 2⁻² = 2² = 4.",
-      "hint": "Her filtrenin kendisine ulaşan sisin yalnızca bir bölümünü geçirdiğini unutma; bütün kesirlerle sırayla çarp.",
+      "hint": "Sırasıyla 1/4 → 1/8 → 1/16 → 1/4 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
       "inputType": "choice",
       "options": [
         "5",
@@ -22273,11 +22666,31 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Sis türbinine 2¹⁴ birim sis giriyor. Üç filtre sisin sırasıyla 1/4, 1/8 ve 1/16 bölümünü geçiriyor. Son sisin dörtte biri gözlem tüpüne ayrılırsa tüpte kaç birim kalır?",
+        "question": "Sis türbinine 2¹⁴ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre gelen miktarın 1/4’ü 2. filtreye aktarıyor. 2. filtre kendisine ulaşan sisin 1/8’i 3. filtreye aktarıyor. 3. filtre ise bu miktarın 1/16’sı geçiriyor. Son olarak çıkan sisin 1/4’ü gözlem tüpüne yönlendiriliyor. Gözlem tüpüne kaç birim sis ulaşır?",
         "solution": "Her filtrenin oranı 2’nin negatif kuvvetidir. 2¹⁴ × 2⁻² × 2⁻³ × 2⁻⁴ × 2⁻² = 2³ = 8."
       },
       "sourceQuestionId": "F03-Z-02",
-      "sourceDifficulty": "Zor"
+      "sourceDifficulty": "Zor",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: son filtre veya çıkıştan ulaşan sis miktarı. Başlangıçta 2¹³ birim sis var.",
+          "Sırasıyla 1/4 → 1/8 → 1/16 → 1/4 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 2¹³ = 8192 birim.",
+          "İlk süzme: 8192 ÷ 4 = 2048 birim.",
+          "Şimdi 2048 birime 1/8, sonra 1/16, sonra 1/4 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 2¹³ = 8192 birim.",
+          "2. 1. filtre: 8192 ÷ 4 = 2048 birim.",
+          "3. 2. filtre: 2048 ÷ 8 = 256 birim.",
+          "4. 3. filtre: 256 ÷ 16 = 16 birim.",
+          "5. Son aktarım: 16 ÷ 4 = 4 birim.",
+          "6. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 4 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-Z-03",
@@ -22285,10 +22698,10 @@
       "difficulty": "zor",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Türbinin girişinde 2¹³ birim sis bulunuyor. Sırayla 1/4, 1/4, 1/8 oranında geçiş yapan üç filtreden sonra sis iki eşit tüpe paylaştırılıyor. Bir tüpte kaç birim olur?",
+      "prompt": "Sis türbinine 2¹³ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre gelen miktarın 1/4’ü 2. filtreye aktarıyor. 2. filtre kendisine ulaşan sisin 1/4’ü 3. filtreye aktarıyor. 3. filtre ise bu miktarın 1/8’i geçiriyor. Son olarak çıkan sis iki eşit gözlem tüpüne paylaştırılıyor. Bir gözlem tüpüne kaç birim sis ulaşır?",
       "correctAnswer": "32",
       "solution": "Her filtrenin oranı 2’nin negatif kuvvetidir. 2¹³ × 2⁻² × 2⁻² × 2⁻³ × 2⁻¹ = 2⁵ = 32.",
-      "hint": "Her filtrenin kendisine ulaşan sisin yalnızca bir bölümünü geçirdiğini unutma; bütün kesirlerle sırayla çarp.",
+      "hint": "Sırasıyla 1/4 → 1/4 → 1/8 → 1/2 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
       "inputType": "choice",
       "options": [
         "38",
@@ -22329,11 +22742,31 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Türbinin girişinde 2¹⁴ birim sis bulunuyor. Sırayla 1/4, 1/4, 1/8 oranında geçiş yapan üç filtreden sonra sis iki eşit tüpe paylaştırılıyor. Bir tüpte kaç birim olur?",
+        "question": "Sis türbinine 2¹⁴ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre gelen miktarın 1/4’ü 2. filtreye aktarıyor. 2. filtre kendisine ulaşan sisin 1/4’ü 3. filtreye aktarıyor. 3. filtre ise bu miktarın 1/8’i geçiriyor. Son olarak çıkan sis iki eşit gözlem tüpüne paylaştırılıyor. Bir gözlem tüpüne kaç birim sis ulaşır?",
         "solution": "Her filtrenin oranı 2’nin negatif kuvvetidir. 2¹⁴ × 2⁻² × 2⁻² × 2⁻³ × 2⁻¹ = 2⁶ = 64."
       },
       "sourceQuestionId": "F03-Z-03",
-      "sourceDifficulty": "Zor"
+      "sourceDifficulty": "Zor",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: son filtre veya çıkıştan ulaşan sis miktarı. Başlangıçta 2¹³ birim sis var.",
+          "Sırasıyla 1/4 → 1/4 → 1/8 → 1/2 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 2¹³ = 8192 birim.",
+          "İlk süzme: 8192 ÷ 4 = 2048 birim.",
+          "Şimdi 2048 birime 1/4, sonra 1/8, sonra 1/2 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 2¹³ = 8192 birim.",
+          "2. 1. filtre: 8192 ÷ 4 = 2048 birim.",
+          "3. 2. filtre: 2048 ÷ 4 = 512 birim.",
+          "4. 3. filtre: 512 ÷ 8 = 64 birim.",
+          "5. Son aktarım: 64 ÷ 2 = 32 birim.",
+          "6. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 32 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-Z-04",
@@ -22341,10 +22774,10 @@
       "difficulty": "zor",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "2¹³ birim sis, önce 1/8 sonra 1/4 sonra 1/4 oranında geçiren filtrelerden geçiyor. Çıkan sis dört eşit hazneye bölünürse bir haznede kaç birim sis vardır?",
+      "prompt": "Sis türbinine 2¹³ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre gelen miktarın 1/8’i 2. filtreye aktarıyor. 2. filtre kendisine ulaşan sisin 1/4’ü 3. filtreye aktarıyor. 3. filtre ise bu miktarın 1/4’ü geçiriyor. Son olarak çıkan sis dört eşit toplama haznesine paylaştırılıyor. Bir hazneye kaç birim sis ulaşır?",
       "correctAnswer": "16",
       "solution": "Her filtrenin oranı 2’nin negatif kuvvetidir. 2¹³ × 2⁻³ × 2⁻² × 2⁻² × 2⁻² = 2⁴ = 16.",
-      "hint": "Her filtrenin kendisine ulaşan sisin yalnızca bir bölümünü geçirdiğini unutma; bütün kesirlerle sırayla çarp.",
+      "hint": "Sırasıyla 1/8 → 1/4 → 1/4 → 1/4 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
       "inputType": "choice",
       "options": [
         "18",
@@ -22385,11 +22818,31 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2¹⁴ birim sis, önce 1/8 sonra 1/4 sonra 1/4 oranında geçiren filtrelerden geçiyor. Çıkan sis dört eşit hazneye bölünürse bir haznede kaç birim sis vardır?",
+        "question": "Sis türbinine 2¹⁴ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre gelen miktarın 1/8’i 2. filtreye aktarıyor. 2. filtre kendisine ulaşan sisin 1/4’ü 3. filtreye aktarıyor. 3. filtre ise bu miktarın 1/4’ü geçiriyor. Son olarak çıkan sis dört eşit toplama haznesine paylaştırılıyor. Bir hazneye kaç birim sis ulaşır?",
         "solution": "Her filtrenin oranı 2’nin negatif kuvvetidir. 2¹⁴ × 2⁻³ × 2⁻² × 2⁻² × 2⁻² = 2⁵ = 32."
       },
       "sourceQuestionId": "F03-Z-04",
-      "sourceDifficulty": "Zor"
+      "sourceDifficulty": "Zor",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: son filtre veya çıkıştan ulaşan sis miktarı. Başlangıçta 2¹³ birim sis var.",
+          "Sırasıyla 1/8 → 1/4 → 1/4 → 1/4 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 2¹³ = 8192 birim.",
+          "İlk süzme: 8192 ÷ 8 = 1024 birim.",
+          "Şimdi 1024 birime 1/4, sonra 1/4, sonra 1/4 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 2¹³ = 8192 birim.",
+          "2. 1. filtre: 8192 ÷ 8 = 1024 birim.",
+          "3. 2. filtre: 1024 ÷ 4 = 256 birim.",
+          "4. 3. filtre: 256 ÷ 4 = 64 birim.",
+          "5. Son aktarım: 64 ÷ 4 = 16 birim.",
+          "6. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 16 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-Z-05",
@@ -22397,10 +22850,10 @@
       "difficulty": "zor",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sis türbinine 2¹⁴ birim sis giriyor. Üç filtre sisin sırasıyla 1/4, 1/8 ve 1/16 bölümünü geçiriyor. Son sisin dörtte biri gözlem tüpüne ayrılırsa tüpte kaç birim kalır?",
+      "prompt": "Sis türbinine 2¹⁴ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre gelen miktarın 1/4’ü 2. filtreye aktarıyor. 2. filtre kendisine ulaşan sisin 1/8’i 3. filtreye aktarıyor. 3. filtre ise bu miktarın 1/16’sı geçiriyor. Son olarak çıkan sisin 1/4’ü gözlem tüpüne yönlendiriliyor. Gözlem tüpüne kaç birim sis ulaşır?",
       "correctAnswer": "8",
       "solution": "Her filtrenin oranı 2’nin negatif kuvvetidir. 2¹⁴ × 2⁻² × 2⁻³ × 2⁻⁴ × 2⁻² = 2³ = 8.",
-      "hint": "Her filtrenin kendisine ulaşan sisin yalnızca bir bölümünü geçirdiğini unutma; bütün kesirlerle sırayla çarp.",
+      "hint": "Sırasıyla 1/4 → 1/8 → 1/16 → 1/4 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
       "inputType": "choice",
       "options": [
         "9",
@@ -22441,11 +22894,31 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Sis türbinine 2¹⁵ birim sis giriyor. Üç filtre sisin sırasıyla 1/4, 1/8 ve 1/16 bölümünü geçiriyor. Son sisin dörtte biri gözlem tüpüne ayrılırsa tüpte kaç birim kalır?",
+        "question": "Sis türbinine 2¹⁵ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre gelen miktarın 1/4’ü 2. filtreye aktarıyor. 2. filtre kendisine ulaşan sisin 1/8’i 3. filtreye aktarıyor. 3. filtre ise bu miktarın 1/16’sı geçiriyor. Son olarak çıkan sisin 1/4’ü gözlem tüpüne yönlendiriliyor. Gözlem tüpüne kaç birim sis ulaşır?",
         "solution": "Her filtrenin oranı 2’nin negatif kuvvetidir. 2¹⁵ × 2⁻² × 2⁻³ × 2⁻⁴ × 2⁻² = 2⁴ = 16."
       },
       "sourceQuestionId": "F03-Z-05",
-      "sourceDifficulty": "Zor"
+      "sourceDifficulty": "Zor",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: son filtre veya çıkıştan ulaşan sis miktarı. Başlangıçta 2¹⁴ birim sis var.",
+          "Sırasıyla 1/4 → 1/8 → 1/16 → 1/4 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 2¹⁴ = 16384 birim.",
+          "İlk süzme: 16384 ÷ 4 = 4096 birim.",
+          "Şimdi 4096 birime 1/8, sonra 1/16, sonra 1/4 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 2¹⁴ = 16384 birim.",
+          "2. 1. filtre: 16384 ÷ 4 = 4096 birim.",
+          "3. 2. filtre: 4096 ÷ 8 = 512 birim.",
+          "4. 3. filtre: 512 ÷ 16 = 32 birim.",
+          "5. Son aktarım: 32 ÷ 4 = 8 birim.",
+          "6. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 8 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-Z-06",
@@ -22453,10 +22926,10 @@
       "difficulty": "zor",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Türbinin girişinde 2¹⁴ birim sis bulunuyor. Sırayla 1/4, 1/4, 1/8 oranında geçiş yapan üç filtreden sonra sis iki eşit tüpe paylaştırılıyor. Bir tüpte kaç birim olur?",
+      "prompt": "Sis türbinine 2¹⁴ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre gelen miktarın 1/4’ü 2. filtreye aktarıyor. 2. filtre kendisine ulaşan sisin 1/4’ü 3. filtreye aktarıyor. 3. filtre ise bu miktarın 1/8’i geçiriyor. Son olarak çıkan sis iki eşit gözlem tüpüne paylaştırılıyor. Bir gözlem tüpüne kaç birim sis ulaşır?",
       "correctAnswer": "64",
       "solution": "Her filtrenin oranı 2’nin negatif kuvvetidir. 2¹⁴ × 2⁻² × 2⁻² × 2⁻³ × 2⁻¹ = 2⁶ = 64.",
-      "hint": "Her filtrenin kendisine ulaşan sisin yalnızca bir bölümünü geçirdiğini unutma; bütün kesirlerle sırayla çarp.",
+      "hint": "Sırasıyla 1/4 → 1/4 → 1/8 → 1/2 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
       "inputType": "choice",
       "options": [
         "76",
@@ -22497,11 +22970,31 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Türbinin girişinde 2¹⁵ birim sis bulunuyor. Sırayla 1/4, 1/4, 1/8 oranında geçiş yapan üç filtreden sonra sis iki eşit tüpe paylaştırılıyor. Bir tüpte kaç birim olur?",
+        "question": "Sis türbinine 2¹⁵ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre gelen miktarın 1/4’ü 2. filtreye aktarıyor. 2. filtre kendisine ulaşan sisin 1/4’ü 3. filtreye aktarıyor. 3. filtre ise bu miktarın 1/8’i geçiriyor. Son olarak çıkan sis iki eşit gözlem tüpüne paylaştırılıyor. Bir gözlem tüpüne kaç birim sis ulaşır?",
         "solution": "Her filtrenin oranı 2’nin negatif kuvvetidir. 2¹⁵ × 2⁻² × 2⁻² × 2⁻³ × 2⁻¹ = 2⁷ = 128."
       },
       "sourceQuestionId": "F03-Z-06",
-      "sourceDifficulty": "Zor"
+      "sourceDifficulty": "Zor",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: son filtre veya çıkıştan ulaşan sis miktarı. Başlangıçta 2¹⁴ birim sis var.",
+          "Sırasıyla 1/4 → 1/4 → 1/8 → 1/2 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 2¹⁴ = 16384 birim.",
+          "İlk süzme: 16384 ÷ 4 = 4096 birim.",
+          "Şimdi 4096 birime 1/4, sonra 1/8, sonra 1/2 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 2¹⁴ = 16384 birim.",
+          "2. 1. filtre: 16384 ÷ 4 = 4096 birim.",
+          "3. 2. filtre: 4096 ÷ 4 = 1024 birim.",
+          "4. 3. filtre: 1024 ÷ 8 = 128 birim.",
+          "5. Son aktarım: 128 ÷ 2 = 64 birim.",
+          "6. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 64 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-Z-07",
@@ -22509,10 +23002,10 @@
       "difficulty": "zor",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "2¹⁴ birim sis, önce 1/8 sonra 1/4 sonra 1/4 oranında geçiren filtrelerden geçiyor. Çıkan sis dört eşit hazneye bölünürse bir haznede kaç birim sis vardır?",
+      "prompt": "Sis türbinine 2¹⁴ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre gelen miktarın 1/8’i 2. filtreye aktarıyor. 2. filtre kendisine ulaşan sisin 1/4’ü 3. filtreye aktarıyor. 3. filtre ise bu miktarın 1/4’ü geçiriyor. Son olarak çıkan sis dört eşit toplama haznesine paylaştırılıyor. Bir hazneye kaç birim sis ulaşır?",
       "correctAnswer": "32",
       "solution": "Her filtrenin oranı 2’nin negatif kuvvetidir. 2¹⁴ × 2⁻³ × 2⁻² × 2⁻² × 2⁻² = 2⁵ = 32.",
-      "hint": "Her filtrenin kendisine ulaşan sisin yalnızca bir bölümünü geçirdiğini unutma; bütün kesirlerle sırayla çarp.",
+      "hint": "Sırasıyla 1/8 → 1/4 → 1/4 → 1/4 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
       "inputType": "choice",
       "options": [
         "38",
@@ -22553,11 +23046,31 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2¹⁵ birim sis, önce 1/8 sonra 1/4 sonra 1/4 oranında geçiren filtrelerden geçiyor. Çıkan sis dört eşit hazneye bölünürse bir haznede kaç birim sis vardır?",
+        "question": "Sis türbinine 2¹⁵ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre gelen miktarın 1/8’i 2. filtreye aktarıyor. 2. filtre kendisine ulaşan sisin 1/4’ü 3. filtreye aktarıyor. 3. filtre ise bu miktarın 1/4’ü geçiriyor. Son olarak çıkan sis dört eşit toplama haznesine paylaştırılıyor. Bir hazneye kaç birim sis ulaşır?",
         "solution": "Her filtrenin oranı 2’nin negatif kuvvetidir. 2¹⁵ × 2⁻³ × 2⁻² × 2⁻² × 2⁻² = 2⁶ = 64."
       },
       "sourceQuestionId": "F03-Z-07",
-      "sourceDifficulty": "Zor"
+      "sourceDifficulty": "Zor",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: son filtre veya çıkıştan ulaşan sis miktarı. Başlangıçta 2¹⁴ birim sis var.",
+          "Sırasıyla 1/8 → 1/4 → 1/4 → 1/4 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 2¹⁴ = 16384 birim.",
+          "İlk süzme: 16384 ÷ 8 = 2048 birim.",
+          "Şimdi 2048 birime 1/4, sonra 1/4, sonra 1/4 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 2¹⁴ = 16384 birim.",
+          "2. 1. filtre: 16384 ÷ 8 = 2048 birim.",
+          "3. 2. filtre: 2048 ÷ 4 = 512 birim.",
+          "4. 3. filtre: 512 ÷ 4 = 128 birim.",
+          "5. Son aktarım: 128 ÷ 4 = 32 birim.",
+          "6. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 32 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-Z-08",
@@ -22565,10 +23078,10 @@
       "difficulty": "zor",
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sis türbinine 2¹⁵ birim sis giriyor. Üç filtre sisin sırasıyla 1/4, 1/8 ve 1/16 bölümünü geçiriyor. Son sisin dörtte biri gözlem tüpüne ayrılırsa tüpte kaç birim kalır?",
+      "prompt": "Sis türbinine 2¹⁵ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre gelen miktarın 1/4’ü 2. filtreye aktarıyor. 2. filtre kendisine ulaşan sisin 1/8’i 3. filtreye aktarıyor. 3. filtre ise bu miktarın 1/16’sı geçiriyor. Son olarak çıkan sisin 1/4’ü gözlem tüpüne yönlendiriliyor. Gözlem tüpüne kaç birim sis ulaşır?",
       "correctAnswer": "16",
       "solution": "Her filtrenin oranı 2’nin negatif kuvvetidir. 2¹⁵ × 2⁻² × 2⁻³ × 2⁻⁴ × 2⁻² = 2⁴ = 16.",
-      "hint": "Her filtrenin kendisine ulaşan sisin yalnızca bir bölümünü geçirdiğini unutma; bütün kesirlerle sırayla çarp.",
+      "hint": "Sırasıyla 1/4 → 1/8 → 1/16 → 1/4 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
       "inputType": "choice",
       "options": [
         "16",
@@ -22609,11 +23122,31 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Sis türbinine 2¹³ birim sis giriyor. Üç filtre sisin sırasıyla 1/4, 1/8 ve 1/16 bölümünü geçiriyor. Son sisin dörtte biri gözlem tüpüne ayrılırsa tüpte kaç birim kalır?",
+        "question": "Sis türbinine 2¹³ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre gelen miktarın 1/4’ü 2. filtreye aktarıyor. 2. filtre kendisine ulaşan sisin 1/8’i 3. filtreye aktarıyor. 3. filtre ise bu miktarın 1/16’sı geçiriyor. Son olarak çıkan sisin 1/4’ü gözlem tüpüne yönlendiriliyor. Gözlem tüpüne kaç birim sis ulaşır?",
         "solution": "Her filtrenin oranı 2’nin negatif kuvvetidir. 2¹³ × 2⁻² × 2⁻³ × 2⁻⁴ × 2⁻² = 2² = 4."
       },
       "sourceQuestionId": "F03-Z-08",
-      "sourceDifficulty": "Zor"
+      "sourceDifficulty": "Zor",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: son filtre veya çıkıştan ulaşan sis miktarı. Başlangıçta 2¹⁵ birim sis var.",
+          "Sırasıyla 1/4 → 1/8 → 1/16 → 1/4 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 2¹⁵ = 32768 birim.",
+          "İlk süzme: 32768 ÷ 4 = 8192 birim.",
+          "Şimdi 8192 birime 1/8, sonra 1/16, sonra 1/4 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 2¹⁵ = 32768 birim.",
+          "2. 1. filtre: 32768 ÷ 4 = 8192 birim.",
+          "3. 2. filtre: 8192 ÷ 8 = 1024 birim.",
+          "4. 3. filtre: 1024 ÷ 16 = 64 birim.",
+          "5. Son aktarım: 64 ÷ 4 = 16 birim.",
+          "6. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 16 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-Z-09",
@@ -22621,10 +23154,10 @@
       "difficulty": "zor",
       "variant": 9,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Türbinin girişinde 2¹⁵ birim sis bulunuyor. Sırayla 1/4, 1/4, 1/8 oranında geçiş yapan üç filtreden sonra sis iki eşit tüpe paylaştırılıyor. Bir tüpte kaç birim olur?",
+      "prompt": "Sis türbinine 2¹⁵ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre gelen miktarın 1/4’ü 2. filtreye aktarıyor. 2. filtre kendisine ulaşan sisin 1/4’ü 3. filtreye aktarıyor. 3. filtre ise bu miktarın 1/8’i geçiriyor. Son olarak çıkan sis iki eşit gözlem tüpüne paylaştırılıyor. Bir gözlem tüpüne kaç birim sis ulaşır?",
       "correctAnswer": "128",
       "solution": "Her filtrenin oranı 2’nin negatif kuvvetidir. 2¹⁵ × 2⁻² × 2⁻² × 2⁻³ × 2⁻¹ = 2⁷ = 128.",
-      "hint": "Her filtrenin kendisine ulaşan sisin yalnızca bir bölümünü geçirdiğini unutma; bütün kesirlerle sırayla çarp.",
+      "hint": "Sırasıyla 1/4 → 1/4 → 1/8 → 1/2 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
       "inputType": "choice",
       "options": [
         "153",
@@ -22665,11 +23198,31 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Türbinin girişinde 2¹³ birim sis bulunuyor. Sırayla 1/4, 1/4, 1/8 oranında geçiş yapan üç filtreden sonra sis iki eşit tüpe paylaştırılıyor. Bir tüpte kaç birim olur?",
+        "question": "Sis türbinine 2¹³ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre gelen miktarın 1/4’ü 2. filtreye aktarıyor. 2. filtre kendisine ulaşan sisin 1/4’ü 3. filtreye aktarıyor. 3. filtre ise bu miktarın 1/8’i geçiriyor. Son olarak çıkan sis iki eşit gözlem tüpüne paylaştırılıyor. Bir gözlem tüpüne kaç birim sis ulaşır?",
         "solution": "Her filtrenin oranı 2’nin negatif kuvvetidir. 2¹³ × 2⁻² × 2⁻² × 2⁻³ × 2⁻¹ = 2⁵ = 32."
       },
       "sourceQuestionId": "F03-Z-09",
-      "sourceDifficulty": "Zor"
+      "sourceDifficulty": "Zor",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: son filtre veya çıkıştan ulaşan sis miktarı. Başlangıçta 2¹⁵ birim sis var.",
+          "Sırasıyla 1/4 → 1/4 → 1/8 → 1/2 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 2¹⁵ = 32768 birim.",
+          "İlk süzme: 32768 ÷ 4 = 8192 birim.",
+          "Şimdi 8192 birime 1/4, sonra 1/8, sonra 1/2 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 2¹⁵ = 32768 birim.",
+          "2. 1. filtre: 32768 ÷ 4 = 8192 birim.",
+          "3. 2. filtre: 8192 ÷ 4 = 2048 birim.",
+          "4. 3. filtre: 2048 ÷ 8 = 256 birim.",
+          "5. Son aktarım: 256 ÷ 2 = 128 birim.",
+          "6. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 128 birimdir."
+        ]
+      }
     },
     {
       "id": "F03-Z-10",
@@ -22677,10 +23230,10 @@
       "difficulty": "zor",
       "variant": 10,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "2¹⁵ birim sis, önce 1/8 sonra 1/4 sonra 1/4 oranında geçiren filtrelerden geçiyor. Çıkan sis dört eşit hazneye bölünürse bir haznede kaç birim sis vardır?",
+      "prompt": "Sis türbinine 2¹⁵ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre gelen miktarın 1/8’i 2. filtreye aktarıyor. 2. filtre kendisine ulaşan sisin 1/4’ü 3. filtreye aktarıyor. 3. filtre ise bu miktarın 1/4’ü geçiriyor. Son olarak çıkan sis dört eşit toplama haznesine paylaştırılıyor. Bir hazneye kaç birim sis ulaşır?",
       "correctAnswer": "64",
       "solution": "Her filtrenin oranı 2’nin negatif kuvvetidir. 2¹⁵ × 2⁻³ × 2⁻² × 2⁻² × 2⁻² = 2⁶ = 64.",
-      "hint": "Her filtrenin kendisine ulaşan sisin yalnızca bir bölümünü geçirdiğini unutma; bütün kesirlerle sırayla çarp.",
+      "hint": "Sırasıyla 1/8 → 1/4 → 1/4 → 1/4 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
       "inputType": "choice",
       "options": [
         "76",
@@ -22721,11 +23274,31 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2¹³ birim sis, önce 1/8 sonra 1/4 sonra 1/4 oranında geçiren filtrelerden geçiyor. Çıkan sis dört eşit hazneye bölünürse bir haznede kaç birim sis vardır?",
+        "question": "Sis türbinine 2¹³ birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; bu filtre gelen miktarın 1/8’i 2. filtreye aktarıyor. 2. filtre kendisine ulaşan sisin 1/4’ü 3. filtreye aktarıyor. 3. filtre ise bu miktarın 1/4’ü geçiriyor. Son olarak çıkan sis dört eşit toplama haznesine paylaştırılıyor. Bir hazneye kaç birim sis ulaşır?",
         "solution": "Her filtrenin oranı 2’nin negatif kuvvetidir. 2¹³ × 2⁻³ × 2⁻² × 2⁻² × 2⁻² = 2⁴ = 16."
       },
       "sourceQuestionId": "F03-Z-10",
-      "sourceDifficulty": "Zor"
+      "sourceDifficulty": "Zor",
+      "f03Guide": {
+        "first": [
+          "İstenen miktarı belirle: son filtre veya çıkıştan ulaşan sis miktarı. Başlangıçta 2¹⁵ birim sis var.",
+          "Sırasıyla 1/8 → 1/4 → 1/4 → 1/4 oranları uygulanır. Her filtre yalnızca kendisine ulaşan miktarın belirtilen payını geçirir.",
+          "Önceki aşamanın sonucunu sonraki aşamaya taşı; başlangıçtaki miktarı her defasında yeniden kullanma."
+        ],
+        "second": [
+          "Giriş miktarı: 2¹⁵ = 32768 birim.",
+          "İlk süzme: 32768 ÷ 8 = 4096 birim.",
+          "Şimdi 4096 birime 1/4, sonra 1/4, sonra 1/4 oranlarını sırayla uygula; sonucu henüz seçme."
+        ],
+        "solution": [
+          "1. Türbine gelen sis: 2¹⁵ = 32768 birim.",
+          "2. 1. filtre: 32768 ÷ 8 = 4096 birim.",
+          "3. 2. filtre: 4096 ÷ 4 = 1024 birim.",
+          "4. 3. filtre: 1024 ÷ 4 = 256 birim.",
+          "5. Son aktarım: 256 ÷ 4 = 64 birim.",
+          "6. Kontrol: Her aşamada kalan miktar kullanılır. Doğru sonuç 64 birimdir."
+        ]
+      }
     },
     {
       "id": "F04-Z-01",
