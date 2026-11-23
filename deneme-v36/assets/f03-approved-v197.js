@@ -4,14 +4,14 @@
 (()=>{"use strict";
  const MASTER="./assets/f03-five-plaques-v198.avif?v=198";
  const CHARACTER_REFERENCE="./assets/erdem-ciko-onayli-v180.png?v=180";
- const WIDTH=1213,HEIGHT=1297,STYLE_ID="mtk-f03-five-v198-style";
+ const WIDTH=1213,HEIGHT=1297,STYLE_ID="mtk-f03-five-v202-style";
  // Text box centers INSIDE the five blank green plaques (native master pixels).
  const PLAQUES=Object.freeze({
-   input_a:[190,376,180,58],
-   input_b:[190,513,180,58],
-   filter_1:[532,819,185,55],
-   filter_2:[769,819,185,55],
-   filter_3:[1011,819,185,55]
+   input_a:[190,390,184,56],
+   input_b:[190,525,184,56],
+   filter_1:[532,837,189,54],
+   filter_2:[769,837,189,54],
+   filter_3:[1011,837,189,54]
  });
  const ORDER=["input_a","filter_1","filter_2","filter_3","input_b"];
  const style=String.raw`
@@ -80,8 +80,8 @@
    if(/filtre sayısı|filtre sayisi/.test(a))return "filter_2";
    if(/her filtre/.test(a))return "filter_1";
    if(/tüp|gözlem|ayrılan|kolu/.test(a))return "filter_3";
-   if(/ana hat/.test(a))return "filter_2";
-   if(/türbin giriş|giriş|çıkış/.test(a))return "input_a";
+   if(/ana hat|çıkış/.test(a))return "filter_2";
+   if(/türbin giriş|giriş/.test(a))return "input_a";
    return null;
  }
  function caption(anchor){
@@ -153,5 +153,5 @@
    img.src=MASTER;
    return true;
  }
- window.MTKF03ApprovedV197=Object.freeze({enhance,plan,PLAQUES,source:MASTER,character:CHARACTER_REFERENCE,version:"198"});
+ window.MTKF03ApprovedV197=Object.freeze({enhance,plan,PLAQUES,source:MASTER,character:CHARACTER_REFERENCE,version:"202"});
 })();
