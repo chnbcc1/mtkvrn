@@ -53,6 +53,10 @@ for(const q of f03){
  assert(!/Karede alan|Kökün karesini|Kök içindeki/.test([...a,...b,...c].join(" ")),q.id+" irrelevant mathematical hint");
  assert(!b.join(" ").includes("Doğru sonuç"),q.id+" second wrong cannot disclose the result");
 }
+assert(bank.questions.some(q=>q.id==="F03-O-02"&&q.correctAnswer==="206"),"Parallel 3^5 and 5^4 example must be recomputed");
+assert(bank.questions.some(q=>q.id==="F03-Z-09"&&q.correctAnswer==="6"),"6^5 and successive sixths must compute correctly");
+assert(bank.questions.find(q=>q.id==="F03-K-06").prompt.includes("2⁸"),"Use exponents for the 256-unit output question");
+assert(source.includes('if(run.practiceCompleted&&!run.practiceId&&!run.remediationId){'),"Keep solved practice separate from old task");
 assert(bank.questions.find(q=>q.id==="F03-O-07").prompt==="Sis türbinine 2¹² birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; çıkan miktarın 1/4’ü bir sonraki aşamaya aktarılıyor. Bu miktarın 1/8’i 2. filtreden geçiyor. Son olarak çıkan sisin yarısı gözlem tüpüne yönlendiriliyor. Gözlem tüpüne kaç birim sis ulaşır?");
 assert(source.includes('function finishSimilarQuestion(){'),"Similar-question completion needs its own state");
 assert(source.includes('run.practiceCompleted=true;run.awaiting=true;'),"Practice completion must not reopen an old answered question");
