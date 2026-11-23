@@ -28,10 +28,12 @@ assert(source.includes("e.textContent=item.value"),"Math numbers must be live te
 assert(source.includes('img.onerror=()=>'),"A missing picture must not block the task");
 assert(ui.includes('window.MTKF03ApprovedV197?.enhance(frame,q)'),"The real quiz must mount F03 after universal layout");
 assert(ui.indexOf('MTKQuizUniversalV176?.apply(frame,q)')<ui.indexOf('MTKF03ApprovedV197?.enhance(frame,q)'),"Coordinates should be applied after frame geometry");
-assert(quiz.includes('f03-approved-v197.js?v=197'),"The new scene script must load");
-assert(host.includes("forest-v70-quiz.html?v=197"),"The game must load the current F03 quiz");
+assert(quiz.includes('f03-approved-v197.js?v=198'),"The new scene script must load");
+assert(host.includes("forest-v70-quiz.html?v=198"),"The game must load the current F03 quiz");
 const bounds=api.PLAQUES;
-assert(Object.keys(bounds).length>=12,"Support two entries, three filters, two observation pipes, four outlets");
+assert(Object.keys(bounds).length>=12,"Keep source artwork plaque geometry while retaining only dynamic entries");
+assert.equal(Math.max(...f03.map(q=>(q.visual?.labels||[]).length)),5,"F03 needs only five data plaques at most");
+assert(bounds.filter_1[0]>=420&&bounds.filter_1[1]>=710,"Place filter values in the inner green plaque, below the gem");
 const slots=new Set(Object.keys(bounds));
 for(const q of f03){
  const data=q.visual?.labels||[],items=api.plan(q);
