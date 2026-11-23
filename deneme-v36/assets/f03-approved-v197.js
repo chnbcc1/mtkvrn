@@ -8,18 +8,19 @@
  // Plaques measured at the CENTER of the original 1213x1297 scene.
  // Coordinates and sizes are expressed in native pixels and converted to %.
  const PLAQUES=Object.freeze({
-   input_a: [158,333,176,65],
-   input_b: [158,441,176,64],
-   main: [754,382,173,65],
-   filter_1: [414,703,114,50],
-   filter_2: [541,703,114,50],
-   filter_3: [668,703,114,50],
-   tube_a: [934,632,111,52],
-   tube_b: [1063,633,111,52],
-   output_1: [650,944,112,52],
-   output_2: [775,944,112,52],
-   output_3: [900,944,112,52],
-   output_4: [1024,944,112,52]
+   // Text centers calibrated to the INNER green plaque areas (not decorative gemstones).
+   input_a: [160,335,149,43],
+   input_b: [160,444,149,43],
+   main: [766,389,145,43],
+   filter_1: [426,720,89,32],
+   filter_2: [550,720,89,32],
+   filter_3: [678,720,89,32],
+   tube_a: [947,645,88,34],
+   tube_b: [1075,645,88,34],
+   output_1: [662,960,90,34],
+   output_2: [786,960,90,34],
+   output_3: [911,960,90,34],
+   output_4: [1035,960,90,34]
  });
  const FALLBACK=["input_a","input_b","filter_1","filter_2","filter_3","main","tube_a","tube_b","output_1","output_2","output_3","output_4"];
  const style=String.raw`
@@ -45,11 +46,11 @@
    position:absolute!important;box-sizing:border-box!important;z-index:3!important;
    transform:translate(-50%,-50%)!important;
    display:flex!important;align-items:center!important;justify-content:center!important;
-   margin:0!important;padding:1px 2px!important;overflow:hidden!important;
+   margin:0!important;padding:0!important;overflow:hidden!important;
    color:#fff6d9!important;text-align:center!important;
-   font:850 clamp(8px,2.35cqw,18px)/1.07 system-ui,-apple-system,sans-serif!important;
+   font:850 clamp(8px,2.27cqw,18px)/1 system-ui,-apple-system,sans-serif!important;
    text-shadow:0 1px 2px #002e20,0 0 2px #002e20!important;
-   white-space:normal!important;word-break:normal!important;overflow-wrap:anywhere!important;
+   white-space:nowrap!important;word-break:normal!important;overflow-wrap:normal!important;
    letter-spacing:normal!important;pointer-events:none!important;
  }
  body.mtk-approved-active .mtk-frame.mtk-f03-v197 .mtk-f03-label.long{
