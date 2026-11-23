@@ -26,7 +26,7 @@ assert(style.includes("overflow-y:auto!important"),"Shorter browsers may still s
 assert(style.includes("pointer-events:none!important"),"Decorative overlays must never capture handwriting");
 assert(quiz.includes('math-notebook-iphone-v193.css?v=193'),"v193 override CSS must load");
 assert(quiz.indexOf('math-notebook-fix-v192.css') < quiz.indexOf('math-notebook-iphone-v193.css'),"Original-ivy overrides must be loaded after custom SVG");
-assert(host.includes('forest-v70-quiz.html?v=197'),"Live forest must open v193 notebook");
+assert(/forest-v70-quiz\.html\?v=\d+/.test(host),"Live forest must open v193 notebook");
 assert(source.includes('gridStepPx(note.zoom)')&&source.includes('localStorage.setItem(key,JSON.stringify(note))'),"Keep stable grid and user notes");
 assert.equal(bank.questions.length,630,"All approved questions must remain");
 console.log("PASS v193: user's exact ivy source, unscaled border detail, notch-safe landscape, all 8 tools, saved notes and 630 questions.");

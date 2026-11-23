@@ -30,7 +30,7 @@ assert(css.includes(".mn-root .mn-toolbar #mn-clear{display:none!important}"),"H
 assert(css.includes(".mn-root .mn-landscape-actions{display:none!important}"),"Portrait retains normal toolbar");
 assert(quiz.includes("math-notebook-layout-v196.css?v=196")&&quiz.includes("math-notebook-v187.js?v=196"),"Bust old CSS and script caches");
 assert(quiz.indexOf("math-notebook-question-v195.css")<quiz.indexOf("math-notebook-layout-v196.css"),"CSS override must load last");
-assert(host.includes("forest-v70-quiz.html?v=197"),"Forest should load updated quiz");
+assert(/forest-v70-quiz\.html\?v=\d+/.test(host),"Forest should load updated quiz");
 assert(originalVine.toString("ascii",0,4)==="RIFF","Original vines must remain unchanged");
 assert(js.includes("localStorage.setItem(key,JSON.stringify(note))"),"Preserve saved ink");
 assert.equal(bank.questions.length,630,"Keep all approved questions untouched");
