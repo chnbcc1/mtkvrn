@@ -514,7 +514,6 @@ function show(){window.MTKApprovedQuizV145?.reset();
       btn("Sonraki engele geç",()=>{run.index++;run.activeId=null;run.awaiting=false;run.practiceCompleted=false;run.lastPracticeId=null;run.practiceId=null;run.remediationId=null;run.taskWrong=0;run.completionWrong=null;resetStage();ensure();save();show()}),
       btn("Yeni benzer soru çöz",()=>{run.practiceCompleted=false;run.practiceId=pick(obs.id,run.difficulty,run.lastPracticeId||run.activeId);resetStage();show()},true));
     app.appendChild(controls);
-    window.MTKMathNotebook?.placeButton(app);
     return;
   }
   if(run.awaiting&&!run.practiceId&&!run.remediationId){
