@@ -28,8 +28,8 @@ assert(source.includes("value.textContent=item.value"),"Question numbers must be
 assert(source.includes("img.onerror=()=>"),"Keep playable old quiz if image is unavailable");
 assert(ui.includes("window.MTKF03ApprovedV197?.enhance(frame,q)"),"Game must mount five-plaque F03 scene");
 assert(ui.indexOf("MTKQuizUniversalV176?.apply(frame,q)")<ui.indexOf("MTKF03ApprovedV197?.enhance(frame,q)"),"Mount after universal layout");
-assert(quiz.includes("f03-approved-v197.js?v=199"),"Update iPhone browser asset cache");
-assert(host.includes("forest-v70-quiz.html?v=199"),"Update parent iframe cache");
+assert(quiz.includes("f03-approved-v197.js?v=203"),"Update iPhone browser asset cache");
+assert(host.includes("forest-v70-quiz.html?v=203"),"Update parent iframe cache");
 const f03=bank.questions.filter(q=>q.obstacleId==="F03");
 assert.equal(bank.questions.length,630,"Preserve all 630 approved questions");
 assert.equal(f03.length,30,"F03 requires 30 approved questions");
@@ -65,6 +65,16 @@ for(const q of f03){
   }
 }
 assert.equal(numberCount,114,"All 114 F03 dynamic values must be preserved");
+const bases=new Set(f03.map(q=>q.visual.labels[0].value.replace(/ birim$/,"").match(/^(\d+)[⁰¹²³⁴⁵⁶⁷⁸⁹]+$/)?.[1]).filter(Boolean));
+for(const b of ["2","3","4","5","6"])assert(bases.has(b),"F03 must offer genuine powers with base "+b);
+assert.equal(f03.find(q=>q.id==="F03-K-06").visual.labels[0].value,"2⁸","Show 256 in exponential form on the output plaque");
+for(const q of f03){
+ const g=q.f03Guide;
+ assert(g?.first?.length===3&&g?.second?.length===3&&g?.solution?.length>=4,q.id+" must have question-specific clear Turkish explanations");
+ assert(q.options.includes(q.correctAnswer)&&new Set(q.options).size===4,q.id+" answers and distractors must be valid");
+ assert(/[²³⁴⁵⁶⁷⁸⁹]/.test(q.workedExample?.question||""),q.id+" worked example should use powers");
+ if(q.id!=="F03-Z-01")assert(!/\b[12]\. filtreden miktarın|\bfiltre gelen sisin .*aktarıyor/.test(q.prompt),q.id+" incorrect flow grammar");
+}
 const charBottom=1297*.499 + (1213*.234)*(1402/1122);
 assert(charBottom < 1010,"Approved transparent reference must remain in landscape vertical safe area");
 assert.equal(api.plan({obstacleId:"F02",visual:{labels:[]}}).length,0,"Do not alter F02");
