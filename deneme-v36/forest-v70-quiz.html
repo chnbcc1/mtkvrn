@@ -589,7 +589,7 @@ function show(){window.MTKApprovedQuizV145?.reset();
 function select(answer,s,q,stageCount){
  if(!run||run.stageCorrect||run.revealed)return;
  if(answer.toLocaleLowerCase("tr")===String(s.answer).toLocaleLowerCase("tr")){run.stageCorrect=true;run.feedback="ok";save();show();return}
- run.wrong=(run.wrong||0)+1;if(!run.practiceId)run.taskWrong=(run.taskWrong||0)+1;run.wrongChoices=[...(run.wrongChoices||[]),answer];run.revealed=run.wrong>=3;run.helpView=true;save();show();
+ run.wrong=(run.wrong||0)+1;if(!run.practiceId&&!run.remediationId)run.taskWrong=(run.taskWrong||0)+1;run.wrongChoices=[...(run.wrongChoices||[]),answer];run.revealed=run.wrong>=3;run.helpView=true;save();show();
 }
 // v154: parent keeps the forest visible while the approved quiz and illustrations load.
 function announceQuizVisualReady(){
