@@ -54,6 +54,10 @@ for(const q of f03){
  assert(!b.join(" ").includes("Doğru sonuç"),q.id+" second wrong cannot disclose the result");
 }
 assert(bank.questions.find(q=>q.id==="F03-O-07").prompt==="Sis türbinine 2¹² birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; çıkan miktarın 1/4’ü bir sonraki aşamaya aktarılıyor. Bu miktarın 1/8’i 2. filtreden geçiyor. Son olarak çıkan sisin yarısı gözlem tüpüne yönlendiriliyor. Gözlem tüpüne kaç birim sis ulaşır?");
-assert(source.includes('if(q?.obstacleId==="F03")run.activeId=run.remediationId;'),"Do not claim previous wrong problem was solved after F03 remediation");
+assert(source.includes('function finishSimilarQuestion(){'),"Similar-question completion needs its own state");
+assert(source.includes('run.practiceCompleted=true;run.awaiting=true;'),"Practice completion must not reopen an old answered question");
+assert(source.includes('if(run.practiceCompleted&&!run.practiceId&&!run.remediationId){'),"Practice result screen must be separate");
+assert(source.includes('if(run.remediationId||run.practiceId){finishSimilarQuestion();return}'),"Both remediation and voluntary practice must finish independently");
+assert(!source.includes('if(q?.obstacleId==="F03")run.activeId=run.remediationId;'),"Remove F03-only stale-answer workaround");
 assert(source.includes('solutionCard.appendChild(mathText("p","mtk-teaching-step",explanation))'),"Solution must be rendered as scrollable structured paragraphs");
 console.log("PASS v184: 630 unchanged source questions receive detailed pedagogical feedback; F01 growth solution verified.");
