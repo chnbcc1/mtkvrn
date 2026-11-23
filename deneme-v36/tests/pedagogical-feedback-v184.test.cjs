@@ -37,5 +37,23 @@ for(const q of bank.questions){
  assert(all.length>=4&&all.every(v=>typeof v==="string"&&v.length>8),q.id+" missing pedagogical steps");
  assert(!/undefined|NaN/.test(all.join(" ")),q.id+" invalid explanation");
 }
+/* F03: all 30 questions have exact-data guidance, not unrelated area/root tips.
+   First wrong: concept; second wrong: safe first step; third wrong: full verified solution. */
+const f03=bank.questions.filter(q=>q.obstacleId==="F03");
+assert.equal(f03.length,30,"Keep every F03 question");
+for(const q of f03){
+ const guide=q.f03Guide, s={prompt:q.prompt,answer:q.correctAnswer,hint:q.hint,solution:q.solution};
+ assert(guide?.first?.length===3&&guide?.second?.length===3&&guide?.solution?.length>=4,q.id+" missing three-stage F03 guide");
+ const a=p.teachingHint(q,q.hint),b=p.teachingSecondHint(q,q.hint),c=p.teachingSolutionSteps(q,s);
+ assert.equal(a.join("|"),guide.first.join("|"),q.id+" first hint must be question-specific");
+ assert.equal(b.join("|"),guide.second.join("|"),q.id+" second hint must show the real first calculation");
+ assert.equal(c.join("|"),guide.solution.join("|"),q.id+" third hint must use a complete F03 solution");
+ assert(a.join(" ").includes(q.visual.labels[0].value.replace(/ birim$/,"")),q.id+" first hint must cite the entry value");
+ assert(c.join(" ").includes(q.correctAnswer),q.id+" wrong answer on final stage");
+ assert(!/Karede alan|Kökün karesini|Kök içindeki/.test([...a,...b,...c].join(" ")),q.id+" irrelevant mathematical hint");
+ assert(!b.join(" ").includes("Doğru sonuç"),q.id+" second wrong cannot disclose the result");
+}
+assert(bank.questions.find(q=>q.id==="F03-O-07").prompt==="Sis türbinine 2¹² birim sis giriyor. Bu sisin tamamı önce 1. filtreden geçiyor; çıkan miktarın 1/4’ü bir sonraki aşamaya aktarılıyor. Bu miktarın 1/8’i 2. filtreden geçiyor. Son olarak çıkan sisin yarısı gözlem tüpüne yönlendiriliyor. Gözlem tüpüne kaç birim sis ulaşır?");
+assert(source.includes('if(q?.obstacleId==="F03")run.activeId=run.remediationId;'),"Do not claim previous wrong problem was solved after F03 remediation");
 assert(source.includes('solutionCard.appendChild(mathText("p","mtk-teaching-step",explanation))'),"Solution must be rendered as scrollable structured paragraphs");
 console.log("PASS v184: 630 unchanged source questions receive detailed pedagogical feedback; F01 growth solution verified.");
