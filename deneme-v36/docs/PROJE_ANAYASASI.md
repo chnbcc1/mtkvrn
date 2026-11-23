@@ -1,0 +1,83 @@
+# Matematik Evreni — PROJE ANAYASASI (onaylı kararlar)
+> Kapsam: TÜBİTAK 4006 Matematik Evreni / Erdem-Çiko oyunu.
+> Statü: Kullanıcının önceki sohbetlerde açıkça verdiği kuralların ortak başvuru kaydı.
+> Amaç: Yeni sohbetlerde eski kararların kaybolmasını ve yanlışlıkla yeniden yorumlanmasını önlemek.
+> Son derleme: 23.11.2026. Bu dosya oyunun yayımlandığını veya bütün kuralların kodda eksiksiz uygulandığını iddia etmez.
+
+## 0. Çalışmaya başlamadan yapılacak ZORUNLU kontroller
+1. **Bu dosyayı oku.** Yeni sohbet, uzun süreli geliştirme, yeni sahne, soru, engel, tasarım veya yayın öncesinde en başta oku.
+2. GitHub `chnbcc1/mtkvrn` deposunun güncel **main** dalını ve düzenlenecek gerçek dosyaları incele. Eski sürümden veya sohbet hafızasından kod tahmin etme.
+3. Kullanıcının son isteğini bu dosyayla karşılaştır. Çelişki varsa kullanıcıdan gelen açık yeni talep geçerlidir; değişen kuralı bu dosyada ayrıca güncelle. Sessizce yeni kural uydurma.
+4. Soruları, referans karakter görsellerini ve sahne kurallarını birbirinden ayrı incele. Onaylanmamış görseli, karakteri veya sahne türünü “onaylı” diye sunma.
+5. Yalnız istenen bölümü değiştir; çalışan oyun, soru bankası, zıplama mekaniği, ekran geçişleri ve öğrenci kayıtlarını koru. Test ederek doğrula.
+6. GitHub değişikliği, otomatik test ve GitHub Pages yayını ayrı ayrı doğrulanmadan “yayımlandı / tamamlandı” deme. iPhone üzerindeki gerçek görünüm ancak cihaz ekran görüntüsü veya gerçek testle doğrulanabilir.
+
+## 1. EN ÖNEMLİ KURAL — iki farklı engel/görev sınıfı
+### A. Küçük FİZİKSEL ZIPLAMA ENGELLERİ
+- Yolun üstündeki kütük, kaya, kök, mantar öbeği ve yarık/çukur benzeri küçük nesneler.
+- Erdem zamanında zıplayarak üzerinden geçer; Çiko kendi animasyonunu sürdürür.
+- **Bu nesnelerde matematik sorusu açılmaz.** Bunları 21 araştırma/görev ekranıyla asla karıştırma.
+- Onaylanmış çarpışma, hareket ve zıplama fiziğini rastgele değiştirme.
+
+### B. ARAŞTIRMA / MATEMATİK GÖREVLERİ
+- Ormandaki ayrı **21 araştırma görevi**; matematik soruları, ipuçları, çözümler ve ilgili sahne görselleri burada kullanılır.
+- Görev sorularının kabul edilen veri kaynağı mevcut `deneme-v36/forest-questions-v147.json` (630 soruluk veri havuzu); yeni soru uydurup mevcut onaylı sorunun yerine koyma.
+- Görevdeki matematiksel ifadeler, sayısal veriler, oranlar, seçenekler **görselin içine gömülmez**; ilgili sorunun veri alanından ayrı HTML/katman olarak çizilir.
+- Oyundaki `F01/F02/F03...` sırası **araştırma/görev sırasını** belirtir; küçük fiziksel zıplama engeli sırası değildir.
+- Onaylı araştırma sırası başlangıcı: `F01 Sarmaşık Duvarı`, `F02 Işıklı Taş Basamaklar`, `F03 Sis Türbini`. **F03 üçüncü araştırma görevidir; üçüncü fiziksel engel değil.**
+- Önemli: Eski kod veya dokümanlarda “ana matematik engeli” denmesi, bu iki ayrı oyun mekaniğini birleştirme yetkisi vermez. Kod farklı davranıyorsa uygulama-tasarım uyuşmazlığı olarak raporla.
+
+## 2. Erdem ve Çiko — kesin kimlik kuralı
+- Onaylı karakter görünümü, renkleri, oranları ve ölçeği korunacak; her engel için tekrar çizilmeyecek, stil değiştirilmeyecek.
+- Depodaki doğrulanmış onaylı kaynak: `deneme-v36/assets/erdem-ciko-onayli-v180.png`. Gerekli şeffaf katman/ayrılmış sprite'lar için güncel dosyaları incele; ayrılmış bir kaynak gerçekten yoksa varmış gibi davranma.
+- Soru sahnesi **önce karakter olmadan** üretilir. Erdem ve Çiko için bilinçli boş alan ayrılır.
+- Ardından karakterler onaylı referans katmanlarından, yerleri/ölçekleri korunarak sahneye **ayrı katman** olarak yerleştirilir.
+- Erdem ve Çiko'yu arka plan görseliyle birlikte yeniden üretme. “Benziyor” yeterli değil; mümkün olduğunca aynı kaynağı kullan.
+
+## 3. GÖRSEL EKRAN YERLEŞİMİ
+- **DİKEY (portrait):** Sahneli soru ekranının **üst %50'si görsel**, alt %50 soru + şıklar / yardımcı araçlar.
+- **YATAY (landscape):** **SOL %50 görsel**, sağ %50 soru + şıklar / yardımcı araçlar. **Yatayda üst %50 değil.**
+- İki bağımsız oran/kompozisyon kullanılır. Yan yana iki taslak, başlık, cevap şablonu veya büyük infografik olarak tek görsel üretme; oyuna takılabilen *yalnız sahne görseli* üret.
+- Görselin içine soru, cevap, sonuç, üs, kesir, değer, plaket sayıları, “F03 Zor”, “Sis Türbini” başlığı gibi statik metin yerleştirme. Gerekli konumsal boş plaketler ve veri ankrajları önceden tasarlanabilir; değerler sonradan dinamik yazılır.
+- Sahneler bozulmadan/kırpılmadan/esnetilmeden görüntülenecek. Kısa/uzun sorular ekrana uyarlanacak; gerekli çok uzun metinler için kontrollü kaydırma olabilir.
+- Yüksek kaliteli, oyunun mevcut sinematik orman ve altın çerçeve kimliğine uyumlu sahne; Erdem/Çiko'yu kapatmayan 3B engel/makine arka planda.
+- Görsel üretimi sırası: (1) doğrulanmış görev ve onaylı mevcut soruyu oku, (2) dikey **karaktersiz** sahne, (3) yatay **karaktersiz** sahne, (4) onaylı karakterleri aynen bindir, (5) soru verilerini ayrı katmanla bağla, (6) iki ekranda iPhone testi.
+
+## 4. F03 — ÜÇÜNCÜ ARAŞTIRMA GÖREVİ
+- **Adı: Sis Türbini.** Sis miktarının giriş, filtre(ler), çıkış dönüşümünü konu edinen sorular. `deneme-v36/forest-questions-v147.json` içinde `obstacleId: F03` ile doğrulandı.
+- Var olan F03 makine illüstrasyonu: `deneme-v36/assets/quiz-f03-machine-v145.js`; sahne geliştirmeden önce gerçek mevcut görsel/HTML bağlantıları incelenecek.
+- Kullanıcı yeni sahnede ilk aşamada Erdem/Çiko istemiyor. Karakterlerin sonradan eklenebileceği boş alanlar bırakılacak.
+- **Kaya/kütük** gibi zıplama engellerini yanlışlıkla “3. Engel” başlıklı F03 görselinin yerine üretme. Bu hata önceki taslaklarda yaşandı ve kabul edilmedi.
+- Dikey üst %50, yatay sol %50 görsel. Bu görseller sadece makine/sahne olacak, soru/şıklar oyun arayüzünde yer alacak.
+- Yeni F03 taslağı kullanıcı açıkça onaylamadan onaylı final sahne olarak kaydedilmez veya canlıya bağlanmaz.
+
+## 5. Defter / soru ekranı (kabul edilmiş davranış)
+- Matematik defteri not almayı, silgiyi, el ile aşağı kaydırmayı, geri/ileri almayı ve kâğıdı temizlemeyi destekler.
+- Kareli, çizgili ve boş kâğıt arasında değiştirirken çizilmiş işlemler korunur; defter uzun kaydırılabilir yüzeydir.
+- Açık adaçayı yeşili kâğıt, kullanıcının özgün sarmaşık kenarları, net görüntü. Görseller keyfî şekilde değiştirilmez.
+- Yatayda not defteri soru metni, oyun sorusunun gerçek hesaplanan puntolarıyla eşleşir; sağ altta geri al / ileri al / çöp dikey grubu; sol tarafta kalem/silgi/el/zemin/zoom araçları.
+- İlgili kod: `deneme-v36/assets/math-notebook-v187.js`, kademeli CSS v191–v196 ve `forest-v70-quiz.html`. Sabit dosya adı sürüm numarası güncellense de eski kod anlamına gelmez.
+
+## 6. GÜNCEL VERİ / KARAR ÖNCELİĞİ
+1. Kullanıcının **son açık talimatı ve son onayladığı ekran görüntüsü**.
+2. Bu `PROJE_ANAYASASI.md` içindeki yazılı kesin kurallar.
+3. Onaylı sorular, onaylı referans görselleri ve GitHub'daki doğrulanmış güncel uygulama.
+4. Eski README'ler, önceki sürüm notları ve sohbet özetleri yardımcı kaynak; birbirleriyle çelişebilir.
+- Bir hata varsa “önceki kararı değiştirdik” varsayma. Önce doğrula, sonra düzelt.
+- Yanlış üretilmiş taslakları **onaylı** olarak işaretleme ve onaylı dosyaların üzerine yazma.
+
+## 7. Yeni sohbet başlatırken / sohbet sonunda
+**Yeni sohbet başlangıç komutu:**
+`Matematik Evreni'ne kaldığımız yerden devam. chnbcc1/mtkvrn GitHub deposundaki deneme-v36/docs/PROJE_ANAYASASI.md dosyasını ÖNCE oku. Güncel main'i ve ilgili dosyaları kontrol et. Onaylı kuralları değiştirme. Şu anda çalıştığımız konu: ...`
+
+**Her oturum sonunda kısa devir kaydı tutulur:**
+- Son onaylı karar
+- Son doğrulanmış GitHub commit'i ve dosya adları
+- Onaylanmamış taslaklar (net yaz)
+- Testlerin gerçek durumu (kod / GitHub Actions / Pages / iPhone)
+- Bir sonraki iş ve değişmeyecek kısıtlar
+
+**Kural değişirse:** Eski cümleyi sessizce silip yerine başka karar koyma. Kararın nedenini, yeni onayı ve tarihi kısa değişiklik kaydıyla ekle.
+
+## 8. Proje kuralı değişiklik günlüğü
+- **23.11.2026 — İlk ana kural derlemesi.** Küçük zıplama engelleri / 21 araştırma görevi ayrımı ve F03 bağlamı yeniden doğrulandı. Dikey/yatay %50 yerleşim ve onaylı Erdem/Çiko referansı eklendi. Bu belge kodu veya soru bankasını değiştirmez.
