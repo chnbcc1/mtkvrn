@@ -50,6 +50,7 @@
 - **Kaya/kütük** gibi zıplama engellerini yanlışlıkla “3. Engel” başlıklı F03 görselinin yerine üretme. Bu hata önceki taslaklarda yaşandı ve kabul edilmedi.
 - Dikey üst %50, yatay sol %50 görsel. **F03 Sis Türbini için de dikey ana görselin aynısı yatayda kullanılacak; sadece üst/alt kırpma serbest, ikinci bir türbin sahnesi üretmek yasak.** Bu görseller sadece makine/sahne olacak, soru/şıklar oyun arayüzünde yer alacak.
 - Yeni F03 taslağı kullanıcı açıkça onaylamadan onaylı final sahne olarak kaydedilmez veya canlıya bağlanmaz.
+- **23.11.2026 açık kullanıcı onayı — F03 v198:** Kullanıcı beş boş plaketli yeni dikey Sis Türbini sahnesini oyuna bağlamayı ve Erdem–Çiko'nun onaylı şeffaf referans katmanını eklemeyi istedi. Güncel onaylı sahne `deneme-v36/assets/f03-five-plaques-v198.avif`; en çok beş etiket kullanan 30 F03 sorusunun 114 sayısal verisi ayrı DOM etiketleriyle yerleştirilir. Erdem–Çiko görseli `erdem-ciko-onayli-v180.png` kaynağından yeniden çizilmeden üst katman olarak kullanılır. Bu onay, yukarıda belirtilen karakter olmadan ilk taslak aşamasının sonrasıdır; diğer görevlerin referansları ve 630 soruluk banka değişmez.
 
 ## 5. Defter / soru ekranı (kabul edilmiş davranış)
 - Matematik defteri not almayı, silgiyi, el ile aşağı kaydırmayı, geri/ileri almayı ve kâğıdı temizlemeyi destekler.
@@ -80,5 +81,6 @@
 **Kural değişirse:** Eski cümleyi sessizce silip yerine başka karar koyma. Kararın nedenini, yeni onayı ve tarihi kısa değişiklik kaydıyla ekle.
 
 ## 8. Proje kuralı değişiklik günlüğü
+- **23.11.2026 — F03 beş plaketli sahne onayı.** Kullanıcı eski 12 plaket yerine beş plaketi yeterli bulup yeni sahnenin F03 görevine eklenmesini ve aynı onaylı Erdem–Çiko görsel katmanının uygulanmasını istedi. Yeni görüntü tek dikey ana görsel kuralını korur; sayılar ayrı katmanla yazılır. GitHub doğrulama testi ve Pages yayını ayrıca kontrol edilir.
 - **24.11.2026 — Tek ana sahne kararı.** Kullanıcı, dikey görev görselinin yatayda da aynen kullanılmasını; yalnızca üstten/alttan gerektiği kadar kırpılmasını onayladı. Eskiden yazılı olan iki bağımsız kompozisyon ve tamamen kırpmasız yerleşim kuralları bu karara göre güncellendi. Erdem/Çiko ayrı referans katmanı, dinamik sayılar ve dikey üst %50 / yatay sol %50 değişmedi.
 - **23.11.2026 — İlk ana kural derlemesi.** Küçük zıplama engelleri / 21 araştırma görevi ayrımı ve F03 bağlamı yeniden doğrulandı. Dikey/yatay %50 yerleşim ve onaylı Erdem/Çiko referansı eklendi. Bu belge kodu veya soru bankasını değiştirmez.
