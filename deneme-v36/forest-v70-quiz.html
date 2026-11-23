@@ -112,7 +112,7 @@ const FORCED=new URLSearchParams(location.search).get("obstacle")||"";
 const FORCED_DIFFICULTY=new URLSearchParams(location.search).get("difficulty")||"orta";
 const PREVIEW_QUESTION_ID=new URLSearchParams(location.search).get("previewQuestion")||"";
 const CAMPAIGN_SESSION=new URLSearchParams(location.search).get("session")||"direct-preview";
-const BANK_URL="./forest-questions-v147.json?v=171";
+const BANK_URL="./forest-questions-v147.json?v=201";
 const RUN_KEY=EMBED?"mathverse-v147-quiz-"+CAMPAIGN_SESSION+"-"+FORCED+"-"+FORCED_DIFFICULTY:"mathverse-v147-choice-run",HISTORY_KEY="mathverse-v147-choice-history";
 const OLD_SAVE_KEY="mathverse-v40-investigation";
 let bank=null,run=null,history={used:{},last:{},seenPrompts:{}};
@@ -412,6 +412,8 @@ function teachingGoal(q,s){
  return (questions?.at(-1)?.trim()||q?.topic||"Soruda istenen nicelik").slice(0,245);
 }
 function teachingHint(q,defaultHint){
+  // F03: every mistake gets a guide built from this exact question and its numeric data.
+  if(q?.obstacleId==="F03"&&Array.isArray(q.f03Guide?.first))return q.f03Guide.first;
  const g=f01Guide(q)||window.MTKF02ApprovedV165?.guide(q);
  if(g)return g.first;
  return [
@@ -421,6 +423,7 @@ function teachingHint(q,defaultHint){
  ];
 }
 function teachingSecondHint(q,defaultHint){
+  if(q?.obstacleId==="F03"&&Array.isArray(q.f03Guide?.second))return q.f03Guide.second;
  const g=f01Guide(q)||window.MTKF02ApprovedV165?.guide(q);
  if(g)return g.second;
  return [
@@ -430,6 +433,7 @@ function teachingSecondHint(q,defaultHint){
  ];
 }
 function teachingSolutionSteps(q,s){
+  if(q?.obstacleId==="F03"&&Array.isArray(q.f03Guide?.solution))return q.f03Guide.solution;
  const growth=f01Growth(q);
  if(growth){
   const {left,right,leftRate,rightRate,day}=growth;
@@ -526,7 +530,11 @@ function show(){window.MTKApprovedQuizV145?.reset();
   app.appendChild(feedbackBox("ok","✓ Doğru seçim. "+workedSteps(q)));
   app.appendChild(rowButton(EMBED&&run.stage>=all.length-1&&!run.practiceId&&!run.remediationId?"Engeli aç · Ormana dön":run.stage>=all.length-1?"Engeli tamamla":"Sonraki işleme geç",()=>{
     if(run.stage<all.length-1){run.stage++;run.wrong=0;run.wrongChoices=[];run.stageCorrect=false;save();show();return}
-    if(run.remediationId){run.completionWrong=run.taskWrong||0;run.remediationId=null;run.practiceId=null;run.awaiting=true;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show();return}
+    if(run.remediationId){run.completionWrong=run.taskWrong||0;
+      // The learner completed the NEW remediation question, not the earlier wrong one.
+      // Show the actually solved question on completion instead of marking the old wrong one correct.
+      if(q?.obstacleId==="F03")run.activeId=run.remediationId;
+      run.remediationId=null;run.practiceId=null;run.awaiting=true;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show();return}
     if(run.practiceId){run.practiceId=null;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show();return}
     if(EMBED){reportSolved(obs);return}
     run.completionWrong=run.taskWrong||0;run.awaiting=true;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show()
