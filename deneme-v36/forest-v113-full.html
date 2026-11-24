@@ -1082,6 +1082,9 @@ for(let i=0;i<GATES.length-1;i++){
  }
 }
 HAZARDS.sort((a,b)=>a.x-b.x);
+const STUDIO_HAZARD_BASE=STUDIO_TEST?HAZARDS.slice(0,4).map((h,i)=>({...h,id:i})):[];let studioHazardSelected=-1,studioHazardBoxes=false;
+function setStudioHazards(rows){if(!STUDIO_TEST||!Array.isArray(rows)||rows.length!==4)return false;const sorted=[];for(const [i,b] of STUDIO_HAZARD_BASE.entries()){const r=rows[i];if(!r||r.id!==i||!Number.isFinite(r.x)||r.x<550||r.x>2850||!Number.isFinite(r.visual)||r.visual<50||r.visual>180||!Number.isFinite(r.collision)||r.collision<50||r.collision>150)return false;sorted.push({...b,x:r.x,visual:r.visual,collision:r.collision});}for(let i=1;i<sorted.length;i++)if(sorted[i].x-sorted[i-1].x<260)return false;HAZARDS.splice(0,4,...sorted);return true}
+if(STUDIO_TEST){try{const v=JSON.parse(localStorage.getItem('mtk.studio.hazards.v12')||'null');if(v)setStudioHazards(v)}catch{}window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent||parent===window)return;const d=e.data;if(d?.type==='mtk-hazard-v12'){const ok=setStudioHazards(d.rows);studioHazardBoxes=!!d.boxes;studioHazardSelected=Number.isInteger(d.selected)&&d.selected>=0&&d.selected<4?d.selected:-1;if(d.focus&&studioHazardSelected>=0){heroX=Math.max(330,HAZARDS[studioHazardSelected].x-220);heroY=GROUND;vy=0;requested=0;activePointers.clear();camReady=false;updatePress()}parent.postMessage({type:'mtk-hazard-ack-v12',ok},location.origin)}});}
 const SOLVED=new Set();
 let jumpStartClock=0;
 let introDone=false,quizActiveId=null,hitMessage="",hitTimer=0,groundOffset=15,flashObstacle=0,finishShown=false;
@@ -1687,7 +1690,7 @@ const gapArt=window.MTK_V110_GAP_OBSTACLE;
 const OBSTACLE_CLEARANCE=Object.freeze({
  rock:59,log:56,root:62,mushroom:65,gap:29
 });
-function obstacleGeometry(h){
+function originalObstacleGeometry(h){
  const lane=FOREST_PHOTO_READY()?PHOTO_PATH_LANE:PATH_LANE;
  const roadDepth=lane.near-lane.far;
  if(h.type==="gap"){
@@ -1755,6 +1758,7 @@ function obstacleGeometry(h){
   clearance:OBSTACLE_CLEARANCE[h.type]
  };
 }
+function obstacleGeometry(h){const m=originalObstacleGeometry(h);if(!STUDIO_TEST||h.id===undefined)return m;const v=(h.visual||100)/100,c=(h.collision||100)/100,center=h.x+h.w/2,cy=(m.top+m.bottom)/2;return {...m,dx:m.dx+(m.dw-m.dw*v)/2,dy:cy-m.dh*v/2-h.laneY,dw:m.dw*v,dh:m.dh*v,top:cy-m.dh*v/2,bottom:cy+m.dh*v/2,left:center-h.w*c/2,right:center+h.w*c/2,clearance:m.clearance*c};}
 drawMini=function(h){
  const m=obstacleGeometry(h),sprite=obstacleArt;
  worldObject(h.x,h.laneY,()=>{
@@ -1796,6 +1800,7 @@ drawMini=function(h){
      sprite.frameWidth,sprite.frameHeight,m.dx,m.dy,m.dw,m.dh);
    }
   }
+  if(STUDIO_TEST&&h.id!==undefined&&(studioHazardBoxes||h.id===studioHazardSelected)){ctx.strokeStyle=h.id===studioHazardSelected?'#ffe18a':'#63e9dc';ctx.lineWidth=2;ctx.strokeRect(m.dx,m.dy,m.dw,m.dh);if(studioHazardBoxes){ctx.strokeStyle='#ff916a';ctx.strokeRect(m.left-h.x,-m.clearance,m.right-m.left,m.clearance);}}
   ctx.restore();
  });
 };
