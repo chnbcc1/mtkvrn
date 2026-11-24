@@ -619,7 +619,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 <!-- v182: original prop images now load as a native image rather than a base64 JS string. -->
 <script src="./assets/v73-premium-assets.js?v=73"></script>
 <!-- v182: original Erdem atlas now loads as a native image. -->
-<script src="./erdem-animation-v83.js?v=83&hotfix=183"></script>
+<script src="./erdem-animation-v83.js?v=83&hotfix=183&studio=81"></script>
 <script src="./chiko-v57-hd-atlas.js?v=57"></script>
 <script src="./forest-obstacle-art-v85.js?v=85"></script>
 <script src="./forest-obstacle-art-v98.js?v=98"></script>
@@ -637,7 +637,7 @@ const STUDIO_DEFAULT=Object.freeze({walk:245,air:422,impulse:560,gravity:1280});
 function readStudioPhysics(){if(!STUDIO_TEST)return STUDIO_DEFAULT;try{const v=JSON.parse(localStorage.getItem('mtk.studio.applied.physics.v6')||'null');const limits={walk:[80,450],air:[80,500],impulse:[200,800],gravity:[500,2000]};if(v&&Object.entries(limits).every(([k,r])=>Number.isFinite(v[k])&&v[k]>=r[0]&&v[k]<=r[1]))return Object.freeze({walk:v.walk,air:v.air,impulse:v.impulse,gravity:v.gravity})}catch(e){}return STUDIO_DEFAULT}
 const STUDIO_PHYSICS=readStudioPhysics();
 function readTestAnim(){if(!STUDIO_TEST)return {};try{const a=JSON.parse(localStorage.getItem('mtk.studio.applied.animation.v8')||'{}'),out={erdem:{},ciko:{}};for(const [c,ms] of Object.entries({erdem:['walk','idle'],ciko:['fly']}))for(const m of ms){const v=a[c]?.[m];if(v&&Array.isArray(v.frames)&&v.frames.length>=1&&v.frames.length<=120&&Array.isArray(v.durations)&&v.durations.length===v.frames.length&&v.frames.every(n=>Number.isInteger(n)&&n>=0&&n<18)&&v.durations.every(n=>Number.isInteger(n)&&n>=20&&n<=5000)&&Number.isFinite(v.speed)&&v.speed>=10&&v.speed<=200&&Number.isFinite(v.scale)&&v.scale>=50&&v.scale<=150)out[c][m]=v}return out}catch{return {}}}const TEST_ANIM=readTestAnim();function testFrame(v,seconds){if(!v)return undefined;let t=(Math.max(0,seconds)*1000*v.speed/100)%v.durations.reduce((a,b)=>a+b,0);for(let i=0;i<v.frames.length;i++){if(t<v.durations[i])return v.frames[i];t-=v.durations[i]}return v.frames[0]}
-if(STUDIO_TEST){window.addEventListener('DOMContentLoaded',()=>{const e=document.createElement('div');e.style.cssText='position:fixed;z-index:9999;left:6px;bottom:4px;max-width:95%;background:#142a3b;color:#ffdda0;padding:5px 8px;font:11px system-ui;pointer-events:none;border-radius:5px';e.textContent='FİZİK TESTİ · Yürüme '+STUDIO_PHYSICS.walk+' · Hava '+STUDIO_PHYSICS.air+' · Zıplama '+STUDIO_PHYSICS.impulse+' · Yerçekimi '+STUDIO_PHYSICS.gravity;document.body.append(e)})}
+if(STUDIO_TEST){window.addEventListener('DOMContentLoaded',()=>{const e=document.createElement('div');e.style.cssText='position:fixed;z-index:9999;left:6px;bottom:4px;max-width:95%;background:#142a3b;color:#ffdda0;padding:5px 8px;font:11px system-ui;pointer-events:none;border-radius:5px';e.textContent='FİZİK TESTİ · Yürüme '+STUDIO_PHYSICS.walk+' · Hava '+STUDIO_PHYSICS.air+' · Zıplama '+STUDIO_PHYSICS.impulse+' · Yerçekimi '+STUDIO_PHYSICS.gravity;document.body.append(e);const h=document.createElement('div');h.id='studioAnimHud';h.style.cssText='position:fixed;z-index:9999;left:6px;bottom:28px;max-width:95%;background:#142a3b;color:#ffdda0;padding:5px 8px;font:11px system-ui;pointer-events:none;border-radius:5px';h.textContent='Animasyon verileri yükleniyor';document.body.append(h)})}
 const SAVE_KEY=STUDIO_TEST?'mtk.studio.test.home.v6':'mathverse-v40-investigation';
 const W=49580,H=941,GROUND=760,RAVINE_LEFT=19298,RAVINE_RIGHT=19513,BRIDGE_X=19233,GATE_X=49060;
 const canvas=document.querySelector('#scene'),ctx=canvas.getContext('2d',{alpha:false});
@@ -982,14 +982,17 @@ function marker(x,y,label){
  ctx.beginPath();ctx.arc(xx-4*scale,yy-5*scale,7*scale,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.moveTo(xx+1*scale,yy+1*scale);ctx.lineTo(xx+10*scale,yy+11*scale);ctx.stroke();
  ctx.restore();
 }
+let studioWalkTime=0,studioLastFrameClock=0,studioLastState='idle',studioHudTick=-1;
 function heroSprite(){
  const px=worldX(heroX),py=worldY(heroY+groundOffset);
  const size=window.MTK_ERDEM_ANIMATION?.defaultSize(scale)||{width:165*scale,height:257*scale};
  const state=heroY<GROUND-2?"jump":Math.abs(requested)>0?"walk":"idle";
+ const delta=Math.max(0,Math.min(.05,clock-studioLastFrameClock));studioLastFrameClock=clock;if(state!==studioLastState){studioWalkTime=0;studioLastState=state}else if(!modalOpen&&started)studioWalkTime+=delta;
+ const custom=TEST_ANIM.erdem?.[state];const selected=testFrame(custom,studioWalkTime);
  if(window.MTK_ERDEM_ANIMATION?.draw(ctx,{
   x:px,y:py,width:size.width*(TEST_ANIM.erdem?.[state]?.scale||100)/100,height:size.height*(TEST_ANIM.erdem?.[state]?.scale||100)/100,face,
-  state,testFrame:testFrame(TEST_ANIM.erdem?.[state],clock),distance:travel,jumpAge:Math.max(0,clock-jumpStartClock)*STUDIO_PHYSICS.gravity/1280,jumpImpulse:STUDIO_PHYSICS.impulse
- }))return;
+  state,testFrame:selected,distance:travel,jumpAge:Math.max(0,clock-jumpStartClock)*STUDIO_PHYSICS.gravity/1280,jumpImpulse:STUDIO_PHYSICS.impulse
+ })){if(STUDIO_TEST&&clock-studioHudTick>.20){studioHudTick=clock;const d=window.MTK_ERDEM_ANIMATION.getDiagnostics(),w=TEST_ANIM.erdem?.walk;const hud=document.getElementById('studioAnimHud');if(hud)hud.textContent='Erdem yürüyüş: '+(w?'%'+w.speed+' · '+(1000*w.frames.length/w.durations.reduce((a,b)=>a+b,0)*w.speed/100).toFixed(2)+' kare/sn':'Orijinal')+' · '+state+' · Kare '+(d.lastDrawnFrame==null?'?':d.lastDrawnFrame+1)+' · '+(custom?(d.lastOverride?'Aktif':'Aktarım hatası'):'Orijinal poz')+' · '+(d.studioRevision===81?'v8.1':'Eski motor');}return;}
  // Wait for the original sprite: never replace Erdem with unapproved
  // blue rectangle, circle or a distorted illustration on a slow phone.
  return;
