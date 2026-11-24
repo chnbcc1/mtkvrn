@@ -111,3 +111,6 @@
 
 ## 12. v20 hareket eşleştirmesi (25.11.2026)
 - Kullanıcı v19 aktarımı ve sunucu kapatılıp açıldıktan sonra animasyonların geri geldiğini doğruladı. v20 hareket eşleştirmesi disk indeksine kaydedilir; ilk sekiz eğilme klibi zorunlu, iki eğilmiş dönüş klibi isteğe bağlı. Yön uyumluluğu kontrol edilir. Gerçek orman motorunda sadece yerel STUDIO_TEST için aşağı ok/S ve basılı mobil eğilme düğmesi; eğilme, bekleme, yürüme, dönüş, doğrulma ve zıplama engeli eklendi. İlk eğilme engeli ve çarpışma yüksekliği uygulaması sonraki adım; kullanıcı cihaz testi bekleniyor. Main ve soru bankası değişmedi.
+
+## 13. v21 eğilme düzeltmeleri (25.11.2026)
+- Kullanıcı gerçek ormanda v20 eğilme animasyonunun çalıştığını, ancak küçülme, tekrar hafif doğrulma, hareketli bekleme ve akıcı olmayan eğilmiş yürüyüş gördüğünü bildirdi. v21 yalnız yerel test motorunda alfa sınırları üzerinden tek ortak ölçek, ortak ayak hizası, en alçak başlangıç pozu sonrası karelerin atlanması, en alçak bekleme karesinin sabitlenmesi ve gidilen mesafeye bağlı daha hızlı adımlar uygular. Yerel PNG/JSON kaynaklar değiştirilmez. Otomatik poz seçiminin ve görsel ölçeğin kullanıcının gerçek karelerinde sonucu tekrar test edilecektir. Ana oyun dalı korunur.
