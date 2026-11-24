@@ -14,7 +14,7 @@
  const DRAW_WIDTH=165, DRAW_HEIGHT=257;
  const SOLE_OFFSET=11, FOOT_ANCHOR=(CELL_HEIGHT-SOLE_OFFSET)/CELL_HEIGHT;
  const JUMP_KEYS=Object.freeze([.08,.30,.48,.65,.92,1]);
- let loaded=false;
+ let loaded=false,lastDrawnFrame=null,lastOverride=false;
  const atlas=new Image();
  atlas.decoding="async";
  // Identical approved 18 poses. The lossless WebP is pixel-verified,
@@ -71,6 +71,7 @@
    ctx.drawImage(atlas,(frame%COLS)*CELL_WIDTH,Math.floor(frame/COLS)*CELL_HEIGHT,
     CELL_WIDTH,CELL_HEIGHT,-width/2,-height*FOOT_ANCHOR,width,height);
    ctx.restore();
+   lastDrawnFrame=frame;lastOverride=Number.isInteger(o.testFrame)&&o.testFrame===frame;
    return true;
   }catch(error){
    ctx.restore();loaded=false;loadNext();return false;
@@ -83,7 +84,7 @@
    return {width:DRAW_WIDTH*s,height:DRAW_HEIGHT*s};
   },
   getDiagnostics(){
-   return {loaded,version:83,frameScale:Array(18).fill(1),
+   return {loaded,version:83,lastDrawnFrame,lastOverride,studioRevision:81,frameScale:Array(18).fill(1),
     frameFootAnchor:Array(18).fill(FOOT_ANCHOR),
     sizePolicy:"fixed across idle/walk/jump/turn",jumpFrames:[8,9,10,11,12,13]};
   }
