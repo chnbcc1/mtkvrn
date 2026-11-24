@@ -108,3 +108,6 @@
 
 ## 11. Yerel dosya kaydı (25.11.2026)
 - Kullanıcı stüdyo verilerinin bilgisayarda klasör olarak saklanmasını, animasyon silme ve yatay taşmanın düzeltilmesini onayladı. v19 özel animasyonlar için kullanıcı ev dizininde MatematikEvreni-Stüdyo-Verileri klasörü, PNG içerik deposu, JSON indeks, önceki indeks yedekleri ve geri yüklenebilir çöp kutusu ekler. Tarayıcıdaki eski kayıtlar açık aktarım ile korunur; ana oyun değişmez. Diğer modüllerin disk kaydı ve yedek dosyalarından geri yükleme arayüzü henüz bağlı değil. v19 tarayıcı testi bekler.
+
+## 12. v20 hareket eşleştirmesi (25.11.2026)
+- Kullanıcı v19 aktarımı ve sunucu kapatılıp açıldıktan sonra animasyonların geri geldiğini doğruladı. v20 hareket eşleştirmesi disk indeksine kaydedilir; ilk sekiz eğilme klibi zorunlu, iki eğilmiş dönüş klibi isteğe bağlı. Yön uyumluluğu kontrol edilir. Gerçek orman motorunda sadece yerel STUDIO_TEST için aşağı ok/S ve basılı mobil eğilme düğmesi; eğilme, bekleme, yürüme, dönüş, doğrulma ve zıplama engeli eklendi. İlk eğilme engeli ve çarpışma yüksekliği uygulaması sonraki adım; kullanıcı cihaz testi bekleniyor. Main ve soru bankası değişmedi.
