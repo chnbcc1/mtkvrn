@@ -632,7 +632,12 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
 <script src="./forest-bridge-front-v112.js?v=112"></script>
 <script>
 'use strict';
-const SAVE_KEY='mathverse-v40-investigation';
+const STUDIO_TEST=['localhost','127.0.0.1'].includes(location.hostname)&&new URLSearchParams(location.search).get('studioPhysics')==='1';
+const STUDIO_DEFAULT=Object.freeze({walk:245,air:422,impulse:560,gravity:1280});
+function readStudioPhysics(){if(!STUDIO_TEST)return STUDIO_DEFAULT;try{const v=JSON.parse(localStorage.getItem('mtk.studio.applied.physics.v6')||'null');const limits={walk:[80,450],air:[80,500],impulse:[200,800],gravity:[500,2000]};if(v&&Object.entries(limits).every(([k,r])=>Number.isFinite(v[k])&&v[k]>=r[0]&&v[k]<=r[1]))return Object.freeze({walk:v.walk,air:v.air,impulse:v.impulse,gravity:v.gravity})}catch(e){}return STUDIO_DEFAULT}
+const STUDIO_PHYSICS=readStudioPhysics();
+if(STUDIO_TEST){window.addEventListener('DOMContentLoaded',()=>{const e=document.createElement('div');e.style.cssText='position:fixed;z-index:9999;left:6px;bottom:4px;max-width:95%;background:#142a3b;color:#ffdda0;padding:5px 8px;font:11px system-ui;pointer-events:none;border-radius:5px';e.textContent='FİZİK TESTİ · Yürüme '+STUDIO_PHYSICS.walk+' · Hava '+STUDIO_PHYSICS.air+' · Zıplama '+STUDIO_PHYSICS.impulse+' · Yerçekimi '+STUDIO_PHYSICS.gravity;document.body.append(e)})}
+const SAVE_KEY=STUDIO_TEST?'mtk.studio.test.home.v6':'mathverse-v40-investigation';
 const W=49580,H=941,GROUND=760,RAVINE_LEFT=19298,RAVINE_RIGHT=19513,BRIDGE_X=19233,GATE_X=49060;
 const canvas=document.querySelector('#scene'),ctx=canvas.getContext('2d',{alpha:false});
 const $=s=>document.querySelector(s);
@@ -770,7 +775,7 @@ function openForestSettings(){
  action('Oyuna dön',closeModal);
  action('Ana menü',()=>{recordForestExit();location.assign('./menu-v116.html?v=152')},'secondary');
 }
-$('#settingsBtn').onclick=openForestSettings;
+$('#settingsBtn').onclick=STUDIO_TEST?()=>{}:openForestSettings;if(STUDIO_TEST){$('#settingsBtn').hidden=true;}
 
 window.addEventListener('pagehide',()=>{if(started&&!suppressForestExitSave)recordForestExit()});
 function puzzle(showChoice=true){
@@ -830,7 +835,7 @@ for(const [id,dir] of [['left',-1],['right',1]]){
 }
 // v78: keep the modest forest jump height (vy=-560), but match the home's long directional jump.
 // Restore all six house jump sprites and preserve natural gravity.
-function jump(){if(!started||modalOpen||heroY<GROUND-.2)return;vy=-560;jumpStartClock=clock;clearChikoSpeech("collision")}
+function jump(){if(!started||modalOpen||heroY<GROUND-.2)return;vy=-STUDIO_PHYSICS.impulse;jumpStartClock=clock;clearChikoSpeech("collision")}
 $('#jump').addEventListener('pointerdown',e=>{e.preventDefault();jump()});
 // Pointer-only iOS browsers are handled above. For older touch implementations,
 // install fallback listeners only when PointerEvent is unavailable.
@@ -982,7 +987,7 @@ function heroSprite(){
  const state=heroY<GROUND-2?"jump":Math.abs(requested)>0?"walk":"idle";
  if(window.MTK_ERDEM_ANIMATION?.draw(ctx,{
   x:px,y:py,width:size.width,height:size.height,face,
-  state,distance:travel,jumpAge:Math.max(0,clock-jumpStartClock),jumpImpulse:560
+  state,distance:travel,jumpAge:Math.max(0,clock-jumpStartClock)*STUDIO_PHYSICS.gravity/1280,jumpImpulse:STUDIO_PHYSICS.impulse
  }))return;
  // Wait for the original sprite: never replace Erdem with unapproved
  // blue rectangle, circle or a distorted illustration on a slow phone.
@@ -1022,7 +1027,7 @@ function update(dt){
  heroX=Math.min(solved&&bridgeProgress>=1?GATE_X+10:BRIDGE_X,Math.max(270,heroX+requested*(heroY<GROUND-1?295:245)*dt));
  if(!solved&&heroX>=BRIDGE_X&&requested>0){heroX=BRIDGE_X}
  if(Math.abs(heroX-old)>.01){face=requested>=0?1:-1;travel+=Math.abs(heroX-old)}
- if(heroY<GROUND||vy!==0){vy+=1280*dt;heroY=Math.min(GROUND,heroY+vy*dt);if(heroY>=GROUND){heroY=GROUND;vy=0}}
+ if(heroY<GROUND||vy!==0){vy+=STUDIO_PHYSICS.gravity*dt;heroY=Math.min(GROUND,heroY+vy*dt);if(heroY>=GROUND){heroY=GROUND;vy=0}}
  if(solved&&bridgeProgress<1)bridgeProgress=Math.min(1,(clock-bridgeBuildStart)/2.1);
  saveTimer+=dt;if(saveTimer>2&&Math.abs(heroX-saveLastX)>35)save();
  const m=available();
@@ -1035,7 +1040,7 @@ function loop(ts){
  const dt=Math.min(.036,(last?(ts-last):16)/1000);last=ts;clock+=dt;update(dt);render();requestAnimationFrame(loop)}
 
 // v68 : 21-stage playable forest campaign with platform hazards.
-const CAMPAIGN_KEY="mathverse-v68-forest-full";
+const CAMPAIGN_KEY=STUDIO_TEST?"mtk.studio.test.campaign.v6":"mathverse-v68-forest-full";
 const ORDER=["F01","F02","F03","F04","F05","F06","F07","F08","F09","F10","F11","F12","F13","F14","F21","F15","F16","F17","F18","F19","F20"];
 const LABELS=["Sarmaşık duvarı","Işıklı taş basamaklar","Sis türbini","Katmanlı ışık geçidi","Ters güç kristalleri","Mantar adaları","Kare taş platform","Kırık köprü","Kopmuş halat","Işıklı dikdörtgen platform","Şelale kapakları","İkiye ayrılan patika","Küp biçimli taş kilit","Dişli çark","Üslü-köklü gösterim geçidi","Eşlenik aynalar","Yanıltıcı yazıt","Mavi toz istasyonu","Sinyal tekrarlayıcısı","Taş platform desteği","Gözlemevinin üç halkalı kapısı"];
 const ICONS=["🌿","✦","☁","✧","◆","🍄","◼","🌉","♧","▰","💧","↔","⬡","⚙","⇄","◇","✎","✿","⌁","⊞","◎"];
@@ -1846,13 +1851,13 @@ function nextHazard(oldX,target){
 }
 update=function(dt){
  if(!started||modalOpen)return;
- if(heroY<GROUND||vy!==0){vy+=1280*dt;heroY=Math.min(GROUND,heroY+vy*dt);if(heroY>=GROUND){heroY=GROUND;vy=0}}
+ if(heroY<GROUND||vy!==0){vy+=STUDIO_PHYSICS.gravity*dt;heroY=Math.min(GROUND,heroY+vy*dt);if(heroY>=GROUND){heroY=GROUND;vy=0}}
  const previous=heroX;
  // Ground run stays unchanged. In the air, directional travel matches the
  // approximately 252 + 170 units/sec from Dedenin Evi's directional jump.
  // Releasing the direction still stops horizontal input without changing jump height.
- const horizontalSpeed=heroY<GROUND-.2?422:245;
- let target=Math.max(280,Math.min(GATE_X+32,heroX+requested*horizontalSpeed*dt));
+ const horizontalSpeed=heroY<GROUND-.2?STUDIO_PHYSICS.air:STUDIO_PHYSICS.walk;
+ let target=Math.max(280,Math.min(STUDIO_TEST?3000:GATE_X+32,heroX+requested*horizontalSpeed*dt));
  target=nextBlocked(heroX,target);
  target=nextHazard(heroX,target);
  heroX=target;
