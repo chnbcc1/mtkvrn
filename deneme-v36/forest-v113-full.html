@@ -749,7 +749,7 @@ function recordForestExit(){
   localStorage.setItem(SAVE_KEY,JSON.stringify(state));
  }catch(e){}
 }
-$('#mtkTitleBtn').onclick=home; // The compass opens the map card; it never leaves the game.
+$('#mtkTitleBtn').onclick=STUDIO_TEST?()=>{}:home;if(STUDIO_TEST)$('#mtkTitleBtn').hidden=true; // The compass opens the map card; it never leaves the game.
 
 let suppressForestExitSave=false;
 function confirmForestRestart(scope){
@@ -1200,6 +1200,7 @@ function prepareQuiz(id){
  return false;
 }
 function warmUpcomingQuiz(){
+ if(STUDIO_TEST)return;
  if(!started||!introDone||modalOpen)return;
  const next=GATES.find(g=>!SOLVED.has(g.id));
  if(next)prepareQuiz(next.id);
@@ -1874,7 +1875,10 @@ update=function(dt){
  if(!finishShown&&done===21&&heroX>=GATE_X-80){finishShown=true;reachGate()}
 };
 if(new URLSearchParams(location.search).get("preview")==="1")approved=true;
-if(!approved){
+if(STUDIO_TEST){
+ approved=true;started=true;introDone=true;heroX=330;heroY=GROUND;vy=0;requested=0;modalOpen=false;closeModal();
+ $("#hint").textContent="Yerel fizik testi: doğrudan patikadasın.";
+}else if(!approved){
  openModal("Önce Dedenin Evi","<p>Bu bölüm, Dedenin Evi'ndeki üç halka keşfinden sonra açılır. Kontrol amaçlı önizleme için bağlantıya <b>?preview=1</b> ekleyebilirsiniz.</p>");
  action("Dedenin Evine Dön",()=>location.assign("./?scene=home"));
 }else if(resumed){
