@@ -104,3 +104,7 @@
 - Animasyon stüdyosu bağımsızdır; fizik ve engel editörleri ortak gerçek orman testini kullanır. Yakınlaştırma gerçek karakter ölçeğinden ayrıdır.
 - Eğilme, eğilmiş bekleme, eğilerek sağ/sol yürüme, eğilmiş sağ/sol dönüş ve doğrulma ayrı hareketler olarak hazırlanır. Erdem'in onaylı kimliği korunur; gövde dikey sıkıştırılmaz. Fiziksel eğilme engelleri matematik sorusu açmaz.
 - v18 özel animasyon kütüphanesi `animasyon-yeni.html`: PNG ve sprite sheet içe aktarma, kare süreleri ve dönüşümler, IndexedDB yerel taslak kaydı. Henüz gerçek oyun motoruna bağlanmadı; kullanıcı tarafından oluşturulacak hareketler ve yeni görseller test/onay bekler. Main ve soru bankası korunur.
+
+
+## 11. Yerel dosya kaydı (25.11.2026)
+- Kullanıcı stüdyo verilerinin bilgisayarda klasör olarak saklanmasını, animasyon silme ve yatay taşmanın düzeltilmesini onayladı. v19 özel animasyonlar için kullanıcı ev dizininde MatematikEvreni-Stüdyo-Verileri klasörü, PNG içerik deposu, JSON indeks, önceki indeks yedekleri ve geri yüklenebilir çöp kutusu ekler. Tarayıcıdaki eski kayıtlar açık aktarım ile korunur; ana oyun değişmez. Diğer modüllerin disk kaydı ve yedek dosyalarından geri yükleme arayüzü henüz bağlı değil. v19 tarayıcı testi bekler.
