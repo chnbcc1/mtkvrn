@@ -1,11 +1,12 @@
 import { defineConfig } from 'vite';
+import { studioData } from './studio-data.mjs';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
 const run=promisify(execFile), cwd=fileURLToPath(new URL('.',import.meta.url));
 const git=async (...args)=>(await run('git',args,{cwd,timeout:90000,maxBuffer:1024*1024,windowsHide:true,env:{...process.env,GIT_TERMINAL_PROMPT:'0'}})).stdout.trim();
 let busy=false;
-export default defineConfig({plugins:[{name:'mtk-local-version',configureServer(server){
+export default defineConfig({plugins:[studioData(),{name:'mtk-local-version',configureServer(server){
 server.middlewares.use('/__studio_version',async(req,res)=>{
 res.setHeader('Content-Type','application/json; charset=utf-8');res.setHeader('Cache-Control','no-store');
 const send=(status,obj)=>{res.statusCode=status;res.end(JSON.stringify(obj))};
