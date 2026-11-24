@@ -1880,7 +1880,7 @@ if(STUDIO_TEST){
  $("#hint").textContent="Yerel fizik testi: doğrudan patikadasın.";
 }else if(!approved){
  openModal("Önce Dedenin Evi","<p>Bu bölüm, Dedenin Evi'ndeki üç halka keşfinden sonra açılır. Kontrol amaçlı önizleme için bağlantıya <b>?preview=1</b> ekleyebilirsiniz.</p>");
- action("Dedenin Evine Dön",()=>location.assign("./?scene=home"));
+ action("Dedenin Evine Dön",()=>location.assign("./?scene=home&autostart=1&v=152"));
 }else if(resumed){
  started=true;introDone=true;save(true);$("#hint").textContent="Kaldığın yerden devam ediyorsun.";
  warmUpcomingQuiz();
