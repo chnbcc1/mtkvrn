@@ -57,7 +57,7 @@
  }
  function draw(ctx,o){
   if(!loaded)return false;
-  const frame=selectFrame(o);
+  const frame=Number.isInteger(o.testFrame)&&o.testFrame>=0&&o.testFrame<18?o.testFrame:selectFrame(o);
   const {width,height}=frameGeometry(o);
   const face=o.state==="turn"&&o.turnFace?o.turnFace:o.face;
   ctx.save();
