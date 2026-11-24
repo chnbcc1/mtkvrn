@@ -98,3 +98,9 @@
 - Ses efektleri, konuşma, ortam ve müzik ayrı kanallarda yönetilir. Ücretli API veya zorunlu abonelik kullanılmaz. Kullanılan dış seslerin lisansı doğrulanır; yerel seslendirme ve özgün ses üretimi önceliklidir.
 - Ses laboratuvarı v11 `ses.html` dosyasında yerel ön izleme ve ayrı ses profilleri sağlar. Ana oyuna henüz bağlanmamıştır; sentetik efektler ve tarayıcıdaki yerel Türkçe sesler taslaktır. Onaylanmış karakter referansları, soru bankası ve ana oyun dalı değiştirilmez.
 - Devir kaydı: v9 canlı ayar paneli kullanıcı tarafından başarılı olarak bildirildi. v10 animasyon ekleri ve v11 ses laboratuvarı GitHub test dalına kaydedildi; v10/v11 tarayıcı ve telefon testi bekliyor. Sırada görsel engel ve sayısal koordinat editörleri ile otomatik testler.
+
+
+## 10. Animasyon stüdyosu ve eğilme (24.11.2026)
+- Animasyon stüdyosu bağımsızdır; fizik ve engel editörleri ortak gerçek orman testini kullanır. Yakınlaştırma gerçek karakter ölçeğinden ayrıdır.
+- Eğilme, eğilmiş bekleme, eğilerek sağ/sol yürüme, eğilmiş sağ/sol dönüş ve doğrulma ayrı hareketler olarak hazırlanır. Erdem'in onaylı kimliği korunur; gövde dikey sıkıştırılmaz. Fiziksel eğilme engelleri matematik sorusu açmaz.
+- v18 özel animasyon kütüphanesi `animasyon-yeni.html`: PNG ve sprite sheet içe aktarma, kare süreleri ve dönüşümler, IndexedDB yerel taslak kaydı. Henüz gerçek oyun motoruna bağlanmadı; kullanıcı tarafından oluşturulacak hareketler ve yeni görseller test/onay bekler. Main ve soru bankası korunur.
