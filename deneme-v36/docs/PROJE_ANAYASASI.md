@@ -91,3 +91,10 @@
 - **23.11.2026 — F03 beş plaketli sahne onayı.** Kullanıcı eski 12 plaket yerine beş plaketi yeterli bulup yeni sahnenin F03 görevine eklenmesini ve aynı onaylı Erdem–Çiko görsel katmanının uygulanmasını istedi. Yeni görüntü tek dikey ana görsel kuralını korur; sayılar ayrı katmanla yazılır. GitHub doğrulama testi ve Pages yayını ayrıca kontrol edilir.
 - **24.11.2026 — Tek ana sahne kararı.** Kullanıcı, dikey görev görselinin yatayda da aynen kullanılmasını; yalnızca üstten/alttan gerektiği kadar kırpılmasını onayladı. Eskiden yazılı olan iki bağımsız kompozisyon ve tamamen kırpmasız yerleşim kuralları bu karara göre güncellendi. Erdem/Çiko ayrı referans katmanı, dinamik sayılar ve dikey üst %50 / yatay sol %50 değişmedi.
 - **23.11.2026 — İlk ana kural derlemesi.** Küçük zıplama engelleri / 21 araştırma görevi ayrımı ve F03 bağlamı yeniden doğrulandı. Dikey/yatay %50 yerleşim ve onaylı Erdem/Çiko referansı eklendi. Bu belge kodu veya soru bankasını değiştirmez.
+
+
+## 9. Stüdyo ses kimliği ve geliştirme kuralları (24.11.2026)
+- Kullanıcı Erdem ve Çiko'nun görsel referansları gibi bütün oyun boyunca tutarlı, kendilerine özgü referans sesleri olmasını onayladı. Henüz kesin ses kaydı veya model onaylanmadı; aday sesler onaylı diye sunulmaz.
+- Ses efektleri, konuşma, ortam ve müzik ayrı kanallarda yönetilir. Ücretli API veya zorunlu abonelik kullanılmaz. Kullanılan dış seslerin lisansı doğrulanır; yerel seslendirme ve özgün ses üretimi önceliklidir.
+- Ses laboratuvarı v11 `ses.html` dosyasında yerel ön izleme ve ayrı ses profilleri sağlar. Ana oyuna henüz bağlanmamıştır; sentetik efektler ve tarayıcıdaki yerel Türkçe sesler taslaktır. Onaylanmış karakter referansları, soru bankası ve ana oyun dalı değiştirilmez.
+- Devir kaydı: v9 canlı ayar paneli kullanıcı tarafından başarılı olarak bildirildi. v10 animasyon ekleri ve v11 ses laboratuvarı GitHub test dalına kaydedildi; v10/v11 tarayıcı ve telefon testi bekliyor. Sırada görsel engel ve sayısal koordinat editörleri ile otomatik testler.
