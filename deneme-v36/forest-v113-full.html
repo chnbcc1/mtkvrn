@@ -636,6 +636,7 @@ const STUDIO_TEST=['localhost','127.0.0.1'].includes(location.hostname)&&new URL
 const STUDIO_DEFAULT=Object.freeze({walk:245,air:422,impulse:560,gravity:1280});
 function readStudioPhysics(){if(!STUDIO_TEST)return STUDIO_DEFAULT;try{const v=JSON.parse(localStorage.getItem('mtk.studio.applied.physics.v6')||'null');const limits={walk:[80,450],air:[80,500],impulse:[200,800],gravity:[500,2000]};if(v&&Object.entries(limits).every(([k,r])=>Number.isFinite(v[k])&&v[k]>=r[0]&&v[k]<=r[1]))return Object.freeze({walk:v.walk,air:v.air,impulse:v.impulse,gravity:v.gravity})}catch(e){}return STUDIO_DEFAULT}
 const STUDIO_PHYSICS=readStudioPhysics();
+function readTestAnim(){if(!STUDIO_TEST)return {};try{const a=JSON.parse(localStorage.getItem('mtk.studio.applied.animation.v8')||'{}'),out={erdem:{},ciko:{}};for(const [c,ms] of Object.entries({erdem:['walk','idle'],ciko:['fly']}))for(const m of ms){const v=a[c]?.[m];if(v&&Array.isArray(v.frames)&&v.frames.length>=1&&v.frames.length<=120&&Array.isArray(v.durations)&&v.durations.length===v.frames.length&&v.frames.every(n=>Number.isInteger(n)&&n>=0&&n<18)&&v.durations.every(n=>Number.isInteger(n)&&n>=20&&n<=5000)&&Number.isFinite(v.speed)&&v.speed>=10&&v.speed<=200&&Number.isFinite(v.scale)&&v.scale>=50&&v.scale<=150)out[c][m]=v}return out}catch{return {}}}const TEST_ANIM=readTestAnim();function testFrame(v,seconds){if(!v)return undefined;let t=(Math.max(0,seconds)*1000*v.speed/100)%v.durations.reduce((a,b)=>a+b,0);for(let i=0;i<v.frames.length;i++){if(t<v.durations[i])return v.frames[i];t-=v.durations[i]}return v.frames[0]}
 if(STUDIO_TEST){window.addEventListener('DOMContentLoaded',()=>{const e=document.createElement('div');e.style.cssText='position:fixed;z-index:9999;left:6px;bottom:4px;max-width:95%;background:#142a3b;color:#ffdda0;padding:5px 8px;font:11px system-ui;pointer-events:none;border-radius:5px';e.textContent='FİZİK TESTİ · Yürüme '+STUDIO_PHYSICS.walk+' · Hava '+STUDIO_PHYSICS.air+' · Zıplama '+STUDIO_PHYSICS.impulse+' · Yerçekimi '+STUDIO_PHYSICS.gravity;document.body.append(e)})}
 const SAVE_KEY=STUDIO_TEST?'mtk.studio.test.home.v6':'mathverse-v40-investigation';
 const W=49580,H=941,GROUND=760,RAVINE_LEFT=19298,RAVINE_RIGHT=19513,BRIDGE_X=19233,GATE_X=49060;
@@ -986,8 +987,8 @@ function heroSprite(){
  const size=window.MTK_ERDEM_ANIMATION?.defaultSize(scale)||{width:165*scale,height:257*scale};
  const state=heroY<GROUND-2?"jump":Math.abs(requested)>0?"walk":"idle";
  if(window.MTK_ERDEM_ANIMATION?.draw(ctx,{
-  x:px,y:py,width:size.width,height:size.height,face,
-  state,distance:travel,jumpAge:Math.max(0,clock-jumpStartClock)*STUDIO_PHYSICS.gravity/1280,jumpImpulse:STUDIO_PHYSICS.impulse
+  x:px,y:py,width:size.width*(TEST_ANIM.erdem?.[state]?.scale||100)/100,height:size.height*(TEST_ANIM.erdem?.[state]?.scale||100)/100,face,
+  state,testFrame:testFrame(TEST_ANIM.erdem?.[state],clock),distance:travel,jumpAge:Math.max(0,clock-jumpStartClock)*STUDIO_PHYSICS.gravity/1280,jumpImpulse:STUDIO_PHYSICS.impulse
  }))return;
  // Wait for the original sprite: never replace Erdem with unapproved
  // blue rectangle, circle or a distorted illustration on a slow phone.
@@ -998,8 +999,8 @@ function birdSprite(){
  const follow=.15;flyingX+=(dx-flyingX)*follow;flyingY+=(dy-flyingY)*follow;
  const dir=Math.cos(clock*1)>0?1:-1;
  flyingFace=dir;
- const frame=Math.floor(clock*14.8)%8;
- const x=worldX(flyingX),y=worldY(flyingY),size=99*scale;
+ const frame=testFrame(TEST_ANIM.ciko?.fly,clock)??Math.floor(clock*14.8)%8;
+ const x=worldX(flyingX),y=worldY(flyingY),size=99*scale*(TEST_ANIM.ciko?.fly?.scale||100)/100;
  const ready=chiko.complete&&chiko.naturalWidth>=1152&&chiko.naturalHeight>=576;
  ctx.save();ctx.translate(x,y);ctx.scale(flyingFace,1);
  if(ready)ctx.drawImage(chiko,(frame%6)*192,Math.floor(frame/6)*192,192,192,-size/2,-size/2,size,size);
