@@ -97,10 +97,12 @@
   const map=new Map(entries.map(e=>[normalize(e.anchor),String(e.value)]));
   const get=k=>map.get(k);
   const power=value=>{
-    const m=String(value??"").match(/^2([⁰¹²³⁴⁵⁶⁷⁸⁹]+)$/);
+    // Read the actual power printed on each plaque, not only powers of 2.
+    // E.g. 3², 4³, 5² and 2⁶ are evaluated from their own bases.
+    const m=String(value??"").trim().match(/^(\d+)([⁰¹²³⁴⁵⁶⁷⁸⁹]+)$/);
     if(!m)return NaN;
-    const exponent=Number([...m[1]].map(c=>"⁰¹²³⁴⁵⁶⁷⁸⁹".indexOf(c)).join(""));
-    return 2**exponent;
+    const exponent=Number([...m[2]].map(c=>"⁰¹²³⁴⁵⁶⁷⁸⁹".indexOf(c)).join(""));
+    return Number(m[1])**exponent;
   };
   const value=k=>power(get(k));
   const hint=(first,second)=>({first,second,solution:String(q.solution||"")});
