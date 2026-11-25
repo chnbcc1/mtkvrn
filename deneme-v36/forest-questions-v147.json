@@ -157,16 +157,16 @@
       "difficulty": "kolay",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sarmaşık duvarındaki bir dalda ilk gün 2 tomurcuk vardır. Her gün sayı iki katına çıkıyorsa 3. günde kaç tomurcuk bulunur?",
-      "correctAnswer": "8",
-      "solution": "2 × 2² = 8 tomurcuk.",
-      "hint": "İlk günü birinci gün olarak say; her yeni günde 2 ile çarp.",
+      "prompt": "Sarmaşık duvarında 1. gün 2 tomurcuk bulunuyor. Tomurcuk sayısı her yeni gün 3 katına çıkıyor. 3. gün kaç tomurcuk olur?",
+      "correctAnswer": "18",
+      "solution": "1. gün 2 tomurcuk başlangıç miktarıdır. 3. güne ulaşmak için 2 kez 3 ile çarparız: 2 × 3² = 18.",
+      "hint": "İlk gün verilen sayı başlangıçtır. 3. güne ulaşmak için her yeni günde 3 ile çarpılır.",
       "inputType": "choice",
       "options": [
-        "8",
-        "6",
-        "10",
-        "16"
+        "18",
+        "20",
+        "16",
+        "22"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -183,7 +183,7 @@
           },
           {
             "anchor": "büyüme",
-            "value": "×2 / gün"
+            "value": "×3 / gün"
           },
           {
             "anchor": "gün",
@@ -193,11 +193,22 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Bir dalda ilk gün 3 tomurcuk varsa ve her gün iki katına çıkarsa üçüncü gün kaç olur?",
-        "solution": "3 → 6 → 12; cevap 12."
+        "question": "Bir kolda 3 tomurcuk var. Her gün 3 katına çıkıyorsa 3. gün sonunda kaç tomurcuk bulunur?",
+        "solution": "İlk gün 3; ikinci gün 9, üçüncü gün 27. İşlem: 3 × 3² = 27."
       },
       "sourceQuestionId": "F01-K-01",
-      "sourceDifficulty": "Kolay"
+      "sourceDifficulty": "Kolay",
+      "f01Guide": {
+        "first": [
+          "İlk gün verilen sayı başlangıçtır. 3. güne ulaşmak için her yeni günde 3 ile çarpılır.",
+          "Büyüme sayısı gün sayısından bir eksiktir; çünkü birinci gün zaten verilmiştir."
+        ],
+        "second": [
+          "2. güne geçerken 2 × 3 = 6 tomurcuk olur.",
+          "Sonraki güne geçerken bulunan yeni miktarı yeniden 3 ile çarp. Sonuca kendin ulaş."
+        ],
+        "solution": "1. gün 2 tomurcuk başlangıç miktarıdır. 3. güne ulaşmak için 2 kez 3 ile çarparız: 2 × 3² = 18."
+      }
     },
     {
       "id": "F01-K-02",
@@ -249,16 +260,16 @@
       "difficulty": "kolay",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sarmaşık dalında bugün 16 tomurcuk vardır. Tomurcuk sayısı her gün iki katına çıkıyorsa dün kaç tomurcuk vardı?",
-      "correctAnswer": "8",
-      "solution": "16 ÷ 2 = 8.",
-      "hint": "Geriye giderken ikiye böl.",
+      "prompt": "Bir sarmaşık dalında bugün 3⁴ tomurcuk vardır. Tomurcuk sayısı her gün 3 katına çıkıyorsa dün kaç tomurcuk vardı?",
+      "correctAnswer": "27",
+      "solution": "Bugünkü sayı: 3⁴ = 81. Dünü bulmak için 81 ÷ 3 = 27 işlemini yaparız.",
+      "hint": "Dünkü miktar 3 ile çarpılınca bugünkü miktar oluşur.",
       "inputType": "choice",
       "options": [
-        "16",
-        "12",
-        "8",
-        "4"
+        "29",
+        "25",
+        "27",
+        "31"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -271,21 +282,32 @@
         "labels": [
           {
             "anchor": "bugün",
-            "value": "16"
+            "value": "3⁴"
           },
           {
             "anchor": "gelişim",
-            "value": "her gün ×2"
+            "value": "her gün ×3"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Bir dalda ilk gün 3 tomurcuk varsa ve her gün iki katına çıkarsa üçüncü gün kaç olur?",
-        "solution": "3 → 6 → 12; cevap 12."
+        "question": "Bir dalda bugün 3³ tomurcuk var. Her gün 3 katına çıktığına göre dün kaç tomurcuk vardı?",
+        "solution": "3³ = 27; 27 ÷ 3 = 9 tomurcuk."
       },
       "sourceQuestionId": "F01-K-03",
-      "sourceDifficulty": "Kolay"
+      "sourceDifficulty": "Kolay",
+      "f01Guide": {
+        "first": [
+          "Dünkü miktar 3 ile çarpılınca bugünkü miktar oluşur.",
+          "Dünü bulurken geriye gittiğin için çarpmanın tersi olan bölme işlemini kullan."
+        ],
+        "second": [
+          "Bugünkü miktarın değerini bul: 3⁴ = 81.",
+          "Şimdi 81 sayısını günlük büyüme sayısı olan 3'e böl."
+        ],
+        "solution": "Bugünkü sayı: 3⁴ = 81. Dünü bulmak için 81 ÷ 3 = 27 işlemini yaparız."
+      }
     },
     {
       "id": "F01-K-04",
@@ -293,16 +315,16 @@
       "difficulty": "kolay",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sarmaşık duvarındaki bir dalda ilk gün 3 tomurcuk vardır. Her gün sayı iki katına çıkıyorsa 4. günde kaç tomurcuk bulunur?",
-      "correctAnswer": "24",
-      "solution": "3 × 2³ = 24 tomurcuk.",
-      "hint": "İlk günü birinci gün olarak say; her yeni günde 2 ile çarp.",
+      "prompt": "Sarmaşık duvarında 1. gün 3 tomurcuk bulunuyor. Tomurcuk sayısı her yeni gün 3 katına çıkıyor. 4. gün kaç tomurcuk olur?",
+      "correctAnswer": "81",
+      "solution": "1. gün 3 tomurcuk başlangıç miktarıdır. 4. güne ulaşmak için 3 kez 3 ile çarparız: 3 × 3³ = 81.",
+      "hint": "İlk gün verilen sayı başlangıçtır. 4. güne ulaşmak için her yeni günde 3 ile çarpılır.",
       "inputType": "choice",
       "options": [
-        "22",
-        "26",
-        "48",
-        "24"
+        "83",
+        "79",
+        "85",
+        "81"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -319,7 +341,7 @@
           },
           {
             "anchor": "büyüme",
-            "value": "×2 / gün"
+            "value": "×3 / gün"
           },
           {
             "anchor": "gün",
@@ -329,11 +351,22 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Bir dalda ilk gün 3 tomurcuk varsa ve her gün iki katına çıkarsa üçüncü gün kaç olur?",
-        "solution": "3 → 6 → 12; cevap 12."
+        "question": "Bir kolda 3 tomurcuk var. Her gün 3 katına çıkıyorsa 3. gün sonunda kaç tomurcuk bulunur?",
+        "solution": "İlk gün 3; ikinci gün 9, üçüncü gün 27. İşlem: 3 × 3² = 27."
       },
       "sourceQuestionId": "F01-K-04",
-      "sourceDifficulty": "Kolay"
+      "sourceDifficulty": "Kolay",
+      "f01Guide": {
+        "first": [
+          "İlk gün verilen sayı başlangıçtır. 4. güne ulaşmak için her yeni günde 3 ile çarpılır.",
+          "Büyüme sayısı gün sayısından bir eksiktir; çünkü birinci gün zaten verilmiştir."
+        ],
+        "second": [
+          "2. güne geçerken 3 × 3 = 9 tomurcuk olur.",
+          "Sonraki güne geçerken bulunan yeni miktarı yeniden 3 ile çarp. Sonuca kendin ulaş."
+        ],
+        "solution": "1. gün 3 tomurcuk başlangıç miktarıdır. 4. güne ulaşmak için 3 kez 3 ile çarparız: 3 × 3³ = 81."
+      }
     },
     {
       "id": "F01-K-05",
@@ -385,16 +418,16 @@
       "difficulty": "kolay",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sarmaşık dalında bugün 32 tomurcuk vardır. Tomurcuk sayısı her gün iki katına çıkıyorsa dün kaç tomurcuk vardı?",
-      "correctAnswer": "16",
-      "solution": "32 ÷ 2 = 16.",
-      "hint": "Geriye giderken ikiye böl.",
+      "prompt": "Bir sarmaşık dalında bugün 5³ tomurcuk vardır. Tomurcuk sayısı her gün 5 katına çıkıyorsa dün kaç tomurcuk vardı?",
+      "correctAnswer": "25",
+      "solution": "Bugünkü sayı: 5³ = 125. Dünü bulmak için 125 ÷ 5 = 25 işlemini yaparız.",
+      "hint": "Dünkü miktar 5 ile çarpılınca bugünkü miktar oluşur.",
       "inputType": "choice",
       "options": [
-        "32",
-        "16",
-        "20",
-        "8"
+        "27",
+        "25",
+        "23",
+        "29"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -407,21 +440,32 @@
         "labels": [
           {
             "anchor": "bugün",
-            "value": "32"
+            "value": "5³"
           },
           {
             "anchor": "gelişim",
-            "value": "her gün ×2"
+            "value": "her gün ×5"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Bir dalda ilk gün 3 tomurcuk varsa ve her gün iki katına çıkarsa üçüncü gün kaç olur?",
-        "solution": "3 → 6 → 12; cevap 12."
+        "question": "Bir dalda bugün 3³ tomurcuk var. Her gün 3 katına çıktığına göre dün kaç tomurcuk vardı?",
+        "solution": "3³ = 27; 27 ÷ 3 = 9 tomurcuk."
       },
       "sourceQuestionId": "F01-K-06",
-      "sourceDifficulty": "Kolay"
+      "sourceDifficulty": "Kolay",
+      "f01Guide": {
+        "first": [
+          "Dünkü miktar 5 ile çarpılınca bugünkü miktar oluşur.",
+          "Dünü bulurken geriye gittiğin için çarpmanın tersi olan bölme işlemini kullan."
+        ],
+        "second": [
+          "Bugünkü miktarın değerini bul: 5³ = 125.",
+          "Şimdi 125 sayısını günlük büyüme sayısı olan 5'e böl."
+        ],
+        "solution": "Bugünkü sayı: 5³ = 125. Dünü bulmak için 125 ÷ 5 = 25 işlemini yaparız."
+      }
     },
     {
       "id": "F01-K-07",
@@ -429,16 +473,16 @@
       "difficulty": "kolay",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sarmaşık duvarındaki bir dalda ilk gün 4 tomurcuk vardır. Her gün sayı iki katına çıkıyorsa 3. günde kaç tomurcuk bulunur?",
-      "correctAnswer": "16",
-      "solution": "4 × 2² = 16 tomurcuk.",
-      "hint": "İlk günü birinci gün olarak say; her yeni günde 2 ile çarp.",
+      "prompt": "Sarmaşık duvarında 1. gün 4 tomurcuk bulunuyor. Tomurcuk sayısı her yeni gün 4 katına çıkıyor. 3. gün kaç tomurcuk olur?",
+      "correctAnswer": "64",
+      "solution": "1. gün 4 tomurcuk başlangıç miktarıdır. 3. güne ulaşmak için 2 kez 4 ile çarparız: 4 × 4² = 64.",
+      "hint": "İlk gün verilen sayı başlangıçtır. 3. güne ulaşmak için her yeni günde 4 ile çarpılır.",
       "inputType": "choice",
       "options": [
-        "14",
-        "18",
-        "16",
-        "32"
+        "66",
+        "62",
+        "64",
+        "68"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -455,7 +499,7 @@
           },
           {
             "anchor": "büyüme",
-            "value": "×2 / gün"
+            "value": "×4 / gün"
           },
           {
             "anchor": "gün",
@@ -465,11 +509,22 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Bir dalda ilk gün 3 tomurcuk varsa ve her gün iki katına çıkarsa üçüncü gün kaç olur?",
-        "solution": "3 → 6 → 12; cevap 12."
+        "question": "Bir kolda 3 tomurcuk var. Her gün 3 katına çıkıyorsa 3. gün sonunda kaç tomurcuk bulunur?",
+        "solution": "İlk gün 3; ikinci gün 9, üçüncü gün 27. İşlem: 3 × 3² = 27."
       },
       "sourceQuestionId": "F01-K-07",
-      "sourceDifficulty": "Kolay"
+      "sourceDifficulty": "Kolay",
+      "f01Guide": {
+        "first": [
+          "İlk gün verilen sayı başlangıçtır. 3. güne ulaşmak için her yeni günde 4 ile çarpılır.",
+          "Büyüme sayısı gün sayısından bir eksiktir; çünkü birinci gün zaten verilmiştir."
+        ],
+        "second": [
+          "2. güne geçerken 4 × 4 = 16 tomurcuk olur.",
+          "Sonraki güne geçerken bulunan yeni miktarı yeniden 4 ile çarp. Sonuca kendin ulaş."
+        ],
+        "solution": "1. gün 4 tomurcuk başlangıç miktarıdır. 3. güne ulaşmak için 2 kez 4 ile çarparız: 4 × 4² = 64."
+      }
     },
     {
       "id": "F01-K-08",
@@ -521,16 +576,16 @@
       "difficulty": "kolay",
       "variant": 9,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Duvarın kuzey dalında sabah 12 tomurcuk vardır. Akşama kadar tomurcuk sayısı iki katına çıkarsa akşam kaç tomurcuk olur?",
-      "correctAnswer": "24",
-      "solution": "12 × 2 = 24.",
-      "hint": "Akşam değeri sabahın iki katıdır.",
+      "prompt": "Sarmaşık duvarının kuzey dalında sabah 15 tomurcuk vardır. Akşama kadar sayı üç katına çıkarsa akşam kaç tomurcuk bulunur?",
+      "correctAnswer": "45",
+      "solution": "Sabah 15 tomurcuk vardır. Akşam sayı üç katına çıkar: 15 × 3 = 45 tomurcuk.",
+      "hint": "Üç katına çıkmak, başlangıçtaki sayının üç kopyasını almak demektir.",
       "inputType": "choice",
       "options": [
-        "24",
-        "12",
-        "18",
-        "36"
+        "45",
+        "47",
+        "43",
+        "49"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -543,21 +598,32 @@
         "labels": [
           {
             "anchor": "sabah",
-            "value": "12"
+            "value": "15"
           },
           {
             "anchor": "akşam_büyüme",
-            "value": "×2"
+            "value": "×3"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Bir dalda ilk gün 3 tomurcuk varsa ve her gün iki katına çıkarsa üçüncü gün kaç olur?",
-        "solution": "3 → 6 → 12; cevap 12."
+        "question": "Bir dalda 12 tomurcuk var. Sayı dört katına çıkarsa kaç tomurcuk olur?",
+        "solution": "12 × 4 = 48 tomurcuk."
       },
       "sourceQuestionId": "F01-K-09",
-      "sourceDifficulty": "Kolay"
+      "sourceDifficulty": "Kolay",
+      "f01Guide": {
+        "first": [
+          "Üç katına çıkmak, başlangıçtaki sayının üç kopyasını almak demektir.",
+          "15 tomurcuk üç katına çıkarken çıkarma değil çarpma gerekir."
+        ],
+        "second": [
+          "Başlangıç miktarı 15 tomurcuktur.",
+          "15 × 3 işlemini yap ve çıkan sonucu seçeneklerle karşılaştır."
+        ],
+        "solution": "Sabah 15 tomurcuk vardır. Akşam sayı üç katına çıkar: 15 × 3 = 45 tomurcuk."
+      }
     },
     {
       "id": "F01-K-10",
@@ -565,16 +631,16 @@
       "difficulty": "kolay",
       "variant": 10,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sarmaşık duvarındaki bir dalda ilk gün 5 tomurcuk vardır. Her gün sayı iki katına çıkıyorsa 4. günde kaç tomurcuk bulunur?",
-      "correctAnswer": "40",
-      "solution": "5 × 2³ = 40 tomurcuk.",
-      "hint": "İlk günü birinci gün olarak say; her yeni günde 2 ile çarp.",
+      "prompt": "Sarmaşık duvarında 1. gün 5 tomurcuk bulunuyor. Tomurcuk sayısı her yeni gün 3 katına çıkıyor. 4. gün kaç tomurcuk olur?",
+      "correctAnswer": "135",
+      "solution": "1. gün 5 tomurcuk başlangıç miktarıdır. 4. güne ulaşmak için 3 kez 3 ile çarparız: 5 × 3³ = 135.",
+      "hint": "İlk gün verilen sayı başlangıçtır. 4. güne ulaşmak için her yeni günde 3 ile çarpılır.",
       "inputType": "choice",
       "options": [
-        "38",
-        "40",
-        "42",
-        "80"
+        "137",
+        "135",
+        "133",
+        "139"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -591,7 +657,7 @@
           },
           {
             "anchor": "büyüme",
-            "value": "×2 / gün"
+            "value": "×3 / gün"
           },
           {
             "anchor": "gün",
@@ -601,11 +667,22 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Bir dalda ilk gün 3 tomurcuk varsa ve her gün iki katına çıkarsa üçüncü gün kaç olur?",
-        "solution": "3 → 6 → 12; cevap 12."
+        "question": "Bir kolda 3 tomurcuk var. Her gün 3 katına çıkıyorsa 3. gün sonunda kaç tomurcuk bulunur?",
+        "solution": "İlk gün 3; ikinci gün 9, üçüncü gün 27. İşlem: 3 × 3² = 27."
       },
       "sourceQuestionId": "F01-K-10",
-      "sourceDifficulty": "Kolay"
+      "sourceDifficulty": "Kolay",
+      "f01Guide": {
+        "first": [
+          "İlk gün verilen sayı başlangıçtır. 4. güne ulaşmak için her yeni günde 3 ile çarpılır.",
+          "Büyüme sayısı gün sayısından bir eksiktir; çünkü birinci gün zaten verilmiştir."
+        ],
+        "second": [
+          "2. güne geçerken 5 × 3 = 15 tomurcuk olur.",
+          "Sonraki güne geçerken bulunan yeni miktarı yeniden 3 ile çarp. Sonuca kendin ulaş."
+        ],
+        "solution": "1. gün 5 tomurcuk başlangıç miktarıdır. 4. güne ulaşmak için 3 kez 3 ile çarparız: 5 × 3³ = 135."
+      }
     },
     {
       "id": "F02-K-01",
@@ -10542,16 +10619,16 @@
       "difficulty": "orta",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Duvarın sol sarmaşık kolunda ilk gün 2, sağ kolda 1 tomurcuk var. Sol kol her gün iki, sağ kol üç katına çıkıyor. 3. günün sonunda iki kolda toplam kaç tomurcuk olur?",
-      "correctAnswer": "17",
-      "solution": "Sol 2×2²=8; sağ 1×3²=9; toplam 17.",
-      "hint": "İlk günü üs 0 kabul et; her iki sarmaşığın büyümesini ayrı bul.",
+      "prompt": "Duvarın sol kolunda ilk gün 2, sağ kolunda 1 tomurcuk vardır. Sol kol her yeni gün 3, sağ kol ise 4 katına çıkıyor. 3. gün sonunda iki kolda toplam kaç tomurcuk olur?",
+      "correctAnswer": "34",
+      "solution": "Sol kolda 2 × 3² = 18 tomurcuk oluşur. Sağ kolda 1 × 4² = 16 tomurcuk olur. İki kolun toplamı 18 + 16 = 34 tomurcuktur.",
+      "hint": "İki koldaki başlangıç miktarı ve büyüme hızı farklıdır; kolları ayrı değerlendir.",
       "inputType": "choice",
       "options": [
-        "17",
-        "19",
-        "15",
-        "21"
+        "34",
+        "36",
+        "32",
+        "38"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -10572,11 +10649,11 @@
           },
           {
             "anchor": "sol büyüme",
-            "value": "×2"
+            "value": "×3"
           },
           {
             "anchor": "sağ büyüme",
-            "value": "×3"
+            "value": "×4"
           },
           {
             "anchor": "gün",
@@ -10586,11 +10663,22 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "İlk gün 2 tomurcuk olan iki kol 3. günde sırasıyla 2 ve 3 katına çıkarsa toplam kaç olur?",
-        "solution": "2×2² + 2×3² = 8+18 = 26."
+        "question": "Sol kolda 2, sağ kolda 1 tomurcuk var. Sol kol her gün üç, sağ kol dört katına çıkıyor. 3. günün sonunda toplam kaçtır?",
+        "solution": "Sol: 2 × 3² = 18. Sağ: 1 × 4² = 16. Toplam 34."
       },
       "sourceQuestionId": "F01-O-01",
-      "sourceDifficulty": "Orta"
+      "sourceDifficulty": "Orta",
+      "f01Guide": {
+        "first": [
+          "İki koldaki başlangıç miktarı ve büyüme hızı farklıdır; kolları ayrı değerlendir.",
+          "İlk gün başlangıç olduğundan 3. güne kadar 2 kez büyüme yaşanır."
+        ],
+        "second": [
+          "Sol koldaki ilk değişim: 2 × 3 = 6.",
+          "Sağ kolda da ilk gün 1 × 4 işlemini yap; ardından kalan günleri iki kol için ayrı hesapla."
+        ],
+        "solution": "Sol kolda 2 × 3² = 18 tomurcuk oluşur. Sağ kolda 1 × 4² = 16 tomurcuk olur. İki kolun toplamı 18 + 16 = 34 tomurcuktur."
+      }
     },
     {
       "id": "F01-O-02",
@@ -10598,16 +10686,16 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sarmaşık duvarında sol kolda 2⁴, sağ kolda 2³ tomurcuk bulunuyor. Sol kolun yarısı ve sağ kolun dörtte biri korunuyor. Korunan toplam tomurcuk sayısı kaçtır?",
-      "correctAnswer": "10",
-      "solution": "16÷2 + 8÷4 = 10.",
-      "hint": "Korunan her bölümün sayısını kendi oranıyla hesapla.",
+      "prompt": "Sarmaşık duvarında sol kolda 4³, sağ kolda 3³ tomurcuk var. Sol koldakilerin 1/2’i ve sağ koldakilerin 1/3’i korunuyor. Korunan toplam tomurcuk sayısı kaçtır?",
+      "correctAnswer": "41",
+      "solution": "Sol: 4³ = 64; korunan 64 ÷ 2 = 32. Sağ: 3³ = 27; korunan 27 ÷ 3 = 9. Toplam: 32 + 9 = 41.",
+      "hint": "Önce iki farklı tabanın kuvvetini hesapla: 4³ ve 3³.",
       "inputType": "choice",
       "options": [
-        "12",
-        "10",
-        "8",
-        "14"
+        "43",
+        "41",
+        "39",
+        "45"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -10620,11 +10708,11 @@
         "labels": [
           {
             "anchor": "sol kol",
-            "value": "2⁴"
+            "value": "4³"
           },
           {
             "anchor": "sağ kol",
-            "value": "2³"
+            "value": "3³"
           },
           {
             "anchor": "sol korunma",
@@ -10632,17 +10720,28 @@
           },
           {
             "anchor": "sağ korunma",
-            "value": "1/4"
+            "value": "1/3"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "32 ve 16 tomurcuğun sırasıyla yarısı ve dörtte biri kalırsa kaç tomurcuk kalır?",
-        "solution": "16+4=20."
+        "question": "Sol kolda 4², sağ kolda 8² tomurcuk var. Soldakilerin yarısı, sağdakilerin dörtte biri korunursa toplam kaçtır?",
+        "solution": "4² = 16 ve 8² = 64. 16 ÷ 2 + 64 ÷ 4 = 8 + 16 = 24."
       },
       "sourceQuestionId": "F01-O-02",
-      "sourceDifficulty": "Orta"
+      "sourceDifficulty": "Orta",
+      "f01Guide": {
+        "first": [
+          "Önce iki farklı tabanın kuvvetini hesapla: 4³ ve 3³.",
+          "Korunan miktarları bulmak için sol kolda 2'e, sağ kolda 3'e böl. Sonra topla."
+        ],
+        "second": [
+          "Sol kolun toplamı 4³ = 64 tomurcuktur.",
+          "Bunun 1/2'ini bulmak için 64 ÷ 2 işlemini yap; sağ kola da aynı işlemi uygula."
+        ],
+        "solution": "Sol: 4³ = 64; korunan 64 ÷ 2 = 32. Sağ: 3³ = 27; korunan 27 ÷ 3 = 9. Toplam: 32 + 9 = 41."
+      }
     },
     {
       "id": "F01-O-03",
@@ -10650,16 +10749,16 @@
       "difficulty": "orta",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Duvarın iki kolunda sırasıyla 2³ ve 2⁴ tomurcuk var. Rüzgârla 2¹ tomurcuk dökülürse kaç tomurcuk kalır?",
-      "correctAnswer": "22",
-      "solution": "8 + 16 − 2 = 22.",
-      "hint": "Her iki kolu topla, dökülenleri çıkar.",
+      "prompt": "Duvarın iki kolunda sırasıyla 3³ ve 4² tomurcuk var. Rüzgârla 3¹ tomurcuk dökülürse toplam kaç tomurcuk kalır?",
+      "correctAnswer": "40",
+      "solution": "İlk kol: 3³ = 27, ikinci kol: 4² = 16. Dökülen: 3¹ = 3. Kalan: 27 + 16 − 3 = 40.",
+      "hint": "Önce iki koldaki tomurcukları ayrı hesapla.",
       "inputType": "choice",
       "options": [
-        "24",
-        "20",
-        "22",
-        "26"
+        "42",
+        "38",
+        "40",
+        "44"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -10672,25 +10771,36 @@
         "labels": [
           {
             "anchor": "sol kol",
-            "value": "2³"
+            "value": "3³"
           },
           {
             "anchor": "sağ kol",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "dökülen",
-            "value": "2¹"
+            "value": "3¹"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Bir kolda 2³, diğerinde 2⁴ tomurcuk varsa aralarında kaç fark vardır?",
-        "solution": "16−8=8."
+        "question": "İki kolda 3³ ve 4² tomurcuk var. Rüzgârla 3¹ tomurcuk dökülürse kaç tanesi kalır?",
+        "solution": "3³ + 4² − 3¹ = 27 + 16 − 3 = 40."
       },
       "sourceQuestionId": "F01-O-03",
-      "sourceDifficulty": "Orta"
+      "sourceDifficulty": "Orta",
+      "f01Guide": {
+        "first": [
+          "Önce iki koldaki tomurcukları ayrı hesapla.",
+          "Rüzgârla dökülenleri toplam sayıya ekleme; toplamdan çıkar."
+        ],
+        "second": [
+          "İlk koldaki tomurcuk sayısı 27, ikinci koldaki 16.",
+          "Önce 27 + 16 işlemini yap; ardından 3¹ ifadesinin değerini çıkar."
+        ],
+        "solution": "İlk kol: 3³ = 27, ikinci kol: 4² = 16. Dökülen: 3¹ = 3. Kalan: 27 + 16 − 3 = 40."
+      }
     },
     {
       "id": "F01-O-04",
@@ -10698,16 +10808,16 @@
       "difficulty": "orta",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Duvarın sol sarmaşık kolunda ilk gün 3, sağ kolda 2 tomurcuk var. Sol kol her gün iki, sağ kol üç katına çıkıyor. 4. günün sonunda iki kolda toplam kaç tomurcuk olur?",
-      "correctAnswer": "78",
-      "solution": "Sol 3×2³=24; sağ 2×3³=54; toplam 78.",
-      "hint": "İlk günü üs 0 kabul et; her iki sarmaşığın büyümesini ayrı bul.",
+      "prompt": "Duvarın sol kolunda ilk gün 3, sağ kolunda 2 tomurcuk vardır. Sol kol her yeni gün 3, sağ kol ise 4 katına çıkıyor. 4. gün sonunda iki kolda toplam kaç tomurcuk olur?",
+      "correctAnswer": "209",
+      "solution": "Sol kolda 3 × 3³ = 81 tomurcuk oluşur. Sağ kolda 2 × 4³ = 128 tomurcuk olur. İki kolun toplamı 81 + 128 = 209 tomurcuktur.",
+      "hint": "İki koldaki başlangıç miktarı ve büyüme hızı farklıdır; kolları ayrı değerlendir.",
       "inputType": "choice",
       "options": [
-        "80",
-        "76",
-        "82",
-        "78"
+        "211",
+        "207",
+        "213",
+        "209"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -10728,11 +10838,11 @@
           },
           {
             "anchor": "sol büyüme",
-            "value": "×2"
+            "value": "×3"
           },
           {
             "anchor": "sağ büyüme",
-            "value": "×3"
+            "value": "×4"
           },
           {
             "anchor": "gün",
@@ -10742,11 +10852,22 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "İlk gün 2 tomurcuk olan iki kol 3. günde sırasıyla 2 ve 3 katına çıkarsa toplam kaç olur?",
-        "solution": "2×2² + 2×3² = 8+18 = 26."
+        "question": "Sol kolda 2, sağ kolda 1 tomurcuk var. Sol kol her gün üç, sağ kol dört katına çıkıyor. 3. günün sonunda toplam kaçtır?",
+        "solution": "Sol: 2 × 3² = 18. Sağ: 1 × 4² = 16. Toplam 34."
       },
       "sourceQuestionId": "F01-O-04",
-      "sourceDifficulty": "Orta"
+      "sourceDifficulty": "Orta",
+      "f01Guide": {
+        "first": [
+          "İki koldaki başlangıç miktarı ve büyüme hızı farklıdır; kolları ayrı değerlendir.",
+          "İlk gün başlangıç olduğundan 4. güne kadar 3 kez büyüme yaşanır."
+        ],
+        "second": [
+          "Sol koldaki ilk değişim: 3 × 3 = 9.",
+          "Sağ kolda da ilk gün 2 × 4 işlemini yap; ardından kalan günleri iki kol için ayrı hesapla."
+        ],
+        "solution": "Sol kolda 3 × 3³ = 81 tomurcuk oluşur. Sağ kolda 2 × 4³ = 128 tomurcuk olur. İki kolun toplamı 81 + 128 = 209 tomurcuktur."
+      }
     },
     {
       "id": "F01-O-05",
@@ -10754,16 +10875,16 @@
       "difficulty": "orta",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sarmaşık duvarında sol kolda 2⁵, sağ kolda 2⁴ tomurcuk bulunuyor. Sol kolun yarısı ve sağ kolun dörtte biri korunuyor. Korunan toplam tomurcuk sayısı kaçtır?",
-      "correctAnswer": "20",
-      "solution": "32÷2 + 16÷4 = 20.",
-      "hint": "Korunan her bölümün sayısını kendi oranıyla hesapla.",
+      "prompt": "Sarmaşık duvarında sol kolda 5², sağ kolda 4³ tomurcuk var. Sol koldakilerin 1/5’i ve sağ koldakilerin 1/4’i korunuyor. Korunan toplam tomurcuk sayısı kaçtır?",
+      "correctAnswer": "21",
+      "solution": "Sol: 5² = 25; korunan 25 ÷ 5 = 5. Sağ: 4³ = 64; korunan 64 ÷ 4 = 16. Toplam: 5 + 16 = 21.",
+      "hint": "Önce iki farklı tabanın kuvvetini hesapla: 5² ve 4³.",
       "inputType": "choice",
       "options": [
-        "20",
-        "22",
-        "18",
-        "24"
+        "21",
+        "23",
+        "19",
+        "25"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -10776,15 +10897,15 @@
         "labels": [
           {
             "anchor": "sol kol",
-            "value": "2⁵"
+            "value": "5²"
           },
           {
             "anchor": "sağ kol",
-            "value": "2⁴"
+            "value": "4³"
           },
           {
             "anchor": "sol korunma",
-            "value": "1/2"
+            "value": "1/5"
           },
           {
             "anchor": "sağ korunma",
@@ -10794,11 +10915,22 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "32 ve 16 tomurcuğun sırasıyla yarısı ve dörtte biri kalırsa kaç tomurcuk kalır?",
-        "solution": "16+4=20."
+        "question": "Sol kolda 4², sağ kolda 8² tomurcuk var. Soldakilerin yarısı, sağdakilerin dörtte biri korunursa toplam kaçtır?",
+        "solution": "4² = 16 ve 8² = 64. 16 ÷ 2 + 64 ÷ 4 = 8 + 16 = 24."
       },
       "sourceQuestionId": "F01-O-05",
-      "sourceDifficulty": "Orta"
+      "sourceDifficulty": "Orta",
+      "f01Guide": {
+        "first": [
+          "Önce iki farklı tabanın kuvvetini hesapla: 5² ve 4³.",
+          "Korunan miktarları bulmak için sol kolda 5'e, sağ kolda 4'e böl. Sonra topla."
+        ],
+        "second": [
+          "Sol kolun toplamı 5² = 25 tomurcuktur.",
+          "Bunun 1/5'ini bulmak için 25 ÷ 5 işlemini yap; sağ kola da aynı işlemi uygula."
+        ],
+        "solution": "Sol: 5² = 25; korunan 25 ÷ 5 = 5. Sağ: 4³ = 64; korunan 64 ÷ 4 = 16. Toplam: 5 + 16 = 21."
+      }
     },
     {
       "id": "F01-O-06",
@@ -10806,16 +10938,16 @@
       "difficulty": "orta",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Duvarın iki kolunda sırasıyla 2⁴ ve 2⁵ tomurcuk var. Rüzgârla 2² tomurcuk dökülürse kaç tomurcuk kalır?",
-      "correctAnswer": "44",
-      "solution": "16 + 32 − 4 = 44.",
-      "hint": "Her iki kolu topla, dökülenleri çıkar.",
+      "prompt": "Duvarın iki kolunda sırasıyla 4³ ve 3⁴ tomurcuk var. Rüzgârla 3² tomurcuk dökülürse toplam kaç tomurcuk kalır?",
+      "correctAnswer": "136",
+      "solution": "İlk kol: 4³ = 64, ikinci kol: 3⁴ = 81. Dökülen: 3² = 9. Kalan: 64 + 81 − 9 = 136.",
+      "hint": "Önce iki koldaki tomurcukları ayrı hesapla.",
       "inputType": "choice",
       "options": [
-        "46",
-        "44",
-        "42",
-        "48"
+        "138",
+        "136",
+        "134",
+        "140"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -10828,25 +10960,36 @@
         "labels": [
           {
             "anchor": "sol kol",
-            "value": "2⁴"
+            "value": "4³"
           },
           {
             "anchor": "sağ kol",
-            "value": "2⁵"
+            "value": "3⁴"
           },
           {
             "anchor": "dökülen",
-            "value": "2²"
+            "value": "3²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Bir kolda 2³, diğerinde 2⁴ tomurcuk varsa aralarında kaç fark vardır?",
-        "solution": "16−8=8."
+        "question": "İki kolda 3³ ve 4² tomurcuk var. Rüzgârla 3¹ tomurcuk dökülürse kaç tanesi kalır?",
+        "solution": "3³ + 4² − 3¹ = 27 + 16 − 3 = 40."
       },
       "sourceQuestionId": "F01-O-06",
-      "sourceDifficulty": "Orta"
+      "sourceDifficulty": "Orta",
+      "f01Guide": {
+        "first": [
+          "Önce iki koldaki tomurcukları ayrı hesapla.",
+          "Rüzgârla dökülenleri toplam sayıya ekleme; toplamdan çıkar."
+        ],
+        "second": [
+          "İlk koldaki tomurcuk sayısı 64, ikinci koldaki 81.",
+          "Önce 64 + 81 işlemini yap; ardından 3² ifadesinin değerini çıkar."
+        ],
+        "solution": "İlk kol: 4³ = 64, ikinci kol: 3⁴ = 81. Dökülen: 3² = 9. Kalan: 64 + 81 − 9 = 136."
+      }
     },
     {
       "id": "F01-O-07",
@@ -10910,16 +11053,16 @@
       "difficulty": "orta",
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sarmaşık duvarında sol kolda 2⁶, sağ kolda 2⁵ tomurcuk bulunuyor. Sol kolun yarısı ve sağ kolun dörtte biri korunuyor. Korunan toplam tomurcuk sayısı kaçtır?",
-      "correctAnswer": "40",
-      "solution": "64÷2 + 32÷4 = 40.",
-      "hint": "Korunan her bölümün sayısını kendi oranıyla hesapla.",
+      "prompt": "Sarmaşık duvarında sol kolda 6², sağ kolda 4³ tomurcuk var. Sol koldakilerin 1/2’i ve sağ koldakilerin 1/4’i korunuyor. Korunan toplam tomurcuk sayısı kaçtır?",
+      "correctAnswer": "34",
+      "solution": "Sol: 6² = 36; korunan 36 ÷ 2 = 18. Sağ: 4³ = 64; korunan 64 ÷ 4 = 16. Toplam: 18 + 16 = 34.",
+      "hint": "Önce iki farklı tabanın kuvvetini hesapla: 6² ve 4³.",
       "inputType": "choice",
       "options": [
-        "42",
+        "36",
+        "32",
         "38",
-        "44",
-        "40"
+        "34"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -10932,11 +11075,11 @@
         "labels": [
           {
             "anchor": "sol kol",
-            "value": "2⁶"
+            "value": "6²"
           },
           {
             "anchor": "sağ kol",
-            "value": "2⁵"
+            "value": "4³"
           },
           {
             "anchor": "sol korunma",
@@ -10950,11 +11093,22 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "32 ve 16 tomurcuğun sırasıyla yarısı ve dörtte biri kalırsa kaç tomurcuk kalır?",
-        "solution": "16+4=20."
+        "question": "Sol kolda 4², sağ kolda 8² tomurcuk var. Soldakilerin yarısı, sağdakilerin dörtte biri korunursa toplam kaçtır?",
+        "solution": "4² = 16 ve 8² = 64. 16 ÷ 2 + 64 ÷ 4 = 8 + 16 = 24."
       },
       "sourceQuestionId": "F01-O-08",
-      "sourceDifficulty": "Orta"
+      "sourceDifficulty": "Orta",
+      "f01Guide": {
+        "first": [
+          "Önce iki farklı tabanın kuvvetini hesapla: 6² ve 4³.",
+          "Korunan miktarları bulmak için sol kolda 2'e, sağ kolda 4'e böl. Sonra topla."
+        ],
+        "second": [
+          "Sol kolun toplamı 6² = 36 tomurcuktur.",
+          "Bunun 1/2'ini bulmak için 36 ÷ 2 işlemini yap; sağ kola da aynı işlemi uygula."
+        ],
+        "solution": "Sol: 6² = 36; korunan 36 ÷ 2 = 18. Sağ: 4³ = 64; korunan 64 ÷ 4 = 16. Toplam: 18 + 16 = 34."
+      }
     },
     {
       "id": "F01-O-09",
@@ -10962,16 +11116,16 @@
       "difficulty": "orta",
       "variant": 9,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Duvarın iki kolunda sırasıyla 2⁵ ve 2⁶ tomurcuk var. Rüzgârla 2³ tomurcuk dökülürse kaç tomurcuk kalır?",
-      "correctAnswer": "88",
-      "solution": "32 + 64 − 8 = 88.",
-      "hint": "Her iki kolu topla, dökülenleri çıkar.",
+      "prompt": "Duvarın iki kolunda sırasıyla 3⁴ ve 5³ tomurcuk var. Rüzgârla 3² tomurcuk dökülürse toplam kaç tomurcuk kalır?",
+      "correctAnswer": "197",
+      "solution": "İlk kol: 3⁴ = 81, ikinci kol: 5³ = 125. Dökülen: 3² = 9. Kalan: 81 + 125 − 9 = 197.",
+      "hint": "Önce iki koldaki tomurcukları ayrı hesapla.",
       "inputType": "choice",
       "options": [
-        "88",
-        "90",
-        "86",
-        "92"
+        "197",
+        "199",
+        "195",
+        "201"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -10984,25 +11138,36 @@
         "labels": [
           {
             "anchor": "sol kol",
-            "value": "2⁵"
+            "value": "3⁴"
           },
           {
             "anchor": "sağ kol",
-            "value": "2⁶"
+            "value": "5³"
           },
           {
             "anchor": "dökülen",
-            "value": "2³"
+            "value": "3²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Bir kolda 2³, diğerinde 2⁴ tomurcuk varsa aralarında kaç fark vardır?",
-        "solution": "16−8=8."
+        "question": "İki kolda 3³ ve 4² tomurcuk var. Rüzgârla 3¹ tomurcuk dökülürse kaç tanesi kalır?",
+        "solution": "3³ + 4² − 3¹ = 27 + 16 − 3 = 40."
       },
       "sourceQuestionId": "F01-O-09",
-      "sourceDifficulty": "Orta"
+      "sourceDifficulty": "Orta",
+      "f01Guide": {
+        "first": [
+          "Önce iki koldaki tomurcukları ayrı hesapla.",
+          "Rüzgârla dökülenleri toplam sayıya ekleme; toplamdan çıkar."
+        ],
+        "second": [
+          "İlk koldaki tomurcuk sayısı 81, ikinci koldaki 125.",
+          "Önce 81 + 125 işlemini yap; ardından 3² ifadesinin değerini çıkar."
+        ],
+        "solution": "İlk kol: 3⁴ = 81, ikinci kol: 5³ = 125. Dökülen: 3² = 9. Kalan: 81 + 125 − 9 = 197."
+      }
     },
     {
       "id": "F01-O-10",
@@ -11010,16 +11175,16 @@
       "difficulty": "orta",
       "variant": 10,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Duvarın sol sarmaşık kolunda ilk gün 5, sağ kolda 4 tomurcuk var. Sol kol her gün iki, sağ kol üç katına çıkıyor. 4. günün sonunda iki kolda toplam kaç tomurcuk olur?",
-      "correctAnswer": "148",
-      "solution": "Sol 5×2³=40; sağ 4×3³=108; toplam 148.",
-      "hint": "İlk günü üs 0 kabul et; her iki sarmaşığın büyümesini ayrı bul.",
+      "prompt": "Duvarın sol kolunda ilk gün 5, sağ kolunda 4 tomurcuk vardır. Sol kol her yeni gün 3, sağ kol ise 4 katına çıkıyor. 4. gün sonunda iki kolda toplam kaç tomurcuk olur?",
+      "correctAnswer": "391",
+      "solution": "Sol kolda 5 × 3³ = 135 tomurcuk oluşur. Sağ kolda 4 × 4³ = 256 tomurcuk olur. İki kolun toplamı 135 + 256 = 391 tomurcuktur.",
+      "hint": "İki koldaki başlangıç miktarı ve büyüme hızı farklıdır; kolları ayrı değerlendir.",
       "inputType": "choice",
       "options": [
-        "150",
-        "148",
-        "146",
-        "152"
+        "393",
+        "391",
+        "389",
+        "395"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -11040,11 +11205,11 @@
           },
           {
             "anchor": "sol büyüme",
-            "value": "×2"
+            "value": "×3"
           },
           {
             "anchor": "sağ büyüme",
-            "value": "×3"
+            "value": "×4"
           },
           {
             "anchor": "gün",
@@ -11054,11 +11219,22 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "İlk gün 2 tomurcuk olan iki kol 3. günde sırasıyla 2 ve 3 katına çıkarsa toplam kaç olur?",
-        "solution": "2×2² + 2×3² = 8+18 = 26."
+        "question": "Sol kolda 2, sağ kolda 1 tomurcuk var. Sol kol her gün üç, sağ kol dört katına çıkıyor. 3. günün sonunda toplam kaçtır?",
+        "solution": "Sol: 2 × 3² = 18. Sağ: 1 × 4² = 16. Toplam 34."
       },
       "sourceQuestionId": "F01-O-10",
-      "sourceDifficulty": "Orta"
+      "sourceDifficulty": "Orta",
+      "f01Guide": {
+        "first": [
+          "İki koldaki başlangıç miktarı ve büyüme hızı farklıdır; kolları ayrı değerlendir.",
+          "İlk gün başlangıç olduğundan 4. güne kadar 3 kez büyüme yaşanır."
+        ],
+        "second": [
+          "Sol koldaki ilk değişim: 5 × 3 = 15.",
+          "Sağ kolda da ilk gün 4 × 4 işlemini yap; ardından kalan günleri iki kol için ayrı hesapla."
+        ],
+        "solution": "Sol kolda 5 × 3³ = 135 tomurcuk oluşur. Sağ kolda 4 × 4³ = 256 tomurcuk olur. İki kolun toplamı 135 + 256 = 391 tomurcuktur."
+      }
     },
     {
       "id": "F02-O-01",
@@ -21528,15 +21704,15 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki sarmaşık kolundaki ışıklı tomurcuk sayıları sırasıyla 2ⁿ⁺¹ ve 2ⁿ⁻¹ olarak kaydedilmiş. Toplam 160 tomurcuk görüldüğüne göre n kaçtır?",
-      "correctAnswer": "6",
-      "solution": "2ⁿ⁺¹ + 2ⁿ⁻¹ = 2ⁿ⁻¹ · (4 + 1) = 160. Buradan 2ⁿ⁻¹ = 32 = 2⁵; n − 1 = 5, yani n = 6.",
-      "hint": "İfadeleri küçük üslü terim cinsinden yaz: 2ⁿ⁺¹ = 4 · 2ⁿ⁻¹.",
+      "prompt": "Sarmaşık duvarında iki koldaki tomurcuk sayıları 3ⁿ⁺¹ ve 3ⁿ⁻¹ biçimindedir. Toplam 270 tomurcuk olduğuna göre n kaçtır?",
+      "correctAnswer": "4",
+      "solution": "İki kolun toplamı: 3ⁿ⁺¹ + 3ⁿ⁻¹ = 270. n = 4 için değerler 243 ve 27 olur; 243 + 27 = 270. Dolayısıyla n = 4.",
+      "hint": "3ⁿ⁺¹ ve 3ⁿ⁻¹ aynı tabana, yani 3'e sahiptir.",
       "inputType": "choice",
       "options": [
-        "5",
         "6",
-        "7",
+        "4",
+        "2",
         "8"
       ],
       "fixedChoiceOrder": true,
@@ -21550,25 +21726,36 @@
         "labels": [
           {
             "anchor": "sol sarmaşık kolu",
-            "value": "2ⁿ⁺¹"
+            "value": "3ⁿ⁺¹"
           },
           {
             "anchor": "sağ sarmaşık kolu",
-            "value": "2ⁿ⁻¹"
+            "value": "3ⁿ⁻¹"
           },
           {
             "anchor": "iki kolun ortak sayacı",
-            "value": "Toplam: 160"
+            "value": "Toplam: 270"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Çözülmüş benzer örnek",
-        "solution": "2ᵏ⁺² + 2ᵏ = 40 ise 5 · 2ᵏ = 40; 2ᵏ = 8 ve k = 3."
+        "question": "3ⁿ + 3ⁿ⁺¹ = 36 ise n kaçtır?",
+        "solution": "3ⁿ(1 + 3) = 36. 3ⁿ = 9 = 3² olduğuna göre n = 2."
       },
       "sourceQuestionId": "F01-Z-01",
-      "sourceDifficulty": "Zor"
+      "sourceDifficulty": "Zor",
+      "f01Guide": {
+        "first": [
+          "3ⁿ⁺¹ ve 3ⁿ⁻¹ aynı tabana, yani 3'e sahiptir.",
+          "Üsler arasındaki farkı kullanarak ortak bir 3 kuvveti elde edebilirsin."
+        ],
+        "second": [
+          "Her iki terimde ortak 3 kuvvetini ayır ve katsayıları topla.",
+          "Toplamın 270 olmasını sağlayan 3 kuvvetini bul; ardından n'yi belirle."
+        ],
+        "solution": "İki kolun toplamı: 3ⁿ⁺¹ + 3ⁿ⁻¹ = 270. n = 4 için değerler 243 ve 27 olur; 243 + 27 = 270. Dolayısıyla n = 4."
+      }
     },
     {
       "id": "F01-Z-02",
@@ -21576,16 +21763,16 @@
       "difficulty": "zor",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sarmaşık duvarındaki iki kolun tomurcuk sayıları 2ⁿ ve 2ⁿ⁺² biçimindedir. İki kolda toplam 80 tomurcuk varsa n kaçtır?",
-      "correctAnswer": "4",
-      "solution": "2⁴ ortak çarpandır: (1 + 4) · 2⁴ = 80. 2⁴ = 16; üs 4. ",
-      "hint": "İki üslü ifadeyi küçük olanın ortak çarpanı altında topla.",
+      "prompt": "Sarmaşık duvarında iki koldaki tomurcuk sayıları 3ⁿ ve 3ⁿ⁺² biçimindedir. Toplam 90 tomurcuk olduğuna göre n kaçtır?",
+      "correctAnswer": "2",
+      "solution": "İki kolun toplamı: 3ⁿ + 3ⁿ⁺² = 90. n = 2 için değerler 9 ve 81 olur; 9 + 81 = 90. Dolayısıyla n = 2.",
+      "hint": "3ⁿ ve 3ⁿ⁺² aynı tabana, yani 3'e sahiptir.",
       "inputType": "choice",
       "options": [
+        "2",
         "4",
-        "5",
-        "3",
-        "6"
+        "6",
+        "8"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -21598,25 +21785,36 @@
         "labels": [
           {
             "anchor": "sol kol",
-            "value": "2ⁿ"
+            "value": "3ⁿ"
           },
           {
             "anchor": "sağ kol",
-            "value": "2ⁿ⁺²"
+            "value": "3ⁿ⁺²"
           },
           {
             "anchor": "toplam",
-            "value": "80"
+            "value": "90"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Sarmaşık duvarındaki iki kolun tomurcuk sayıları 2ⁿ ve 2ⁿ⁺² biçimindedir. İki kolda toplam 320 tomurcuk varsa n kaçtır?",
-        "solution": "2⁶ ortak çarpandır: (1 + 4) · 2⁶ = 320. 2⁶ = 64; üs 6. "
+        "question": "3ⁿ + 3ⁿ⁺¹ = 36 ise n kaçtır?",
+        "solution": "3ⁿ(1 + 3) = 36. 3ⁿ = 9 = 3² olduğuna göre n = 2."
       },
       "sourceQuestionId": "F01-Z-02",
-      "sourceDifficulty": "Zor"
+      "sourceDifficulty": "Zor",
+      "f01Guide": {
+        "first": [
+          "3ⁿ ve 3ⁿ⁺² aynı tabana, yani 3'e sahiptir.",
+          "Üsler arasındaki farkı kullanarak ortak bir 3 kuvveti elde edebilirsin."
+        ],
+        "second": [
+          "Her iki terimde ortak 3 kuvvetini ayır ve katsayıları topla.",
+          "Toplamın 90 olmasını sağlayan 3 kuvvetini bul; ardından n'yi belirle."
+        ],
+        "solution": "İki kolun toplamı: 3ⁿ + 3ⁿ⁺² = 90. n = 2 için değerler 9 ve 81 olur; 9 + 81 = 90. Dolayısıyla n = 2."
+      }
     },
     {
       "id": "F01-Z-03",
@@ -21624,16 +21822,16 @@
       "difficulty": "zor",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Üç sarmaşık kolundaki tomurcuklar sırasıyla 2³, 2⁴ ve 2⁵ biçiminde büyüyor. Toplam 56 tomurcuğun yarısı sol geçide yönlendiriliyor. Sol geçitte kaç tomurcuk bulunur?",
-      "correctAnswer": "28",
-      "solution": "Üç koldaki toplam 8+16+32=56; yarısı 28.",
-      "hint": "Önce 2ⁿ ortak çarpanı ayır, sonra ikiye böl.",
+      "prompt": "Üç sarmaşık kolundaki tomurcuk sayıları 3², 3³ ve 3⁴ şeklindedir. Hepsinin 1/3’i sol geçide aktarılırsa geçitte kaç tomurcuk olur?",
+      "correctAnswer": "39",
+      "solution": "Kollardaki miktarlar 9, 27, 81 tomurcuktur. Toplam 9 + 27 + 81 = 117. Sol geçide aktarılan 117 ÷ 3 = 39 tomurcuktur.",
+      "hint": "Önce üç üslü ifadeyi ayrı ayrı hesapla.",
       "inputType": "choice",
       "options": [
-        "32",
-        "28",
-        "24",
-        "36"
+        "41",
+        "39",
+        "37",
+        "43"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -21646,29 +21844,40 @@
         "labels": [
           {
             "anchor": "kol A",
-            "value": "2³"
+            "value": "3²"
           },
           {
             "anchor": "kol B",
-            "value": "2⁴"
+            "value": "3³"
           },
           {
             "anchor": "kol C",
-            "value": "2⁵"
+            "value": "3⁴"
           },
           {
             "anchor": "sol geçit",
-            "value": "1/2"
+            "value": "1/3"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Üç sarmaşık kolundaki tomurcuklar sırasıyla 2⁴, 2⁵ ve 2⁶ biçiminde büyüyor. Toplam 112 tomurcuğun yarısı sol geçide yönlendiriliyor. Sol geçitte kaç tomurcuk bulunur?",
-        "solution": "Üç koldaki toplam 16+32+64=112; yarısı 56."
+        "question": "Üç kolda 4¹, 4² ve 4³ tomurcuk var. Yarısı sol geçide aktarılırsa kaç tomurcuk gider?",
+        "solution": "4 + 16 + 64 = 84; 84 ÷ 2 = 42."
       },
       "sourceQuestionId": "F01-Z-03",
-      "sourceDifficulty": "Zor"
+      "sourceDifficulty": "Zor",
+      "f01Guide": {
+        "first": [
+          "Önce üç üslü ifadeyi ayrı ayrı hesapla.",
+          "Üç kolun toplamının 1/3'i aktarılıyor; sadece tek kolu bölmek doğru olmaz."
+        ],
+        "second": [
+          "İlk koldaki tomurcuk sayısı 3² = 9.",
+          "Diğer iki kolun değerlerini hesapla, üçünü topla ve sonra 3'e böl."
+        ],
+        "solution": "Kollardaki miktarlar 9, 27, 81 tomurcuktur. Toplam 9 + 27 + 81 = 117. Sol geçide aktarılan 117 ÷ 3 = 39 tomurcuktur."
+      }
     },
     {
       "id": "F01-Z-04",
@@ -21676,16 +21885,16 @@
       "difficulty": "zor",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sol sarmaşık kolunda 3 · 2⁴, sağ kolda 2⁶ tomurcuk var. Soldakilerin 1/8’i, sağdakilerin 1/4’ü koparsa kalan tomurcuk sayıları arasındaki fark kaç olur?",
-      "correctAnswer": "6",
-      "solution": "Solda 48×7/8=42, sağda 64×3/4=48; kalanların farkı 6.",
-      "hint": "Önce kopanları çıkar; kalan tomurcuk sayılarını karşılaştır.",
+      "prompt": "Sol sarmaşık kolunda 3 · 4³, sağ kolda 4⁴ tomurcuk vardır. Soldakilerin 1/8’i, sağdakilerin 1/4’i koparsa geriye kalan miktarlar arasındaki fark kaçtır?",
+      "correctAnswer": "24",
+      "solution": "Başlangıç: solda 192, sağda 256 tomurcuk vardır. Solda 192 × 7/8 = 168, sağda 256 × 3/4 = 192 kalır. Kalanlar arasındaki fark |192 − 168| = 24.",
+      "hint": "İki kolun kuvvetli sayılarını ayrı ayrı hesapla.",
       "inputType": "choice",
       "options": [
-        "6",
-        "7",
-        "5",
-        "8"
+        "24",
+        "26",
+        "22",
+        "28"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -21698,11 +21907,11 @@
         "labels": [
           {
             "anchor": "sol kol",
-            "value": "3 · 2⁴"
+            "value": "3 · 4³"
           },
           {
             "anchor": "sağ kol",
-            "value": "2⁶"
+            "value": "4⁴"
           },
           {
             "anchor": "sol kopan",
@@ -21716,11 +21925,22 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Sol sarmaşık kolunda 3 · 2⁵, sağ kolda 2⁷ tomurcuk var. Soldakilerin 1/8’i, sağdakilerin 1/4’ü koparsa kalan tomurcuk sayıları arasındaki fark kaç olur?",
-        "solution": "Solda 96×7/8=84, sağda 128×3/4=96; kalanların farkı 12."
+        "question": "Solda 3 × 4³, sağda 4⁴ tomurcuk bulunuyor. Soldakilerin 1/8'i ve sağdakilerin 1/4'ü koparsa kalanların farkı nedir?",
+        "solution": "Solda 192 × 7/8 = 168, sağda 256 × 3/4 = 192. Fark 24."
       },
       "sourceQuestionId": "F01-Z-04",
-      "sourceDifficulty": "Zor"
+      "sourceDifficulty": "Zor",
+      "f01Guide": {
+        "first": [
+          "İki kolun kuvvetli sayılarını ayrı ayrı hesapla.",
+          "Kopan miktarları çıkarınca her kolda geriye kalanı bul; en son aralarındaki farkı al."
+        ],
+        "second": [
+          "Sol koldaki başlangıç sayısı 3 · 4³ = 192.",
+          "Solda toplamın 7/8'i, sağda 3/4'i kalır. İki kalanı hesapla."
+        ],
+        "solution": "Başlangıç: solda 192, sağda 256 tomurcuk vardır. Solda 192 × 7/8 = 168, sağda 256 × 3/4 = 192 kalır. Kalanlar arasındaki fark |192 − 168| = 24."
+      }
     },
     {
       "id": "F01-Z-05",
@@ -21728,16 +21948,16 @@
       "difficulty": "zor",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sarmaşık duvarındaki iki kolun tomurcuk sayıları 2ⁿ ve 2ⁿ⁺² biçimindedir. İki kolda toplam 160 tomurcuk varsa n kaçtır?",
-      "correctAnswer": "5",
-      "solution": "2⁵ ortak çarpandır: (1 + 4) · 2⁵ = 160. 2⁵ = 32; üs 5. ",
-      "hint": "İki üslü ifadeyi küçük olanın ortak çarpanı altında topla.",
+      "prompt": "Sarmaşık duvarında iki koldaki tomurcuk sayıları 4ⁿ ve 4ⁿ⁺² biçimindedir. Toplam 272 tomurcuk olduğuna göre n kaçtır?",
+      "correctAnswer": "2",
+      "solution": "İki kolun toplamı: 4ⁿ + 4ⁿ⁺² = 272. n = 2 için değerler 16 ve 256 olur; 16 + 256 = 272. Dolayısıyla n = 2.",
+      "hint": "4ⁿ ve 4ⁿ⁺² aynı tabana, yani 4'e sahiptir.",
       "inputType": "choice",
       "options": [
-        "6",
         "4",
-        "7",
-        "5"
+        "6",
+        "8",
+        "2"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -21750,25 +21970,36 @@
         "labels": [
           {
             "anchor": "sol kol",
-            "value": "2ⁿ"
+            "value": "4ⁿ"
           },
           {
             "anchor": "sağ kol",
-            "value": "2ⁿ⁺²"
+            "value": "4ⁿ⁺²"
           },
           {
             "anchor": "toplam",
-            "value": "160"
+            "value": "272"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Sarmaşık duvarındaki iki kolun tomurcuk sayıları 2ⁿ ve 2ⁿ⁺³ biçimindedir. İki kolda toplam 2304 tomurcuk varsa n kaçtır?",
-        "solution": "2⁸ ortak çarpandır: (1 + 8) · 2⁸ = 2304. 2⁸ = 256; üs 8. "
+        "question": "3ⁿ + 3ⁿ⁺¹ = 36 ise n kaçtır?",
+        "solution": "3ⁿ(1 + 3) = 36. 3ⁿ = 9 = 3² olduğuna göre n = 2."
       },
       "sourceQuestionId": "F01-Z-05",
-      "sourceDifficulty": "Zor"
+      "sourceDifficulty": "Zor",
+      "f01Guide": {
+        "first": [
+          "4ⁿ ve 4ⁿ⁺² aynı tabana, yani 4'e sahiptir.",
+          "Üsler arasındaki farkı kullanarak ortak bir 4 kuvveti elde edebilirsin."
+        ],
+        "second": [
+          "Her iki terimde ortak 4 kuvvetini ayır ve katsayıları topla.",
+          "Toplamın 272 olmasını sağlayan 4 kuvvetini bul; ardından n'yi belirle."
+        ],
+        "solution": "İki kolun toplamı: 4ⁿ + 4ⁿ⁺² = 272. n = 2 için değerler 16 ve 256 olur; 16 + 256 = 272. Dolayısıyla n = 2."
+      }
     },
     {
       "id": "F01-Z-06",
@@ -21776,16 +22007,16 @@
       "difficulty": "zor",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Üç sarmaşık kolundaki tomurcuklar sırasıyla 2⁴, 2⁵ ve 2⁶ biçiminde büyüyor. Toplam 112 tomurcuğun yarısı sol geçide yönlendiriliyor. Sol geçitte kaç tomurcuk bulunur?",
-      "correctAnswer": "56",
-      "solution": "Üç koldaki toplam 16+32+64=112; yarısı 56.",
-      "hint": "Önce 2ⁿ ortak çarpanı ayır, sonra ikiye böl.",
+      "prompt": "Üç sarmaşık kolundaki tomurcuk sayıları 4¹, 4² ve 4³ şeklindedir. Hepsinin 1/2’i sol geçide aktarılırsa geçitte kaç tomurcuk olur?",
+      "correctAnswer": "42",
+      "solution": "Kollardaki miktarlar 4, 16, 64 tomurcuktur. Toplam 4 + 16 + 64 = 84. Sol geçide aktarılan 84 ÷ 2 = 42 tomurcuktur.",
+      "hint": "Önce üç üslü ifadeyi ayrı ayrı hesapla.",
       "inputType": "choice",
       "options": [
-        "67",
-        "56",
-        "45",
-        "78"
+        "44",
+        "42",
+        "40",
+        "46"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -21798,15 +22029,15 @@
         "labels": [
           {
             "anchor": "kol A",
-            "value": "2⁴"
+            "value": "4¹"
           },
           {
             "anchor": "kol B",
-            "value": "2⁵"
+            "value": "4²"
           },
           {
             "anchor": "kol C",
-            "value": "2⁶"
+            "value": "4³"
           },
           {
             "anchor": "sol geçit",
@@ -21816,11 +22047,22 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Üç sarmaşık kolundaki tomurcuklar sırasıyla 2⁵, 2⁶ ve 2⁷ biçiminde büyüyor. Toplam 224 tomurcuğun yarısı sol geçide yönlendiriliyor. Sol geçitte kaç tomurcuk bulunur?",
-        "solution": "Üç koldaki toplam 32+64+128=224; yarısı 112."
+        "question": "Üç kolda 4¹, 4² ve 4³ tomurcuk var. Yarısı sol geçide aktarılırsa kaç tomurcuk gider?",
+        "solution": "4 + 16 + 64 = 84; 84 ÷ 2 = 42."
       },
       "sourceQuestionId": "F01-Z-06",
-      "sourceDifficulty": "Zor"
+      "sourceDifficulty": "Zor",
+      "f01Guide": {
+        "first": [
+          "Önce üç üslü ifadeyi ayrı ayrı hesapla.",
+          "Üç kolun toplamının 1/2'i aktarılıyor; sadece tek kolu bölmek doğru olmaz."
+        ],
+        "second": [
+          "İlk koldaki tomurcuk sayısı 4¹ = 4.",
+          "Diğer iki kolun değerlerini hesapla, üçünü topla ve sonra 2'e böl."
+        ],
+        "solution": "Kollardaki miktarlar 4, 16, 64 tomurcuktur. Toplam 4 + 16 + 64 = 84. Sol geçide aktarılan 84 ÷ 2 = 42 tomurcuktur."
+      }
     },
     {
       "id": "F01-Z-07",
@@ -21828,16 +22070,16 @@
       "difficulty": "zor",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sol sarmaşık kolunda 3 · 2⁵, sağ kolda 2⁷ tomurcuk var. Soldakilerin 1/8’i, sağdakilerin 1/4’ü koparsa kalan tomurcuk sayıları arasındaki fark kaç olur?",
-      "correctAnswer": "12",
-      "solution": "Solda 96×7/8=84, sağda 128×3/4=96; kalanların farkı 12.",
-      "hint": "Önce kopanları çıkar; kalan tomurcuk sayılarını karşılaştır.",
+      "prompt": "Sol sarmaşık kolunda 3 · 4⁴, sağ kolda 4⁵ tomurcuk vardır. Soldakilerin 1/8’i, sağdakilerin 1/4’i koparsa geriye kalan miktarlar arasındaki fark kaçtır?",
+      "correctAnswer": "96",
+      "solution": "Başlangıç: solda 768, sağda 1024 tomurcuk vardır. Solda 768 × 7/8 = 672, sağda 1024 × 3/4 = 768 kalır. Kalanlar arasındaki fark |768 − 672| = 96.",
+      "hint": "İki kolun kuvvetli sayılarını ayrı ayrı hesapla.",
       "inputType": "choice",
       "options": [
-        "12",
-        "14",
-        "10",
-        "16"
+        "96",
+        "98",
+        "94",
+        "100"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -21850,11 +22092,11 @@
         "labels": [
           {
             "anchor": "sol kol",
-            "value": "3 · 2⁵"
+            "value": "3 · 4⁴"
           },
           {
             "anchor": "sağ kol",
-            "value": "2⁷"
+            "value": "4⁵"
           },
           {
             "anchor": "sol kopan",
@@ -21868,11 +22110,22 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Sol sarmaşık kolunda 3 · 2⁶, sağ kolda 2⁸ tomurcuk var. Soldakilerin 1/8’i, sağdakilerin 1/4’ü koparsa kalan tomurcuk sayıları arasındaki fark kaç olur?",
-        "solution": "Solda 192×7/8=168, sağda 256×3/4=192; kalanların farkı 24."
+        "question": "Solda 3 × 4³, sağda 4⁴ tomurcuk bulunuyor. Soldakilerin 1/8'i ve sağdakilerin 1/4'ü koparsa kalanların farkı nedir?",
+        "solution": "Solda 192 × 7/8 = 168, sağda 256 × 3/4 = 192. Fark 24."
       },
       "sourceQuestionId": "F01-Z-07",
-      "sourceDifficulty": "Zor"
+      "sourceDifficulty": "Zor",
+      "f01Guide": {
+        "first": [
+          "İki kolun kuvvetli sayılarını ayrı ayrı hesapla.",
+          "Kopan miktarları çıkarınca her kolda geriye kalanı bul; en son aralarındaki farkı al."
+        ],
+        "second": [
+          "Sol koldaki başlangıç sayısı 3 · 4⁴ = 768.",
+          "Solda toplamın 7/8'i, sağda 3/4'i kalır. İki kalanı hesapla."
+        ],
+        "solution": "Başlangıç: solda 768, sağda 1024 tomurcuk vardır. Solda 768 × 7/8 = 672, sağda 1024 × 3/4 = 768 kalır. Kalanlar arasındaki fark |768 − 672| = 96."
+      }
     },
     {
       "id": "F01-Z-08",
@@ -21880,16 +22133,16 @@
       "difficulty": "zor",
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sarmaşık duvarındaki iki kolun tomurcuk sayıları 2ⁿ ve 2ⁿ⁺³ biçimindedir. İki kolda toplam 1152 tomurcuk varsa n kaçtır?",
-      "correctAnswer": "7",
-      "solution": "2⁷ ortak çarpandır: (1 + 8) · 2⁷ = 1152. 2⁷ = 128; üs 7. ",
-      "hint": "İki üslü ifadeyi küçük olanın ortak çarpanı altında topla.",
+      "prompt": "Sarmaşık duvarında iki koldaki tomurcuk sayıları 5ⁿ ve 5ⁿ⁺¹ biçimindedir. Toplam 150 tomurcuk olduğuna göre n kaçtır?",
+      "correctAnswer": "2",
+      "solution": "İki kolun toplamı: 5ⁿ + 5ⁿ⁺¹ = 150. n = 2 için değerler 25 ve 125 olur; 25 + 125 = 150. Dolayısıyla n = 2.",
+      "hint": "5ⁿ ve 5ⁿ⁺¹ aynı tabana, yani 5'e sahiptir.",
       "inputType": "choice",
       "options": [
-        "8",
+        "4",
         "6",
-        "9",
-        "7"
+        "8",
+        "2"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -21902,25 +22155,36 @@
         "labels": [
           {
             "anchor": "sol kol",
-            "value": "2ⁿ"
+            "value": "5ⁿ"
           },
           {
             "anchor": "sağ kol",
-            "value": "2ⁿ⁺³"
+            "value": "5ⁿ⁺¹"
           },
           {
             "anchor": "toplam",
-            "value": "1152"
+            "value": "150"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Sarmaşık duvarındaki iki kolun tomurcuk sayıları 2ⁿ ve 2ⁿ⁺² biçimindedir. İki kolda toplam 320 tomurcuk varsa n kaçtır?",
-        "solution": "2⁶ ortak çarpandır: (1 + 4) · 2⁶ = 320. 2⁶ = 64; üs 6. "
+        "question": "3ⁿ + 3ⁿ⁺¹ = 36 ise n kaçtır?",
+        "solution": "3ⁿ(1 + 3) = 36. 3ⁿ = 9 = 3² olduğuna göre n = 2."
       },
       "sourceQuestionId": "F01-Z-08",
-      "sourceDifficulty": "Zor"
+      "sourceDifficulty": "Zor",
+      "f01Guide": {
+        "first": [
+          "5ⁿ ve 5ⁿ⁺¹ aynı tabana, yani 5'e sahiptir.",
+          "Üsler arasındaki farkı kullanarak ortak bir 5 kuvveti elde edebilirsin."
+        ],
+        "second": [
+          "Her iki terimde ortak 5 kuvvetini ayır ve katsayıları topla.",
+          "Toplamın 150 olmasını sağlayan 5 kuvvetini bul; ardından n'yi belirle."
+        ],
+        "solution": "İki kolun toplamı: 5ⁿ + 5ⁿ⁺¹ = 150. n = 2 için değerler 25 ve 125 olur; 25 + 125 = 150. Dolayısıyla n = 2."
+      }
     },
     {
       "id": "F01-Z-09",
@@ -21928,16 +22192,16 @@
       "difficulty": "zor",
       "variant": 9,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Üç sarmaşık kolundaki tomurcuklar sırasıyla 2⁵, 2⁶ ve 2⁷ biçiminde büyüyor. Toplam 224 tomurcuğun yarısı sol geçide yönlendiriliyor. Sol geçitte kaç tomurcuk bulunur?",
-      "correctAnswer": "112",
-      "solution": "Üç koldaki toplam 32+64+128=224; yarısı 112.",
-      "hint": "Önce 2ⁿ ortak çarpanı ayır, sonra ikiye böl.",
+      "prompt": "Üç sarmaşık kolundaki tomurcuk sayıları 3³, 3⁴ ve 3⁵ şeklindedir. Hepsinin 1/3’i sol geçide aktarılırsa geçitte kaç tomurcuk olur?",
+      "correctAnswer": "117",
+      "solution": "Kollardaki miktarlar 27, 81, 243 tomurcuktur. Toplam 27 + 81 + 243 = 351. Sol geçide aktarılan 351 ÷ 3 = 117 tomurcuktur.",
+      "hint": "Önce üç üslü ifadeyi ayrı ayrı hesapla.",
       "inputType": "choice",
       "options": [
-        "134",
-        "112",
-        "90",
-        "156"
+        "119",
+        "117",
+        "115",
+        "121"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -21950,29 +22214,40 @@
         "labels": [
           {
             "anchor": "kol A",
-            "value": "2⁵"
+            "value": "3³"
           },
           {
             "anchor": "kol B",
-            "value": "2⁶"
+            "value": "3⁴"
           },
           {
             "anchor": "kol C",
-            "value": "2⁷"
+            "value": "3⁵"
           },
           {
             "anchor": "sol geçit",
-            "value": "1/2"
+            "value": "1/3"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Üç sarmaşık kolundaki tomurcuklar sırasıyla 2³, 2⁴ ve 2⁵ biçiminde büyüyor. Toplam 56 tomurcuğun yarısı sol geçide yönlendiriliyor. Sol geçitte kaç tomurcuk bulunur?",
-        "solution": "Üç koldaki toplam 8+16+32=56; yarısı 28."
+        "question": "Üç kolda 4¹, 4² ve 4³ tomurcuk var. Yarısı sol geçide aktarılırsa kaç tomurcuk gider?",
+        "solution": "4 + 16 + 64 = 84; 84 ÷ 2 = 42."
       },
       "sourceQuestionId": "F01-Z-09",
-      "sourceDifficulty": "Zor"
+      "sourceDifficulty": "Zor",
+      "f01Guide": {
+        "first": [
+          "Önce üç üslü ifadeyi ayrı ayrı hesapla.",
+          "Üç kolun toplamının 1/3'i aktarılıyor; sadece tek kolu bölmek doğru olmaz."
+        ],
+        "second": [
+          "İlk koldaki tomurcuk sayısı 3³ = 27.",
+          "Diğer iki kolun değerlerini hesapla, üçünü topla ve sonra 3'e böl."
+        ],
+        "solution": "Kollardaki miktarlar 27, 81, 243 tomurcuktur. Toplam 27 + 81 + 243 = 351. Sol geçide aktarılan 351 ÷ 3 = 117 tomurcuktur."
+      }
     },
     {
       "id": "F01-Z-10",
@@ -21980,16 +22255,16 @@
       "difficulty": "zor",
       "variant": 10,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Sol sarmaşık kolunda 3 · 2⁶, sağ kolda 2⁸ tomurcuk var. Soldakilerin 1/8’i, sağdakilerin 1/4’ü koparsa kalan tomurcuk sayıları arasındaki fark kaç olur?",
-      "correctAnswer": "24",
-      "solution": "Solda 192×7/8=168, sağda 256×3/4=192; kalanların farkı 24.",
-      "hint": "Önce kopanları çıkar; kalan tomurcuk sayılarını karşılaştır.",
+      "prompt": "Sol sarmaşık kolunda 3 · 5³, sağ kolda 5⁴ tomurcuk vardır. Soldakilerin 1/5’i, sağdakilerin 1/5’i koparsa geriye kalan miktarlar arasındaki fark kaçtır?",
+      "correctAnswer": "200",
+      "solution": "Başlangıç: solda 375, sağda 625 tomurcuk vardır. Solda 375 × 4/5 = 300, sağda 625 × 4/5 = 500 kalır. Kalanlar arasındaki fark |500 − 300| = 200.",
+      "hint": "İki kolun kuvvetli sayılarını ayrı ayrı hesapla.",
       "inputType": "choice",
       "options": [
-        "28",
-        "20",
-        "24",
-        "32"
+        "202",
+        "198",
+        "200",
+        "204"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -22002,29 +22277,40 @@
         "labels": [
           {
             "anchor": "sol kol",
-            "value": "3 · 2⁶"
+            "value": "3 · 5³"
           },
           {
             "anchor": "sağ kol",
-            "value": "2⁸"
+            "value": "5⁴"
           },
           {
             "anchor": "sol kopan",
-            "value": "1/8"
+            "value": "1/5"
           },
           {
             "anchor": "sağ kopan",
-            "value": "1/4"
+            "value": "1/5"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Sol sarmaşık kolunda 3 · 2⁴, sağ kolda 2⁶ tomurcuk var. Soldakilerin 1/8’i, sağdakilerin 1/4’ü koparsa kalan tomurcuk sayıları arasındaki fark kaç olur?",
-        "solution": "Solda 48×7/8=42, sağda 64×3/4=48; kalanların farkı 6."
+        "question": "Solda 3 × 4³, sağda 4⁴ tomurcuk bulunuyor. Soldakilerin 1/8'i ve sağdakilerin 1/4'ü koparsa kalanların farkı nedir?",
+        "solution": "Solda 192 × 7/8 = 168, sağda 256 × 3/4 = 192. Fark 24."
       },
       "sourceQuestionId": "F01-Z-10",
-      "sourceDifficulty": "Zor"
+      "sourceDifficulty": "Zor",
+      "f01Guide": {
+        "first": [
+          "İki kolun kuvvetli sayılarını ayrı ayrı hesapla.",
+          "Kopan miktarları çıkarınca her kolda geriye kalanı bul; en son aralarındaki farkı al."
+        ],
+        "second": [
+          "Sol koldaki başlangıç sayısı 3 · 5³ = 375.",
+          "Solda toplamın 4/5'i, sağda 4/5'i kalır. İki kalanı hesapla."
+        ],
+        "solution": "Başlangıç: solda 375, sağda 625 tomurcuk vardır. Solda 375 × 4/5 = 300, sağda 625 × 4/5 = 500 kalır. Kalanlar arasındaki fark |500 − 300| = 200."
+      }
     },
     {
       "id": "F02-Z-01",
