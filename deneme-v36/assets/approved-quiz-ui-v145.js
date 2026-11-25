@@ -371,6 +371,7 @@
     // F03: the same approved portrait scene in both orientations.
     // Mount after the universal geometry; values stay in live DOM plaques.
     if(q?.obstacleId==="F03")window.MTKF03ApprovedV197?.enhance(frame,q);
+    if(q?.obstacleId==="F04")window.MTKF04ApprovedV211?.enhance(frame,q);
     return true;
   }
   function reset(){document.body.classList.remove('mtk-approved-active')}
