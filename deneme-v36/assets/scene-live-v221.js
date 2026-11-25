@@ -34,13 +34,15 @@ function mount(app,q,s,choices,run,save){
  const helpOpen=!run.stageCorrect&&Number(run.wrong)>0&&run.helpView!==false;
  const realChoices=[...choices.children];
  const choiceSnapshot=realChoices.map(b=>({b,disabled:b.disabled,locked:b.classList.contains("match-locked")}));
+ let matchingTouched=false;
  const scopedMatching=q.obstacleId==="F21"?{mount(args){
+  matchingTouched=true;
   for(const {b} of choiceSnapshot){b.disabled=!!(run.stageCorrect||run.revealed||run.awaiting||b.classList.contains("wrongChoice"));b.classList.remove("match-locked")}
   const result=matchingAPI.mount({...args,choices});
   if(!result)restoreChoices();
   return result;
  }}:matchingAPI;
- function restoreChoices(){for(const {b,disabled,locked} of choiceSnapshot){b.disabled=disabled;b.classList.toggle("match-locked",locked)}}
+ function restoreChoices(){if(!matchingTouched)return;matchingTouched=false;for(const {b,disabled,locked} of choiceSnapshot){b.disabled=disabled;b.classList.toggle("match-locked",locked)}}
  function discard(){if(active===ticket){reset();restoreChoices()}}
  ticket.timer=setTimeout(discard,5000);
  api.mountScene({q,ui,sceneAPI:planAPI,characterAPI,plaqueAPI,matchingAPI:scopedMatching,run,save}).then(scene=>{
