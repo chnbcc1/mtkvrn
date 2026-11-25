@@ -1,0 +1,19 @@
+name: Power and Root Diversity v205 Regression
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'deneme-v36/forest-questions-v147.json'
+      - 'deneme-v36/tests/question-diversity-v205.test.cjs'
+      - '.github/workflows/question-diversity-v205.yml'
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check powers, radical degrees, correct answers and interactive pairings
+        run: node deneme-v36/tests/question-diversity-v205.test.cjs
