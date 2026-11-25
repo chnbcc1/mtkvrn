@@ -194,7 +194,7 @@
   if(get("basamak 1")&&get("basamak 2")){
     const a=value("basamak 1"),b=value("basamak 2");
     return hint([
-      "İki basamağın üslü ifadelerini ayrı ayrı hesapla; 2 üzeri n, 2'nin n kez çarpımıdır.",
+      "İki basamağın üslü ifadelerini ayrı ayrı hesapla; her tabanı kendi üssü kadar çarp.",
       "İki basamak birlikte etkinleşiyorsa güçleri toplanır."
     ],[
       get("basamak 1")+" = "+a+" ve "+get("basamak 2")+" = "+b+".",
