@@ -112,7 +112,7 @@ const FORCED=new URLSearchParams(location.search).get("obstacle")||"";
 const FORCED_DIFFICULTY=new URLSearchParams(location.search).get("difficulty")||"orta";
 const PREVIEW_QUESTION_ID=new URLSearchParams(location.search).get("previewQuestion")||"";
 const CAMPAIGN_SESSION=new URLSearchParams(location.search).get("session")||"direct-preview";
-const BANK_URL="./forest-questions-v147.json?v=205";
+const BANK_URL="./forest-questions-v147.json?v=206";
 const RUN_KEY=EMBED?"mathverse-v147-quiz-"+CAMPAIGN_SESSION+"-"+FORCED+"-"+FORCED_DIFFICULTY:"mathverse-v147-choice-run",HISTORY_KEY="mathverse-v147-choice-history";
 const OLD_SAVE_KEY="mathverse-v40-investigation";
 let bank=null,run=null,history={used:{},last:{},seenPrompts:{}};
