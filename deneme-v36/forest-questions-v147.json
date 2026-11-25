@@ -613,16 +613,16 @@
       "difficulty": "kolay",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki taş basamağın güç levhalarında 2² ve 2² yazıyor. Her iki basamak birlikte etkinleşirse toplam kaç birim güç üretir?",
-      "correctAnswer": "8",
-      "solution": "4 + 4 = 8.",
-      "hint": "Her basamağın gücünü ayrı hesapla.",
+      "prompt": "İki taş basamağın güç levhalarında 3² ve 3² yazıyor. Basamaklar birlikte etkinleşirse toplam kaç birim güç üretir?",
+      "correctAnswer": "18",
+      "solution": "3² = 9; 9 + 9 = 18 birim.",
+      "hint": "Önce üslü ifadelerin değerlerini ayrı ayrı bul. Sonra soruda istenen işlemi yap.",
       "inputType": "choice",
       "options": [
         "12",
-        "8",
-        "6",
-        "4"
+        "18",
+        "9",
+        "27"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -635,18 +635,18 @@
         "labels": [
           {
             "anchor": "basamak_1",
-            "value": "2²"
+            "value": "3²"
           },
           {
             "anchor": "basamak_2",
-            "value": "2²"
+            "value": "3²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "İki basamakta 2² ve 2³ enerji vardır. Toplam kaçtır?",
-        "solution": "4 + 8 = 12."
+        "question": "İki taşın her birinde 5² birim enerji varsa toplam kaçtır?",
+        "solution": "5² = 25; toplam 50."
       },
       "sourceQuestionId": "F02-K-01",
       "sourceDifficulty": "Kolay"
@@ -657,7 +657,7 @@
       "difficulty": "kolay",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Giriş basamağında 2⁴ güç birimi depolanmış. Hasarlı taşın açılması için 2³ birim harcanırsa kaç birim kalır?",
+      "prompt": "Giriş basamağında 4² güç birimi depolanmış. Hasarlı taşın açılması için 2³ birim harcanırsa kaç birim kalır?",
       "correctAnswer": "8",
       "solution": "16 − 8 = 8.",
       "hint": "Önce üsleri hesapla, sonra çıkar.",
@@ -679,7 +679,7 @@
         "labels": [
           {
             "anchor": "giriş",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "hasarlı_taş",
@@ -877,7 +877,7 @@
       "difficulty": "kolay",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki taş basamağın güç levhalarında 2⁴ ve 2¹ yazıyor. Her iki basamak birlikte etkinleşirse toplam kaç birim güç üretir?",
+      "prompt": "İki taş basamağın güç levhalarında 4² ve 2¹ yazıyor. Her iki basamak birlikte etkinleşirse toplam kaç birim güç üretir?",
       "correctAnswer": "18",
       "solution": "16 + 2 = 18.",
       "hint": "Her basamağın gücünü ayrı hesapla.",
@@ -899,7 +899,7 @@
         "labels": [
           {
             "anchor": "basamak_1",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "basamak_2",
@@ -1009,7 +1009,7 @@
       "difficulty": "kolay",
       "variant": 10,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Üç taş basamakta 2², 2³ ve 2⁴ enerji birimi bulunur. Üçü beraber çalışırsa toplam kaç birim güç elde edilir?",
+      "prompt": "Üç taş basamakta 2², 2³ ve 4² enerji birimi bulunur. Üçü beraber çalışırsa toplam kaç birim güç elde edilir?",
       "correctAnswer": "28",
       "solution": "4 + 8 + 16 = 28.",
       "hint": "Üslerin değerlerini ayrı ayrı bulup topla.",
@@ -1039,7 +1039,7 @@
           },
           {
             "anchor": "basamak_C",
-            "value": "2⁴"
+            "value": "4²"
           }
         ],
         "bakedIntoImage": false
@@ -1708,16 +1708,16 @@
       "difficulty": "kolay",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Işık geçidinde 2 katman vardır. Her katmanda 2² ışık noktası yanıyor. Geçitte toplam kaç ışık noktası vardır?",
-      "correctAnswer": "8",
-      "solution": "2 × 4 = 8.",
-      "hint": "Bir katmandaki ışık sayısını toplam katman sayısıyla çarp.",
+      "prompt": "Işık geçidinde 2 katman vardır. Her katmanda 3² ışık noktası yanıyor. Geçitte toplam kaç ışık noktası vardır?",
+      "correctAnswer": "18",
+      "solution": "3² = 9; 2 × 9 = 18 ışık noktası.",
+      "hint": "Önce üslü ifadelerin değerlerini ayrı ayrı bul. Sonra soruda istenen işlemi yap.",
       "inputType": "choice",
       "options": [
         "12",
-        "4",
-        "6",
-        "8"
+        "9",
+        "36",
+        "18"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -1734,14 +1734,14 @@
           },
           {
             "anchor": "nokta",
-            "value": "2²"
+            "value": "3²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Üç katta 2² ışık varsa toplam kaç nokta vardır?",
-        "solution": "3 × 4 = 12."
+        "question": "Üç katmanda, her katmanda 5² ışık noktası varsa toplam kaçtır?",
+        "solution": "3 × 25 = 75."
       },
       "sourceQuestionId": "F04-K-01",
       "sourceDifficulty": "Kolay"
@@ -2172,16 +2172,16 @@
       "difficulty": "kolay",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kristalin üzerinde 2⁻¹ güç değeri yazıyor. Kristalin değeri hangi kesre eşittir?",
-      "correctAnswer": "1/2",
-      "solution": "2⁻¹ = 1/2¹ = 1/2.",
-      "hint": "Negatif üs, çarpma işlemine göre tersini gösterir.",
+      "prompt": "Kristalin üzerinde 5⁻¹ güç değeri yazıyor. Kristalin değeri hangi kesre eşittir?",
+      "correctAnswer": "1/5",
+      "solution": "5⁻¹ = 1/5.",
+      "hint": "Negatif üs sayıyı negatif yapmaz; 5’in çarpma işlemine göre tersini al.",
       "inputType": "choice",
       "options": [
-        "1/2",
-        "1/4",
-        "2",
-        "2/2"
+        "1/5",
+        "1/25",
+        "5",
+        "5/5"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -2194,14 +2194,14 @@
         "labels": [
           {
             "anchor": "kristal",
-            "value": "2⁻¹"
+            "value": "5⁻¹"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2⁻³ hangi kesre eşittir?",
-        "solution": "1/2³ = 1/8."
+        "question": "3⁻² ifadesi hangi kesre eşittir?",
+        "solution": "3⁻² = 1/9."
       },
       "sourceQuestionId": "F05-K-01",
       "sourceDifficulty": "Kolay"
@@ -2596,16 +2596,16 @@
       "difficulty": "kolay",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "A mantar adasında 2¹, B mantar adasında 2³ mantar vardır. İki adada toplam kaç mantar bulunur?",
-      "correctAnswer": "10",
-      "solution": "2 + 8 = 10 mantar.",
-      "hint": "İki adadaki mantar sayısını topla.",
+      "prompt": "A mantar adasında 3², B mantar adasında 3³ mantar vardır. İki adada toplam kaç mantar bulunur?",
+      "correctAnswer": "36",
+      "solution": "3² = 9, 3³ = 27; 9 + 27 = 36 mantar.",
+      "hint": "Önce üslü ifadelerin değerlerini ayrı ayrı bul. Sonra soruda istenen işlemi yap.",
       "inputType": "choice",
       "options": [
-        "12",
-        "10",
-        "8",
-        "2"
+        "30",
+        "36",
+        "27",
+        "45"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -2618,18 +2618,18 @@
         "labels": [
           {
             "anchor": "ada_A",
-            "value": "2¹"
+            "value": "3²"
           },
           {
             "anchor": "ada_B",
-            "value": "2³"
+            "value": "3³"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "İki mantar adasında 4 ve 8 mantar varsa kaç mantar olur?",
-        "solution": "4 + 8 = 12."
+        "question": "A adasında 3², B adasında 5² mantar varsa toplam kaçtır?",
+        "solution": "9 + 25 = 34."
       },
       "sourceQuestionId": "F06-K-01",
       "sourceDifficulty": "Kolay"
@@ -3448,16 +3448,16 @@
       "difficulty": "kolay",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kırık köprünün deposunda 2⁴ tahta vardır. 2¹ tanesi kullanılamayacak durumdadır. Sağlam tahta sayısı kaçtır?",
-      "correctAnswer": "14",
-      "solution": "16 − 2 = 14.",
-      "hint": "Önce üsleri hesapla, sonra çıkar.",
+      "prompt": "Kırık köprünün deposunda 5² tahta vardır. 5¹ tanesi kullanılamayacak durumdadır. Sağlam tahta sayısı kaçtır?",
+      "correctAnswer": "20",
+      "solution": "5² = 25, 5¹ = 5; 25 − 5 = 20.",
+      "hint": "Önce üslü ifadelerin değerlerini ayrı ayrı bul. Sonra soruda istenen işlemi yap.",
       "inputType": "choice",
       "options": [
-        "16",
-        "2",
-        "18",
-        "14"
+        "15",
+        "25",
+        "30",
+        "20"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -3470,18 +3470,18 @@
         "labels": [
           {
             "anchor": "depo",
-            "value": "2⁴"
+            "value": "5²"
           },
           {
             "anchor": "kırık",
-            "value": "2¹"
+            "value": "5¹"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "16 köprü tahtasının 4 tanesi eksikse kaç sağlam tahta vardır?",
-        "solution": "16 − 4 = 12."
+        "question": "Depoda 3³ tahta var, 3² tanesi kırık. Kaç sağlam tahta kalır?",
+        "solution": "27 − 9 = 18."
       },
       "sourceQuestionId": "F08-K-01",
       "sourceDifficulty": "Kolay"
@@ -3628,7 +3628,7 @@
       "difficulty": "kolay",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Köprü onarımı için 2⁴ sağlam tahta gerekiyor. Sandıkta 2³ sağlam tahta olduğuna göre kaç tahta daha bulunmalıdır?",
+      "prompt": "Köprü onarımı için 4² sağlam tahta gerekiyor. Sandıkta 2³ sağlam tahta olduğuna göre kaç tahta daha bulunmalıdır?",
       "correctAnswer": "8",
       "solution": "16 − 8 = 8.",
       "hint": "İhtiyaçtan sandıktaki sağlam miktarı çıkar.",
@@ -3650,7 +3650,7 @@
         "labels": [
           {
             "anchor": "gereken",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "sandık",
@@ -3720,7 +3720,7 @@
       "difficulty": "kolay",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kırık köprünün deposunda 2⁴ tahta vardır. 2³ tanesi kullanılamayacak durumdadır. Sağlam tahta sayısı kaçtır?",
+      "prompt": "Kırık köprünün deposunda 4² tahta vardır. 2³ tanesi kullanılamayacak durumdadır. Sağlam tahta sayısı kaçtır?",
       "correctAnswer": "8",
       "solution": "16 − 8 = 8.",
       "hint": "Önce üsleri hesapla, sonra çıkar.",
@@ -3742,7 +3742,7 @@
         "labels": [
           {
             "anchor": "depo",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "kırık",
@@ -3944,7 +3944,7 @@
       "difficulty": "kolay",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "2⁶ metre halatın 2⁴ metresi köprü bağlantısında kullanıldı. Geriye kaç metre halat kaldı?",
+      "prompt": "4³ metre halatın 4² metresi köprü bağlantısında kullanıldı. Geriye kaç metre halat kaldı?",
       "correctAnswer": "48",
       "solution": "64 − 16 = 48 m.",
       "hint": "Önce iki uzunluğu hesapla.",
@@ -3966,11 +3966,11 @@
         "labels": [
           {
             "anchor": "halat",
-            "value": "2⁶"
+            "value": "4³"
           },
           {
             "anchor": "kullanılan",
-            "value": "2⁴"
+            "value": "4²"
           }
         ],
         "bakedIntoImage": false
@@ -3988,7 +3988,7 @@
       "difficulty": "kolay",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki sağlam halat parçasının uzunlukları 2⁵ m ve 2⁴ m’dir. Uç uca eklenince toplam kaç metre olur?",
+      "prompt": "İki sağlam halat parçasının uzunlukları 2⁵ m ve 4² m’dir. Uç uca eklenince toplam kaç metre olur?",
       "correctAnswer": "48",
       "solution": "32 + 16 = 48 m.",
       "hint": "İki parçanın uzunluklarını topla.",
@@ -4014,7 +4014,7 @@
           },
           {
             "anchor": "parça_B",
-            "value": "2⁴"
+            "value": "4²"
           }
         ],
         "bakedIntoImage": false
@@ -4032,7 +4032,7 @@
       "difficulty": "kolay",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kopmuş 2⁶ metrelik halat 4 eşit parçaya kesilecek. Her parçanın uzunluğu kaç metredir?",
+      "prompt": "Kopmuş 4³ metrelik halat 4 eşit parçaya kesilecek. Her parçanın uzunluğu kaç metredir?",
       "correctAnswer": "16",
       "solution": "64 ÷ 4 = 16 m.",
       "hint": "Toplam uzunluğu parça sayısına böl.",
@@ -4054,7 +4054,7 @@
         "labels": [
           {
             "anchor": "halat",
-            "value": "2⁶ m"
+            "value": "4³ m"
           },
           {
             "anchor": "parça_sayısı",
@@ -4780,16 +4780,16 @@
       "difficulty": "kolay",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Şelalenin bir kapağından saniyede 2² litre su akıyor. Kapak 2 saniye açık kalırsa toplam kaç litre su geçer?",
-      "correctAnswer": "8",
-      "solution": "4 × 2 = 8 L.",
-      "hint": "Saniyelik miktarı süreyle çarp.",
+      "prompt": "Şelalenin bir kapağından saniyede 3² litre su akıyor. Kapak 2 saniye açık kalırsa toplam kaç litre su geçer?",
+      "correctAnswer": "18",
+      "solution": "3² = 9; 9 × 2 = 18 litre.",
+      "hint": "Önce üslü ifadelerin değerlerini ayrı ayrı bul. Sonra soruda istenen işlemi yap.",
       "inputType": "choice",
       "options": [
-        "12",
-        "4",
-        "8",
-        "6"
+        "9",
+        "27",
+        "18",
+        "36"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -4802,7 +4802,7 @@
         "labels": [
           {
             "anchor": "kapak",
-            "value": "2²"
+            "value": "3²"
           },
           {
             "anchor": "süre",
@@ -4812,8 +4812,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Saniyede 8 litre geçen kapak 2 saniyede kaç litre geçirir?",
-        "solution": "8 × 2 = 16 L."
+        "question": "Saniyede 5² litre su 3 saniye akarsa toplam kaç litredir?",
+        "solution": "3 × 25 = 75 litre."
       },
       "sourceQuestionId": "F11-K-01",
       "sourceDifficulty": "Kolay"
@@ -4868,7 +4868,7 @@
       "difficulty": "kolay",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Şelale girişinde 2⁴ litre su ölçülüyor. Bir yan kanala 2² litre ayrılırsa ana kapaktan kaç litre geçer?",
+      "prompt": "Şelale girişinde 4² litre su ölçülüyor. Bir yan kanala 2² litre ayrılırsa ana kapaktan kaç litre geçer?",
       "correctAnswer": "12",
       "solution": "16 − 4 = 12 L.",
       "hint": "Ana kapaktan geçen, toplamdan ayrılan miktarın çıkarılmasıdır.",
@@ -4890,7 +4890,7 @@
         "labels": [
           {
             "anchor": "giriş",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "yan_kanal",
@@ -5044,7 +5044,7 @@
       "difficulty": "kolay",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Şelalenin bir kapağından saniyede 2⁴ litre su akıyor. Kapak 2 saniye açık kalırsa toplam kaç litre su geçer?",
+      "prompt": "Şelalenin bir kapağından saniyede 4² litre su akıyor. Kapak 2 saniye açık kalırsa toplam kaç litre su geçer?",
       "correctAnswer": "32",
       "solution": "16 × 2 = 32 L.",
       "hint": "Saniyelik miktarı süreyle çarp.",
@@ -5066,7 +5066,7 @@
         "labels": [
           {
             "anchor": "kapak",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "süre",
@@ -5088,7 +5088,7 @@
       "difficulty": "kolay",
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "A şelale kapağından saniyede 2⁴ litre, B kapağından saniyede 2³ litre su akıyor. İki kapaktan bir saniyede toplam kaç litre geçer?",
+      "prompt": "A şelale kapağından saniyede 4² litre, B kapağından saniyede 2³ litre su akıyor. İki kapaktan bir saniyede toplam kaç litre geçer?",
       "correctAnswer": "24",
       "solution": "16 + 8 = 24 L.",
       "hint": "İki aynı süreli akışın miktarlarını topla.",
@@ -5110,7 +5110,7 @@
         "labels": [
           {
             "anchor": "A_kapağı",
-            "value": "2⁴ L/sn"
+            "value": "4² L/sn"
           },
           {
             "anchor": "B_kapağı",
@@ -5440,7 +5440,7 @@
       "difficulty": "kolay",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "A kolu 2⁴ + 2³, B kolu 3³ birimdir. Kısa yolu seçen kişi hangi yolu seçer ve kaç birim daha az yürür?",
+      "prompt": "A kolu 4² + 2³, B kolu 3³ birimdir. Kısa yolu seçen kişi hangi yolu seçer ve kaç birim daha az yürür?",
       "correctAnswer": "A yolu, 3 birim",
       "solution": "A=24, B=27; A daha kısadır, fark 3 birimdir.",
       "hint": "Önce iki yolun uzunluğunu hesapla.",
@@ -5462,7 +5462,7 @@
         "labels": [
           {
             "anchor": "A_yolu",
-            "value": "2⁴ + 2³"
+            "value": "4² + 2³"
           },
           {
             "anchor": "B_yolu",
@@ -5572,7 +5572,7 @@
       "difficulty": "kolay",
       "variant": 9,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Yol ayrımındaki A yolunun uzunluğu 2⁵ + 2³, B yolunun uzunluğu 3³ + 2⁴ birimdir. Kısa yolu seçen kişi hangisini seçer ve kaç birim daha az yürür?",
+      "prompt": "Yol ayrımındaki A yolunun uzunluğu 2⁵ + 2³, B yolunun uzunluğu 3³ + 4² birimdir. Kısa yolu seçen kişi hangisini seçer ve kaç birim daha az yürür?",
       "correctAnswer": "A yolu, 3 birim",
       "solution": "A=32+8=40, B=27+16=43; kısa yol A, fark 3 birimdir.",
       "hint": "İki yolun toplam uzunluklarını hesapla.",
@@ -5598,7 +5598,7 @@
           },
           {
             "anchor": "B_yolu",
-            "value": "3³ + 2⁴"
+            "value": "3³ + 4²"
           }
         ],
         "bakedIntoImage": false
@@ -5660,16 +5660,16 @@
       "difficulty": "kolay",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Küp biçimli taş kilidin 4 yüzü açıktır. Açık her yüzde 2² ışıklı işaret varsa toplam kaç işaret yanar?",
-      "correctAnswer": "16",
-      "solution": "4 × 4 = 16. Hacim hesaplanmaz.",
-      "hint": "Yalnızca açık yüzlerdeki işaretleri say.",
+      "prompt": "Küp biçimli taş kilidin 4 yüzü açıktır. Açık her yüzde 5² ışıklı işaret varsa toplam kaç işaret yanar?",
+      "correctAnswer": "100",
+      "solution": "5² = 25; 4 × 25 = 100 işaret.",
+      "hint": "Önce üslü ifadelerin değerlerini ayrı ayrı bul. Sonra soruda istenen işlemi yap.",
       "inputType": "choice",
       "options": [
-        "16",
-        "20",
-        "12",
-        "24"
+        "100",
+        "80",
+        "25",
+        "125"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -5686,14 +5686,14 @@
           },
           {
             "anchor": "yüz_başı",
-            "value": "2²"
+            "value": "5²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Dört açık taş yüzün her birinde 2² işaret varsa toplam kaçtır?",
-        "solution": "4 × 4 = 16."
+        "question": "Üç yüzde, her yüzde 3² işaret varsa kaç işaret yanar?",
+        "solution": "3 × 9 = 27."
       },
       "sourceQuestionId": "F13-K-01",
       "sourceDifficulty": "Kolay"
@@ -5976,7 +5976,7 @@
       "difficulty": "kolay",
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Küp biçimli kilidin altı yüzünden ikisi mühürlüdür. Açık yüzlerin her birinde 2⁴ işaret vardır; iki işaret sönmüştür. Kaç işaret yanar?",
+      "prompt": "Küp biçimli kilidin altı yüzünden ikisi mühürlüdür. Açık yüzlerin her birinde 4² işaret vardır; iki işaret sönmüştür. Kaç işaret yanar?",
       "correctAnswer": "62",
       "solution": "4 × 16 − 2 = 62.",
       "hint": "Önce açık dört yüzdeki işaretleri hesapla.",
@@ -6002,7 +6002,7 @@
           },
           {
             "anchor": "açık_yüzde",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "sönmüş",
@@ -6068,7 +6068,7 @@
       "difficulty": "kolay",
       "variant": 10,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Küp biçimli taş kilidin beş yüzündeki 2⁴ işaretin tamamı yanıyor. Yüzeyler üzerinde toplam kaç işaret bulunur?",
+      "prompt": "Küp biçimli taş kilidin beş yüzündeki 4² işaretin tamamı yanıyor. Yüzeyler üzerinde toplam kaç işaret bulunur?",
       "correctAnswer": "80",
       "solution": "5 × 16 = 80.",
       "hint": "Yüz sayısını yüzdeki işaret sayısıyla çarp.",
@@ -6094,7 +6094,7 @@
           },
           {
             "anchor": "her_yüzde",
-            "value": "2⁴"
+            "value": "4²"
           }
         ],
         "bakedIntoImage": false
@@ -6112,16 +6112,16 @@
       "difficulty": "kolay",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki dişli çarkın kenarında sırasıyla 2⁴ ve 2³ diş vardır. Büyük sayıdan küçüğü çıkarınca kaç diş farkı bulunur?",
-      "correctAnswer": "8",
-      "solution": "16 − 8 = 8. Bu soru çarkların tur sayısını sormaz.",
-      "hint": "Üslü sayıları değerlendir; tur oranı hesaplaması yok.",
+      "prompt": "İki dişli çarkın kenarında sırasıyla 3⁴ ve 3³ diş vardır. Büyük sayıdan küçüğü çıkarınca kaç diş farkı bulunur?",
+      "correctAnswer": "54",
+      "solution": "3⁴ = 81 ve 3³ = 27; 81 − 27 = 54 diş.",
+      "hint": "Önce üslü ifadelerin değerlerini ayrı ayrı bul. Sonra soruda istenen işlemi yap.",
       "inputType": "choice",
       "options": [
-        "24",
-        "8",
-        "16",
-        "12"
+        "27",
+        "54",
+        "81",
+        "108"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -6134,18 +6134,18 @@
         "labels": [
           {
             "anchor": "büyük_çark",
-            "value": "2⁴"
+            "value": "3⁴"
           },
           {
             "anchor": "küçük_çark",
-            "value": "2³"
+            "value": "3³"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Bir levhada 2⁴, diğerinde 2³ diş sayısı varsa fark kaçtır?",
-        "solution": "16 − 8 = 8."
+        "question": "İki çarkta 5³ ve 5² diş varsa fark kaçtır?",
+        "solution": "125 − 25 = 100."
       },
       "sourceQuestionId": "F14-K-01",
       "sourceDifficulty": "Kolay"
@@ -6156,7 +6156,7 @@
       "difficulty": "kolay",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Bir taş dişli üzerinde 2⁴ dişlik iki eş parça gösteriliyor. Bu parçaların toplamında kaç diş bulunur?",
+      "prompt": "Bir taş dişli üzerinde 4² dişlik iki eş parça gösteriliyor. Bu parçaların toplamında kaç diş bulunur?",
       "correctAnswer": "32",
       "solution": "16 + 16 = 32.",
       "hint": "Eş iki grubu topla.",
@@ -6178,17 +6178,17 @@
         "labels": [
           {
             "anchor": "parça_1",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "parça_2",
-            "value": "2⁴"
+            "value": "4²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Bir levhada 2⁴, diğerinde 2³ diş sayısı varsa fark kaçtır?",
+        "question": "Bir levhada 4², diğerinde 2³ diş sayısı varsa fark kaçtır?",
         "solution": "16 − 8 = 8."
       },
       "sourceQuestionId": "F14-K-02",
@@ -6508,7 +6508,7 @@
       "difficulty": "kolay",
       "variant": 10,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Bir çark üzerinde 2⁶, diğer çark üzerinde 2³ diş gösterilmiş. İki sayı arasındaki fark kaçtır?",
+      "prompt": "Bir çark üzerinde 4³, diğer çark üzerinde 2³ diş gösterilmiş. İki sayı arasındaki fark kaçtır?",
       "correctAnswer": "56",
       "solution": "64 − 8 = 56.",
       "hint": "Üs değerlerini bulup çıkar.",
@@ -6530,7 +6530,7 @@
         "labels": [
           {
             "anchor": "büyük",
-            "value": "2⁶"
+            "value": "4³"
           },
           {
             "anchor": "küçük",
@@ -6540,7 +6540,7 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Bir levhada 2⁴, diğerinde 2³ diş sayısı varsa fark kaçtır?",
+        "question": "Bir levhada 4², diğerinde 2³ diş sayısı varsa fark kaçtır?",
         "solution": "16 − 8 = 8."
       },
       "sourceQuestionId": "F14-K-10",
@@ -8666,16 +8666,16 @@
       "difficulty": "kolay",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Mavi toz istasyonunda 2² şişe vardır. Her şişe 2¹ gram toz içeriyor. Toplam kaç gram mavi toz bulunur?",
-      "correctAnswer": "8",
-      "solution": "4 × 2 = 8 gram.",
-      "hint": "Şişe sayısı ile şişe başına miktarı çarp.",
+      "prompt": "Mavi toz istasyonunda 3² şişe vardır. Her şişe 3² gram toz içeriyor. Toplam kaç gram mavi toz bulunur?",
+      "correctAnswer": "81",
+      "solution": "3² = 9, her şişede de 9 gram var; 9 × 9 = 81 gram.",
+      "hint": "Önce üslü ifadelerin değerlerini ayrı ayrı bul. Sonra soruda istenen işlemi yap.",
       "inputType": "choice",
       "options": [
-        "10",
-        "8",
-        "6",
-        "4"
+        "27",
+        "81",
+        "54",
+        "90"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -8688,18 +8688,18 @@
         "labels": [
           {
             "anchor": "şişe_sayısı",
-            "value": "2²"
+            "value": "3²"
           },
           {
             "anchor": "şişedeki_toz",
-            "value": "2¹ g"
+            "value": "3² g"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "4 şişede 2³ gram toz varsa toplam kaç gramdır?",
-        "solution": "4 × 8 = 32 gram."
+        "question": "5² şişede, her şişede 3² gram toz varsa toplam kaç gram olur?",
+        "solution": "25 × 9 = 225."
       },
       "sourceQuestionId": "F17-K-01",
       "sourceDifficulty": "Kolay"
@@ -11066,7 +11066,7 @@
       "difficulty": "orta",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Üç taş basamağın enerji değerleri 2², 2³ ve 2⁴. İlk basamak tam, ikincinin dörtte biri, üçüncünün yarısı çalışıyorsa toplam kaç enerji birimi elde edilir?",
+      "prompt": "Üç taş basamağın enerji değerleri 2², 2³ ve 4². İlk basamak tam, ikincinin dörtte biri, üçüncünün yarısı çalışıyorsa toplam kaç enerji birimi elde edilir?",
       "correctAnswer": "14",
       "solution": "4 + 8÷4 + 16÷2 = 14.",
       "hint": "Her basamak için yalnızca çalışan kısmı hesapla.",
@@ -11096,7 +11096,7 @@
           },
           {
             "anchor": "son",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "çalışma oranları",
@@ -11106,7 +11106,7 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2³, 2⁴ ve 2⁵ basamaklarının yalnızca ikinci basamağının yarısı çalışırsa toplam kaç güç?",
+        "question": "2³, 4² ve 2⁵ basamaklarının yalnızca ikinci basamağının yarısı çalışırsa toplam kaç güç?",
         "solution": "8+8+32=48."
       },
       "sourceQuestionId": "F02-O-01",
@@ -11118,7 +11118,7 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Bir enerji merdiveninin birinci basamağında 2⁵ birim, ikinci basamağında ise 2⁴ birim güç birikmiştir. Birinci basamaktaki gücün dörtte biri kapıyı açmaya, ikinci basamaktaki gücün dörtte biri de uyarı lambasına harcanıyor. Geriye toplam kaç birim güç kalır?",
+      "prompt": "Bir enerji merdiveninin birinci basamağında 2⁵ birim, ikinci basamağında ise 4² birim güç birikmiştir. Birinci basamaktaki gücün dörtte biri kapıyı açmaya, ikinci basamaktaki gücün dörtte biri de uyarı lambasına harcanıyor. Geriye toplam kaç birim güç kalır?",
       "correctAnswer": "36",
       "solution": "(32−8)+(16−4)=36.",
       "hint": "Her basamağın gücünü ayrı hesapla. Her birinden harcanan dörtte birlik kısmı çıkar, kalan güçleri topla.",
@@ -11148,7 +11148,7 @@
           },
           {
             "anchor": "uyarı",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "uyarı kullanımı",
@@ -11158,7 +11158,7 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "İki basamakta 2⁵ ve 2⁴ güç vardır, sırasıyla 1/4 ve 1/2 tüketilirse kaç kalır?",
+        "question": "İki basamakta 2⁵ ve 4² güç vardır, sırasıyla 1/4 ve 1/2 tüketilirse kaç kalır?",
         "solution": "24+8=32."
       },
       "sourceQuestionId": "F02-O-02",
@@ -11170,7 +11170,7 @@
       "difficulty": "orta",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Basamakların başlangıç güçleri 2⁴ ve 2³ birimdir. Kapı açılırken 2² birim tüketiliyor. Geriye kaç birim güç kalır?",
+      "prompt": "Basamakların başlangıç güçleri 4² ve 2³ birimdir. Kapı açılırken 2² birim tüketiliyor. Geriye kaç birim güç kalır?",
       "correctAnswer": "20",
       "solution": "16+8−4=20.",
       "hint": "Güç değerlerini önce hesapla, sonra tek harcamayı çıkar.",
@@ -11192,7 +11192,7 @@
         "labels": [
           {
             "anchor": "sol",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "sağ",
@@ -11206,7 +11206,7 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2³,2⁴,2⁵ gücündeki basamakların küçükten büyüğe sırası nedir?",
+        "question": "2³,4²,2⁵ gücündeki basamakların küçükten büyüğe sırası nedir?",
         "solution": "8<16<32; birinci, ikinci, üçüncü."
       },
       "sourceQuestionId": "F02-O-03",
@@ -12266,7 +12266,7 @@
       "difficulty": "orta",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Üç ışık katmanının her birinde 2⁴ lamba vardır. İlk katmanın dörtte biri ve ikinci katmanın yarısı sönmüş, üçüncü katman tam çalışıyor. Kaç lamba yanar?",
+      "prompt": "Üç ışık katmanının her birinde 4² lamba vardır. İlk katmanın dörtte biri ve ikinci katmanın yarısı sönmüş, üçüncü katman tam çalışıyor. Kaç lamba yanar?",
       "correctAnswer": "36",
       "solution": "48−4−8=36.",
       "hint": "Sönük lambaları toplam lamba sayısından çıkar.",
@@ -12288,7 +12288,7 @@
         "labels": [
           {
             "anchor": "her katman",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "1. sönük",
@@ -12318,7 +12318,7 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "3 katmanın her birinde 2⁴ lamba bulunuyor. Toplam lambaların dörtte biri arızalıysa kaç lamba yanmaya devam eder?",
+      "prompt": "3 katmanın her birinde 4² lamba bulunuyor. Toplam lambaların dörtte biri arızalıysa kaç lamba yanmaya devam eder?",
       "correctAnswer": "36",
       "solution": "3×16×3/4=36.",
       "hint": "Önce toplamı, sonra sağlam olan dörtte üçünü bul.",
@@ -12344,7 +12344,7 @@
           },
           {
             "anchor": "bir katman",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "arızalı oran",
@@ -12366,7 +12366,7 @@
       "difficulty": "orta",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İlk ışık katmanında 2³, ikinci katmanda 2⁴ lamba var. İlk katmandakilerin yarısı sönerse iki katmanda toplam kaç lamba yanar?",
+      "prompt": "İlk ışık katmanında 2³, ikinci katmanda 4² lamba var. İlk katmandakilerin yarısı sönerse iki katmanda toplam kaç lamba yanar?",
       "correctAnswer": "20",
       "solution": "8÷2 + 16=20.",
       "hint": "İlk katmanda yalnızca yarısı yanıyor.",
@@ -12392,7 +12392,7 @@
           },
           {
             "anchor": "ikinci",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "ilk sönük",
@@ -12850,7 +12850,7 @@
       "difficulty": "orta",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kristallerin A ve B güçleri 2⁻² ve 2⁻³, C kristalinin tükettiği güç ise 2⁻⁴. Net güç A + B − C kaçtır?",
+      "prompt": "Kristallerin A ve B güçleri 2⁻² ve 2⁻³, C kristalinin tükettiği güç ise 4⁻². Net güç A + B − C kaçtır?",
       "correctAnswer": "5/16",
       "solution": "1/4+1/8−1/16=5/16.",
       "hint": "Üç kesri ortak paydada birleştir.",
@@ -12880,7 +12880,7 @@
           },
           {
             "anchor": "C tüketim",
-            "value": "2⁻⁴"
+            "value": "4⁻²"
           }
         ],
         "bakedIntoImage": false
@@ -12898,7 +12898,7 @@
       "difficulty": "orta",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Ters güç kristallerinin değerleri 2⁻⁴ ve 2⁻³. Kristaller birlikte çalışırsa toplam güç katsayısı kaç olur?",
+      "prompt": "Ters güç kristallerinin değerleri 4⁻² ve 2⁻³. Kristaller birlikte çalışırsa toplam güç katsayısı kaç olur?",
       "correctAnswer": "3/16",
       "solution": "1/16+1/8=3/16.",
       "hint": "Negatif üsleri kesre dönüştürüp ortak payda bul.",
@@ -12920,7 +12920,7 @@
         "labels": [
           {
             "anchor": "A",
-            "value": "2⁻⁴"
+            "value": "4⁻²"
           },
           {
             "anchor": "B",
@@ -12942,9 +12942,9 @@
       "difficulty": "orta",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kristalin ilk enerji katsayısı 2⁴, güç azaltma çarpanı 2⁻⁷. Son güç katsayısı kaçtır?",
+      "prompt": "Kristalin ilk enerji katsayısı 4², güç azaltma çarpanı 2⁻⁷. Son güç katsayısı kaçtır?",
       "correctAnswer": "1/8",
-      "solution": "2⁴×2⁻⁷=2⁻³=1/8.",
+      "solution": "4²×2⁻⁷=2⁻³=1/8.",
       "hint": "Aynı tabanlı kuvvetleri çarparken üsler toplanır.",
       "inputType": "choice",
       "options": [
@@ -12964,7 +12964,7 @@
         "labels": [
           {
             "anchor": "başlangıç",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "çarpan",
@@ -13214,7 +13214,7 @@
       "difficulty": "orta",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "A adasında 2⁴ mantar vardır. B adasında A’nın yarısı, C adasında B’nin iki katı kadar mantar bulunur. Üç adada toplam kaç mantar vardır?",
+      "prompt": "A adasında 4² mantar vardır. B adasında A’nın yarısı, C adasında B’nin iki katı kadar mantar bulunur. Üç adada toplam kaç mantar vardır?",
       "correctAnswer": "40",
       "solution": "A=16, B=8, C=16; toplam=40.",
       "hint": "Önce B ve C adalarını hesapla.",
@@ -13236,7 +13236,7 @@
         "labels": [
           {
             "anchor": "A",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "B",
@@ -13462,7 +13462,7 @@
       "difficulty": "orta",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "A mantar adasında 2⁶, B’de 2⁴, C’de 2³ mantar var. A adasındaki sayı diğer iki adanın toplamından kaç fazladır?",
+      "prompt": "A mantar adasında 4³, B’de 4², C’de 2³ mantar var. A adasındaki sayı diğer iki adanın toplamından kaç fazladır?",
       "correctAnswer": "40",
       "solution": "64−(16+8)=40.",
       "hint": "Önce B ile C’yi topla, ardından A’dan çıkar.",
@@ -13484,11 +13484,11 @@
         "labels": [
           {
             "anchor": "A",
-            "value": "2⁶"
+            "value": "4³"
           },
           {
             "anchor": "B",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "C",
@@ -13510,7 +13510,7 @@
       "difficulty": "orta",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "A adasında 2⁶ mantar vardır. B adasında A’nın yarısı, C adasında B’nin iki katı kadar mantar bulunur. Üç adada toplam kaç mantar vardır?",
+      "prompt": "A adasında 4³ mantar vardır. B adasında A’nın yarısı, C adasında B’nin iki katı kadar mantar bulunur. Üç adada toplam kaç mantar vardır?",
       "correctAnswer": "160",
       "solution": "A=64, B=32, C=64; toplam=160.",
       "hint": "Önce B ve C adalarını hesapla.",
@@ -13532,7 +13532,7 @@
         "labels": [
           {
             "anchor": "A",
-            "value": "2⁶"
+            "value": "4³"
           },
           {
             "anchor": "B",
@@ -14198,7 +14198,7 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Köprünün A kısmında 2⁴, B kısmında 2³ tahta vardır. A’dakilerin yarısı ve B’dekilerin dörtte biri sağlam kalmışsa toplam sağlam tahta kaçtır?",
+      "prompt": "Köprünün A kısmında 4², B kısmında 2³ tahta vardır. A’dakilerin yarısı ve B’dekilerin dörtte biri sağlam kalmışsa toplam sağlam tahta kaçtır?",
       "correctAnswer": "10",
       "solution": "16÷2+8÷4=10",
       "hint": "Bölümlerdeki sağlam oranları ayrı hesapla.",
@@ -14220,7 +14220,7 @@
         "labels": [
           {
             "anchor": "A",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "B",
@@ -14298,7 +14298,7 @@
       "difficulty": "orta",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Köprüde toplam 2⁶ tahta vardı. Sol kısımda 2³, sağ kısımda bunun yarısı kadar tahta kırıldı. Kırıkların 2 tanesi onarıldı. Kaç kullanılabilir tahta vardır?",
+      "prompt": "Köprüde toplam 4³ tahta vardı. Sol kısımda 2³, sağ kısımda bunun yarısı kadar tahta kırıldı. Kırıkların 2 tanesi onarıldı. Kaç kullanılabilir tahta vardır?",
       "correctAnswer": "54",
       "solution": "64−8−4+2=54.",
       "hint": "Kırık iki grubu çıkar, onarılanları tekrar ekle.",
@@ -14320,7 +14320,7 @@
         "labels": [
           {
             "anchor": "başlangıç",
-            "value": "2⁶"
+            "value": "4³"
           },
           {
             "anchor": "sol kırık",
@@ -14350,7 +14350,7 @@
       "difficulty": "orta",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Köprünün A kısmında 2⁵, B kısmında 2⁴ tahta vardır. A’dakilerin yarısı ve B’dekilerin dörtte biri sağlam kalmışsa toplam sağlam tahta kaçtır?",
+      "prompt": "Köprünün A kısmında 2⁵, B kısmında 4² tahta vardır. A’dakilerin yarısı ve B’dekilerin dörtte biri sağlam kalmışsa toplam sağlam tahta kaçtır?",
       "correctAnswer": "20",
       "solution": "32÷2+16÷4=20",
       "hint": "Bölümlerdeki sağlam oranları ayrı hesapla.",
@@ -14376,7 +14376,7 @@
           },
           {
             "anchor": "B",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "A sağlam",
@@ -15562,7 +15562,7 @@
       "difficulty": "orta",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Şelalenin A kapağından saniyede 2⁴ L, B kapağından saniyede 2³ L su geçiyor. A 3, B 2 saniye açık kalırsa toplam kaç litre su akar?",
+      "prompt": "Şelalenin A kapağından saniyede 4² L, B kapağından saniyede 2³ L su geçiyor. A 3, B 2 saniye açık kalırsa toplam kaç litre su akar?",
       "correctAnswer": "64",
       "solution": "16×3+8×2=64 L.",
       "hint": "Her kapağın hacim değil, geçen su miktarını debi × süreyle bul.",
@@ -15584,7 +15584,7 @@
         "labels": [
           {
             "anchor": "A debi",
-            "value": "2⁴ L/sn"
+            "value": "4² L/sn"
           },
           {
             "anchor": "A süre",
@@ -15614,7 +15614,7 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "A ve B kapakları saniyede 2⁴ L ve 2³ L su geçiriyor. İkisi 2 saniye açık kaldığında suyun dörtte biri yan kola ayrılıyor. Ana kolda kaç litre kalır?",
+      "prompt": "A ve B kapakları saniyede 4² L ve 2³ L su geçiriyor. İkisi 2 saniye açık kaldığında suyun dörtte biri yan kola ayrılıyor. Ana kolda kaç litre kalır?",
       "correctAnswer": "36",
       "solution": "(16+8)×2×3/4=36 L.",
       "hint": "Önce iki kapağın toplamından süre boyunca akan suyu bul.",
@@ -15636,7 +15636,7 @@
         "labels": [
           {
             "anchor": "A",
-            "value": "2⁴ L/sn"
+            "value": "4² L/sn"
           },
           {
             "anchor": "B",
@@ -15666,7 +15666,7 @@
       "difficulty": "orta",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Üç saniye boyunca A kapağı 2⁴ L/sn, B kapağı 2³ L/sn akıyor. A kapağının debisinin dörtte biri tıkalıysa toplam kaç litre su akar?",
+      "prompt": "Üç saniye boyunca A kapağı 4² L/sn, B kapağı 2³ L/sn akıyor. A kapağının debisinin dörtte biri tıkalıysa toplam kaç litre su akar?",
       "correctAnswer": "60",
       "solution": "[(16×3/4)+8]×3=60 L.",
       "hint": "A kapağının kullanılabilir debisi dörtte üçtür.",
@@ -15688,7 +15688,7 @@
         "labels": [
           {
             "anchor": "A",
-            "value": "2⁴ L/sn"
+            "value": "4² L/sn"
           },
           {
             "anchor": "B",
@@ -16082,7 +16082,7 @@
       "difficulty": "orta",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Patika ayrımında A yolunun uzunluğu 2⁴ + 3², B yolunun uzunluğu 3² + 2² birimdir. Kısa yolu seçen kişi hangi yolu kullanır ve kaç birim daha az yürür?",
+      "prompt": "Patika ayrımında A yolunun uzunluğu 4² + 3², B yolunun uzunluğu 3² + 2² birimdir. Kısa yolu seçen kişi hangi yolu kullanır ve kaç birim daha az yürür?",
       "correctAnswer": "B yolu, 12 birim",
       "solution": "A=25, B=13; kısa yol B, fark 12 birim.",
       "hint": "İki güzergâhı hesaplayıp karşılaştır.",
@@ -16104,7 +16104,7 @@
         "labels": [
           {
             "anchor": "A yolu",
-            "value": "2⁴ + 3²"
+            "value": "4² + 3²"
           },
           {
             "anchor": "B yolu",
@@ -16114,7 +16114,7 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "A=2⁴+3² ve B=3³−2² ise kısa yol hangisi, fark kaç?",
+        "question": "A=4²+3² ve B=3³−2² ise kısa yol hangisi, fark kaç?",
         "solution": "A=25, B=23. B, 2 birim kısa."
       },
       "sourceQuestionId": "F12-O-01",
@@ -16346,7 +16346,7 @@
       "difficulty": "orta",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Patika ayrımında A yolunun uzunluğu 2⁶ + 3², B yolunun uzunluğu 3² + 2⁴ birimdir. Kısa yolu seçen kişi hangi yolu kullanır ve kaç birim daha az yürür?",
+      "prompt": "Patika ayrımında A yolunun uzunluğu 4³ + 3², B yolunun uzunluğu 3² + 4² birimdir. Kısa yolu seçen kişi hangi yolu kullanır ve kaç birim daha az yürür?",
       "correctAnswer": "B yolu, 48 birim",
       "solution": "A=73, B=25; kısa yol B, fark 48 birim.",
       "hint": "İki güzergâhı hesaplayıp karşılaştır.",
@@ -16368,17 +16368,17 @@
         "labels": [
           {
             "anchor": "A yolu",
-            "value": "2⁶ + 3²"
+            "value": "4³ + 3²"
           },
           {
             "anchor": "B yolu",
-            "value": "3² + 2⁴"
+            "value": "3² + 4²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "A=2⁴+3² ve B=3³−2² ise kısa yol hangisi, fark kaç?",
+        "question": "A=4²+3² ve B=3³−2² ise kısa yol hangisi, fark kaç?",
         "solution": "A=25, B=23. B, 2 birim kısa."
       },
       "sourceQuestionId": "F12-O-07",
@@ -16622,7 +16622,7 @@
       "difficulty": "orta",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dört etkin taş yüzünün her birinde 2⁴ işaret vardır. Bir yüzde işaretlerin dörtte biri sönerse kilitte toplam kaç işaret yanar?",
+      "prompt": "Dört etkin taş yüzünün her birinde 4² işaret vardır. Bir yüzde işaretlerin dörtte biri sönerse kilitte toplam kaç işaret yanar?",
       "correctAnswer": "60",
       "solution": "4×16−4=60.",
       "hint": "Diğer üç yüz tam çalışır.",
@@ -16648,7 +16648,7 @@
           },
           {
             "anchor": "her yüz",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "bir yüzde sönük",
@@ -16670,7 +16670,7 @@
       "difficulty": "orta",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Taş kilidin 5 açık yüzünün her birinde 2⁴ işaret bulunuyor. Yalnızca bir yüzde işaretlerin yarısı sönerse toplam kaç işaret yanar?",
+      "prompt": "Taş kilidin 5 açık yüzünün her birinde 4² işaret bulunuyor. Yalnızca bir yüzde işaretlerin yarısı sönerse toplam kaç işaret yanar?",
       "correctAnswer": "72",
       "solution": "5×16−8=72.",
       "hint": "İşaretleri sayıyoruz, cismin hacmini değil.",
@@ -16696,7 +16696,7 @@
           },
           {
             "anchor": "her yüzde",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "bir yüzde sönük",
@@ -16718,7 +16718,7 @@
       "difficulty": "orta",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Altı yüzlü taş kilidin iki yüzü mühürlü, diğer dört yüzün her birinde 2⁴ işaret var. 2² işaret sönükse toplam kaç işaret yanar?",
+      "prompt": "Altı yüzlü taş kilidin iki yüzü mühürlü, diğer dört yüzün her birinde 4² işaret var. 2² işaret sönükse toplam kaç işaret yanar?",
       "correctAnswer": "60",
       "solution": "4×16−4=60.",
       "hint": "Önce açık dört yüzün işaretlerini hesapla.",
@@ -16748,7 +16748,7 @@
           },
           {
             "anchor": "işaret/yüz",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "sönük",
@@ -17102,14 +17102,14 @@
       "difficulty": "orta",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Bir çark üzerindeki 2⁴ güç, iki eş anahtara paylaştırılıyor. Her anahtarın gücüne eşdeğer üslü ifade hangisidir?",
+      "prompt": "Bir çark üzerindeki 4² güç, iki eş anahtara paylaştırılıyor. Her anahtarın gücüne eşdeğer üslü ifade hangisidir?",
       "correctAnswer": "2³",
-      "solution": "2⁴÷2=2³.",
+      "solution": "4²÷2=2³.",
       "hint": "İkiye bölmek 2¹ ile bölmektir.",
       "inputType": "choice",
       "options": [
         "2³",
-        "2⁴",
+        "4²",
         "2⁵",
         "2²"
       ],
@@ -17124,7 +17124,7 @@
         "labels": [
           {
             "anchor": "çark",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "anahtar sayısı",
@@ -17134,7 +17134,7 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2⁶ ile 2⁴ toplamı kaçtır?",
+        "question": "4³ ile 4² toplamı kaçtır?",
         "solution": "64+16=80."
       },
       "sourceQuestionId": "F14-O-03",
@@ -17146,16 +17146,16 @@
       "difficulty": "orta",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dişli çarkın güç levhasında 2⁶ ÷ 2² yazıyor. Mekanizma hangi güç değerine sahip yuvaya bağlanmalıdır?",
-      "correctAnswer": "2⁴",
-      "solution": "2⁶÷2²=2⁴=16.",
+      "prompt": "Dişli çarkın güç levhasında 4³ ÷ 2² yazıyor. Mekanizma hangi güç değerine sahip yuvaya bağlanmalıdır?",
+      "correctAnswer": "4²",
+      "solution": "4³÷2²=4²=16.",
       "hint": "Tabanlar eşitse bölmede üsleri çıkar.",
       "inputType": "choice",
       "options": [
         "2³",
-        "2⁴",
+        "4²",
         "2⁵",
-        "2⁶"
+        "4³"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -17168,11 +17168,11 @@
         "labels": [
           {
             "anchor": "mekanizma",
-            "value": "2⁶ ÷ 2²"
+            "value": "4³ ÷ 2²"
           },
           {
             "anchor": "yuvalar",
-            "value": "2³, 2⁴, 2⁵, 2⁶"
+            "value": "2³, 4², 2⁵, 4³"
           }
         ],
         "bakedIntoImage": false
@@ -17190,16 +17190,16 @@
       "difficulty": "orta",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Çarkın etkinleştirme anahtarında 2⁴ × 2² yazıyor. Hangi üslü güç etiketiyle aynı değerdedir?",
-      "correctAnswer": "2⁶",
-      "solution": "2⁴×2²=2⁶.",
+      "prompt": "Çarkın etkinleştirme anahtarında 4² × 2² yazıyor. Hangi üslü güç etiketiyle aynı değerdedir?",
+      "correctAnswer": "4³",
+      "solution": "4²×2²=4³.",
       "hint": "Aynı tabanlı üsleri çarparken üsleri topla.",
       "inputType": "choice",
       "options": [
         "2⁵",
         "2⁷",
-        "2⁶",
-        "2⁸"
+        "4³",
+        "4⁴"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -17212,7 +17212,7 @@
         "labels": [
           {
             "anchor": "anahtar",
-            "value": "2⁴ × 2²"
+            "value": "4² × 2²"
           },
           {
             "anchor": "yuvanın etiketi",
@@ -19732,7 +19732,7 @@
       "difficulty": "orta",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Mavi toz istasyonunda 2⁴ şişenin her birinde 2⁻³ gram toz var. 2² şişe dökülürse sağlam şişelerde kaç gram kalır?",
+      "prompt": "Mavi toz istasyonunda 4² şişenin her birinde 2⁻³ gram toz var. 2² şişe dökülürse sağlam şişelerde kaç gram kalır?",
       "correctAnswer": "3/2",
       "solution": "(16−4)×1/8=3/2 g.",
       "hint": "Önce sağlam şişe sayısını bul; negatif üs, kesirdir.",
@@ -19754,7 +19754,7 @@
         "labels": [
           {
             "anchor": "şişe",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "şişe başına",
@@ -19780,7 +19780,7 @@
       "difficulty": "orta",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "A kutusunda 2⁴ şişenin her biri 2⁻³ gram, B kutusunda 2³ şişenin her biri 2⁻⁴ gram toz içeriyor. İki kutuda toplam kaç gram toz var?",
+      "prompt": "A kutusunda 4² şişenin her biri 2⁻³ gram, B kutusunda 2³ şişenin her biri 4⁻² gram toz içeriyor. İki kutuda toplam kaç gram toz var?",
       "correctAnswer": "5/2",
       "solution": "16×1/8 + 8×1/16=5/2 g.",
       "hint": "Önce her kutunun toplam gramını hesapla.",
@@ -19802,7 +19802,7 @@
         "labels": [
           {
             "anchor": "A şişe",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "A gram/şişe",
@@ -19814,7 +19814,7 @@
           },
           {
             "anchor": "B gram/şişe",
-            "value": "2⁻⁴"
+            "value": "4⁻²"
           }
         ],
         "bakedIntoImage": false
@@ -19832,7 +19832,7 @@
       "difficulty": "orta",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İstasyondaki 2⁴ şişenin her biri 2⁻³ gram toz taşıyor. Toplam tozun dörtte biri kullanılırsa kaç gram kalır?",
+      "prompt": "İstasyondaki 4² şişenin her biri 2⁻³ gram toz taşıyor. Toplam tozun dörtte biri kullanılırsa kaç gram kalır?",
       "correctAnswer": "3/2",
       "solution": "(16×1/8)×3/4=3/2 g.",
       "hint": "Kullanılan dörtte birden sonra dörtte üçü kalır.",
@@ -19854,7 +19854,7 @@
         "labels": [
           {
             "anchor": "şişe sayısı",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "her şişe",
@@ -22136,7 +22136,7 @@
       "difficulty": "zor",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dört taş basamaktaki enerji 2³, 2⁴, 2⁵, 2⁶ birimdir. Son iki basamağın toplam enerjisi, ilk ikinin toplamından kaç birim fazladır?",
+      "prompt": "Dört taş basamaktaki enerji 2³, 4², 2⁵, 4³ birimdir. Son iki basamağın toplam enerjisi, ilk ikinin toplamından kaç birim fazladır?",
       "correctAnswer": "72",
       "solution": "(32+64) − (8+16)=72.",
       "hint": "Önce enerjileri 2 kuvvetinden sayıya dönüştür; grupları ayrı topla.",
@@ -22162,7 +22162,7 @@
           },
           {
             "anchor": "basamak 2",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "basamak 3",
@@ -22170,13 +22170,13 @@
           },
           {
             "anchor": "basamak 4",
-            "value": "2⁶"
+            "value": "4³"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Dört taş basamaktaki enerji 2⁴, 2⁵, 2⁶, 2⁷ birimdir. Son iki basamağın toplam enerjisi, ilk ikinin toplamından kaç birim fazladır?",
+        "question": "Dört taş basamaktaki enerji 4², 2⁵, 4³, 2⁷ birimdir. Son iki basamağın toplam enerjisi, ilk ikinin toplamından kaç birim fazladır?",
         "solution": "(64+128) − (16+32)=144."
       },
       "sourceQuestionId": "F02-Z-03",
@@ -22188,7 +22188,7 @@
       "difficulty": "zor",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Taş merdivenin alt basamağı 2⁴, üst basamağı 2⁶ birim enerji taşıyor. İki basamaktaki enerjinin dörtte biri yedek lambalara aktarılırsa kaç birim aktarılır?",
+      "prompt": "Taş merdivenin alt basamağı 4², üst basamağı 4³ birim enerji taşıyor. İki basamaktaki enerjinin dörtte biri yedek lambalara aktarılırsa kaç birim aktarılır?",
       "correctAnswer": "20",
       "solution": "(16+64)/4=20.",
       "hint": "Üç üst farkı 8 kat demektir; toplamı bulup 4’e böl.",
@@ -22210,11 +22210,11 @@
         "labels": [
           {
             "anchor": "alt basamak",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "üst basamak",
-            "value": "2⁶"
+            "value": "4³"
           },
           {
             "anchor": "aktarım",
@@ -22288,7 +22288,7 @@
       "difficulty": "zor",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dört taş basamaktaki enerji 2⁴, 2⁵, 2⁶, 2⁷ birimdir. Son iki basamağın toplam enerjisi, ilk ikinin toplamından kaç birim fazladır?",
+      "prompt": "Dört taş basamaktaki enerji 4², 2⁵, 4³, 2⁷ birimdir. Son iki basamağın toplam enerjisi, ilk ikinin toplamından kaç birim fazladır?",
       "correctAnswer": "144",
       "solution": "(64+128) − (16+32)=144.",
       "hint": "Önce enerjileri 2 kuvvetinden sayıya dönüştür; grupları ayrı topla.",
@@ -22310,7 +22310,7 @@
         "labels": [
           {
             "anchor": "basamak 1",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "basamak 2",
@@ -22318,7 +22318,7 @@
           },
           {
             "anchor": "basamak 3",
-            "value": "2⁶"
+            "value": "4³"
           },
           {
             "anchor": "basamak 4",
@@ -22328,7 +22328,7 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Dört taş basamaktaki enerji 2⁵, 2⁶, 2⁷, 2⁸ birimdir. Son iki basamağın toplam enerjisi, ilk ikinin toplamından kaç birim fazladır?",
+        "question": "Dört taş basamaktaki enerji 2⁵, 4³, 2⁷, 4⁴ birimdir. Son iki basamağın toplam enerjisi, ilk ikinin toplamından kaç birim fazladır?",
         "solution": "(128+256) − (32+64)=288."
       },
       "sourceQuestionId": "F02-Z-06",
@@ -23300,7 +23300,7 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Geçidin üç katmanında da 2⁶ lamba var. İlk katmandaki lambaların dörtte biri, ikinci katmandakilerin sekizde üçü, üçüncü katmandakilerin yarısı sönmüş. Toplam kaç lamba yanıyor?",
+      "prompt": "Geçidin üç katmanında da 4³ lamba var. İlk katmandaki lambaların dörtte biri, ikinci katmandakilerin sekizde üçü, üçüncü katmandakilerin yarısı sönmüş. Toplam kaç lamba yanıyor?",
       "correctAnswer": "120",
       "solution": "Her katmanda 64 lamba vardır. Yananlar: 64·3/4 = 48, 64·5/8 = 40 ve 64·1/2 = 32. Toplam 48 + 40 + 32 = 120.",
       "hint": "Sönüklerin değil, yanan lambaların kesrini hesapla.",
@@ -23322,15 +23322,15 @@
         "labels": [
           {
             "anchor": "birinci ışık katmanı",
-            "value": "2⁶; sönük: 1/4"
+            "value": "4³; sönük: 1/4"
           },
           {
             "anchor": "ikinci ışık katmanı",
-            "value": "2⁶; sönük: 3/8"
+            "value": "4³; sönük: 3/8"
           },
           {
             "anchor": "üçüncü ışık katmanı",
-            "value": "2⁶; sönük: 1/2"
+            "value": "4³; sönük: 1/2"
           }
         ],
         "bakedIntoImage": false
@@ -23348,7 +23348,7 @@
       "difficulty": "zor",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Işık geçidinin üç katmanında 2⁶’şar lamba vardır. İlk katmanda 1/4, ikincide 3/8, üçüncüde 1/2 oranında lamba sönüyor. Son durumda toplam kaç lamba yanıyor?",
+      "prompt": "Işık geçidinin üç katmanında 4³’şar lamba vardır. İlk katmanda 1/4, ikincide 3/8, üçüncüde 1/2 oranında lamba sönüyor. Son durumda toplam kaç lamba yanıyor?",
       "correctAnswer": "120",
       "solution": "Yananlar: 48+40+32=120.",
       "hint": "Her katmandaki payı ayrı hesaplayıp gereken toplamı veya farkı bul.",
@@ -23370,15 +23370,15 @@
         "labels": [
           {
             "anchor": "katman 1",
-            "value": "2⁶ lamba; sönük 1/4"
+            "value": "4³ lamba; sönük 1/4"
           },
           {
             "anchor": "katman 2",
-            "value": "2⁶ lamba; sönük 3/8"
+            "value": "4³ lamba; sönük 3/8"
           },
           {
             "anchor": "katman 3",
-            "value": "2⁶ lamba; sönük 1/2"
+            "value": "4³ lamba; sönük 1/2"
           }
         ],
         "bakedIntoImage": false
@@ -23396,7 +23396,7 @@
       "difficulty": "zor",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Üç ışık katmanının her birinde 2⁶ lamba var. Bakım sırasında katmanlardan sırasıyla lambaların 1/8’i, 1/4’ü ve 3/8’i kapanıyor. Toplam kaç lamba kapanır?",
+      "prompt": "Üç ışık katmanının her birinde 4³ lamba var. Bakım sırasında katmanlardan sırasıyla lambaların 1/8’i, 1/4’ü ve 3/8’i kapanıyor. Toplam kaç lamba kapanır?",
       "correctAnswer": "48",
       "solution": "Kapananlar 8+16+24=48.",
       "hint": "Her katmandaki payı ayrı hesaplayıp gereken toplamı veya farkı bul.",
@@ -23418,15 +23418,15 @@
         "labels": [
           {
             "anchor": "katman 1",
-            "value": "2⁶; kapanan 1/8"
+            "value": "4³; kapanan 1/8"
           },
           {
             "anchor": "katman 2",
-            "value": "2⁶; kapanan 1/4"
+            "value": "4³; kapanan 1/4"
           },
           {
             "anchor": "katman 3",
-            "value": "2⁶; kapanan 3/8"
+            "value": "4³; kapanan 3/8"
           }
         ],
         "bakedIntoImage": false
@@ -23780,9 +23780,9 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kristallerin enerji değerleri A: 2⁻¹, B: 2⁻² ve C: 2⁻³ birimdir. C kristalinin enerjisi sistemden çıkarılıyor; kalan enerji 2⁴ kat güçlendiriliyor. Son enerji kaç birim olur?",
+      "prompt": "Kristallerin enerji değerleri A: 2⁻¹, B: 2⁻² ve C: 2⁻³ birimdir. C kristalinin enerjisi sistemden çıkarılıyor; kalan enerji 4² kat güçlendiriliyor. Son enerji kaç birim olur?",
       "correctAnswer": "10",
-      "solution": "(2⁻¹ + 2⁻² − 2⁻³)·2⁴ = (1/2 + 1/4 − 1/8)·16 = (5/8)·16 = 10.",
+      "solution": "(2⁻¹ + 2⁻² − 2⁻³)·4² = (1/2 + 1/4 − 1/8)·16 = (5/8)·16 = 10.",
       "hint": "Önce tüm enerjileri sekizde bir cinsinden yaz.",
       "inputType": "choice",
       "options": [
@@ -23814,7 +23814,7 @@
           },
           {
             "anchor": "büyük güçlendirici halka",
-            "value": "× 2⁴"
+            "value": "× 4²"
           }
         ],
         "bakedIntoImage": false
@@ -23884,7 +23884,7 @@
       "difficulty": "zor",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Güç istasyonunda 2⁻¹, 2⁻² ve 2⁻³ birimlik kristallerin enerjileri birleştiriliyor. Toplam enerji 2⁴ ile çarpılırsa gösterge kaç birim olur?",
+      "prompt": "Güç istasyonunda 2⁻¹, 2⁻² ve 2⁻³ birimlik kristallerin enerjileri birleştiriliyor. Toplam enerji 4² ile çarpılırsa gösterge kaç birim olur?",
       "correctAnswer": "14",
       "solution": "(7/8) × 16 = 14.",
       "hint": "Önce negatif üsleri kesir olarak yaz, sonra tüm işlemleri sırayla yap.",
@@ -23918,13 +23918,13 @@
           },
           {
             "anchor": "çarpan",
-            "value": "2⁴"
+            "value": "4²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Güç istasyonunda 2⁻², 2⁻³ ve 2⁻⁴ birimlik kristallerin enerjileri birleştiriliyor. Toplam enerji 2⁶ ile çarpılırsa gösterge kaç birim olur?",
+        "question": "Güç istasyonunda 2⁻², 2⁻³ ve 4⁻² birimlik kristallerin enerjileri birleştiriliyor. Toplam enerji 4³ ile çarpılırsa gösterge kaç birim olur?",
         "solution": "(7/16) × 64 = 28."
       },
       "sourceQuestionId": "F05-Z-03",
@@ -23988,7 +23988,7 @@
       "difficulty": "zor",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Üç kristalin enerjisi A: 2⁻², B: 2⁻³, C: 2⁻⁴ birimdir. C kristalinin enerjisi çıkarılıp kalan enerji 2⁷ kat artırılıyor. Son enerji kaç birim olur?",
+      "prompt": "Üç kristalin enerjisi A: 2⁻², B: 2⁻³, C: 4⁻² birimdir. C kristalinin enerjisi çıkarılıp kalan enerji 2⁷ kat artırılıyor. Son enerji kaç birim olur?",
       "correctAnswer": "40",
       "solution": "(1/4+1/8−1/16) × 128 = 40.",
       "hint": "Önce negatif üsleri kesir olarak yaz, sonra tüm işlemleri sırayla yap.",
@@ -24018,7 +24018,7 @@
           },
           {
             "anchor": "C, çıkarılan",
-            "value": "2⁻⁴"
+            "value": "4⁻²"
           },
           {
             "anchor": "güçlendirme",
@@ -24028,7 +24028,7 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Üç kristalin enerjisi A: 2⁻³, B: 2⁻⁴, C: 2⁻⁵ birimdir. C kristalinin enerjisi çıkarılıp kalan enerji 2⁹ kat artırılıyor. Son enerji kaç birim olur?",
+        "question": "Üç kristalin enerjisi A: 2⁻³, B: 4⁻², C: 2⁻⁵ birimdir. C kristalinin enerjisi çıkarılıp kalan enerji 8³ kat artırılıyor. Son enerji kaç birim olur?",
         "solution": "(1/8+1/16−1/32) × 512 = 80."
       },
       "sourceQuestionId": "F05-Z-05",
@@ -24404,7 +24404,7 @@
       "difficulty": "zor",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Mantar adalarında A: 2⁴, B: 3 · 2³ ve C: 5 · 2² mantar var. B ve C adalarının toplam mantar sayısından A adasındaki mantarların dörtte biri çıkarılırsa kaç mantar kalır?",
+      "prompt": "Mantar adalarında A: 4², B: 3 · 2³ ve C: 5 · 2² mantar var. B ve C adalarının toplam mantar sayısından A adasındaki mantarların dörtte biri çıkarılırsa kaç mantar kalır?",
       "correctAnswer": "40",
       "solution": "B+C=24+20=44; A/4=4. Sonuç 44−4=40.",
       "hint": "Sayıları aynı 2 tabanında yaz, ardından gereken toplamı/farkı hesapla.",
@@ -24426,7 +24426,7 @@
         "labels": [
           {
             "anchor": "A adası",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "B adası",
@@ -24444,7 +24444,7 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Mantar adalarında A: 2⁵, B: 3 · 2⁴ ve C: 5 · 2³ mantar var. B ve C adalarının toplam mantar sayısından A adasındaki mantarların dörtte biri çıkarılırsa kaç mantar kalır?",
+        "question": "Mantar adalarında A: 2⁵, B: 3 · 4² ve C: 5 · 2³ mantar var. B ve C adalarının toplam mantar sayısından A adasındaki mantarların dörtte biri çıkarılırsa kaç mantar kalır?",
         "solution": "B+C=48+40=88; A/4=8. Sonuç 88−8=80."
       },
       "sourceQuestionId": "F06-Z-03",
@@ -24456,7 +24456,7 @@
       "difficulty": "zor",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Üç mantar adasında A: 3 · 2⁴, B: 2⁵, C: 2³ mantar bulunuyor. A’dakilerin yarısı, B’dekilerin dörtte biri ve C’deki mantarların tamamı sayım için seçilirse kaç mantar seçilir?",
+      "prompt": "Üç mantar adasında A: 3 · 4², B: 2⁵, C: 2³ mantar bulunuyor. A’dakilerin yarısı, B’dekilerin dörtte biri ve C’deki mantarların tamamı sayım için seçilirse kaç mantar seçilir?",
       "correctAnswer": "40",
       "solution": "A’dan 24, B’den 8, C’den 8; toplam 40.",
       "hint": "Sayıları aynı 2 tabanında yaz, ardından gereken toplamı/farkı hesapla.",
@@ -24478,7 +24478,7 @@
         "labels": [
           {
             "anchor": "A adası",
-            "value": "3 · 2⁴"
+            "value": "3 · 4²"
           },
           {
             "anchor": "B adası",
@@ -24496,7 +24496,7 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Üç mantar adasında A: 3 · 2⁵, B: 2⁶, C: 2⁴ mantar bulunuyor. A’dakilerin yarısı, B’dekilerin dörtte biri ve C’deki mantarların tamamı sayım için seçilirse kaç mantar seçilir?",
+        "question": "Üç mantar adasında A: 3 · 2⁵, B: 4³, C: 4² mantar bulunuyor. A’dakilerin yarısı, B’dekilerin dörtte biri ve C’deki mantarların tamamı sayım için seçilirse kaç mantar seçilir?",
         "solution": "A’dan 48, B’den 16, C’den 16; toplam 80."
       },
       "sourceQuestionId": "F06-Z-04",
@@ -24560,7 +24560,7 @@
       "difficulty": "zor",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Mantar adalarında A: 2⁵, B: 3 · 2⁴ ve C: 5 · 2³ mantar var. B ve C adalarının toplam mantar sayısından A adasındaki mantarların dörtte biri çıkarılırsa kaç mantar kalır?",
+      "prompt": "Mantar adalarında A: 2⁵, B: 3 · 4² ve C: 5 · 2³ mantar var. B ve C adalarının toplam mantar sayısından A adasındaki mantarların dörtte biri çıkarılırsa kaç mantar kalır?",
       "correctAnswer": "80",
       "solution": "B+C=48+40=88; A/4=8. Sonuç 88−8=80.",
       "hint": "Sayıları aynı 2 tabanında yaz, ardından gereken toplamı/farkı hesapla.",
@@ -24586,7 +24586,7 @@
           },
           {
             "anchor": "B adası",
-            "value": "3 · 2⁴"
+            "value": "3 · 4²"
           },
           {
             "anchor": "C adası",
@@ -24600,7 +24600,7 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Mantar adalarında A: 2⁶, B: 3 · 2⁵ ve C: 5 · 2⁴ mantar var. B ve C adalarının toplam mantar sayısından A adasındaki mantarların dörtte biri çıkarılırsa kaç mantar kalır?",
+        "question": "Mantar adalarında A: 4³, B: 3 · 2⁵ ve C: 5 · 4² mantar var. B ve C adalarının toplam mantar sayısından A adasındaki mantarların dörtte biri çıkarılırsa kaç mantar kalır?",
         "solution": "B+C=96+80=176; A/4=16. Sonuç 176−16=160."
       },
       "sourceQuestionId": "F06-Z-06",
@@ -24820,9 +24820,9 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dış kenarı 4√18 m olan kare platformun ortasında, kenarı 2√8 m olan kare boşluk var. Geriye kalan alan, her biri 2⁴ m² yer kaplayan eş taşlarla döşenecek. Kaç taş gerekir?",
+      "prompt": "Dış kenarı 4√18 m olan kare platformun ortasında, kenarı 2√8 m olan kare boşluk var. Geriye kalan alan, her biri 4² m² yer kaplayan eş taşlarla döşenecek. Kaç taş gerekir?",
       "correctAnswer": "16",
-      "solution": "Dış alan (4√18)² = 16·18 = 288; iç alan (2√8)² = 4·8 = 32. Döşenecek alan 256 m²; 256 ÷ 2⁴ = 16 taş.",
+      "solution": "Dış alan (4√18)² = 16·18 = 288; iç alan (2√8)² = 4·8 = 32. Döşenecek alan 256 m²; 256 ÷ 4² = 16 taş.",
       "hint": "Köklü bir kenarın karesi alınırken hem katsayının hem kökün karesini al.",
       "inputType": "choice",
       "options": [
@@ -24850,7 +24850,7 @@
           },
           {
             "anchor": "bir taşın bilgi levhası",
-            "value": "1 taş: 2⁴ m²"
+            "value": "1 taş: 4² m²"
           }
         ],
         "bakedIntoImage": false
@@ -25300,7 +25300,7 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Köprünün sol bölümünde 2⁶, sağ bölümünde 3·2⁵ tahta vardır. Soldakilerin sekizde biri, sağdakilerin dörtte biri hasarlıdır. İki bölümde toplam kaç sağlam tahta kalmıştır?",
+      "prompt": "Köprünün sol bölümünde 4³, sağ bölümünde 3·2⁵ tahta vardır. Soldakilerin sekizde biri, sağdakilerin dörtte biri hasarlıdır. İki bölümde toplam kaç sağlam tahta kalmıştır?",
       "correctAnswer": "128",
       "solution": "Sol bölüm: 64 − 8 = 56. Sağ bölüm: 96 − 24 = 72. Toplam sağlam: 56 + 72 = 128 tahta.",
       "hint": "Hasarlı tahtaları iki bölüm için ayrı ayrı bul; sonra sağlam olanları topla.",
@@ -25322,7 +25322,7 @@
         "labels": [
           {
             "anchor": "sol köprü bölümündeki levha",
-            "value": "2⁶ tahta; hasarlı: 1/8"
+            "value": "4³ tahta; hasarlı: 1/8"
           },
           {
             "anchor": "sağ köprü bölümündeki levha",
@@ -25344,7 +25344,7 @@
       "difficulty": "zor",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kırık köprünün sol bölümünde 2⁶, sağ bölümünde 3 · 2⁵ tahta var. Soldakilerin 1/8’i, sağdakilerin 1/4’ü hasarlı. Toplam kaç sağlam tahta kalır?",
+      "prompt": "Kırık köprünün sol bölümünde 4³, sağ bölümünde 3 · 2⁵ tahta var. Soldakilerin 1/8’i, sağdakilerin 1/4’ü hasarlı. Toplam kaç sağlam tahta kalır?",
       "correctAnswer": "128",
       "solution": "Sol sağlam 56, sağ sağlam 72; toplam 128.",
       "hint": "Her bölümün kırık sayısını ayrı bul; sonra istenen sağlam ya da kırık sayısına göre birleştir.",
@@ -25366,7 +25366,7 @@
         "labels": [
           {
             "anchor": "sol",
-            "value": "2⁶"
+            "value": "4³"
           },
           {
             "anchor": "sağ",
@@ -25384,7 +25384,7 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Kırık köprünün sol bölümünde 2⁷, sağ bölümünde 3 · 2⁶ tahta var. Soldakilerin 1/8’i, sağdakilerin 1/4’ü hasarlı. Toplam kaç sağlam tahta kalır?",
+        "question": "Kırık köprünün sol bölümünde 2⁷, sağ bölümünde 3 · 4³ tahta var. Soldakilerin 1/8’i, sağdakilerin 1/4’ü hasarlı. Toplam kaç sağlam tahta kalır?",
         "solution": "Sol sağlam 112, sağ sağlam 144; toplam 256."
       },
       "sourceQuestionId": "F08-Z-02",
@@ -25396,7 +25396,7 @@
       "difficulty": "zor",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Köprüde sol tarafta 2⁶, sağda 3 · 2⁵ tahta var. Solda 1/4, sağda 1/8 tahta kırık. Kırıkların yarısı onarılırsa toplam kaç sağlam tahta olur?",
+      "prompt": "Köprüde sol tarafta 4³, sağda 3 · 2⁵ tahta var. Solda 1/4, sağda 1/8 tahta kırık. Kırıkların yarısı onarılırsa toplam kaç sağlam tahta olur?",
       "correctAnswer": "146",
       "solution": "Kırık 16+12=28, onarılan 14; sağlam 132+14=146.",
       "hint": "Her bölümün kırık sayısını ayrı bul; sonra istenen sağlam ya da kırık sayısına göre birleştir.",
@@ -25418,7 +25418,7 @@
         "labels": [
           {
             "anchor": "sol",
-            "value": "2⁶"
+            "value": "4³"
           },
           {
             "anchor": "sağ",
@@ -25440,7 +25440,7 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Köprüde sol tarafta 2⁷, sağda 3 · 2⁶ tahta var. Solda 1/4, sağda 1/8 tahta kırık. Kırıkların yarısı onarılırsa toplam kaç sağlam tahta olur?",
+        "question": "Köprüde sol tarafta 2⁷, sağda 3 · 4³ tahta var. Solda 1/4, sağda 1/8 tahta kırık. Kırıkların yarısı onarılırsa toplam kaç sağlam tahta olur?",
         "solution": "Kırık 32+24=56, onarılan 28; sağlam 264+28=292."
       },
       "sourceQuestionId": "F08-Z-03",
@@ -26776,7 +26776,7 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "A kapağı dakikada 3·2⁶ L suyu 2⁻² dakika, B kapağı dakikada 2⁷ L suyu 2⁻¹ dakika geçiriyor. Toplanan suyun sekizde biri başka kanala ayrılıyor. Araştırma haznesinde kaç litre su kalır?",
+      "prompt": "A kapağı dakikada 3·4³ L suyu 2⁻² dakika, B kapağı dakikada 2⁷ L suyu 2⁻¹ dakika geçiriyor. Toplanan suyun sekizde biri başka kanala ayrılıyor. Araştırma haznesinde kaç litre su kalır?",
       "correctAnswer": "98",
       "solution": "A: 192·(1/4) = 48 L, B: 128·(1/2) = 64 L. Toplam 112 L. Sekizde biri 14 L ayrılır; haznede 98 L kalır.",
       "hint": "Süreleri kesir olarak düşün: 2⁻² = 1/4 ve 2⁻¹ = 1/2.",
@@ -26798,7 +26798,7 @@
         "labels": [
           {
             "anchor": "A su kapağı",
-            "value": "3·2⁶ L/dk"
+            "value": "3·4³ L/dk"
           },
           {
             "anchor": "A zaman göstergesi",
@@ -26821,7 +26821,7 @@
       },
       "workedExample": {
         "question": "Çözülmüş benzer örnek",
-        "solution": "2⁶ L/dk hızla 2⁻¹ dk çalışan kapaktan 64·1/2 = 32 L su geçer."
+        "solution": "4³ L/dk hızla 2⁻¹ dk çalışan kapaktan 64·1/2 = 32 L su geçer."
       },
       "sourceQuestionId": "F11-Z-01",
       "sourceDifficulty": "Zor"
@@ -26832,7 +26832,7 @@
       "difficulty": "zor",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Şelalenin A kapağı dakikada 3 · 2⁶ L suyu 1/4 dakika, B kapağı dakikada 2⁷ L suyu 1/2 dakika geçiriyor. Biriken suyun 1/8’i başka kanala ayrılırsa haznede kaç litre kalır?",
+      "prompt": "Şelalenin A kapağı dakikada 3 · 4³ L suyu 1/4 dakika, B kapağı dakikada 2⁷ L suyu 1/2 dakika geçiriyor. Biriken suyun 1/8’i başka kanala ayrılırsa haznede kaç litre kalır?",
       "correctAnswer": "98",
       "solution": "A=192×1/4=48 L, B=128×1/2=64 L. Toplam 112, haznede 7/8’i=98 L.",
       "hint": "Miktar = dakikadaki akış × süre; iki kapağı ayrı hesapla.",
@@ -26854,7 +26854,7 @@
         "labels": [
           {
             "anchor": "A akış",
-            "value": "3 · 2⁶ L/dk"
+            "value": "3 · 4³ L/dk"
           },
           {
             "anchor": "A süre",
@@ -26876,7 +26876,7 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Şelalenin A kapağı dakikada 3 · 2⁷ L suyu 1/4 dakika, B kapağı dakikada 2⁸ L suyu 1/2 dakika geçiriyor. Biriken suyun 1/8’i başka kanala ayrılırsa haznede kaç litre kalır?",
+        "question": "Şelalenin A kapağı dakikada 3 · 2⁷ L suyu 1/4 dakika, B kapağı dakikada 4⁴ L suyu 1/2 dakika geçiriyor. Biriken suyun 1/8’i başka kanala ayrılırsa haznede kaç litre kalır?",
         "solution": "A=384×1/4=96 L, B=256×1/2=128 L. Toplam 224, haznede 7/8’i=196 L."
       },
       "sourceQuestionId": "F11-Z-02",
@@ -26888,7 +26888,7 @@
       "difficulty": "zor",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Su kapaklarından A, dakikada 3 · 2⁶ L suyu 1/4 dakika; B, dakikada 2⁷ L suyu 1/2 dakika aktarıyor. Toplanan su dört eşit şişeye bölünürse bir şişede kaç litre bulunur?",
+      "prompt": "Su kapaklarından A, dakikada 3 · 4³ L suyu 1/4 dakika; B, dakikada 2⁷ L suyu 1/2 dakika aktarıyor. Toplanan su dört eşit şişeye bölünürse bir şişede kaç litre bulunur?",
       "correctAnswer": "28",
       "solution": "A=48, B=64 L; toplam 112 L, bir şişe 28 L.",
       "hint": "Miktar = dakikadaki akış × süre; iki kapağı ayrı hesapla.",
@@ -26910,7 +26910,7 @@
         "labels": [
           {
             "anchor": "A akış",
-            "value": "3 · 2⁶ L/dk"
+            "value": "3 · 4³ L/dk"
           },
           {
             "anchor": "A süre",
@@ -26932,7 +26932,7 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Su kapaklarından A, dakikada 3 · 2⁷ L suyu 1/4 dakika; B, dakikada 2⁸ L suyu 1/2 dakika aktarıyor. Toplanan su dört eşit şişeye bölünürse bir şişede kaç litre bulunur?",
+        "question": "Su kapaklarından A, dakikada 3 · 2⁷ L suyu 1/4 dakika; B, dakikada 4⁴ L suyu 1/2 dakika aktarıyor. Toplanan su dört eşit şişeye bölünürse bir şişede kaç litre bulunur?",
         "solution": "A=96, B=128 L; toplam 224 L, bir şişe 56 L."
       },
       "sourceQuestionId": "F11-Z-03",
@@ -27820,9 +27820,9 @@
       "difficulty": "zor",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Taş kilidin altı yüzünden ikisi mühürlü, dört açık yüzde 2³, 2⁴, 2⁵ ve 2⁶ işaret var. Toplam 120 işaretten en kalabalık açık yüzde kaç işaret bulunur?",
+      "prompt": "Taş kilidin altı yüzünden ikisi mühürlü, dört açık yüzde 2³, 4², 2⁵ ve 4³ işaret var. Toplam 120 işaretten en kalabalık açık yüzde kaç işaret bulunur?",
       "correctAnswer": "64",
-      "solution": "Dört açık yüzün toplamı 120 ve en çok 2⁶=64 işaret son yüzdedir.",
+      "solution": "Dört açık yüzün toplamı 120 ve en çok 4³=64 işaret son yüzdedir.",
       "hint": "Yüzlerdeki işaretler üslü sayılar olarak verildi; hacim hesabı yapılmayacak.",
       "inputType": "choice",
       "options": [
@@ -27846,7 +27846,7 @@
           },
           {
             "anchor": "açık yüz 2",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "açık yüz 3",
@@ -27854,13 +27854,13 @@
           },
           {
             "anchor": "açık yüz 4",
-            "value": "2⁶"
+            "value": "4³"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Taş kilidin altı yüzünden ikisi mühürlü, dört açık yüzde 2⁴, 2⁵, 2⁶ ve 2⁷ işaret var. Toplam 240 işaretten en kalabalık açık yüzde kaç işaret bulunur?",
+        "question": "Taş kilidin altı yüzünden ikisi mühürlü, dört açık yüzde 4², 2⁵, 4³ ve 2⁷ işaret var. Toplam 240 işaretten en kalabalık açık yüzde kaç işaret bulunur?",
         "solution": "Dört açık yüzün toplamı 240 ve en çok 2⁷=128 işaret son yüzdedir."
       },
       "sourceQuestionId": "F13-Z-02",
@@ -27872,9 +27872,9 @@
       "difficulty": "zor",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Taş kilidin dört açık yüzünde sırasıyla 2³, 2⁴, 2⁵, 2⁶ işaret bulunmaktadır. En çok işaret bulunan iki yüzün toplamında kaç işaret vardır?",
+      "prompt": "Taş kilidin dört açık yüzünde sırasıyla 2³, 4², 2⁵, 4³ işaret bulunmaktadır. En çok işaret bulunan iki yüzün toplamında kaç işaret vardır?",
       "correctAnswer": "96",
-      "solution": "2⁵+2⁶=32+64=96.",
+      "solution": "2⁵+4³=32+64=96.",
       "hint": "Yüzlerdeki işaretler üslü sayılar olarak verildi; hacim hesabı yapılmayacak.",
       "inputType": "choice",
       "options": [
@@ -27898,7 +27898,7 @@
           },
           {
             "anchor": "açık yüz 2",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "açık yüz 3",
@@ -27906,14 +27906,14 @@
           },
           {
             "anchor": "açık yüz 4",
-            "value": "2⁶"
+            "value": "4³"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Taş kilidin dört açık yüzünde sırasıyla 2⁴, 2⁵, 2⁶, 2⁷ işaret bulunmaktadır. En çok işaret bulunan iki yüzün toplamında kaç işaret vardır?",
-        "solution": "2⁶+2⁷=64+128=192."
+        "question": "Taş kilidin dört açık yüzünde sırasıyla 4², 2⁵, 4³, 2⁷ işaret bulunmaktadır. En çok işaret bulunan iki yüzün toplamında kaç işaret vardır?",
+        "solution": "4³+2⁷=64+128=192."
       },
       "sourceQuestionId": "F13-Z-03",
       "sourceDifficulty": "Zor"
@@ -27924,7 +27924,7 @@
       "difficulty": "zor",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dört açık yüzün işaret sayıları 2³, 2⁴, 2⁵ ve 2⁶’dir. En büyük yüzün işaret sayısı en küçük iki yüzün toplamından kaç fazladır?",
+      "prompt": "Dört açık yüzün işaret sayıları 2³, 4², 2⁵ ve 4³’dir. En büyük yüzün işaret sayısı en küçük iki yüzün toplamından kaç fazladır?",
       "correctAnswer": "40",
       "solution": "64−(8+16)=40.",
       "hint": "Yüzlerdeki işaretler üslü sayılar olarak verildi; hacim hesabı yapılmayacak.",
@@ -27950,7 +27950,7 @@
           },
           {
             "anchor": "açık yüz 2",
-            "value": "2⁴"
+            "value": "4²"
           },
           {
             "anchor": "açık yüz 3",
@@ -27958,13 +27958,13 @@
           },
           {
             "anchor": "açık yüz 4",
-            "value": "2⁶"
+            "value": "4³"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Dört açık yüzün işaret sayıları 2⁴, 2⁵, 2⁶ ve 2⁷’dir. En büyük yüzün işaret sayısı en küçük iki yüzün toplamından kaç fazladır?",
+        "question": "Dört açık yüzün işaret sayıları 4², 2⁵, 4³ ve 2⁷’dir. En büyük yüzün işaret sayısı en küçük iki yüzün toplamından kaç fazladır?",
         "solution": "128−(16+32)=80."
       },
       "sourceQuestionId": "F13-Z-04",
@@ -28288,9 +28288,9 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Çark merkezindeki güç hesabı (4³ · 8²) ÷ 2⁶ biçimindedir. Etrafındaki dört yuvadan yalnızca biri bu değere eşittir. Hangi yuva seçilmelidir?",
+      "prompt": "Çark merkezindeki güç hesabı (4³ · 8²) ÷ 4³ biçimindedir. Etrafındaki dört yuvadan yalnızca biri bu değere eşittir. Hangi yuva seçilmelidir?",
       "correctAnswer": "III. yuva",
-      "solution": "4³ = 2⁶, 8² = 2⁶. (2⁶·2⁶)÷2⁶ = 2⁶ = 64. III. yuvadaki 4³ = 64.",
+      "solution": "4³ = 4³, 8² = 4³. (4³·4³)÷4³ = 4³ = 64. III. yuvadaki 4³ = 64.",
       "hint": "4 ve 8 sayılarını 2’nin kuvveti biçiminde yaz; diş sayısı veya ters orantı kullanma.",
       "inputType": "choice",
       "options": [
@@ -28310,7 +28310,7 @@
         "labels": [
           {
             "anchor": "çarkın ortasındaki güç levhası",
-            "value": "(4³ · 8²) ÷ 2⁶"
+            "value": "(4³ · 8²) ÷ 4³"
           },
           {
             "anchor": "birinci güç yuvası",
@@ -28333,7 +28333,7 @@
       },
       "workedExample": {
         "question": "Çözülmüş benzer örnek",
-        "solution": "(8²·2⁴)÷4² = (2⁶·2⁴)÷2⁴ = 2⁶."
+        "solution": "(8²·4²)÷4² = (4³·4²)÷4² = 4³."
       },
       "sourceQuestionId": "F14-Z-01",
       "sourceDifficulty": "Zor"
@@ -28468,9 +28468,9 @@
       "difficulty": "zor",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dişli çarkın merkezinde (4⁴ · 8²) ÷ 2⁶ yazıyor. Merkez gücüne eşit 2 kuvvetinin üssü kaçtır?",
+      "prompt": "Dişli çarkın merkezinde (4⁴ · 8²) ÷ 4³ yazıyor. Merkez gücüne eşit 2 kuvvetinin üssü kaçtır?",
       "correctAnswer": "8",
-      "solution": "4⁴ = 2⁸, 8²=2⁶. Üsler: 8+6−6=8. Sonuç 2⁸.",
+      "solution": "4⁴ = 4⁴, 8²=4³. Üsler: 8+6−6=8. Sonuç 4⁴.",
       "hint": "4 = 2² ve 8 = 2³ dönüşümlerini yap, çarpmada üsleri topla, bölmede çıkar.",
       "inputType": "choice",
       "options": [
@@ -28490,7 +28490,7 @@
         "labels": [
           {
             "anchor": "merkez",
-            "value": "(4⁴ · 8²) ÷ 2⁶"
+            "value": "(4⁴ · 8²) ÷ 4³"
           },
           {
             "anchor": "yuvalar",
@@ -28501,7 +28501,7 @@
       },
       "workedExample": {
         "question": "Dişli çarkın merkezinde (4⁵ · 8²) ÷ 2⁷ yazıyor. Merkez gücüne eşit 2 kuvvetinin üssü kaçtır?",
-        "solution": "4⁵ = 2¹⁰, 8²=2⁶. Üsler: 10+6−7=9. Sonuç 2⁹."
+        "solution": "4⁵ = 4⁵, 8²=4³. Üsler: 10+6−7=9. Sonuç 8³."
       },
       "sourceQuestionId": "F14-Z-05",
       "sourceDifficulty": "Zor"
@@ -30846,7 +30846,7 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İstasyonda A rafında 2⁷ şişenin her birinde 3·2⁻⁴ g, B rafında 2⁶ şişenin her birinde 2⁻³ g toz vardır. A’daki tozun dörtte biri, B’dekilerin yarısı kaybolursa toplam kaç gram kalır?",
+      "prompt": "İstasyonda A rafında 2⁷ şişenin her birinde 3·4⁻² g, B rafında 4³ şişenin her birinde 2⁻³ g toz vardır. A’daki tozun dörtte biri, B’dekilerin yarısı kaybolursa toplam kaç gram kalır?",
       "correctAnswer": "22",
       "solution": "A toplam 128·3/16 = 24 g; kalan 24·3/4 = 18 g. B toplam 64·1/8 = 8 g; kalan 8·1/2 = 4 g. Toplam 22 g.",
       "hint": "Önce her raftaki toplam miktarı üslü çarpma yoluyla bul; sonra kayıpları çıkar.",
@@ -30868,11 +30868,11 @@
         "labels": [
           {
             "anchor": "A rafındaki levha",
-            "value": "2⁷ şişe; her biri 3·2⁻⁴ g"
+            "value": "2⁷ şişe; her biri 3·4⁻² g"
           },
           {
             "anchor": "B rafındaki levha",
-            "value": "2⁶ şişe; her biri 2⁻³ g"
+            "value": "4³ şişe; her biri 2⁻³ g"
           },
           {
             "anchor": "A rafının uyarı simgesi",
@@ -30898,7 +30898,7 @@
       "difficulty": "zor",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Mavi toz istasyonunda A rafındaki 2⁷ şişenin her birinde 3 · 2⁻⁴ g, B rafındaki 2⁶ şişenin her birinde 2⁻³ g toz bulunuyor. A’daki tozun dörtte biri, B’dekilerin yarısı kaybolursa kaç gram kalır?",
+      "prompt": "Mavi toz istasyonunda A rafındaki 2⁷ şişenin her birinde 3 · 4⁻² g, B rafındaki 4³ şişenin her birinde 2⁻³ g toz bulunuyor. A’daki tozun dörtte biri, B’dekilerin yarısı kaybolursa kaç gram kalır?",
       "correctAnswer": "22",
       "solution": "Başlangıç A=24, B=8 g; kalan A’nın 3/4’ü ve B’nin 1/2’si: 22 g.",
       "hint": "Önce şişe adediyle tek şişedeki miktarı çarp; sonra kayıp kesrini uygula.",
@@ -30920,11 +30920,11 @@
         "labels": [
           {
             "anchor": "A rafı",
-            "value": "2⁷ şişe × 3 · 2⁻⁴ g"
+            "value": "2⁷ şişe × 3 · 4⁻² g"
           },
           {
             "anchor": "B rafı",
-            "value": "2⁶ şişe × 2⁻³ g"
+            "value": "4³ şişe × 2⁻³ g"
           },
           {
             "anchor": "kayıp",
@@ -30934,7 +30934,7 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Mavi toz istasyonunda A rafındaki 2⁸ şişenin her birinde 3 · 2⁻⁴ g, B rafındaki 2⁷ şişenin her birinde 2⁻³ g toz bulunuyor. A’daki tozun dörtte biri, B’dekilerin yarısı kaybolursa kaç gram kalır?",
+        "question": "Mavi toz istasyonunda A rafındaki 4⁴ şişenin her birinde 3 · 4⁻² g, B rafındaki 2⁷ şişenin her birinde 2⁻³ g toz bulunuyor. A’daki tozun dörtte biri, B’dekilerin yarısı kaybolursa kaç gram kalır?",
         "solution": "Başlangıç A=48, B=16 g; kalan A’nın 3/4’ü ve B’nin 1/2’si: 44 g."
       },
       "sourceQuestionId": "F17-Z-02",
@@ -30946,7 +30946,7 @@
       "difficulty": "zor",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "2⁷ şişelik A rafındaki her şişede 3 · 2⁻⁴ g, 2⁶ şişelik B rafında her şişede 2⁻³ g toz bulunuyor. A’daki tozun yarısı, B’dekilerin dörtte biri dökülürse toplam kaç gram kalır?",
+      "prompt": "2⁷ şişelik A rafındaki her şişede 3 · 4⁻² g, 4³ şişelik B rafında her şişede 2⁻³ g toz bulunuyor. A’daki tozun yarısı, B’dekilerin dörtte biri dökülürse toplam kaç gram kalır?",
       "correctAnswer": "18",
       "solution": "A=24, B=8 g; kalan 24/2+3·8/4=18 g.",
       "hint": "Önce şişe adediyle tek şişedeki miktarı çarp; sonra kayıp kesrini uygula.",
@@ -30968,11 +30968,11 @@
         "labels": [
           {
             "anchor": "A rafı",
-            "value": "2⁷ şişe × 3 · 2⁻⁴ g"
+            "value": "2⁷ şişe × 3 · 4⁻² g"
           },
           {
             "anchor": "B rafı",
-            "value": "2⁶ şişe × 2⁻³ g"
+            "value": "4³ şişe × 2⁻³ g"
           },
           {
             "anchor": "kayıp",
@@ -30982,7 +30982,7 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2⁸ şişelik A rafındaki her şişede 3 · 2⁻⁴ g, 2⁷ şişelik B rafında her şişede 2⁻³ g toz bulunuyor. A’daki tozun yarısı, B’dekilerin dörtte biri dökülürse toplam kaç gram kalır?",
+        "question": "4⁴ şişelik A rafındaki her şişede 3 · 4⁻² g, 2⁷ şişelik B rafında her şişede 2⁻³ g toz bulunuyor. A’daki tozun yarısı, B’dekilerin dörtte biri dökülürse toplam kaç gram kalır?",
         "solution": "A=48, B=16 g; kalan 48/2+3·16/4=36 g."
       },
       "sourceQuestionId": "F17-Z-03",
