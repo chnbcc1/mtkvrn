@@ -27394,16 +27394,16 @@
       "difficulty": "zor",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Şelalenin A kapağı 1/4 dakika boyunca dakikada 3 · 2⁷ L, B kapağı 1/2 dakika boyunca dakikada 4⁴ L akıtıyor. A kapağı B’den kaç litre fazla su geçirmiştir?",
-      "correctAnswer": "-32",
-      "solution": "A=96, B=128; fark -32 L.",
-      "hint": "Miktar = dakikadaki akış × süre; iki kapağı ayrı hesapla.",
+      "prompt": "Şelalenin A kapağı 1/4 dakika boyunca dakikada 3 · 2⁷ L, B kapağı 1/2 dakika boyunca dakikada 4⁴ L akıtıyor. A kapağı B’den kaç litre daha az su geçirmiştir?",
+      "correctAnswer": "32",
+      "solution": "A kapağı 96 L, B kapağı 128 L su geçirir. 128 − 96 = 32 L; A kapağı 32 L daha az su geçirmiştir.",
+      "hint": "Miktar = dakikadaki akış × süre. İki kapağı ayrı hesapla; A daha azsa B’den A’yı çıkar.",
       "inputType": "choice",
       "options": [
-        "-27",
-        "-32",
-        "-37",
-        "-22"
+        "27",
+        "32",
+        "37",
+        "22"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -27434,8 +27434,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Şelalenin A kapağı 1/4 dakika boyunca dakikada 3 · 4⁴ L, B kapağı 1/2 dakika boyunca dakikada 8³ L akıtıyor. A kapağı B’den kaç litre fazla su geçirmiştir?",
-        "solution": "A=192, B=256; fark -64 L."
+        "question": "Şelalenin A kapağı 1/4 dakika boyunca dakikada 3 · 4⁴ L, B kapağı 1/2 dakika boyunca dakikada 8³ L akıtıyor. A kapağı B’den kaç litre daha az su geçirmiştir?",
+        "solution": "A = 192 L, B = 256 L; B − A = 256 − 192 = 64 L."
       },
       "sourceQuestionId": "F11-Z-07",
       "sourceDifficulty": "Zor"
@@ -27558,16 +27558,16 @@
       "difficulty": "zor",
       "variant": 10,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Şelalenin A kapağı 1/4 dakika boyunca dakikada 3 · 4⁴ L, B kapağı 1/2 dakika boyunca dakikada 8³ L akıtıyor. A kapağı B’den kaç litre fazla su geçirmiştir?",
-      "correctAnswer": "-64",
-      "solution": "A=192, B=256; fark -64 L.",
-      "hint": "Miktar = dakikadaki akış × süre; iki kapağı ayrı hesapla.",
+      "prompt": "Şelalenin A kapağı 1/4 dakika boyunca dakikada 3 · 4⁴ L, B kapağı 1/2 dakika boyunca dakikada 8³ L akıtıyor. A kapağı B’den kaç litre daha az su geçirmiştir?",
+      "correctAnswer": "64",
+      "solution": "A kapağı 192 L, B kapağı 256 L su geçirir. 256 − 192 = 64 L; A kapağı 64 L daha az su geçirmiştir.",
+      "hint": "Miktar = dakikadaki akış × süre. İki kapağı ayrı hesapla; A daha azsa B’den A’yı çıkar.",
       "inputType": "choice",
       "options": [
-        "-54",
-        "-64",
-        "-74",
-        "-44"
+        "54",
+        "64",
+        "74",
+        "44"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -27598,8 +27598,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Şelalenin A kapağı 1/4 dakika boyunca dakikada 3 · 8² L, B kapağı 1/2 dakika boyunca dakikada 2⁷ L akıtıyor. A kapağı B’den kaç litre fazla su geçirmiştir?",
-        "solution": "A=48, B=64; fark -16 L."
+        "question": "Şelalenin A kapağı 1/4 dakika boyunca dakikada 3 · 8² L, B kapağı 1/2 dakika boyunca dakikada 2⁷ L akıtıyor. A kapağı B’den kaç litre daha az su geçirmiştir?",
+        "solution": "A = 48 L, B = 64 L; B − A = 64 − 48 = 16 L."
       },
       "sourceQuestionId": "F11-Z-10",
       "sourceDifficulty": "Zor"
