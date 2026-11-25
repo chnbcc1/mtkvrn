@@ -7,7 +7,7 @@ const stats=(function runTests(api,b,check){
  for(const q of qs){
   check(q.options?.length===4&&new Set(q.options).size===4&&q.options.includes(q.correctAnswer)&&q.hint?.trim()&&q.solution?.trim(),q.id+" fields");sourceFields++;
   const p=api.workedExample(q,qs);
-  if(p){const source=qs.find(x=>x.id===p.id);check(api.eligible(q,source)&&source.correctAnswer!==q.correctAnswer&&p.prompt===source.prompt&&p.solution===source.solution&&JSON.stringify(p.labels)===JSON.stringify(api.labels(source)),q.id+" example");examples++}
+  if(p){const source=qs.find(x=>x.id===p.id);check(api.eligible(q,source)&&source.correctAnswer!==q.correctAnswer&&p.prompt===source.prompt&&p.solution===api.solution(source)&&JSON.stringify(p.labels)===JSON.stringify(api.labels(source)),q.id+" example");examples++}
   const s=api.similar(q,qs);check(api.eligible(q,s),q.id+" similar");
   let st=api.initial(q.id);
   const wrong=q.options.filter(x=>x!==q.correctAnswer);
