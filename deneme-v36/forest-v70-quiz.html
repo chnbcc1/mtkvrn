@@ -98,7 +98,7 @@ sup{font-size:.7em;line-height:0;vertical-align:super}
 .embedded .choice{box-sizing:border-box!important;min-width:0!important;width:100%!important;height:100%!important;min-height:56px!important}
 .embedded .choiceMark{flex:0 0 29px!important;width:29px!important;height:29px!important}
 @media (orientation:portrait){.embedded .choice{font-size:clamp(12px,3.5vw,17px)!important;padding:8px!important}}
-</style><link rel="stylesheet" href="./assets/math-notebook-v187.css?v=189"><link rel="stylesheet" href="./assets/math-notebook-forest-v186.css?v=188"><link rel="stylesheet" href="./assets/math-notebook-premium-v190.css?v=190"><link rel="stylesheet" href="./assets/math-notebook-ui-v191.css?v=191"><link rel="stylesheet" href="./assets/math-notebook-fix-v192.css?v=192"><link rel="stylesheet" href="./assets/math-notebook-iphone-v193.css?v=193"><link rel="stylesheet" href="./assets/math-notebook-retina-v194.css?v=194"><link rel="stylesheet" href="./assets/math-notebook-question-v195.css?v=195"><link rel="stylesheet" href="./assets/math-notebook-layout-v196.css?v=196"><script src="./assets/math-notebook-v187.js?v=196"></script><script src="./assets/quiz-approved-frames-v145.js?v=145"></script><script src="./assets/quiz-f03-machine-v145.js?v=145"></script><script src="./assets/quiz-research-objects-v148.js?v=148"></script><script src="./assets/f01-approved-v159.js?v=163"></script><script src="./assets/f02-approved-v165.js?v=210"></script><script src="./assets/f03-approved-v197.js?v=203"></script><script src="./assets/f04-approved-v211.js?v=211"></script><script src="./assets/teaching-v219.js?v=219"></script><script src="./assets/approved-quiz-ui-v145.js?v=211"></script><script src="./assets/quiz-universal-layout-v176.js?v=179"></script><script src="./forest-levels-v65.js?v=65"></script></head>
+</style><link rel="stylesheet" href="./assets/math-notebook-v187.css?v=189"><link rel="stylesheet" href="./assets/math-notebook-forest-v186.css?v=188"><link rel="stylesheet" href="./assets/math-notebook-premium-v190.css?v=190"><link rel="stylesheet" href="./assets/math-notebook-ui-v191.css?v=191"><link rel="stylesheet" href="./assets/math-notebook-fix-v192.css?v=192"><link rel="stylesheet" href="./assets/math-notebook-iphone-v193.css?v=193"><link rel="stylesheet" href="./assets/math-notebook-retina-v194.css?v=194"><link rel="stylesheet" href="./assets/math-notebook-question-v195.css?v=195"><link rel="stylesheet" href="./assets/math-notebook-layout-v196.css?v=196"><script src="./assets/math-notebook-v187.js?v=196"></script><script src="./assets/quiz-approved-frames-v145.js?v=145"></script><script src="./assets/quiz-f03-machine-v145.js?v=145"></script><script src="./assets/quiz-research-objects-v148.js?v=148"></script><script src="./assets/f01-approved-v159.js?v=163"></script><script src="./assets/f02-approved-v165.js?v=210"></script><script src="./assets/f03-approved-v197.js?v=203"></script><script src="./assets/f04-approved-v211.js?v=211"></script><link rel="stylesheet" href="./assets/scene-live-v221.css?v=221"><script src="./assets/scene-plan-v214.js?v=214"></script><script src="./assets/character-layer-v215.js?v=215"></script><script src="./assets/plaque-text-v216.js?v=216"></script><script src="./assets/f21-matching-v217.js?v=217"></script><script src="./assets/scene-layout-v218.js?v=218"></script><script src="./assets/scene-live-v221.js?v=221"></script><script src="./assets/teaching-v219.js?v=219"></script><script src="./assets/approved-quiz-ui-v145.js?v=211"></script><script src="./assets/quiz-universal-layout-v176.js?v=179"></script><script src="./forest-levels-v65.js?v=65"></script></head>
 <body><main><nav><a href="./forest-v70-full.html?v=69">‹ Orman Patikasına dön</a><a href="./map-v70.html?v=69">🗺️ Macera Haritası</a></nav>
 <h1>🌲 Orman Patikası</h1><p class="subtitle">21 engelli matematik macerası · dört şıklı sorular · MAT.9.1.1 · Üslü ve köklü gösterimler. Dört seçenek arasından karar ver. Yanlışta ipucu, örnek çözüm ve pekiştirme adımları seni yönlendirecek. Fiziksel engellerin sahne entegrasyonu ayrı geliştirilir.</p>
 <div id="step" class="step" hidden></div><div id="bar" class="bar" hidden><span id="fill"></span></div><section id="app" class="panel" aria-live="polite"></section>
@@ -519,7 +519,7 @@ function reportSolved(obs){
  run.completionWrong=Math.max(0,Math.floor(Number(run.taskWrong)||0));run.awaiting=true;save();
  window.parent.postMessage({source:"mathverse-v68-quiz",event:"solved",obstacle:obs.id,difficulty:run.difficulty,wrongCount:run.completionWrong},location.origin);
 }
-function show(){window.MTKApprovedQuizV145?.reset();
+function show(){window.MTKSceneLiveV221?.reset();window.MTKApprovedQuizV145?.reset();
  if(!bank){return}if(!run){welcome();return}
  if(run.index>=21){window.MTKMathNotebook?.hide();step.hidden=false;bar.hidden=false;fill.style.width="100%";step.textContent="21/21 tamamlandı";app.replaceChildren();append(app,node("h2",null,"🎉 Ormanı tamamladın!"),node("p",null,"21 engel bitti. Yeni oyunda daha önce görülmeyen soru varyasyonları seçilir."),rowButton("Yeniden başla",()=>{run=null;save();welcome()}));return}
  ensure();const obs=bank.obstacles.find(o=>o.id===bank.playOrder[run.index]);
@@ -547,7 +547,7 @@ function show(){window.MTKApprovedQuizV145?.reset();
     btn("Engeli aç",()=>{run.index++;run.activeId=null;run.awaiting=false;run.practiceCompleted=false;run.practiceId=null;run.remediationId=null;run.taskWrong=0;run.completionWrong=null;resetStage();ensure();save();show()}),
     btn("Benzer soru çöz",()=>startSimilarQuestion(obs,q),true));
   app.appendChild(controls);
-  if(EMBED)window.MTKApprovedQuizV145?.mount(app,q,s,doneChoices,run,save);
+  if(EMBED)(window.MTKSceneLiveV221||window.MTKApprovedQuizV145)?.mount(app,q,s,doneChoices,run,save);
    window.MTKMathNotebook?.placeButton(app);
   return;
  }
@@ -613,7 +613,7 @@ function show(){window.MTKApprovedQuizV145?.reset();
  }
 
  // No "Ana göreve dön" button: successful similar exercises offer the same two actions.
- if(EMBED)window.MTKApprovedQuizV145?.mount(app,q,s,choices,run,save);
+ if(EMBED)(window.MTKSceneLiveV221||window.MTKApprovedQuizV145)?.mount(app,q,s,choices,run,save);
  window.MTKMathNotebook?.placeButton(app);
 }
 function select(answer,s,q,stageCount){
@@ -624,11 +624,11 @@ function select(answer,s,q,stageCount){
 // v154: parent keeps the forest visible while the approved quiz and illustrations load.
 function announceQuizVisualReady(){
  if(!EMBED||window.parent===window)return;
- const frame=app.querySelector(".mtk-frame");
+ const frame=app.querySelector(".mtk-live-v221")||app.querySelector(".mtk-frame");
  const send=(event)=>window.parent.postMessage({source:"mathverse-v68-quiz",event,obstacle:FORCED,difficulty:FORCED_DIFFICULTY},location.origin);
  if(!frame||!document.body.classList.contains("mtk-approved-active")){send("load-error");return}
  const orientation=window.matchMedia("(orientation:landscape)").matches?"landscape":"portrait";
- const source=window.MTK_QUIZ_FRAMES_V145?.[orientation];
+ const source=frame.classList.contains("mtk-live-v221")?null:window.MTK_QUIZ_FRAMES_V145?.[orientation];
  const pictures=[...frame.querySelectorAll("img")];
  if(source){const backdrop=new Image();backdrop.src=source;pictures.push(backdrop)}
  const decode=(image)=>typeof image.decode==="function"?image.decode():Promise.resolve();
