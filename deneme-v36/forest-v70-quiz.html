@@ -160,16 +160,6 @@ function startSimilarQuestion(obs,q){
  run.remediationId=null;run.practiceId=pick(obs.id,run.difficulty,q.id);
  resetStage();show();
 }
-function finishSimilarQuestion(){
- // The finished practice task becomes the current task; never re-open the earlier wrong one.
- const justSolved=run.remediationId||run.practiceId;
- if(!justSolved)return false;
- run.activeId=justSolved;run.lastPracticeId=justSolved;
- run.remediationId=null;run.practiceId=null;
- run.practiceCompleted=true;run.awaiting=true;
- run.completionWrong=Math.max(0,Math.floor(Number(run.taskWrong)||0));
- resetStage();show();return true;
-}
 function hash(s){let h=2166136261;for(let c of s){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0}
 function shuffle(list,seed){let a=[...list],n=hash(seed);for(let i=a.length-1;i>0;i--){n=(Math.imul(1664525,n)+1013904223)>>>0;const j=n%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
 function uniq4(answer,list,seed){
