@@ -15,7 +15,7 @@ function describe(q){
   else if(key==="ilk enerji|kapı tüketimi|uyarı|uyarı kullanımı"){mode="independent";title="İki bağımsız enerji deposu";rows=[row("Birinci basamak → kapı",0,1),row("İkinci basamak → uyarı lambası",2,3)];diagramOnly=true}
   else if(key==="sol|sağ|harcama"){mode="two-sources";title="İki kaynak ve kapı tüketimi";rows=[row("Bağımsız kaynaklar",0,1),row("Kapı tüketimi",2)];diagramOnly=true}
   else if(key==="ilk|orta|son|çalışma oranları"){mode="working";title="Basamakların çalışma oranları";rows=[row("Birinci, ikinci, üçüncü basamak",0,1,2),row("Aynı sıradaki çalışma oranları",3)]}
-  else if(key.includes("sayaç")){mode="counter";title="Üç basamak ve ortak sayaç";rows=[row("Basamaklar",0,1,2),row("Ortak sayaç",3)]}
+  else if(/sayaç|sayacı/.test(key)){mode="counter";title="Üç basamak ve ortak sayaç";rows=[row("Basamaklar",0,1,2),row("Ortak sayaç",3)]}
   else if(key==="basamak 1|basamak 2|basamak 3|basamak 4"){mode="groups";title="İki basamak grubu";rows=[row("İlk iki",0,1),row("Son iki",2,3)]}
   else if(key==="alt basamak|üst basamak|aktarım"){mode="transfer";title="Alt ve üst basamak → yedek lambalar";rows=[row("Basamaklar",0,1),row("Aktarım oranı",2)]}
   else if(key==="giriş|hasarlı taş"){mode="consumption";title="Giriş enerjisi ve harcanan miktar";rows=[row("Enerji → harcama",0,1)];diagramOnly=true}
@@ -59,6 +59,29 @@ function mount({q,plane,readout,documentRef}){
  Object.assign(panel.style,{border:"1px solid #ba9458",borderRadius:"9px",padding:"7px",fontSize:"14px",background:"#fff9e7",color:"#33291b"});
  const h=doc.createElement("strong");h.textContent=d.title;panel.append(h);
  const note=doc.createElement("p");note.textContent=d.diagramOnly?"Ana sahne temsilidir; bu sorunun gerçek işlem düzeni aşağıdadır.":"Şematik gösterim — ölçüler verilen değerlerdir.";Object.assign(note.style,{margin:"4px 0",fontSize:"12px"});panel.append(note);
+ const schematic=doc.createElement("div");Object.assign(schematic.style,{display:"grid",gap:"4px",margin:"6px 0"});
+ const chip=(value,color="#dff2ed")=>{const n=doc.createElement("span");n.textContent=value;Object.assign(n.style,{minWidth:"0",padding:"5px",border:"1px solid #9c916a",borderRadius:"6px",background:color,textAlign:"center",overflowWrap:"anywhere"});return n};
+ const flow=(values)=>{const line=doc.createElement("div");Object.assign(line.style,{display:"flex",alignItems:"center",flexWrap:"wrap",gap:"4px"});values.forEach((v,i)=>{if(i){const arrow=doc.createElement("span");arrow.textContent="→";line.append(arrow)}line.append(chip(v))});schematic.append(line)};
+ const vals=d.labels.map(l=>l.value);
+ if(d.id==="F03"){
+  if(d.mode==="parallel"){flow(["A: "+vals[0],vals[2],"1. tüp"]);flow(["B: "+vals[1],vals[3],"2. tüp"])}
+  else if(d.mode==="branch"){flow([vals[0],"Yan kol: "+vals[1]]);flow([vals[0],"Ana hat: "+vals[2]])}
+  else if(d.mode==="repeat")flow([vals[0],vals[1]+" kez "+vals[2],"Çıkış"]);
+  else flow([...vals,"İstenen miktar"]);
+ }else if(d.id==="F02"){
+  if(d.mode==="side-by-side"){const line=doc.createElement("div");Object.assign(line.style,{display:"flex",flexWrap:"wrap",gap:"4px"});const n=Number(vals[0]);if(Number.isInteger(n)&&n>=1&&n<=10)for(let i=0;i<n;i++)line.append(chip((i+1)+". basamak: "+vals[1]));else line.append(chip(vals[0]+" basamak, her biri "+vals[1]));schematic.append(line)}
+  else if(d.mode==="independent"){flow([vals[0],"Kapı: "+vals[1]]);flow([vals[2],"Lamba: "+vals[3]])}
+  else if(d.mode==="two-sources"){const line=doc.createElement("div");line.append(chip(vals[0]),chip(vals[1]));schematic.append(line);flow(["Ortak enerji","Kapı: "+vals[2]])}
+ }else if(d.id==="F10"&&d.mode==="partial"){
+  const match=vals[2].match(/(\d+)\s*\/\s*(\d+)/);if(match){const n=Number(match[1]),k=Number(match[2]);if(k>0&&n>=0&&n<=k){const bar=doc.createElement("div");Object.assign(bar.style,{display:"flex",height:"16px",border:"1px solid #9c916a",borderRadius:"5px",overflow:"hidden"});const lit=doc.createElement("div"),rest=doc.createElement("div");Object.assign(lit.style,{width:(100*n/k)+"%",background:"#e5bb4f"});Object.assign(rest.style,{flex:"1",background:"#355450"});bar.append(lit,rest);schematic.append(bar);const caption=doc.createElement("small");caption.textContent="Sarı: aydınlanan bölüm · Koyu: kalan bölüm";schematic.append(caption)}}
+ }else if(d.id==="F07"&&d.mode==="rectangle"){
+  const shape=doc.createElement("div");Object.assign(shape.style,{width:"70%",height:"40px",border:"2px solid #b58b3f",background:"#f4e3b2",margin:"0 auto"});schematic.append(shape);
+ }else if(d.id==="F19"){
+  const bar=(value,color,offset)=>{const n=chip(value,color);Object.assign(n.style,{width:"70%",marginLeft:offset+"%",minHeight:"23px"});schematic.append(n)};
+  if(d.mode==="join"||d.mode==="compare"){bar(vals[0],"#dceee5",0);bar(vals[1],"#f2deb4",0)}
+  else{bar("A: "+vals[0],"#dceee5",0);bar("B: "+vals[1],"#f2deb4",25);schematic.append(chip("Ortak: "+vals[2],"#f8d478"))}
+ }
+ if(schematic.children.length)panel.append(schematic);
  for(const r of d.rows){const section=doc.createElement("div"),heading=doc.createElement("div"),grid=doc.createElement("div");heading.textContent=r.title;heading.style.fontWeight="700";Object.assign(grid.style,{display:"flex",flexWrap:"wrap",gap:"5px",margin:"4px 0"});section.append(heading,grid);
   for(const item of r.items){const tile=doc.createElement("span");tile.textContent=item.anchor.replace(/_/g," ")+": "+item.value;Object.assign(tile.style,{border:"1px solid #d4b982",borderRadius:"5px",padding:"4px",overflowWrap:"anywhere",background:"#fffdf4"});grid.append(tile)}
   panel.append(section)
@@ -69,7 +92,7 @@ function mount({q,plane,readout,documentRef}){
   const outer="M 28 29 L 81 29 L 92 64 L 17 64 Z",inner="M 43 37 L 66 37 L 68 51 L 41 51 Z";
   if(d.art==="ring"){path(outer+" "+inner,"#f4bf483b").setAttribute("fill-rule","evenodd");path(inner,"#132c3570","#83d8df")}
   else if(d.art==="perimeter")path(outer,"none","#ffe69a","1.2");
-  else if(d.art==="rectangle")path("M 30 29 L 81 29 L 85 41 L 26 41 Z","#f4bf4840");
+  else if(d.art==="rectangle"){ /* Exact subregion is not specified; use independent schematic. */ }
   else path(outer,"#f4bf483b");
  }else if(d.id==="F10"){
   const outer="M 15 42 L 84 42 L 94 58 L 6 58 Z";
