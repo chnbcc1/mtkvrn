@@ -131,3 +131,20 @@ assert(f03.prompt.includes("Sis türbinine 2¹² birim sis giriyor."),"Preserve 
 const f02store=["F02-O-02","F02-O-05","F02-O-08"];
 for(const id of f02store)assert(get(id).prompt.includes("ikinci basamağında ise"),id+" has two independent stored amounts");
 console.log("PASS power/root diversity: 630 structurally valid questions, mixed 2/3/4/5/6/8 bases, square/cube/fourth roots, F21 pair integrity, F02/F03 scenes.");
+
+// 25.11.2026: multiple independent bases at EVERY appropriate difficulty.
+// 4 and 8 alone are equivalent powers of 2, so do not count as independent variation.
+for(const obstacle of exponentTopics){
+ for(const difficulty of ["kolay","orta","zor"]){
+  const qs=questions.filter(q=>q.obstacleId===obstacle&&q.difficulty===difficulty);
+  const independent=qs.filter(q=>/(?:^|[^\\d])(?:3|5|6|7|9|25|27|125)[⁰¹²³⁴⁵⁶⁷⁸⁹⁻ⁿᵃ]/.test(q.prompt+" "+q.visual.labels.map(v=>v.value).join(" ")));
+  assert(independent.length>=2,obstacle+" "+difficulty+" needs multiple independent-base questions, not just the first example");
+ }
+}
+const verifiedAnswers={"F04-K-02":"50","F06-K-04":"50","F17-K-04":"675","F02-O-04":"144","F04-Z-04":"243","F05-Z-06":"39","F08-Z-02":"333","F11-Z-04":"130","F13-Z-06":"63","F14-Z-08":"9","F17-Z-06":"879/4","F07-O-01":"15∛4","F09-Z-01":"12∛3","F10-Z-01":"18∛2","F15-K-04":"16 − ∛9","F19-Z-01":"7","F20-Z-01":"2 – 3 – 7"};
+for(const [id,answer] of Object.entries(verifiedAnswers))assert.equal(get(id).correctAnswer,answer,id+" arithmetic regression");
+for(const obstacle of ["F07","F09","F10","F12","F15","F16","F19","F20","F21"]){
+ const qs=questions.filter(q=>q.obstacleId===obstacle);
+ assert(qs.some(q=>(q.prompt+" "+q.visual.labels.map(v=>v.value).join(" ")+(q.interaction?.radicalItems||[]).join(" ")).includes("∛")),obstacle+" needs genuine cube-root practice");
+}
+console.log("PASS per-difficulty independent bases and genuine cube-root coverage");
