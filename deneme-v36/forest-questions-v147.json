@@ -6631,12 +6631,12 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Gösterim geçidindeki 5 köklü taş ile 5 üslü taşı eşleştir. Dört köklü taşın değeri bir üslü taşla aynıdır. Hangi bir köklü ve bir üslü taş eşleşmeden kalır?",
       "correctAnswer": "√625 ve 3³",
-      "solution": "Köklü taşların değerlerini hesapla: 4, 8, 9, 16, 25. Üslü taşların değerleri: 4, 8, 9, 16, 27. Açıkta kalanlar √625 ve 3³. Eşdeğer kök gösterimleri: ∛729 = √81; ∜4096 = √64.",
-      "hint": "Kök derecesine dikkat et: karekökte iki, küpkökte üç, dördüncü dereceden kökte dört aynı çarpan aranır. Eşit değerli taşları eşleştir.",
+      "solution": "Köklü taşların değerlerini hesapla: 4, 8, 9, 16, 25. Üslü taşların değerleri: 4, 8, 9, 16, 27. Açıkta kalanlar √625 ve 3³. Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
-        "∛729 ve 2³",
-        "∜4096 ve 3³",
+        "∜(3⁸) ve 2³",
+        "√64 ve 3³",
         "√625 ve 3³",
         "√256 ve 3²"
       ],
@@ -6644,8 +6644,8 @@
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∛729",
-          "∜4096",
+          "∜(3⁸)",
+          "√64",
           "√256",
           "√16",
           "√625"
@@ -6659,11 +6659,11 @@
         ],
         "pairs": [
           {
-            "radical": "∛729",
+            "radical": "∜(3⁸)",
             "exponent": "3²"
           },
           {
-            "radical": "∜4096",
+            "radical": "√64",
             "exponent": "2³"
           },
           {
@@ -6688,11 +6688,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "∛729"
+            "value": "∜(3⁸)"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "∜4096"
+            "value": "√64"
           },
           {
             "anchor": "kök_taşı_3",
@@ -6730,8 +6730,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "∜4096 ile 2³ eşleşir mi?",
-        "solution": "∜4096 = 8 ve 2³ = 8; eşleşir."
+        "question": "√64 ile 2³ eşleşir mi?",
+        "solution": "√64 = 8 ve 2³ = 8; eşleşir."
       },
       "sourceQuestionId": "F21-K-01",
       "sourceDifficulty": "Kolay"
@@ -6744,12 +6744,12 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Gösterim geçidindeki 5 köklü taş ile 5 üslü taşı eşleştir. Dört köklü taşın değeri bir üslü taşla aynıdır. Hangi bir köklü ve bir üslü taş eşleşmeden kalır?",
       "correctAnswer": "√4096 ve 3⁴",
-      "solution": "Köklü taşların değerlerini hesapla: 16, 25, 27, 32, 64. Üslü taşların değerleri: 16, 25, 27, 32, 81. Açıkta kalanlar √4096 ve 3⁴. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "solution": "Köklü taşların değerlerini hesapla: 16, 25, 27, 32, 64. Üslü taşların değerleri: 16, 25, 27, 32, 81. Açıkta kalanlar √4096 ve 3⁴. Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
-        "∜531441 ve 5²",
-        "∛32768 ve 2⁴",
+        "∛(3⁹) ve 5²",
+        "√1024 ve 2⁴",
         "√625 ve 2⁵",
         "√4096 ve 3⁴"
       ],
@@ -6757,8 +6757,8 @@
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∜531441",
-          "∛32768",
+          "∛(3⁹)",
+          "√1024",
           "√625",
           "√256",
           "√4096"
@@ -6772,11 +6772,11 @@
         ],
         "pairs": [
           {
-            "radical": "∜531441",
+            "radical": "∛(3⁹)",
             "exponent": "3³"
           },
           {
-            "radical": "∛32768",
+            "radical": "√1024",
             "exponent": "2⁵"
           },
           {
@@ -6801,11 +6801,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "∜531441"
+            "value": "∛(3⁹)"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "∛32768"
+            "value": "√1024"
           },
           {
             "anchor": "kök_taşı_3",
@@ -6856,13 +6856,13 @@
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Gösterim geçidindeki 5 köklü taş ile 5 üslü taşı eşleştir. Dört köklü taşın değeri bir üslü taşla aynıdır. Hangi bir köklü ve bir üslü taş eşleşmeden kalır?",
-      "correctAnswer": "∜5764801 ve 2⁷",
-      "solution": "Köklü taşların değerlerini hesapla: 32, 49, 64, 81, 125. Üslü taşların değerleri: 32, 64, 81, 125, 128. Açıkta kalanlar ∜5764801 ve 2⁷. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "correctAnswer": "∜(7⁸) ve 2⁷",
+      "solution": "Köklü taşların değerlerini hesapla: 32, 49, 64, 81, 125. Üslü taşların değerleri: 32, 64, 81, 125, 128. Açıkta kalanlar ∜(7⁸) ve 2⁷. Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
-        "∜5764801 ve 2⁷",
-        "∛1953125 ve 5³",
+        "∜(7⁸) ve 2⁷",
+        "√15625 ve 5³",
         "√4096 ve 3⁴",
         "√1024 ve 2⁶"
       ],
@@ -6870,8 +6870,8 @@
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∛1953125",
-          "∜5764801",
+          "√15625",
+          "∜(7⁸)",
           "√4096",
           "√1024",
           "√6561"
@@ -6885,7 +6885,7 @@
         ],
         "pairs": [
           {
-            "radical": "∛1953125",
+            "radical": "√15625",
             "exponent": "5³"
           },
           {
@@ -6901,7 +6901,7 @@
             "exponent": "3⁴"
           }
         ],
-        "unmatchedRadical": "∜5764801",
+        "unmatchedRadical": "∜(7⁸)",
         "unmatchedExponent": "2⁷",
         "requiredPairs": 4
       },
@@ -6914,11 +6914,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "∛1953125"
+            "value": "√15625"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "∜5764801"
+            "value": "∜(7⁸)"
           },
           {
             "anchor": "kök_taşı_3",
@@ -6970,21 +6970,21 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Gösterim geçidindeki 5 köklü taş ile 5 üslü taşı eşleştir. Dört köklü taşın değeri bir üslü taşla aynıdır. Hangi bir köklü ve bir üslü taş eşleşmeden kalır?",
       "correctAnswer": "√64 ve 3²",
-      "solution": "Köklü taşların değerlerini hesapla: 4, 8, 49, 125, 128. Üslü taşların değerleri: 4, 9, 49, 125, 128. Açıkta kalanlar √64 ve 3². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "solution": "Köklü taşların değerlerini hesapla: 4, 8, 49, 125, 128. Üslü taşların değerleri: 4, 9, 49, 125, 128. Açıkta kalanlar √64 ve 3². Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
-        "∜256 ve 2⁷",
+        "∛64 ve 2⁷",
         "√64 ve 3²",
-        "∛1953125 ve 3²",
+        "√15625 ve 3²",
         "√2401 ve 5³"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∜256",
-          "∛1953125",
+          "∛64",
+          "√15625",
           "√2401",
           "√16384",
           "√64"
@@ -6998,11 +6998,11 @@
         ],
         "pairs": [
           {
-            "radical": "∜256",
+            "radical": "∛64",
             "exponent": "2²"
           },
           {
-            "radical": "∛1953125",
+            "radical": "√15625",
             "exponent": "5³"
           },
           {
@@ -7027,11 +7027,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "∜256"
+            "value": "∛64"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "∛1953125"
+            "value": "√15625"
           },
           {
             "anchor": "kök_taşı_3",
@@ -7083,22 +7083,22 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Gösterim geçidindeki 5 köklü taş ile 5 üslü taşı eşleştir. Dört köklü taşın değeri bir üslü taşla aynıdır. Hangi bir köklü ve bir üslü taş eşleşmeden kalır?",
       "correctAnswer": "√625 ve 3³",
-      "solution": "Köklü taşların değerlerini hesapla: 4, 8, 9, 16, 25. Üslü taşların değerleri: 4, 8, 9, 16, 27. Açıkta kalanlar √625 ve 3³. Eşdeğer kök gösterimleri: ∛729 = √81; ∜4096 = √64.",
-      "hint": "Kök derecesine dikkat et: karekökte iki, küpkökte üç, dördüncü dereceden kökte dört aynı çarpan aranır. Eşit değerli taşları eşleştir.",
+      "solution": "Köklü taşların değerlerini hesapla: 4, 8, 9, 16, 25. Üslü taşların değerleri: 4, 8, 9, 16, 27. Açıkta kalanlar √625 ve 3³. Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
-        "√16 ve 3²",
-        "∜4096 ve 2³",
+        "∜256 ve 3²",
+        "√64 ve 2³",
         "√625 ve 3³",
-        "∛729 ve 2²"
+        "√81 ve 2²"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√16",
-          "∜4096",
-          "∛729",
+          "∜256",
+          "√64",
+          "√81",
           "√625",
           "√256"
         ],
@@ -7111,15 +7111,15 @@
         ],
         "pairs": [
           {
-            "radical": "√16",
+            "radical": "∜256",
             "exponent": "2²"
           },
           {
-            "radical": "∜4096",
+            "radical": "√64",
             "exponent": "2³"
           },
           {
-            "radical": "∛729",
+            "radical": "√81",
             "exponent": "3²"
           },
           {
@@ -7140,15 +7140,15 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "√16"
+            "value": "∜256"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "∜4096"
+            "value": "√64"
           },
           {
             "anchor": "kök_taşı_3",
-            "value": "∛729"
+            "value": "√81"
           },
           {
             "anchor": "kök_taşı_4",
@@ -7182,8 +7182,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "∜4096 ile 2³ eşleşir mi?",
-        "solution": "∜4096 = 8 ve 2³ = 8; eşleşir."
+        "question": "√64 ile 2³ eşleşir mi?",
+        "solution": "√64 = 8 ve 2³ = 8; eşleşir."
       },
       "sourceQuestionId": "F21-K-05",
       "sourceDifficulty": "Kolay"
@@ -7196,11 +7196,11 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Gösterim geçidindeki 5 köklü taş ile 5 üslü taşı eşleştir. Dört köklü taşın değeri bir üslü taşla aynıdır. Hangi bir köklü ve bir üslü taş eşleşmeden kalır?",
       "correctAnswer": "√4096 ve 3⁴",
-      "solution": "Köklü taşların değerlerini hesapla: 16, 25, 27, 32, 64. Üslü taşların değerleri: 16, 25, 27, 32, 81. Açıkta kalanlar √4096 ve 3⁴. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "solution": "Köklü taşların değerlerini hesapla: 16, 25, 27, 32, 64. Üslü taşların değerleri: 16, 25, 27, 32, 81. Açıkta kalanlar √4096 ve 3⁴. Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
-        "∜1048576 ve 3⁴",
+        "√1024 ve 3⁴",
         "∛4096 ve 5²",
         "√4096 ve 2⁵",
         "√4096 ve 3⁴"
@@ -7209,7 +7209,7 @@
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∜1048576",
+          "√1024",
           "∛4096",
           "√4096",
           "√729",
@@ -7224,7 +7224,7 @@
         ],
         "pairs": [
           {
-            "radical": "∜1048576",
+            "radical": "√1024",
             "exponent": "2⁵"
           },
           {
@@ -7253,7 +7253,7 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "∜1048576"
+            "value": "√1024"
           },
           {
             "anchor": "kök_taşı_2",
@@ -7308,22 +7308,22 @@
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Gösterim geçidindeki 5 köklü taş ile 5 üslü taşı eşleştir. Dört köklü taşın değeri bir üslü taşla aynıdır. Hangi bir köklü ve bir üslü taş eşleşmeden kalır?",
-      "correctAnswer": "∛117649 ve 2⁷",
-      "solution": "Köklü taşların değerlerini hesapla: 32, 49, 64, 81, 125. Üslü taşların değerleri: 32, 64, 81, 125, 128. Açıkta kalanlar ∛117649 ve 2⁷. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "correctAnswer": "∜(7⁸) ve 2⁷",
+      "solution": "Köklü taşların değerlerini hesapla: 32, 49, 64, 81, 125. Üslü taşların değerleri: 32, 64, 81, 125, 128. Açıkta kalanlar ∜(7⁸) ve 2⁷. Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
-        "∛117649 ve 2⁷",
-        "∛117649 ve 5³",
-        "∜16777216 ve 2⁵",
+        "∜(7⁸) ve 2⁷",
+        "∜(7⁸) ve 5³",
+        "√4096 ve 2⁵",
         "√6561 ve 3⁴"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∛117649",
-          "∜16777216",
+          "∜(7⁸)",
+          "√4096",
           "√6561",
           "√15625",
           "√1024"
@@ -7337,7 +7337,7 @@
         ],
         "pairs": [
           {
-            "radical": "∜16777216",
+            "radical": "√4096",
             "exponent": "2⁶"
           },
           {
@@ -7353,7 +7353,7 @@
             "exponent": "2⁵"
           }
         ],
-        "unmatchedRadical": "∛117649",
+        "unmatchedRadical": "∜(7⁸)",
         "unmatchedExponent": "2⁷",
         "requiredPairs": 4
       },
@@ -7366,11 +7366,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "∛117649"
+            "value": "∜(7⁸)"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "∜16777216"
+            "value": "√4096"
           },
           {
             "anchor": "kök_taşı_3",
@@ -7421,22 +7421,22 @@
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Gösterim geçidindeki 5 köklü taş ile 5 üslü taşı eşleştir. Dört köklü taşın değeri bir üslü taşla aynıdır. Hangi bir köklü ve bir üslü taş eşleşmeden kalır?",
-      "correctAnswer": "∜4096 ve 3²",
-      "solution": "Köklü taşların değerlerini hesapla: 4, 8, 49, 125, 128. Üslü taşların değerleri: 4, 9, 49, 125, 128. Açıkta kalanlar ∜4096 ve 3². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "correctAnswer": "∛512 ve 3²",
+      "solution": "Köklü taşların değerlerini hesapla: 4, 8, 49, 125, 128. Üslü taşların değerleri: 4, 9, 49, 125, 128. Açıkta kalanlar ∛512 ve 3². Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
-        "∜4096 ve 5³",
-        "∜4096 ve 3²",
-        "∛117649 ve 7²",
+        "∛512 ve 5³",
+        "∛512 ve 3²",
+        "√2401 ve 7²",
         "√15625 ve 3²"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∜4096",
-          "∛117649",
+          "∛512",
+          "√2401",
           "√15625",
           "√16384",
           "√16"
@@ -7450,7 +7450,7 @@
         ],
         "pairs": [
           {
-            "radical": "∛117649",
+            "radical": "√2401",
             "exponent": "7²"
           },
           {
@@ -7466,7 +7466,7 @@
             "exponent": "2²"
           }
         ],
-        "unmatchedRadical": "∜4096",
+        "unmatchedRadical": "∛512",
         "unmatchedExponent": "3²",
         "requiredPairs": 4
       },
@@ -7479,11 +7479,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "∜4096"
+            "value": "∛512"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "∛117649"
+            "value": "√2401"
           },
           {
             "anchor": "kök_taşı_3",
@@ -7521,8 +7521,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "∜4096 ile 2³ eşleşir mi?",
-        "solution": "∜4096 = 8 ve 2³ = 8; eşleşir."
+        "question": "∛512 ile 2³ eşleşir mi?",
+        "solution": "∛512 = 8 ve 2³ = 8; eşleşir."
       },
       "sourceQuestionId": "F21-K-08",
       "sourceDifficulty": "Kolay"
@@ -7535,14 +7535,14 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Gösterim geçidindeki 5 köklü taş ile 5 üslü taşı eşleştir. Dört köklü taşın değeri bir üslü taşla aynıdır. Hangi bir köklü ve bir üslü taş eşleşmeden kalır?",
       "correctAnswer": "√625 ve 3³",
-      "solution": "Köklü taşların değerlerini hesapla: 4, 8, 9, 16, 25. Üslü taşların değerleri: 4, 8, 9, 16, 27. Açıkta kalanlar √625 ve 3³. Eşdeğer kök gösterimleri: ∛729 = √81; ∜4096 = √64.",
-      "hint": "Kök derecesine dikkat et: karekökte iki, küpkökte üç, dördüncü dereceden kökte dört aynı çarpan aranır. Eşit değerli taşları eşleştir.",
+      "solution": "Köklü taşların değerlerini hesapla: 4, 8, 9, 16, 25. Üslü taşların değerleri: 4, 8, 9, 16, 27. Açıkta kalanlar √625 ve 3³. Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
         "∜4096 ve 2⁴",
         "√16 ve 3³",
         "√625 ve 3³",
-        "∛729 ve 2²"
+        "√81 ve 2²"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
@@ -7550,7 +7550,7 @@
         "radicalItems": [
           "∜4096",
           "√16",
-          "∛729",
+          "√81",
           "√625",
           "√256"
         ],
@@ -7571,7 +7571,7 @@
             "exponent": "2²"
           },
           {
-            "radical": "∛729",
+            "radical": "√81",
             "exponent": "3²"
           },
           {
@@ -7600,7 +7600,7 @@
           },
           {
             "anchor": "kök_taşı_3",
-            "value": "∛729"
+            "value": "√81"
           },
           {
             "anchor": "kök_taşı_4",
@@ -7648,12 +7648,12 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Gösterim geçidindeki 5 köklü taş ile 5 üslü taşı eşleştir. Dört köklü taşın değeri bir üslü taşla aynıdır. Hangi bir köklü ve bir üslü taş eşleşmeden kalır?",
       "correctAnswer": "√4096 ve 3⁴",
-      "solution": "Köklü taşların değerlerini hesapla: 16, 25, 27, 32, 64. Üslü taşların değerleri: 16, 25, 27, 32, 81. Açıkta kalanlar √4096 ve 3⁴. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "solution": "Köklü taşların değerlerini hesapla: 16, 25, 27, 32, 64. Üslü taşların değerleri: 16, 25, 27, 32, 81. Açıkta kalanlar √4096 ve 3⁴. Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
-        "∜65536 ve 2⁴",
-        "∛15625 ve 3³",
+        "∛4096 ve 2⁴",
+        "√625 ve 3³",
         "√1024 ve 5²",
         "√4096 ve 3⁴"
       ],
@@ -7661,8 +7661,8 @@
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∜65536",
-          "∛15625",
+          "∛4096",
+          "√625",
           "√1024",
           "√4096",
           "√729"
@@ -7676,11 +7676,11 @@
         ],
         "pairs": [
           {
-            "radical": "∜65536",
+            "radical": "∛4096",
             "exponent": "2⁴"
           },
           {
-            "radical": "∛15625",
+            "radical": "√625",
             "exponent": "5²"
           },
           {
@@ -7705,11 +7705,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "∜65536"
+            "value": "∛4096"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "∛15625"
+            "value": "√625"
           },
           {
             "anchor": "kök_taşı_3",
@@ -17632,24 +17632,24 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçidin solunda beş köklü, sağında beş üslü taş bulunmaktadır. Eşdeğer dört çifti eşleştirince açıkta kalan köklü ve üslü taşlar hangileridir?",
       "correctAnswer": "√(11⁴) ve 13²",
-      "solution": "Dört eş çift: ∛(2⁹)=2³, ∜(3⁸)=3², √(5⁴)=5², √(7⁴)=7². Artanlar √(11⁴) ve 13². Eşdeğer kök gösterimleri: ∛(2⁹) = √(2⁶); ∜(3⁸) = √(3⁴).",
-      "hint": "Kök derecesine dikkat et: karekökte iki, küpkökte üç, dördüncü dereceden kökte dört aynı çarpan aranır. Eşit değerli taşları eşleştir.",
+      "solution": "Dört eş çift: √(2⁶)=2³, √(3⁴)=3², ∜(5⁸)=5², ∛(7⁶)=7². Artanlar √(11⁴) ve 13². Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
         "√(11⁴) ve 13²",
         "√(11⁴) ve 2³",
-        "∜(3⁸) ve 13²",
-        "√(5⁴) ve 7²"
+        "√(3⁴) ve 13²",
+        "∜(5⁸) ve 7²"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
           "√(11⁴)",
-          "√(5⁴)",
-          "√(7⁴)",
-          "∜(3⁸)",
-          "∛(2⁹)"
+          "∜(5⁸)",
+          "∛(7⁶)",
+          "√(3⁴)",
+          "√(2⁶)"
         ],
         "exponentItems": [
           "13²",
@@ -17660,19 +17660,19 @@
         ],
         "pairs": [
           {
-            "radical": "∛(2⁹)",
+            "radical": "√(2⁶)",
             "exponent": "2³"
           },
           {
-            "radical": "∜(3⁸)",
+            "radical": "√(3⁴)",
             "exponent": "3²"
           },
           {
-            "radical": "√(5⁴)",
+            "radical": "∜(5⁸)",
             "exponent": "5²"
           },
           {
-            "radical": "√(7⁴)",
+            "radical": "∛(7⁶)",
             "exponent": "7²"
           }
         ],
@@ -17693,19 +17693,19 @@
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "√(5⁴)"
+            "value": "∜(5⁸)"
           },
           {
             "anchor": "kök_taşı_3",
-            "value": "√(7⁴)"
+            "value": "∛(7⁶)"
           },
           {
             "anchor": "kök_taşı_4",
-            "value": "∜(3⁸)"
+            "value": "√(3⁴)"
           },
           {
             "anchor": "kök_taşı_5",
-            "value": "∛(2⁹)"
+            "value": "√(2⁶)"
           },
           {
             "anchor": "üs_taşı_1",
@@ -17731,8 +17731,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "∛(2⁹) ile 2³ eşleşir mi?",
-        "solution": "∛(2⁹)=2³=8."
+        "question": "√(2⁶) ile 2³ eşleşir mi?",
+        "solution": "√(2⁶)=2³=8."
       },
       "sourceQuestionId": "F21-O-01",
       "sourceDifficulty": "Orta"
@@ -17744,13 +17744,13 @@
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçidin solunda beş köklü, sağında beş üslü taş bulunmaktadır. Eşdeğer dört çifti eşleştirince açıkta kalan köklü ve üslü taşlar hangileridir?",
-      "correctAnswer": "∜(11⁸) ve 13²",
-      "solution": "Dört eş çift: √(2⁶)=2³, √(3⁴)=3², ∛(5⁶)=5², √(7⁴)=7². Artanlar ∜(11⁸) ve 13². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "correctAnswer": "√(11⁴) ve 13²",
+      "solution": "Dört eş çift: ∜(2¹²)=2³, √(3⁴)=3², ∛(5⁶)=5², √(7⁴)=7². Artanlar √(11⁴) ve 13². Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
-        "∜(11⁸) ve 2³",
-        "∜(11⁸) ve 13²",
+        "√(11⁴) ve 2³",
+        "√(11⁴) ve 13²",
         "√(3⁴) ve 13²",
         "∛(5⁶) ve 7²"
       ],
@@ -17758,9 +17758,9 @@
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∜(11⁸)",
+          "√(11⁴)",
           "∛(5⁶)",
-          "√(2⁶)",
+          "∜(2¹²)",
           "√(7⁴)",
           "√(3⁴)"
         ],
@@ -17773,7 +17773,7 @@
         ],
         "pairs": [
           {
-            "radical": "√(2⁶)",
+            "radical": "∜(2¹²)",
             "exponent": "2³"
           },
           {
@@ -17789,7 +17789,7 @@
             "exponent": "7²"
           }
         ],
-        "unmatchedRadical": "∜(11⁸)",
+        "unmatchedRadical": "√(11⁴)",
         "unmatchedExponent": "13²",
         "requiredPairs": 4
       },
@@ -17802,7 +17802,7 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "∜(11⁸)"
+            "value": "√(11⁴)"
           },
           {
             "anchor": "kök_taşı_2",
@@ -17810,7 +17810,7 @@
           },
           {
             "anchor": "kök_taşı_3",
-            "value": "√(2⁶)"
+            "value": "∜(2¹²)"
           },
           {
             "anchor": "kök_taşı_4",
@@ -17857,23 +17857,23 @@
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçidin solunda beş köklü, sağında beş üslü taş bulunmaktadır. Eşdeğer dört çifti eşleştirince açıkta kalan köklü ve üslü taşlar hangileridir?",
-      "correctAnswer": "∛(11⁶) ve 13²",
-      "solution": "Dört eş çift: ∜(2¹²)=2³, √(3⁴)=3², √(5⁴)=5², √(7⁴)=7². Artanlar ∛(11⁶) ve 13². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "correctAnswer": "√(11⁴) ve 13²",
+      "solution": "Dört eş çift: ∜(2¹²)=2³, √(3⁴)=3², √(5⁴)=5², ∛(7⁶)=7². Artanlar √(11⁴) ve 13². Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
-        "∛(11⁶) ve 2³",
+        "√(11⁴) ve 2³",
         "√(3⁴) ve 13²",
-        "∛(11⁶) ve 13²",
+        "√(11⁴) ve 13²",
         "√(5⁴) ve 7²"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∛(11⁶)",
+          "√(11⁴)",
           "∜(2¹²)",
-          "√(7⁴)",
+          "∛(7⁶)",
           "√(3⁴)",
           "√(5⁴)"
         ],
@@ -17898,11 +17898,11 @@
             "exponent": "5²"
           },
           {
-            "radical": "√(7⁴)",
+            "radical": "∛(7⁶)",
             "exponent": "7²"
           }
         ],
-        "unmatchedRadical": "∛(11⁶)",
+        "unmatchedRadical": "√(11⁴)",
         "unmatchedExponent": "13²",
         "requiredPairs": 4
       },
@@ -17915,7 +17915,7 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "∛(11⁶)"
+            "value": "√(11⁴)"
           },
           {
             "anchor": "kök_taşı_2",
@@ -17923,7 +17923,7 @@
           },
           {
             "anchor": "kök_taşı_3",
-            "value": "√(7⁴)"
+            "value": "∛(7⁶)"
           },
           {
             "anchor": "kök_taşı_4",
@@ -17970,23 +17970,23 @@
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçidin solunda beş köklü, sağında beş üslü taş bulunmaktadır. Eşdeğer dört çifti eşleştirince açıkta kalan köklü ve üslü taşlar hangileridir?",
-      "correctAnswer": "∜(13⁸) ve 15²",
-      "solution": "Dört eş çift: ∛(2¹²)=2⁴, √(3⁶)=3³, √(5⁶)=5³, √(7⁶)=7³. Artanlar ∜(13⁸) ve 15². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "correctAnswer": "√(13⁴) ve 15²",
+      "solution": "Dört eş çift: ∛(2¹²)=2⁴, √(3⁶)=3³, ∜(5¹²)=5³, √(7⁶)=7³. Artanlar √(13⁴) ve 15². Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
-        "∜(13⁸) ve 2⁴",
+        "√(13⁴) ve 2⁴",
         "√(3⁶) ve 15²",
-        "√(5⁶) ve 7³",
-        "∜(13⁸) ve 15²"
+        "∜(5¹²) ve 7³",
+        "√(13⁴) ve 15²"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∜(13⁸)",
+          "√(13⁴)",
           "∛(2¹²)",
-          "√(5⁶)",
+          "∜(5¹²)",
           "√(3⁶)",
           "√(7⁶)"
         ],
@@ -18007,7 +18007,7 @@
             "exponent": "3³"
           },
           {
-            "radical": "√(5⁶)",
+            "radical": "∜(5¹²)",
             "exponent": "5³"
           },
           {
@@ -18015,7 +18015,7 @@
             "exponent": "7³"
           }
         ],
-        "unmatchedRadical": "∜(13⁸)",
+        "unmatchedRadical": "√(13⁴)",
         "unmatchedExponent": "15²",
         "requiredPairs": 4
       },
@@ -18028,7 +18028,7 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "∜(13⁸)"
+            "value": "√(13⁴)"
           },
           {
             "anchor": "kök_taşı_2",
@@ -18036,7 +18036,7 @@
           },
           {
             "anchor": "kök_taşı_3",
-            "value": "√(5⁶)"
+            "value": "∜(5¹²)"
           },
           {
             "anchor": "kök_taşı_4",
@@ -18083,13 +18083,13 @@
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçidin solunda beş köklü, sağında beş üslü taş bulunmaktadır. Eşdeğer dört çifti eşleştirince açıkta kalan köklü ve üslü taşlar hangileridir?",
-      "correctAnswer": "∜(13⁸) ve 15²",
-      "solution": "Dört eş çift: ∛(2¹²)=2⁴, √(3⁶)=3³, √(5⁶)=5³, √(7⁶)=7³. Artanlar ∜(13⁸) ve 15². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "correctAnswer": "√(13⁴) ve 15²",
+      "solution": "Dört eş çift: ∜(2¹⁶)=2⁴, √(3⁶)=3³, √(5⁶)=5³, ∛(7⁹)=7³. Artanlar √(13⁴) ve 15². Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
-        "∜(13⁸) ve 15²",
-        "∜(13⁸) ve 2⁴",
+        "√(13⁴) ve 15²",
+        "√(13⁴) ve 2⁴",
         "√(3⁶) ve 15²",
         "√(5⁶) ve 7³"
       ],
@@ -18097,9 +18097,9 @@
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∛(2¹²)",
-          "∜(13⁸)",
-          "√(7⁶)",
+          "∜(2¹⁶)",
+          "√(13⁴)",
+          "∛(7⁹)",
           "√(3⁶)",
           "√(5⁶)"
         ],
@@ -18112,7 +18112,7 @@
         ],
         "pairs": [
           {
-            "radical": "∛(2¹²)",
+            "radical": "∜(2¹⁶)",
             "exponent": "2⁴"
           },
           {
@@ -18124,11 +18124,11 @@
             "exponent": "5³"
           },
           {
-            "radical": "√(7⁶)",
+            "radical": "∛(7⁹)",
             "exponent": "7³"
           }
         ],
-        "unmatchedRadical": "∜(13⁸)",
+        "unmatchedRadical": "√(13⁴)",
         "unmatchedExponent": "15²",
         "requiredPairs": 4
       },
@@ -18141,15 +18141,15 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "∛(2¹²)"
+            "value": "∜(2¹⁶)"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "∜(13⁸)"
+            "value": "√(13⁴)"
           },
           {
             "anchor": "kök_taşı_3",
-            "value": "√(7⁶)"
+            "value": "∛(7⁹)"
           },
           {
             "anchor": "kök_taşı_4",
@@ -18196,23 +18196,23 @@
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçidin solunda beş köklü, sağında beş üslü taş bulunmaktadır. Eşdeğer dört çifti eşleştirince açıkta kalan köklü ve üslü taşlar hangileridir?",
-      "correctAnswer": "∛(13⁶) ve 15²",
-      "solution": "Dört eş çift: √(2⁸)=2⁴, √(3⁶)=3³, √(5⁶)=5³, ∜(7¹²)=7³. Artanlar ∛(13⁶) ve 15². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "correctAnswer": "√(13⁴) ve 15²",
+      "solution": "Dört eş çift: √(2⁸)=2⁴, √(3⁶)=3³, ∜(5¹²)=5³, ∛(7⁹)=7³. Artanlar √(13⁴) ve 15². Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
-        "∛(13⁶) ve 2⁴",
-        "∛(13⁶) ve 15²",
+        "√(13⁴) ve 2⁴",
+        "√(13⁴) ve 15²",
         "√(3⁶) ve 15²",
-        "√(5⁶) ve 7³"
+        "∜(5¹²) ve 7³"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∜(7¹²)",
-          "∛(13⁶)",
-          "√(5⁶)",
+          "∛(7⁹)",
+          "√(13⁴)",
+          "∜(5¹²)",
           "√(3⁶)",
           "√(2⁸)"
         ],
@@ -18233,15 +18233,15 @@
             "exponent": "3³"
           },
           {
-            "radical": "√(5⁶)",
+            "radical": "∜(5¹²)",
             "exponent": "5³"
           },
           {
-            "radical": "∜(7¹²)",
+            "radical": "∛(7⁹)",
             "exponent": "7³"
           }
         ],
-        "unmatchedRadical": "∛(13⁶)",
+        "unmatchedRadical": "√(13⁴)",
         "unmatchedExponent": "15²",
         "requiredPairs": 4
       },
@@ -18254,15 +18254,15 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "∜(7¹²)"
+            "value": "∛(7⁹)"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "∛(13⁶)"
+            "value": "√(13⁴)"
           },
           {
             "anchor": "kök_taşı_3",
-            "value": "√(5⁶)"
+            "value": "∜(5¹²)"
           },
           {
             "anchor": "kök_taşı_4",
@@ -18296,7 +18296,7 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "√(5⁶) ve 5³ aynı değer midir?",
+        "question": "∜(5¹²) ve 5³ aynı değer midir?",
         "solution": "İkisi de 125."
       },
       "sourceQuestionId": "F21-O-06",
@@ -18310,21 +18310,21 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçidin solunda beş köklü, sağında beş üslü taş bulunmaktadır. Eşdeğer dört çifti eşleştirince açıkta kalan köklü ve üslü taşlar hangileridir?",
       "correctAnswer": "√(15⁴) ve 17²",
-      "solution": "Dört eş çift: √(2⁶)=2³, ∛(3⁶)=3², ∜(5⁸)=5², √(7⁴)=7². Artanlar √(15⁴) ve 17². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "solution": "Dört eş çift: √(2⁶)=2³, ∜(3⁸)=3², ∛(5⁶)=5², √(7⁴)=7². Artanlar √(15⁴) ve 17². Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
         "√(15⁴) ve 2³",
-        "∛(3⁶) ve 17²",
+        "∜(3⁸) ve 17²",
         "√(15⁴) ve 17²",
-        "∜(5⁸) ve 7²"
+        "∛(5⁶) ve 7²"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∛(3⁶)",
-          "∜(5⁸)",
+          "∜(3⁸)",
+          "∛(5⁶)",
           "√(15⁴)",
           "√(7⁴)",
           "√(2⁶)"
@@ -18342,11 +18342,11 @@
             "exponent": "2³"
           },
           {
-            "radical": "∛(3⁶)",
+            "radical": "∜(3⁸)",
             "exponent": "3²"
           },
           {
-            "radical": "∜(5⁸)",
+            "radical": "∛(5⁶)",
             "exponent": "5²"
           },
           {
@@ -18367,11 +18367,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "∛(3⁶)"
+            "value": "∜(3⁸)"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "∜(5⁸)"
+            "value": "∛(5⁶)"
           },
           {
             "anchor": "kök_taşı_3",
@@ -18422,23 +18422,23 @@
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçidin solunda beş köklü, sağında beş üslü taş bulunmaktadır. Eşdeğer dört çifti eşleştirince açıkta kalan köklü ve üslü taşlar hangileridir?",
-      "correctAnswer": "∛(15⁶) ve 17²",
-      "solution": "Dört eş çift: ∜(2¹²)=2³, √(3⁴)=3², √(5⁴)=5², √(7⁴)=7². Artanlar ∛(15⁶) ve 17². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "correctAnswer": "√(15⁴) ve 17²",
+      "solution": "Dört eş çift: ∛(2⁹)=2³, ∜(3⁸)=3², √(5⁴)=5², √(7⁴)=7². Artanlar √(15⁴) ve 17². Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
-        "∛(15⁶) ve 2³",
-        "√(3⁴) ve 17²",
+        "√(15⁴) ve 2³",
+        "∜(3⁸) ve 17²",
         "√(5⁴) ve 7²",
-        "∛(15⁶) ve 17²"
+        "√(15⁴) ve 17²"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∜(2¹²)",
-          "∛(15⁶)",
-          "√(3⁴)",
+          "∛(2⁹)",
+          "√(15⁴)",
+          "∜(3⁸)",
           "√(7⁴)",
           "√(5⁴)"
         ],
@@ -18451,11 +18451,11 @@
         ],
         "pairs": [
           {
-            "radical": "∜(2¹²)",
+            "radical": "∛(2⁹)",
             "exponent": "2³"
           },
           {
-            "radical": "√(3⁴)",
+            "radical": "∜(3⁸)",
             "exponent": "3²"
           },
           {
@@ -18467,7 +18467,7 @@
             "exponent": "7²"
           }
         ],
-        "unmatchedRadical": "∛(15⁶)",
+        "unmatchedRadical": "√(15⁴)",
         "unmatchedExponent": "17²",
         "requiredPairs": 4
       },
@@ -18480,15 +18480,15 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "∜(2¹²)"
+            "value": "∛(2⁹)"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "∛(15⁶)"
+            "value": "√(15⁴)"
           },
           {
             "anchor": "kök_taşı_3",
-            "value": "√(3⁴)"
+            "value": "∜(3⁸)"
           },
           {
             "anchor": "kök_taşı_4",
@@ -18522,7 +18522,7 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "√(3⁴) hangi üslü gösterimle eşleşir?",
+        "question": "∜(3⁸) hangi üslü gösterimle eşleşir?",
         "solution": "3²=9."
       },
       "sourceQuestionId": "F21-O-08",
@@ -18536,21 +18536,21 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçidin solunda beş köklü, sağında beş üslü taş bulunmaktadır. Eşdeğer dört çifti eşleştirince açıkta kalan köklü ve üslü taşlar hangileridir?",
       "correctAnswer": "√(15⁴) ve 17²",
-      "solution": "Dört eş çift: √(2⁶)=2³, √(3⁴)=3², ∜(5⁸)=5², ∛(7⁶)=7². Artanlar √(15⁴) ve 17². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "solution": "Dört eş çift: √(2⁶)=2³, √(3⁴)=3², ∛(5⁶)=5², ∜(7⁸)=7². Artanlar √(15⁴) ve 17². Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
         "√(15⁴) ve 17²",
         "√(15⁴) ve 2³",
         "√(3⁴) ve 17²",
-        "∜(5⁸) ve 7²"
+        "∛(5⁶) ve 7²"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∛(7⁶)",
-          "∜(5⁸)",
+          "∜(7⁸)",
+          "∛(5⁶)",
           "√(3⁴)",
           "√(15⁴)",
           "√(2⁶)"
@@ -18572,11 +18572,11 @@
             "exponent": "3²"
           },
           {
-            "radical": "∜(5⁸)",
+            "radical": "∛(5⁶)",
             "exponent": "5²"
           },
           {
-            "radical": "∛(7⁶)",
+            "radical": "∜(7⁸)",
             "exponent": "7²"
           }
         ],
@@ -18593,11 +18593,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "∛(7⁶)"
+            "value": "∜(7⁸)"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "∜(5⁸)"
+            "value": "∛(5⁶)"
           },
           {
             "anchor": "kök_taşı_3",
@@ -18649,21 +18649,21 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçidin solunda beş köklü, sağında beş üslü taş bulunmaktadır. Eşdeğer dört çifti eşleştirince açıkta kalan köklü ve üslü taşlar hangileridir?",
       "correctAnswer": "√(11⁴) ve 13²",
-      "solution": "Dört eş çift: √(2⁸)=2⁴, ∜(3¹²)=3³, √(5⁶)=5³, ∛(7⁹)=7³. Artanlar √(11⁴) ve 13². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "solution": "Dört eş çift: √(2⁸)=2⁴, ∛(3⁹)=3³, √(5⁶)=5³, ∜(7¹²)=7³. Artanlar √(11⁴) ve 13². Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
         "√(11⁴) ve 2⁴",
         "√(11⁴) ve 13²",
-        "∜(3¹²) ve 13²",
+        "∛(3⁹) ve 13²",
         "√(5⁶) ve 7³"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∜(3¹²)",
-          "∛(7⁹)",
+          "∛(3⁹)",
+          "∜(7¹²)",
           "√(11⁴)",
           "√(2⁸)",
           "√(5⁶)"
@@ -18681,7 +18681,7 @@
             "exponent": "2⁴"
           },
           {
-            "radical": "∜(3¹²)",
+            "radical": "∛(3⁹)",
             "exponent": "3³"
           },
           {
@@ -18689,7 +18689,7 @@
             "exponent": "5³"
           },
           {
-            "radical": "∛(7⁹)",
+            "radical": "∜(7¹²)",
             "exponent": "7³"
           }
         ],
@@ -18706,11 +18706,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "∜(3¹²)"
+            "value": "∛(3⁹)"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "∛(7⁹)"
+            "value": "∜(7¹²)"
           },
           {
             "anchor": "kök_taşı_3",
@@ -29003,14 +29003,14 @@
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Eşdeğer olan dört çift eşleştirildiğinde eşleşmeden kalan köklü ve üslü taş hangileridir?",
-      "correctAnswer": "∛(11⁶) ve 11³",
-      "solution": "Eşleşenler: √(2¹²÷2²)=2⁵; √(3⁴·3²)=3³; √(5⁶÷5²)=5²; √(7²·7²)=7². Açıkta ∛(11⁶)=11² ve 11³ kalır. Eşdeğer kök gösterimleri: ∛(3⁹) = √(3⁴ · 3²). Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "correctAnswer": "∜(11⁸) ve 11³",
+      "solution": "Eşleşenler: √(2¹²÷2²)=2⁵; √(3⁴·3²)=3³; √(5⁶÷5²)=5²; √(7²·7²)=7². Açıkta ∜(11⁸)=11² ve 11³ kalır. Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
         "√(5⁶ ÷ 5²) ve 5²",
         "√(2¹² ÷ 2²) ve 2⁵",
-        "∛(11⁶) ve 11³",
+        "∜(11⁸) ve 11³",
         "√(7² · 7²) ve 7²"
       ],
       "fixedChoiceOrder": true,
@@ -29018,10 +29018,10 @@
         "kind": "matching_unmatched",
         "radicalItems": [
           "√(2¹² ÷ 2²)",
-          "∛(3⁹)",
+          "√(3⁴ · 3²)",
           "√(5⁶ ÷ 5²)",
           "√(7² · 7²)",
-          "∛(11⁶)"
+          "∜(11⁸)"
         ],
         "exponentItems": [
           "5²",
@@ -29036,7 +29036,7 @@
             "exponent": "2⁵"
           },
           {
-            "radical": "∛(3⁹)",
+            "radical": "√(3⁴ · 3²)",
             "exponent": "3³"
           },
           {
@@ -29048,7 +29048,7 @@
             "exponent": "7²"
           }
         ],
-        "unmatchedRadical": "∛(11⁶)",
+        "unmatchedRadical": "∜(11⁸)",
         "unmatchedExponent": "11³",
         "requiredPairs": 4
       },
@@ -29065,7 +29065,7 @@
           },
           {
             "anchor": "köklü taş 2",
-            "value": "∛(3⁹)"
+            "value": "√(3⁴ · 3²)"
           },
           {
             "anchor": "köklü taş 3",
@@ -29077,7 +29077,7 @@
           },
           {
             "anchor": "köklü taş 5",
-            "value": "∛(11⁶)"
+            "value": "∜(11⁸)"
           },
           {
             "anchor": "üslü taş 1",
@@ -29116,23 +29116,23 @@
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-      "correctAnswer": "∛(11⁹) ve 11⁴",
-      "solution": "Dört çift: √(2⁶) = 2³, √(3⁸) = 3⁴, ∜(5⁸) = 5², √(7⁴) = 7². Eşleşmeyenler ∛(11⁹) ve 11⁴. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "correctAnswer": "√(11⁶) ve 11⁴",
+      "solution": "Dört çift: √(2⁶) = 2³, √(3⁸) = 3⁴, ∛(5⁶) = 5², ∜(7⁸) = 7². Eşleşmeyenler √(11⁶) ve 11⁴. Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
         "√(2⁶) ve 2³",
         "√(3⁸) ve 3⁴",
-        "∜(5⁸) ve 5²",
-        "∛(11⁹) ve 11⁴"
+        "∛(5⁶) ve 5²",
+        "√(11⁶) ve 11⁴"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∜(5⁸)",
-          "∛(11⁹)",
-          "√(7⁴)",
+          "∛(5⁶)",
+          "√(11⁶)",
+          "∜(7⁸)",
           "√(3⁸)",
           "√(2⁶)"
         ],
@@ -29153,15 +29153,15 @@
             "exponent": "3⁴"
           },
           {
-            "radical": "∜(5⁸)",
+            "radical": "∛(5⁶)",
             "exponent": "5²"
           },
           {
-            "radical": "√(7⁴)",
+            "radical": "∜(7⁸)",
             "exponent": "7²"
           }
         ],
-        "unmatchedRadical": "∛(11⁹)",
+        "unmatchedRadical": "√(11⁶)",
         "unmatchedExponent": "11⁴",
         "requiredPairs": 4
       },
@@ -29174,15 +29174,15 @@
         "labels": [
           {
             "anchor": "köklü taş 1",
-            "value": "∜(5⁸)"
+            "value": "∛(5⁶)"
           },
           {
             "anchor": "köklü taş 2",
-            "value": "∛(11⁹)"
+            "value": "√(11⁶)"
           },
           {
             "anchor": "köklü taş 3",
-            "value": "√(7⁴)"
+            "value": "∜(7⁸)"
           },
           {
             "anchor": "köklü taş 4",
@@ -29230,11 +29230,11 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
       "correctAnswer": "√(11⁸) ve 11⁵",
-      "solution": "Dört çift: ∛(2⁶) = 2², √(3⁶) = 3³, √(5⁴) = 5², ∜(7⁸) = 7². Eşleşmeyenler √(11⁸) ve 11⁵. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "solution": "Dört çift: ∜(2⁸) = 2², √(3⁶) = 3³, √(5⁴) = 5², ∛(7⁶) = 7². Eşleşmeyenler √(11⁸) ve 11⁵. Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
-        "∛(2⁶) ve 2²",
+        "∜(2⁸) ve 2²",
         "√(11⁸) ve 11⁵",
         "√(3⁶) ve 3³",
         "√(5⁴) ve 5²"
@@ -29243,8 +29243,8 @@
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∛(2⁶)",
-          "∜(7⁸)",
+          "∜(2⁸)",
+          "∛(7⁶)",
           "√(5⁴)",
           "√(3⁶)",
           "√(11⁸)"
@@ -29258,7 +29258,7 @@
         ],
         "pairs": [
           {
-            "radical": "∛(2⁶)",
+            "radical": "∜(2⁸)",
             "exponent": "2²"
           },
           {
@@ -29270,7 +29270,7 @@
             "exponent": "5²"
           },
           {
-            "radical": "∜(7⁸)",
+            "radical": "∛(7⁶)",
             "exponent": "7²"
           }
         ],
@@ -29287,11 +29287,11 @@
         "labels": [
           {
             "anchor": "köklü taş 1",
-            "value": "∛(2⁶)"
+            "value": "∜(2⁸)"
           },
           {
             "anchor": "köklü taş 2",
-            "value": "∜(7⁸)"
+            "value": "∛(7⁶)"
           },
           {
             "anchor": "köklü taş 3",
@@ -29330,7 +29330,7 @@
       },
       "workedExample": {
         "question": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-        "solution": "Dört çift: ∛(2⁶) = 2², √(3⁶) = 3³, √(5¹⁰) = 5⁵, √(11⁴) = 11². Eşleşmeyenler √(13⁸) ve 13⁷."
+        "solution": "Dört çift: ∜(2⁸) = 2², √(3⁶) = 3³, √(5¹⁰) = 5⁵, √(11⁴) = 11². Eşleşmeyenler √(13⁸) ve 13⁷."
       },
       "sourceQuestionId": "F21-Z-03",
       "sourceDifficulty": "Zor"
@@ -29342,12 +29342,12 @@
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-      "correctAnswer": "∜(11²⁰) ve 11⁶",
-      "solution": "Dört çift: √(2⁶) = 2³, √(3⁸) = 3⁴, ∛(5⁶) = 5², √(7⁶) = 7³. Eşleşmeyenler ∜(11²⁰) ve 11⁶. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "correctAnswer": "√(11¹⁰) ve 11⁶",
+      "solution": "Dört çift: √(2⁶) = 2³, √(3⁸) = 3⁴, ∛(5⁶) = 5², ∜(7¹²) = 7³. Eşleşmeyenler √(11¹⁰) ve 11⁶. Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
-        "∜(11²⁰) ve 11⁶",
+        "√(11¹⁰) ve 11⁶",
         "√(2⁶) ve 2³",
         "√(3⁸) ve 3⁴",
         "∛(5⁶) ve 5²"
@@ -29356,9 +29356,9 @@
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∜(11²⁰)",
+          "√(11¹⁰)",
           "∛(5⁶)",
-          "√(7⁶)",
+          "∜(7¹²)",
           "√(3⁸)",
           "√(2⁶)"
         ],
@@ -29383,11 +29383,11 @@
             "exponent": "5²"
           },
           {
-            "radical": "√(7⁶)",
+            "radical": "∜(7¹²)",
             "exponent": "7³"
           }
         ],
-        "unmatchedRadical": "∜(11²⁰)",
+        "unmatchedRadical": "√(11¹⁰)",
         "unmatchedExponent": "11⁶",
         "requiredPairs": 4
       },
@@ -29400,7 +29400,7 @@
         "labels": [
           {
             "anchor": "köklü taş 1",
-            "value": "∜(11²⁰)"
+            "value": "√(11¹⁰)"
           },
           {
             "anchor": "köklü taş 2",
@@ -29408,7 +29408,7 @@
           },
           {
             "anchor": "köklü taş 3",
-            "value": "√(7⁶)"
+            "value": "∜(7¹²)"
           },
           {
             "anchor": "köklü taş 4",
@@ -29456,21 +29456,21 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
       "correctAnswer": "√(13¹²) ve 13⁷",
-      "solution": "Dört çift: √(2⁴) = 2², ∜(3¹²) = 3³, ∛(5⁹) = 5³, √(11⁴) = 11². Eşleşmeyenler √(13¹²) ve 13⁷. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "solution": "Dört çift: √(2⁴) = 2², ∛(3⁹) = 3³, ∜(5¹²) = 5³, √(11⁴) = 11². Eşleşmeyenler √(13¹²) ve 13⁷. Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
         "√(2⁴) ve 2²",
-        "∜(3¹²) ve 3³",
-        "∛(5⁹) ve 5³",
+        "∛(3⁹) ve 3³",
+        "∜(5¹²) ve 5³",
         "√(13¹²) ve 13⁷"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∛(5⁹)",
-          "∜(3¹²)",
+          "∜(5¹²)",
+          "∛(3⁹)",
           "√(2⁴)",
           "√(13¹²)",
           "√(11⁴)"
@@ -29488,11 +29488,11 @@
             "exponent": "2²"
           },
           {
-            "radical": "∜(3¹²)",
+            "radical": "∛(3⁹)",
             "exponent": "3³"
           },
           {
-            "radical": "∛(5⁹)",
+            "radical": "∜(5¹²)",
             "exponent": "5³"
           },
           {
@@ -29513,11 +29513,11 @@
         "labels": [
           {
             "anchor": "köklü taş 1",
-            "value": "∛(5⁹)"
+            "value": "∜(5¹²)"
           },
           {
             "anchor": "köklü taş 2",
-            "value": "∜(3¹²)"
+            "value": "∛(3⁹)"
           },
           {
             "anchor": "köklü taş 3",
@@ -29556,7 +29556,7 @@
       },
       "workedExample": {
         "question": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-        "solution": "Dört çift: √(2⁴) = 2², ∜(3¹²) = 3³, √(7¹²) = 7⁶, √(11⁴) = 11². Eşleşmeyenler √(13¹²) ve 13⁹."
+        "solution": "Dört çift: √(2⁴) = 2², ∛(3⁹) = 3³, √(7¹²) = 7⁶, √(11⁴) = 11². Eşleşmeyenler √(13¹²) ve 13⁹."
       },
       "sourceQuestionId": "F21-Z-05",
       "sourceDifficulty": "Zor"
@@ -29568,23 +29568,23 @@
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-      "correctAnswer": "∛(13²¹) ve 13⁸",
-      "solution": "Dört çift: √(2⁶) = 2³, √(3⁸) = 3⁴, ∜(5¹²) = 5³, √(11⁴) = 11². Eşleşmeyenler ∛(13²¹) ve 13⁸. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "correctAnswer": "√(13¹⁴) ve 13⁸",
+      "solution": "Dört çift: ∜(2¹²) = 2³, √(3⁸) = 3⁴, ∛(5⁹) = 5³, √(11⁴) = 11². Eşleşmeyenler √(13¹⁴) ve 13⁸. Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
-        "∛(13²¹) ve 13⁸",
-        "√(2⁶) ve 2³",
+        "√(13¹⁴) ve 13⁸",
+        "∜(2¹²) ve 2³",
         "√(3⁸) ve 3⁴",
-        "∜(5¹²) ve 5³"
+        "∛(5⁹) ve 5³"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∜(5¹²)",
-          "∛(13²¹)",
-          "√(2⁶)",
+          "∛(5⁹)",
+          "√(13¹⁴)",
+          "∜(2¹²)",
           "√(3⁸)",
           "√(11⁴)"
         ],
@@ -29597,7 +29597,7 @@
         ],
         "pairs": [
           {
-            "radical": "√(2⁶)",
+            "radical": "∜(2¹²)",
             "exponent": "2³"
           },
           {
@@ -29605,7 +29605,7 @@
             "exponent": "3⁴"
           },
           {
-            "radical": "∜(5¹²)",
+            "radical": "∛(5⁹)",
             "exponent": "5³"
           },
           {
@@ -29613,7 +29613,7 @@
             "exponent": "11²"
           }
         ],
-        "unmatchedRadical": "∛(13²¹)",
+        "unmatchedRadical": "√(13¹⁴)",
         "unmatchedExponent": "13⁸",
         "requiredPairs": 4
       },
@@ -29626,15 +29626,15 @@
         "labels": [
           {
             "anchor": "köklü taş 1",
-            "value": "∜(5¹²)"
+            "value": "∛(5⁹)"
           },
           {
             "anchor": "köklü taş 2",
-            "value": "∛(13²¹)"
+            "value": "√(13¹⁴)"
           },
           {
             "anchor": "köklü taş 3",
-            "value": "√(2⁶)"
+            "value": "∜(2¹²)"
           },
           {
             "anchor": "köklü taş 4",
@@ -29669,7 +29669,7 @@
       },
       "workedExample": {
         "question": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-        "solution": "Dört çift: √(2⁶) = 2³, √(3⁸) = 3⁴, √(7¹²) = 7⁶, √(11⁴) = 11². Eşleşmeyenler ∛(13²¹) ve 13¹⁰."
+        "solution": "Dört çift: ∜(2¹²) = 2³, √(3⁸) = 3⁴, √(7¹²) = 7⁶, √(11⁴) = 11². Eşleşmeyenler √(13¹⁴) ve 13¹⁰."
       },
       "sourceQuestionId": "F21-Z-06",
       "sourceDifficulty": "Zor"
@@ -29681,23 +29681,23 @@
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-      "correctAnswer": "∛(13⁶) ve 13⁴",
-      "solution": "Dört çift: √(2⁴) = 2², ∜(3¹²) = 3³, √(5⁶) = 5³, √(11⁶) = 11³. Eşleşmeyenler ∛(13⁶) ve 13⁴. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "correctAnswer": "√(13⁴) ve 13⁴",
+      "solution": "Dört çift: √(2⁴) = 2², ∜(3¹²) = 3³, ∛(5⁹) = 5³, √(11⁶) = 11³. Eşleşmeyenler √(13⁴) ve 13⁴. Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
         "√(2⁴) ve 2²",
         "∜(3¹²) ve 3³",
-        "∛(13⁶) ve 13⁴",
-        "√(5⁶) ve 5³"
+        "√(13⁴) ve 13⁴",
+        "∛(5⁹) ve 5³"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∛(13⁶)",
+          "√(13⁴)",
           "∜(3¹²)",
-          "√(5⁶)",
+          "∛(5⁹)",
           "√(2⁴)",
           "√(11⁶)"
         ],
@@ -29718,7 +29718,7 @@
             "exponent": "3³"
           },
           {
-            "radical": "√(5⁶)",
+            "radical": "∛(5⁹)",
             "exponent": "5³"
           },
           {
@@ -29726,7 +29726,7 @@
             "exponent": "11³"
           }
         ],
-        "unmatchedRadical": "∛(13⁶)",
+        "unmatchedRadical": "√(13⁴)",
         "unmatchedExponent": "13⁴",
         "requiredPairs": 4
       },
@@ -29739,7 +29739,7 @@
         "labels": [
           {
             "anchor": "köklü taş 1",
-            "value": "∛(13⁶)"
+            "value": "√(13⁴)"
           },
           {
             "anchor": "köklü taş 2",
@@ -29747,7 +29747,7 @@
           },
           {
             "anchor": "köklü taş 3",
-            "value": "√(5⁶)"
+            "value": "∛(5⁹)"
           },
           {
             "anchor": "köklü taş 4",
@@ -29782,7 +29782,7 @@
       },
       "workedExample": {
         "question": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-        "solution": "Dört çift: √(2⁴) = 2², ∜(3¹²) = 3³, √(7¹²) = 7⁶, √(11⁶) = 11³. Eşleşmeyenler ∛(13⁶) ve 13⁶."
+        "solution": "Dört çift: √(2⁴) = 2², ∜(3¹²) = 3³, √(7¹²) = 7⁶, √(11⁶) = 11³. Eşleşmeyenler √(13⁴) ve 13⁶."
       },
       "sourceQuestionId": "F21-Z-07",
       "sourceDifficulty": "Zor"
@@ -29794,24 +29794,24 @@
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-      "correctAnswer": "∛(13⁹) ve 13⁵",
-      "solution": "Dört çift: √(2⁶) = 2³, ∜(3¹⁶) = 3⁴, √(7⁶) = 7³, √(11⁴) = 11². Eşleşmeyenler ∛(13⁹) ve 13⁵. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "correctAnswer": "√(13⁶) ve 13⁵",
+      "solution": "Dört çift: ∜(2¹²) = 2³, ∛(3¹²) = 3⁴, √(7⁶) = 7³, √(11⁴) = 11². Eşleşmeyenler √(13⁶) ve 13⁵. Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
-        "√(2⁶) ve 2³",
-        "∛(13⁹) ve 13⁵",
-        "∜(3¹⁶) ve 3⁴",
+        "∜(2¹²) ve 2³",
+        "√(13⁶) ve 13⁵",
+        "∛(3¹²) ve 3⁴",
         "√(7⁶) ve 7³"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∜(3¹⁶)",
-          "∛(13⁹)",
+          "∛(3¹²)",
+          "√(13⁶)",
           "√(11⁴)",
-          "√(2⁶)",
+          "∜(2¹²)",
           "√(7⁶)"
         ],
         "exponentItems": [
@@ -29823,11 +29823,11 @@
         ],
         "pairs": [
           {
-            "radical": "√(2⁶)",
+            "radical": "∜(2¹²)",
             "exponent": "2³"
           },
           {
-            "radical": "∜(3¹⁶)",
+            "radical": "∛(3¹²)",
             "exponent": "3⁴"
           },
           {
@@ -29839,7 +29839,7 @@
             "exponent": "11²"
           }
         ],
-        "unmatchedRadical": "∛(13⁹)",
+        "unmatchedRadical": "√(13⁶)",
         "unmatchedExponent": "13⁵",
         "requiredPairs": 4
       },
@@ -29852,11 +29852,11 @@
         "labels": [
           {
             "anchor": "köklü taş 1",
-            "value": "∜(3¹⁶)"
+            "value": "∛(3¹²)"
           },
           {
             "anchor": "köklü taş 2",
-            "value": "∛(13⁹)"
+            "value": "√(13⁶)"
           },
           {
             "anchor": "köklü taş 3",
@@ -29864,7 +29864,7 @@
           },
           {
             "anchor": "köklü taş 4",
-            "value": "√(2⁶)"
+            "value": "∜(2¹²)"
           },
           {
             "anchor": "köklü taş 5",
@@ -29895,7 +29895,7 @@
       },
       "workedExample": {
         "question": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-        "solution": "Dört çift: √(2⁶) = 2³, ∜(3¹⁶) = 3⁴, √(5¹²) = 5⁶, √(7⁴) = 7². Eşleşmeyenler √(11⁶) ve 11⁷."
+        "solution": "Dört çift: ∜(2¹²) = 2³, ∛(3¹²) = 3⁴, √(5¹²) = 5⁶, √(7⁴) = 7². Eşleşmeyenler √(11⁶) ve 11⁷."
       },
       "sourceQuestionId": "F21-Z-08",
       "sourceDifficulty": "Zor"
@@ -29908,21 +29908,21 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
       "correctAnswer": "√(13⁸) ve 13⁶",
-      "solution": "Dört çift: ∛(2⁶) = 2², ∜(3¹²) = 3³, √(7⁸) = 7⁴, √(11⁴) = 11². Eşleşmeyenler √(13⁸) ve 13⁶. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "solution": "Dört çift: ∜(2⁸) = 2², ∛(3⁹) = 3³, √(7⁸) = 7⁴, √(11⁴) = 11². Eşleşmeyenler √(13⁸) ve 13⁶. Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
-        "∛(2⁶) ve 2²",
+        "∜(2⁸) ve 2²",
         "√(13⁸) ve 13⁶",
-        "∜(3¹²) ve 3³",
+        "∛(3⁹) ve 3³",
         "√(7⁸) ve 7⁴"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∛(2⁶)",
-          "∜(3¹²)",
+          "∜(2⁸)",
+          "∛(3⁹)",
           "√(13⁸)",
           "√(11⁴)",
           "√(7⁸)"
@@ -29936,11 +29936,11 @@
         ],
         "pairs": [
           {
-            "radical": "∛(2⁶)",
+            "radical": "∜(2⁸)",
             "exponent": "2²"
           },
           {
-            "radical": "∜(3¹²)",
+            "radical": "∛(3⁹)",
             "exponent": "3³"
           },
           {
@@ -29965,11 +29965,11 @@
         "labels": [
           {
             "anchor": "köklü taş 1",
-            "value": "∛(2⁶)"
+            "value": "∜(2⁸)"
           },
           {
             "anchor": "köklü taş 2",
-            "value": "∜(3¹²)"
+            "value": "∛(3⁹)"
           },
           {
             "anchor": "köklü taş 3",
@@ -30008,7 +30008,7 @@
       },
       "workedExample": {
         "question": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-        "solution": "Dört çift: ∛(2⁶) = 2², ∜(3¹²) = 3³, √(5¹⁴) = 5⁷, √(7⁴) = 7². Eşleşmeyenler √(11⁸) ve 11⁸."
+        "solution": "Dört çift: ∜(2⁸) = 2², ∛(3⁹) = 3³, √(5¹⁴) = 5⁷, √(7⁴) = 7². Eşleşmeyenler √(11⁸) ve 11⁸."
       },
       "sourceQuestionId": "F21-Z-09",
       "sourceDifficulty": "Zor"
@@ -30021,21 +30021,21 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
       "correctAnswer": "√(13¹⁰) ve 13⁷",
-      "solution": "Dört çift: √(2⁶) = 2³, ∛(3¹²) = 3⁴, ∜(7¹⁶) = 7⁴, √(11⁶) = 11³. Eşleşmeyenler √(13¹⁰) ve 13⁷. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
-      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
+      "solution": "Dört çift: √(2⁶) = 2³, ∜(3¹⁶) = 3⁴, ∛(7¹²) = 7⁴, √(11⁶) = 11³. Eşleşmeyenler √(13¹⁰) ve 13⁷. Eşleştirmede kökün derecesi dikkate alınarak her taşın gerçek değeri karşılaştırılır.",
+      "hint": "Her taş için kökün derecesini incele. Karekökte ikinci kuvveti, küpkökte üçüncü kuvveti, dördüncü dereceden kökte dördüncü kuvveti kullanarak eş değerli üslü taşla eşleştir.",
       "inputType": "choice",
       "options": [
         "√(2⁶) ve 2³",
-        "∛(3¹²) ve 3⁴",
-        "∜(7¹⁶) ve 7⁴",
+        "∜(3¹⁶) ve 3⁴",
+        "∛(7¹²) ve 7⁴",
         "√(13¹⁰) ve 13⁷"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "∜(7¹⁶)",
-          "∛(3¹²)",
+          "∛(7¹²)",
+          "∜(3¹⁶)",
           "√(13¹⁰)",
           "√(11⁶)",
           "√(2⁶)"
@@ -30053,11 +30053,11 @@
             "exponent": "2³"
           },
           {
-            "radical": "∛(3¹²)",
+            "radical": "∜(3¹⁶)",
             "exponent": "3⁴"
           },
           {
-            "radical": "∜(7¹⁶)",
+            "radical": "∛(7¹²)",
             "exponent": "7⁴"
           },
           {
@@ -30078,11 +30078,11 @@
         "labels": [
           {
             "anchor": "köklü taş 1",
-            "value": "∜(7¹⁶)"
+            "value": "∛(7¹²)"
           },
           {
             "anchor": "köklü taş 2",
-            "value": "∛(3¹²)"
+            "value": "∜(3¹⁶)"
           },
           {
             "anchor": "köklü taş 3",
@@ -30121,7 +30121,7 @@
       },
       "workedExample": {
         "question": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-        "solution": "Dört çift: √(2⁶) = 2³, ∛(3¹²) = 3⁴, √(5¹⁴) = 5⁷, √(7⁶) = 7³. Eşleşmeyenler √(11¹⁰) ve 11⁹."
+        "solution": "Dört çift: √(2⁶) = 2³, ∜(3¹⁶) = 3⁴, √(5¹⁴) = 5⁷, √(7⁶) = 7³. Eşleşmeyenler √(11¹⁰) ve 11⁹."
       },
       "sourceQuestionId": "F21-Z-10",
       "sourceDifficulty": "Zor"
