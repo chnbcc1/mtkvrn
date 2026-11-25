@@ -21,7 +21,7 @@ function workedExample(q,questions){
  // A same-answer exercise can unintentionally reveal the current answer.
  const p=similar(q,questions,{avoidAnswer:true});
  if(!p)return null;
- return {id:p.id,prompt:p.prompt,solution:p.solution,labels:labels(p),sourceVerified:true};
+ return {id:p.id,prompt:p.prompt,solution:solution(p),labels:labels(p),sourceVerified:true};
 }
 function f16Solution(q){
  if(q.id!=="F16-Z-01")return null;
