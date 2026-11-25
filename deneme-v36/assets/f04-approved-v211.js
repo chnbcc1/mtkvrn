@@ -40,7 +40,8 @@
  .mtk-frame.mtk-f04-v211 .mtk-f04-label{position:absolute!important;transform:translate(-50%,-50%)!important;z-index:2!important;display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;text-align:center!important;color:#fff2c1!important;text-shadow:0 1px 2px #000!important;line-height:1.05!important;overflow:hidden!important;box-sizing:border-box!important;}
  .mtk-frame.mtk-f04-v211 .mtk-f04-label small{font-size:2.1cqw!important;font-weight:650!important;white-space:nowrap!important;}
  .mtk-frame.mtk-f04-v211 .mtk-f04-label strong{font-size:4.1cqw!important;font-weight:850!important;white-space:pre-line!important;}
- .mtk-frame.mtk-f04-v211 .mtk-f04-label.multiline strong{font-size:2.9cqw!important;}
+ .mtk-frame.mtk-f04-v211 .mtk-f04-label.multiline small{font-size:1.7cqw!important;}
+ .mtk-frame.mtk-f04-v211 .mtk-f04-label.multiline strong{font-size:2.2cqw!important;}
 `;
  function enhance(frame,q){
   if(!frame||q?.obstacleId!=="F04")return false;
