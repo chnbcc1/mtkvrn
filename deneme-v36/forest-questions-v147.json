@@ -205,16 +205,16 @@
       "difficulty": "kolay",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Duvarın sol sarmaşık kolunda 2³, sağ kolunda 2¹ tomurcuk vardır. İki kolda toplam kaç tomurcuk görülür?",
-      "correctAnswer": "10",
-      "solution": "8 + 2 = 10.",
-      "hint": "Üslü ifadeleri hesaplayıp topla.",
+      "prompt": "Duvarın sol sarmaşık kolunda 3³, sağ sarmaşık kolunda 3¹ tomurcuk vardır. İki kolda toplam kaç tomurcuk bulunur?",
+      "correctAnswer": "30",
+      "solution": "3³ = 27, 3¹ = 3; toplam 30 tomurcuk.",
+      "hint": "Önce 3³ ve 3¹ ifadelerini ayrı ayrı hesapla. Sonra tomurcuk sayılarını topla.",
       "inputType": "choice",
       "options": [
-        "14",
-        "10",
-        "8",
-        "2"
+        "24",
+        "30",
+        "27",
+        "33"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -227,18 +227,18 @@
         "labels": [
           {
             "anchor": "sol_dal",
-            "value": "2³"
+            "value": "3³"
           },
           {
             "anchor": "sağ_dal",
-            "value": "2¹"
+            "value": "3¹"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Bir dalda ilk gün 3 tomurcuk varsa ve her gün iki katına çıkarsa üçüncü gün kaç olur?",
-        "solution": "3 → 6 → 12; cevap 12."
+        "question": "Sol kolda 3², sağ kolda 5² tomurcuk varsa toplam kaç tomurcuk vardır?",
+        "solution": "3² = 9 ve 5² = 25. Toplam 9 + 25 = 34."
       },
       "sourceQuestionId": "F01-K-02",
       "sourceDifficulty": "Kolay"
@@ -341,16 +341,16 @@
       "difficulty": "kolay",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Duvarın sol sarmaşık kolunda 2⁴, sağ kolunda 2² tomurcuk vardır. İki kolda toplam kaç tomurcuk görülür?",
-      "correctAnswer": "20",
-      "solution": "16 + 4 = 20.",
-      "hint": "Üslü ifadeleri hesaplayıp topla.",
+      "prompt": "Duvarın sol sarmaşık kolunda 5², sağ sarmaşık kolunda 3² tomurcuk vardır. İki kolda toplam kaç tomurcuk bulunur?",
+      "correctAnswer": "34",
+      "solution": "5² = 25, 3² = 9; toplam 34 tomurcuk.",
+      "hint": "Önce 5² ve 3² ifadelerini ayrı ayrı hesapla. Sonra tomurcuk sayılarını topla.",
       "inputType": "choice",
       "options": [
-        "20",
-        "24",
-        "18",
-        "16"
+        "34",
+        "25",
+        "32",
+        "36"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -363,18 +363,18 @@
         "labels": [
           {
             "anchor": "sol_dal",
-            "value": "2⁴"
+            "value": "5²"
           },
           {
             "anchor": "sağ_dal",
-            "value": "2²"
+            "value": "3²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Bir dalda ilk gün 3 tomurcuk varsa ve her gün iki katına çıkarsa üçüncü gün kaç olur?",
-        "solution": "3 → 6 → 12; cevap 12."
+        "question": "Sol kolda 3², sağ kolda 5² tomurcuk varsa toplam kaç tomurcuk vardır?",
+        "solution": "3² = 9 ve 5² = 25. Toplam 9 + 25 = 34."
       },
       "sourceQuestionId": "F01-K-05",
       "sourceDifficulty": "Kolay"
@@ -477,16 +477,16 @@
       "difficulty": "kolay",
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Duvarın sol sarmaşık kolunda 2², sağ kolunda 2¹ tomurcuk vardır. İki kolda toplam kaç tomurcuk görülür?",
-      "correctAnswer": "6",
-      "solution": "4 + 2 = 6.",
-      "hint": "Üslü ifadeleri hesaplayıp topla.",
+      "prompt": "Duvarın sol sarmaşık kolunda 4², sağ sarmaşık kolunda 3² tomurcuk vardır. İki kolda toplam kaç tomurcuk bulunur?",
+      "correctAnswer": "25",
+      "solution": "4² = 16, 3² = 9; toplam 25 tomurcuk.",
+      "hint": "Önce 4² ve 3² ifadelerini ayrı ayrı hesapla. Sonra tomurcuk sayılarını topla.",
       "inputType": "choice",
       "options": [
-        "10",
-        "4",
-        "2",
-        "6"
+        "23",
+        "27",
+        "16",
+        "25"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -499,18 +499,18 @@
         "labels": [
           {
             "anchor": "sol_dal",
-            "value": "2²"
+            "value": "4²"
           },
           {
             "anchor": "sağ_dal",
-            "value": "2¹"
+            "value": "3²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Bir dalda ilk gün 3 tomurcuk varsa ve her gün iki katına çıkarsa üçüncü gün kaç olur?",
-        "solution": "3 → 6 → 12; cevap 12."
+        "question": "Sol kolda 3², sağ kolda 5² tomurcuk varsa toplam kaç tomurcuk vardır?",
+        "solution": "3² = 9 ve 5² = 25. Toplam 9 + 25 = 34."
       },
       "sourceQuestionId": "F01-K-08",
       "sourceDifficulty": "Kolay"
