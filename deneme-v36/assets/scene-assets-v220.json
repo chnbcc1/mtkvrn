@@ -1,0 +1,201 @@
+{
+  "schema": "approved-scenes-v220",
+  "sourceArchive": "Matematik_Evreni_21_Onayli_Sahne_v213.zip",
+  "status": "Archive recovered and verified locally; scene files absent in GitHub main at audit.",
+  "character": {
+    "file": "assets/erdem-ciko-onayli-v180.png",
+    "gitBlob": "dadfebd79edcf460f2d47af72997ddd36d512531",
+    "status": "existing GitHub blob; binary not decoded during v220 audit"
+  },
+  "scenes": [
+    {
+      "id": "F01",
+      "file": "assets/f01-ivy-wall-v213.webp",
+      "bytes": 685616,
+      "sha256": "14c4848051005c94b4d0eda613f9e4a9a5abf08a00e201688b8a2d7de53a507e",
+      "gitBlob": "f0843f0dff4e6507500f3114b7358b8917dbf66e",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "F02",
+      "file": "assets/f02-light-stairs-v213.webp",
+      "bytes": 676412,
+      "sha256": "a26f30436cd3fff8010bf59ec62e38d74c7b2ffcb6226ad960b5e8f6e389b38e",
+      "gitBlob": "45f721cedb8281608e3ec45ad2b5c14c9b0c560b",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "F03",
+      "file": "assets/f03-fog-turbine-v213.webp",
+      "bytes": 685254,
+      "sha256": "2c39ea5ebc02bb42b278ef42fb36fe75e4e0859755fefafb401da3f8ed6f1c2e",
+      "gitBlob": "3d81e419991e0eb5e29876eb69dbe090d87872ba",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "F04",
+      "file": "assets/f04-light-gate-v211.webp",
+      "bytes": 571448,
+      "sha256": "ded8481fb2ab77ccb8f81381f40dc670d86dd650b8314d53367d0b388c30232b",
+      "gitBlob": "f92b421939feba1b1b69b3f4b33b06cb4bda9fdc",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "F05",
+      "file": "assets/f05-crystals.webp",
+      "bytes": 552918,
+      "sha256": "377cc9388f8ceb42011aabd4a586b54d9b7863d024611433531ca8d3259da3aa",
+      "gitBlob": "9ad6969806e1de1c5de188cbceaea68d506ab575",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "F06",
+      "file": "assets/f06-mushroom-islands.webp",
+      "bytes": 595108,
+      "sha256": "3fd7798a83ac0f99d09deb15d992795213baaed7c5b3b8a1944a34610fef2cea",
+      "gitBlob": "ce8df5765672cb3b54761616435b0c37c2267c24",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "F07",
+      "file": "assets/f07-square-platform.webp",
+      "bytes": 647608,
+      "sha256": "dc091d94f91453b300d87894c76551ede9e70b2c89ac3e0ab027436f4fb67480",
+      "gitBlob": "e2d643c9e34d33463ec2935a0e7b19c7a4fdf102",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "F08",
+      "file": "assets/f08-broken-bridge.webp",
+      "bytes": 609292,
+      "sha256": "08217a50ae41ca1365a40acc347fe90e4a5cfca2538d1b0d2cea8b081ca9b2e7",
+      "gitBlob": "379ac14803f4f9ab7dfa004f49b5990bc6eebd40",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "F09",
+      "file": "assets/f09-rope-workshop.webp",
+      "bytes": 628180,
+      "sha256": "33af6ce789098a493b4e86b58ca838ec83fd39740c5cb68a3c3d90525f12f767",
+      "gitBlob": "c58e6a7c2a0fcb5340b2c9ea82e9967d0cabb0a4",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "F10",
+      "file": "assets/f10-light-rectangle.webp",
+      "bytes": 594760,
+      "sha256": "224dc17c1e682d67dd965aa4ab92db953f620b29df47b672ec5758d3f7ddd5a5",
+      "gitBlob": "28c17122c6e4fe0fe238e87e19b6d6dc66a196cf",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "F11",
+      "file": "assets/f11-water-gates.webp",
+      "bytes": 607960,
+      "sha256": "c49de32a7a77e2184d4b158f19811cd6c46fade17f4d5aab40a1b03806428083",
+      "gitBlob": "d03b5bc05720936769fe477f9bbcea9a083ce642",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "F12",
+      "file": "assets/f12-forked-path.webp",
+      "bytes": 599666,
+      "sha256": "58183deeeca148f7f08c55c02cc947026cad9f9035bcaa622ff56adf29bbdaf7",
+      "gitBlob": "34ce67408b78de66025a57b1635b883c432c86e7",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "F13",
+      "file": "assets/f13-cube-lock.webp",
+      "bytes": 594782,
+      "sha256": "c02ed98e0ca69c745106bb8e90ec0c65681d2f9257ca7876767468bbc2f1cf68",
+      "gitBlob": "5fd4de9addf6bab00b2157c335b15170f7eacc4a",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "F14",
+      "file": "assets/f14-gears.webp",
+      "bytes": 591912,
+      "sha256": "8051e530f36b577bdd954ecd0f15f64f6db84ea2b605bc5b1c38964f0fa0d99c",
+      "gitBlob": "5969fab7388abc3a4ff41b8f19e8d86c96bfc176",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "F15",
+      "file": "assets/f15-mirrors.webp",
+      "bytes": 598478,
+      "sha256": "5e5fc83f5ba86c83baa17e62802f6bdc5a0e4138c54c3e8a71c2ff431f01003e",
+      "gitBlob": "87f467807542590ba27357de0fc04108155894e0",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "F16",
+      "file": "assets/f16-inscriptions.webp",
+      "bytes": 532178,
+      "sha256": "7ba4e34d2b2332202f5c7a40a88dfc6e7d514c5118351a96dcb5bfe0ac5a3d69",
+      "gitBlob": "8aad1a939063ef2820951da9e57f9df469b36c52",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "F17",
+      "file": "assets/f17-blue-powder.webp",
+      "bytes": 590540,
+      "sha256": "9e643b37c2c098525a7955a53574d49ed48f47c644327230867da5e9abeaae73",
+      "gitBlob": "2182b3ee8c49c171a39a528c89c44606bd884346",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "F18",
+      "file": "assets/f18-signal-repeater.webp",
+      "bytes": 631006,
+      "sha256": "278ac26072bd073e25f029a03261208fee24283fd1c9a8e662ed4eb09b281680",
+      "gitBlob": "4123944b9ca10b26268cda89dad4c8f22a0521ab",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "F19",
+      "file": "assets/f19-stone-support.webp",
+      "bytes": 576102,
+      "sha256": "5d14782dbfcbfcbbd643d15ba04bfda4b59fe9bdf4f112cd7add16598c011135",
+      "gitBlob": "ae215ec05b5a4c1237d464c32c364fad1e0ffb63",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "F20",
+      "file": "assets/f20-observatory-gate.webp",
+      "bytes": 678552,
+      "sha256": "5b2f270b876bac018412590595bc767d951cdc15a2d69d5495eebdd20a58d711",
+      "gitBlob": "d8181022261d82ca2ecb2480166601ea27648c25",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "F21",
+      "file": "assets/f21-matching.webp",
+      "bytes": 602262,
+      "sha256": "952a127902b0cfd2d9bcef937c4199ddd4dc68e9cbc72b6bfcdacddab5121f24",
+      "gitBlob": "a08248c9f78497efad7a39795b48891d818e2530",
+      "width": 1254,
+      "height": 1254
+    }
+  ]
+}
