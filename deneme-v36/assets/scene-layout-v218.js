@@ -75,7 +75,7 @@ function loadImage(documentRef,src){
 }
 // Detached shell is not useful for pixel measurements: caller must attach it
 // first. This function never removes an existing live game or changes its DOM.
-async function mountScene({q,ui,sceneAPI,characterAPI,plaqueAPI,matchingAPI,run,save,onWrong,verifiedCropBand=null,documentRef=typeof document!=="undefined"?document:null}={}){
+async function mountScene({q,ui,sceneAPI,characterAPI,plaqueAPI,matchingAPI,specialAPI,run,save,onWrong,verifiedCropBand=null,documentRef=typeof document!=="undefined"?document:null}={}){
  const plan=sceneAPI?.plan(q),spec=sceneAPI?.scenes?.[q?.obstacleId],character=characterAPI?.plan(q?.obstacleId);
  if(!ui?.element?.isConnected||!documentRef||!plan||!spec||!character||!plaqueAPI||!characterAPI.fits(character,plan.labels))return null;
  if(!/^[a-z0-9-]+\.webp$/i.test(plan.file))return null;
@@ -98,10 +98,13 @@ async function mountScene({q,ui,sceneAPI,characterAPI,plaqueAPI,matchingAPI,run,
   if(!refresh()){destroy();return null}
   const char=await characterAPI.mount(plane,q.obstacleId,plan,{documentRef});
   if(!char||closed||!ui.element.isConnected){destroy();return null}
+  const special= specialAPI?.ids?.includes(q.obstacleId)?specialAPI.mount({q,plane,readout:ui.readout,documentRef}):null;
+  if(specialAPI?.ids?.includes(q.obstacleId)&&!special){destroy();return null}
+  if(special)clean.push(()=>special.destroy());
   if(plan.matching){
    const match=matchingAPI?.mount({q,plan,plane,readout:ui.readout,choices:ui.choices,run,save,plaqueAPI,documentRef,onWrong});
    if(!match){destroy();return null}clean.push(()=>match.destroy());
-  }else{
+  }else if(!special?.description?.diagramOnly){
    const panel=plaqueAPI.mountReadout(ui.readout,plan.labels,{documentRef});
    if(!panel){destroy();return null}clean.push(()=>panel.destroy());
    for(const label of plan.labels){
