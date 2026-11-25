@@ -95,7 +95,7 @@ for(const q of questions.filter(q=>q.obstacleId==="F21")){
 for(const diff of ["kolay","orta","zor"]){
  const f01=questions.filter(q=>q.obstacleId==="F01"&&q.difficulty===diff);
  assert.equal(f01.length,10);
- const powers=new Set(f01.flatMap(q=>[...q.prompt.matchAll(/(\\d+)[⁰¹²³⁴⁵⁶⁷⁸⁹]+/g)].map(x=>x[1])));
+ const powers=new Set(f01.flatMap(q=>[...q.prompt.matchAll(/(\d+)[⁰¹²³⁴⁵⁶⁷⁸⁹]+/g)].map(x=>x[1])));
  assert([...powers].some(base=>base!=="2"),"F01 "+diff+" must not use only powers of two");
 }
 const vineMedium=questions.filter(q=>q.obstacleId==="F01"&&q.difficulty==="orta");
