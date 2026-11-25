@@ -11118,7 +11118,7 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Bir enerji merdiveninin birinci basamağında 2⁵ birim, ikinci basamağında ise 4² birim güç birikmiştir. Birinci basamaktaki gücün dörtte biri kapıyı açmaya, ikinci basamaktaki gücün dörtte biri de uyarı lambasına harcanıyor. Geriye toplam kaç birim güç kalır?",
+      "prompt": "Bir enerji merdiveninin birinci basamağında 2⁵ birim, ikinci basamağında ise 2⁴ birim güç birikmiştir. Birinci basamaktaki gücün dörtte biri kapıyı açmaya, ikinci basamaktaki gücün dörtte biri de uyarı lambasına harcanıyor. Geriye toplam kaç birim güç kalır?",
       "correctAnswer": "36",
       "solution": "(32−8)+(16−4)=36.",
       "hint": "Her basamağın gücünü ayrı hesapla. Her birinden harcanan dörtte birlik kısmı çıkar, kalan güçleri topla.",
@@ -11148,7 +11148,7 @@
           },
           {
             "anchor": "uyarı",
-            "value": "4²"
+            "value": "2⁴"
           },
           {
             "anchor": "uyarı kullanımı",
@@ -11158,7 +11158,7 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "İki basamakta 2⁵ ve 4² güç vardır, sırasıyla 1/4 ve 1/2 tüketilirse kaç kalır?",
+        "question": "İki basamakta 2⁵ ve 2⁴ güç vardır, sırasıyla 1/4 ve 1/2 tüketilirse kaç kalır?",
         "solution": "24+8=32."
       },
       "sourceQuestionId": "F02-O-02",
