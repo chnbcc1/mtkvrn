@@ -12,7 +12,7 @@ function candidates(value){
   const c=s[i];if(c==="(")depth++;if(c===")")depth=Math.max(0,depth-1);
   if(depth!==0)continue;
   if(c===";"||c===","&&/\s/.test(s[i+1]||""))breaks.push(i+1);
-  else if(/[+−=]/.test(c)&&i>0&&s[i-1]===" ")breaks.push(i);
+  else if(/[+−=×÷·]/.test(c)&&i>0&&s[i-1]===" ")breaks.push(i);
  }
  function add(points){
   let start=0,lines=[];for(const i of [...points,s.length]){lines.push(s.slice(start,i).trim());start=i;}
@@ -35,7 +35,7 @@ function fit(value,width,height,measure,{maxSize=32,minReadable=MIN_READABLE}={}
  }
  return {...best,readable:best.size>=minReadable,width:w,height:h,lineHeight:LINE};
 }
-function mount(plane,label,{documentRef=typeof document!=="undefined"?document:null,matching=false,onActivate=null}={}){
+function mount(plane,label,{documentRef=typeof document!=="undefined"?document:null,matching=false,onActivate=null,onFit=null}={}){
  if(!plane||!documentRef||!label||!Array.isArray(label.box))return null;
  const el=documentRef.createElement(matching?"button":"span");
  if(matching)el.type="button";
@@ -57,6 +57,7 @@ function mount(plane,label,{documentRef=typeof document!=="undefined"?document:n
   if(!r)return null;
   span.style.fontSize=r.size+"px";span.textContent=r.lines.join("\n");
   el.dataset.readable=String(r.readable);
+  if(typeof onFit==="function")onFit(label,r);
   return r;
  }
  let observer=null;
@@ -66,6 +67,30 @@ function mount(plane,label,{documentRef=typeof document!=="undefined"?document:n
  refresh();
  return {element:el,refresh,destroy(){observer?.disconnect();el.remove();}};
 }
-const api=Object.freeze({candidates,fit,mount,MIN_READABLE,LINE});
+/* A readout outside the artwork: keep source expressions intact when the
+   plaque cannot display them at the provisional readable size. */
+function unreadableRows(labels,results){
+ return labels.filter(l=>results.get(l.slot)?.readable===false).map(l=>({slot:l.slot,anchor:String(l.anchor).replace(/_/g," "),value:String(l.value)}));
+}
+function mountReadout(container,labels,{documentRef=typeof document!=="undefined"?document:null}={}){
+ if(!container||!documentRef)return null;
+ const results=new Map();
+ const panel=documentRef.createElement("section"),heading=documentRef.createElement("div"),list=documentRef.createElement("dl");
+ panel.className="mtk-plaque-readout-v216";panel.hidden=true;
+ panel.setAttribute("aria-label","Görselde küçük kalan soru verileri");
+ heading.textContent="Görseldeki veriler";
+ Object.assign(heading.style,{fontWeight:"700",marginBottom:"4px"});
+ Object.assign(panel.style,{fontSize:"14px",lineHeight:"1.45",padding:"8px",border:"1px solid currentColor",borderRadius:"8px",maxWidth:"100%",boxSizing:"border-box"});
+ Object.assign(list.style,{margin:"0",display:"grid",gridTemplateColumns:"minmax(0,1fr) minmax(0,1.2fr)",gap:"4px 8px"});
+ panel.append(heading,list);container.appendChild(panel);
+ function update(label,result){
+  results.set(label.slot,result);
+  const rows=unreadableRows(labels,results);
+  list.replaceChildren();panel.hidden=rows.length===0;
+  for(const row of rows){const k=documentRef.createElement("dt"),v=documentRef.createElement("dd");k.textContent=row.anchor;v.textContent=row.value;Object.assign(k.style,{overflowWrap:"anywhere"});Object.assign(v.style,{margin:"0",fontWeight:"700",whiteSpace:"normal",overflowWrap:"anywhere"});list.append(k,v);}
+ }
+ return {element:panel,update,destroy(){panel.remove();}};
+}
+const api=Object.freeze({candidates,fit,mount,unreadableRows,mountReadout,MIN_READABLE,LINE});
 if(typeof module!=="undefined"&&module.exports)module.exports=api;else root.MTKPlaqueTextV216=api;
 })(typeof window!=="undefined"?window:globalThis);
