@@ -1,0 +1,12 @@
+/* v221: new shell is independent of legacy .mtk-frame absolute positioning. */
+.mtk-live-v221 { color-scheme:light; }
+.mtk-live-v221 > div:nth-child(2){border:3px solid #c69d5c;border-radius:10px;overscroll-behavior:contain;scrollbar-width:thin;padding-bottom:14px!important}
+.mtk-live-v221 .prompt{color:#33291b!important;background:transparent!important;border:0!important;box-shadow:none!important;padding:4px!important;margin:0!important;font-size:clamp(14px,3.6vmin,20px)!important;line-height:1.45!important;font-weight:720;overflow-wrap:anywhere;white-space:pre-wrap}
+.mtk-live-v221 .choice{min-width:0;width:100%;height:auto;min-height:44px!important;padding:7px!important;gap:5px!important;font-size:clamp(13px,3.4vmin,18px)!important;line-height:1.25!important;overflow-wrap:anywhere;white-space:normal;justify-content:center}
+.mtk-live-v221 .choiceMark{flex:0 0 auto!important;width:auto!important;height:auto!important;padding:4px!important;background:transparent!important}
+.mtk-live-v221 .choice.match-locked{opacity:.56}
+.mtk-live-v221 .btn{width:100%;min-width:0;min-height:44px!important;white-space:normal;overflow-wrap:anywhere;margin:0!important}
+.mtk-live-v221 .feedback,.mtk-live-v221 .solution{margin:4px 0!important;padding:8px!important;font-size:14px!important;line-height:1.45}
+.mtk-live-v221 .mtk-teaching-step{margin:6px 0;line-height:1.45;font-size:14px}
+.mtk-live-v221 .mtk-example-data p{margin:3px 0}
+.mtk-live-v221 [hidden]{display:none!important}
