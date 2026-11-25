@@ -153,6 +153,13 @@ function ensure(){if(run&&run.index<21&&!run.activeId)run.activeId=pick(bank.pla
 function currentId(){return run.remediationId||run.practiceId||run.activeId}
 function current(){return hydrate(qs(currentId()))}
 function resetStage(){run.helpView=false;run.stage=0;run.wrong=0;run.wrongChoices=[];run.stageCorrect=false;run.revealed=false;run.feedback="";save()}
+function startSimilarQuestion(obs,q){
+ // The next similar question replaces the current exercise without revisiting old answers.
+ run.lastPracticeId=q.id;run.activeId=q.id;
+ run.practiceCompleted=false;run.awaiting=false;
+ run.remediationId=null;run.practiceId=pick(obs.id,run.difficulty,q.id);
+ resetStage();show();
+}
 function finishSimilarQuestion(){
  // The finished practice task becomes the current task; never re-open the earlier wrong one.
  const justSolved=run.remediationId||run.practiceId;
@@ -506,21 +513,8 @@ function show(){window.MTKApprovedQuizV145?.reset();
  step.hidden=false;bar.hidden=false;step.textContent=(run.index+1)+"/21 • "+obs.title+" • "+run.difficulty.toUpperCase()+(run.practiceId?" · PEKİŞTİRME":run.remediationId?" · YENİDEN DENE":"");
  fill.style.width=(((run.index)+(run.awaiting?1:0))/21*100)+"%";
  app.replaceChildren();
-  if(run.practiceCompleted&&!run.practiceId&&!run.remediationId){
-    app.appendChild(mathText("div","prompt","✓ Benzer soru tamamlandı."));
-    app.appendChild(feedbackBox("ok","Bu alıştırmayı doğru çözdün. Eski soru tekrar gösterilmeyecek."));
-    const controls=node("div","btnRow");
-    if(EMBED)append(controls,
-      btn("Engeli aç · Ormana dön",()=>reportSolved(obs)),
-      btn("Yeni benzer soru çöz",()=>{run.practiceCompleted=false;run.practiceId=pick(obs.id,run.difficulty,run.lastPracticeId||run.activeId);resetStage();show()},true));
-    else append(controls,
-      btn("Sonraki engele geç",()=>{run.index++;run.activeId=null;run.awaiting=false;run.practiceCompleted=false;run.lastPracticeId=null;run.practiceId=null;run.remediationId=null;run.taskWrong=0;run.completionWrong=null;resetStage();ensure();save();show()}),
-      btn("Yeni benzer soru çöz",()=>{run.practiceCompleted=false;run.practiceId=pick(obs.id,run.difficulty,run.lastPracticeId||run.activeId);resetStage();show()},true));
-    app.appendChild(controls);
-    return;
-  }
   if(run.awaiting&&!run.practiceId&&!run.remediationId){
-  const donePrompt=mathText("div","prompt","✓ "+obs.title+" tamamlandı.");
+  const donePrompt=mathText("div","prompt",s.prompt);
   const doneChoices=node("div","choiceGrid");
   const finalOptions=options(s,q);
   finalOptions.forEach((answer,index)=>{
@@ -532,11 +526,11 @@ function show(){window.MTKApprovedQuizV145?.reset();
   app.append(donePrompt,doneChoices,feedbackBox("ok","✓ Doğru! "+workedSteps(q)));
   const controls=node("div","btnRow");
   if(EMBED)append(controls,
-    btn("Engeli aç · Ormana dön",()=>reportSolved(obs)),
-    btn("Benzer soru çöz",()=>{run.practiceCompleted=false;run.practiceId=pick(obs.id,run.difficulty,run.activeId);resetStage();show()},true));
+    btn("Engeli aç",()=>reportSolved(obs)),
+    btn("Benzer soru çöz",()=>startSimilarQuestion(obs,q),true));
   else append(controls,
-    btn("Sonraki engele geç",()=>{run.index++;run.activeId=null;run.awaiting=false;run.practiceId=null;run.remediationId=null;run.taskWrong=0;run.completionWrong=null;resetStage();ensure();save();show()}),
-    btn("Benzer soru çöz",()=>{run.practiceCompleted=false;run.practiceId=pick(obs.id,run.difficulty,run.activeId);resetStage();show()},true));
+    btn("Engeli aç",()=>{run.index++;run.activeId=null;run.awaiting=false;run.practiceCompleted=false;run.practiceId=null;run.remediationId=null;run.taskWrong=0;run.completionWrong=null;resetStage();ensure();save();show()}),
+    btn("Benzer soru çöz",()=>startSimilarQuestion(obs,q),true));
   app.appendChild(controls);
   if(EMBED)window.MTKApprovedQuizV145?.mount(app,q,s,doneChoices,run,save);
    window.MTKMathNotebook?.placeButton(app);
@@ -554,12 +548,19 @@ function show(){window.MTKApprovedQuizV145?.reset();
  });app.appendChild(choices);
  if(run.stageCorrect){
   app.appendChild(feedbackBox("ok","✓ Doğru seçim. "+workedSteps(q)));
-  app.appendChild(rowButton(EMBED&&run.stage>=all.length-1&&!run.practiceId&&!run.remediationId?"Engeli aç · Ormana dön":run.stage>=all.length-1?"Engeli tamamla":"Sonraki işleme geç",()=>{
-    if(run.stage<all.length-1){run.stage++;run.wrong=0;run.wrongChoices=[];run.stageCorrect=false;save();show();return}
-    if(run.remediationId||run.practiceId){finishSimilarQuestion();return}
-    if(EMBED){reportSolved(obs);return}
-    run.completionWrong=run.taskWrong||0;run.awaiting=true;run.stage=0;run.stageCorrect=false;run.wrong=0;run.wrongChoices=[];save();show()
-  }));
+  if(run.stage<all.length-1){
+   app.appendChild(rowButton("Sonraki işleme geç",()=>{run.stage++;run.wrong=0;run.wrongChoices=[];run.stageCorrect=false;save();show()}));
+  }else{
+   // Stay in this very question's illustrated screen; no intermediate success page.
+   const controls=node("div","btnRow");
+   if(EMBED)append(controls,
+     btn("Engeli aç",()=>reportSolved(obs)),
+     btn("Benzer soru çöz",()=>startSimilarQuestion(obs,q),true));
+   else append(controls,
+     btn("Engeli aç",()=>{run.index++;run.activeId=null;run.awaiting=false;run.practiceCompleted=false;run.practiceId=null;run.remediationId=null;run.taskWrong=0;run.completionWrong=null;resetStage();ensure();save();show()}),
+     btn("Benzer soru çöz",()=>startSimilarQuestion(obs,q),true));
+   app.appendChild(controls);
+  }
  }else if(run.revealed&&run.helpView!==false){
    app.appendChild(feedbackBox("wrong","3. yanlış • Neden ve nasıl? Adım adım öğrenelim"));
    const solutionCard=node("div","solution mtk-teaching-solution");
@@ -585,7 +586,7 @@ function show(){window.MTKApprovedQuizV145?.reset();
    app.appendChild(rowButton(run.revealed?"Çözümü göster":"İpucunu göster",()=>{run.helpView=true;save();show()},true));
  }
 
- if(run.practiceId){app.appendChild(rowButton("Ana göreve dön",()=>{run.practiceId=null;resetStage();show()},true))}
+ // No "Ana göreve dön" button: successful similar exercises offer the same two actions.
  if(EMBED)window.MTKApprovedQuizV145?.mount(app,q,s,choices,run,save);
  window.MTKMathNotebook?.placeButton(app);
 }
