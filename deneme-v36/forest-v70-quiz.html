@@ -98,7 +98,7 @@ sup{font-size:.7em;line-height:0;vertical-align:super}
 .embedded .choice{box-sizing:border-box!important;min-width:0!important;width:100%!important;height:100%!important;min-height:56px!important}
 .embedded .choiceMark{flex:0 0 29px!important;width:29px!important;height:29px!important}
 @media (orientation:portrait){.embedded .choice{font-size:clamp(12px,3.5vw,17px)!important;padding:8px!important}}
-</style><link rel="stylesheet" href="./assets/math-notebook-v187.css?v=189"><link rel="stylesheet" href="./assets/math-notebook-forest-v186.css?v=188"><link rel="stylesheet" href="./assets/math-notebook-premium-v190.css?v=190"><link rel="stylesheet" href="./assets/math-notebook-ui-v191.css?v=191"><link rel="stylesheet" href="./assets/math-notebook-fix-v192.css?v=192"><link rel="stylesheet" href="./assets/math-notebook-iphone-v193.css?v=193"><link rel="stylesheet" href="./assets/math-notebook-retina-v194.css?v=194"><link rel="stylesheet" href="./assets/math-notebook-question-v195.css?v=195"><link rel="stylesheet" href="./assets/math-notebook-layout-v196.css?v=196"><script src="./assets/math-notebook-v187.js?v=196"></script><script src="./assets/quiz-approved-frames-v145.js?v=145"></script><script src="./assets/quiz-f03-machine-v145.js?v=145"></script><script src="./assets/quiz-research-objects-v148.js?v=148"></script><script src="./assets/f01-approved-v159.js?v=163"></script><script src="./assets/f02-approved-v165.js?v=210"></script><script src="./assets/f03-approved-v197.js?v=203"></script><script src="./assets/f04-approved-v211.js?v=211"></script><script src="./assets/approved-quiz-ui-v145.js?v=211"></script><script src="./assets/quiz-universal-layout-v176.js?v=179"></script><script src="./forest-levels-v65.js?v=65"></script></head>
+</style><link rel="stylesheet" href="./assets/math-notebook-v187.css?v=189"><link rel="stylesheet" href="./assets/math-notebook-forest-v186.css?v=188"><link rel="stylesheet" href="./assets/math-notebook-premium-v190.css?v=190"><link rel="stylesheet" href="./assets/math-notebook-ui-v191.css?v=191"><link rel="stylesheet" href="./assets/math-notebook-fix-v192.css?v=192"><link rel="stylesheet" href="./assets/math-notebook-iphone-v193.css?v=193"><link rel="stylesheet" href="./assets/math-notebook-retina-v194.css?v=194"><link rel="stylesheet" href="./assets/math-notebook-question-v195.css?v=195"><link rel="stylesheet" href="./assets/math-notebook-layout-v196.css?v=196"><script src="./assets/math-notebook-v187.js?v=196"></script><script src="./assets/quiz-approved-frames-v145.js?v=145"></script><script src="./assets/quiz-f03-machine-v145.js?v=145"></script><script src="./assets/quiz-research-objects-v148.js?v=148"></script><script src="./assets/f01-approved-v159.js?v=163"></script><script src="./assets/f02-approved-v165.js?v=210"></script><script src="./assets/f03-approved-v197.js?v=203"></script><script src="./assets/f04-approved-v211.js?v=211"></script><script src="./assets/teaching-v219.js?v=219"></script><script src="./assets/approved-quiz-ui-v145.js?v=211"></script><script src="./assets/quiz-universal-layout-v176.js?v=179"></script><script src="./forest-levels-v65.js?v=65"></script></head>
 <body><main><nav><a href="./forest-v70-full.html?v=69">‹ Orman Patikasına dön</a><a href="./map-v70.html?v=69">🗺️ Macera Haritası</a></nav>
 <h1>🌲 Orman Patikası</h1><p class="subtitle">21 engelli matematik macerası · dört şıklı sorular · MAT.9.1.1 · Üslü ve köklü gösterimler. Dört seçenek arasından karar ver. Yanlışta ipucu, örnek çözüm ve pekiştirme adımları seni yönlendirecek. Fiziksel engellerin sahne entegrasyonu ayrı geliştirilir.</p>
 <div id="step" class="step" hidden></div><div id="bar" class="bar" hidden><span id="fill"></span></div><section id="app" class="panel" aria-live="polite"></section>
@@ -131,7 +131,12 @@ function htmlMath(str){
 function mathText(tag,cls,s){const p=node(tag,cls);p.innerHTML=htmlMath(s);return p}
 function pick(obId,difficulty,exceptId){
  const key=obId+"|"+difficulty;
- const options=bank.questions.filter(q=>q.obstacleId===obId&&q.difficulty===difficulty);
+ let options=bank.questions.filter(q=>q.obstacleId===obId&&q.difficulty===difficulty);
+ const previous=exceptId?qs(exceptId):null;
+ if(previous&&window.MTKTeachingV219){
+  const distinct=options.filter(q=>window.MTKTeachingV219.eligible(previous,q));
+  if(distinct.length)options=distinct;
+ }
  let used=history.used[key]||[],last=history.last[key]||"";
  let pool=options.filter(x=>!used.includes(x.id)&&x.id!==exceptId);
  if(!pool.length){used=[];pool=options.filter(x=>x.id!==last&&x.id!==exceptId)}
@@ -477,7 +482,7 @@ function teachingSolutionSteps(q,s){
   }
  }
  const guided=f01Guide(q)||window.MTKF02ApprovedV165?.guide(q);
- const source=String(guided?.solution||s?.solution||q?.solution||workedSteps(q)||"").trim();
+ const source=String(guided?.solution||(q?.obstacleId==="F16"?window.MTKTeachingV219?.solution(q):null)||s?.solution||q?.solution||workedSteps(q)||"").trim();
  const fragments=source.split(/\s*;\s*|\.\s+(?=[A-ZÇĞİÖŞÜ])/).map(t=>t.trim().replace(/\.$/,"")).filter(Boolean);
  const steps=[
   "1. Neyi bulacağız? "+teachingGoal(q,s),
@@ -490,6 +495,7 @@ function teachingSolutionSteps(q,s){
  return steps;
 }
 function example(q){
+ if(window.MTKTeachingV219)return window.MTKTeachingV219.workedExample(q,bank.questions);
  if(q.workedExample&&q.workedExample.solution&&q.workedExample.question&&!/^çözülmüş benzer örnek$/iu.test(q.workedExample.question.trim()))return {prompt:q.workedExample.question,solution:q.workedExample.solution,sourceVerified:true};
  const others=bank.questions.filter(o=>o.obstacleId===q.obstacleId&&o.difficulty===q.difficulty&&o.id!==q.id);
  if(!others.length)return null;
@@ -500,7 +506,7 @@ function example(q){
 }
 
 function workedSteps(q){
- if(q?.contentVersion==="v147-approved-packs")return String(q.solution||"");
+ if(q?.contentVersion==="v147-approved-packs")return window.MTKTeachingV219?.solution(q)||String(q.solution||"");
  const prompt=String(q?.prompt||"");
  const m=prompt.match(/(\d+)\s+filiz\s+(\d+)\s+kez\s+iki\s+katına\s+çıkıyor,\s*sonra\s+(\d+)\s+filiz\s+kuruyor/i);
  if(m){
@@ -586,9 +592,20 @@ function show(){window.MTKApprovedQuizV145?.reset();
    app.appendChild(feedbackBox("wrong",run.wrong===1?"1. yanlış • Çözüm yolunu keşfet":"2. yanlış • Birlikte ilk adımı yapalım"));
    const steps=run.wrong===1?teachingHint(q,s.hint):teachingSecondHint(q,s.hint);
    for(const text of steps)app.appendChild(mathText("p","mtk-teaching-step",text));
-   if(run.wrong===2&&!["F01","F02"].includes(q.obstacleId)){
+   if(run.wrong===2){
      const ref=example(q);
-     if(ref){const box=node("div","solution");append(box,node("strong",null,"Benzer çözümlü örnek"),mathText("p",null,ref.prompt),mathText("p",null,"Çözüm: "+(ref.sourceVerified?ref.solution:(ref.solution||workedSteps(ref)))));app.appendChild(box)}
+     if(ref){
+      const box=node("div","solution");
+      append(box,node("strong",null,"Benzer çözümlü örnek"),mathText("p",null,ref.prompt));
+      if(ref.labels?.length){
+       const data=node("div","mtk-example-data");
+       data.setAttribute("aria-label","Benzer örneğin kendi görsel verileri");
+       for(const label of ref.labels)data.appendChild(mathText("p",null,label.anchor.replace(/_/g," ")+": "+label.value));
+       box.appendChild(data);
+      }
+      box.appendChild(mathText("p",null,"Çözüm: "+(ref.sourceVerified?ref.solution:(ref.solution||workedSteps(ref)))));
+      app.appendChild(box);
+     }
    }
    app.appendChild(rowButton("Soruyu göster",()=>{run.helpView=false;save();show()},true));
  }else if(run.wrong>0){
@@ -600,7 +617,7 @@ function show(){window.MTKApprovedQuizV145?.reset();
  window.MTKMathNotebook?.placeButton(app);
 }
 function select(answer,s,q,stageCount){
- if(!run||run.stageCorrect||run.revealed)return;
+ if(!run||run.stageCorrect||run.revealed||(run.wrongChoices||[]).includes(answer))return;
  if(answer.toLocaleLowerCase("tr")===String(s.answer).toLocaleLowerCase("tr")){run.stageCorrect=true;run.feedback="ok";save();show();return}
  run.wrong=(run.wrong||0)+1;if(!run.practiceId&&!run.remediationId)run.taskWrong=(run.taskWrong||0)+1;run.wrongChoices=[...(run.wrongChoices||[]),answer];run.revealed=run.wrong>=3;run.helpView=true;save();show();
 }
