@@ -13,6 +13,13 @@ assert(start>=0&&end>start,"Pedagogical code block not found");
 const scope={window:{MTKF02ApprovedV165:{guide:()=>null}},bank};
 vm.runInNewContext(source.slice(start,end)+"\nthis.exports={f01Growth,f01Guide,teachingHint,teachingSecondHint,teachingSolutionSteps,teachingRule};",scope);
 const p=scope.exports;
+for(const [id,expected] of [["F01-K-02","30"],["F01-K-05","34"],["F01-K-08","25"]]){
+ const q=bank.questions.find(q=>q.id===id);
+ assert(q&&q.correctAnswer===expected,id+" variant preserved");
+ const guide=p.f01Guide(q);
+ assert(guide&&guide.solution.includes(expected),id+" new exponent base must be understood by pedagogical solver");
+ assert(!/NaN|undefined/.test(JSON.stringify(guide)),id+" faulty computation");
+}
 const growth=bank.questions.find(q=>q.id==="F01-O-07");
 assert(growth&&growth.correctAnswer==="43");
 const hint1=p.teachingHint(growth,growth.hint);
