@@ -1829,16 +1829,16 @@
       "difficulty": "kolay",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Geçidin 3 katmanından biri kapalıdır. Açık her katmanda 2² ışık vardır. Kaç ışık noktası yanar?",
-      "correctAnswer": "8",
-      "solution": "(3 − 1) × 4 = 8.",
+      "prompt": "Geçidin 3 katmanından biri kapalıdır. Açık her katmanda 5² ışık vardır. Kaç ışık noktası yanar?",
+      "correctAnswer": "50",
+      "solution": "5² = 25; (3 − 1) × 25 = 50.",
       "hint": "Önce açık katman sayısını bul.",
       "inputType": "choice",
       "options": [
-        "8",
-        "12",
-        "16",
-        "4"
+        "50",
+        "75",
+        "52",
+        "48"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -1859,14 +1859,14 @@
           },
           {
             "anchor": "açık_katman_ışığı",
-            "value": "2²"
+            "value": "5²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Üç katta 2² ışık varsa toplam kaç nokta vardır?",
-        "solution": "3 × 4 = 12."
+        "question": "Dört katın her birinde 3² ışık varsa toplam kaç ışık vardır?",
+        "solution": "3² = 9; 4 × 9 = 36 ışık."
       },
       "sourceQuestionId": "F04-K-02",
       "sourceDifficulty": "Kolay"
@@ -1877,16 +1877,16 @@
       "difficulty": "kolay",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Geçidin 4 katmanının her birinde 2² ışık yanıyor. Kapının üstündeki iki ayrı uyarı lambası da yanarsa toplam ışık sayısı kaçtır?",
-      "correctAnswer": "18",
-      "solution": "4 × 4 + 2 = 18.",
+      "prompt": "Geçidin 4 katmanının her birinde 3² ışık yanıyor. Kapının üstündeki iki ayrı uyarı lambası da yanarsa toplam ışık sayısı kaçtır?",
+      "correctAnswer": "38",
+      "solution": "3² = 9; 4 × 9 + 2 = 38.",
       "hint": "Katmanlardaki sayıya iki uyarı lambasını ekle.",
       "inputType": "choice",
       "options": [
-        "16",
-        "18",
-        "20",
-        "22"
+        "47",
+        "38",
+        "40",
+        "36"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -1903,7 +1903,7 @@
           },
           {
             "anchor": "her_katman",
-            "value": "2²"
+            "value": "3²"
           },
           {
             "anchor": "uyarı_lambası",
@@ -1913,8 +1913,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Üç katta 2² ışık varsa toplam kaç nokta vardır?",
-        "solution": "3 × 4 = 12."
+        "question": "Dört katın her birinde 3² ışık varsa toplam kaç ışık vardır?",
+        "solution": "3² = 9; 4 × 9 = 36 ışık."
       },
       "sourceQuestionId": "F04-K-03",
       "sourceDifficulty": "Kolay"
@@ -1925,16 +1925,16 @@
       "difficulty": "kolay",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Işık geçidinde 3 katman vardır. Her katmanda 2³ ışık noktası yanıyor. Geçitte toplam kaç ışık noktası vardır?",
-      "correctAnswer": "24",
-      "solution": "3 × 8 = 24.",
+      "prompt": "Işık geçidinde 3 katman vardır. Her katmanda 3³ ışık noktası yanıyor. Geçitte toplam kaç ışık noktası vardır?",
+      "correctAnswer": "81",
+      "solution": "3³ = 27; 3 × 27 = 81.",
       "hint": "Bir katmandaki ışık sayısını toplam katman sayısıyla çarp.",
       "inputType": "choice",
       "options": [
-        "32",
-        "16",
-        "24",
-        "8"
+        "108",
+        "83",
+        "81",
+        "79"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -1951,14 +1951,14 @@
           },
           {
             "anchor": "nokta",
-            "value": "2³"
+            "value": "3³"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Üç katta 2² ışık varsa toplam kaç nokta vardır?",
-        "solution": "3 × 4 = 12."
+        "question": "Dört katın her birinde 3² ışık varsa toplam kaç ışık vardır?",
+        "solution": "3² = 9; 4 × 9 = 36 ışık."
       },
       "sourceQuestionId": "F04-K-04",
       "sourceDifficulty": "Kolay"
@@ -1969,16 +1969,16 @@
       "difficulty": "kolay",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Geçidin 4 katmanından biri kapalıdır. Açık her katmanda 2³ ışık vardır. Kaç ışık noktası yanar?",
-      "correctAnswer": "24",
-      "solution": "(4 − 1) × 8 = 24.",
+      "prompt": "Geçidin 4 katmanından biri kapalıdır. Açık her katmanda 6² ışık vardır. Kaç ışık noktası yanar?",
+      "correctAnswer": "108",
+      "solution": "6² = 36; (4 − 1) × 36 = 108.",
       "hint": "Önce açık katman sayısını bul.",
       "inputType": "choice",
       "options": [
-        "32",
-        "40",
-        "8",
-        "24"
+        "144",
+        "110",
+        "106",
+        "108"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -1999,14 +1999,14 @@
           },
           {
             "anchor": "açık_katman_ışığı",
-            "value": "2³"
+            "value": "6²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Üç katta 2² ışık varsa toplam kaç nokta vardır?",
-        "solution": "3 × 4 = 12."
+        "question": "Dört katın her birinde 3² ışık varsa toplam kaç ışık vardır?",
+        "solution": "3² = 9; 4 × 9 = 36 ışık."
       },
       "sourceQuestionId": "F04-K-05",
       "sourceDifficulty": "Kolay"
@@ -2017,16 +2017,16 @@
       "difficulty": "kolay",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Geçidin 2 katmanının her birinde 2³ ışık yanıyor. Kapının üstündeki iki ayrı uyarı lambası da yanarsa toplam ışık sayısı kaçtır?",
-      "correctAnswer": "18",
-      "solution": "2 × 8 + 2 = 18.",
+      "prompt": "Geçidin 2 katmanının her birinde 5² ışık yanıyor. Kapının üstündeki iki ayrı uyarı lambası da yanarsa toplam ışık sayısı kaçtır?",
+      "correctAnswer": "52",
+      "solution": "5² = 25; 2 × 25 + 2 = 52.",
       "hint": "Katmanlardaki sayıya iki uyarı lambasını ekle.",
       "inputType": "choice",
       "options": [
-        "18",
-        "16",
-        "20",
-        "26"
+        "52",
+        "77",
+        "54",
+        "50"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -2043,7 +2043,7 @@
           },
           {
             "anchor": "her_katman",
-            "value": "2³"
+            "value": "5²"
           },
           {
             "anchor": "uyarı_lambası",
@@ -2053,8 +2053,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Üç katta 2² ışık varsa toplam kaç nokta vardır?",
-        "solution": "3 × 4 = 12."
+        "question": "Dört katın her birinde 3² ışık varsa toplam kaç ışık vardır?",
+        "solution": "3² = 9; 4 × 9 = 36 ışık."
       },
       "sourceQuestionId": "F04-K-06",
       "sourceDifficulty": "Kolay"
@@ -2065,16 +2065,16 @@
       "difficulty": "kolay",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Işık geçidinde 4 katman vardır. Her katmanda 2² ışık noktası yanıyor. Geçitte toplam kaç ışık noktası vardır?",
-      "correctAnswer": "16",
-      "solution": "4 × 4 = 16.",
+      "prompt": "Işık geçidinde 4 katman vardır. Her katmanda 7² ışık noktası yanıyor. Geçitte toplam kaç ışık noktası vardır?",
+      "correctAnswer": "196",
+      "solution": "7² = 49; 4 × 49 = 196.",
       "hint": "Bir katmandaki ışık sayısını toplam katman sayısıyla çarp.",
       "inputType": "choice",
       "options": [
-        "20",
-        "16",
-        "12",
-        "4"
+        "245",
+        "196",
+        "198",
+        "194"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -2091,14 +2091,14 @@
           },
           {
             "anchor": "nokta",
-            "value": "2²"
+            "value": "7²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Üç katta 2² ışık varsa toplam kaç nokta vardır?",
-        "solution": "3 × 4 = 12."
+        "question": "Dört katın her birinde 3² ışık varsa toplam kaç ışık vardır?",
+        "solution": "3² = 9; 4 × 9 = 36 ışık."
       },
       "sourceQuestionId": "F04-K-07",
       "sourceDifficulty": "Kolay"
@@ -2109,16 +2109,16 @@
       "difficulty": "kolay",
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Geçidin 2 katmanından biri kapalıdır. Açık her katmanda 2² ışık vardır. Kaç ışık noktası yanar?",
-      "correctAnswer": "4",
-      "solution": "(2 − 1) × 4 = 4.",
+      "prompt": "Geçidin 2 katmanından biri kapalıdır. Açık her katmanda 4² ışık vardır. Kaç ışık noktası yanar?",
+      "correctAnswer": "16",
+      "solution": "4² = 16; (2 − 1) × 16 = 16.",
       "hint": "Önce açık katman sayısını bul.",
       "inputType": "choice",
       "options": [
-        "8",
-        "12",
-        "4",
-        "6"
+        "32",
+        "18",
+        "16",
+        "14"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -2139,14 +2139,14 @@
           },
           {
             "anchor": "açık_katman_ışığı",
-            "value": "2²"
+            "value": "4²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Üç katta 2² ışık varsa toplam kaç nokta vardır?",
-        "solution": "3 × 4 = 12."
+        "question": "Dört katın her birinde 3² ışık varsa toplam kaç ışık vardır?",
+        "solution": "3² = 9; 4 × 9 = 36 ışık."
       },
       "sourceQuestionId": "F04-K-08",
       "sourceDifficulty": "Kolay"
@@ -2157,16 +2157,16 @@
       "difficulty": "kolay",
       "variant": 9,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Geçidin 3 katmanının her birinde 2² ışık yanıyor. Kapının üstündeki iki ayrı uyarı lambası da yanarsa toplam ışık sayısı kaçtır?",
-      "correctAnswer": "14",
-      "solution": "3 × 4 + 2 = 14.",
+      "prompt": "Geçidin 3 katmanının her birinde 6² ışık yanıyor. Kapının üstündeki iki ayrı uyarı lambası da yanarsa toplam ışık sayısı kaçtır?",
+      "correctAnswer": "110",
+      "solution": "6² = 36; 3 × 36 + 2 = 110.",
       "hint": "Katmanlardaki sayıya iki uyarı lambasını ekle.",
       "inputType": "choice",
       "options": [
-        "12",
-        "16",
-        "18",
-        "14"
+        "146",
+        "112",
+        "108",
+        "110"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -2183,7 +2183,7 @@
           },
           {
             "anchor": "her_katman",
-            "value": "2²"
+            "value": "6²"
           },
           {
             "anchor": "uyarı_lambası",
@@ -2193,8 +2193,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Üç katta 2² ışık varsa toplam kaç nokta vardır?",
-        "solution": "3 × 4 = 12."
+        "question": "Dört katın her birinde 3² ışık varsa toplam kaç ışık vardır?",
+        "solution": "3² = 9; 4 × 9 = 36 ışık."
       },
       "sourceQuestionId": "F04-K-09",
       "sourceDifficulty": "Kolay"
@@ -2205,16 +2205,16 @@
       "difficulty": "kolay",
       "variant": 10,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Işık geçidinde 2 katman vardır. Her katmanda 2³ ışık noktası yanıyor. Geçitte toplam kaç ışık noktası vardır?",
-      "correctAnswer": "16",
-      "solution": "2 × 8 = 16.",
+      "prompt": "Işık geçidinde 2 katman vardır. Her katmanda 3³ ışık noktası yanıyor. Geçitte toplam kaç ışık noktası vardır?",
+      "correctAnswer": "54",
+      "solution": "3³ = 27; 2 × 27 = 54.",
       "hint": "Bir katmandaki ışık sayısını toplam katman sayısıyla çarp.",
       "inputType": "choice",
       "options": [
-        "16",
-        "24",
-        "8",
-        "10"
+        "54",
+        "81",
+        "56",
+        "52"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -2231,14 +2231,14 @@
           },
           {
             "anchor": "nokta",
-            "value": "2³"
+            "value": "3³"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Üç katta 2² ışık varsa toplam kaç nokta vardır?",
-        "solution": "3 × 4 = 12."
+        "question": "Dört katın her birinde 3² ışık varsa toplam kaç ışık vardır?",
+        "solution": "3² = 9; 4 × 9 = 36 ışık."
       },
       "sourceQuestionId": "F04-K-10",
       "sourceDifficulty": "Kolay"
@@ -2765,16 +2765,16 @@
       "difficulty": "kolay",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Ormandaki 4 küçük mantar adasının her birinde 2³ mantar vardır. Toplam kaç mantar sayılır?",
-      "correctAnswer": "32",
-      "solution": "4 × 8 = 32.",
+      "prompt": "Ormandaki 4 küçük mantar adasının her birinde 3³ mantar vardır. Toplam kaç mantar sayılır?",
+      "correctAnswer": "108",
+      "solution": "3³ = 27; 4 × 27 = 108 mantar.",
       "hint": "Her adadaki mantar sayısını ada sayısıyla çarp.",
       "inputType": "choice",
       "options": [
-        "12",
-        "40",
-        "24",
-        "32"
+        "110",
+        "106",
+        "113",
+        "108"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -2791,14 +2791,14 @@
           },
           {
             "anchor": "bir_adadaki",
-            "value": "2³"
+            "value": "3³"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "İki mantar adasında 4 ve 8 mantar varsa kaç mantar olur?",
-        "solution": "4 + 8 = 12."
+        "question": "A adasında 3², B adasında 5² mantar varsa toplam kaç mantar vardır?",
+        "solution": "9 + 25 = 34 mantar."
       },
       "sourceQuestionId": "F06-K-03",
       "sourceDifficulty": "Kolay"
@@ -2809,16 +2809,16 @@
       "difficulty": "kolay",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "A mantar adasında 2², B mantar adasında 2² mantar vardır. İki adada toplam kaç mantar bulunur?",
-      "correctAnswer": "8",
-      "solution": "4 + 4 = 8 mantar.",
+      "prompt": "A mantar adasında 5², B mantar adasında 5² mantar vardır. İki adada toplam kaç mantar bulunur?",
+      "correctAnswer": "50",
+      "solution": "5² = 25, 5² = 25; 25 + 25 = 50 mantar.",
       "hint": "İki adadaki mantar sayısını topla.",
       "inputType": "choice",
       "options": [
-        "8",
-        "10",
-        "6",
-        "4"
+        "50",
+        "52",
+        "48",
+        "55"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -2831,18 +2831,18 @@
         "labels": [
           {
             "anchor": "ada_A",
-            "value": "2²"
+            "value": "5²"
           },
           {
             "anchor": "ada_B",
-            "value": "2²"
+            "value": "5²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "İki mantar adasında 4 ve 8 mantar varsa kaç mantar olur?",
-        "solution": "4 + 8 = 12."
+        "question": "A adasında 3², B adasında 5² mantar varsa toplam kaç mantar vardır?",
+        "solution": "9 + 25 = 34 mantar."
       },
       "sourceQuestionId": "F06-K-04",
       "sourceDifficulty": "Kolay"
@@ -2901,16 +2901,16 @@
       "difficulty": "kolay",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Ormandaki 2 küçük mantar adasının her birinde 2¹ mantar vardır. Toplam kaç mantar sayılır?",
-      "correctAnswer": "4",
-      "solution": "2 × 2 = 4.",
+      "prompt": "Ormandaki 2 küçük mantar adasının her birinde 7¹ mantar vardır. Toplam kaç mantar sayılır?",
+      "correctAnswer": "14",
+      "solution": "7¹ = 7; 2 × 7 = 14 mantar.",
       "hint": "Her adadaki mantar sayısını ada sayısıyla çarp.",
       "inputType": "choice",
       "options": [
-        "6",
-        "2",
-        "4",
-        "5"
+        "16",
+        "12",
+        "14",
+        "19"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -2927,14 +2927,14 @@
           },
           {
             "anchor": "bir_adadaki",
-            "value": "2¹"
+            "value": "7¹"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "İki mantar adasında 4 ve 8 mantar varsa kaç mantar olur?",
-        "solution": "4 + 8 = 12."
+        "question": "A adasında 3², B adasında 5² mantar varsa toplam kaç mantar vardır?",
+        "solution": "9 + 25 = 34 mantar."
       },
       "sourceQuestionId": "F06-K-06",
       "sourceDifficulty": "Kolay"
@@ -2945,16 +2945,16 @@
       "difficulty": "kolay",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "A mantar adasında 2³, B mantar adasında 2³ mantar vardır. İki adada toplam kaç mantar bulunur?",
-      "correctAnswer": "16",
-      "solution": "8 + 8 = 16 mantar.",
+      "prompt": "A mantar adasında 3³, B mantar adasında 3³ mantar vardır. İki adada toplam kaç mantar bulunur?",
+      "correctAnswer": "54",
+      "solution": "3³ = 27, 3³ = 27; 27 + 27 = 54 mantar.",
       "hint": "İki adadaki mantar sayısını topla.",
       "inputType": "choice",
       "options": [
-        "18",
-        "14",
-        "8",
-        "16"
+        "56",
+        "52",
+        "59",
+        "54"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -2967,18 +2967,18 @@
         "labels": [
           {
             "anchor": "ada_A",
-            "value": "2³"
+            "value": "3³"
           },
           {
             "anchor": "ada_B",
-            "value": "2³"
+            "value": "3³"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "İki mantar adasında 4 ve 8 mantar varsa kaç mantar olur?",
-        "solution": "4 + 8 = 12."
+        "question": "A adasında 3², B adasında 5² mantar varsa toplam kaç mantar vardır?",
+        "solution": "9 + 25 = 34 mantar."
       },
       "sourceQuestionId": "F06-K-07",
       "sourceDifficulty": "Kolay"
@@ -3037,16 +3037,16 @@
       "difficulty": "kolay",
       "variant": 9,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Ormandaki 3 küçük mantar adasının her birinde 2² mantar vardır. Toplam kaç mantar sayılır?",
-      "correctAnswer": "12",
-      "solution": "3 × 4 = 12.",
+      "prompt": "Ormandaki 3 küçük mantar adasının her birinde 6² mantar vardır. Toplam kaç mantar sayılır?",
+      "correctAnswer": "108",
+      "solution": "6² = 36; 3 × 36 = 108 mantar.",
       "hint": "Her adadaki mantar sayısını ada sayısıyla çarp.",
       "inputType": "choice",
       "options": [
-        "7",
-        "12",
-        "16",
-        "8"
+        "110",
+        "108",
+        "106",
+        "113"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -3063,14 +3063,14 @@
           },
           {
             "anchor": "bir_adadaki",
-            "value": "2²"
+            "value": "6²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "İki mantar adasında 4 ve 8 mantar varsa kaç mantar olur?",
-        "solution": "4 + 8 = 12."
+        "question": "A adasında 3², B adasında 5² mantar varsa toplam kaç mantar vardır?",
+        "solution": "9 + 25 = 34 mantar."
       },
       "sourceQuestionId": "F06-K-09",
       "sourceDifficulty": "Kolay"
@@ -3081,16 +3081,16 @@
       "difficulty": "kolay",
       "variant": 10,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "A mantar adasında 2¹, B mantar adasında 2² mantar vardır. İki adada toplam kaç mantar bulunur?",
-      "correctAnswer": "6",
-      "solution": "2 + 4 = 6 mantar.",
+      "prompt": "A mantar adasında 5¹, B mantar adasında 5² mantar vardır. İki adada toplam kaç mantar bulunur?",
+      "correctAnswer": "30",
+      "solution": "5¹ = 5, 5² = 25; 5 + 25 = 30 mantar.",
       "hint": "İki adadaki mantar sayısını topla.",
       "inputType": "choice",
       "options": [
-        "8",
-        "4",
-        "6",
-        "2"
+        "32",
+        "28",
+        "30",
+        "35"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -3103,18 +3103,18 @@
         "labels": [
           {
             "anchor": "ada_A",
-            "value": "2¹"
+            "value": "5¹"
           },
           {
             "anchor": "ada_B",
-            "value": "2²"
+            "value": "5²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "İki mantar adasında 4 ve 8 mantar varsa kaç mantar olur?",
-        "solution": "4 + 8 = 12."
+        "question": "A adasında 3², B adasında 5² mantar varsa toplam kaç mantar vardır?",
+        "solution": "9 + 25 = 34 mantar."
       },
       "sourceQuestionId": "F06-K-10",
       "sourceDifficulty": "Kolay"
@@ -3205,15 +3205,15 @@
       "difficulty": "kolay",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kare taş platformun bir kenarı 2∜4 m’dir. Platform çevresinin uzunluğu nedir?",
-      "correctAnswer": "8∜4 m",
-      "solution": "Çevre = 4 × 2∜4 = 8∜4 m. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
-      "hint": "Karenin dört eşit kenarı vardır. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
+      "prompt": "Kare taş platformun bir kenarı 2∛2 m’dir. Platform çevresinin uzunluğu nedir?",
+      "correctAnswer": "8∛2 m",
+      "solution": "Çevre = 4 × 2∛2 = 8∛2 m.",
+      "hint": "Karenin dört eş kenarını topla.",
       "inputType": "choice",
       "options": [
-        "8∜4 m",
-        "4∜4 m",
-        "10∜4 m",
+        "8∛2 m",
+        "4∛2 m",
+        "10∛2 m",
         "8√3 m"
       ],
       "fixedChoiceOrder": true,
@@ -3227,14 +3227,14 @@
         "labels": [
           {
             "anchor": "dış_kare_kenarı",
-            "value": "2∜4 m"
+            "value": "2∛2 m"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Kenar uzunluğu 2√3 m olan karenin alanı nedir?",
-        "solution": "(2√3)² = 4 × 3 = 12 m²."
+        "question": "Bir karenin kenarı 3∛2 m ise çevresi?",
+        "solution": "4 × 3∛2 = 12∛2 m."
       },
       "sourceQuestionId": "F07-K-03",
       "sourceDifficulty": "Kolay"
@@ -3325,16 +3325,16 @@
       "difficulty": "kolay",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kare taş platformun bir kenarı 3∜9 m’dir. Platform çevresinin uzunluğu nedir?",
-      "correctAnswer": "12∜9 m",
-      "solution": "Çevre = 4 × 3∜9 = 12∜9 m. Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
-      "hint": "Karenin dört eşit kenarı vardır. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
+      "prompt": "Kare taş platformun bir kenarı 3∛3 m’dir. Platform çevresinin uzunluğu nedir?",
+      "correctAnswer": "12∛3 m",
+      "solution": "Çevre = 4 × 3∛3 = 12∛3 m.",
+      "hint": "Küp köklü uzunluğu 4 ile çarp.",
       "inputType": "choice",
       "options": [
-        "6∜9 m",
-        "9∜9 m",
-        "14∜9 m",
-        "12∜9 m"
+        "6∛3 m",
+        "9∛3 m",
+        "14∛3 m",
+        "12∛3 m"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -3347,14 +3347,14 @@
         "labels": [
           {
             "anchor": "dış_kare_kenarı",
-            "value": "3∜9 m"
+            "value": "3∛3 m"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Kenar uzunluğu 2∜9 m olan karenin alanı nedir?",
-        "solution": "(2∜9)² = 4 × 3 = 12 m²."
+        "question": "Bir karenin kenarı 2∛3 m ise çevresi?",
+        "solution": "4 × 2∛3 = 8∛3 m."
       },
       "sourceQuestionId": "F07-K-06",
       "sourceDifficulty": "Kolay"
@@ -4153,16 +4153,16 @@
       "difficulty": "kolay",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "2⁷ metre halatın 2⁵ metresi köprü bağlantısında kullanıldı. Geriye kaç metre halat kaldı?",
-      "correctAnswer": "96",
-      "solution": "128 − 32 = 96 m.",
+      "prompt": "5³ metre halatın 3³ metresi köprü bağlantısında kullanıldı. Geriye kaç metre halat kaldı?",
+      "correctAnswer": "98",
+      "solution": "125 − 27 = 98 m.",
       "hint": "Önce iki uzunluğu hesapla.",
       "inputType": "choice",
       "options": [
-        "96",
-        "128",
-        "32",
-        "100"
+        "98",
+        "125",
+        "27",
+        "102"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -4175,18 +4175,18 @@
         "labels": [
           {
             "anchor": "halat",
-            "value": "2⁷"
+            "value": "5³"
           },
           {
             "anchor": "kullanılan",
-            "value": "2⁵"
+            "value": "3³"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "32 m halat 4 eşit parçaya ayrılırsa her biri kaç metredir?",
-        "solution": "32 ÷ 4 = 8 m."
+        "question": "6² m halatın 3² metresi kullanılırsa kalan?",
+        "solution": "36 − 9 = 27 m."
       },
       "sourceQuestionId": "F09-K-05",
       "sourceDifficulty": "Kolay"
@@ -4197,16 +4197,16 @@
       "difficulty": "kolay",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki sağlam halat parçasının uzunlukları 2³ m ve 2² m’dir. Uç uca eklenince toplam kaç metre olur?",
-      "correctAnswer": "12",
-      "solution": "8 + 4 = 12 m.",
+      "prompt": "İki sağlam halat parçasının uzunlukları 3³ m ve 5² m’dir. Uç uca eklenince toplam kaç metre olur?",
+      "correctAnswer": "52",
+      "solution": "27 + 25 = 52 m.",
       "hint": "İki parçanın uzunluklarını topla.",
       "inputType": "choice",
       "options": [
-        "8",
-        "12",
-        "4",
-        "16"
+        "27",
+        "52",
+        "25",
+        "54"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -4219,18 +4219,18 @@
         "labels": [
           {
             "anchor": "parça_A",
-            "value": "2³"
+            "value": "3³"
           },
           {
             "anchor": "parça_B",
-            "value": "2²"
+            "value": "5²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "32 m halat 4 eşit parçaya ayrılırsa her biri kaç metredir?",
-        "solution": "32 ÷ 4 = 8 m."
+        "question": "3² m ve 5² m halatlar birleştirilirse?",
+        "solution": "9 + 25 = 34 m."
       },
       "sourceQuestionId": "F09-K-06",
       "sourceDifficulty": "Kolay"
@@ -4417,16 +4417,16 @@
       "difficulty": "kolay",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Işıklı dikdörtgen platformun uzun kenarı 3∜4 m, kısa kenarı ∜4 m’dir. Çevresinin uzunluğu nedir?",
-      "correctAnswer": "8∜4 m",
-      "solution": "Çevre = 2 × (3∜4 + ∜4) = 8∜4 m. Eşdeğer kökler: ∜4 = √2.",
-      "hint": "Önce eş köklü terimleri topla, sonra ikiyle çarp. Kök derecesine dikkat et; farklı derecedeki kökler eşit değeri gösterebilir.",
+      "prompt": "Işıklı dikdörtgen platformun uzun kenarı 3∛2 m, kısa kenarı ∛2 m’dir. Çevresinin uzunluğu nedir?",
+      "correctAnswer": "8∛2 m",
+      "solution": "Çevre = 2 × (3∛2 + ∛2) = 8∛2 m.",
+      "hint": "İki uzun ve iki kısa kenarı topla.",
       "inputType": "choice",
       "options": [
-        "4∜4 m",
-        "8∜4 m",
-        "6∜4 m",
-        "10∜4 m"
+        "4∛2 m",
+        "8∛2 m",
+        "6∛2 m",
+        "10∛2 m"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -4439,18 +4439,18 @@
         "labels": [
           {
             "anchor": "uzun_kenar",
-            "value": "3∜4 m"
+            "value": "3∛2 m"
           },
           {
             "anchor": "kısa_kenar",
-            "value": "∜4 m"
+            "value": "∛2 m"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Kenarları 2√3 m ve √3 m olan dikdörtgenin çevresi?",
-        "solution": "2 × (2√3 + √3) = 6√3 m."
+        "question": "Kenarları 2∛2 ve 4∛2 m olan dikdörtgenin çevresi?",
+        "solution": "2 × (2∛2 + 4∛2) = 12∛2 m."
       },
       "sourceQuestionId": "F10-K-01",
       "sourceDifficulty": "Kolay"
@@ -4549,16 +4549,16 @@
       "difficulty": "kolay",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Işıklı dikdörtgen platformun uzun kenarı 4∜9 m, kısa kenarı 2∜9 m’dir. Çevresinin uzunluğu nedir?",
-      "correctAnswer": "12∜9 m",
-      "solution": "Çevre = 2 × (4∜9 + 2∜9) = 12∜9 m. Eşdeğer kökler: ∜9 = √3.",
-      "hint": "Önce eş köklü terimleri topla, sonra ikiyle çarp. Kök derecesine dikkat et; farklı derecedeki kökler eşit değeri gösterebilir.",
+      "prompt": "Işıklı dikdörtgen platformun uzun kenarı 4∛3 m, kısa kenarı 2∛3 m’dir. Çevresinin uzunluğu nedir?",
+      "correctAnswer": "12∛3 m",
+      "solution": "Çevre = 2 × (4∛3 + 2∛3) = 12∛3 m.",
+      "hint": "Kök içleri aynıysa katsayıları topla.",
       "inputType": "choice",
       "options": [
-        "12∜9 m",
-        "6∜9 m",
-        "16∜9 m",
-        "14∜9 m"
+        "12∛3 m",
+        "6∛3 m",
+        "16∛3 m",
+        "14∛3 m"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -4571,18 +4571,18 @@
         "labels": [
           {
             "anchor": "uzun_kenar",
-            "value": "4∜9 m"
+            "value": "4∛3 m"
           },
           {
             "anchor": "kısa_kenar",
-            "value": "2∜9 m"
+            "value": "2∛3 m"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Kenarları 2∜9 m ve ∜9 m olan dikdörtgenin çevresi?",
-        "solution": "2 × (2∜9 + ∜9) = 6∜9 m."
+        "question": "Kenarları 2∛3 ve 5∛3 m olan dikdörtgenin çevresi?",
+        "solution": "2 × (2∛3 + 5∛3) = 14∛3 m."
       },
       "sourceQuestionId": "F10-K-04",
       "sourceDifficulty": "Kolay"
@@ -8787,16 +8787,16 @@
       "difficulty": "kolay",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İstasyonda 4 şişenin her birinde 2² gram toz vardır. İki şişe ayrılırsa kalan şişelerde toplam kaç gram toz bulunur?",
-      "correctAnswer": "8",
-      "solution": "(4 − 2) × 4 = 8 g.",
+      "prompt": "İstasyonda 4 şişenin her birinde 5² gram toz vardır. İki şişe ayrılırsa kalan şişelerde toplam kaç gram toz bulunur?",
+      "correctAnswer": "50",
+      "solution": "5² = 25; (4 − 2) × 25 = 50 gram.",
       "hint": "Önce kalan şişe sayısını bul.",
       "inputType": "choice",
       "options": [
-        "16",
-        "12",
-        "8",
-        "4"
+        "54",
+        "46",
+        "50",
+        "58"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -8817,14 +8817,14 @@
           },
           {
             "anchor": "bir_şişede",
-            "value": "2² g"
+            "value": "5² g"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "4 şişede 2³ gram toz varsa toplam kaç gramdır?",
-        "solution": "4 × 8 = 32 gram."
+        "question": "3² şişenin her birinde 5² gram toz varsa toplam kaç gramdır?",
+        "solution": "9 × 25 = 225 gram."
       },
       "sourceQuestionId": "F17-K-02",
       "sourceDifficulty": "Kolay"
@@ -8835,16 +8835,16 @@
       "difficulty": "kolay",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İstasyondaki 2² şişenin her birinde 2³ gram toz vardır. Toplam tozun yarısı kullanılırsa kalan miktar kaç gramdır?",
-      "correctAnswer": "16",
-      "solution": "4 × 8 ÷ 2 = 16 gram.",
+      "prompt": "İstasyondaki 6² şişenin her birinde 3³ gram toz vardır. Toplam tozun yarısı kullanılırsa kalan miktar kaç gramdır?",
+      "correctAnswer": "486",
+      "solution": "6² = 36, 3³ = 27; 36 × 27 ÷ 2 = 486 gram.",
       "hint": "Önce toplam tozu bul, sonra ikiye böl.",
       "inputType": "choice",
       "options": [
-        "32",
-        "24",
-        "8",
-        "16"
+        "490",
+        "482",
+        "494",
+        "486"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -8857,11 +8857,11 @@
         "labels": [
           {
             "anchor": "şişe_sayısı",
-            "value": "2²"
+            "value": "6²"
           },
           {
             "anchor": "şişe_başına",
-            "value": "2³"
+            "value": "3³"
           },
           {
             "anchor": "kullanılan",
@@ -8871,8 +8871,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "4 şişede 2³ gram toz varsa toplam kaç gramdır?",
-        "solution": "4 × 8 = 32 gram."
+        "question": "3² şişenin her birinde 5² gram toz varsa toplam kaç gramdır?",
+        "solution": "9 × 25 = 225 gram."
       },
       "sourceQuestionId": "F17-K-03",
       "sourceDifficulty": "Kolay"
@@ -8883,16 +8883,16 @@
       "difficulty": "kolay",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Mavi toz istasyonunda 2³ şişe vardır. Her şişe 2² gram toz içeriyor. Toplam kaç gram mavi toz bulunur?",
-      "correctAnswer": "32",
-      "solution": "8 × 4 = 32 gram.",
+      "prompt": "Mavi toz istasyonunda 3³ şişe vardır. Her şişe 5² gram toz içeriyor. Toplam kaç gram mavi toz bulunur?",
+      "correctAnswer": "675",
+      "solution": "3³ = 27, 5² = 25; 27 × 25 = 675 gram.",
       "hint": "Şişe sayısı ile şişe başına miktarı çarp.",
       "inputType": "choice",
       "options": [
-        "32",
-        "36",
-        "28",
-        "12"
+        "675",
+        "679",
+        "671",
+        "683"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -8905,18 +8905,18 @@
         "labels": [
           {
             "anchor": "şişe_sayısı",
-            "value": "2³"
+            "value": "3³"
           },
           {
             "anchor": "şişedeki_toz",
-            "value": "2² g"
+            "value": "5² g"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "4 şişede 2³ gram toz varsa toplam kaç gramdır?",
-        "solution": "4 × 8 = 32 gram."
+        "question": "3² şişenin her birinde 5² gram toz varsa toplam kaç gramdır?",
+        "solution": "9 × 25 = 225 gram."
       },
       "sourceQuestionId": "F17-K-04",
       "sourceDifficulty": "Kolay"
@@ -8927,16 +8927,16 @@
       "difficulty": "kolay",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İstasyonda 8 şişenin her birinde 2³ gram toz vardır. İki şişe ayrılırsa kalan şişelerde toplam kaç gram toz bulunur?",
-      "correctAnswer": "48",
-      "solution": "(8 − 2) × 8 = 48 g.",
+      "prompt": "İstasyonda 8 şişenin her birinde 3³ gram toz vardır. İki şişe ayrılırsa kalan şişelerde toplam kaç gram toz bulunur?",
+      "correctAnswer": "162",
+      "solution": "3³ = 27; (8 − 2) × 27 = 162 gram.",
       "hint": "Önce kalan şişe sayısını bul.",
       "inputType": "choice",
       "options": [
-        "64",
-        "48",
-        "56",
-        "40"
+        "166",
+        "162",
+        "158",
+        "170"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -8957,14 +8957,14 @@
           },
           {
             "anchor": "bir_şişede",
-            "value": "2³ g"
+            "value": "3³ g"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "4 şişede 2³ gram toz varsa toplam kaç gramdır?",
-        "solution": "4 × 8 = 32 gram."
+        "question": "3² şişenin her birinde 5² gram toz varsa toplam kaç gramdır?",
+        "solution": "9 × 25 = 225 gram."
       },
       "sourceQuestionId": "F17-K-05",
       "sourceDifficulty": "Kolay"
@@ -8975,16 +8975,16 @@
       "difficulty": "kolay",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İstasyondaki 2³ şişenin her birinde 2¹ gram toz vardır. Toplam tozun yarısı kullanılırsa kalan miktar kaç gramdır?",
-      "correctAnswer": "8",
-      "solution": "8 × 2 ÷ 2 = 8 gram.",
+      "prompt": "İstasyondaki 4³ şişenin her birinde 7¹ gram toz vardır. Toplam tozun yarısı kullanılırsa kalan miktar kaç gramdır?",
+      "correctAnswer": "224",
+      "solution": "4³ = 64, 7¹ = 7; 64 × 7 ÷ 2 = 224 gram.",
       "hint": "Önce toplam tozu bul, sonra ikiye böl.",
       "inputType": "choice",
       "options": [
-        "16",
-        "10",
-        "8",
-        "6"
+        "228",
+        "220",
+        "224",
+        "232"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -8997,11 +8997,11 @@
         "labels": [
           {
             "anchor": "şişe_sayısı",
-            "value": "2³"
+            "value": "4³"
           },
           {
             "anchor": "şişe_başına",
-            "value": "2¹"
+            "value": "7¹"
           },
           {
             "anchor": "kullanılan",
@@ -9011,8 +9011,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "4 şişede 2³ gram toz varsa toplam kaç gramdır?",
-        "solution": "4 × 8 = 32 gram."
+        "question": "3² şişenin her birinde 5² gram toz varsa toplam kaç gramdır?",
+        "solution": "9 × 25 = 225 gram."
       },
       "sourceQuestionId": "F17-K-06",
       "sourceDifficulty": "Kolay"
@@ -9023,16 +9023,16 @@
       "difficulty": "kolay",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Mavi toz istasyonunda 2² şişe vardır. Her şişe 2³ gram toz içeriyor. Toplam kaç gram mavi toz bulunur?",
-      "correctAnswer": "32",
-      "solution": "4 × 8 = 32 gram.",
+      "prompt": "Mavi toz istasyonunda 5² şişe vardır. Her şişe 3³ gram toz içeriyor. Toplam kaç gram mavi toz bulunur?",
+      "correctAnswer": "675",
+      "solution": "5² = 25, 3³ = 27; 25 × 27 = 675 gram.",
       "hint": "Şişe sayısı ile şişe başına miktarı çarp.",
       "inputType": "choice",
       "options": [
-        "40",
-        "24",
-        "12",
-        "32"
+        "679",
+        "671",
+        "683",
+        "675"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -9045,18 +9045,18 @@
         "labels": [
           {
             "anchor": "şişe_sayısı",
-            "value": "2²"
+            "value": "5²"
           },
           {
             "anchor": "şişedeki_toz",
-            "value": "2³ g"
+            "value": "3³ g"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "4 şişede 2³ gram toz varsa toplam kaç gramdır?",
-        "solution": "4 × 8 = 32 gram."
+        "question": "3² şişenin her birinde 5² gram toz varsa toplam kaç gramdır?",
+        "solution": "9 × 25 = 225 gram."
       },
       "sourceQuestionId": "F17-K-07",
       "sourceDifficulty": "Kolay"
@@ -9067,16 +9067,16 @@
       "difficulty": "kolay",
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İstasyonda 4 şişenin her birinde 2¹ gram toz vardır. İki şişe ayrılırsa kalan şişelerde toplam kaç gram toz bulunur?",
-      "correctAnswer": "4",
-      "solution": "(4 − 2) × 2 = 4 g.",
+      "prompt": "İstasyonda 4 şişenin her birinde 7¹ gram toz vardır. İki şişe ayrılırsa kalan şişelerde toplam kaç gram toz bulunur?",
+      "correctAnswer": "14",
+      "solution": "7¹ = 7; (4 − 2) × 7 = 14 gram.",
       "hint": "Önce kalan şişe sayısını bul.",
       "inputType": "choice",
       "options": [
-        "4",
-        "8",
-        "6",
-        "2"
+        "14",
+        "18",
+        "10",
+        "22"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -9097,14 +9097,14 @@
           },
           {
             "anchor": "bir_şişede",
-            "value": "2¹ g"
+            "value": "7¹ g"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "4 şişede 2³ gram toz varsa toplam kaç gramdır?",
-        "solution": "4 × 8 = 32 gram."
+        "question": "3² şişenin her birinde 5² gram toz varsa toplam kaç gramdır?",
+        "solution": "9 × 25 = 225 gram."
       },
       "sourceQuestionId": "F17-K-08",
       "sourceDifficulty": "Kolay"
@@ -9115,16 +9115,16 @@
       "difficulty": "kolay",
       "variant": 9,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İstasyondaki 2² şişenin her birinde 2² gram toz vardır. Toplam tozun yarısı kullanılırsa kalan miktar kaç gramdır?",
-      "correctAnswer": "8",
-      "solution": "4 × 4 ÷ 2 = 8 gram.",
+      "prompt": "İstasyondaki 6² şişenin her birinde 6² gram toz vardır. Toplam tozun yarısı kullanılırsa kalan miktar kaç gramdır?",
+      "correctAnswer": "648",
+      "solution": "6² = 36, 6² = 36; 36 × 36 ÷ 2 = 648 gram.",
       "hint": "Önce toplam tozu bul, sonra ikiye böl.",
       "inputType": "choice",
       "options": [
-        "16",
-        "8",
-        "12",
-        "4"
+        "652",
+        "648",
+        "644",
+        "656"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -9137,11 +9137,11 @@
         "labels": [
           {
             "anchor": "şişe_sayısı",
-            "value": "2²"
+            "value": "6²"
           },
           {
             "anchor": "şişe_başına",
-            "value": "2²"
+            "value": "6²"
           },
           {
             "anchor": "kullanılan",
@@ -9151,8 +9151,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "4 şişede 2³ gram toz varsa toplam kaç gramdır?",
-        "solution": "4 × 8 = 32 gram."
+        "question": "3² şişenin her birinde 5² gram toz varsa toplam kaç gramdır?",
+        "solution": "9 × 25 = 225 gram."
       },
       "sourceQuestionId": "F17-K-09",
       "sourceDifficulty": "Kolay"
@@ -9163,16 +9163,16 @@
       "difficulty": "kolay",
       "variant": 10,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Mavi toz istasyonunda 2³ şişe vardır. Her şişe 2¹ gram toz içeriyor. Toplam kaç gram mavi toz bulunur?",
-      "correctAnswer": "16",
-      "solution": "8 × 2 = 16 gram.",
+      "prompt": "Mavi toz istasyonunda 3³ şişe vardır. Her şişe 5¹ gram toz içeriyor. Toplam kaç gram mavi toz bulunur?",
+      "correctAnswer": "135",
+      "solution": "3³ = 27, 5¹ = 5; 27 × 5 = 135 gram.",
       "hint": "Şişe sayısı ile şişe başına miktarı çarp.",
       "inputType": "choice",
       "options": [
-        "18",
-        "14",
-        "16",
-        "10"
+        "139",
+        "131",
+        "135",
+        "143"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -9185,18 +9185,18 @@
         "labels": [
           {
             "anchor": "şişe_sayısı",
-            "value": "2³"
+            "value": "3³"
           },
           {
             "anchor": "şişedeki_toz",
-            "value": "2¹ g"
+            "value": "5¹ g"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "4 şişede 2³ gram toz varsa toplam kaç gramdır?",
-        "solution": "4 × 8 = 32 gram."
+        "question": "3² şişenin her birinde 5² gram toz varsa toplam kaç gramdır?",
+        "solution": "9 × 25 = 225 gram."
       },
       "sourceQuestionId": "F17-K-10",
       "sourceDifficulty": "Kolay"
@@ -9687,16 +9687,16 @@
       "difficulty": "kolay",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Taş platforma uç uca yerleştirilen iki destek 3∜4 cm ve 3∜4 cm uzunluğundadır. Oluşan desteğin toplam uzunluğu nedir?",
-      "correctAnswer": "6∜4 cm",
-      "solution": "3∜4 + 3∜4 = 6∜4 cm. Eşdeğer kökler: ∜4 = √2.",
-      "hint": "Kökler eşitse önlerindeki katsayıları topla. Kök derecesine dikkat et; farklı derecedeki kökler eşit değeri gösterebilir.",
+      "prompt": "Taş platforma uç uca yerleştirilen iki destek 3∛2 cm ve 3∛2 cm uzunluğundadır. Oluşan desteğin toplam uzunluğu nedir?",
+      "correctAnswer": "6∛2 cm",
+      "solution": "3∛2 + 3∛2 = 6∛2 cm.",
+      "hint": "Aynı küp köke sahip terimlerin katsayılarını topla.",
       "inputType": "choice",
       "options": [
-        "9∜4 cm",
-        "7∜4 cm",
-        "0∜4 cm",
-        "6∜4 cm"
+        "9∛2 cm",
+        "7∛2 cm",
+        "0∛2 cm",
+        "6∛2 cm"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -9709,18 +9709,18 @@
         "labels": [
           {
             "anchor": "destek_1",
-            "value": "3∜4 cm"
+            "value": "3∛2 cm"
           },
           {
             "anchor": "destek_2",
-            "value": "3∜4 cm"
+            "value": "3∛2 cm"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "5∜4 ve 2∜4 cm destekler uç uca gelirse uzunluk kaçtır?",
-        "solution": "5∜4 + 2∜4 = 7∜4 cm."
+        "question": "2∛2 ve 5∛2 cm destek uç uca eklenirse?",
+        "solution": "7∛2 cm."
       },
       "sourceQuestionId": "F19-K-01",
       "sourceDifficulty": "Kolay"
@@ -9823,16 +9823,16 @@
       "difficulty": "kolay",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Taş platforma uç uca yerleştirilen iki destek 4∜9 cm ve 2∜9 cm uzunluğundadır. Oluşan desteğin toplam uzunluğu nedir?",
-      "correctAnswer": "6∜9 cm",
-      "solution": "4∜9 + 2∜9 = 6∜9 cm. Eşdeğer kökler: ∜9 = √3.",
-      "hint": "Kökler eşitse önlerindeki katsayıları topla. Kök derecesine dikkat et; farklı derecedeki kökler eşit değeri gösterebilir.",
+      "prompt": "Taş platforma uç uca yerleştirilen iki destek 4∛3 cm ve 2∛3 cm uzunluğundadır. Oluşan desteğin toplam uzunluğu nedir?",
+      "correctAnswer": "6∛3 cm",
+      "solution": "4∛3 + 2∛3 = 6∛3 cm.",
+      "hint": "Kök içi ve derecesi aynı olduğundan katsayıları topla.",
       "inputType": "choice",
       "options": [
-        "8∜9 cm",
-        "7∜9 cm",
-        "6∜9 cm",
-        "2∜9 cm"
+        "8∛3 cm",
+        "7∛3 cm",
+        "6∛3 cm",
+        "2∛3 cm"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -9845,18 +9845,18 @@
         "labels": [
           {
             "anchor": "destek_1",
-            "value": "4∜9 cm"
+            "value": "4∛3 cm"
           },
           {
             "anchor": "destek_2",
-            "value": "2∜9 cm"
+            "value": "2∛3 cm"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "5√2 ve 2√2 cm destekler uç uca gelirse uzunluk kaçtır?",
-        "solution": "5√2 + 2√2 = 7√2 cm."
+        "question": "3∛3 ve 5∛3 cm destek uç uca eklenirse?",
+        "solution": "8∛3 cm."
       },
       "sourceQuestionId": "F19-K-04",
       "sourceDifficulty": "Kolay"
@@ -11394,16 +11394,16 @@
       "difficulty": "orta",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Üç taş basamağın enerji değerleri 2³, 4² ve 2⁵. İlk basamak tam, ikincinin dörtte biri, üçüncünün yarısı çalışıyorsa toplam kaç enerji birimi elde edilir?",
-      "correctAnswer": "28",
-      "solution": "8 + 16÷4 + 32÷2 = 28.",
-      "hint": "Her basamak için yalnızca çalışan kısmı hesapla.",
+      "prompt": "Üç taş basamağın enerji değerleri 3³, 6² ve 6³. İlk basamak tam, ikincinin dörtte biri, üçüncünün yarısı çalışıyorsa toplam kaç enerji birimi elde edilir?",
+      "correctAnswer": "144",
+      "solution": "3³ = 27, 6² = 36, 6³ = 216; 27 + 36/4 + 216/2 = 144.",
+      "hint": "Her basamağın kullanılan kısmını hesaplayıp topla.",
       "inputType": "choice",
       "options": [
-        "30",
-        "28",
-        "26",
-        "32"
+        "144",
+        "135",
+        "162",
+        "126"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -11416,15 +11416,15 @@
         "labels": [
           {
             "anchor": "ilk",
-            "value": "2³"
+            "value": "3³"
           },
           {
             "anchor": "orta",
-            "value": "4²"
+            "value": "6²"
           },
           {
             "anchor": "son",
-            "value": "2⁵"
+            "value": "6³"
           },
           {
             "anchor": "çalışma oranları",
@@ -11434,8 +11434,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2³, 4² ve 2⁵ basamaklarının yalnızca ikinci basamağının yarısı çalışırsa toplam kaç güç?",
-        "solution": "8+8+32=48."
+        "question": "3², 4² ve 6² enerjinin tamamı, dörtte biri ve yarısı çalışırsa toplam?",
+        "solution": "9 + 4 + 18 = 31."
       },
       "sourceQuestionId": "F02-O-04",
       "sourceDifficulty": "Orta"
@@ -12494,16 +12494,16 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "3 katmanın her birinde 4² lamba bulunuyor. Toplam lambaların dörtte biri arızalıysa kaç lamba yanmaya devam eder?",
-      "correctAnswer": "36",
-      "solution": "3×16×3/4=36.",
+      "prompt": "3 katmanın her birinde 6² lamba bulunuyor. Toplam lambaların dörtte biri arızalıysa kaç lamba yanmaya devam eder?",
+      "correctAnswer": "81",
+      "solution": "3 × 36 × 3/4 = 81.",
       "hint": "Önce toplamı, sonra sağlam olan dörtte üçünü bul.",
       "inputType": "choice",
       "options": [
-        "38",
-        "34",
-        "40",
-        "36"
+        "27",
+        "108",
+        "72",
+        "81"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -12520,7 +12520,7 @@
           },
           {
             "anchor": "bir katman",
-            "value": "4²"
+            "value": "6²"
           },
           {
             "anchor": "arızalı oran",
@@ -12530,8 +12530,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Dört katmanda 8’er lamba var, toplamın dörtte biri sönük. Kaç yanar?",
-        "solution": "32−8=24."
+        "question": "Dört katın her birinde 3² ışık varsa toplam kaç ışık vardır?",
+        "solution": "3² = 9; 4 × 9 = 36 ışık."
       },
       "sourceQuestionId": "F04-O-02",
       "sourceDifficulty": "Orta"
@@ -12982,16 +12982,16 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kristalin ilk enerji katsayısı 2³, güç azaltma çarpanı 2⁻⁵. Son güç katsayısı kaçtır?",
-      "correctAnswer": "1/4",
-      "solution": "2³×2⁻⁵=2⁻²=1/4.",
+      "prompt": "Kristalin ilk enerji katsayısı 3³, güç azaltma çarpanı 3⁻⁵. Son güç katsayısı kaçtır?",
+      "correctAnswer": "1/9",
+      "solution": "3³ × 3⁻⁵ = 3⁻² = 1/9.",
       "hint": "Aynı tabanlı kuvvetleri çarparken üsler toplanır.",
       "inputType": "choice",
       "options": [
-        "1/2",
-        "1/4",
-        "3/4",
-        "5/4"
+        "1/3",
+        "1/9",
+        "1/27",
+        "9"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -13004,18 +13004,18 @@
         "labels": [
           {
             "anchor": "başlangıç",
-            "value": "2³"
+            "value": "3³"
           },
           {
             "anchor": "çarpan",
-            "value": "2⁻⁵"
+            "value": "3⁻⁵"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2³ × 2⁻⁵ değeri nedir?",
-        "solution": "2⁻²=1/4."
+        "question": "5⁴ × 5⁻⁶ kaçtır?",
+        "solution": "5⁻² = 1/25."
       },
       "sourceQuestionId": "F05-O-02",
       "sourceDifficulty": "Orta"
@@ -13638,16 +13638,16 @@
       "difficulty": "orta",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "A mantar adasında 4³, B’de 4², C’de 2³ mantar var. A adasındaki sayı diğer iki adanın toplamından kaç fazladır?",
-      "correctAnswer": "40",
-      "solution": "64−(16+8)=40.",
+      "prompt": "A mantar adasında 5³, B’de 3², C’de 6² mantar var. A adasındaki sayı diğer iki adanın toplamından kaç fazladır?",
+      "correctAnswer": "80",
+      "solution": "125 − (9 + 36) = 80 mantar.",
       "hint": "Önce B ile C’yi topla, ardından A’dan çıkar.",
       "inputType": "choice",
       "options": [
-        "42",
-        "38",
-        "44",
-        "40"
+        "89",
+        "116",
+        "170",
+        "80"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -13660,22 +13660,22 @@
         "labels": [
           {
             "anchor": "A",
-            "value": "4³"
+            "value": "5³"
           },
           {
             "anchor": "B",
-            "value": "4²"
+            "value": "3²"
           },
           {
             "anchor": "C",
-            "value": "2³"
+            "value": "6²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "A=32, B=16, C=8 mantar; A ile diğer ikisinin farkı kaç?",
-        "solution": "32−(16+8)=8."
+        "question": "A adasında 3², B adasında 5² mantar varsa toplam kaç mantar vardır?",
+        "solution": "9 + 25 = 34 mantar."
       },
       "sourceQuestionId": "F06-O-06",
       "sourceDifficulty": "Orta"
@@ -14374,16 +14374,16 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Köprünün A kısmında 4², B kısmında 2³ tahta vardır. A’dakilerin yarısı ve B’dekilerin dörtte biri sağlam kalmışsa toplam sağlam tahta kaçtır?",
-      "correctAnswer": "10",
-      "solution": "16÷2+8÷4=10",
+      "prompt": "Köprünün A kısmında 6², B kısmında 4³ tahta vardır. A’dakilerin yarısı ve B’dekilerin dörtte biri sağlam kalmışsa toplam sağlam tahta kaçtır?",
+      "correctAnswer": "34",
+      "solution": "36 ÷ 2 + 64 ÷ 4 = 18 + 16 = 34.",
       "hint": "Bölümlerdeki sağlam oranları ayrı hesapla.",
       "inputType": "choice",
       "options": [
-        "12",
-        "8",
-        "14",
-        "10"
+        "18",
+        "16",
+        "50",
+        "34"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -14396,11 +14396,11 @@
         "labels": [
           {
             "anchor": "A",
-            "value": "4²"
+            "value": "6²"
           },
           {
             "anchor": "B",
-            "value": "2³"
+            "value": "4³"
           },
           {
             "anchor": "A sağlam",
@@ -14414,8 +14414,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "A bölümünde 16, B bölümünde 32 tahta, sırasıyla yarısı ve dörtte biri sağlam ise toplam?",
-        "solution": "8+8=16."
+        "question": "A’da 6², B’de 4² tahta var; yarısı ve dörtte biri sağlam. Toplam?",
+        "solution": "18 + 4 = 22."
       },
       "sourceQuestionId": "F08-O-02",
       "sourceDifficulty": "Orta"
@@ -14830,16 +14830,16 @@
       "difficulty": "orta",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "6∜4 m uzunluğundaki halatın 2∜4 m’lik hasarlı bölümü kesiliyor. Kalan halat iki eş parçaya ayrılırsa bir parçanın uzunluğu kaç metredir?",
-      "correctAnswer": "2∜4",
-      "solution": "(6∜4−2∜4)÷2=2∜4 m. Eşdeğer kökler: ∜4 = √2.",
-      "hint": "Benzer köklü terimleri çıkar, sonra ikiye böl. Kök derecesine dikkat et; farklı derecedeki kökler eşit değeri gösterebilir.",
+      "prompt": "6∛2 m uzunluğundaki halatın 2∛2 m’lik hasarlı bölümü kesiliyor. Kalan halat iki eş parçaya ayrılırsa bir parçanın uzunluğu kaç metredir?",
+      "correctAnswer": "2∛2",
+      "solution": "(6∛2−2∛2)÷2=2∛2 m.",
+      "hint": "Benzer küp köklü terimleri çıkar, sonra ikiye böl.",
       "inputType": "choice",
       "options": [
-        "2∜4",
-        "3∜4",
-        "4∜4",
-        "∜4"
+        "2∛2",
+        "3∛2",
+        "4∛2",
+        "∛2"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -14852,11 +14852,11 @@
         "labels": [
           {
             "anchor": "halat",
-            "value": "6∜4 m"
+            "value": "6∛2 m"
           },
           {
             "anchor": "hasarlı bölüm",
-            "value": "2∜4 m"
+            "value": "2∛2 m"
           },
           {
             "anchor": "bölme",
@@ -14866,8 +14866,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "5∜4 m halattan ∜4 m kesilip ikiye ayrılırsa parça uzunluğu?",
-        "solution": "(5∜4−∜4)/2=2∜4."
+        "question": "5∛2 m halattan ∛2 m kesilip ikiye ayrılırsa parça uzunluğu?",
+        "solution": "(5∛2 − ∛2)/2 = 2∛2 m."
       },
       "sourceQuestionId": "F09-O-01",
       "sourceDifficulty": "Orta"
@@ -15298,16 +15298,16 @@
       "difficulty": "orta",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Işıklı dikdörtgen platformun kenarları 3∜4 m ve 2∜4 m’dir. Çevresine yerleştirilecek ışık şeridinin uzunluğu kaç metredir?",
-      "correctAnswer": "10∜4",
-      "solution": "2×(3∜4+2∜4)=10∜4 m. Eşdeğer kökler: ∜4 = √2.",
-      "hint": "Çevre iki uzun ve iki kısa kenarın toplamıdır. Kök derecesine dikkat et; farklı derecedeki kökler eşit değeri gösterebilir.",
+      "prompt": "Işıklı dikdörtgen platformun kenarları 3∛2 m ve 2∛2 m’dir. Çevresine yerleştirilecek ışık şeridinin uzunluğu kaç metredir?",
+      "correctAnswer": "10∛2",
+      "solution": "2×(3∛2+2∛2)=10∛2 m.",
+      "hint": "Çevre iki uzun ve iki kısa kenarın toplamıdır.",
       "inputType": "choice",
       "options": [
-        "11∜4",
-        "12∜4",
-        "10∜4",
-        "9∜4"
+        "11∛2",
+        "12∛2",
+        "10∛2",
+        "9∛2"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -15320,18 +15320,18 @@
         "labels": [
           {
             "anchor": "uzun kenar",
-            "value": "3∜4 m"
+            "value": "3∛2 m"
           },
           {
             "anchor": "kısa kenar",
-            "value": "2∜4 m"
+            "value": "2∛2 m"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Dikdörtgenin kenarları 3∜4 ve 4∜4 ise çevre?",
-        "solution": "2(3∜4+4∜4)=14∜4."
+        "question": "Kenarları 3∛2 ve 4∛2 m olan dikdörtgenin çevresi?",
+        "solution": "2 × (3∛2 + 4∛2) = 14∛2 m."
       },
       "sourceQuestionId": "F10-O-01",
       "sourceDifficulty": "Orta"
@@ -15790,16 +15790,16 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "A ve B kapakları saniyede 4² L ve 2³ L su geçiriyor. İkisi 2 saniye açık kaldığında suyun dörtte biri yan kola ayrılıyor. Ana kolda kaç litre kalır?",
-      "correctAnswer": "36",
-      "solution": "(16+8)×2×3/4=36 L.",
+      "prompt": "A ve B kapakları saniyede 6² L ve 4³ L su geçiriyor. İkisi 2 saniye açık kaldığında suyun dörtte biri yan kola ayrılıyor. Ana kolda kaç litre kalır?",
+      "correctAnswer": "150",
+      "solution": "(36 + 64) × 2 × 3/4 = 150 L.",
       "hint": "Önce iki kapağın toplamından süre boyunca akan suyu bul.",
       "inputType": "choice",
       "options": [
-        "38",
-        "36",
-        "34",
-        "40"
+        "50",
+        "150",
+        "100",
+        "200"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -15812,11 +15812,11 @@
         "labels": [
           {
             "anchor": "A",
-            "value": "4² L/sn"
+            "value": "6² L/sn"
           },
           {
             "anchor": "B",
-            "value": "2³ L/sn"
+            "value": "4³ L/sn"
           },
           {
             "anchor": "süre",
@@ -15830,8 +15830,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "İki kapak 32 ve 16 L/sn, 2 saniye sonunda toplamın dörtte biri yan kanala giderse ana kanalda?",
-        "solution": "(32+16)×2×3/4=72."
+        "question": "3² ve 5² L/sn debili iki kapak 2 saniye açıksa toplam?",
+        "solution": "(9 + 25) × 2 = 68 L."
       },
       "sourceQuestionId": "F11-O-02",
       "sourceDifficulty": "Orta"
@@ -16302,16 +16302,16 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki patikadan A’nın uzunluğu 3∜4 birim, B’nin uzunluğu 5∜4 birimdir. Kısa yolu seçen kişi hangi yolu kullanır ve yürüyüşünü kaç birim kısaltır?",
-      "correctAnswer": "A yolu, 2∜4 birim",
-      "solution": "A=3∜4, B=5∜4; B−A=2∜4. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
-      "hint": "Kök içleri eşit olduğu için katsayıları karşılaştır. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
+      "prompt": "İki patikadan A’nın uzunluğu 3∛2 birim, B’nin uzunluğu 5∛2 birimdir. Kısa yolu seçen kişi hangi yolu kullanır ve yürüyüşünü kaç birim kısaltır?",
+      "correctAnswer": "A yolu, 2∛2 birim",
+      "solution": "A=3∛2, B=5∛2; B−A=2∛2.",
+      "hint": "Kök içleri eşit olduğu için katsayıları karşılaştır.",
       "inputType": "choice",
       "options": [
-        "B yolu, 2∜4 birim",
-        "A yolu, 4∜4 birim",
-        "B yolu, 4∜4 birim",
-        "A yolu, 2∜4 birim"
+        "B yolu, 2∛2 birim",
+        "A yolu, 4∛2 birim",
+        "B yolu, 4∛2 birim",
+        "A yolu, 2∛2 birim"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -16324,18 +16324,18 @@
         "labels": [
           {
             "anchor": "A",
-            "value": "3∜4"
+            "value": "3∛2"
           },
           {
             "anchor": "B",
-            "value": "5∜4"
+            "value": "5∛2"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "A=5∜4 ve B=7∜4 mesafelerinden kısa yol ve fark?",
-        "solution": "A yolu, 2∜4 birim."
+        "question": "A=5∛2 ve B=7∛2 birim ise kısa yol ve fark?",
+        "solution": "A yolu, 2∛2 birim."
       },
       "sourceQuestionId": "F12-O-02",
       "sourceDifficulty": "Orta"
@@ -16746,16 +16746,16 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Altı yüzlü taş kilidin iki yüzü mühürlü, diğer dört yüzün her birinde 2³ işaret var. 2¹ işaret sönükse toplam kaç işaret yanar?",
-      "correctAnswer": "30",
-      "solution": "4×8−2=30.",
+      "prompt": "Altı yüzlü taş kilidin iki yüzü mühürlü, diğer dört yüzün her birinde 5² işaret var. 3² işaret sönükse toplam kaç işaret yanar?",
+      "correctAnswer": "91",
+      "solution": "4 × 25 − 9 = 91.",
       "hint": "Önce açık dört yüzün işaretlerini hesapla.",
       "inputType": "choice",
       "options": [
-        "32",
-        "30",
-        "28",
-        "34"
+        "100",
+        "91",
+        "89",
+        "81"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -16776,18 +16776,18 @@
           },
           {
             "anchor": "işaret/yüz",
-            "value": "2³"
+            "value": "5²"
           },
           {
             "anchor": "sönük",
-            "value": "2¹"
+            "value": "3²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "5 yüzde 16’şar işaret var, 8’i sönükse kalan?",
-        "solution": "80−8=72."
+        "question": "Dört açık yüzde 3² işaret varsa ve 5 işaret sönükse kaç yanar?",
+        "solution": "4 × 9 − 5 = 31."
       },
       "sourceQuestionId": "F13-O-02",
       "sourceDifficulty": "Orta"
@@ -17234,16 +17234,16 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Çarkın etkinleştirme anahtarında 2³ × 2² yazıyor. Hangi üslü güç etiketiyle aynı değerdedir?",
-      "correctAnswer": "2⁵",
-      "solution": "2³×2²=2⁵.",
+      "prompt": "Çarkın etkinleştirme anahtarında 3³ × 3² yazıyor. Hangi üslü güç etiketiyle aynı değerdedir?",
+      "correctAnswer": "3⁵",
+      "solution": "3³ × 3² = 3⁵.",
       "hint": "Aynı tabanlı üsleri çarparken üsleri topla.",
       "inputType": "choice",
       "options": [
-        "2⁴",
-        "2⁶",
-        "2⁷",
-        "2⁵"
+        "3⁶",
+        "3¹",
+        "9⁵",
+        "3⁵"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -17256,7 +17256,7 @@
         "labels": [
           {
             "anchor": "anahtar",
-            "value": "2³ × 2²"
+            "value": "3³ × 3²"
           },
           {
             "anchor": "yuvanın etiketi",
@@ -17266,8 +17266,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2³×2² değerini bul.",
-        "solution": "2⁵=32."
+        "question": "5² × 5³ hangi kuvvettir?",
+        "solution": "5⁵."
       },
       "sourceQuestionId": "F14-O-02",
       "sourceDifficulty": "Orta"
@@ -19808,16 +19808,16 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "A kutusunda 2³ şişenin her biri 2⁻² gram, B kutusunda 2² şişenin her biri 2⁻³ gram toz içeriyor. İki kutuda toplam kaç gram toz var?",
-      "correctAnswer": "5/2",
-      "solution": "8×1/4 + 4×1/8=5/2 g.",
+      "prompt": "A kutusunda 3³ şişenin her biri 3⁻² gram, B kutusunda 5² şişenin her biri 5⁻² gram toz içeriyor. İki kutuda toplam kaç gram toz var?",
+      "correctAnswer": "4",
+      "solution": "27 × 1/9 + 25 × 1/25 = 3 + 1 = 4 g.",
       "hint": "Önce her kutunun toplam gramını hesapla.",
       "inputType": "choice",
       "options": [
         "3",
-        "2",
-        "7/2",
-        "5/2"
+        "1",
+        "5",
+        "4"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -19830,26 +19830,26 @@
         "labels": [
           {
             "anchor": "A şişe",
-            "value": "2³"
+            "value": "3³"
           },
           {
             "anchor": "A gram/şişe",
-            "value": "2⁻²"
+            "value": "3⁻²"
           },
           {
             "anchor": "B şişe",
-            "value": "2²"
+            "value": "5²"
           },
           {
             "anchor": "B gram/şişe",
-            "value": "2⁻³"
+            "value": "5⁻²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "4 şişede 1/8, 8 şişede 1/16 gram varsa toplam?",
-        "solution": "4/8+8/16=1 gram."
+        "question": "3² şişede 3⁻¹ g ve 5² şişede 5⁻² g varsa toplam?",
+        "solution": "9/3 + 25/25 = 4 g."
       },
       "sourceQuestionId": "F17-O-02",
       "sourceDifficulty": "Orta"
@@ -20744,16 +20744,16 @@
       "difficulty": "orta",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki taş destek aynı doğrultuda birleştiriliyor. Destek uzunlukları 6∜4 cm ve 4∜4 cm; ortak bölüm 2∜4 cm’dir. Birleşik desteğin uzunluğu kaç santimetredir?",
-      "correctAnswer": "8∜4",
-      "solution": "(6+4−2)∜4=8∜4 cm. Eşdeğer kökler: ∜4 = √2.",
-      "hint": "Üst üste gelen ortak bölümü yalnızca bir kez say. Kök derecesine dikkat et; farklı derecedeki kökler eşit değeri gösterebilir.",
+      "prompt": "İki taş destek aynı doğrultuda birleştiriliyor. Destek uzunlukları 6∛2 cm ve 4∛2 cm; ortak bölüm 2∛2 cm’dir. Birleşik desteğin uzunluğu kaç santimetredir?",
+      "correctAnswer": "8∛2",
+      "solution": "(6+4−2)∛2=8∛2 cm.",
+      "hint": "Ortak bölümü yalnızca bir kez say.",
       "inputType": "choice",
       "options": [
-        "9∜4",
-        "10∜4",
-        "8∜4",
-        "7∜4"
+        "9∛2",
+        "10∛2",
+        "8∛2",
+        "7∛2"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -20766,22 +20766,22 @@
         "labels": [
           {
             "anchor": "A destek",
-            "value": "6∜4 cm"
+            "value": "6∛2 cm"
           },
           {
             "anchor": "B destek",
-            "value": "4∜4 cm"
+            "value": "4∛2 cm"
           },
           {
             "anchor": "örtüşme",
-            "value": "2∜4 cm"
+            "value": "2∛2 cm"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "3∜4 m ve 5∜4 m destek ∜4 m örtüşürse toplam?",
-        "solution": "7∜4 m."
+        "question": "3∛2 ve 5∛2 cm destek ∛2 cm örtüşürse uzunluk?",
+        "solution": "(3+5−1)∛2 = 7∛2 cm."
       },
       "sourceQuestionId": "F19-O-01",
       "sourceDifficulty": "Orta"
@@ -22574,16 +22574,16 @@
       "difficulty": "zor",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dört taş basamaktaki enerji 4², 2⁵, 4³, 2⁷ birimdir. Son iki basamağın toplam enerjisi, ilk ikinin toplamından kaç birim fazladır?",
-      "correctAnswer": "144",
-      "solution": "(64+128) − (16+32)=144.",
+      "prompt": "Dört taş basamaktaki enerji 3², 5², 3³, 6³ birimdir. Son iki basamağın toplam enerjisi, ilk ikinin toplamından kaç birim fazladır?",
+      "correctAnswer": "209",
+      "solution": "(27 + 216) − (9 + 25) = 243 − 34 = 209.",
       "hint": "Önce enerjileri 2 kuvvetinden sayıya dönüştür; grupları ayrı topla.",
       "inputType": "choice",
       "options": [
-        "172",
-        "116",
-        "200",
-        "144"
+        "199",
+        "219",
+        "243",
+        "209"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -22596,26 +22596,26 @@
         "labels": [
           {
             "anchor": "basamak 1",
-            "value": "4²"
+            "value": "3²"
           },
           {
             "anchor": "basamak 2",
-            "value": "2⁵"
+            "value": "5²"
           },
           {
             "anchor": "basamak 3",
-            "value": "4³"
+            "value": "3³"
           },
           {
             "anchor": "basamak 4",
-            "value": "2⁷"
+            "value": "6³"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Dört taş basamaktaki enerji 2⁵, 4³, 2⁷, 4⁴ birimdir. Son iki basamağın toplam enerjisi, ilk ikinin toplamından kaç birim fazladır?",
-        "solution": "(128+256) − (32+64)=288."
+        "question": "3², 5², 4³ ve 3³ enerjilerinin son ikisinin toplamı ilk ikisinden kaç fazladır?",
+        "solution": "(64 + 27) − (9 + 25) = 57."
       },
       "sourceQuestionId": "F02-Z-06",
       "sourceDifficulty": "Zor"
@@ -23634,16 +23634,16 @@
       "difficulty": "zor",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Işık geçidinin üç katmanında 4³’şar lamba vardır. İlk katmanda 1/4, ikincide 3/8, üçüncüde 1/2 oranında lamba sönüyor. Son durumda toplam kaç lamba yanıyor?",
-      "correctAnswer": "120",
-      "solution": "Yananlar: 48+40+32=120.",
+      "prompt": "Işık geçidinin üç katmanında 6³’şar lamba vardır. İlk katmanda 1/4, ikincide 3/8, üçüncüde 1/2 oranında lamba sönüyor. Son durumda toplam kaç lamba yanıyor?",
+      "correctAnswer": "405",
+      "solution": "6³ = 216; yananlar 162 + 135 + 108 = 405.",
       "hint": "Her katmandaki payı ayrı hesaplayıp gereken toplamı veya farkı bul.",
       "inputType": "choice",
       "options": [
-        "120",
-        "144",
-        "96",
-        "168"
+        "405",
+        "243",
+        "648",
+        "432"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -23656,22 +23656,22 @@
         "labels": [
           {
             "anchor": "katman 1",
-            "value": "4³ lamba; sönük 1/4"
+            "value": "6³ lamba; sönük 1/4"
           },
           {
             "anchor": "katman 2",
-            "value": "4³ lamba; sönük 3/8"
+            "value": "6³ lamba; sönük 3/8"
           },
           {
             "anchor": "katman 3",
-            "value": "4³ lamba; sönük 1/2"
+            "value": "6³ lamba; sönük 1/2"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Işık geçidinin üç katmanında 2⁷’şar lamba vardır. İlk katmanda 1/4, ikincide 3/8, üçüncüde 1/2 oranında lamba sönüyor. Son durumda toplam kaç lamba yanıyor?",
-        "solution": "Yananlar: 96+80+64=240."
+        "question": "Üç katta 4³ lamba var. Sırasıyla 1/4, 3/8, 1/2 sönerse kaç lamba yanar?",
+        "solution": "48 + 40 + 32 = 120."
       },
       "sourceQuestionId": "F04-Z-02",
       "sourceDifficulty": "Zor"
@@ -24326,16 +24326,16 @@
       "difficulty": "zor",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Güç istasyonunda 2⁻², 2⁻³ ve 4⁻² birimlik kristallerin enerjileri birleştiriliyor. Toplam enerji 8² ile çarpılırsa gösterge kaç birim olur?",
-      "correctAnswer": "28",
-      "solution": "(7/16) × 64 = 28.",
+      "prompt": "Güç istasyonunda 3⁻¹, 3⁻² ve 3⁻³ birimlik kristallerin enerjileri birleştiriliyor. Toplam enerji 3⁴ ile çarpılırsa gösterge kaç birim olur?",
+      "correctAnswer": "39",
+      "solution": "(1/3 + 1/9 + 1/27) × 81 = (13/27) × 81 = 39.",
       "hint": "Önce negatif üsleri kesir olarak yaz, sonra tüm işlemleri sırayla yap.",
       "inputType": "choice",
       "options": [
-        "32",
-        "24",
-        "36",
-        "28"
+        "13",
+        "27",
+        "81",
+        "39"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -24348,26 +24348,26 @@
         "labels": [
           {
             "anchor": "kristal A",
-            "value": "2⁻²"
+            "value": "3⁻¹"
           },
           {
             "anchor": "kristal B",
-            "value": "2⁻³"
+            "value": "3⁻²"
           },
           {
             "anchor": "kristal C",
-            "value": "4⁻²"
+            "value": "3⁻³"
           },
           {
             "anchor": "çarpan",
-            "value": "8²"
+            "value": "3⁴"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Güç istasyonunda 2⁻³, 4⁻² ve 2⁻⁵ birimlik kristallerin enerjileri birleştiriliyor. Toplam enerji 4⁴ ile çarpılırsa gösterge kaç birim olur?",
-        "solution": "(7/32) × 256 = 56."
+        "question": "(5⁻¹ + 5⁻²) × 5³ kaçtır?",
+        "solution": "(1/5 + 1/25) × 125 = 30."
       },
       "sourceQuestionId": "F05-Z-06",
       "sourceDifficulty": "Zor"
@@ -24742,16 +24742,16 @@
       "difficulty": "zor",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Üç mantar adasında A: 3 · 4², B: 2⁵, C: 2³ mantar bulunuyor. A’dakilerin yarısı, B’dekilerin dörtte biri ve C’deki mantarların tamamı sayım için seçilirse kaç mantar seçilir?",
-      "correctAnswer": "40",
-      "solution": "A’dan 24, B’den 8, C’den 8; toplam 40.",
+      "prompt": "Üç mantar adasında A: 3 · 6², B: 4³, C: 5² mantar bulunuyor. A’dakilerin yarısı, B’dekilerin dörtte biri ve C’deki mantarların tamamı sayım için seçilirse kaç mantar seçilir?",
+      "correctAnswer": "95",
+      "solution": "A’dan 3 × 36 ÷ 2 = 54; B’den 64 ÷ 4 = 16; C’den 25; toplam 95.",
       "hint": "Sayıları aynı 2 tabanında yaz, ardından gereken toplamı/farkı hesapla.",
       "inputType": "choice",
       "options": [
-        "48",
-        "40",
-        "32",
-        "56"
+        "70",
+        "95",
+        "79",
+        "108"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -24764,15 +24764,15 @@
         "labels": [
           {
             "anchor": "A adası",
-            "value": "3 · 4²"
+            "value": "3 · 6²"
           },
           {
             "anchor": "B adası",
-            "value": "2⁵"
+            "value": "4³"
           },
           {
             "anchor": "C adası",
-            "value": "2³"
+            "value": "5²"
           },
           {
             "anchor": "seçim",
@@ -24782,8 +24782,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Üç mantar adasında A: 3 · 2⁵, B: 4³, C: 4² mantar bulunuyor. A’dakilerin yarısı, B’dekilerin dörtte biri ve C’deki mantarların tamamı sayım için seçilirse kaç mantar seçilir?",
-        "solution": "A’dan 48, B’den 16, C’den 16; toplam 80."
+        "question": "A: 2 · 5², B: 4³, C: 3². A’nın yarısı, B’nin dörtte biri ve C’nin tamamı kaçtır?",
+        "solution": "25 + 16 + 9 = 50."
       },
       "sourceQuestionId": "F06-Z-04",
       "sourceDifficulty": "Zor"
@@ -25630,16 +25630,16 @@
       "difficulty": "zor",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kırık köprünün sol bölümünde 4³, sağ bölümünde 3 · 2⁵ tahta var. Soldakilerin 1/8’i, sağdakilerin 1/4’ü hasarlı. Toplam kaç sağlam tahta kalır?",
-      "correctAnswer": "128",
-      "solution": "Sol sağlam 56, sağ sağlam 72; toplam 128.",
+      "prompt": "Kırık köprünün sol bölümünde 6³, sağ bölümünde 3 · 4³ tahta var. Soldakilerin 1/8’i, sağdakilerin 1/4’ü hasarlı. Toplam kaç sağlam tahta kalır?",
+      "correctAnswer": "333",
+      "solution": "Sol sağlam 216 × 7/8 = 189; sağ sağlam (3 × 64) × 3/4 = 144; toplam 333.",
       "hint": "Her bölümün kırık sayısını ayrı bul; sonra istenen sağlam ya da kırık sayısına göre birleştir.",
       "inputType": "choice",
       "options": [
-        "128",
-        "153",
-        "103",
-        "178"
+        "333",
+        "261",
+        "408",
+        "360"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -25652,11 +25652,11 @@
         "labels": [
           {
             "anchor": "sol",
-            "value": "4³"
+            "value": "6³"
           },
           {
             "anchor": "sağ",
-            "value": "3 · 2⁵"
+            "value": "3 · 4³"
           },
           {
             "anchor": "sol hasarlı",
@@ -25670,8 +25670,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Kırık köprünün sol bölümünde 2⁷, sağ bölümünde 3 · 4³ tahta var. Soldakilerin 1/8’i, sağdakilerin 1/4’ü hasarlı. Toplam kaç sağlam tahta kalır?",
-        "solution": "Sol sağlam 112, sağ sağlam 144; toplam 256."
+        "question": "Sol 4³, sağ 3·4² tahta; 1/8 ve 1/4 hasarlı. Sağlam kaç?",
+        "solution": "56 + 36 = 92."
       },
       "sourceQuestionId": "F08-Z-02",
       "sourceDifficulty": "Zor"
@@ -26098,16 +26098,16 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Onarım tezgâhındaki A halatı 5∜144 m, B halatı 3√27 m uzunluğundadır. A halatından √75 m, B halatından 2√3 m kesiliyor. Kalan parçalar uzunluk kaybı olmadan birleştirilirse toplam kaç metre olur?",
-      "correctAnswer": "12√3",
-      "solution": "A kalan: 5∜144 − √75 = 10√3 − 5√3 = 5√3. B kalan: 3√27 − 2√3 = 9√3 − 2√3 = 7√3. Toplam 12√3 m. Kontrol: ∜144 = √12; iki gösterimin değeri aynıdır.",
-      "hint": "∜144 = 2√3, √27 = 3√3 ve √75 = 5√3 biçiminde yaz. Kök derecesine dikkat et: ∜144 ve √12 aynı sayıyı gösterir.",
+      "prompt": "Onarım tezgâhındaki A halatı 5∛24 m, B halatı 3∛81 m uzunluğundadır. A halatından ∛375 m, B halatından 2∛3 m kesiliyor. Kalan parçalar uzunluk kaybı olmadan birleştirilirse toplam kaç metre olur?",
+      "correctAnswer": "12∛3",
+      "solution": "∛24 = 2∛3, ∛81 = 3∛3, ∛375 = 5∛3. A: 10∛3 − 5∛3 = 5∛3; B: 9∛3 − 2∛3 = 7∛3; toplam 12∛3 m.",
+      "hint": "Kök içindeki tam küp çarpanlarını dışarı çıkarıp kalan uzunlukları topla.",
       "inputType": "choice",
       "options": [
-        "9√3",
-        "12√3",
-        "11√3",
-        "13√3"
+        "9∛3",
+        "12∛3",
+        "11∛3",
+        "13∛3"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -26120,26 +26120,26 @@
         "labels": [
           {
             "anchor": "A halatının uzunluk levhası",
-            "value": "5∜144 m"
+            "value": "5∛24 m"
           },
           {
             "anchor": "B halatının uzunluk levhası",
-            "value": "3√27 m"
+            "value": "3∛81 m"
           },
           {
             "anchor": "A halatının kesim noktası",
-            "value": "Kesilen: √75 m"
+            "value": "Kesilen: ∛375 m"
           },
           {
             "anchor": "B halatının kesim noktası",
-            "value": "Kesilen: 2√3 m"
+            "value": "Kesilen: 2∛3 m"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Çözülmüş benzer örnek",
-        "solution": "4∜144 − √27 = 8√3 − 3√3 = 5√3."
+        "question": "4∛24 − ∛81 kaçtır?",
+        "solution": "8∛3 − 3∛3 = 5∛3."
       },
       "sourceQuestionId": "F09-Z-01",
       "sourceDifficulty": "Zor"
@@ -26594,16 +26594,16 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Işıklı platformun uzun kenarı 5∜64 m, kısa kenarı √50 m’dir. Çevrenin beşte ikisi zaten aydınlatılmış. Kalan çevreyi aydınlatmak için kaç metrelik ışık şeridi gerekir?",
-      "correctAnswer": "18√2",
-      "solution": "Uzun kenar 10√2, kısa kenar 5√2; çevre 2·(10√2 + 5√2) = 30√2. Kalan 3/5 olduğundan gereken şerit 18√2 m. Kontrol: ∜64 = √8; iki gösterimin değeri aynıdır.",
-      "hint": "Önce iki köklü uzunluğu aynı kök içinde sadeleştir; sonra çevreyi bul. Kök derecesine dikkat et: ∜64 ve √8 aynı sayıyı gösterir.",
+      "prompt": "Işıklı platformun uzun kenarı 5∛16 m, kısa kenarı ∛250 m’dir. Çevrenin beşte ikisi zaten aydınlatılmış. Kalan çevreyi aydınlatmak için kaç metrelik ışık şeridi gerekir?",
+      "correctAnswer": "18∛2",
+      "solution": "∛16 = 2∛2, ∛250 = 5∛2. Çevre = 2 × (10∛2 + 5∛2) = 30∛2; kalan 3/5’i = 18∛2 m.",
+      "hint": "Tam küp çarpanları kök dışına çıkar, çevreyi bul, sonra aydınlanmayan oranı uygula.",
       "inputType": "choice",
       "options": [
-        "18√2",
-        "12√2",
-        "20√2",
-        "15√2"
+        "18∛2",
+        "12∛2",
+        "20∛2",
+        "15∛2"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -26616,11 +26616,11 @@
         "labels": [
           {
             "anchor": "uzun kenar ölçüsü",
-            "value": "5∜64 m"
+            "value": "5∛16 m"
           },
           {
             "anchor": "kısa kenar ölçüsü",
-            "value": "√50 m"
+            "value": "∛250 m"
           },
           {
             "anchor": "çevre üzerindeki ışıklı alan etiketi",
@@ -26630,8 +26630,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Çözülmüş benzer örnek",
-        "solution": "Kenarları 2∜64 ve √18 olan dikdörtgenin çevresi 2·(4√2 + 3√2) = 14√2."
+        "question": "Kenarlar 2∛16 ve ∛54 m ise çevre?",
+        "solution": "2 × (4∛2 + 3∛2) = 14∛2 m."
       },
       "sourceQuestionId": "F10-Z-01",
       "sourceDifficulty": "Zor"
@@ -27230,16 +27230,16 @@
       "difficulty": "zor",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Şelalenin A kapağı 1/4 dakika boyunca dakikada 3 · 8² L, B kapağı 1/2 dakika boyunca dakikada 2⁷ L akıtıyor. A kapağı B’den kaç litre fazla su geçirmiştir?",
-      "correctAnswer": "-16",
-      "solution": "A=48, B=64; fark -16 L.",
+      "prompt": "Şelalenin A kapağı 1/4 dakika boyunca dakikada 3 · 6³ L, B kapağı 1/2 dakika boyunca dakikada 4³ L akıtıyor. A kapağı B’den kaç litre fazla su geçirmiştir?",
+      "correctAnswer": "130",
+      "solution": "A = 3 × 216 × 1/4 = 162 L; B = 64 × 1/2 = 32 L; fark 130 L.",
       "hint": "Miktar = dakikadaki akış × süre; iki kapağı ayrı hesapla.",
       "inputType": "choice",
       "options": [
-        "-16",
-        "-14",
-        "-18",
-        "-12"
+        "130",
+        "32",
+        "162",
+        "194"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -27252,7 +27252,7 @@
         "labels": [
           {
             "anchor": "A akış",
-            "value": "3 · 8² L/dk"
+            "value": "3 · 6³ L/dk"
           },
           {
             "anchor": "A süre",
@@ -27260,7 +27260,7 @@
           },
           {
             "anchor": "B akış",
-            "value": "2⁷ L/dk"
+            "value": "4³ L/dk"
           },
           {
             "anchor": "B süre",
@@ -27270,8 +27270,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Şelalenin A kapağı 1/4 dakika boyunca dakikada 3 · 2⁷ L, B kapağı 1/2 dakika boyunca dakikada 4⁴ L akıtıyor. A kapağı B’den kaç litre fazla su geçirmiştir?",
-        "solution": "A=96, B=128; fark -32 L."
+        "question": "A dakikada 3·4³ L suyu 1/4 dk, B dakikada 4³ L suyu 1/2 dk akıtırsa fark?",
+        "solution": "48 − 32 = 16 L."
       },
       "sourceQuestionId": "F11-Z-04",
       "sourceDifficulty": "Zor"
@@ -27610,16 +27610,16 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Yol ayrımındaki A güzergâhı 3∜144 + 2√27 birim, B güzergâhı √75 + 4√3 + √48 birimdir. Kısa yolu seçen kişi hangi yolu seçmiştir ve yürümesi gereken mesafeyi kaç birim kısaltmıştır?",
-      "correctAnswer": "A yolu, √3 birim",
-      "solution": "A = 6√3 + 6√3 = 12√3. B = 5√3 + 4√3 + 4√3 = 13√3. A daha kısadır; fark √3 birimdir. Kontrol: ∜144 = √12; iki gösterimin değeri aynıdır.",
-      "hint": "Her iki yolu ayrı ayrı a√3 biçimine indirgedikten sonra karşılaştır. Kök derecesine dikkat et: ∜144 ve √12 aynı sayıyı gösterir.",
+      "prompt": "Yol ayrımındaki A güzergâhı 3∛24 + 2∛81 birim, B güzergâhı ∛375 + 4∛3 + ∛192 birimdir. Kısa yolu seçen kişi hangi yolu seçmiştir ve yürümesi gereken mesafeyi kaç birim kısaltmıştır?",
+      "correctAnswer": "A yolu, ∛3 birim",
+      "solution": "A = 6∛3 + 6∛3 = 12∛3. B = 5∛3 + 4∛3 + 4∛3 = 13∛3. A daha kısa; fark ∛3 birim.",
+      "hint": "Tam küp çarpanlarını ayır ve iki yolun katsayılarını karşılaştır.",
       "inputType": "choice",
       "options": [
-        "B yolu, √3 birim",
-        "A yolu, 2√3 birim",
-        "B yolu, 2√3 birim",
-        "A yolu, √3 birim"
+        "B yolu, ∛3 birim",
+        "A yolu, 2∛3 birim",
+        "B yolu, 2∛3 birim",
+        "A yolu, ∛3 birim"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -27632,18 +27632,18 @@
         "labels": [
           {
             "anchor": "A yolunun tabelası",
-            "value": "3∜144 + 2√27 birim"
+            "value": "3∛24 + 2∛81 birim"
           },
           {
             "anchor": "B yolunun tabelası",
-            "value": "√75 + 4√3 + √48 birim"
+            "value": "∛375 + 4∛3 + ∛192 birim"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Çözülmüş benzer örnek",
-        "solution": "A=∜144 + √27 =5√3, B=√75 + √3 =6√3. A yolu √3 birim kısadır."
+        "question": "A=∛24 + ∛81, B=∛375 + ∛3 ise fark?",
+        "solution": "A=5∛3, B=6∛3; A, ∛3 birim daha kısa."
       },
       "sourceQuestionId": "F12-Z-01",
       "sourceDifficulty": "Zor"
@@ -28210,16 +28210,16 @@
       "difficulty": "zor",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dört açık yüzün işaret sayıları 2³, 4², 2⁵ ve 4³’dir. En büyük yüzün işaret sayısı en küçük iki yüzün toplamından kaç fazladır?",
-      "correctAnswer": "40",
-      "solution": "64−(8+16)=40.",
+      "prompt": "Dört açık yüzün işaret sayıları 3², 5², 3³ ve 6²’dir. En büyük yüzün işaret sayısı en küçük iki yüzün toplamından kaç fazladır?",
+      "correctAnswer": "2",
+      "solution": "36 − (9 + 25) = 2.",
       "hint": "Yüzlerdeki işaretler üslü sayılar olarak verildi; hacim hesabı yapılmayacak.",
       "inputType": "choice",
       "options": [
-        "48",
-        "32",
-        "56",
-        "40"
+        "9",
+        "11",
+        "27",
+        "2"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -28232,26 +28232,26 @@
         "labels": [
           {
             "anchor": "açık yüz 1",
-            "value": "2³"
+            "value": "3²"
           },
           {
             "anchor": "açık yüz 2",
-            "value": "4²"
+            "value": "5²"
           },
           {
             "anchor": "açık yüz 3",
-            "value": "2⁵"
+            "value": "3³"
           },
           {
             "anchor": "açık yüz 4",
-            "value": "4³"
+            "value": "6²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Dört açık yüzün işaret sayıları 4², 2⁵, 4³ ve 2⁷’dir. En büyük yüzün işaret sayısı en küçük iki yüzün toplamından kaç fazladır?",
-        "solution": "128−(16+32)=80."
+        "question": "9, 16, 25, 64 işaretli dört yüzün en büyüğü, en küçük ikisinden kaç fazla?",
+        "solution": "64 − (9 + 16) = 39."
       },
       "sourceQuestionId": "F13-Z-04",
       "sourceDifficulty": "Zor"
@@ -28714,16 +28714,16 @@
       "difficulty": "zor",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Çarkın şifresi 4⁴ · 2¹ ÷ 8³ biçimindedir. Sonucu 2 tabanında yazdığımızda üs kaç olur?",
+      "prompt": "Çarkın şifresi 9⁴ · 3¹ ÷ 27³ biçimindedir. Sonucu 3 tabanında yazdığımızda üs kaç olur?",
       "correctAnswer": "0",
-      "solution": "2⁸ · 2 ÷ 2⁹ = 2⁰; üs 0.",
-      "hint": "4 = 2² ve 8 = 2³ dönüşümlerini yap, çarpmada üsleri topla, bölmede çıkar.",
+      "solution": "9⁴ = 3⁸, 27³ = 3⁹; 3⁸ · 3¹ ÷ 3⁹ = 3⁰; üs 0.",
+      "hint": "9 ve 27’yi 3 tabanında yazıp üsleri topla veya çıkar.",
       "inputType": "choice",
       "options": [
         "0",
         "1",
-        "-1",
-        "2"
+        "2",
+        "3"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -28736,14 +28736,14 @@
         "labels": [
           {
             "anchor": "merkez",
-            "value": "4⁴ · 2 ÷ 8³"
+            "value": "9⁴ · 3 ÷ 27³"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Çarkın şifresi 4⁵ · 2¹ ÷ 8⁴ biçimindedir. Sonucu 2 tabanında yazdığımızda üs kaç olur?",
-        "solution": "2¹⁰ · 2 ÷ 2¹² = 2⁻¹; üs -1."
+        "question": "9² · 3² ÷ 27¹, 3 tabanında kaçıncı kuvvettir?",
+        "solution": "3⁴ · 3² ÷ 3³ = 3³; üs 3."
       },
       "sourceQuestionId": "F14-Z-04",
       "sourceDifficulty": "Zor"
@@ -31184,16 +31184,16 @@
       "difficulty": "zor",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Mavi toz istasyonunda A rafındaki 2⁷ şişenin her birinde 3 · 4⁻² g, B rafındaki 4³ şişenin her birinde 2⁻³ g toz bulunuyor. A’daki tozun dörtte biri, B’dekilerin yarısı kaybolursa kaç gram kalır?",
-      "correctAnswer": "22",
-      "solution": "Başlangıç A=24, B=8 g; kalan A’nın 3/4’ü ve B’nin 1/2’si: 22 g.",
+      "prompt": "Mavi toz istasyonunda A rafındaki 6³ şişenin her birinde 3 · 3⁻² g, B rafındaki 5³ şişenin her birinde 5⁻² g toz bulunuyor. A’daki tozun dörtte biri, B’dekilerin yarısı kaybolursa kaç gram kalır?",
+      "correctAnswer": "113/2",
+      "solution": "A = 216 × 3/9 = 72 g; B = 125 × 1/25 = 5 g; kalan 72 × 3/4 + 5 × 1/2 = 54 + 5/2 = 113/2 g.",
       "hint": "Önce şişe adediyle tek şişedeki miktarı çarp; sonra kayıp kesrini uygula.",
       "inputType": "choice",
       "options": [
-        "25",
-        "22",
-        "19",
-        "28"
+        "77",
+        "113/2",
+        "54",
+        "109/2"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -31206,11 +31206,11 @@
         "labels": [
           {
             "anchor": "A rafı",
-            "value": "2⁷ şişe × 3 · 4⁻² g"
+            "value": "6³ şişe × 3 · 3⁻² g"
           },
           {
             "anchor": "B rafı",
-            "value": "4³ şişe × 2⁻³ g"
+            "value": "5³ şişe × 5⁻² g"
           },
           {
             "anchor": "kayıp",
@@ -31220,8 +31220,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Mavi toz istasyonunda A rafındaki 4⁴ şişenin her birinde 3 · 4⁻² g, B rafındaki 2⁷ şişenin her birinde 2⁻³ g toz bulunuyor. A’daki tozun dörtte biri, B’dekilerin yarısı kaybolursa kaç gram kalır?",
-        "solution": "Başlangıç A=48, B=16 g; kalan A’nın 3/4’ü ve B’nin 1/2’si: 44 g."
+        "question": "A: 3³ şişe × 3⁻¹ g, B: 5² şişe × 5⁻² g. A’nın 1/3’ü kullanılırsa ve B kalırsa toplam?",
+        "solution": "9 × 2/3 + 1 = 7 g."
       },
       "sourceQuestionId": "F17-Z-02",
       "sourceDifficulty": "Zor"
@@ -32136,10 +32136,10 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Bir taş destek 5∜324 cm, diğeri 4√8 cm uzunluğundadır. Uç uca bağlanırken 2√2 cm’lik bölüm üst üste biniyor. Ortaya çıkan destek 3√2 cm’lik eş parçalara ayrılırsa kaç parça elde edilir?",
+      "prompt": "Bir taş destek 5∛54 cm, diğeri 4∛16 cm uzunluğundadır. Uç uca bağlanırken 2∛2 cm’lik bölüm üst üste biniyor. Ortaya çıkan destek 3∛2 cm’lik eş parçalara ayrılırsa kaç parça elde edilir?",
       "correctAnswer": "7",
-      "solution": "Toplam görünür uzunluk 5∜324 + 4√8 − 2√2 = 15√2 + 8√2 − 2√2 = 21√2 cm. 21√2 ÷ 3√2 = 7 parça. Kontrol: ∜324 = √18; iki gösterimin değeri aynıdır.",
-      "hint": "Birleştirilen iki taşın ortak kısmını yalnızca bir kez saymalısın. Kök derecesine dikkat et: ∜324 ve √18 aynı sayıyı gösterir.",
+      "solution": "5 × 3∛2 + 4 × 2∛2 − 2∛2 = 21∛2 cm; 21∛2 ÷ 3∛2 = 7 parça.",
+      "hint": "Küp kökleri sadeleştir, örtüşmeyi çıkar ve parça uzunluğuna böl.",
       "inputType": "choice",
       "options": [
         "7",
@@ -32158,26 +32158,26 @@
         "labels": [
           {
             "anchor": "ilk taş desteğin boy ölçüsü",
-            "value": "5∜324 cm"
+            "value": "5∛54 cm"
           },
           {
             "anchor": "ikinci desteğin boy ölçüsü",
-            "value": "4√8 cm"
+            "value": "4∛16 cm"
           },
           {
             "anchor": "üst üste binen işaretli bölge",
-            "value": "2√2 cm"
+            "value": "2∛2 cm"
           },
           {
             "anchor": "eş parça ayırma referansı",
-            "value": "3√2 cm / parça"
+            "value": "3∛2 cm / parça"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Çözülmüş benzer örnek",
-        "solution": "3√8 + 2∜324 − √2 = 6√2 + 6√2 − √2 = 11√2."
+        "question": "3∛16 + 2∛54 − ∛2 kaçtır?",
+        "solution": "6∛2 + 6∛2 − ∛2 = 11∛2."
       },
       "sourceQuestionId": "F19-Z-01",
       "sourceDifficulty": "Zor"
@@ -32645,15 +32645,15 @@
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Gözlemevinin üç halkasında farklı dereceden köklü ve üslü işlemler var. Her halkayı soldan sağa hesaplayarak oluşan üçlü şifreyi bul.",
-      "correctAnswer": "2 – 4 – 7",
-      "solution": "Sol: (6∜4 − 4∜4)/∜4 = 2. Orta: 32/(4·2) = 4. Sağ: (5∜9 + 2∜9)/∜9 = 7. Şifre 2 – 4 – 7.",
-      "hint": "Karekök ve dördüncü dereceden kök aynı sayıyı farklı biçimde gösterebilir. Önce köklü ifadelerin değerlerini, sonra diğer işlemleri sırayla bul.",
+      "correctAnswer": "2 – 3 – 7",
+      "solution": "Sol: (6∛2 − 4∛2)/∛2 = 2. Orta: 3⁴ ÷ 3³ = 3. Sağ: (5√3 + 2√3)/√3 = 7. Şifre 2 – 3 – 7.",
+      "hint": "Küp köklerde tam küp çarpanları ayır; üslü ifadede tabanlar aynıysa üsleri çıkar; ∜9 = √3.",
       "inputType": "choice",
       "options": [
-        "2 – 4 – 9",
-        "4 – 4 – 7",
         "2 – 4 – 7",
-        "2 – 8 – 7"
+        "4 – 3 – 7",
+        "2 – 3 – 7",
+        "2 – 3 – 9"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -32666,11 +32666,11 @@
         "labels": [
           {
             "anchor": "sol altın halka",
-            "value": "(√72 − √32) ÷ ∜4"
+            "value": "(∛432 − ∛128) ÷ ∛2"
           },
           {
             "anchor": "orta altın halka",
-            "value": "2⁵ ÷ (2² · 2)"
+            "value": "3⁴ ÷ (3² · 3)"
           },
           {
             "anchor": "sağ altın halka",
@@ -32680,8 +32680,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Çözülmüş benzer örnek",
-        "solution": "√50 ÷ ∜4 = 5; 2⁶ ÷ 2⁴ = 4; √27 ÷ ∜9 = 3. Şifre 5 – 4 – 3."
+        "question": "∛250 ÷ ∛2, 5³ ÷ 5² ve √27 ÷ ∜9 işlemlerinin sonuçları?",
+        "solution": "5, 5, 3; şifre 5 – 5 – 3."
       },
       "sourceQuestionId": "F20-Z-01",
       "sourceDifficulty": "Zor"
