@@ -148,3 +148,20 @@ for(const obstacle of ["F07","F09","F10","F12","F15","F16","F19","F20","F21"]){
  assert(qs.some(q=>(q.prompt+" "+q.visual.labels.map(v=>v.value).join(" ")+(q.interaction?.radicalItems||[]).join(" ")).includes("∛")),obstacle+" needs genuine cube-root practice");
 }
 console.log("PASS per-difficulty independent bases and genuine cube-root coverage");
+
+// v210: exercise guidance uses current data and repeat attempts start unpaired.
+const hintStart=quiz.indexOf("function concreteHint(q)");
+const hintEnd=quiz.indexOf("function teachingSecondHint(q");
+const exampleStart=quiz.indexOf("function example(q)");
+const exampleEnd=quiz.indexOf("function workedSteps(q)");
+assert(hintStart>=0&&hintEnd>hintStart&&exampleStart>=0&&exampleEnd>exampleStart);
+const helpers=new Function("bank","hydrate",quiz.slice(hintStart,hintEnd)+quiz.slice(exampleStart,exampleEnd)+";return {concreteHint,example};")(bank,q=>q);
+assert(helpers.concreteHint(get("F04-K-02")).includes("5 × 5"));
+assert(helpers.concreteHint(get("F09-Z-01")).includes("24 = 8 × 3"));
+for(const q of questions){
+ const h=helpers.concreteHint(q),e=helpers.example(q);
+ assert(typeof h==="string"&&!h.includes("NaN"),q.id+" hint");
+ assert(e&&e.prompt&&e.solution&&!/^çözülmüş benzer örnek$/iu.test(e.prompt),q.id+" example");
+}
+assert(quiz.includes("delete run.matchingById[currentId()]"));
+console.log("PASS v210 hints and examples across 630 questions");
