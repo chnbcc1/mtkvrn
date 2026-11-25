@@ -246,10 +246,13 @@ function f01Growth(q){
    Level 1: method; level 2: concrete intermediate steps; level 3: verified solution.
    Never use stale one-size-fits-all worked examples for these source questions. */
 function f01Number(value){
- const text=String(value??"").replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹]/g,c=>"0123456789"["⁰¹²³⁴⁵⁶⁷⁸⁹".indexOf(c)]).replace(/\s+/g,"");
- if(/^2[0-9]+$/.test(text))return 2**Number(text.slice(1));
- if(/^3·2[0-9]+$/.test(text))return 3*2**Number(text.slice(3));
- if(/^[0-9]+$/.test(text))return Number(text);
+ const text=String(value??"").replace(/\s+/g,"");
+ const superscriptToNumber=x=>Number([...x].map(c=>"⁰¹²³⁴⁵⁶⁷⁸⁹".indexOf(c)).join(""));
+ const power=text.match(/^(\d+)([⁰¹²³⁴⁵⁶⁷⁸⁹]+)$/);
+ if(power)return Number(power[1])**superscriptToNumber(power[2]);
+ const multiply=text.match(/^(\d+)[·×](\d+)([⁰¹²³⁴⁵⁶⁷⁸⁹]+)$/);
+ if(multiply)return Number(multiply[1])*Number(multiply[2])**superscriptToNumber(multiply[3]);
+ if(/^\d+$/.test(text))return Number(text);
  return NaN;
 }
 function f01Guide(q){
