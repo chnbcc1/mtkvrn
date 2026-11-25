@@ -40,18 +40,22 @@ function mount(plane,label,{documentRef=typeof document!=="undefined"?document:n
  const el=documentRef.createElement(matching?"button":"span");
  if(matching)el.type="button";
  const span=documentRef.createElement("span");
+ // Avoid baseline-dependent offsets: the whole multiline block is centered.
  const [x,y,w,h]=label.box,rot=label.rotation||0;
  const color=matching?"#302515":"#fff4d5";
  el.className="mtk-plaque-v216";el.dataset.slot=String(label.slot);el.dataset.anchor=label.anchor;
  el.setAttribute("aria-label",label.anchor+": "+label.value);
  Object.assign(el.style,{position:"absolute",left:x+"%",top:y+"%",width:w+"%",height:h+"%",transform:"translate(-50%,-50%)",display:"flex",alignItems:"center",justifyContent:"center",boxSizing:"border-box",padding:"0",border:"0",background:"transparent",color,zIndex:"3",overflow:"visible",fontFamily:"Arial, system-ui, sans-serif",fontWeight:"700",textAlign:"center",cursor:matching?"pointer":"default",pointerEvents:matching?"auto":"none"});
- Object.assign(span.style,{display:"block",flex:"none",textAlign:"center",whiteSpace:"pre",lineHeight:String(LINE),transform:rot?"rotate("+rot+"deg)":"none",textShadow:matching?"none":"0 1px 2px #000"});
+ Object.assign(span.style,{display:"block",flex:"none",textAlign:"center",whiteSpace:"pre",lineHeight:String(LINE),fontVariantNumeric:"lining-nums tabular-nums",transform:rot?"rotate("+rot+"deg)":"none",textShadow:matching?"none":"0 1px 2px #000"});
  el.appendChild(span);plane.appendChild(el);
  const ctx=documentRef.createElement("canvas").getContext("2d");
  function refresh(){
   if(!ctx)return null;
   const rect=el.getBoundingClientRect();
-  const ww=rot?rect.height:rect.width,hh=rot?rect.width:rect.height;
+  // Fit the actual tilted F07 plate, not its axis-aligned bounding rectangle.
+  const tilted=rot&&Math.abs(Math.abs(rot)-90)>1;
+  const ww=tilted?rect.height*.80:rot?rect.height:rect.width;
+  const hh=tilted?rect.width*.45:rot?rect.width:rect.height;
   const measure=(s,size)=>{ctx.font="700 "+size+"px Arial, system-ui, sans-serif";return ctx.measureText(s).width;};
   const r=fit(label.value,ww,hh,measure,{maxSize:Math.max(12,Math.min(32,plane.clientWidth*.075))});
   if(!r)return null;
