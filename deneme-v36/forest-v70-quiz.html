@@ -264,6 +264,8 @@ function f01Number(value){
 }
 function f01Guide(q){
  if(q?.obstacleId!=="F01")return null;
+ // Per-variant guides keep newly diversified numerical examples mathematically exact.
+ if(q.f01Guide?.first?.length>=2&&q.f01Guide?.second?.length>=2&&typeof q.f01Guide.solution==="string")return q.f01Guide;
  const labels=Array.isArray(q.visual?.labels)?q.visual.labels:[];
  const get=name=>labels.find(e=>String(e.anchor||"").toLocaleLowerCase("tr").replaceAll("_"," ").trim()===name)?.value;
  const val=name=>f01Number(get(name));
