@@ -1,11 +1,11 @@
 {
   "schema": "approved-scenes-v220",
   "sourceArchive": "Matematik_Evreni_21_Onayli_Sahne_v213.zip",
-  "status": "Archive recovered and verified locally; scene files absent in GitHub main at audit.",
+  "status": "All 21 original images verified in GitHub main on 25.11.2026; file sizes and Git blob IDs match archive manifest.",
   "character": {
     "file": "assets/erdem-ciko-onayli-v180.png",
     "gitBlob": "dadfebd79edcf460f2d47af72997ddd36d512531",
-    "status": "existing GitHub blob; binary not decoded during v220 audit"
+    "status": "Existing GitHub blob ID verified; browser decode not verified."
   },
   "scenes": [
     {
