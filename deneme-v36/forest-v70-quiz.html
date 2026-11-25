@@ -98,7 +98,7 @@ sup{font-size:.7em;line-height:0;vertical-align:super}
 .embedded .choice{box-sizing:border-box!important;min-width:0!important;width:100%!important;height:100%!important;min-height:56px!important}
 .embedded .choiceMark{flex:0 0 29px!important;width:29px!important;height:29px!important}
 @media (orientation:portrait){.embedded .choice{font-size:clamp(12px,3.5vw,17px)!important;padding:8px!important}}
-</style><link rel="stylesheet" href="./assets/math-notebook-v187.css?v=189"><link rel="stylesheet" href="./assets/math-notebook-forest-v186.css?v=188"><link rel="stylesheet" href="./assets/math-notebook-premium-v190.css?v=190"><link rel="stylesheet" href="./assets/math-notebook-ui-v191.css?v=191"><link rel="stylesheet" href="./assets/math-notebook-fix-v192.css?v=192"><link rel="stylesheet" href="./assets/math-notebook-iphone-v193.css?v=193"><link rel="stylesheet" href="./assets/math-notebook-retina-v194.css?v=194"><link rel="stylesheet" href="./assets/math-notebook-question-v195.css?v=195"><link rel="stylesheet" href="./assets/math-notebook-layout-v196.css?v=196"><script src="./assets/math-notebook-v187.js?v=196"></script><script src="./assets/quiz-approved-frames-v145.js?v=145"></script><script src="./assets/quiz-f03-machine-v145.js?v=145"></script><script src="./assets/quiz-research-objects-v148.js?v=148"></script><script src="./assets/f01-approved-v159.js?v=163"></script><script src="./assets/f02-approved-v165.js?v=185"></script><script src="./assets/f03-approved-v197.js?v=203"></script><script src="./assets/approved-quiz-ui-v145.js?v=176"></script><script src="./assets/quiz-universal-layout-v176.js?v=179"></script><script src="./forest-levels-v65.js?v=65"></script></head>
+</style><link rel="stylesheet" href="./assets/math-notebook-v187.css?v=189"><link rel="stylesheet" href="./assets/math-notebook-forest-v186.css?v=188"><link rel="stylesheet" href="./assets/math-notebook-premium-v190.css?v=190"><link rel="stylesheet" href="./assets/math-notebook-ui-v191.css?v=191"><link rel="stylesheet" href="./assets/math-notebook-fix-v192.css?v=192"><link rel="stylesheet" href="./assets/math-notebook-iphone-v193.css?v=193"><link rel="stylesheet" href="./assets/math-notebook-retina-v194.css?v=194"><link rel="stylesheet" href="./assets/math-notebook-question-v195.css?v=195"><link rel="stylesheet" href="./assets/math-notebook-layout-v196.css?v=196"><script src="./assets/math-notebook-v187.js?v=196"></script><script src="./assets/quiz-approved-frames-v145.js?v=145"></script><script src="./assets/quiz-f03-machine-v145.js?v=145"></script><script src="./assets/quiz-research-objects-v148.js?v=148"></script><script src="./assets/f01-approved-v159.js?v=163"></script><script src="./assets/f02-approved-v165.js?v=210"></script><script src="./assets/f03-approved-v197.js?v=203"></script><script src="./assets/approved-quiz-ui-v145.js?v=176"></script><script src="./assets/quiz-universal-layout-v176.js?v=179"></script><script src="./forest-levels-v65.js?v=65"></script></head>
 <body><main><nav><a href="./forest-v70-full.html?v=69">‹ Orman Patikasına dön</a><a href="./map-v70.html?v=69">🗺️ Macera Haritası</a></nav>
 <h1>🌲 Orman Patikası</h1><p class="subtitle">21 engelli matematik macerası · dört şıklı sorular · MAT.9.1.1 · Üslü ve köklü gösterimler. Dört seçenek arasından karar ver. Yanlışta ipucu, örnek çözüm ve pekiştirme adımları seni yönlendirecek. Fiziksel engellerin sahne entegrasyonu ayrı geliştirilir.</p>
 <div id="step" class="step" hidden></div><div id="bar" class="bar" hidden><span id="fill"></span></div><section id="app" class="panel" aria-live="polite"></section>
@@ -112,7 +112,7 @@ const FORCED=new URLSearchParams(location.search).get("obstacle")||"";
 const FORCED_DIFFICULTY=new URLSearchParams(location.search).get("difficulty")||"orta";
 const PREVIEW_QUESTION_ID=new URLSearchParams(location.search).get("previewQuestion")||"";
 const CAMPAIGN_SESSION=new URLSearchParams(location.search).get("session")||"direct-preview";
-const BANK_URL="./forest-questions-v147.json?v=209";
+const BANK_URL="./forest-questions-v147.json?v=210";
 const RUN_KEY=EMBED?"mathverse-v147-quiz-"+CAMPAIGN_SESSION+"-"+FORCED+"-"+FORCED_DIFFICULTY:"mathverse-v147-choice-run",HISTORY_KEY="mathverse-v147-choice-history";
 const OLD_SAVE_KEY="mathverse-v40-investigation";
 let bank=null,run=null,history={used:{},last:{},seenPrompts:{}};
@@ -152,7 +152,7 @@ function pick(obId,difficulty,exceptId){
 function ensure(){if(run&&run.index<21&&!run.activeId)run.activeId=pick(bank.playOrder[run.index],run.difficulty)}
 function currentId(){return run.remediationId||run.practiceId||run.activeId}
 function current(){return hydrate(qs(currentId()))}
-function resetStage(){run.helpView=false;run.stage=0;run.wrong=0;run.wrongChoices=[];run.stageCorrect=false;run.revealed=false;run.feedback="";save()}
+function resetStage(){if(run.matchingById&&currentId())delete run.matchingById[currentId()];run.helpView=false;run.stage=0;run.wrong=0;run.wrongChoices=[];run.stageCorrect=false;run.revealed=false;run.feedback="";save()}
 function startSimilarQuestion(obs,q){
  // The next similar question replaces the current exercise without revisiting old answers.
  run.lastPracticeId=q.id;run.activeId=q.id;
@@ -400,21 +400,23 @@ function f01Guide(q){
    third wrong: explain why, calculate visibly and check the supplied result. */
 function teachingRule(q){
  const topic=String(q?.topic||"").toLocaleLowerCase("tr");
+ const given=String(q?.prompt||"")+" "+(q?.visual?.labels||[]).map(v=>v.value).join(" ");
+ const indexed=given.includes("∛")||given.includes("∜");
  if(/eşlenik/.test(topic))return "Eşlenik iki ifadenin çarpımında (a+b)(a−b)=a²−b² özdeşliği kullanılır; çapraz terimler birbirini yok eder.";
  if(/bilimsel/.test(topic))return "Bilimsel gösterimde sayı a×10^n biçimindedir ve sıfır olmayan a için 1 ≤ |a| < 10 olmalıdır. Önce işlemi, sonra gösterimi düzenle.";
  if(/negatif.*üs|negatif.*kuvvet/.test(topic))return "Negatif tam sayı üssü sayıyı negatif yapmaz; sıfırdan farklı a için a^(−n)=1/a^n kuralını kullan.";
  if(/sıfırıncı/.test(topic))return "Sıfırdan farklı bir sayının sıfırıncı kuvveti 1'dir: a⁰=1. Önce üsleri uygun kuralla birleştir.";
  if(/kesirli.*üs|üslü.köklü.*eşleştirme|köklü.üslü.*eşleştirme/.test(topic))return "Kesirli üslerde pay kuvveti, payda kökün derecesini gösterir. Eşleştirme için iki gösterimi aynı sayısal değere indir.";
- if(/köklü.*(sadeleştir|yazıt)/.test(topic))return "Kök içindeki tam kare çarpanını ayır: √(k²×m)=k√m (k ≥ 0). Tam kare olmayan çarpanı kök içinde bırak.";
+ if(/köklü.*(sadeleştir|yazıt)/.test(topic))return indexed?"Kökün derecesine göre çarpan ayır: küpkökte tam küp, dördüncü dereceden kökte tam dördüncü kuvvet. Her kökü kendi derecesiyle sadeleştir.":"Kök içindeki tam kare çarpanını ayır: √(k²×m)=k√m (k ≥ 0). Tam kare olmayan çarpanı kök içinde bırak.";
  if(/köklü.*(karşılaştır|uzunluk karşılaştır)/.test(topic))return "Önce kökleri sadeleştir. Kök içleri aynıysa pozitif katsayıları karşılaştır; kökler farklıysa değerleri uygun biçimde eşitle.";
- if(/köklü.*(toplama|örtüşme)/.test(topic))return "Kök içleri aynı olan terimlerde katsayılar toplanır veya çıkarılır. Ortak/örtüşen parçayı iki kez sayma.";
+ if(/köklü.*(toplama|örtüşme)/.test(topic))return "Kök derecesi ve kök içi aynı olan terimlerde katsayılar toplanır veya çıkarılır. Ortak/örtüşen parçayı iki kez sayma.";
  if(/köklü.*çevre/.test(topic))return "Dikdörtgende çevre, uzun ve kısa kenarın toplamının iki katıdır: 2×(uzun+kısa). Benzer köklü terimleri birleştir.";
  if(/kare|alan/.test(topic))return "Karede alan, kenarın kendisiyle çarpılmasıyla bulunur. Kökün karesini alırken hem katsayıyı hem köklü kısmı hesaba kat.";
  if(/bölme|yarıya|kesir|oran/.test(topic))return "Bölmede önce toplam miktarı veya başlangıç değerini belirle. Kaç kez bölündüğünü ve her aşamada kalan miktarı izle.";
  if(/toplama|birlikte|toplam/.test(topic))return "Önce ayrı ayrı verilen miktarları aynı tür birime dönüştür. Ardından gerçekten birlikte istenen miktarları topla.";
  if(/fark|çıkarma|eksik/.test(topic))return "İki miktarın farkında çıkarma sırası önemlidir: soruda istenen bütünden çıkarılacak kısmı ayır.";
  if(/çarpma|katman|dizilim|debi|süre/.test(topic))return "Eş gruplarda bir grubun miktarı ile grup sayısını çarp. Sorudaki süre, katman veya parça sayısını kontrol et.";
- if(/üslü|kuvvet|üs/.test(topic))return "Üslü ifadede taban tekrarlanan çarpandır, üs ise kaç kez çarpılacağını belirtir. Önce kuvvetin değerini, sonra istenen işlemi bul.";
+ if(/üslü|kuvvet|üs/.test(topic))return "Pozitif tam sayı üssünde taban, üs kadar çarpılır. Negatif üste rastlarsan tersini al; sıfırdan farklı tabanın sıfırıncı kuvveti 1 olur. Önce kuvvetlerin değerini, sonra istenen işlemi bul.";
  if(/şifre|halka|eşleştirme/.test(topic))return "Her parçayı kendi konumunda değerlendir; çıkan değerleri sorunun istediği sıra veya eşleştirmeye göre yerleştir.";
  return "Verilenleri istenenden ayır; önce hangi işlemin neden gerektiğini belirle. Ara sonuçları soruda belirtilen sıra ve birimle karşılaştır.";
 }
@@ -430,9 +432,21 @@ function teachingHint(q,defaultHint){
  if(g)return g.first;
  return [
   "Önce neyin sorulduğunu belirle: "+teachingGoal(q)+". Sonucu henüz hesaplamadan verilenleri ayır.",
-  "Kullanacağın temel düşünce: "+teachingRule(q),
+  "Bu soruda: "+String(defaultHint||q?.hint||teachingRule(q)),
   "İşlem sonucunu hemen seçme; hangi sayının nereden geldiğini ve işlem sırasını kontrol et."
  ];
+}
+function concreteHint(q){
+ const given=(q?.visual?.labels||[]).map(v=>String(v.value||"")).join(" ")+" "+String(q?.prompt||"");
+ const roots=[...new Set(given.match(/[√∛∜]\d+/g)||[])];
+ const supers="⁰¹²³⁴⁵⁶⁷⁸⁹";
+ if(roots.length){const r=roots[0],degree={"√":2,"∛":3,"∜":4}[r[0]],n=Number(r.slice(1));
+  if(Number.isSafeInteger(n)&&n>1){for(let k=Math.floor(n**(1/degree));k>=2;k--){const p=k**degree;if(n%p===0&&p<n)return r+" için "+n+" = "+p+" × "+(n/p)+" ayrımını kullan. "+p+" sayısının "+degree+". dereceden kökünü dışarı çıkar.";}}
+  return r+" ifadesinde "+degree+". dereceyi dikkate al: hangi sayının "+degree+". kuvveti kök içini verir, ya da kök içinden hangi tam kuvvet ayrılabilir?";
+ }
+ const powers=[...new Set(given.match(/\d+[⁻⁰¹²³⁴⁵⁶⁷⁸⁹]+/g)||[])];
+ for(const p of powers){const m=p.match(/^(\d+)(⁻?)([⁰¹²³⁴⁵⁶⁷⁸⁹]+)$/);if(!m)continue;const k=Number([...m[3]].map(x=>supers.indexOf(x)).join(""));if(k<1||k>8)continue;const product=Array(k).fill(m[1]).join(" × ");return p+" ifadesini "+(m[2]?"1/("+product+")":product)+" şeklinde aç. Bu değeri sorunun diğer verileriyle kullan.";}
+ return "";
 }
 function teachingSecondHint(q,defaultHint){
   if(q?.obstacleId==="F03"&&Array.isArray(q.f03Guide?.second))return q.f03Guide.second;
@@ -440,7 +454,7 @@ function teachingSecondHint(q,defaultHint){
  if(g)return g.second;
  return [
   "İlk adımı birlikte kuralım: "+String(defaultHint||q?.hint||"Sorunun verilenlerini düzenle."),
-  "Bu adımın gerekçesi: "+teachingRule(q),
+  concreteHint(q)||("Bu adımın gerekçesi: "+teachingRule(q)),
   "İlk ara değeri bulduktan sonra kalan işlemi kendin sürdür. Özellikle üs, kök, çıkarma sırası ve birimleri yeniden kontrol et."
  ];
 }
@@ -476,10 +490,13 @@ function teachingSolutionSteps(q,s){
  return steps;
 }
 function example(q){
- if(q.workedExample&&q.workedExample.solution)return {prompt:q.workedExample.question||"Benzer örnek",solution:q.workedExample.solution,sourceVerified:true};
+ if(q.workedExample&&q.workedExample.solution&&q.workedExample.question&&!/^çözülmüş benzer örnek$/iu.test(q.workedExample.question.trim()))return {prompt:q.workedExample.question,solution:q.workedExample.solution,sourceVerified:true};
  const others=bank.questions.filter(o=>o.obstacleId===q.obstacleId&&o.difficulty===q.difficulty&&o.id!==q.id);
  if(!others.length)return null;
- return hydrate(others[(q.variant+2)%others.length]);
+ const related=others.filter(o=>o.topic===q.topic&&o.prompt!==q.prompt);
+ const distinct=others.filter(o=>o.prompt!==q.prompt);
+ const pool=related.length?related:distinct.length?distinct:others;
+ return hydrate(pool[(q.variant+2)%pool.length]);
 }
 
 function workedSteps(q){
