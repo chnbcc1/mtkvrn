@@ -52,6 +52,35 @@ for(const q of questions.filter(q=>q.interaction?.kind==="matching_unmatched")){
  }
  assert(a.has(d.unmatchedRadical)&&b.has(d.unmatchedExponent),q.id+" unmatched labels must be available");
 }
+// Verify all 120 interactive F21 pairs numerically (not just string references).
+const supers="⁰¹²³⁴⁵⁶⁷⁸⁹";
+const supersNum=str=>Number([...str].map(c=>supers.indexOf(c)).join(""));
+const powerValue=str=>{
+ const m=String(str).trim().match(/^(\d+)([⁰¹²³⁴⁵⁶⁷⁸⁹]+)$/);
+ if(m)return Number(m[1])**supersNum(m[2]);
+ if(/^\d+$/.test(str.trim()))return Number(str.trim());
+ throw Error("Unknown exponent value: "+str);
+};
+const radicalValue=str=>{
+ const d=str[0]==="√"?2:str[0]==="∛"?3:str[0]==="∜"?4:null;
+ assert(d,"Invalid radical: "+str);
+ let body=str.slice(1).trim();
+ if(body.startsWith("(")&&body.endsWith(")"))body=body.slice(1,-1);
+ let n;
+ if(body.includes(" · ")){const pieces=body.split(" · ");n=pieces.map(powerValue).reduce((a,b)=>a*b,1);}
+ else if(body.includes(" ÷ ")){const pieces=body.split(" ÷ ");n=powerValue(pieces[0])/powerValue(pieces[1]);}
+ else n=powerValue(body);
+ return n**(1/d);
+};
+let checkedMatches=0;
+for(const q of questions.filter(q=>q.obstacleId==="F21")){
+ for(const pair of q.interaction.pairs){
+  const x=radicalValue(pair.radical),y=powerValue(pair.exponent);
+  assert(Number.isFinite(x)&&Number.isFinite(y)&&Math.abs(x-y)/Math.max(1,Math.abs(y))<1e-9,q.id+" incorrect numerical pair "+pair.radical+" vs "+pair.exponent+" ("+x+" vs "+y+")");
+  checkedMatches++;
+ }
+}
+assert.equal(checkedMatches,120,"Validate all 30*4 actual matches");
 const vine=get("F01-K-05");
 assert(vine.visual.labels[0].value==="5²"&&vine.visual.labels[1].value==="3²","F01 must show alternative bases on the plaques");
 const quiz=fs.readFileSync(path.join(root,"forest-v70-quiz.html"),"utf8");
