@@ -19240,10 +19240,10 @@
       "difficulty": "orta",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Eski yazıttaki dört levhada köklü ifadeler ve eşitlikler var. Yalnızca bir eşitlik doğrudur. Hangi levha araştırma kilidini açar?",
+      "prompt": "Eski yazıtta ∛(2³·3³) ifadesi dört farklı levhada değerlendirilmiş. Hangi levhada doğru eşitlik yazıyor?",
       "correctAnswer": "A levhası",
-      "solution": "Doğru eşitlik √8 = 2√2; diğer üç levhanın çarpan veya kök içi farklıdır.",
-      "hint": "Kök içinde tam kare çarpanı ayırıp her eşitliği ayrı kontrol et.",
+      "solution": "∛(2³·3³) = ∛(6³) = 6. Bu nedenle yalnızca A levhası doğrudur.",
+      "hint": "2³ · 3³ ifadesini (2 · 3)³ biçiminde düşün. Küpkök bu üçüncü kuvveti geri alır.",
       "inputType": "choice",
       "options": [
         "A levhası",
@@ -19255,33 +19255,33 @@
       "interaction": {},
       "contentVersion": "v147-approved-packs",
       "sceneTemplateId": "f16-research-3d",
-      "topic": "Yanıltıcı köklü eşitliği seçme",
+      "topic": "Çarpımın küpkökünü hesaplama",
       "visual": {
         "type": "scene-labels",
         "sceneId": "f16-research-3d",
         "labels": [
           {
             "anchor": "levha_A",
-            "value": "√8 = 2√2"
+            "value": "∛(2³·3³) = 6"
           },
           {
             "anchor": "levha_B",
-            "value": "√8 = 3√2"
+            "value": "∛(2³·3³) = 7"
           },
           {
             "anchor": "levha_C",
-            "value": "√8 = 2√3"
+            "value": "∛(2³·3³) = 12"
           },
           {
             "anchor": "levha_D",
-            "value": "√8 = 2√4"
+            "value": "∛(2³·3³) = 8"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "√12=2√3 doğru mudur?",
-        "solution": "√12=√(4×3)=2√3; doğru."
+        "question": "∛(3³·5³) kaçtır?",
+        "solution": "∛((3·5)³) = 15."
       },
       "sourceQuestionId": "F16-O-01",
       "sourceDifficulty": "Orta"
@@ -19344,10 +19344,10 @@
       "difficulty": "orta",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Eski yazıttaki dört levhada köklü ifadeler ve eşitlikler var. Yalnızca bir eşitlik doğrudur. Hangi levha araştırma kilidini açar?",
+      "prompt": "Eski yazıtta ∜(2⁴·3⁴) ifadesi dört farklı levhada değerlendirilmiş. Hangi levhada doğru eşitlik yazıyor?",
       "correctAnswer": "C levhası",
-      "solution": "Doğru eşitlik √8 = 2√2; diğer üç levhanın çarpan veya kök içi farklıdır.",
-      "hint": "Kök içinde tam kare çarpanı ayırıp her eşitliği ayrı kontrol et.",
+      "solution": "∜(2⁴·3⁴) = ∜(6⁴) = 6. Bu nedenle yalnızca C levhası doğrudur.",
+      "hint": "2⁴ · 3⁴ ifadesini (2 · 3)⁴ biçiminde yaz. Dördüncü dereceden kök bu dördüncü kuvveti geri alır.",
       "inputType": "choice",
       "options": [
         "A levhası",
@@ -19359,33 +19359,33 @@
       "interaction": {},
       "contentVersion": "v147-approved-packs",
       "sceneTemplateId": "f16-research-3d",
-      "topic": "Yanıltıcı köklü eşitliği seçme",
+      "topic": "Çarpımın dördüncü dereceden kökünü hesaplama",
       "visual": {
         "type": "scene-labels",
         "sceneId": "f16-research-3d",
         "labels": [
           {
             "anchor": "levha_A",
-            "value": "√8 = √2"
+            "value": "∜(2⁴·3⁴) = 5"
           },
           {
             "anchor": "levha_B",
-            "value": "√8 = 2√3"
+            "value": "∜(2⁴·3⁴) = 7"
           },
           {
             "anchor": "levha_C",
-            "value": "√8 = 2√2"
+            "value": "∜(2⁴·3⁴) = 6"
           },
           {
             "anchor": "levha_D",
-            "value": "√8 = 3√3"
+            "value": "∜(2⁴·3⁴) = 8"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "√48=4√3 doğru mudur?",
-        "solution": "√48=√(16×3)=4√3; doğru."
+        "question": "∜(2⁴·5⁴) kaçtır?",
+        "solution": "∜((2·5)⁴) = 10."
       },
       "sourceQuestionId": "F16-O-03",
       "sourceDifficulty": "Orta"
@@ -19448,10 +19448,10 @@
       "difficulty": "orta",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Eski yazıttaki dört levhada köklü ifadeler ve eşitlikler var. Yalnızca bir eşitlik doğrudur. Hangi levha araştırma kilidini açar?",
+      "prompt": "Eski yazıtta ∛(2³·3³) ifadesi dört farklı levhada değerlendirilmiş. Hangi levhada doğru eşitlik yazıyor?",
       "correctAnswer": "A levhası",
-      "solution": "Doğru eşitlik √(9×3) = 3√3; diğer üç levhanın çarpan veya kök içi farklıdır.",
-      "hint": "Kök içinde tam kare çarpanı ayırıp her eşitliği ayrı kontrol et.",
+      "solution": "∛(2³·3³) = ∛(6³) = 6. Bu nedenle yalnızca A levhası doğrudur.",
+      "hint": "2³ · 3³ ifadesini (2 · 3)³ biçiminde düşün. Küpkök bu üçüncü kuvveti geri alır.",
       "inputType": "choice",
       "options": [
         "A levhası",
@@ -19463,33 +19463,33 @@
       "interaction": {},
       "contentVersion": "v147-approved-packs",
       "sceneTemplateId": "f16-research-3d",
-      "topic": "Yanıltıcı köklü eşitliği seçme",
+      "topic": "Çarpımın küpkökünü hesaplama",
       "visual": {
         "type": "scene-labels",
         "sceneId": "f16-research-3d",
         "labels": [
           {
             "anchor": "levha_A",
-            "value": "√(9×3) = 3√3"
+            "value": "∛(2³·3³) = 6"
           },
           {
             "anchor": "levha_B",
-            "value": "√(9×3) = 4√3"
+            "value": "∛(2³·3³) = 7"
           },
           {
             "anchor": "levha_C",
-            "value": "√(9×3) = 3√4"
+            "value": "∛(2³·3³) = 12"
           },
           {
             "anchor": "levha_D",
-            "value": "√(9×3) = 3√5"
+            "value": "∛(2³·3³) = 8"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "√27=3√3 doğru mudur?",
-        "solution": "√27=√(9×3)=3√3; doğru."
+        "question": "∛(3³·5³) kaçtır?",
+        "solution": "∛((3·5)³) = 15."
       },
       "sourceQuestionId": "F16-O-05",
       "sourceDifficulty": "Orta"
@@ -19552,10 +19552,10 @@
       "difficulty": "orta",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Eski yazıttaki dört levhada köklü ifadeler ve eşitlikler var. Yalnızca bir eşitlik doğrudur. Hangi levha araştırma kilidini açar?",
+      "prompt": "Eski yazıtta ∜(2⁴·3⁴) ifadesi dört farklı levhada değerlendirilmiş. Hangi levhada doğru eşitlik yazıyor?",
       "correctAnswer": "C levhası",
-      "solution": "Doğru eşitlik √80 = 4√5; diğer üç levhanın çarpan veya kök içi farklıdır.",
-      "hint": "Kök içinde tam kare çarpanı ayırıp her eşitliği ayrı kontrol et.",
+      "solution": "∜(2⁴·3⁴) = ∜(6⁴) = 6. Bu nedenle yalnızca C levhası doğrudur.",
+      "hint": "2⁴ · 3⁴ ifadesini (2 · 3)⁴ biçiminde yaz. Dördüncü dereceden kök bu dördüncü kuvveti geri alır.",
       "inputType": "choice",
       "options": [
         "A levhası",
@@ -19567,33 +19567,33 @@
       "interaction": {},
       "contentVersion": "v147-approved-packs",
       "sceneTemplateId": "f16-research-3d",
-      "topic": "Yanıltıcı köklü eşitliği seçme",
+      "topic": "Çarpımın dördüncü dereceden kökünü hesaplama",
       "visual": {
         "type": "scene-labels",
         "sceneId": "f16-research-3d",
         "labels": [
           {
             "anchor": "levha_A",
-            "value": "√80 = 5√5"
+            "value": "∜(2⁴·3⁴) = 5"
           },
           {
             "anchor": "levha_B",
-            "value": "√80 = 4√6"
+            "value": "∜(2⁴·3⁴) = 7"
           },
           {
             "anchor": "levha_C",
-            "value": "√80 = 4√5"
+            "value": "∜(2⁴·3⁴) = 6"
           },
           {
             "anchor": "levha_D",
-            "value": "√80 = 4√7"
+            "value": "∜(2⁴·3⁴) = 8"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "√12=2√3 doğru mudur?",
-        "solution": "√12=√(4×3)=2√3; doğru."
+        "question": "∜(2⁴·5⁴) kaçtır?",
+        "solution": "∜((2·5)⁴) = 10."
       },
       "sourceQuestionId": "F16-O-07",
       "sourceDifficulty": "Orta"
@@ -19656,10 +19656,10 @@
       "difficulty": "orta",
       "variant": 9,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Eski yazıttaki dört levhada köklü ifadeler ve eşitlikler var. Yalnızca bir eşitlik doğrudur. Hangi levha araştırma kilidini açar?",
+      "prompt": "Eski yazıtta ∛(2³·3³) ifadesi dört farklı levhada değerlendirilmiş. Hangi levhada doğru eşitlik yazıyor?",
       "correctAnswer": "A levhası",
-      "solution": "Doğru eşitlik √80 = 4√5; diğer üç levhanın çarpan veya kök içi farklıdır.",
-      "hint": "Kök içinde tam kare çarpanı ayırıp her eşitliği ayrı kontrol et.",
+      "solution": "∛(2³·3³) = ∛(6³) = 6. Bu nedenle yalnızca A levhası doğrudur.",
+      "hint": "2³ · 3³ ifadesini (2 · 3)³ biçiminde düşün. Küpkök bu üçüncü kuvveti geri alır.",
       "inputType": "choice",
       "options": [
         "A levhası",
@@ -19671,33 +19671,33 @@
       "interaction": {},
       "contentVersion": "v147-approved-packs",
       "sceneTemplateId": "f16-research-3d",
-      "topic": "Yanıltıcı köklü eşitliği seçme",
+      "topic": "Çarpımın küpkökünü hesaplama",
       "visual": {
         "type": "scene-labels",
         "sceneId": "f16-research-3d",
         "labels": [
           {
             "anchor": "levha_A",
-            "value": "√80 = 4√5"
+            "value": "∛(2³·3³) = 6"
           },
           {
             "anchor": "levha_B",
-            "value": "√80 = 3√5"
+            "value": "∛(2³·3³) = 7"
           },
           {
             "anchor": "levha_C",
-            "value": "√80 = 4√6"
+            "value": "∛(2³·3³) = 12"
           },
           {
             "anchor": "levha_D",
-            "value": "√80 = 5√6"
+            "value": "∛(2³·3³) = 8"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "√48=4√3 doğru mudur?",
-        "solution": "√48=√(16×3)=4√3; doğru."
+        "question": "∛(3³·5³) kaçtır?",
+        "solution": "∛((3·5)³) = 15."
       },
       "sourceQuestionId": "F16-O-09",
       "sourceDifficulty": "Orta"
@@ -21224,10 +21224,10 @@
       "difficulty": "orta",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin üç halkasında soldan sağa farklı matematiksel işlemler yazılıdır. Üç işlemin sonuçları sırayla girildiğinde oluşan kapı şifresi hangisidir?",
+      "prompt": "Gözlemevinin üç halkasında farklı üslü ve köklü işlemler yazılıdır. Kökün derecesine dikkat ederek işlemleri soldan sağa hesapladığında hangi üçlü şifre oluşur?",
       "correctAnswer": "12 – 6 – 8",
       "solution": "Sol=12; orta=6; sağ=8. Kapı kodu 12 – 6 – 8.",
-      "hint": "Her halkayı birbirinden bağımsız hesapla; sıra soldan sağadır.",
+      "hint": "Her halkayı sırayla çöz. Küpkök üçüncü kuvveti, dördüncü dereceden kök dördüncü kuvveti geri alır. Her halkadaki üslü işlemleri de ayrı hesapla.",
       "inputType": "choice",
       "options": [
         "12 – 6 – 8",
@@ -21254,14 +21254,14 @@
           },
           {
             "anchor": "sağ halka",
-            "value": "√(16) + 2²"
+            "value": "∛(2⁶) + 2²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "√(2⁶)−2², √36÷√4, √18÷√2 kodları?",
-        "solution": "4–3–3."
+        "question": "∛(3⁶) + 2² ifadesinin sonucu kaçtır?",
+        "solution": "∛(3⁶) = 9, 2² = 4; toplam 13."
       },
       "sourceQuestionId": "F20-O-01",
       "sourceDifficulty": "Orta"
@@ -21272,10 +21272,10 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin üç halkasında soldan sağa farklı matematiksel işlemler yazılıdır. Üç işlemin sonuçları sırayla girildiğinde oluşan kapı şifresi hangisidir?",
+      "prompt": "Gözlemevinin üç halkasında farklı üslü ve köklü işlemler yazılıdır. Kökün derecesine dikkat ederek işlemleri soldan sağa hesapladığında hangi üçlü şifre oluşur?",
       "correctAnswer": "12 – 6 – 7",
       "solution": "Sol=12; orta=6; sağ=7. Kapı kodu 12 – 6 – 7.",
-      "hint": "Her halkayı birbirinden bağımsız hesapla; sıra soldan sağadır.",
+      "hint": "Her halkayı sırayla çöz. Küpkök üçüncü kuvveti, dördüncü dereceden kök dördüncü kuvveti geri alır. Her halkadaki üslü işlemleri de ayrı hesapla.",
       "inputType": "choice",
       "options": [
         "14 – 6 – 7",
@@ -21294,7 +21294,7 @@
         "labels": [
           {
             "anchor": "sol halka",
-            "value": "√(256) − 2²"
+            "value": "∛(2¹²) − 2²"
           },
           {
             "anchor": "orta halka",
@@ -21308,8 +21308,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2⁵÷2³, 3√12÷√3, 2²+√9 kodları?",
-        "solution": "4–6–7."
+        "question": "∛(3⁶) + 2² ifadesinin sonucu kaçtır?",
+        "solution": "∛(3⁶) = 9, 2² = 4; toplam 13."
       },
       "sourceQuestionId": "F20-O-02",
       "sourceDifficulty": "Orta"
@@ -21320,10 +21320,10 @@
       "difficulty": "orta",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin üç halkasında soldan sağa farklı matematiksel işlemler yazılıdır. Üç işlemin sonuçları sırayla girildiğinde oluşan kapı şifresi hangisidir?",
+      "prompt": "Gözlemevinin üç halkasında farklı üslü ve köklü işlemler yazılıdır. Kökün derecesine dikkat ederek işlemleri soldan sağa hesapladığında hangi üçlü şifre oluşur?",
       "correctAnswer": "3 – 6 – 6",
       "solution": "Sol=3; orta=6; sağ=6. Kapı kodu 3 – 6 – 6.",
-      "hint": "Her halkayı birbirinden bağımsız hesapla; sıra soldan sağadır.",
+      "hint": "Her halkayı sırayla çöz. Küpkök üçüncü kuvveti, dördüncü dereceden kök dördüncü kuvveti geri alır. Her halkadaki üslü işlemleri de ayrı hesapla.",
       "inputType": "choice",
       "options": [
         "5 – 6 – 6",
@@ -21342,7 +21342,7 @@
         "labels": [
           {
             "anchor": "sol halka",
-            "value": "√(81) ÷ 3¹"
+            "value": "∜(3⁸) ÷ 3¹"
           },
           {
             "anchor": "orta halka",
@@ -21356,8 +21356,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "√(3⁴)−2², √32÷√2, 3²−√4 kodları?",
-        "solution": "5–4–7."
+        "question": "∛(3⁶) + 2² ifadesinin sonucu kaçtır?",
+        "solution": "∛(3⁶) = 9, 2² = 4; toplam 13."
       },
       "sourceQuestionId": "F20-O-03",
       "sourceDifficulty": "Orta"
@@ -21368,10 +21368,10 @@
       "difficulty": "orta",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin üç halkasında soldan sağa farklı matematiksel işlemler yazılıdır. Üç işlemin sonuçları sırayla girildiğinde oluşan kapı şifresi hangisidir?",
+      "prompt": "Gözlemevinin üç halkasında farklı üslü ve köklü işlemler yazılıdır. Kökün derecesine dikkat ederek işlemleri soldan sağa hesapladığında hangi üçlü şifre oluşur?",
       "correctAnswer": "24 – 8 – 10",
       "solution": "Sol=24; orta=8; sağ=10. Kapı kodu 24 – 8 – 10.",
-      "hint": "Her halkayı birbirinden bağımsız hesapla; sıra soldan sağadır.",
+      "hint": "Her halkayı sırayla çöz. Küpkök üçüncü kuvveti, dördüncü dereceden kök dördüncü kuvveti geri alır. Her halkadaki üslü işlemleri de ayrı hesapla.",
       "inputType": "choice",
       "options": [
         "26 – 8 – 10",
@@ -21398,14 +21398,14 @@
           },
           {
             "anchor": "sağ halka",
-            "value": "√(36) + 2²"
+            "value": "∛(6³) + 2²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "√(2⁶)−2², √36÷√4, √18÷√2 kodları?",
-        "solution": "4–3–3."
+        "question": "∛(3⁶) + 2² ifadesinin sonucu kaçtır?",
+        "solution": "∛(3⁶) = 9, 2² = 4; toplam 13."
       },
       "sourceQuestionId": "F20-O-04",
       "sourceDifficulty": "Orta"
@@ -21416,10 +21416,10 @@
       "difficulty": "orta",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin üç halkasında soldan sağa farklı matematiksel işlemler yazılıdır. Üç işlemin sonuçları sırayla girildiğinde oluşan kapı şifresi hangisidir?",
+      "prompt": "Gözlemevinin üç halkasında farklı üslü ve köklü işlemler yazılıdır. Kökün derecesine dikkat ederek işlemleri soldan sağa hesapladığında hangi üçlü şifre oluşur?",
       "correctAnswer": "28 – 9 – 11",
       "solution": "Sol=28; orta=9; sağ=11. Kapı kodu 28 – 9 – 11.",
-      "hint": "Her halkayı birbirinden bağımsız hesapla; sıra soldan sağadır.",
+      "hint": "Her halkayı sırayla çöz. Küpkök üçüncü kuvveti, dördüncü dereceden kök dördüncü kuvveti geri alır. Her halkadaki üslü işlemleri de ayrı hesapla.",
       "inputType": "choice",
       "options": [
         "28 – 9 – 11",
@@ -21438,7 +21438,7 @@
         "labels": [
           {
             "anchor": "sol halka",
-            "value": "√(1024) − 2²"
+            "value": "∜(2²⁰) − 2²"
           },
           {
             "anchor": "orta halka",
@@ -21452,8 +21452,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2⁵÷2³, 3√12÷√3, 2²+√9 kodları?",
-        "solution": "4–6–7."
+        "question": "∛(3⁶) + 2² ifadesinin sonucu kaçtır?",
+        "solution": "∛(3⁶) = 9, 2² = 4; toplam 13."
       },
       "sourceQuestionId": "F20-O-05",
       "sourceDifficulty": "Orta"
@@ -21464,10 +21464,10 @@
       "difficulty": "orta",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin üç halkasında soldan sağa farklı matematiksel işlemler yazılıdır. Üç işlemin sonuçları sırayla girildiğinde oluşan kapı şifresi hangisidir?",
+      "prompt": "Gözlemevinin üç halkasında farklı üslü ve köklü işlemler yazılıdır. Kökün derecesine dikkat ederek işlemleri soldan sağa hesapladığında hangi üçlü şifre oluşur?",
       "correctAnswer": "3 – 8 – 10",
       "solution": "Sol=3; orta=8; sağ=10. Kapı kodu 3 – 8 – 10.",
-      "hint": "Her halkayı birbirinden bağımsız hesapla; sıra soldan sağadır.",
+      "hint": "Her halkayı sırayla çöz. Küpkök üçüncü kuvveti, dördüncü dereceden kök dördüncü kuvveti geri alır. Her halkadaki üslü işlemleri de ayrı hesapla.",
       "inputType": "choice",
       "options": [
         "5 – 8 – 10",
@@ -21486,7 +21486,7 @@
         "labels": [
           {
             "anchor": "sol halka",
-            "value": "√(729) ÷ 3²"
+            "value": "∛(3⁹) ÷ 3²"
           },
           {
             "anchor": "orta halka",
@@ -21500,8 +21500,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "√(3⁴)−2², √32÷√2, 3²−√4 kodları?",
-        "solution": "5–4–7."
+        "question": "∛(3⁶) + 2² ifadesinin sonucu kaçtır?",
+        "solution": "∛(3⁶) = 9, 2² = 4; toplam 13."
       },
       "sourceQuestionId": "F20-O-06",
       "sourceDifficulty": "Orta"
@@ -21512,10 +21512,10 @@
       "difficulty": "orta",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin üç halkasında soldan sağa farklı matematiksel işlemler yazılıdır. Üç işlemin sonuçları sırayla girildiğinde oluşan kapı şifresi hangisidir?",
+      "prompt": "Gözlemevinin üç halkasında farklı üslü ve köklü işlemler yazılıdır. Kökün derecesine dikkat ederek işlemleri soldan sağa hesapladığında hangi üçlü şifre oluşur?",
       "correctAnswer": "12 – 10 – 12",
       "solution": "Sol=12; orta=10; sağ=12. Kapı kodu 12 – 10 – 12.",
-      "hint": "Her halkayı birbirinden bağımsız hesapla; sıra soldan sağadır.",
+      "hint": "Her halkayı sırayla çöz. Küpkök üçüncü kuvveti, dördüncü dereceden kök dördüncü kuvveti geri alır. Her halkadaki üslü işlemleri de ayrı hesapla.",
       "inputType": "choice",
       "options": [
         "14 – 10 – 12",
@@ -21542,14 +21542,14 @@
           },
           {
             "anchor": "sağ halka",
-            "value": "√(64) + 2²"
+            "value": "∜(2¹²) + 2²"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "√(2⁶)−2², √36÷√4, √18÷√2 kodları?",
-        "solution": "4–3–3."
+        "question": "∛(3⁶) + 2² ifadesinin sonucu kaçtır?",
+        "solution": "∛(3⁶) = 9, 2² = 4; toplam 13."
       },
       "sourceQuestionId": "F20-O-07",
       "sourceDifficulty": "Orta"
@@ -21560,10 +21560,10 @@
       "difficulty": "orta",
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin üç halkasında soldan sağa farklı matematiksel işlemler yazılıdır. Üç işlemin sonuçları sırayla girildiğinde oluşan kapı şifresi hangisidir?",
+      "prompt": "Gözlemevinin üç halkasında farklı üslü ve köklü işlemler yazılıdır. Kökün derecesine dikkat ederek işlemleri soldan sağa hesapladığında hangi üçlü şifre oluşur?",
       "correctAnswer": "12 – 12 – 7",
       "solution": "Sol=12; orta=12; sağ=7. Kapı kodu 12 – 12 – 7.",
-      "hint": "Her halkayı birbirinden bağımsız hesapla; sıra soldan sağadır.",
+      "hint": "Her halkayı sırayla çöz. Küpkök üçüncü kuvveti, dördüncü dereceden kök dördüncü kuvveti geri alır. Her halkadaki üslü işlemleri de ayrı hesapla.",
       "inputType": "choice",
       "options": [
         "14 – 12 – 7",
@@ -21582,7 +21582,7 @@
         "labels": [
           {
             "anchor": "sol halka",
-            "value": "√(256) − 2²"
+            "value": "∛(2¹²) − 2²"
           },
           {
             "anchor": "orta halka",
@@ -21596,8 +21596,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "2⁵÷2³, 3√12÷√3, 2²+√9 kodları?",
-        "solution": "4–6–7."
+        "question": "∛(3⁶) + 2² ifadesinin sonucu kaçtır?",
+        "solution": "∛(3⁶) = 9, 2² = 4; toplam 13."
       },
       "sourceQuestionId": "F20-O-08",
       "sourceDifficulty": "Orta"
@@ -30664,10 +30664,10 @@
       "difficulty": "zor",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dört eski taş levhada köklü ifadelerle ilgili eşitlikler yazılıdır. Yalnızca bir levhadaki eşitlik doğrudur. Kilidi açmak için hangi levha seçilmelidir?",
+      "prompt": "Eski yazıttaki levhalarda küpkök (∛) ve dördüncü dereceden kök (∜) kullanılarak eşitlikler kurulmuş. Bunlardan yalnız biri doğrudur. Hangi levha kilidi açar?",
       "correctAnswer": "A levhası",
-      "solution": "Doğru eşitlik: √32 + √8 = 6√2. Diğerlerinde sırasıyla fark, çarpım veya bölüm sonucu yanlış yazılmıştır.",
-      "hint": "Benzer köklü ifadeleri sadeleştir; kök dışındaki katsayılarda toplama ve çarpma kuralları farklıdır.",
+      "solution": "∛(3⁶) = 9 eşitliği doğrudur: kökün derecesiyle üssü sadeleştirince sağ taraftaki sayı elde edilir. Diğer levhalardaki eşitlikler birer birim veya daha fazla hatalıdır.",
+      "hint": "Her ifadede önce kökün derecesine bak. ∛(a⁶) = a², ∜(a⁸) = a² biçiminde düşün; sonra eşitlikleri kontrol et.",
       "inputType": "choice",
       "options": [
         "A levhası",
@@ -30679,33 +30679,33 @@
       "interaction": {},
       "contentVersion": "v147-approved-packs",
       "sceneTemplateId": "f16-research-3d",
-      "topic": "Köklü ifadelerde işlem hatası ayırt etme",
+      "topic": "Farklı dereceden köklü ifadelerle üslü karşılaştırma",
       "visual": {
         "type": "scene-labels",
         "sceneId": "f16-research-3d",
         "labels": [
           {
             "anchor": "A levhası",
-            "value": "√32 + √8 = 6√2"
+            "value": "A: ∛(3⁶) = 9"
           },
           {
             "anchor": "B levhası",
-            "value": "√32 − √8 = 3√2"
+            "value": "B: ∜(3⁸) = 8"
           },
           {
             "anchor": "C levhası",
-            "value": "√32 · √8 = 17"
+            "value": "C: ∛(4⁶) = 15"
           },
           {
             "anchor": "D levhası",
-            "value": "√32 ÷ √2 = 6"
+            "value": "D: ∜(5⁸) = 24"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Dört eski taş levhada köklü ifadelerle ilgili eşitlikler yazılıdır. Yalnızca bir levhadaki eşitlik doğrudur. Kilidi açmak için hangi levha seçilmelidir?",
-        "solution": "Doğru eşitlik: √75 + √12 = 7√3. Diğerlerinde sırasıyla fark, çarpım veya bölüm sonucu yanlış yazılmıştır."
+        "question": "∛(2⁶) ve ∜(3⁸) ifadelerini hesapla.",
+        "solution": "∛(2⁶) = 2² = 4; ∜(3⁸) = 3² = 9."
       },
       "sourceQuestionId": "F16-Z-02",
       "sourceDifficulty": "Zor"
@@ -30768,10 +30768,10 @@
       "difficulty": "zor",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dört eski taş levhada köklü ifadelerle ilgili eşitlikler yazılıdır. Yalnızca bir levhadaki eşitlik doğrudur. Kilidi açmak için hangi levha seçilmelidir?",
+      "prompt": "Eski yazıttaki levhalarda küpkök (∛) ve dördüncü dereceden kök (∜) kullanılarak eşitlikler kurulmuş. Bunlardan yalnız biri doğrudur. Hangi levha kilidi açar?",
       "correctAnswer": "C levhası",
-      "solution": "Doğru eşitlik: √32 + √8 = 6√2. Diğerlerinde sırasıyla fark, çarpım veya bölüm sonucu yanlış yazılmıştır.",
-      "hint": "Benzer köklü ifadeleri sadeleştir; kök dışındaki katsayılarda toplama ve çarpma kuralları farklıdır.",
+      "solution": "∜(4⁸) = 16 eşitliği doğrudur: kökün derecesiyle üssü sadeleştirince sağ taraftaki sayı elde edilir. Diğer levhalardaki eşitlikler birer birim veya daha fazla hatalıdır.",
+      "hint": "Her ifadede önce kökün derecesine bak. ∛(a⁶) = a², ∜(a⁸) = a² biçiminde düşün; sonra eşitlikleri kontrol et.",
       "inputType": "choice",
       "options": [
         "C levhası",
@@ -30783,33 +30783,33 @@
       "interaction": {},
       "contentVersion": "v147-approved-packs",
       "sceneTemplateId": "f16-research-3d",
-      "topic": "Köklü ifadelerde işlem hatası ayırt etme",
+      "topic": "Farklı dereceden köklü ifadelerle üslü karşılaştırma",
       "visual": {
         "type": "scene-labels",
         "sceneId": "f16-research-3d",
         "labels": [
           {
             "anchor": "A levhası",
-            "value": "√32 − √8 = 3√2"
+            "value": "A: ∛(2⁹) = 7"
           },
           {
             "anchor": "B levhası",
-            "value": "√32 · √8 = 17"
+            "value": "B: ∜(3⁸) = 8"
           },
           {
             "anchor": "C levhası",
-            "value": "√32 + √8 = 6√2"
+            "value": "C: ∜(4⁸) = 16"
           },
           {
             "anchor": "D levhası",
-            "value": "√32 ÷ √2 = 6"
+            "value": "D: ∜(5⁸) = 24"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Dört eski taş levhada köklü ifadelerle ilgili eşitlikler yazılıdır. Yalnızca bir levhadaki eşitlik doğrudur. Kilidi açmak için hangi levha seçilmelidir?",
-        "solution": "Doğru eşitlik: √75 + √12 = 7√3. Diğerlerinde sırasıyla fark, çarpım veya bölüm sonucu yanlış yazılmıştır."
+        "question": "∛(2⁶) ve ∜(3⁸) ifadelerini hesapla.",
+        "solution": "∛(2⁶) = 2² = 4; ∜(3⁸) = 3² = 9."
       },
       "sourceQuestionId": "F16-Z-04",
       "sourceDifficulty": "Zor"
@@ -30872,10 +30872,10 @@
       "difficulty": "zor",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dört eski taş levhada köklü ifadelerle ilgili eşitlikler yazılıdır. Yalnızca bir levhadaki eşitlik doğrudur. Kilidi açmak için hangi levha seçilmelidir?",
+      "prompt": "Eski yazıttaki levhalarda küpkök (∛) ve dördüncü dereceden kök (∜) kullanılarak eşitlikler kurulmuş. Bunlardan yalnız biri doğrudur. Hangi levha kilidi açar?",
       "correctAnswer": "B levhası",
-      "solution": "Doğru eşitlik: √75 + √12 = 7√3. Diğerlerinde sırasıyla fark, çarpım veya bölüm sonucu yanlış yazılmıştır.",
-      "hint": "Benzer köklü ifadeleri sadeleştir; kök dışındaki katsayılarda toplama ve çarpma kuralları farklıdır.",
+      "solution": "∛(2⁹) = 8 eşitliği doğrudur: kökün derecesiyle üssü sadeleştirince sağ taraftaki sayı elde edilir. Diğer levhalardaki eşitlikler birer birim veya daha fazla hatalıdır.",
+      "hint": "Her ifadede önce kökün derecesine bak. ∛(a⁶) = a², ∜(a⁸) = a² biçiminde düşün; sonra eşitlikleri kontrol et.",
       "inputType": "choice",
       "options": [
         "A levhası",
@@ -30887,33 +30887,33 @@
       "interaction": {},
       "contentVersion": "v147-approved-packs",
       "sceneTemplateId": "f16-research-3d",
-      "topic": "Köklü ifadelerde işlem hatası ayırt etme",
+      "topic": "Farklı dereceden köklü ifadelerle üslü karşılaştırma",
       "visual": {
         "type": "scene-labels",
         "sceneId": "f16-research-3d",
         "labels": [
           {
             "anchor": "A levhası",
-            "value": "√75 − √12 = 4√3"
+            "value": "A: ∛(2⁹) = 7"
           },
           {
             "anchor": "B levhası",
-            "value": "√75 + √12 = 7√3"
+            "value": "B: ∛(2⁹) = 8"
           },
           {
             "anchor": "C levhası",
-            "value": "√75 · √12 = 31"
+            "value": "C: ∛(4⁶) = 15"
           },
           {
             "anchor": "D levhası",
-            "value": "√75 ÷ √3 = 7"
+            "value": "D: ∜(5⁸) = 24"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Dört eski taş levhada köklü ifadelerle ilgili eşitlikler yazılıdır. Yalnızca bir levhadaki eşitlik doğrudur. Kilidi açmak için hangi levha seçilmelidir?",
-        "solution": "Doğru eşitlik: √180 + √20 = 8√5. Diğerlerinde sırasıyla fark, çarpım veya bölüm sonucu yanlış yazılmıştır."
+        "question": "∛(2⁶) ve ∜(3⁸) ifadelerini hesapla.",
+        "solution": "∛(2⁶) = 2² = 4; ∜(3⁸) = 3² = 9."
       },
       "sourceQuestionId": "F16-Z-06",
       "sourceDifficulty": "Zor"
@@ -30976,10 +30976,10 @@
       "difficulty": "zor",
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dört eski taş levhada köklü ifadelerle ilgili eşitlikler yazılıdır. Yalnızca bir levhadaki eşitlik doğrudur. Kilidi açmak için hangi levha seçilmelidir?",
+      "prompt": "Eski yazıttaki levhalarda küpkök (∛) ve dördüncü dereceden kök (∜) kullanılarak eşitlikler kurulmuş. Bunlardan yalnız biri doğrudur. Hangi levha kilidi açar?",
       "correctAnswer": "B levhası",
-      "solution": "Doğru eşitlik: √180 + √20 = 8√5. Diğerlerinde sırasıyla fark, çarpım veya bölüm sonucu yanlış yazılmıştır.",
-      "hint": "Benzer köklü ifadeleri sadeleştir; kök dışındaki katsayılarda toplama ve çarpma kuralları farklıdır.",
+      "solution": "∜(5⁸) = 25 eşitliği doğrudur: kökün derecesiyle üssü sadeleştirince sağ taraftaki sayı elde edilir. Diğer levhalardaki eşitlikler birer birim veya daha fazla hatalıdır.",
+      "hint": "Her ifadede önce kökün derecesine bak. ∛(a⁶) = a², ∜(a⁸) = a² biçiminde düşün; sonra eşitlikleri kontrol et.",
       "inputType": "choice",
       "options": [
         "A levhası",
@@ -30991,33 +30991,33 @@
       "interaction": {},
       "contentVersion": "v147-approved-packs",
       "sceneTemplateId": "f16-research-3d",
-      "topic": "Köklü ifadelerde işlem hatası ayırt etme",
+      "topic": "Farklı dereceden köklü ifadelerle üslü karşılaştırma",
       "visual": {
         "type": "scene-labels",
         "sceneId": "f16-research-3d",
         "labels": [
           {
             "anchor": "A levhası",
-            "value": "√180 − √20 = 5√5"
+            "value": "A: ∛(2⁹) = 7"
           },
           {
             "anchor": "B levhası",
-            "value": "√180 + √20 = 8√5"
+            "value": "B: ∜(5⁸) = 25"
           },
           {
             "anchor": "C levhası",
-            "value": "√180 · √20 = 61"
+            "value": "C: ∛(4⁶) = 15"
           },
           {
             "anchor": "D levhası",
-            "value": "√180 ÷ √5 = 8"
+            "value": "D: ∜(5⁸) = 24"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Dört eski taş levhada köklü ifadelerle ilgili eşitlikler yazılıdır. Yalnızca bir levhadaki eşitlik doğrudur. Kilidi açmak için hangi levha seçilmelidir?",
-        "solution": "Doğru eşitlik: √32 + √8 = 6√2. Diğerlerinde sırasıyla fark, çarpım veya bölüm sonucu yanlış yazılmıştır."
+        "question": "∛(2⁶) ve ∜(3⁸) ifadelerini hesapla.",
+        "solution": "∛(2⁶) = 2² = 4; ∜(3⁸) = 3² = 9."
       },
       "sourceQuestionId": "F16-Z-08",
       "sourceDifficulty": "Zor"
@@ -32644,10 +32644,10 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Üç halkalı kapının her halkasında ayrı bir işlem yer alıyor. Soldan sağa hesaplanan sonuçlar hangi üçlü şifreyi oluşturur?",
+      "prompt": "Gözlemevinin üç halkasında farklı dereceden köklü ve üslü işlemler var. Her halkayı soldan sağa hesaplayarak oluşan üçlü şifreyi bul.",
       "correctAnswer": "2 – 4 – 7",
-      "solution": "Sol: (6√2 − 4√2)/√2 = 2. Orta: 32/(4·2) = 4. Sağ: (5√3 + 2√3)/√3 = 7. Şifre 2 – 4 – 7.",
-      "hint": "Her halkayı diğerlerinden bağımsız sadeleştir, sonra soldan sağa sırala.",
+      "solution": "Sol: (6∜4 − 4∜4)/∜4 = 2. Orta: 32/(4·2) = 4. Sağ: (5∜9 + 2∜9)/∜9 = 7. Şifre 2 – 4 – 7.",
+      "hint": "Karekök ve dördüncü dereceden kök aynı sayıyı farklı biçimde gösterebilir. Önce köklü ifadelerin değerlerini, sonra diğer işlemleri sırayla bul.",
       "inputType": "choice",
       "options": [
         "2 – 4 – 9",
@@ -32666,7 +32666,7 @@
         "labels": [
           {
             "anchor": "sol altın halka",
-            "value": "(√72 − √32) ÷ √2"
+            "value": "(√72 − √32) ÷ ∜4"
           },
           {
             "anchor": "orta altın halka",
@@ -32674,14 +32674,14 @@
           },
           {
             "anchor": "sağ altın halka",
-            "value": "(√75 + √12) ÷ √3"
+            "value": "(√75 + √12) ÷ ∜9"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
         "question": "Çözülmüş benzer örnek",
-        "solution": "√50 ÷ √2 = 5; 2⁶ ÷ 2⁴ = 4; √27 ÷ √3 = 3. Şifre 5 – 4 – 3."
+        "solution": "√50 ÷ ∜4 = 5; 2⁶ ÷ 2⁴ = 4; √27 ÷ ∜9 = 3. Şifre 5 – 4 – 3."
       },
       "sourceQuestionId": "F20-Z-01",
       "sourceDifficulty": "Zor"
@@ -32692,10 +32692,10 @@
       "difficulty": "zor",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin üç halkalı kilidinde soldan sağa üç ayrı matematiksel işlem yazılıdır. İşlemler sırayla hesaplanırsa hangi üçlü şifre elde edilir?",
+      "prompt": "Gözlemevinin üç halkasında farklı dereceden köklü ve üslü işlemler var. Her halkayı soldan sağa hesaplayarak oluşan üçlü şifreyi bul.",
       "correctAnswer": "4 – 2 – 5",
       "solution": "Sol halka 4; orta halka 2; sağ halka 5. Şifre 4 – 2 – 5.",
-      "hint": "Köklü terimleri önce sadeleştir, ortadaki farklı tabanları 2 kuvvetine dönüştür.",
+      "hint": "Karekök ve dördüncü dereceden kök aynı sayıyı farklı biçimde gösterebilir. Önce köklü ifadelerin değerlerini, sonra diğer işlemleri sırayla bul.",
       "inputType": "choice",
       "options": [
         "5 – 2 – 5",
@@ -32714,7 +32714,7 @@
         "labels": [
           {
             "anchor": "sol halka",
-            "value": "(√98 − √18) ÷ √2"
+            "value": "(√98 − √18) ÷ ∜4"
           },
           {
             "anchor": "orta halka",
@@ -32722,7 +32722,7 @@
           },
           {
             "anchor": "sağ halka",
-            "value": "(√18 + √8) ÷ √2"
+            "value": "(√18 + √8) ÷ ∜4"
           }
         ],
         "bakedIntoImage": false
@@ -32740,10 +32740,10 @@
       "difficulty": "zor",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin üç halkalı kilidinde soldan sağa üç ayrı matematiksel işlem yazılıdır. İşlemler sırayla hesaplanırsa hangi üçlü şifre elde edilir?",
+      "prompt": "Gözlemevinin üç halkasında farklı dereceden köklü ve üslü işlemler var. Her halkayı soldan sağa hesaplayarak oluşan üçlü şifreyi bul.",
       "correctAnswer": "4 – 2 – 5",
       "solution": "Sol halka 4; orta halka 2; sağ halka 5. Şifre 4 – 2 – 5.",
-      "hint": "Köklü terimleri önce sadeleştir, ortadaki farklı tabanları 2 kuvvetine dönüştür.",
+      "hint": "Karekök ve dördüncü dereceden kök aynı sayıyı farklı biçimde gösterebilir. Önce köklü ifadelerin değerlerini, sonra diğer işlemleri sırayla bul.",
       "inputType": "choice",
       "options": [
         "5 – 2 – 5",
@@ -32762,7 +32762,7 @@
         "labels": [
           {
             "anchor": "sol halka",
-            "value": "(√98 − √18) ÷ √2"
+            "value": "(√98 − √18) ÷ ∜4"
           },
           {
             "anchor": "orta halka",
@@ -32770,7 +32770,7 @@
           },
           {
             "anchor": "sağ halka",
-            "value": "(√18 + √8) ÷ √2"
+            "value": "(√18 + √8) ÷ ∜4"
           }
         ],
         "bakedIntoImage": false
@@ -32788,10 +32788,10 @@
       "difficulty": "zor",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin üç halkalı kilidinde soldan sağa üç ayrı matematiksel işlem yazılıdır. İşlemler sırayla hesaplanırsa hangi üçlü şifre elde edilir?",
+      "prompt": "Gözlemevinin üç halkasında farklı dereceden köklü ve üslü işlemler var. Her halkayı soldan sağa hesaplayarak oluşan üçlü şifreyi bul.",
       "correctAnswer": "4 – 1 – 5",
       "solution": "Sol halka 4; orta halka 1; sağ halka 5. Şifre 4 – 1 – 5.",
-      "hint": "Köklü terimleri önce sadeleştir, ortadaki farklı tabanları 2 kuvvetine dönüştür.",
+      "hint": "Karekök ve dördüncü dereceden kök aynı sayıyı farklı biçimde gösterebilir. Önce köklü ifadelerin değerlerini, sonra diğer işlemleri sırayla bul.",
       "inputType": "choice",
       "options": [
         "5 – 1 – 5",
@@ -32810,7 +32810,7 @@
         "labels": [
           {
             "anchor": "sol halka",
-            "value": "√98 ÷ √2 − 3"
+            "value": "√98 ÷ ∜4 − 3"
           },
           {
             "anchor": "orta halka",
@@ -32818,7 +32818,7 @@
           },
           {
             "anchor": "sağ halka",
-            "value": "(√18 + √8) ÷ √2"
+            "value": "(√18 + √8) ÷ ∜4"
           }
         ],
         "bakedIntoImage": false
@@ -32836,10 +32836,10 @@
       "difficulty": "zor",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin üç halkalı kilidinde soldan sağa üç ayrı matematiksel işlem yazılıdır. İşlemler sırayla hesaplanırsa hangi üçlü şifre elde edilir?",
+      "prompt": "Gözlemevinin üç halkasında farklı dereceden köklü ve üslü işlemler var. Her halkayı soldan sağa hesaplayarak oluşan üçlü şifreyi bul.",
       "correctAnswer": "5 – 4 – 6",
       "solution": "Sol halka 5; orta halka 4; sağ halka 6. Şifre 5 – 4 – 6.",
-      "hint": "Köklü terimleri önce sadeleştir, ortadaki farklı tabanları 2 kuvvetine dönüştür.",
+      "hint": "Karekök ve dördüncü dereceden kök aynı sayıyı farklı biçimde gösterebilir. Önce köklü ifadelerin değerlerini, sonra diğer işlemleri sırayla bul.",
       "inputType": "choice",
       "options": [
         "5 – 4 – 6",
@@ -32858,7 +32858,7 @@
         "labels": [
           {
             "anchor": "sol halka",
-            "value": "(√192 − √27) ÷ √3"
+            "value": "(√192 − √27) ÷ ∜9"
           },
           {
             "anchor": "orta halka",
@@ -32866,7 +32866,7 @@
           },
           {
             "anchor": "sağ halka",
-            "value": "(√48 + √12) ÷ √3"
+            "value": "(√48 + √12) ÷ ∜9"
           }
         ],
         "bakedIntoImage": false
@@ -32884,10 +32884,10 @@
       "difficulty": "zor",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin üç halkalı kilidinde soldan sağa üç ayrı matematiksel işlem yazılıdır. İşlemler sırayla hesaplanırsa hangi üçlü şifre elde edilir?",
+      "prompt": "Gözlemevinin üç halkasında farklı dereceden köklü ve üslü işlemler var. Her halkayı soldan sağa hesaplayarak oluşan üçlü şifreyi bul.",
       "correctAnswer": "5 – 4 – 6",
       "solution": "Sol halka 5; orta halka 4; sağ halka 6. Şifre 5 – 4 – 6.",
-      "hint": "Köklü terimleri önce sadeleştir, ortadaki farklı tabanları 2 kuvvetine dönüştür.",
+      "hint": "Karekök ve dördüncü dereceden kök aynı sayıyı farklı biçimde gösterebilir. Önce köklü ifadelerin değerlerini, sonra diğer işlemleri sırayla bul.",
       "inputType": "choice",
       "options": [
         "6 – 4 – 6",
@@ -32906,7 +32906,7 @@
         "labels": [
           {
             "anchor": "sol halka",
-            "value": "(√192 − √27) ÷ √3"
+            "value": "(√192 − √27) ÷ ∜9"
           },
           {
             "anchor": "orta halka",
@@ -32914,7 +32914,7 @@
           },
           {
             "anchor": "sağ halka",
-            "value": "(√48 + √12) ÷ √3"
+            "value": "(√48 + √12) ÷ ∜9"
           }
         ],
         "bakedIntoImage": false
@@ -32932,10 +32932,10 @@
       "difficulty": "zor",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin üç halkalı kilidinde soldan sağa üç ayrı matematiksel işlem yazılıdır. İşlemler sırayla hesaplanırsa hangi üçlü şifre elde edilir?",
+      "prompt": "Gözlemevinin üç halkasında farklı dereceden köklü ve üslü işlemler var. Her halkayı soldan sağa hesaplayarak oluşan üçlü şifreyi bul.",
       "correctAnswer": "5 – 2 – 6",
       "solution": "Sol halka 5; orta halka 2; sağ halka 6. Şifre 5 – 2 – 6.",
-      "hint": "Köklü terimleri önce sadeleştir, ortadaki farklı tabanları 2 kuvvetine dönüştür.",
+      "hint": "Karekök ve dördüncü dereceden kök aynı sayıyı farklı biçimde gösterebilir. Önce köklü ifadelerin değerlerini, sonra diğer işlemleri sırayla bul.",
       "inputType": "choice",
       "options": [
         "6 – 2 – 6",
@@ -32954,7 +32954,7 @@
         "labels": [
           {
             "anchor": "sol halka",
-            "value": "√192 ÷ √3 − 3"
+            "value": "√192 ÷ ∜9 − 3"
           },
           {
             "anchor": "orta halka",
@@ -32962,7 +32962,7 @@
           },
           {
             "anchor": "sağ halka",
-            "value": "(√48 + √12) ÷ √3"
+            "value": "(√48 + √12) ÷ ∜9"
           }
         ],
         "bakedIntoImage": false
@@ -32980,10 +32980,10 @@
       "difficulty": "zor",
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin üç halkalı kilidinde soldan sağa üç ayrı matematiksel işlem yazılıdır. İşlemler sırayla hesaplanırsa hangi üçlü şifre elde edilir?",
+      "prompt": "Gözlemevinin üç halkasında farklı dereceden köklü ve üslü işlemler var. Her halkayı soldan sağa hesaplayarak oluşan üçlü şifreyi bul.",
       "correctAnswer": "6 – 8 – 7",
       "solution": "Sol halka 6; orta halka 8; sağ halka 7. Şifre 6 – 8 – 7.",
-      "hint": "Köklü terimleri önce sadeleştir, ortadaki farklı tabanları 2 kuvvetine dönüştür.",
+      "hint": "Karekök ve dördüncü dereceden kök aynı sayıyı farklı biçimde gösterebilir. Önce köklü ifadelerin değerlerini, sonra diğer işlemleri sırayla bul.",
       "inputType": "choice",
       "options": [
         "7 – 8 – 7",
@@ -33002,7 +33002,7 @@
         "labels": [
           {
             "anchor": "sol halka",
-            "value": "(√405 − √45) ÷ √5"
+            "value": "(√405 − √45) ÷ ∜25"
           },
           {
             "anchor": "orta halka",
@@ -33010,7 +33010,7 @@
           },
           {
             "anchor": "sağ halka",
-            "value": "(√125 + √20) ÷ √5"
+            "value": "(√125 + √20) ÷ ∜25"
           }
         ],
         "bakedIntoImage": false
@@ -33028,10 +33028,10 @@
       "difficulty": "zor",
       "variant": 9,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin üç halkalı kilidinde soldan sağa üç ayrı matematiksel işlem yazılıdır. İşlemler sırayla hesaplanırsa hangi üçlü şifre elde edilir?",
+      "prompt": "Gözlemevinin üç halkasında farklı dereceden köklü ve üslü işlemler var. Her halkayı soldan sağa hesaplayarak oluşan üçlü şifreyi bul.",
       "correctAnswer": "6 – 8 – 7",
       "solution": "Sol halka 6; orta halka 8; sağ halka 7. Şifre 6 – 8 – 7.",
-      "hint": "Köklü terimleri önce sadeleştir, ortadaki farklı tabanları 2 kuvvetine dönüştür.",
+      "hint": "Karekök ve dördüncü dereceden kök aynı sayıyı farklı biçimde gösterebilir. Önce köklü ifadelerin değerlerini, sonra diğer işlemleri sırayla bul.",
       "inputType": "choice",
       "options": [
         "6 – 8 – 7",
@@ -33050,7 +33050,7 @@
         "labels": [
           {
             "anchor": "sol halka",
-            "value": "(√405 − √45) ÷ √5"
+            "value": "(√405 − √45) ÷ ∜25"
           },
           {
             "anchor": "orta halka",
@@ -33058,7 +33058,7 @@
           },
           {
             "anchor": "sağ halka",
-            "value": "(√125 + √20) ÷ √5"
+            "value": "(√125 + √20) ÷ ∜25"
           }
         ],
         "bakedIntoImage": false
@@ -33076,10 +33076,10 @@
       "difficulty": "zor",
       "variant": 10,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin üç halkalı kilidinde soldan sağa üç ayrı matematiksel işlem yazılıdır. İşlemler sırayla hesaplanırsa hangi üçlü şifre elde edilir?",
+      "prompt": "Gözlemevinin üç halkasında farklı dereceden köklü ve üslü işlemler var. Her halkayı soldan sağa hesaplayarak oluşan üçlü şifreyi bul.",
       "correctAnswer": "6 – 4 – 7",
       "solution": "Sol halka 6; orta halka 4; sağ halka 7. Şifre 6 – 4 – 7.",
-      "hint": "Köklü terimleri önce sadeleştir, ortadaki farklı tabanları 2 kuvvetine dönüştür.",
+      "hint": "Karekök ve dördüncü dereceden kök aynı sayıyı farklı biçimde gösterebilir. Önce köklü ifadelerin değerlerini, sonra diğer işlemleri sırayla bul.",
       "inputType": "choice",
       "options": [
         "7 – 4 – 7",
@@ -33098,7 +33098,7 @@
         "labels": [
           {
             "anchor": "sol halka",
-            "value": "√405 ÷ √5 − 3"
+            "value": "√405 ÷ ∜25 − 3"
           },
           {
             "anchor": "orta halka",
@@ -33106,7 +33106,7 @@
           },
           {
             "anchor": "sağ halka",
-            "value": "(√125 + √20) ÷ √5"
+            "value": "(√125 + √20) ÷ ∜25"
           }
         ],
         "bakedIntoImage": false
