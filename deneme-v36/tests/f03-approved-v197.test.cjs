@@ -29,7 +29,7 @@ assert(source.includes("img.onerror=()=>"),"Keep playable old quiz if image is u
 assert(ui.includes("window.MTKF03ApprovedV197?.enhance(frame,q)"),"Game must mount five-plaque F03 scene");
 assert(ui.indexOf("MTKQuizUniversalV176?.apply(frame,q)")<ui.indexOf("MTKF03ApprovedV197?.enhance(frame,q)"),"Mount after universal layout");
 assert(quiz.includes("f03-approved-v197.js?v=203"),"Update iPhone browser asset cache");
-assert(host.includes("forest-v70-quiz.html?v=206"),"Update parent iframe cache");
+assert(host.includes("forest-v70-quiz.html?v=208"),"Update parent iframe cache");
 const f03=bank.questions.filter(q=>q.obstacleId==="F03");
 assert.equal(bank.questions.length,630,"Preserve all 630 approved questions");
 assert.equal(f03.length,30,"F03 requires 30 approved questions");
