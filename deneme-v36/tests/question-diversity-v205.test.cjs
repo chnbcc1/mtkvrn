@@ -103,6 +103,28 @@ assert(vineMedium.some(q=>q.prompt.includes("5²")),"F01 medium has 5-based powe
 assert(questions.filter(q=>q.obstacleId==="F16"&&q.difficulty==="orta").some(q=>q.prompt.includes("∛")),"F16 medium needs actual cube-root computations");
 assert(questions.filter(q=>q.obstacleId==="F16"&&q.difficulty==="zor").some(q=>q.prompt.includes("∜")),"F16 advanced needs fourth roots");
 assert(questions.filter(q=>q.obstacleId==="F20"&&q.difficulty==="orta").some(q=>q.visual.labels.some(x=>x.value.includes("∛"))),"F20 rings need visible cube roots");
+// This is a BANK-WIDE rule: every mathematically suitable research area
+// must show varied bases or root degrees, not only F01 or one selected example.
+const exponentTopics=["F01","F02","F03","F04","F05","F06","F08","F11","F13","F14","F17"];
+for(const obstacle of exponentTopics){
+ const related=questions.filter(q=>q.obstacleId===obstacle);
+ const found=new Set();
+ for(const q of related){
+  const text=q.prompt+" "+q.visual.labels.map(v=>v.value).join(" ");
+  for(const m of text.matchAll(/(\d+)[⁰¹²³⁴⁵⁶⁷⁸⁹]+/g))found.add(m[1]);
+ }
+ assert(found.size>=2,obstacle+" needs several exponent bases across its question set");
+ assert([...found].some(v=>v!=="2"),obstacle+" cannot rely only on powers of two");
+}
+const radicalTopics=["F07","F09","F10","F12","F15","F16","F19","F20","F21"];
+for(const obstacle of radicalTopics){
+ const related=questions.filter(q=>q.obstacleId===obstacle);
+ const text=related.map(q=>q.prompt+" "+q.visual.labels.map(v=>v.value).join(" ")+(q.interaction?.radicalItems||[]).join(" ")).join(" ");
+ const degrees=["√","∛","∜"].filter(t=>text.includes(t));
+ assert(degrees.length>=2,obstacle+" needs varied root degrees across its question set");
+}
+const science=questions.filter(q=>q.obstacleId==="F18");
+assert(science.every(q=>q.prompt.includes("10")||q.visual.labels.some(v=>v.value.includes("10"))),"Scientific notation must retain its mathematically necessary base 10");
 const f03=get("F03-O-07");
 assert.equal(f03.correctAnswer,"64","Preserve the approved F03 exemplar's result");
 assert(f03.prompt.includes("Sis türbinine 2¹² birim sis giriyor."),"Preserve the approved F03 wording");
