@@ -37,7 +37,8 @@ const math=[
  ["F13-K-01","100"],["F14-K-01","54"],["F17-K-01","81"],
  ["F16-K-01","∛64 = 4"],["F16-K-02","∜81 = 3"],
  ["F16-K-03","∛216 = 6"],["F16-K-04","∜256 = 4"],
- ["F16-K-05","∛125 = 5"],["F16-K-06","∜625 = 5"]
+ ["F16-K-05","∛125 = 5"],["F16-K-06","∜625 = 5"],
+ ["F01-K-02","30"],["F01-K-05","34"],["F01-K-08","25"]
 ];
 for(const [id,answer] of math)assert.equal(get(id)?.correctAnswer,answer,id+" arithmetic changed");
 for(const q of questions.filter(q=>q.interaction?.kind==="matching_unmatched")){
@@ -51,6 +52,10 @@ for(const q of questions.filter(q=>q.interaction?.kind==="matching_unmatched")){
  }
  assert(a.has(d.unmatchedRadical)&&b.has(d.unmatchedExponent),q.id+" unmatched labels must be available");
 }
+const vine=get("F01-K-05");
+assert(vine.visual.labels[0].value==="5²"&&vine.visual.labels[1].value==="3²","F01 must show alternative bases on the plaques");
+const quiz=fs.readFileSync(path.join(root,"forest-v70-quiz.html"),"utf8");
+assert(quiz.includes('const power=text.match(/^(\\d+)([⁰¹²³⁴⁵⁶⁷⁸⁹]+)$/)'),"F01 must parse variable exponent bases");
 const rootMatch=get("F21-K-01");
 assert(rootMatch.interaction.pairs.some(x=>x.radical==="∛729"&&x.exponent==="3²"),"Cube root matching 9");
 assert(rootMatch.interaction.pairs.some(x=>x.radical==="∜4096"&&x.exponent==="2³"),"Fourth root matching 8");
