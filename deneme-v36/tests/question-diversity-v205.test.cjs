@@ -56,12 +56,24 @@ const vine=get("F01-K-05");
 assert(vine.visual.labels[0].value==="5²"&&vine.visual.labels[1].value==="3²","F01 must show alternative bases on the plaques");
 const quiz=fs.readFileSync(path.join(root,"forest-v70-quiz.html"),"utf8");
 assert(quiz.includes('const power=text.match(/^(\\d+)([⁰¹²³⁴⁵⁶⁷⁸⁹]+)$/)'),"F01 must parse variable exponent bases");
-const rootMatch=get("F21-K-01");
-assert(rootMatch.interaction.pairs.some(x=>x.radical==="∛729"&&x.exponent==="3²"),"Cube root matching 9");
-assert(rootMatch.interaction.pairs.some(x=>x.radical==="∜4096"&&x.exponent==="2³"),"Fourth root matching 8");
-const mediumMatch=get("F21-O-01");
-assert(mediumMatch.interaction.pairs.some(x=>x.radical==="∛(2⁹)"&&x.exponent==="2³"),"Generalized cube root exponent");
-assert(mediumMatch.interaction.pairs.some(x=>x.radical==="∜(3⁸)"&&x.exponent==="3²"),"Generalized fourth root exponent");
+// Every one of the 30 interactive matching questions must use at least one
+// cube or fourth root without losing any of its original five-by-five connections.
+for(const q of questions.filter(q=>q.obstacleId==="F21")){
+ const radicals=q.interaction.radicalItems;
+ assert(radicals.some(x=>x.startsWith("∛")||x.startsWith("∜")),q.id+" missing varied root degree");
+ assert(radicals.every(x=>x.length<=13),q.id+" root expression overflows mobile plaques");
+}
+for(const diff of ["kolay","orta","zor"]){
+ const f01=questions.filter(q=>q.obstacleId==="F01"&&q.difficulty===diff);
+ assert.equal(f01.length,10);
+ const powers=new Set(f01.flatMap(q=>[...q.prompt.matchAll(/(\\d+)[⁰¹²³⁴⁵⁶⁷⁸⁹]+/g)].map(x=>x[1])));
+ assert([...powers].some(base=>base!=="2"),"F01 "+diff+" must not use only powers of two");
+}
+const vineMedium=questions.filter(q=>q.obstacleId==="F01"&&q.difficulty==="orta");
+assert(vineMedium.some(q=>q.prompt.includes("5²")),"F01 medium has 5-based powers");
+assert(questions.filter(q=>q.obstacleId==="F16"&&q.difficulty==="orta").some(q=>q.prompt.includes("∛")),"F16 medium needs actual cube-root computations");
+assert(questions.filter(q=>q.obstacleId==="F16"&&q.difficulty==="zor").some(q=>q.prompt.includes("∜")),"F16 advanced needs fourth roots");
+assert(questions.filter(q=>q.obstacleId==="F20"&&q.difficulty==="orta").some(q=>q.visual.labels.some(x=>x.value.includes("∛"))),"F20 rings need visible cube roots");
 const f03=get("F03-O-07");
 assert.equal(f03.correctAnswer,"64","Preserve the approved F03 exemplar's result");
 assert(f03.prompt.includes("Sis türbinine 2¹² birim sis giriyor."),"Preserve the approved F03 wording");
