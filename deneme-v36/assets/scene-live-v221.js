@@ -7,7 +7,7 @@ const eligible=q=>/^F(?:0[1-9]|1[0-9]|2[01])$/.test(q?.obstacleId||"")&&!deferre
 let active=null;
 function reset(){
  const a=active;active=null;if(!a)return;
- a.scene?.destroy();a.ui?.destroy();a.host?.remove();
+ clearTimeout(a.timer);a.scene?.destroy();a.ui?.destroy();a.host?.remove();
 }
 function capture(app,choices){
  const prompt=app.querySelector(".prompt");if(!prompt)return null;
@@ -24,11 +24,11 @@ function mount(app,q,s,choices,run,save){
  if(!api||!planAPI?.plan(q)||!characterAPI||!plaqueAPI||(q.obstacleId==="F21"&&!matchingAPI))return fallback;
  const frame=app.querySelector(".mtk-frame");if(!frame)return fallback;
  const host=document.createElement("div");host.className="mtk-upgrade-host-v221";
- Object.assign(host.style,{position:"fixed",inset:"0",width:"100%",height:"100%",visibility:"hidden",pointerEvents:"none",zIndex:"1"});
- app.append(host);
+ Object.assign(host.style,{position:"fixed",inset:"0",width:"100%",height:"100%",visibility:"hidden",opacity:"0",pointerEvents:"none",zIndex:"1"});
+ host.inert=true;app.append(host);
  const ui=api.shell(host);
  if(!ui){host.remove();return fallback}
- const ticket={host,ui,frame,scene:null};active=ticket;
+ const ticket={host,ui,frame,scene:null,timer:null};active=ticket;
  // F21 old board has already locked choices. Recover original disabled state
  // only for the matching controller, while preserving wrong/revealed choices.
  const helpOpen=!run.stageCorrect&&Number(run.wrong)>0&&run.helpView!==false;
@@ -42,10 +42,11 @@ function mount(app,q,s,choices,run,save){
  }}:matchingAPI;
  function restoreChoices(){for(const {b,disabled,locked} of choiceSnapshot){b.disabled=disabled;b.classList.toggle("match-locked",locked)}}
  function discard(){if(active===ticket){reset();restoreChoices()}}
+ ticket.timer=setTimeout(discard,5000);
  api.mountScene({q,ui,sceneAPI:planAPI,characterAPI,plaqueAPI,matchingAPI:scopedMatching,run,save}).then(scene=>{
   if(active!==ticket||!frame.isConnected){scene?.destroy();if(active===ticket)discard();return}
   if(!scene){discard();return}
-  ticket.scene=scene;
+  clearTimeout(ticket.timer);ticket.scene=scene;
   try{
    // Keep actual original DOM nodes and event listeners. Never clone buttons.
    ui.content.append(raw.prompt);
@@ -63,9 +64,9 @@ function mount(app,q,s,choices,run,save){
    }
    ui.element.classList.add("mtk-live-v221");
    // Old frame is removed only after both images and all dynamic layers exist.
-   frame.remove();host.style.visibility="visible";host.style.pointerEvents="auto";
+   frame.remove();host.style.visibility="visible";host.style.opacity="1";host.inert=false;host.style.pointerEvents="auto";
    root.MTKMathNotebook?.placeButton(app);
-   if(helpOpen)extra.scrollIntoView?.({block:"start"});
+   if(helpOpen)ui.question.scrollTop=Math.max(0,extra.offsetTop-ui.question.offsetTop);
   }catch(error){
    // If commit failed after nodes moved, restore them through the original
    // renderer using the same nodes and their listeners.
