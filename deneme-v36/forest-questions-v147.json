@@ -3205,15 +3205,15 @@
       "difficulty": "kolay",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kare taş platformun bir kenarı 2√2 m’dir. Platform çevresinin uzunluğu nedir?",
-      "correctAnswer": "8√2 m",
-      "solution": "Çevre = 4 × 2√2 = 8√2 m.",
-      "hint": "Karenin dört eşit kenarı vardır.",
+      "prompt": "Kare taş platformun bir kenarı 2∜4 m’dir. Platform çevresinin uzunluğu nedir?",
+      "correctAnswer": "8∜4 m",
+      "solution": "Çevre = 4 × 2∜4 = 8∜4 m. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "Karenin dört eşit kenarı vardır. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "8√2 m",
-        "4√2 m",
-        "10√2 m",
+        "8∜4 m",
+        "4∜4 m",
+        "10∜4 m",
         "8√3 m"
       ],
       "fixedChoiceOrder": true,
@@ -3227,7 +3227,7 @@
         "labels": [
           {
             "anchor": "dış_kare_kenarı",
-            "value": "2√2 m"
+            "value": "2∜4 m"
           }
         ],
         "bakedIntoImage": false
@@ -3325,16 +3325,16 @@
       "difficulty": "kolay",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kare taş platformun bir kenarı 3√3 m’dir. Platform çevresinin uzunluğu nedir?",
-      "correctAnswer": "12√3 m",
-      "solution": "Çevre = 4 × 3√3 = 12√3 m.",
-      "hint": "Karenin dört eşit kenarı vardır.",
+      "prompt": "Kare taş platformun bir kenarı 3∜9 m’dir. Platform çevresinin uzunluğu nedir?",
+      "correctAnswer": "12∜9 m",
+      "solution": "Çevre = 4 × 3∜9 = 12∜9 m. Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "Karenin dört eşit kenarı vardır. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "6√3 m",
-        "9√3 m",
-        "14√3 m",
-        "12√3 m"
+        "6∜9 m",
+        "9∜9 m",
+        "14∜9 m",
+        "12∜9 m"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -3347,14 +3347,14 @@
         "labels": [
           {
             "anchor": "dış_kare_kenarı",
-            "value": "3√3 m"
+            "value": "3∜9 m"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Kenar uzunluğu 2√3 m olan karenin alanı nedir?",
-        "solution": "(2√3)² = 4 × 3 = 12 m²."
+        "question": "Kenar uzunluğu 2∜9 m olan karenin alanı nedir?",
+        "solution": "(2∜9)² = 4 × 3 = 12 m²."
       },
       "sourceQuestionId": "F07-K-06",
       "sourceDifficulty": "Kolay"
@@ -3365,10 +3365,10 @@
       "difficulty": "kolay",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kare taş platformun bir kenarı 4√5 m’dir. Platformun alanı kaç metrekaredir?",
+      "prompt": "Kare taş platformun bir kenarı 4∜25 m’dir. Platformun alanı kaç metrekaredir?",
       "correctAnswer": "80",
-      "solution": "(4√5)² = 16 × 5 = 80 m².",
-      "hint": "Kenarı kendisiyle çarp; kökün karesi içteki sayıyı verir.",
+      "solution": "(4∜25)² = 16 × 5 = 80 m². Kontrol: ∜25 = √5; iki gösterimin değeri aynıdır.",
+      "hint": "Kenarı kendisiyle çarp; kökün karesi içteki sayıyı verir. Kök derecesine dikkat et: ∜25 ve √5 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "80",
@@ -3387,7 +3387,7 @@
         "labels": [
           {
             "anchor": "dış_kare_kenarı",
-            "value": "4√5 m"
+            "value": "4∜25 m"
           }
         ],
         "bakedIntoImage": false
@@ -3405,10 +3405,10 @@
       "difficulty": "kolay",
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kare taş platformun dış kenarı 3√6 metredir. Dış karenin alanı kaç metrekaredir?",
+      "prompt": "Kare taş platformun dış kenarı 3∜36 metredir. Dış karenin alanı kaç metrekaredir?",
       "correctAnswer": "54",
-      "solution": "(3√6)² = 9 × 6 = 54 m².",
-      "hint": "Katsayıyı da köklü ifadeyi de kareye yükselt.",
+      "solution": "(3∜36)² = 9 × 6 = 54 m². Kontrol: ∜36 = √6; iki gösterimin değeri aynıdır.",
+      "hint": "Katsayıyı da köklü ifadeyi de kareye yükselt. Kök derecesine dikkat et: ∜36 ve √6 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "45",
@@ -3427,7 +3427,7 @@
         "labels": [
           {
             "anchor": "kenar",
-            "value": "3√6 m"
+            "value": "3∜36 m"
           }
         ],
         "bakedIntoImage": false
@@ -3445,15 +3445,15 @@
       "difficulty": "kolay",
       "variant": 9,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kare taş platformun bir kenarı 4√5 m’dir. Platform çevresinin uzunluğu nedir?",
-      "correctAnswer": "16√5 m",
-      "solution": "Çevre = 4 × 4√5 = 16√5 m.",
-      "hint": "Karenin dört eşit kenarı vardır.",
+      "prompt": "Kare taş platformun bir kenarı 4∜25 m’dir. Platform çevresinin uzunluğu nedir?",
+      "correctAnswer": "16∜25 m",
+      "solution": "Çevre = 4 × 4∜25 = 16∜25 m. Kontrol: ∜25 = √5; iki gösterimin değeri aynıdır.",
+      "hint": "Karenin dört eşit kenarı vardır. Kök derecesine dikkat et: ∜25 ve √5 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "8√5 m",
-        "18√5 m",
-        "16√5 m",
+        "8∜25 m",
+        "18∜25 m",
+        "16∜25 m",
         "16√6 m"
       ],
       "fixedChoiceOrder": true,
@@ -3467,7 +3467,7 @@
         "labels": [
           {
             "anchor": "dış_kare_kenarı",
-            "value": "4√5 m"
+            "value": "4∜25 m"
           }
         ],
         "bakedIntoImage": false
@@ -4505,16 +4505,16 @@
       "difficulty": "kolay",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dikdörtgen platformun uzun kenarı 5√5 m ve kısa kenarı √5 m’dir. İki kenar arasındaki uzunluk farkı kaç metredir?",
-      "correctAnswer": "4√5 m",
-      "solution": "(5 − 1)√5 = 4√5 m.",
-      "hint": "Kök içleri aynı olduğundan katsayıları çıkar.",
+      "prompt": "Dikdörtgen platformun uzun kenarı 5∜25 m ve kısa kenarı ∜25 m’dir. İki kenar arasındaki uzunluk farkı kaç metredir?",
+      "correctAnswer": "4∜25 m",
+      "solution": "(5 − 1)∜25 = 4∜25 m. Kontrol: ∜25 = √5; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içleri aynı olduğundan katsayıları çıkar. Kök derecesine dikkat et: ∜25 ve √5 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "6√5 m",
-        "5√5 m",
+        "6∜25 m",
+        "5∜25 m",
         "4√6 m",
-        "4√5 m"
+        "4∜25 m"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -4527,11 +4527,11 @@
         "labels": [
           {
             "anchor": "uzun_kenar",
-            "value": "5√5 m"
+            "value": "5∜25 m"
           },
           {
             "anchor": "kısa_kenar",
-            "value": "√5 m"
+            "value": "∜25 m"
           }
         ],
         "bakedIntoImage": false
@@ -4637,16 +4637,16 @@
       "difficulty": "kolay",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dikdörtgen platformun uzun kenarı 3√2 m ve kısa kenarı 2√2 m’dir. İki kenar arasındaki uzunluk farkı kaç metredir?",
-      "correctAnswer": "√2 m",
-      "solution": "(3 − 2)√2 = √2 m.",
-      "hint": "Kök içleri aynı olduğundan katsayıları çıkar.",
+      "prompt": "Dikdörtgen platformun uzun kenarı 3∜4 m ve kısa kenarı 2∜4 m’dir. İki kenar arasındaki uzunluk farkı kaç metredir?",
+      "correctAnswer": "∜4 m",
+      "solution": "(3 − 2)∜4 = ∜4 m. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içleri aynı olduğundan katsayıları çıkar. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "5√2 m",
-        "2√2 m",
-        "√2 m",
-        "6√2 m"
+        "5∜4 m",
+        "2∜4 m",
+        "∜4 m",
+        "6∜4 m"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -4659,11 +4659,11 @@
         "labels": [
           {
             "anchor": "uzun_kenar",
-            "value": "3√2 m"
+            "value": "3∜4 m"
           },
           {
             "anchor": "kısa_kenar",
-            "value": "2√2 m"
+            "value": "2∜4 m"
           }
         ],
         "bakedIntoImage": false
@@ -4681,16 +4681,16 @@
       "difficulty": "kolay",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Işıklı dikdörtgen platformun uzun kenarı 5√5 m, kısa kenarı √5 m’dir. Çevresinin uzunluğu nedir?",
-      "correctAnswer": "12√5 m",
-      "solution": "Çevre = 2 × (5√5 + √5) = 12√5 m.",
-      "hint": "Önce eş köklü terimleri topla, sonra ikiyle çarp.",
+      "prompt": "Işıklı dikdörtgen platformun uzun kenarı 5∜25 m, kısa kenarı ∜25 m’dir. Çevresinin uzunluğu nedir?",
+      "correctAnswer": "12∜25 m",
+      "solution": "Çevre = 2 × (5∜25 + ∜25) = 12∜25 m. Kontrol: ∜25 = √5; iki gösterimin değeri aynıdır.",
+      "hint": "Önce eş köklü terimleri topla, sonra ikiyle çarp. Kök derecesine dikkat et: ∜25 ve √5 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "6√5 m",
-        "10√5 m",
-        "14√5 m",
-        "12√5 m"
+        "6∜25 m",
+        "10∜25 m",
+        "14∜25 m",
+        "12∜25 m"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -4703,11 +4703,11 @@
         "labels": [
           {
             "anchor": "uzun_kenar",
-            "value": "5√5 m"
+            "value": "5∜25 m"
           },
           {
             "anchor": "kısa_kenar",
-            "value": "√5 m"
+            "value": "∜25 m"
           }
         ],
         "bakedIntoImage": false
@@ -4769,15 +4769,15 @@
       "difficulty": "kolay",
       "variant": 9,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dikdörtgen platformun uzun kenarı 4√3 m ve kısa kenarı √3 m’dir. İki kenar arasındaki uzunluk farkı kaç metredir?",
-      "correctAnswer": "3√3 m",
-      "solution": "(4 − 1)√3 = 3√3 m.",
-      "hint": "Kök içleri aynı olduğundan katsayıları çıkar.",
+      "prompt": "Dikdörtgen platformun uzun kenarı 4∜9 m ve kısa kenarı ∜9 m’dir. İki kenar arasındaki uzunluk farkı kaç metredir?",
+      "correctAnswer": "3∜9 m",
+      "solution": "(4 − 1)∜9 = 3∜9 m. Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içleri aynı olduğundan katsayıları çıkar. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "5√3 m",
-        "3√3 m",
-        "4√3 m",
+        "5∜9 m",
+        "3∜9 m",
+        "4∜9 m",
         "3√4 m"
       ],
       "fixedChoiceOrder": true,
@@ -4791,18 +4791,18 @@
         "labels": [
           {
             "anchor": "uzun_kenar",
-            "value": "4√3 m"
+            "value": "4∜9 m"
           },
           {
             "anchor": "kısa_kenar",
-            "value": "√3 m"
+            "value": "∜9 m"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Kenarları 2√3 m ve √3 m olan dikdörtgenin çevresi?",
-        "solution": "2 × (2√3 + √3) = 6√3 m."
+        "question": "Kenarları 2∜9 m ve ∜9 m olan dikdörtgenin çevresi?",
+        "solution": "2 × (2∜9 + ∜9) = 6∜9 m."
       },
       "sourceQuestionId": "F10-K-09",
       "sourceDifficulty": "Kolay"
@@ -4813,15 +4813,15 @@
       "difficulty": "kolay",
       "variant": 10,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Işıklı dikdörtgen platformun uzun kenarı 3√2 m, kısa kenarı 2√2 m’dir. Çevresinin uzunluğu nedir?",
-      "correctAnswer": "10√2 m",
-      "solution": "Çevre = 2 × (3√2 + 2√2) = 10√2 m.",
-      "hint": "Önce eş köklü terimleri topla, sonra ikiyle çarp.",
+      "prompt": "Işıklı dikdörtgen platformun uzun kenarı 3∜4 m, kısa kenarı 2∜4 m’dir. Çevresinin uzunluğu nedir?",
+      "correctAnswer": "10∜4 m",
+      "solution": "Çevre = 2 × (3∜4 + 2∜4) = 10∜4 m. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "Önce eş köklü terimleri topla, sonra ikiyle çarp. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "5√2 m",
-        "12√2 m",
-        "10√2 m",
+        "5∜4 m",
+        "12∜4 m",
+        "10∜4 m",
         "10√3 m"
       ],
       "fixedChoiceOrder": true,
@@ -4835,11 +4835,11 @@
         "labels": [
           {
             "anchor": "uzun_kenar",
-            "value": "3√2 m"
+            "value": "3∜4 m"
           },
           {
             "anchor": "kısa_kenar",
-            "value": "2√2 m"
+            "value": "2∜4 m"
           }
         ],
         "bakedIntoImage": false
@@ -5341,10 +5341,10 @@
       "difficulty": "kolay",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Patikanın A kolu √27, B kolu 4√3 birim uzunluğunda ölçülmüş. Kısa yolu seçen kişi hangi yolu seçer ve yürüyüşü kaç birim kısalır?",
+      "prompt": "Patikanın A kolu ∜729, B kolu 4√3 birim uzunluğunda ölçülmüş. Kısa yolu seçen kişi hangi yolu seçer ve yürüyüşü kaç birim kısalır?",
       "correctAnswer": "A yolu, √3 birim",
-      "solution": "√27 = 3√3; B=4√3; kısa yol A, fark √3 birimdir.",
-      "hint": "Kök içindeki tam kareyi dışarı çıkar.",
+      "solution": "∜729 = 3√3; B=4√3; kısa yol A, fark √3 birimdir. Kontrol: ∜729 = √27; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içindeki tam kareyi dışarı çıkar. Kök derecesine dikkat et: ∜729 ve √27 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "A yolu, √3 birim",
@@ -5363,7 +5363,7 @@
         "labels": [
           {
             "anchor": "A_yolu",
-            "value": "√27"
+            "value": "∜729"
           },
           {
             "anchor": "B_yolu",
@@ -5561,16 +5561,16 @@
       "difficulty": "kolay",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Yol ayrımında A patikası 5√5, B patikası √5 birim uzunluğundadır. Kısa yol hangisidir ve yolu seçen kişi ne kadar daha az yürür?",
-      "correctAnswer": "B yolu, 4√5 birim",
-      "solution": "5√5 > √5; kısa yol B, fark 4√5 birimdir.",
-      "hint": "Kök içi aynıysa katsayıları karşılaştır.",
+      "prompt": "Yol ayrımında A patikası 5∜25, B patikası ∜25 birim uzunluğundadır. Kısa yol hangisidir ve yolu seçen kişi ne kadar daha az yürür?",
+      "correctAnswer": "B yolu, 4∜25 birim",
+      "solution": "5∜25 > ∜25; kısa yol B, fark 4∜25 birimdir. Kontrol: ∜25 = √5; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içi aynıysa katsayıları karşılaştır. Kök derecesine dikkat et: ∜25 ve √5 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "A yolu, 4√5 birim",
-        "B yolu, 4√5 birim",
-        "B yolu, 6√5 birim",
-        "A yolu, 6√5 birim"
+        "A yolu, 4∜25 birim",
+        "B yolu, 4∜25 birim",
+        "B yolu, 6∜25 birim",
+        "A yolu, 6∜25 birim"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -5583,11 +5583,11 @@
         "labels": [
           {
             "anchor": "A_yolu",
-            "value": "5√5"
+            "value": "5∜25"
           },
           {
             "anchor": "B_yolu",
-            "value": "√5"
+            "value": "∜25"
           }
         ],
         "bakedIntoImage": false
@@ -5605,10 +5605,10 @@
       "difficulty": "kolay",
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Patikanın A kolu √18, B kolu 4√2 birim uzunluğunda ölçülmüş. Kısa yolu seçen kişi hangi yolu seçer ve yürüyüşü kaç birim kısalır?",
+      "prompt": "Patikanın A kolu ∜324, B kolu 4√2 birim uzunluğunda ölçülmüş. Kısa yolu seçen kişi hangi yolu seçer ve yürüyüşü kaç birim kısalır?",
       "correctAnswer": "A yolu, √2 birim",
-      "solution": "√18 = 3√2; B=4√2; kısa yol A, fark √2 birimdir.",
-      "hint": "Kök içindeki tam kareyi dışarı çıkar.",
+      "solution": "∜324 = 3√2; B=4√2; kısa yol A, fark √2 birimdir. Kontrol: ∜324 = √18; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içindeki tam kareyi dışarı çıkar. Kök derecesine dikkat et: ∜324 ve √18 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "B yolu, √2 birim",
@@ -5627,7 +5627,7 @@
         "labels": [
           {
             "anchor": "A_yolu",
-            "value": "√18"
+            "value": "∜324"
           },
           {
             "anchor": "B_yolu",
@@ -5693,16 +5693,16 @@
       "difficulty": "kolay",
       "variant": 10,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Yol ayrımında A patikası 3√2, B patikası 2√2 birim uzunluğundadır. Kısa yol hangisidir ve yolu seçen kişi ne kadar daha az yürür?",
-      "correctAnswer": "B yolu, √2 birim",
-      "solution": "3√2 > 2√2; kısa yol B, fark √2 birimdir.",
-      "hint": "Kök içi aynıysa katsayıları karşılaştır.",
+      "prompt": "Yol ayrımında A patikası 3∜4, B patikası 2∜4 birim uzunluğundadır. Kısa yol hangisidir ve yolu seçen kişi ne kadar daha az yürür?",
+      "correctAnswer": "B yolu, ∜4 birim",
+      "solution": "3∜4 > 2∜4; kısa yol B, fark ∜4 birimdir. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içi aynıysa katsayıları karşılaştır. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "B yolu, √2 birim",
-        "A yolu, √2 birim",
-        "B yolu, 5√2 birim",
-        "A yolu, 5√2 birim"
+        "B yolu, ∜4 birim",
+        "A yolu, ∜4 birim",
+        "B yolu, 5∜4 birim",
+        "A yolu, 5∜4 birim"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -5715,18 +5715,18 @@
         "labels": [
           {
             "anchor": "A_yolu",
-            "value": "3√2"
+            "value": "3∜4"
           },
           {
             "anchor": "B_yolu",
-            "value": "2√2"
+            "value": "2∜4"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "A yolu 5√2, B yolu 3√2 birimse kısa yol ve fark nedir?",
-        "solution": "B kısadır, fark 2√2 birimdir."
+        "question": "A yolu 5∜4, B yolu 3∜4 birimse kısa yol ve fark nedir?",
+        "solution": "B kısadır, fark 2∜4 birimdir."
       },
       "sourceQuestionId": "F12-K-10",
       "sourceDifficulty": "Kolay"
@@ -6744,12 +6744,12 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Gösterim geçidindeki 5 köklü taş ile 5 üslü taşı eşleştir. Dört köklü taşın değeri bir üslü taşla aynıdır. Hangi bir köklü ve bir üslü taş eşleşmeden kalır?",
       "correctAnswer": "√4096 ve 3⁴",
-      "solution": "Köklü taşların değerlerini hesapla: 16, 25, 27, 32, 64. Üslü taşların değerleri: 16, 25, 27, 32, 81. Açıkta kalanlar √4096 ve 3⁴.",
-      "hint": "Dört ortak değeri çizgiyle eşleştir; önce büyük sayıları değerlendir.",
+      "solution": "Köklü taşların değerlerini hesapla: 16, 25, 27, 32, 64. Üslü taşların değerleri: 16, 25, 27, 32, 81. Açıkta kalanlar √4096 ve 3⁴. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
-        "√729 ve 5²",
-        "√1024 ve 2⁴",
+        "∜531441 ve 5²",
+        "∛32768 ve 2⁴",
         "√625 ve 2⁵",
         "√4096 ve 3⁴"
       ],
@@ -6757,8 +6757,8 @@
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√729",
-          "√1024",
+          "∜531441",
+          "∛32768",
           "√625",
           "√256",
           "√4096"
@@ -6772,11 +6772,11 @@
         ],
         "pairs": [
           {
-            "radical": "√729",
+            "radical": "∜531441",
             "exponent": "3³"
           },
           {
-            "radical": "√1024",
+            "radical": "∛32768",
             "exponent": "2⁵"
           },
           {
@@ -6801,11 +6801,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "√729"
+            "value": "∜531441"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "√1024"
+            "value": "∛32768"
           },
           {
             "anchor": "kök_taşı_3",
@@ -6856,13 +6856,13 @@
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Gösterim geçidindeki 5 köklü taş ile 5 üslü taşı eşleştir. Dört köklü taşın değeri bir üslü taşla aynıdır. Hangi bir köklü ve bir üslü taş eşleşmeden kalır?",
-      "correctAnswer": "√2401 ve 2⁷",
-      "solution": "Köklü taşların değerlerini hesapla: 32, 49, 64, 81, 125. Üslü taşların değerleri: 32, 64, 81, 125, 128. Açıkta kalanlar √2401 ve 2⁷.",
-      "hint": "Dört ortak değeri çizgiyle eşleştir; önce büyük sayıları değerlendir.",
+      "correctAnswer": "∜5764801 ve 2⁷",
+      "solution": "Köklü taşların değerlerini hesapla: 32, 49, 64, 81, 125. Üslü taşların değerleri: 32, 64, 81, 125, 128. Açıkta kalanlar ∜5764801 ve 2⁷. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
-        "√2401 ve 2⁷",
-        "√15625 ve 5³",
+        "∜5764801 ve 2⁷",
+        "∛1953125 ve 5³",
         "√4096 ve 3⁴",
         "√1024 ve 2⁶"
       ],
@@ -6870,8 +6870,8 @@
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√15625",
-          "√2401",
+          "∛1953125",
+          "∜5764801",
           "√4096",
           "√1024",
           "√6561"
@@ -6885,7 +6885,7 @@
         ],
         "pairs": [
           {
-            "radical": "√15625",
+            "radical": "∛1953125",
             "exponent": "5³"
           },
           {
@@ -6901,7 +6901,7 @@
             "exponent": "3⁴"
           }
         ],
-        "unmatchedRadical": "√2401",
+        "unmatchedRadical": "∜5764801",
         "unmatchedExponent": "2⁷",
         "requiredPairs": 4
       },
@@ -6914,11 +6914,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "√15625"
+            "value": "∛1953125"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "√2401"
+            "value": "∜5764801"
           },
           {
             "anchor": "kök_taşı_3",
@@ -6970,21 +6970,21 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Gösterim geçidindeki 5 köklü taş ile 5 üslü taşı eşleştir. Dört köklü taşın değeri bir üslü taşla aynıdır. Hangi bir köklü ve bir üslü taş eşleşmeden kalır?",
       "correctAnswer": "√64 ve 3²",
-      "solution": "Köklü taşların değerlerini hesapla: 4, 8, 49, 125, 128. Üslü taşların değerleri: 4, 9, 49, 125, 128. Açıkta kalanlar √64 ve 3².",
-      "hint": "Dört ortak değeri çizgiyle eşleştir; önce büyük sayıları değerlendir.",
+      "solution": "Köklü taşların değerlerini hesapla: 4, 8, 49, 125, 128. Üslü taşların değerleri: 4, 9, 49, 125, 128. Açıkta kalanlar √64 ve 3². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
-        "√16 ve 2⁷",
+        "∜256 ve 2⁷",
         "√64 ve 3²",
-        "√15625 ve 3²",
+        "∛1953125 ve 3²",
         "√2401 ve 5³"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√16",
-          "√15625",
+          "∜256",
+          "∛1953125",
           "√2401",
           "√16384",
           "√64"
@@ -6998,11 +6998,11 @@
         ],
         "pairs": [
           {
-            "radical": "√16",
+            "radical": "∜256",
             "exponent": "2²"
           },
           {
-            "radical": "√15625",
+            "radical": "∛1953125",
             "exponent": "5³"
           },
           {
@@ -7027,11 +7027,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "√16"
+            "value": "∜256"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "√15625"
+            "value": "∛1953125"
           },
           {
             "anchor": "kök_taşı_3",
@@ -7196,12 +7196,12 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Gösterim geçidindeki 5 köklü taş ile 5 üslü taşı eşleştir. Dört köklü taşın değeri bir üslü taşla aynıdır. Hangi bir köklü ve bir üslü taş eşleşmeden kalır?",
       "correctAnswer": "√4096 ve 3⁴",
-      "solution": "Köklü taşların değerlerini hesapla: 16, 25, 27, 32, 64. Üslü taşların değerleri: 16, 25, 27, 32, 81. Açıkta kalanlar √4096 ve 3⁴.",
-      "hint": "Dört ortak değeri çizgiyle eşleştir; önce büyük sayıları değerlendir.",
+      "solution": "Köklü taşların değerlerini hesapla: 16, 25, 27, 32, 64. Üslü taşların değerleri: 16, 25, 27, 32, 81. Açıkta kalanlar √4096 ve 3⁴. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
-        "√1024 ve 3⁴",
-        "√256 ve 5²",
+        "∜1048576 ve 3⁴",
+        "∛4096 ve 5²",
         "√4096 ve 2⁵",
         "√4096 ve 3⁴"
       ],
@@ -7209,8 +7209,8 @@
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√1024",
-          "√256",
+          "∜1048576",
+          "∛4096",
           "√4096",
           "√729",
           "√625"
@@ -7224,11 +7224,11 @@
         ],
         "pairs": [
           {
-            "radical": "√1024",
+            "radical": "∜1048576",
             "exponent": "2⁵"
           },
           {
-            "radical": "√256",
+            "radical": "∛4096",
             "exponent": "2⁴"
           },
           {
@@ -7253,11 +7253,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "√1024"
+            "value": "∜1048576"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "√256"
+            "value": "∛4096"
           },
           {
             "anchor": "kök_taşı_3",
@@ -7308,22 +7308,22 @@
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Gösterim geçidindeki 5 köklü taş ile 5 üslü taşı eşleştir. Dört köklü taşın değeri bir üslü taşla aynıdır. Hangi bir köklü ve bir üslü taş eşleşmeden kalır?",
-      "correctAnswer": "√2401 ve 2⁷",
-      "solution": "Köklü taşların değerlerini hesapla: 32, 49, 64, 81, 125. Üslü taşların değerleri: 32, 64, 81, 125, 128. Açıkta kalanlar √2401 ve 2⁷.",
-      "hint": "Dört ortak değeri çizgiyle eşleştir; önce büyük sayıları değerlendir.",
+      "correctAnswer": "∛117649 ve 2⁷",
+      "solution": "Köklü taşların değerlerini hesapla: 32, 49, 64, 81, 125. Üslü taşların değerleri: 32, 64, 81, 125, 128. Açıkta kalanlar ∛117649 ve 2⁷. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
-        "√2401 ve 2⁷",
-        "√2401 ve 5³",
-        "√4096 ve 2⁵",
+        "∛117649 ve 2⁷",
+        "∛117649 ve 5³",
+        "∜16777216 ve 2⁵",
         "√6561 ve 3⁴"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√2401",
-          "√4096",
+          "∛117649",
+          "∜16777216",
           "√6561",
           "√15625",
           "√1024"
@@ -7337,7 +7337,7 @@
         ],
         "pairs": [
           {
-            "radical": "√4096",
+            "radical": "∜16777216",
             "exponent": "2⁶"
           },
           {
@@ -7353,7 +7353,7 @@
             "exponent": "2⁵"
           }
         ],
-        "unmatchedRadical": "√2401",
+        "unmatchedRadical": "∛117649",
         "unmatchedExponent": "2⁷",
         "requiredPairs": 4
       },
@@ -7366,11 +7366,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "√2401"
+            "value": "∛117649"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "√4096"
+            "value": "∜16777216"
           },
           {
             "anchor": "kök_taşı_3",
@@ -7421,22 +7421,22 @@
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Gösterim geçidindeki 5 köklü taş ile 5 üslü taşı eşleştir. Dört köklü taşın değeri bir üslü taşla aynıdır. Hangi bir köklü ve bir üslü taş eşleşmeden kalır?",
-      "correctAnswer": "√64 ve 3²",
-      "solution": "Köklü taşların değerlerini hesapla: 4, 8, 49, 125, 128. Üslü taşların değerleri: 4, 9, 49, 125, 128. Açıkta kalanlar √64 ve 3².",
-      "hint": "Dört ortak değeri çizgiyle eşleştir; önce büyük sayıları değerlendir.",
+      "correctAnswer": "∜4096 ve 3²",
+      "solution": "Köklü taşların değerlerini hesapla: 4, 8, 49, 125, 128. Üslü taşların değerleri: 4, 9, 49, 125, 128. Açıkta kalanlar ∜4096 ve 3². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
-        "√64 ve 5³",
-        "√64 ve 3²",
-        "√2401 ve 7²",
+        "∜4096 ve 5³",
+        "∜4096 ve 3²",
+        "∛117649 ve 7²",
         "√15625 ve 3²"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√64",
-          "√2401",
+          "∜4096",
+          "∛117649",
           "√15625",
           "√16384",
           "√16"
@@ -7450,7 +7450,7 @@
         ],
         "pairs": [
           {
-            "radical": "√2401",
+            "radical": "∛117649",
             "exponent": "7²"
           },
           {
@@ -7466,7 +7466,7 @@
             "exponent": "2²"
           }
         ],
-        "unmatchedRadical": "√64",
+        "unmatchedRadical": "∜4096",
         "unmatchedExponent": "3²",
         "requiredPairs": 4
       },
@@ -7479,11 +7479,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "√64"
+            "value": "∜4096"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "√2401"
+            "value": "∛117649"
           },
           {
             "anchor": "kök_taşı_3",
@@ -7521,8 +7521,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "√64 ile 2³ eşleşir mi?",
-        "solution": "√64 = 8 ve 2³ = 8; eşleşir."
+        "question": "∜4096 ile 2³ eşleşir mi?",
+        "solution": "∜4096 = 8 ve 2³ = 8; eşleşir."
       },
       "sourceQuestionId": "F21-K-08",
       "sourceDifficulty": "Kolay"
@@ -7648,12 +7648,12 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Gösterim geçidindeki 5 köklü taş ile 5 üslü taşı eşleştir. Dört köklü taşın değeri bir üslü taşla aynıdır. Hangi bir köklü ve bir üslü taş eşleşmeden kalır?",
       "correctAnswer": "√4096 ve 3⁴",
-      "solution": "Köklü taşların değerlerini hesapla: 16, 25, 27, 32, 64. Üslü taşların değerleri: 16, 25, 27, 32, 81. Açıkta kalanlar √4096 ve 3⁴.",
-      "hint": "Dört ortak değeri çizgiyle eşleştir; önce büyük sayıları değerlendir.",
+      "solution": "Köklü taşların değerlerini hesapla: 16, 25, 27, 32, 64. Üslü taşların değerleri: 16, 25, 27, 32, 81. Açıkta kalanlar √4096 ve 3⁴. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
-        "√256 ve 2⁴",
-        "√625 ve 3³",
+        "∜65536 ve 2⁴",
+        "∛15625 ve 3³",
         "√1024 ve 5²",
         "√4096 ve 3⁴"
       ],
@@ -7661,8 +7661,8 @@
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√256",
-          "√625",
+          "∜65536",
+          "∛15625",
           "√1024",
           "√4096",
           "√729"
@@ -7676,11 +7676,11 @@
         ],
         "pairs": [
           {
-            "radical": "√256",
+            "radical": "∜65536",
             "exponent": "2⁴"
           },
           {
-            "radical": "√625",
+            "radical": "∛15625",
             "exponent": "5²"
           },
           {
@@ -7705,11 +7705,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "√256"
+            "value": "∜65536"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "√625"
+            "value": "∛15625"
           },
           {
             "anchor": "kök_taşı_3",
@@ -7803,10 +7803,10 @@
       "difficulty": "kolay",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Aynalarda 4 + √7 ile 4 − √7 ışık değeri var. Değerlerin çarpımına 2 birim ışık eklenirse son durumda toplam kaç birim ışık elde edilir?",
+      "prompt": "Aynalarda 4 + ∜49 ile 4 − ∜49 ışık değeri var. Değerlerin çarpımına 2 birim ışık eklenirse son durumda toplam kaç birim ışık elde edilir?",
       "correctAnswer": "11",
-      "solution": "Önce 16 − 7 = 9; sonra 2 ekle: 11.",
-      "hint": "Önce eşlenik çarpımını hesapla.",
+      "solution": "Önce 16 − 7 = 9; sonra 2 ekle: 11. Kontrol: ∜49 = √7; iki gösterimin değeri aynıdır.",
+      "hint": "Önce eşlenik çarpımını hesapla. Kök derecesine dikkat et: ∜49 ve √7 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "11",
@@ -7825,11 +7825,11 @@
         "labels": [
           {
             "anchor": "ayna_1",
-            "value": "4 + √7"
+            "value": "4 + ∜49"
           },
           {
             "anchor": "ayna_2",
-            "value": "4 − √7"
+            "value": "4 − ∜49"
           },
           {
             "anchor": "ek_ışık",
@@ -7851,10 +7851,10 @@
       "difficulty": "kolay",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Eşlenik aynalardan biri 4 + √2, diğeri 4 − √2 gösteriyor. İki değerin çarpımı ile 16 arasındaki fark kaçtır?",
+      "prompt": "Eşlenik aynalardan biri 4 + ∜4, diğeri 4 − ∜4 gösteriyor. İki değerin çarpımı ile 16 arasındaki fark kaçtır?",
       "correctAnswer": "2",
-      "solution": "Çarpım 16 − 2; aradaki fark 2 birimdir.",
-      "hint": "Eşlenik çarpımından eksilen sayıya bak.",
+      "solution": "Çarpım 16 − 2; aradaki fark 2 birimdir. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "Eşlenik çarpımından eksilen sayıya bak. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "14",
@@ -7873,11 +7873,11 @@
         "labels": [
           {
             "anchor": "sol",
-            "value": "4 + √2"
+            "value": "4 + ∜4"
           },
           {
             "anchor": "sağ",
-            "value": "4 − √2"
+            "value": "4 − ∜4"
           },
           {
             "anchor": "üst_sınır",
@@ -7887,8 +7887,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "(3 + √2)(3 − √2) kaçtır?",
-        "solution": "3² − (√2)² = 9 − 2 = 7."
+        "question": "(3 + ∜4)(3 − ∜4) kaçtır?",
+        "solution": "3² − (∜4)² = 9 − 2 = 7."
       },
       "sourceQuestionId": "F15-K-03",
       "sourceDifficulty": "Kolay"
@@ -7943,10 +7943,10 @@
       "difficulty": "kolay",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Aynalarda 5 + √2 ile 5 − √2 ışık değeri var. Değerlerin çarpımına 2 birim ışık eklenirse son durumda toplam kaç birim ışık elde edilir?",
+      "prompt": "Aynalarda 5 + ∜4 ile 5 − ∜4 ışık değeri var. Değerlerin çarpımına 2 birim ışık eklenirse son durumda toplam kaç birim ışık elde edilir?",
       "correctAnswer": "25",
-      "solution": "Önce 25 − 2 = 23; sonra 2 ekle: 25.",
-      "hint": "Önce eşlenik çarpımını hesapla.",
+      "solution": "Önce 25 − 2 = 23; sonra 2 ekle: 25. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "Önce eşlenik çarpımını hesapla. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "27",
@@ -7965,11 +7965,11 @@
         "labels": [
           {
             "anchor": "ayna_1",
-            "value": "5 + √2"
+            "value": "5 + ∜4"
           },
           {
             "anchor": "ayna_2",
-            "value": "5 − √2"
+            "value": "5 − ∜4"
           },
           {
             "anchor": "ek_ışık",
@@ -7979,8 +7979,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "(3 + √2)(3 − √2) kaçtır?",
-        "solution": "3² − (√2)² = 9 − 2 = 7."
+        "question": "(3 + ∜4)(3 − ∜4) kaçtır?",
+        "solution": "3² − (∜4)² = 9 − 2 = 7."
       },
       "sourceQuestionId": "F15-K-05",
       "sourceDifficulty": "Kolay"
@@ -7991,10 +7991,10 @@
       "difficulty": "kolay",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Eşlenik aynalardan biri 5 + √3, diğeri 5 − √3 gösteriyor. İki değerin çarpımı ile 25 arasındaki fark kaçtır?",
+      "prompt": "Eşlenik aynalardan biri 5 + ∜9, diğeri 5 − ∜9 gösteriyor. İki değerin çarpımı ile 25 arasındaki fark kaçtır?",
       "correctAnswer": "3",
-      "solution": "Çarpım 25 − 3; aradaki fark 3 birimdir.",
-      "hint": "Eşlenik çarpımından eksilen sayıya bak.",
+      "solution": "Çarpım 25 − 3; aradaki fark 3 birimdir. Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "Eşlenik çarpımından eksilen sayıya bak. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "3",
@@ -8013,11 +8013,11 @@
         "labels": [
           {
             "anchor": "sol",
-            "value": "5 + √3"
+            "value": "5 + ∜9"
           },
           {
             "anchor": "sağ",
-            "value": "5 − √3"
+            "value": "5 − ∜9"
           },
           {
             "anchor": "üst_sınır",
@@ -8039,10 +8039,10 @@
       "difficulty": "kolay",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki eşlenik aynada 5 + √5 ve 5 − √5 yazıyor. Aynaların ışık değerleri çarpıldığında kaç birim elde edilir?",
+      "prompt": "İki eşlenik aynada 5 + ∜25 ve 5 − ∜25 yazıyor. Aynaların ışık değerleri çarpıldığında kaç birim elde edilir?",
       "correctAnswer": "20",
-      "solution": "(5 + √5)(5 − √5) = 25 − 5 = 20.",
-      "hint": "Toplam ile farkın çarpımını kullan: a² − b².",
+      "solution": "(5 + ∜25)(5 − ∜25) = 25 − 5 = 20. Kontrol: ∜25 = √5; iki gösterimin değeri aynıdır.",
+      "hint": "Toplam ile farkın çarpımını kullan: a² − b². Kök derecesine dikkat et: ∜25 ve √5 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "30",
@@ -8061,11 +8061,11 @@
         "labels": [
           {
             "anchor": "sol_ayna",
-            "value": "5 + √5"
+            "value": "5 + ∜25"
           },
           {
             "anchor": "sağ_ayna",
-            "value": "5 − √5"
+            "value": "5 − ∜25"
           }
         ],
         "bakedIntoImage": false
@@ -8535,16 +8535,16 @@
       "difficulty": "kolay",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Yanıltıcı yazıttaki dört taş levhada √80 ifadesi için farklı eşitlikler yazıyor. Yalnızca biri doğrudur. Hangi eşitlik doğrudur?",
-      "correctAnswer": "√80 = 4√5",
-      "solution": "√80 = √(16 × 5) = 4√5.",
-      "hint": "Kök içinden tam kare çarpanını çıkar.",
+      "prompt": "Yanıltıcı yazıttaki dört taş levhada ∜6400 ifadesi için farklı eşitlikler yazıyor. Yalnızca biri doğrudur. Hangi eşitlik doğrudur?",
+      "correctAnswer": "∜6400 = 4√5",
+      "solution": "∜6400 = √(16 × 5) = 4√5. Kontrol: ∜6400 = √80; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içinden tam kare çarpanını çıkar. Kök derecesine dikkat et: ∜6400 ve √80 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "√80 = 4√6",
-        "√80 = 16√5",
-        "√80 = 4√5",
-        "√80 = 5√5"
+        "∜6400 = 4√6",
+        "∜6400 = 16√5",
+        "∜6400 = 4√5",
+        "∜6400 = 5√5"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -8557,19 +8557,19 @@
         "labels": [
           {
             "anchor": "levha_A",
-            "value": "√80 = 4√6"
+            "value": "∜6400 = 4√6"
           },
           {
             "anchor": "levha_B",
-            "value": "√80 = 16√5"
+            "value": "∜6400 = 16√5"
           },
           {
             "anchor": "levha_C",
-            "value": "√80 = 4√5"
+            "value": "∜6400 = 4√5"
           },
           {
             "anchor": "levha_D",
-            "value": "√80 = 5√5"
+            "value": "∜6400 = 5√5"
           }
         ],
         "bakedIntoImage": false
@@ -8587,16 +8587,16 @@
       "difficulty": "kolay",
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Yanıltıcı yazıttaki dört taş levhada √80 ifadesi için farklı eşitlikler yazıyor. Yalnızca biri doğrudur. Hangi eşitlik doğrudur?",
-      "correctAnswer": "√80 = 4√5",
-      "solution": "√80 = √(16 × 5) = 4√5.",
-      "hint": "Kök içinden tam kare çarpanını çıkar.",
+      "prompt": "Yanıltıcı yazıttaki dört taş levhada ∜6400 ifadesi için farklı eşitlikler yazıyor. Yalnızca biri doğrudur. Hangi eşitlik doğrudur?",
+      "correctAnswer": "∜6400 = 4√5",
+      "solution": "∜6400 = √(16 × 5) = 4√5. Kontrol: ∜6400 = √80; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içinden tam kare çarpanını çıkar. Kök derecesine dikkat et: ∜6400 ve √80 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "√80 = 5√5",
-        "√80 = 4√6",
-        "√80 = 16√5",
-        "√80 = 4√5"
+        "∜6400 = 5√5",
+        "∜6400 = 4√6",
+        "∜6400 = 16√5",
+        "∜6400 = 4√5"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -8609,19 +8609,19 @@
         "labels": [
           {
             "anchor": "levha_A",
-            "value": "√80 = 5√5"
+            "value": "∜6400 = 5√5"
           },
           {
             "anchor": "levha_B",
-            "value": "√80 = 4√6"
+            "value": "∜6400 = 4√6"
           },
           {
             "anchor": "levha_C",
-            "value": "√80 = 16√5"
+            "value": "∜6400 = 16√5"
           },
           {
             "anchor": "levha_D",
-            "value": "√80 = 4√5"
+            "value": "∜6400 = 4√5"
           }
         ],
         "bakedIntoImage": false
@@ -8639,16 +8639,16 @@
       "difficulty": "kolay",
       "variant": 9,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Yanıltıcı yazıttaki dört taş levhada √80 ifadesi için farklı eşitlikler yazıyor. Yalnızca biri doğrudur. Hangi eşitlik doğrudur?",
-      "correctAnswer": "√80 = 4√5",
-      "solution": "√80 = √(16 × 5) = 4√5.",
-      "hint": "Kök içinden tam kare çarpanını çıkar.",
+      "prompt": "Yanıltıcı yazıttaki dört taş levhada ∜6400 ifadesi için farklı eşitlikler yazıyor. Yalnızca biri doğrudur. Hangi eşitlik doğrudur?",
+      "correctAnswer": "∜6400 = 4√5",
+      "solution": "∜6400 = √(16 × 5) = 4√5. Kontrol: ∜6400 = √80; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içinden tam kare çarpanını çıkar. Kök derecesine dikkat et: ∜6400 ve √80 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "√80 = 4√5",
-        "√80 = 4√6",
-        "√80 = 5√5",
-        "√80 = 16√5"
+        "∜6400 = 4√5",
+        "∜6400 = 4√6",
+        "∜6400 = 5√5",
+        "∜6400 = 16√5"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -8661,19 +8661,19 @@
         "labels": [
           {
             "anchor": "levha_A",
-            "value": "√80 = 4√5"
+            "value": "∜6400 = 4√5"
           },
           {
             "anchor": "levha_B",
-            "value": "√80 = 4√6"
+            "value": "∜6400 = 4√6"
           },
           {
             "anchor": "levha_C",
-            "value": "√80 = 5√5"
+            "value": "∜6400 = 5√5"
           },
           {
             "anchor": "levha_D",
-            "value": "√80 = 16√5"
+            "value": "∜6400 = 16√5"
           }
         ],
         "bakedIntoImage": false
@@ -8691,16 +8691,16 @@
       "difficulty": "kolay",
       "variant": 10,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Yanıltıcı yazıttaki dört taş levhada √175 ifadesi için farklı eşitlikler yazıyor. Yalnızca biri doğrudur. Hangi eşitlik doğrudur?",
-      "correctAnswer": "√175 = 5√7",
-      "solution": "√175 = √(25 × 7) = 5√7.",
-      "hint": "Kök içinden tam kare çarpanını çıkar.",
+      "prompt": "Yanıltıcı yazıttaki dört taş levhada ∜30625 ifadesi için farklı eşitlikler yazıyor. Yalnızca biri doğrudur. Hangi eşitlik doğrudur?",
+      "correctAnswer": "∜30625 = 5√7",
+      "solution": "∜30625 = √(25 × 7) = 5√7. Kontrol: ∜30625 = √175; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içinden tam kare çarpanını çıkar. Kök derecesine dikkat et: ∜30625 ve √175 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "√175 = 6√7",
-        "√175 = 5√7",
-        "√175 = 25√7",
-        "√175 = 5√8"
+        "∜30625 = 6√7",
+        "∜30625 = 5√7",
+        "∜30625 = 25√7",
+        "∜30625 = 5√8"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -8713,19 +8713,19 @@
         "labels": [
           {
             "anchor": "levha_A",
-            "value": "√175 = 6√7"
+            "value": "∜30625 = 6√7"
           },
           {
             "anchor": "levha_B",
-            "value": "√175 = 5√7"
+            "value": "∜30625 = 5√7"
           },
           {
             "anchor": "levha_C",
-            "value": "√175 = 25√7"
+            "value": "∜30625 = 25√7"
           },
           {
             "anchor": "levha_D",
-            "value": "√175 = 5√8"
+            "value": "∜30625 = 5√8"
           }
         ],
         "bakedIntoImage": false
@@ -9731,15 +9731,15 @@
       "difficulty": "kolay",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Uzunlukları 4√2 cm ile 3√2 cm olan iki taş destek √2 cm boyunca üst üste bindirilmiştir. Oluşan desteğin uzunluğu kaç santimetredir?",
-      "correctAnswer": "6√2 cm",
-      "solution": "(4 + 3 − 1)√2 = 6√2 cm.",
-      "hint": "Örtüşen parçayı yalnızca bir kez say.",
+      "prompt": "Uzunlukları 4∜4 cm ile 3∜4 cm olan iki taş destek ∜4 cm boyunca üst üste bindirilmiştir. Oluşan desteğin uzunluğu kaç santimetredir?",
+      "correctAnswer": "6∜4 cm",
+      "solution": "(4 + 3 − 1)∜4 = 6∜4 cm. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "Örtüşen parçayı yalnızca bir kez say. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "6√2 cm",
-        "7√2 cm",
-        "8√2 cm",
+        "6∜4 cm",
+        "7∜4 cm",
+        "8∜4 cm",
         "6√3 cm"
       ],
       "fixedChoiceOrder": true,
@@ -9753,22 +9753,22 @@
         "labels": [
           {
             "anchor": "destek_A",
-            "value": "4√2 cm"
+            "value": "4∜4 cm"
           },
           {
             "anchor": "destek_B",
-            "value": "3√2 cm"
+            "value": "3∜4 cm"
           },
           {
             "anchor": "örtüşme",
-            "value": "√2 cm"
+            "value": "∜4 cm"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "5√2 ve 2√2 cm destekler uç uca gelirse uzunluk kaçtır?",
-        "solution": "5√2 + 2√2 = 7√2 cm."
+        "question": "5∜4 ve 2∜4 cm destekler uç uca gelirse uzunluk kaçtır?",
+        "solution": "5∜4 + 2∜4 = 7∜4 cm."
       },
       "sourceQuestionId": "F19-K-02",
       "sourceDifficulty": "Kolay"
@@ -9779,10 +9779,10 @@
       "difficulty": "kolay",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Şekildeki iki destek √32 cm ve 4√2 cm uzunluğundadır. Uç uca eklenince kaç santimetre olur?",
+      "prompt": "Şekildeki iki destek ∜1024 cm ve 4√2 cm uzunluğundadır. Uç uca eklenince kaç santimetre olur?",
       "correctAnswer": "8√2 cm",
-      "solution": "√32 = 4√2; toplam 4√2 + 4√2 = 8√2 cm.",
-      "hint": "Kök içindeki tam kareyi ayır.",
+      "solution": "∜1024 = 4√2; toplam 4√2 + 4√2 = 8√2 cm. Kontrol: ∜1024 = √32; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içindeki tam kareyi ayır. Kök derecesine dikkat et: ∜1024 ve √32 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "9√2 cm",
@@ -9801,7 +9801,7 @@
         "labels": [
           {
             "anchor": "destek_1",
-            "value": "√32 cm"
+            "value": "∜1024 cm"
           },
           {
             "anchor": "destek_2",
@@ -9867,16 +9867,16 @@
       "difficulty": "kolay",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Uzunlukları 5√3 cm ile 2√3 cm olan iki taş destek 2√3 cm boyunca üst üste bindirilmiştir. Oluşan desteğin uzunluğu kaç santimetredir?",
-      "correctAnswer": "5√3 cm",
-      "solution": "(5 + 2 − 2)√3 = 5√3 cm.",
-      "hint": "Örtüşen parçayı yalnızca bir kez say.",
+      "prompt": "Uzunlukları 5∜9 cm ile 2∜9 cm olan iki taş destek 2∜9 cm boyunca üst üste bindirilmiştir. Oluşan desteğin uzunluğu kaç santimetredir?",
+      "correctAnswer": "5∜9 cm",
+      "solution": "(5 + 2 − 2)∜9 = 5∜9 cm. Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "Örtüşen parçayı yalnızca bir kez say. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "7√3 cm",
-        "9√3 cm",
-        "6√3 cm",
-        "5√3 cm"
+        "7∜9 cm",
+        "9∜9 cm",
+        "6∜9 cm",
+        "5∜9 cm"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -9889,15 +9889,15 @@
         "labels": [
           {
             "anchor": "destek_A",
-            "value": "5√3 cm"
+            "value": "5∜9 cm"
           },
           {
             "anchor": "destek_B",
-            "value": "2√3 cm"
+            "value": "2∜9 cm"
           },
           {
             "anchor": "örtüşme",
-            "value": "2√3 cm"
+            "value": "2∜9 cm"
           }
         ],
         "bakedIntoImage": false
@@ -9915,10 +9915,10 @@
       "difficulty": "kolay",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Şekildeki iki destek √12 cm ve 4√3 cm uzunluğundadır. Uç uca eklenince kaç santimetre olur?",
+      "prompt": "Şekildeki iki destek ∜144 cm ve 4√3 cm uzunluğundadır. Uç uca eklenince kaç santimetre olur?",
       "correctAnswer": "6√3 cm",
-      "solution": "√12 = 2√3; toplam 2√3 + 4√3 = 6√3 cm.",
-      "hint": "Kök içindeki tam kareyi ayır.",
+      "solution": "∜144 = 2√3; toplam 2√3 + 4√3 = 6√3 cm. Kontrol: ∜144 = √12; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içindeki tam kareyi ayır. Kök derecesine dikkat et: ∜144 ve √12 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "6√3 cm",
@@ -9937,7 +9937,7 @@
         "labels": [
           {
             "anchor": "destek_1",
-            "value": "√12 cm"
+            "value": "∜144 cm"
           },
           {
             "anchor": "destek_2",
@@ -10003,15 +10003,15 @@
       "difficulty": "kolay",
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Uzunlukları 3√5 cm ile 3√5 cm olan iki taş destek √5 cm boyunca üst üste bindirilmiştir. Oluşan desteğin uzunluğu kaç santimetredir?",
-      "correctAnswer": "5√5 cm",
-      "solution": "(3 + 3 − 1)√5 = 5√5 cm.",
-      "hint": "Örtüşen parçayı yalnızca bir kez say.",
+      "prompt": "Uzunlukları 3∜25 cm ile 3∜25 cm olan iki taş destek ∜25 cm boyunca üst üste bindirilmiştir. Oluşan desteğin uzunluğu kaç santimetredir?",
+      "correctAnswer": "5∜25 cm",
+      "solution": "(3 + 3 − 1)∜25 = 5∜25 cm. Kontrol: ∜25 = √5; iki gösterimin değeri aynıdır.",
+      "hint": "Örtüşen parçayı yalnızca bir kez say. Kök derecesine dikkat et: ∜25 ve √5 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "6√5 cm",
-        "7√5 cm",
-        "5√5 cm",
+        "6∜25 cm",
+        "7∜25 cm",
+        "5∜25 cm",
         "5√6 cm"
       ],
       "fixedChoiceOrder": true,
@@ -10025,15 +10025,15 @@
         "labels": [
           {
             "anchor": "destek_A",
-            "value": "3√5 cm"
+            "value": "3∜25 cm"
           },
           {
             "anchor": "destek_B",
-            "value": "3√5 cm"
+            "value": "3∜25 cm"
           },
           {
             "anchor": "örtüşme",
-            "value": "√5 cm"
+            "value": "∜25 cm"
           }
         ],
         "bakedIntoImage": false
@@ -10187,10 +10187,10 @@
       "difficulty": "kolay",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin kapısındaki üç halkada soldan sağa √9, 5¹ ve 2² yazıyor. Her halkanın değerini bularak soldan sağa hangi şifreyi oluşturursun?",
+      "prompt": "Gözlemevinin kapısındaki üç halkada soldan sağa ∜81, 5¹ ve 2² yazıyor. Her halkanın değerini bularak soldan sağa hangi şifreyi oluşturursun?",
       "correctAnswer": "3 – 5 – 4",
-      "solution": "Sol halka 3, orta halka 5, sağ halka 4. Şifre 3 – 5 – 4.",
-      "hint": "Üç ifadeyi sırayla hesapla ve halkaların yerini değiştirme.",
+      "solution": "Sol halka 3, orta halka 5, sağ halka 4. Şifre 3 – 5 – 4. Kontrol: ∜81 = √9; iki gösterimin değeri aynıdır.",
+      "hint": "Üç ifadeyi sırayla hesapla ve halkaların yerini değiştirme. Kök derecesine dikkat et: ∜81 ve √9 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "3 – 4 – 5",
@@ -10209,7 +10209,7 @@
         "labels": [
           {
             "anchor": "sol_halka",
-            "value": "√9"
+            "value": "∜81"
           },
           {
             "anchor": "orta_halka",
@@ -10283,10 +10283,10 @@
       "difficulty": "kolay",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin kapısındaki üç halkada soldan sağa 2³, √36 ve 5¹ yazıyor. Her halkanın değerini bularak soldan sağa hangi şifreyi oluşturursun?",
+      "prompt": "Gözlemevinin kapısındaki üç halkada soldan sağa 2³, ∜1296 ve 5¹ yazıyor. Her halkanın değerini bularak soldan sağa hangi şifreyi oluşturursun?",
       "correctAnswer": "8 – 6 – 5",
-      "solution": "Sol halka 8, orta halka 6, sağ halka 5. Şifre 8 – 6 – 5.",
-      "hint": "Üç ifadeyi sırayla hesapla ve halkaların yerini değiştirme.",
+      "solution": "Sol halka 8, orta halka 6, sağ halka 5. Şifre 8 – 6 – 5. Kontrol: ∜1296 = √36; iki gösterimin değeri aynıdır.",
+      "hint": "Üç ifadeyi sırayla hesapla ve halkaların yerini değiştirme. Kök derecesine dikkat et: ∜1296 ve √36 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "8 – 5 – 6",
@@ -10309,7 +10309,7 @@
           },
           {
             "anchor": "orta_halka",
-            "value": "√36"
+            "value": "∜1296"
           },
           {
             "anchor": "sağ_halka",
@@ -10379,10 +10379,10 @@
       "difficulty": "kolay",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin kapısındaki üç halkada soldan sağa 5¹, 3² ve √36 yazıyor. Her halkanın değerini bularak soldan sağa hangi şifreyi oluşturursun?",
+      "prompt": "Gözlemevinin kapısındaki üç halkada soldan sağa 5¹, 3² ve ∛216 yazıyor. Her halkanın değerini bularak soldan sağa hangi şifreyi oluşturursun?",
       "correctAnswer": "5 – 9 – 6",
-      "solution": "Sol halka 5, orta halka 9, sağ halka 6. Şifre 5 – 9 – 6.",
-      "hint": "Üç ifadeyi sırayla hesapla ve halkaların yerini değiştirme.",
+      "solution": "Sol halka 5, orta halka 9, sağ halka 6. Şifre 5 – 9 – 6. Kontrol: ∛216 = √36; iki gösterimin değeri aynıdır.",
+      "hint": "Üç ifadeyi sırayla hesapla ve halkaların yerini değiştirme. Kök derecesine dikkat et: ∛216 ve √36 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "5 – 6 – 9",
@@ -10409,7 +10409,7 @@
           },
           {
             "anchor": "sağ_halka",
-            "value": "√36"
+            "value": "∛216"
           }
         ],
         "bakedIntoImage": false
@@ -10475,10 +10475,10 @@
       "difficulty": "kolay",
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin kapısındaki üç halkada soldan sağa √9, 5¹ ve 5¹ yazıyor. Her halkanın değerini bularak soldan sağa hangi şifreyi oluşturursun?",
+      "prompt": "Gözlemevinin kapısındaki üç halkada soldan sağa ∜81, 5¹ ve 5¹ yazıyor. Her halkanın değerini bularak soldan sağa hangi şifreyi oluşturursun?",
       "correctAnswer": "3 – 5 – 5",
-      "solution": "Sol halka 3, orta halka 5, sağ halka 5. Şifre 3 – 5 – 5.",
-      "hint": "Üç ifadeyi sırayla hesapla ve halkaların yerini değiştirme.",
+      "solution": "Sol halka 3, orta halka 5, sağ halka 5. Şifre 3 – 5 – 5. Kontrol: ∜81 = √9; iki gösterimin değeri aynıdır.",
+      "hint": "Üç ifadeyi sırayla hesapla ve halkaların yerini değiştirme. Kök derecesine dikkat et: ∜81 ve √9 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "5 – 3 – 5",
@@ -10497,7 +10497,7 @@
         "labels": [
           {
             "anchor": "sol_halka",
-            "value": "√9"
+            "value": "∜81"
           },
           {
             "anchor": "orta_halka",
@@ -10571,10 +10571,10 @@
       "difficulty": "kolay",
       "variant": 10,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Gözlemevinin kapısındaki üç halkada soldan sağa 7¹, √36 ve 5¹ yazıyor. Her halkanın değerini bularak soldan sağa hangi şifreyi oluşturursun?",
+      "prompt": "Gözlemevinin kapısındaki üç halkada soldan sağa 7¹, ∜1296 ve 5¹ yazıyor. Her halkanın değerini bularak soldan sağa hangi şifreyi oluşturursun?",
       "correctAnswer": "7 – 6 – 5",
-      "solution": "Sol halka 7, orta halka 6, sağ halka 5. Şifre 7 – 6 – 5.",
-      "hint": "Üç ifadeyi sırayla hesapla ve halkaların yerini değiştirme.",
+      "solution": "Sol halka 7, orta halka 6, sağ halka 5. Şifre 7 – 6 – 5. Kontrol: ∜1296 = √36; iki gösterimin değeri aynıdır.",
+      "hint": "Üç ifadeyi sırayla hesapla ve halkaların yerini değiştirme. Kök derecesine dikkat et: ∜1296 ve √36 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "7 – 5 – 6",
@@ -10597,7 +10597,7 @@
           },
           {
             "anchor": "orta_halka",
-            "value": "√36"
+            "value": "∜1296"
           },
           {
             "anchor": "sağ_halka",
@@ -13926,10 +13926,10 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kenar uzunluğu 3√2 m olan kare platform, alanı 2 m² olan eş taşlarla döşeniyor. Boşluk kalmadığına göre toplam kaç taş gerekir?",
+      "prompt": "Kenar uzunluğu 3∜4 m olan kare platform, alanı 2 m² olan eş taşlarla döşeniyor. Boşluk kalmadığına göre toplam kaç taş gerekir?",
       "correctAnswer": "9",
-      "solution": "Alan=3²×2=18 m²; taş sayısı=18÷2=9.",
-      "hint": "Önce platformun alanını bul, sonra tek taşın alanına böl.",
+      "solution": "Alan=3²×2=18 m²; taş sayısı=18÷2=9. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "Önce platformun alanını bul, sonra tek taşın alanına böl. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "11",
@@ -13948,7 +13948,7 @@
         "labels": [
           {
             "anchor": "kenar",
-            "value": "3√2 m"
+            "value": "3∜4 m"
           },
           {
             "anchor": "bir taş alanı",
@@ -13970,10 +13970,10 @@
       "difficulty": "orta",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Taş platformun dikdörtgen bölümünün kenarları 4√2 m ve 2√2 m’dir. Bu bölümün kapladığı alan kaç metrekaredir?",
+      "prompt": "Taş platformun dikdörtgen bölümünün kenarları 4∜4 m ve 2∜4 m’dir. Bu bölümün kapladığı alan kaç metrekaredir?",
       "correctAnswer": "16",
-      "solution": "(4√2)×(2√2)=8×2=16 m².",
-      "hint": "Köklü kenarları çarparken katsayıları ve kökleri ayrı çarp.",
+      "solution": "(4∜4)×(2∜4)=8×2=16 m². Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "Köklü kenarları çarparken katsayıları ve kökleri ayrı çarp. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "18",
@@ -13992,17 +13992,17 @@
         "labels": [
           {
             "anchor": "uzun kenar",
-            "value": "4√2 m"
+            "value": "4∜4 m"
           },
           {
             "anchor": "kısa kenar",
-            "value": "2√2 m"
+            "value": "2∜4 m"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Kenarları 3√2 ve 2√2 olan dikdörtgen taş dizisinin alanı?",
+        "question": "Kenarları 3∜4 ve 2∜4 olan dikdörtgen taş dizisinin alanı?",
         "solution": "3×2×2=12."
       },
       "sourceQuestionId": "F07-O-03",
@@ -14014,10 +14014,10 @@
       "difficulty": "orta",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kare taş platformun dış kenarı 5√3 m, ortasındaki boşluğun kenarı 2√3 m’dir. Döşenen alan kaç metrekaredir?",
+      "prompt": "Kare taş platformun dış kenarı 5∜9 m, ortasındaki boşluğun kenarı 2∜9 m’dir. Döşenen alan kaç metrekaredir?",
       "correctAnswer": "63",
-      "solution": "5²×3−2²×3=63 m².",
-      "hint": "Köklü uzunluğun karesini alırken katsayıyı da kareye yükselt.",
+      "solution": "5²×3−2²×3=63 m². Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "Köklü uzunluğun karesini alırken katsayıyı da kareye yükselt. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "65",
@@ -14036,11 +14036,11 @@
         "labels": [
           {
             "anchor": "dış kenar",
-            "value": "5√3 m"
+            "value": "5∜9 m"
           },
           {
             "anchor": "iç kenar",
-            "value": "2√3 m"
+            "value": "2∜9 m"
           }
         ],
         "bakedIntoImage": false
@@ -14058,10 +14058,10 @@
       "difficulty": "orta",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kenar uzunluğu 4√3 m olan kare platform, alanı 3 m² olan eş taşlarla döşeniyor. Boşluk kalmadığına göre toplam kaç taş gerekir?",
+      "prompt": "Kenar uzunluğu 4∜9 m olan kare platform, alanı 3 m² olan eş taşlarla döşeniyor. Boşluk kalmadığına göre toplam kaç taş gerekir?",
       "correctAnswer": "16",
-      "solution": "Alan=4²×3=48 m²; taş sayısı=48÷3=16.",
-      "hint": "Önce platformun alanını bul, sonra tek taşın alanına böl.",
+      "solution": "Alan=4²×3=48 m²; taş sayısı=48÷3=16. Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "Önce platformun alanını bul, sonra tek taşın alanına böl. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "16",
@@ -14080,7 +14080,7 @@
         "labels": [
           {
             "anchor": "kenar",
-            "value": "4√3 m"
+            "value": "4∜9 m"
           },
           {
             "anchor": "bir taş alanı",
@@ -14102,10 +14102,10 @@
       "difficulty": "orta",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Taş platformun dikdörtgen bölümünün kenarları 5√3 m ve 3√3 m’dir. Bu bölümün kapladığı alan kaç metrekaredir?",
+      "prompt": "Taş platformun dikdörtgen bölümünün kenarları 5∜9 m ve 3∜9 m’dir. Bu bölümün kapladığı alan kaç metrekaredir?",
       "correctAnswer": "45",
-      "solution": "(5√3)×(3√3)=15×3=45 m².",
-      "hint": "Köklü kenarları çarparken katsayıları ve kökleri ayrı çarp.",
+      "solution": "(5∜9)×(3∜9)=15×3=45 m². Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "Köklü kenarları çarparken katsayıları ve kökleri ayrı çarp. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "47",
@@ -14124,11 +14124,11 @@
         "labels": [
           {
             "anchor": "uzun kenar",
-            "value": "5√3 m"
+            "value": "5∜9 m"
           },
           {
             "anchor": "kısa kenar",
-            "value": "3√3 m"
+            "value": "3∜9 m"
           }
         ],
         "bakedIntoImage": false
@@ -14878,16 +14878,16 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "4√2 m ve 3√2 m uzunluğundaki iki halat birleştiriliyor. 2√2 m’lik uç kesilirse kaç metre halat kalır?",
-      "correctAnswer": "5√2",
-      "solution": "4√2+3√2−2√2=5√2 m.",
-      "hint": "Kök içleri aynıysa katsayıları toplayıp çıkar.",
+      "prompt": "4∜4 m ve 3∜4 m uzunluğundaki iki halat birleştiriliyor. 2∜4 m’lik uç kesilirse kaç metre halat kalır?",
+      "correctAnswer": "5∜4",
+      "solution": "4∜4+3∜4−2∜4=5∜4 m. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içleri aynıysa katsayıları toplayıp çıkar. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "6√2",
-        "5√2",
-        "7√2",
-        "4√2"
+        "6∜4",
+        "5∜4",
+        "7∜4",
+        "4∜4"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -14900,15 +14900,15 @@
         "labels": [
           {
             "anchor": "ilk halat",
-            "value": "4√2 m"
+            "value": "4∜4 m"
           },
           {
             "anchor": "ikinci",
-            "value": "3√2 m"
+            "value": "3∜4 m"
           },
           {
             "anchor": "kesilen",
-            "value": "2√2 m"
+            "value": "2∜4 m"
           }
         ],
         "bakedIntoImage": false
@@ -14926,16 +14926,16 @@
       "difficulty": "orta",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Bir halat 6√2 m, onarım için kullanılan parça 2√2 m’dir. Geriye kalan halatın uzunluğu kaç metredir?",
-      "correctAnswer": "4√2",
-      "solution": "(6−2)√2=4√2 m.",
-      "hint": "Aynı köklü ifadelerde sadece katsayıların farkını al.",
+      "prompt": "Bir halat 6∜4 m, onarım için kullanılan parça 2∜4 m’dir. Geriye kalan halatın uzunluğu kaç metredir?",
+      "correctAnswer": "4∜4",
+      "solution": "(6−2)∜4=4∜4 m. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "Aynı köklü ifadelerde sadece katsayıların farkını al. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "5√2",
-        "6√2",
-        "4√2",
-        "3√2"
+        "5∜4",
+        "6∜4",
+        "4∜4",
+        "3∜4"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -14948,11 +14948,11 @@
         "labels": [
           {
             "anchor": "başlangıç",
-            "value": "6√2 m"
+            "value": "6∜4 m"
           },
           {
             "anchor": "kullanılan",
-            "value": "2√2 m"
+            "value": "2∜4 m"
           }
         ],
         "bakedIntoImage": false
@@ -15018,16 +15018,16 @@
       "difficulty": "orta",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "5√3 m ve 4√3 m uzunluğundaki iki halat birleştiriliyor. 2√3 m’lik uç kesilirse kaç metre halat kalır?",
-      "correctAnswer": "7√3",
-      "solution": "5√3+4√3−2√3=7√3 m.",
-      "hint": "Kök içleri aynıysa katsayıları toplayıp çıkar.",
+      "prompt": "5∜9 m ve 4∜9 m uzunluğundaki iki halat birleştiriliyor. 2∜9 m’lik uç kesilirse kaç metre halat kalır?",
+      "correctAnswer": "7∜9",
+      "solution": "5∜9+4∜9−2∜9=7∜9 m. Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içleri aynıysa katsayıları toplayıp çıkar. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "7√3",
-        "8√3",
-        "9√3",
-        "6√3"
+        "7∜9",
+        "8∜9",
+        "9∜9",
+        "6∜9"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -15040,22 +15040,22 @@
         "labels": [
           {
             "anchor": "ilk halat",
-            "value": "5√3 m"
+            "value": "5∜9 m"
           },
           {
             "anchor": "ikinci",
-            "value": "4√3 m"
+            "value": "4∜9 m"
           },
           {
             "anchor": "kesilen",
-            "value": "2√3 m"
+            "value": "2∜9 m"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "3√3 ile 4√3 uzunluklar birleştirilip √3 kısmı kesilirse?",
-        "solution": "6√3."
+        "question": "3∜9 ile 4∜9 uzunluklar birleştirilip ∜9 kısmı kesilirse?",
+        "solution": "6∜9."
       },
       "sourceQuestionId": "F09-O-05",
       "sourceDifficulty": "Orta"
@@ -15066,16 +15066,16 @@
       "difficulty": "orta",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Bir halat 7√3 m, onarım için kullanılan parça 3√3 m’dir. Geriye kalan halatın uzunluğu kaç metredir?",
-      "correctAnswer": "4√3",
-      "solution": "(7−3)√3=4√3 m.",
-      "hint": "Aynı köklü ifadelerde sadece katsayıların farkını al.",
+      "prompt": "Bir halat 7∜9 m, onarım için kullanılan parça 3∜9 m’dir. Geriye kalan halatın uzunluğu kaç metredir?",
+      "correctAnswer": "4∜9",
+      "solution": "(7−3)∜9=4∜9 m. Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "Aynı köklü ifadelerde sadece katsayıların farkını al. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "5√3",
-        "4√3",
-        "6√3",
-        "3√3"
+        "5∜9",
+        "4∜9",
+        "6∜9",
+        "3∜9"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -15088,11 +15088,11 @@
         "labels": [
           {
             "anchor": "başlangıç",
-            "value": "7√3 m"
+            "value": "7∜9 m"
           },
           {
             "anchor": "kullanılan",
-            "value": "3√3 m"
+            "value": "3∜9 m"
           }
         ],
         "bakedIntoImage": false
@@ -15110,16 +15110,16 @@
       "difficulty": "orta",
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "10√5 m uzunluğundaki halatın 2√5 m’lik hasarlı bölümü kesiliyor. Kalan halat iki eş parçaya ayrılırsa bir parçanın uzunluğu kaç metredir?",
-      "correctAnswer": "4√5",
-      "solution": "(10√5−2√5)÷2=4√5 m.",
-      "hint": "Benzer köklü terimleri çıkar, sonra ikiye böl.",
+      "prompt": "10∜25 m uzunluğundaki halatın 2∜25 m’lik hasarlı bölümü kesiliyor. Kalan halat iki eş parçaya ayrılırsa bir parçanın uzunluğu kaç metredir?",
+      "correctAnswer": "4∜25",
+      "solution": "(10∜25−2∜25)÷2=4∜25 m. Kontrol: ∜25 = √5; iki gösterimin değeri aynıdır.",
+      "hint": "Benzer köklü terimleri çıkar, sonra ikiye böl. Kök derecesine dikkat et: ∜25 ve √5 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "5√5",
-        "6√5",
-        "4√5",
-        "3√5"
+        "5∜25",
+        "6∜25",
+        "4∜25",
+        "3∜25"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -15132,11 +15132,11 @@
         "labels": [
           {
             "anchor": "halat",
-            "value": "10√5 m"
+            "value": "10∜25 m"
           },
           {
             "anchor": "hasarlı bölüm",
-            "value": "2√5 m"
+            "value": "2∜25 m"
           },
           {
             "anchor": "bölme",
@@ -15342,10 +15342,10 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Işıklı dikdörtgenin uzun kenarı 3√2 m, kısa kenarı 2√2 m. Işıklanan yüzeyin alanı kaç metrekaredir?",
+      "prompt": "Işıklı dikdörtgenin uzun kenarı 3∜4 m, kısa kenarı 2∜4 m. Işıklanan yüzeyin alanı kaç metrekaredir?",
       "correctAnswer": "12",
-      "solution": "3×2×2=12 m².",
-      "hint": "Kökleri çarpınca kök içindeki sayı elde edilir.",
+      "solution": "3×2×2=12 m². Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "Kökleri çarpınca kök içindeki sayı elde edilir. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "14",
@@ -15364,11 +15364,11 @@
         "labels": [
           {
             "anchor": "uzun",
-            "value": "3√2 m"
+            "value": "3∜4 m"
           },
           {
             "anchor": "kısa",
-            "value": "2√2 m"
+            "value": "2∜4 m"
           }
         ],
         "bakedIntoImage": false
@@ -15386,16 +15386,16 @@
       "difficulty": "orta",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dikdörtgenin uzun kenarı 3√2 m, kısa kenarı 2√2 m’dir. İki uzun kenarın toplamı iki kısa kenarın toplamından kaç metre fazladır?",
-      "correctAnswer": "2√2",
-      "solution": "2×(3−2)√2=2√2 m.",
-      "hint": "İki uzun ve iki kısa kenarı ayrı topla.",
+      "prompt": "Dikdörtgenin uzun kenarı 3∜4 m, kısa kenarı 2∜4 m’dir. İki uzun kenarın toplamı iki kısa kenarın toplamından kaç metre fazladır?",
+      "correctAnswer": "2∜4",
+      "solution": "2×(3−2)∜4=2∜4 m. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "İki uzun ve iki kısa kenarı ayrı topla. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "2√2",
-        "3√2",
-        "4√2",
-        "√2"
+        "2∜4",
+        "3∜4",
+        "4∜4",
+        "∜4"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -15408,11 +15408,11 @@
         "labels": [
           {
             "anchor": "uzun kenar",
-            "value": "3√2 m"
+            "value": "3∜4 m"
           },
           {
             "anchor": "kısa kenar",
-            "value": "2√2 m"
+            "value": "2∜4 m"
           }
         ],
         "bakedIntoImage": false
@@ -15430,16 +15430,16 @@
       "difficulty": "orta",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Işıklı dikdörtgen platformun kenarları 4√3 m ve 3√3 m’dir. Çevresine yerleştirilecek ışık şeridinin uzunluğu kaç metredir?",
-      "correctAnswer": "14√3",
-      "solution": "2×(4√3+3√3)=14√3 m.",
-      "hint": "Çevre iki uzun ve iki kısa kenarın toplamıdır.",
+      "prompt": "Işıklı dikdörtgen platformun kenarları 4∜9 m ve 3∜9 m’dir. Çevresine yerleştirilecek ışık şeridinin uzunluğu kaç metredir?",
+      "correctAnswer": "14∜9",
+      "solution": "2×(4∜9+3∜9)=14∜9 m. Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "Çevre iki uzun ve iki kısa kenarın toplamıdır. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "15√3",
-        "14√3",
-        "16√3",
-        "13√3"
+        "15∜9",
+        "14∜9",
+        "16∜9",
+        "13∜9"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -15452,11 +15452,11 @@
         "labels": [
           {
             "anchor": "uzun kenar",
-            "value": "4√3 m"
+            "value": "4∜9 m"
           },
           {
             "anchor": "kısa kenar",
-            "value": "3√3 m"
+            "value": "3∜9 m"
           }
         ],
         "bakedIntoImage": false
@@ -15474,10 +15474,10 @@
       "difficulty": "orta",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Işıklı dikdörtgenin uzun kenarı 4√3 m, kısa kenarı 3√3 m. Işıklanan yüzeyin alanı kaç metrekaredir?",
+      "prompt": "Işıklı dikdörtgenin uzun kenarı 4∜9 m, kısa kenarı 3∜9 m. Işıklanan yüzeyin alanı kaç metrekaredir?",
       "correctAnswer": "36",
-      "solution": "4×3×3=36 m².",
-      "hint": "Kökleri çarpınca kök içindeki sayı elde edilir.",
+      "solution": "4×3×3=36 m². Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "Kökleri çarpınca kök içindeki sayı elde edilir. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "38",
@@ -15496,17 +15496,17 @@
         "labels": [
           {
             "anchor": "uzun",
-            "value": "4√3 m"
+            "value": "4∜9 m"
           },
           {
             "anchor": "kısa",
-            "value": "3√3 m"
+            "value": "3∜9 m"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "Kenarları 2√3 ve 3√3 dikdörtgenin alanı?",
+        "question": "Kenarları 2∜9 ve 3∜9 dikdörtgenin alanı?",
         "solution": "2×3×3=18."
       },
       "sourceQuestionId": "F10-O-05",
@@ -15518,16 +15518,16 @@
       "difficulty": "orta",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dikdörtgenin uzun kenarı 4√3 m, kısa kenarı 3√3 m’dir. İki uzun kenarın toplamı iki kısa kenarın toplamından kaç metre fazladır?",
-      "correctAnswer": "2√3",
-      "solution": "2×(4−3)√3=2√3 m.",
-      "hint": "İki uzun ve iki kısa kenarı ayrı topla.",
+      "prompt": "Dikdörtgenin uzun kenarı 4∜9 m, kısa kenarı 3∜9 m’dir. İki uzun kenarın toplamı iki kısa kenarın toplamından kaç metre fazladır?",
+      "correctAnswer": "2∜9",
+      "solution": "2×(4−3)∜9=2∜9 m. Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "İki uzun ve iki kısa kenarı ayrı topla. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "3√3",
-        "4√3",
-        "√3",
-        "2√3"
+        "3∜9",
+        "4∜9",
+        "∜9",
+        "2∜9"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -15540,11 +15540,11 @@
         "labels": [
           {
             "anchor": "uzun kenar",
-            "value": "4√3 m"
+            "value": "4∜9 m"
           },
           {
             "anchor": "kısa kenar",
-            "value": "3√3 m"
+            "value": "3∜9 m"
           }
         ],
         "bakedIntoImage": false
@@ -16302,16 +16302,16 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki patikadan A’nın uzunluğu 3√2 birim, B’nin uzunluğu 5√2 birimdir. Kısa yolu seçen kişi hangi yolu kullanır ve yürüyüşünü kaç birim kısaltır?",
-      "correctAnswer": "A yolu, 2√2 birim",
-      "solution": "A=3√2, B=5√2; B−A=2√2.",
-      "hint": "Kök içleri eşit olduğu için katsayıları karşılaştır.",
+      "prompt": "İki patikadan A’nın uzunluğu 3∜4 birim, B’nin uzunluğu 5∜4 birimdir. Kısa yolu seçen kişi hangi yolu kullanır ve yürüyüşünü kaç birim kısaltır?",
+      "correctAnswer": "A yolu, 2∜4 birim",
+      "solution": "A=3∜4, B=5∜4; B−A=2∜4. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içleri eşit olduğu için katsayıları karşılaştır. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "B yolu, 2√2 birim",
-        "A yolu, 4√2 birim",
-        "B yolu, 4√2 birim",
-        "A yolu, 2√2 birim"
+        "B yolu, 2∜4 birim",
+        "A yolu, 4∜4 birim",
+        "B yolu, 4∜4 birim",
+        "A yolu, 2∜4 birim"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -16324,18 +16324,18 @@
         "labels": [
           {
             "anchor": "A",
-            "value": "3√2"
+            "value": "3∜4"
           },
           {
             "anchor": "B",
-            "value": "5√2"
+            "value": "5∜4"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "A=5√2 ve B=7√2 mesafelerinden kısa yol ve fark?",
-        "solution": "A yolu, 2√2 birim."
+        "question": "A=5∜4 ve B=7∜4 mesafelerinden kısa yol ve fark?",
+        "solution": "A yolu, 2∜4 birim."
       },
       "sourceQuestionId": "F12-O-02",
       "sourceDifficulty": "Orta"
@@ -16346,16 +16346,16 @@
       "difficulty": "orta",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Birinci yol √(32) birim, ikinci yol 9√2 birimdir. Kısa yolu seçen kişi hangi yolu seçer, kaç birim kısaltır?",
-      "correctAnswer": "A yolu, 5√2 birim",
-      "solution": "√(32)=4√2; B=9√2; fark 5√2.",
-      "hint": "A yolundaki kökü katsayılı köklü sayıya dönüştür.",
+      "prompt": "Birinci yol √(32) birim, ikinci yol 9∜4 birimdir. Kısa yolu seçen kişi hangi yolu seçer, kaç birim kısaltır?",
+      "correctAnswer": "A yolu, 5∜4 birim",
+      "solution": "√(32)=4∜4; B=9∜4; fark 5∜4. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "A yolundaki kökü katsayılı köklü sayıya dönüştür. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "A yolu, 5√2 birim",
-        "B yolu, 5√2 birim",
-        "A yolu, 7√2 birim",
-        "B yolu, 7√2 birim"
+        "A yolu, 5∜4 birim",
+        "B yolu, 5∜4 birim",
+        "A yolu, 7∜4 birim",
+        "B yolu, 7∜4 birim"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -16372,7 +16372,7 @@
           },
           {
             "anchor": "B yolu",
-            "value": "9√2"
+            "value": "9∜4"
           }
         ],
         "bakedIntoImage": false
@@ -16434,16 +16434,16 @@
       "difficulty": "orta",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki patikadan A’nın uzunluğu 4√3 birim, B’nin uzunluğu 6√3 birimdir. Kısa yolu seçen kişi hangi yolu kullanır ve yürüyüşünü kaç birim kısaltır?",
-      "correctAnswer": "A yolu, 2√3 birim",
-      "solution": "A=4√3, B=6√3; B−A=2√3.",
-      "hint": "Kök içleri eşit olduğu için katsayıları karşılaştır.",
+      "prompt": "İki patikadan A’nın uzunluğu 4∜9 birim, B’nin uzunluğu 6∜9 birimdir. Kısa yolu seçen kişi hangi yolu kullanır ve yürüyüşünü kaç birim kısaltır?",
+      "correctAnswer": "A yolu, 2∜9 birim",
+      "solution": "A=4∜9, B=6∜9; B−A=2∜9. Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içleri eşit olduğu için katsayıları karşılaştır. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "B yolu, 2√3 birim",
-        "A yolu, 4√3 birim",
-        "A yolu, 2√3 birim",
-        "B yolu, 4√3 birim"
+        "B yolu, 2∜9 birim",
+        "A yolu, 4∜9 birim",
+        "A yolu, 2∜9 birim",
+        "B yolu, 4∜9 birim"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -16456,11 +16456,11 @@
         "labels": [
           {
             "anchor": "A",
-            "value": "4√3"
+            "value": "4∜9"
           },
           {
             "anchor": "B",
-            "value": "6√3"
+            "value": "6∜9"
           }
         ],
         "bakedIntoImage": false
@@ -16478,16 +16478,16 @@
       "difficulty": "orta",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Birinci yol √(108) birim, ikinci yol 12√3 birimdir. Kısa yolu seçen kişi hangi yolu seçer, kaç birim kısaltır?",
-      "correctAnswer": "A yolu, 6√3 birim",
-      "solution": "√(108)=6√3; B=12√3; fark 6√3.",
-      "hint": "A yolundaki kökü katsayılı köklü sayıya dönüştür.",
+      "prompt": "Birinci yol √(108) birim, ikinci yol 12∜9 birimdir. Kısa yolu seçen kişi hangi yolu seçer, kaç birim kısaltır?",
+      "correctAnswer": "A yolu, 6∜9 birim",
+      "solution": "√(108)=6∜9; B=12∜9; fark 6∜9. Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "A yolundaki kökü katsayılı köklü sayıya dönüştür. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "B yolu, 6√3 birim",
-        "A yolu, 8√3 birim",
-        "B yolu, 8√3 birim",
-        "A yolu, 6√3 birim"
+        "B yolu, 6∜9 birim",
+        "A yolu, 8∜9 birim",
+        "B yolu, 8∜9 birim",
+        "A yolu, 6∜9 birim"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -16504,7 +16504,7 @@
           },
           {
             "anchor": "B yolu",
-            "value": "12√3"
+            "value": "12∜9"
           }
         ],
         "bakedIntoImage": false
@@ -16566,16 +16566,16 @@
       "difficulty": "orta",
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki patikadan A’nın uzunluğu 5√5 birim, B’nin uzunluğu 7√5 birimdir. Kısa yolu seçen kişi hangi yolu kullanır ve yürüyüşünü kaç birim kısaltır?",
-      "correctAnswer": "A yolu, 2√5 birim",
-      "solution": "A=5√5, B=7√5; B−A=2√5.",
-      "hint": "Kök içleri eşit olduğu için katsayıları karşılaştır.",
+      "prompt": "İki patikadan A’nın uzunluğu 5∜25 birim, B’nin uzunluğu 7∜25 birimdir. Kısa yolu seçen kişi hangi yolu kullanır ve yürüyüşünü kaç birim kısaltır?",
+      "correctAnswer": "A yolu, 2∜25 birim",
+      "solution": "A=5∜25, B=7∜25; B−A=2∜25. Kontrol: ∜25 = √5; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içleri eşit olduğu için katsayıları karşılaştır. Kök derecesine dikkat et: ∜25 ve √5 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "B yolu, 2√5 birim",
-        "A yolu, 2√5 birim",
-        "A yolu, 4√5 birim",
-        "B yolu, 4√5 birim"
+        "B yolu, 2∜25 birim",
+        "A yolu, 2∜25 birim",
+        "A yolu, 4∜25 birim",
+        "B yolu, 4∜25 birim"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -16588,11 +16588,11 @@
         "labels": [
           {
             "anchor": "A",
-            "value": "5√5"
+            "value": "5∜25"
           },
           {
             "anchor": "B",
-            "value": "7√5"
+            "value": "7∜25"
           }
         ],
         "bakedIntoImage": false
@@ -17744,22 +17744,22 @@
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçidin solunda beş köklü, sağında beş üslü taş bulunmaktadır. Eşdeğer dört çifti eşleştirince açıkta kalan köklü ve üslü taşlar hangileridir?",
-      "correctAnswer": "√(11⁴) ve 13²",
-      "solution": "Dört eş çift: √(2⁶)=2³, √(3⁴)=3², √(5⁴)=5², √(7⁴)=7². Artanlar √(11⁴) ve 13².",
-      "hint": "Karekök alırken üssü ikiye böl; eşit değerli taşları eşleştir.",
+      "correctAnswer": "∜(11⁸) ve 13²",
+      "solution": "Dört eş çift: √(2⁶)=2³, √(3⁴)=3², ∛(5⁶)=5², √(7⁴)=7². Artanlar ∜(11⁸) ve 13². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
-        "√(11⁴) ve 2³",
-        "√(11⁴) ve 13²",
+        "∜(11⁸) ve 2³",
+        "∜(11⁸) ve 13²",
         "√(3⁴) ve 13²",
-        "√(5⁴) ve 7²"
+        "∛(5⁶) ve 7²"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√(11⁴)",
-          "√(5⁴)",
+          "∜(11⁸)",
+          "∛(5⁶)",
           "√(2⁶)",
           "√(7⁴)",
           "√(3⁴)"
@@ -17781,7 +17781,7 @@
             "exponent": "3²"
           },
           {
-            "radical": "√(5⁴)",
+            "radical": "∛(5⁶)",
             "exponent": "5²"
           },
           {
@@ -17789,7 +17789,7 @@
             "exponent": "7²"
           }
         ],
-        "unmatchedRadical": "√(11⁴)",
+        "unmatchedRadical": "∜(11⁸)",
         "unmatchedExponent": "13²",
         "requiredPairs": 4
       },
@@ -17802,11 +17802,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "√(11⁴)"
+            "value": "∜(11⁸)"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "√(5⁴)"
+            "value": "∛(5⁶)"
           },
           {
             "anchor": "kök_taşı_3",
@@ -17857,22 +17857,22 @@
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçidin solunda beş köklü, sağında beş üslü taş bulunmaktadır. Eşdeğer dört çifti eşleştirince açıkta kalan köklü ve üslü taşlar hangileridir?",
-      "correctAnswer": "√(11⁴) ve 13²",
-      "solution": "Dört eş çift: √(2⁶)=2³, √(3⁴)=3², √(5⁴)=5², √(7⁴)=7². Artanlar √(11⁴) ve 13².",
-      "hint": "Karekök alırken üssü ikiye böl; eşit değerli taşları eşleştir.",
+      "correctAnswer": "∛(11⁶) ve 13²",
+      "solution": "Dört eş çift: ∜(2¹²)=2³, √(3⁴)=3², √(5⁴)=5², √(7⁴)=7². Artanlar ∛(11⁶) ve 13². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
-        "√(11⁴) ve 2³",
+        "∛(11⁶) ve 2³",
         "√(3⁴) ve 13²",
-        "√(11⁴) ve 13²",
+        "∛(11⁶) ve 13²",
         "√(5⁴) ve 7²"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√(11⁴)",
-          "√(2⁶)",
+          "∛(11⁶)",
+          "∜(2¹²)",
           "√(7⁴)",
           "√(3⁴)",
           "√(5⁴)"
@@ -17886,7 +17886,7 @@
         ],
         "pairs": [
           {
-            "radical": "√(2⁶)",
+            "radical": "∜(2¹²)",
             "exponent": "2³"
           },
           {
@@ -17902,7 +17902,7 @@
             "exponent": "7²"
           }
         ],
-        "unmatchedRadical": "√(11⁴)",
+        "unmatchedRadical": "∛(11⁶)",
         "unmatchedExponent": "13²",
         "requiredPairs": 4
       },
@@ -17915,11 +17915,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "√(11⁴)"
+            "value": "∛(11⁶)"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "√(2⁶)"
+            "value": "∜(2¹²)"
           },
           {
             "anchor": "kök_taşı_3",
@@ -17970,22 +17970,22 @@
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçidin solunda beş köklü, sağında beş üslü taş bulunmaktadır. Eşdeğer dört çifti eşleştirince açıkta kalan köklü ve üslü taşlar hangileridir?",
-      "correctAnswer": "√(13⁴) ve 15²",
-      "solution": "Dört eş çift: √(2⁸)=2⁴, √(3⁶)=3³, √(5⁶)=5³, √(7⁶)=7³. Artanlar √(13⁴) ve 15².",
-      "hint": "Karekök alırken üssü ikiye böl; eşit değerli taşları eşleştir.",
+      "correctAnswer": "∜(13⁸) ve 15²",
+      "solution": "Dört eş çift: ∛(2¹²)=2⁴, √(3⁶)=3³, √(5⁶)=5³, √(7⁶)=7³. Artanlar ∜(13⁸) ve 15². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
-        "√(13⁴) ve 2⁴",
+        "∜(13⁸) ve 2⁴",
         "√(3⁶) ve 15²",
         "√(5⁶) ve 7³",
-        "√(13⁴) ve 15²"
+        "∜(13⁸) ve 15²"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√(13⁴)",
-          "√(2⁸)",
+          "∜(13⁸)",
+          "∛(2¹²)",
           "√(5⁶)",
           "√(3⁶)",
           "√(7⁶)"
@@ -17999,7 +17999,7 @@
         ],
         "pairs": [
           {
-            "radical": "√(2⁸)",
+            "radical": "∛(2¹²)",
             "exponent": "2⁴"
           },
           {
@@ -18015,7 +18015,7 @@
             "exponent": "7³"
           }
         ],
-        "unmatchedRadical": "√(13⁴)",
+        "unmatchedRadical": "∜(13⁸)",
         "unmatchedExponent": "15²",
         "requiredPairs": 4
       },
@@ -18028,11 +18028,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "√(13⁴)"
+            "value": "∜(13⁸)"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "√(2⁸)"
+            "value": "∛(2¹²)"
           },
           {
             "anchor": "kök_taşı_3",
@@ -18083,13 +18083,13 @@
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçidin solunda beş köklü, sağında beş üslü taş bulunmaktadır. Eşdeğer dört çifti eşleştirince açıkta kalan köklü ve üslü taşlar hangileridir?",
-      "correctAnswer": "√(13⁴) ve 15²",
-      "solution": "Dört eş çift: √(2⁸)=2⁴, √(3⁶)=3³, √(5⁶)=5³, √(7⁶)=7³. Artanlar √(13⁴) ve 15².",
-      "hint": "Karekök alırken üssü ikiye böl; eşit değerli taşları eşleştir.",
+      "correctAnswer": "∜(13⁸) ve 15²",
+      "solution": "Dört eş çift: ∛(2¹²)=2⁴, √(3⁶)=3³, √(5⁶)=5³, √(7⁶)=7³. Artanlar ∜(13⁸) ve 15². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
-        "√(13⁴) ve 15²",
-        "√(13⁴) ve 2⁴",
+        "∜(13⁸) ve 15²",
+        "∜(13⁸) ve 2⁴",
         "√(3⁶) ve 15²",
         "√(5⁶) ve 7³"
       ],
@@ -18097,8 +18097,8 @@
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√(2⁸)",
-          "√(13⁴)",
+          "∛(2¹²)",
+          "∜(13⁸)",
           "√(7⁶)",
           "√(3⁶)",
           "√(5⁶)"
@@ -18112,7 +18112,7 @@
         ],
         "pairs": [
           {
-            "radical": "√(2⁸)",
+            "radical": "∛(2¹²)",
             "exponent": "2⁴"
           },
           {
@@ -18128,7 +18128,7 @@
             "exponent": "7³"
           }
         ],
-        "unmatchedRadical": "√(13⁴)",
+        "unmatchedRadical": "∜(13⁸)",
         "unmatchedExponent": "15²",
         "requiredPairs": 4
       },
@@ -18141,11 +18141,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "√(2⁸)"
+            "value": "∛(2¹²)"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "√(13⁴)"
+            "value": "∜(13⁸)"
           },
           {
             "anchor": "kök_taşı_3",
@@ -18196,13 +18196,13 @@
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçidin solunda beş köklü, sağında beş üslü taş bulunmaktadır. Eşdeğer dört çifti eşleştirince açıkta kalan köklü ve üslü taşlar hangileridir?",
-      "correctAnswer": "√(13⁴) ve 15²",
-      "solution": "Dört eş çift: √(2⁸)=2⁴, √(3⁶)=3³, √(5⁶)=5³, √(7⁶)=7³. Artanlar √(13⁴) ve 15².",
-      "hint": "Karekök alırken üssü ikiye böl; eşit değerli taşları eşleştir.",
+      "correctAnswer": "∛(13⁶) ve 15²",
+      "solution": "Dört eş çift: √(2⁸)=2⁴, √(3⁶)=3³, √(5⁶)=5³, ∜(7¹²)=7³. Artanlar ∛(13⁶) ve 15². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
-        "√(13⁴) ve 2⁴",
-        "√(13⁴) ve 15²",
+        "∛(13⁶) ve 2⁴",
+        "∛(13⁶) ve 15²",
         "√(3⁶) ve 15²",
         "√(5⁶) ve 7³"
       ],
@@ -18210,8 +18210,8 @@
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√(7⁶)",
-          "√(13⁴)",
+          "∜(7¹²)",
+          "∛(13⁶)",
           "√(5⁶)",
           "√(3⁶)",
           "√(2⁸)"
@@ -18237,11 +18237,11 @@
             "exponent": "5³"
           },
           {
-            "radical": "√(7⁶)",
+            "radical": "∜(7¹²)",
             "exponent": "7³"
           }
         ],
-        "unmatchedRadical": "√(13⁴)",
+        "unmatchedRadical": "∛(13⁶)",
         "unmatchedExponent": "15²",
         "requiredPairs": 4
       },
@@ -18254,11 +18254,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "√(7⁶)"
+            "value": "∜(7¹²)"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "√(13⁴)"
+            "value": "∛(13⁶)"
           },
           {
             "anchor": "kök_taşı_3",
@@ -18310,21 +18310,21 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçidin solunda beş köklü, sağında beş üslü taş bulunmaktadır. Eşdeğer dört çifti eşleştirince açıkta kalan köklü ve üslü taşlar hangileridir?",
       "correctAnswer": "√(15⁴) ve 17²",
-      "solution": "Dört eş çift: √(2⁶)=2³, √(3⁴)=3², √(5⁴)=5², √(7⁴)=7². Artanlar √(15⁴) ve 17².",
-      "hint": "Karekök alırken üssü ikiye böl; eşit değerli taşları eşleştir.",
+      "solution": "Dört eş çift: √(2⁶)=2³, ∛(3⁶)=3², ∜(5⁸)=5², √(7⁴)=7². Artanlar √(15⁴) ve 17². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
         "√(15⁴) ve 2³",
-        "√(3⁴) ve 17²",
+        "∛(3⁶) ve 17²",
         "√(15⁴) ve 17²",
-        "√(5⁴) ve 7²"
+        "∜(5⁸) ve 7²"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√(3⁴)",
-          "√(5⁴)",
+          "∛(3⁶)",
+          "∜(5⁸)",
           "√(15⁴)",
           "√(7⁴)",
           "√(2⁶)"
@@ -18342,11 +18342,11 @@
             "exponent": "2³"
           },
           {
-            "radical": "√(3⁴)",
+            "radical": "∛(3⁶)",
             "exponent": "3²"
           },
           {
-            "radical": "√(5⁴)",
+            "radical": "∜(5⁸)",
             "exponent": "5²"
           },
           {
@@ -18367,11 +18367,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "√(3⁴)"
+            "value": "∛(3⁶)"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "√(5⁴)"
+            "value": "∜(5⁸)"
           },
           {
             "anchor": "kök_taşı_3",
@@ -18422,22 +18422,22 @@
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçidin solunda beş köklü, sağında beş üslü taş bulunmaktadır. Eşdeğer dört çifti eşleştirince açıkta kalan köklü ve üslü taşlar hangileridir?",
-      "correctAnswer": "√(15⁴) ve 17²",
-      "solution": "Dört eş çift: √(2⁶)=2³, √(3⁴)=3², √(5⁴)=5², √(7⁴)=7². Artanlar √(15⁴) ve 17².",
-      "hint": "Karekök alırken üssü ikiye böl; eşit değerli taşları eşleştir.",
+      "correctAnswer": "∛(15⁶) ve 17²",
+      "solution": "Dört eş çift: ∜(2¹²)=2³, √(3⁴)=3², √(5⁴)=5², √(7⁴)=7². Artanlar ∛(15⁶) ve 17². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
-        "√(15⁴) ve 2³",
+        "∛(15⁶) ve 2³",
         "√(3⁴) ve 17²",
         "√(5⁴) ve 7²",
-        "√(15⁴) ve 17²"
+        "∛(15⁶) ve 17²"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√(2⁶)",
-          "√(15⁴)",
+          "∜(2¹²)",
+          "∛(15⁶)",
           "√(3⁴)",
           "√(7⁴)",
           "√(5⁴)"
@@ -18451,7 +18451,7 @@
         ],
         "pairs": [
           {
-            "radical": "√(2⁶)",
+            "radical": "∜(2¹²)",
             "exponent": "2³"
           },
           {
@@ -18467,7 +18467,7 @@
             "exponent": "7²"
           }
         ],
-        "unmatchedRadical": "√(15⁴)",
+        "unmatchedRadical": "∛(15⁶)",
         "unmatchedExponent": "17²",
         "requiredPairs": 4
       },
@@ -18480,11 +18480,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "√(2⁶)"
+            "value": "∜(2¹²)"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "√(15⁴)"
+            "value": "∛(15⁶)"
           },
           {
             "anchor": "kök_taşı_3",
@@ -18536,21 +18536,21 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçidin solunda beş köklü, sağında beş üslü taş bulunmaktadır. Eşdeğer dört çifti eşleştirince açıkta kalan köklü ve üslü taşlar hangileridir?",
       "correctAnswer": "√(15⁴) ve 17²",
-      "solution": "Dört eş çift: √(2⁶)=2³, √(3⁴)=3², √(5⁴)=5², √(7⁴)=7². Artanlar √(15⁴) ve 17².",
-      "hint": "Karekök alırken üssü ikiye böl; eşit değerli taşları eşleştir.",
+      "solution": "Dört eş çift: √(2⁶)=2³, √(3⁴)=3², ∜(5⁸)=5², ∛(7⁶)=7². Artanlar √(15⁴) ve 17². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
         "√(15⁴) ve 17²",
         "√(15⁴) ve 2³",
         "√(3⁴) ve 17²",
-        "√(5⁴) ve 7²"
+        "∜(5⁸) ve 7²"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√(7⁴)",
-          "√(5⁴)",
+          "∛(7⁶)",
+          "∜(5⁸)",
           "√(3⁴)",
           "√(15⁴)",
           "√(2⁶)"
@@ -18572,11 +18572,11 @@
             "exponent": "3²"
           },
           {
-            "radical": "√(5⁴)",
+            "radical": "∜(5⁸)",
             "exponent": "5²"
           },
           {
-            "radical": "√(7⁴)",
+            "radical": "∛(7⁶)",
             "exponent": "7²"
           }
         ],
@@ -18593,11 +18593,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "√(7⁴)"
+            "value": "∛(7⁶)"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "√(5⁴)"
+            "value": "∜(5⁸)"
           },
           {
             "anchor": "kök_taşı_3",
@@ -18649,21 +18649,21 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçidin solunda beş köklü, sağında beş üslü taş bulunmaktadır. Eşdeğer dört çifti eşleştirince açıkta kalan köklü ve üslü taşlar hangileridir?",
       "correctAnswer": "√(11⁴) ve 13²",
-      "solution": "Dört eş çift: √(2⁸)=2⁴, √(3⁶)=3³, √(5⁶)=5³, √(7⁶)=7³. Artanlar √(11⁴) ve 13².",
-      "hint": "Karekök alırken üssü ikiye böl; eşit değerli taşları eşleştir.",
+      "solution": "Dört eş çift: √(2⁸)=2⁴, ∜(3¹²)=3³, √(5⁶)=5³, ∛(7⁹)=7³. Artanlar √(11⁴) ve 13². Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
         "√(11⁴) ve 2⁴",
         "√(11⁴) ve 13²",
-        "√(3⁶) ve 13²",
+        "∜(3¹²) ve 13²",
         "√(5⁶) ve 7³"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√(3⁶)",
-          "√(7⁶)",
+          "∜(3¹²)",
+          "∛(7⁹)",
           "√(11⁴)",
           "√(2⁸)",
           "√(5⁶)"
@@ -18681,7 +18681,7 @@
             "exponent": "2⁴"
           },
           {
-            "radical": "√(3⁶)",
+            "radical": "∜(3¹²)",
             "exponent": "3³"
           },
           {
@@ -18689,7 +18689,7 @@
             "exponent": "5³"
           },
           {
-            "radical": "√(7⁶)",
+            "radical": "∛(7⁹)",
             "exponent": "7³"
           }
         ],
@@ -18706,11 +18706,11 @@
         "labels": [
           {
             "anchor": "kök_taşı_1",
-            "value": "√(3⁶)"
+            "value": "∜(3¹²)"
           },
           {
             "anchor": "kök_taşı_2",
-            "value": "√(7⁶)"
+            "value": "∛(7⁹)"
           },
           {
             "anchor": "kök_taşı_3",
@@ -18808,10 +18808,10 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Eşlenik aynalardaki 5 + 2√2 ve 5 − 2√2 değerleri çarpılıyor. Sonuç üzerine 3√3 birim ışık eklenirse toplam kaç olur?",
+      "prompt": "Eşlenik aynalardaki 5 + 2∜4 ve 5 − 2∜4 değerleri çarpılıyor. Sonuç üzerine 3√3 birim ışık eklenirse toplam kaç olur?",
       "correctAnswer": "17 + 3√3",
-      "solution": "25−4×2 + 3√3 = 17 + 3√3.",
-      "hint": "Önce aynaların çarpımı; sonra ek ışık.",
+      "solution": "25−4×2 + 3√3 = 17 + 3√3. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "Önce aynaların çarpımı; sonra ek ışık. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "19 + 3√3",
@@ -18830,11 +18830,11 @@
         "labels": [
           {
             "anchor": "sol",
-            "value": "5 + 2√2"
+            "value": "5 + 2∜4"
           },
           {
             "anchor": "sağ",
-            "value": "5 − 2√2"
+            "value": "5 − 2∜4"
           },
           {
             "anchor": "eklenen",
@@ -18844,8 +18844,8 @@
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "3√2±√5 eşleniklerinin çarpımı kaç?",
-        "solution": "(3√2)²−(√5)²=18−5=13."
+        "question": "3∜4±√5 eşleniklerinin çarpımı kaç?",
+        "solution": "(3∜4)²−(√5)²=18−5=13."
       },
       "sourceQuestionId": "F15-O-02",
       "sourceDifficulty": "Orta"
@@ -18856,10 +18856,10 @@
       "difficulty": "orta",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki aynaya sırasıyla 4√2 + √2 ve 4√2 − √2 yazılmıştır. Çarpıma 2√5 ışık eklendiğinde sonuç kaçtır?",
+      "prompt": "İki aynaya sırasıyla 4∜4 + ∜4 ve 4∜4 − ∜4 yazılmıştır. Çarpıma 2√5 ışık eklendiğinde sonuç kaçtır?",
       "correctAnswer": "30 + 2√5",
-      "solution": "32−2+2√5=30 + 2√5.",
-      "hint": "Eşlenik çarpımı iki karenin farkıdır.",
+      "solution": "32−2+2√5=30 + 2√5. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "Eşlenik çarpımı iki karenin farkıdır. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "30 + 2√5",
@@ -18878,11 +18878,11 @@
         "labels": [
           {
             "anchor": "ayna A",
-            "value": "4√2 + √2"
+            "value": "4∜4 + ∜4"
           },
           {
             "anchor": "ayna B",
-            "value": "4√2 − √2"
+            "value": "4∜4 − ∜4"
           },
           {
             "anchor": "ek",
@@ -18904,10 +18904,10 @@
       "difficulty": "orta",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Eşlenik aynalarda 4√5 + 3√3 ile 4√5 − 3√3 yazıyor. Bu değerlerin çarpımına 3√3 birim ışık ekleniyor. Son durumda toplam kaç birim ışık elde edilir?",
+      "prompt": "Eşlenik aynalarda 4∜25 + 3√3 ile 4∜25 − 3√3 yazıyor. Bu değerlerin çarpımına 3√3 birim ışık ekleniyor. Son durumda toplam kaç birim ışık elde edilir?",
       "correctAnswer": "53 + 3√3",
-      "solution": "(4√5)²−(3√3)²=80−27=53; toplam 53 + 3√3.",
-      "hint": "Eşlenik çarpımında (a+b)(a−b)=a²−b² kullan.",
+      "solution": "(4∜25)²−(3√3)²=80−27=53; toplam 53 + 3√3. Kontrol: ∜25 = √5; iki gösterimin değeri aynıdır.",
+      "hint": "Eşlenik çarpımında (a+b)(a−b)=a²−b² kullan. Kök derecesine dikkat et: ∜25 ve √5 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "55 + 3√3",
@@ -18926,11 +18926,11 @@
         "labels": [
           {
             "anchor": "sol ayna",
-            "value": "4√5 + 3√3"
+            "value": "4∜25 + 3√3"
           },
           {
             "anchor": "sağ ayna",
-            "value": "4√5 − 3√3"
+            "value": "4∜25 − 3√3"
           },
           {
             "anchor": "ışık küresi",
@@ -18952,16 +18952,16 @@
       "difficulty": "orta",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Eşlenik aynalardaki 6 + 2√3 ve 6 − 2√3 değerleri çarpılıyor. Sonuç üzerine 4√3 birim ışık eklenirse toplam kaç olur?",
-      "correctAnswer": "24 + 4√3",
-      "solution": "36−4×3 + 4√3 = 24 + 4√3.",
-      "hint": "Önce aynaların çarpımı; sonra ek ışık.",
+      "prompt": "Eşlenik aynalardaki 6 + 2∜9 ve 6 − 2∜9 değerleri çarpılıyor. Sonuç üzerine 4∜9 birim ışık eklenirse toplam kaç olur?",
+      "correctAnswer": "24 + 4∜9",
+      "solution": "36−4×3 + 4∜9 = 24 + 4∜9. Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "Önce aynaların çarpımı; sonra ek ışık. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "26 + 4√3",
-        "28 + 4√3",
-        "24 + 4√3",
-        "30 + 4√3"
+        "26 + 4∜9",
+        "28 + 4∜9",
+        "24 + 4∜9",
+        "30 + 4∜9"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -18974,15 +18974,15 @@
         "labels": [
           {
             "anchor": "sol",
-            "value": "6 + 2√3"
+            "value": "6 + 2∜9"
           },
           {
             "anchor": "sağ",
-            "value": "6 − 2√3"
+            "value": "6 − 2∜9"
           },
           {
             "anchor": "eklenen",
-            "value": "4√3"
+            "value": "4∜9"
           }
         ],
         "bakedIntoImage": false
@@ -19000,10 +19000,10 @@
       "difficulty": "orta",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki aynaya sırasıyla 5√3 + 2√2 ve 5√3 − 2√2 yazılmıştır. Çarpıma 3√5 ışık eklendiğinde sonuç kaçtır?",
+      "prompt": "İki aynaya sırasıyla 5∜9 + 2√2 ve 5∜9 − 2√2 yazılmıştır. Çarpıma 3√5 ışık eklendiğinde sonuç kaçtır?",
       "correctAnswer": "67 + 3√5",
-      "solution": "75−8+3√5=67 + 3√5.",
-      "hint": "Eşlenik çarpımı iki karenin farkıdır.",
+      "solution": "75−8+3√5=67 + 3√5. Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "Eşlenik çarpımı iki karenin farkıdır. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "69 + 3√5",
@@ -19022,11 +19022,11 @@
         "labels": [
           {
             "anchor": "ayna A",
-            "value": "5√3 + 2√2"
+            "value": "5∜9 + 2√2"
           },
           {
             "anchor": "ayna B",
-            "value": "5√3 − 2√2"
+            "value": "5∜9 − 2√2"
           },
           {
             "anchor": "ek",
@@ -19037,7 +19037,7 @@
       },
       "workedExample": {
         "question": "5±√7 eşleniklerinin çarpımına √12 eklenirse?",
-        "solution": "25−7+2√3=18+2√3."
+        "solution": "25−7+2∜9=18+2∜9."
       },
       "sourceQuestionId": "F15-O-06",
       "sourceDifficulty": "Orta"
@@ -20792,16 +20792,16 @@
       "difficulty": "orta",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Bir taş desteğin uzunluğu √(128) cm, diğerinin uzunluğu √(162) cm’dir. Destekler √2 cm üst üste bindiriliyor. Son uzunluk kaç santimetredir?",
-      "correctAnswer": "16√2",
-      "solution": "√(128)=8√2; √(162)=9√2; toplam−örtüşme=16√2 cm.",
-      "hint": "Önce kök dışına katsayı çıkar; ortak parçayı bir kez düş.",
+      "prompt": "Bir taş desteğin uzunluğu √(128) cm, diğerinin uzunluğu √(162) cm’dir. Destekler ∜4 cm üst üste bindiriliyor. Son uzunluk kaç santimetredir?",
+      "correctAnswer": "16∜4",
+      "solution": "√(128)=8∜4; √(162)=9∜4; toplam−örtüşme=16∜4 cm. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "Önce kök dışına katsayı çıkar; ortak parçayı bir kez düş. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "17√2",
-        "18√2",
-        "15√2",
-        "16√2"
+        "17∜4",
+        "18∜4",
+        "15∜4",
+        "16∜4"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -20822,14 +20822,14 @@
           },
           {
             "anchor": "ortak",
-            "value": "√2 cm"
+            "value": "∜4 cm"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
         "question": "3√8 ve 2√18 m destek √8 m ortaksa toplam?",
-        "solution": "6√2+6√2−2√2=10√2."
+        "solution": "6∜4+6∜4−2∜4=10∜4."
       },
       "sourceQuestionId": "F19-O-02",
       "sourceDifficulty": "Orta"
@@ -20840,16 +20840,16 @@
       "difficulty": "orta",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki taş destekten biri 6√2 cm, diğeri 3√2 cm uzunluktadır. Şekilde gösterilen 2√2 cm ortak kısım nedeniyle toplam uzunluk kaç cm olur?",
-      "correctAnswer": "7√2",
-      "solution": "(6+3−2)√2=7√2 cm.",
-      "hint": "Bitişik desteklerin üst üste gelen uzunluğunu çıkar.",
+      "prompt": "İki taş destekten biri 6∜4 cm, diğeri 3∜4 cm uzunluktadır. Şekilde gösterilen 2∜4 cm ortak kısım nedeniyle toplam uzunluk kaç cm olur?",
+      "correctAnswer": "7∜4",
+      "solution": "(6+3−2)∜4=7∜4 cm. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "Bitişik desteklerin üst üste gelen uzunluğunu çıkar. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "7√2",
-        "8√2",
-        "9√2",
-        "6√2"
+        "7∜4",
+        "8∜4",
+        "9∜4",
+        "6∜4"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -20862,15 +20862,15 @@
         "labels": [
           {
             "anchor": "A",
-            "value": "6√2 cm"
+            "value": "6∜4 cm"
           },
           {
             "anchor": "B",
-            "value": "3√2 cm"
+            "value": "3∜4 cm"
           },
           {
             "anchor": "ortak",
-            "value": "2√2 cm"
+            "value": "2∜4 cm"
           }
         ],
         "bakedIntoImage": false
@@ -20888,16 +20888,16 @@
       "difficulty": "orta",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki taş destek aynı doğrultuda birleştiriliyor. Destek uzunlukları 7√3 cm ve 5√3 cm; ortak bölüm 3√3 cm’dir. Birleşik desteğin uzunluğu kaç santimetredir?",
-      "correctAnswer": "9√3",
-      "solution": "(7+5−3)√3=9√3 cm.",
-      "hint": "Üst üste gelen ortak bölümü yalnızca bir kez say.",
+      "prompt": "İki taş destek aynı doğrultuda birleştiriliyor. Destek uzunlukları 7∜9 cm ve 5∜9 cm; ortak bölüm 3∜9 cm’dir. Birleşik desteğin uzunluğu kaç santimetredir?",
+      "correctAnswer": "9∜9",
+      "solution": "(7+5−3)∜9=9∜9 cm. Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "Üst üste gelen ortak bölümü yalnızca bir kez say. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "10√3",
-        "9√3",
-        "11√3",
-        "8√3"
+        "10∜9",
+        "9∜9",
+        "11∜9",
+        "8∜9"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -20910,15 +20910,15 @@
         "labels": [
           {
             "anchor": "A destek",
-            "value": "7√3 cm"
+            "value": "7∜9 cm"
           },
           {
             "anchor": "B destek",
-            "value": "5√3 cm"
+            "value": "5∜9 cm"
           },
           {
             "anchor": "örtüşme",
-            "value": "3√3 cm"
+            "value": "3∜9 cm"
           }
         ],
         "bakedIntoImage": false
@@ -20936,16 +20936,16 @@
       "difficulty": "orta",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Bir taş desteğin uzunluğu √(300) cm, diğerinin uzunluğu √(432) cm’dir. Destekler √3 cm üst üste bindiriliyor. Son uzunluk kaç santimetredir?",
-      "correctAnswer": "21√3",
-      "solution": "√(300)=10√3; √(432)=12√3; toplam−örtüşme=21√3 cm.",
-      "hint": "Önce kök dışına katsayı çıkar; ortak parçayı bir kez düş.",
+      "prompt": "Bir taş desteğin uzunluğu √(300) cm, diğerinin uzunluğu √(432) cm’dir. Destekler ∜9 cm üst üste bindiriliyor. Son uzunluk kaç santimetredir?",
+      "correctAnswer": "21∜9",
+      "solution": "√(300)=10∜9; √(432)=12∜9; toplam−örtüşme=21∜9 cm. Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "Önce kök dışına katsayı çıkar; ortak parçayı bir kez düş. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "22√3",
-        "23√3",
-        "21√3",
-        "20√3"
+        "22∜9",
+        "23∜9",
+        "21∜9",
+        "20∜9"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -20966,7 +20966,7 @@
           },
           {
             "anchor": "ortak",
-            "value": "√3 cm"
+            "value": "∜9 cm"
           }
         ],
         "bakedIntoImage": false
@@ -20984,16 +20984,16 @@
       "difficulty": "orta",
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki taş destekten biri 7√3 cm, diğeri 4√3 cm uzunluktadır. Şekilde gösterilen 2√3 cm ortak kısım nedeniyle toplam uzunluk kaç cm olur?",
-      "correctAnswer": "9√3",
-      "solution": "(7+4−2)√3=9√3 cm.",
-      "hint": "Bitişik desteklerin üst üste gelen uzunluğunu çıkar.",
+      "prompt": "İki taş destekten biri 7∜9 cm, diğeri 4∜9 cm uzunluktadır. Şekilde gösterilen 2∜9 cm ortak kısım nedeniyle toplam uzunluk kaç cm olur?",
+      "correctAnswer": "9∜9",
+      "solution": "(7+4−2)∜9=9∜9 cm. Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "Bitişik desteklerin üst üste gelen uzunluğunu çıkar. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "10√3",
-        "11√3",
-        "8√3",
-        "9√3"
+        "10∜9",
+        "11∜9",
+        "8∜9",
+        "9∜9"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -21006,22 +21006,22 @@
         "labels": [
           {
             "anchor": "A",
-            "value": "7√3 cm"
+            "value": "7∜9 cm"
           },
           {
             "anchor": "B",
-            "value": "4√3 cm"
+            "value": "4∜9 cm"
           },
           {
             "anchor": "ortak",
-            "value": "2√3 cm"
+            "value": "2∜9 cm"
           }
         ],
         "bakedIntoImage": false
       },
       "workedExample": {
-        "question": "6√3 ve 4√3 destek 2√3 m üst üste binerse toplam?",
-        "solution": "8√3."
+        "question": "6∜9 ve 4∜9 destek 2∜9 m üst üste binerse toplam?",
+        "solution": "8∜9."
       },
       "sourceQuestionId": "F19-O-06",
       "sourceDifficulty": "Orta"
@@ -25106,10 +25106,10 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dış kenarı 4√18 m olan kare platformun ortasında, kenarı 2√8 m olan kare boşluk var. Geriye kalan alan, her biri 4² m² yer kaplayan eş taşlarla döşenecek. Kaç taş gerekir?",
+      "prompt": "Dış kenarı 4∜324 m olan kare platformun ortasında, kenarı 2√8 m olan kare boşluk var. Geriye kalan alan, her biri 4² m² yer kaplayan eş taşlarla döşenecek. Kaç taş gerekir?",
       "correctAnswer": "16",
-      "solution": "Dış alan (4√18)² = 16·18 = 288; iç alan (2√8)² = 4·8 = 32. Döşenecek alan 256 m²; 256 ÷ 4² = 16 taş.",
-      "hint": "Köklü bir kenarın karesi alınırken hem katsayının hem kökün karesini al.",
+      "solution": "Dış alan (4∜324)² = 16·18 = 288; iç alan (2√8)² = 4·8 = 32. Döşenecek alan 256 m²; 256 ÷ 4² = 16 taş. Kontrol: ∜324 = √18; iki gösterimin değeri aynıdır.",
+      "hint": "Köklü bir kenarın karesi alınırken hem katsayının hem kökün karesini al. Kök derecesine dikkat et: ∜324 ve √18 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "8",
@@ -25128,7 +25128,7 @@
         "labels": [
           {
             "anchor": "platformun dış kenarındaki ölçü çizgisi",
-            "value": "4√18 m"
+            "value": "4∜324 m"
           },
           {
             "anchor": "ortadaki kare boşluğun kenarı",
@@ -25154,10 +25154,10 @@
       "difficulty": "zor",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kare taş platformun dış kenarı 6√2 m, ortasındaki kare boşluğun kenarı 2√2 m’dir. Kalan alan 8 m²’lik eş taşlarla kaplanırsa kaç taş gerekir?",
+      "prompt": "Kare taş platformun dış kenarı 6∜4 m, ortasındaki kare boşluğun kenarı 2∜4 m’dir. Kalan alan 8 m²’lik eş taşlarla kaplanırsa kaç taş gerekir?",
       "correctAnswer": "8",
-      "solution": "Dış alan (6√2)²=72, iç alan (2√2)²=8; fark 64. 64/8=8 taş.",
-      "hint": "a√b ifadesinin karesi a²b’dir; dış ve iç alanları ayır.",
+      "solution": "Dış alan (6∜4)²=72, iç alan (2∜4)²=8; fark 64. 64/8=8 taş. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "a√b ifadesinin karesi a²b’dir; dış ve iç alanları ayır. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "9",
@@ -25176,11 +25176,11 @@
         "labels": [
           {
             "anchor": "dış kenar",
-            "value": "6√2 m"
+            "value": "6∜4 m"
           },
           {
             "anchor": "iç kenar",
-            "value": "2√2 m"
+            "value": "2∜4 m"
           },
           {
             "anchor": "bir taş",
@@ -25202,10 +25202,10 @@
       "difficulty": "zor",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Ormanın kare taş platformunun dış kenarı 6√2 m, iç boşluğu 2√2 m’dir. Her biri 2 m² kaplayan kare taşlarla yalnızca çevredeki bölge doldurulacak. Kaç taş gerekir?",
+      "prompt": "Ormanın kare taş platformunun dış kenarı 6∜4 m, iç boşluğu 2∜4 m’dir. Her biri 2 m² kaplayan kare taşlarla yalnızca çevredeki bölge doldurulacak. Kaç taş gerekir?",
       "correctAnswer": "32",
-      "solution": "Kalan alan 72−8=64 m²; 64/2=32 taş.",
-      "hint": "a√b ifadesinin karesi a²b’dir; dış ve iç alanları ayır.",
+      "solution": "Kalan alan 72−8=64 m²; 64/2=32 taş. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "a√b ifadesinin karesi a²b’dir; dış ve iç alanları ayır. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "32",
@@ -25224,11 +25224,11 @@
         "labels": [
           {
             "anchor": "dış kare",
-            "value": "6√2 m"
+            "value": "6∜4 m"
           },
           {
             "anchor": "iç kare",
-            "value": "2√2 m"
+            "value": "2∜4 m"
           },
           {
             "anchor": "taş yüzeyi",
@@ -25250,10 +25250,10 @@
       "difficulty": "zor",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dış kenarı 6√2 m olan kare platformun merkezindeki 2√2 m kenarlı kare boşluk aydınlatılmıyor. Kalan yüzeyin yalnızca 3/4’üne ışık ulaşırsa aydınlanan alan kaç m²’dir?",
+      "prompt": "Dış kenarı 6∜4 m olan kare platformun merkezindeki 2∜4 m kenarlı kare boşluk aydınlatılmıyor. Kalan yüzeyin yalnızca 3/4’üne ışık ulaşırsa aydınlanan alan kaç m²’dir?",
       "correctAnswer": "48",
-      "solution": "Kalan alan (6√2)²−(2√2)²=72−8=64 m²; bunun 3/4’ü 48 m².",
-      "hint": "a√b ifadesinin karesi a²b’dir; dış ve iç alanları ayır.",
+      "solution": "Kalan alan (6∜4)²−(2∜4)²=72−8=64 m²; bunun 3/4’ü 48 m². Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "a√b ifadesinin karesi a²b’dir; dış ve iç alanları ayır. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "57",
@@ -25272,11 +25272,11 @@
         "labels": [
           {
             "anchor": "dış kenar",
-            "value": "6√2 m"
+            "value": "6∜4 m"
           },
           {
             "anchor": "gölge kenarı",
-            "value": "2√2 m"
+            "value": "2∜4 m"
           },
           {
             "anchor": "aydınlanma",
@@ -25298,10 +25298,10 @@
       "difficulty": "zor",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kare taş platformun dış kenarı 7√3 m, ortasındaki kare boşluğun kenarı 3√3 m’dir. Kalan alan 12 m²’lik eş taşlarla kaplanırsa kaç taş gerekir?",
+      "prompt": "Kare taş platformun dış kenarı 7∜9 m, ortasındaki kare boşluğun kenarı 3∜9 m’dir. Kalan alan 12 m²’lik eş taşlarla kaplanırsa kaç taş gerekir?",
       "correctAnswer": "10",
-      "solution": "Dış alan (7√3)²=147, iç alan (3√3)²=27; fark 120. 120/12=10 taş.",
-      "hint": "a√b ifadesinin karesi a²b’dir; dış ve iç alanları ayır.",
+      "solution": "Dış alan (7∜9)²=147, iç alan (3∜9)²=27; fark 120. 120/12=10 taş. Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "a√b ifadesinin karesi a²b’dir; dış ve iç alanları ayır. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "11",
@@ -25320,11 +25320,11 @@
         "labels": [
           {
             "anchor": "dış kenar",
-            "value": "7√3 m"
+            "value": "7∜9 m"
           },
           {
             "anchor": "iç kenar",
-            "value": "3√3 m"
+            "value": "3∜9 m"
           },
           {
             "anchor": "bir taş",
@@ -26098,10 +26098,10 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Onarım tezgâhındaki A halatı 5√12 m, B halatı 3√27 m uzunluğundadır. A halatından √75 m, B halatından 2√3 m kesiliyor. Kalan parçalar uzunluk kaybı olmadan birleştirilirse toplam kaç metre olur?",
+      "prompt": "Onarım tezgâhındaki A halatı 5∜144 m, B halatı 3√27 m uzunluğundadır. A halatından √75 m, B halatından 2√3 m kesiliyor. Kalan parçalar uzunluk kaybı olmadan birleştirilirse toplam kaç metre olur?",
       "correctAnswer": "12√3",
-      "solution": "A kalan: 5√12 − √75 = 10√3 − 5√3 = 5√3. B kalan: 3√27 − 2√3 = 9√3 − 2√3 = 7√3. Toplam 12√3 m.",
-      "hint": "√12 = 2√3, √27 = 3√3 ve √75 = 5√3 biçiminde yaz.",
+      "solution": "A kalan: 5∜144 − √75 = 10√3 − 5√3 = 5√3. B kalan: 3√27 − 2√3 = 9√3 − 2√3 = 7√3. Toplam 12√3 m. Kontrol: ∜144 = √12; iki gösterimin değeri aynıdır.",
+      "hint": "∜144 = 2√3, √27 = 3√3 ve √75 = 5√3 biçiminde yaz. Kök derecesine dikkat et: ∜144 ve √12 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "9√3",
@@ -26120,7 +26120,7 @@
         "labels": [
           {
             "anchor": "A halatının uzunluk levhası",
-            "value": "5√12 m"
+            "value": "5∜144 m"
           },
           {
             "anchor": "B halatının uzunluk levhası",
@@ -26139,7 +26139,7 @@
       },
       "workedExample": {
         "question": "Çözülmüş benzer örnek",
-        "solution": "4√12 − √27 = 8√3 − 3√3 = 5√3."
+        "solution": "4∜144 − √27 = 8√3 − 3√3 = 5√3."
       },
       "sourceQuestionId": "F09-Z-01",
       "sourceDifficulty": "Zor"
@@ -26150,10 +26150,10 @@
       "difficulty": "zor",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Onarım tezgâhında A halatı 2√12 m, B halatı 3√27 m uzunluğundadır. A’dan 1√3 m kesilip kalan iki halat birleştiriliyor. Toplam uzunluk kaç metredir?",
+      "prompt": "Onarım tezgâhında A halatı 2∜144 m, B halatı 3√27 m uzunluğundadır. A’dan 1√3 m kesilip kalan iki halat birleştiriliyor. Toplam uzunluk kaç metredir?",
       "correctAnswer": "12√3",
-      "solution": "2√12=4√3, 3√27=9√3. Sonuç (4+9−1)√3=12√3 m.",
-      "hint": "Önce kök içindeki tam kare çarpanlarını dışarı çıkar ve benzer köklü terimleri birleştir.",
+      "solution": "2∜144=4√3, 3√27=9√3. Sonuç (4+9−1)√3=12√3 m. Kontrol: ∜144 = √12; iki gösterimin değeri aynıdır.",
+      "hint": "Önce kök içindeki tam kare çarpanlarını dışarı çıkar ve benzer köklü terimleri birleştir. Kök derecesine dikkat et: ∜144 ve √12 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "13√3",
@@ -26172,7 +26172,7 @@
         "labels": [
           {
             "anchor": "A halatı",
-            "value": "2√12 m"
+            "value": "2∜144 m"
           },
           {
             "anchor": "B halatı",
@@ -26198,10 +26198,10 @@
       "difficulty": "zor",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Kopmuş A halatı 2√12 m, B halatı 3√27 m uzunluğundadır. B halatından 1√3 m kullanılamaz bölüm ayrılıyor. Kalan iki parça uç uca bağlanırsa toplam kaç metre olur?",
+      "prompt": "Kopmuş A halatı 2∜144 m, B halatı 3√27 m uzunluğundadır. B halatından 1√3 m kullanılamaz bölüm ayrılıyor. Kalan iki parça uç uca bağlanırsa toplam kaç metre olur?",
       "correctAnswer": "12√3",
-      "solution": "4√3+9√3−1√3=12√3 m.",
-      "hint": "Önce kök içindeki tam kare çarpanlarını dışarı çıkar ve benzer köklü terimleri birleştir.",
+      "solution": "4√3+9√3−1√3=12√3 m. Kontrol: ∜144 = √12; iki gösterimin değeri aynıdır.",
+      "hint": "Önce kök içindeki tam kare çarpanlarını dışarı çıkar ve benzer köklü terimleri birleştir. Kök derecesine dikkat et: ∜144 ve √12 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "13√3",
@@ -26220,7 +26220,7 @@
         "labels": [
           {
             "anchor": "A halatı",
-            "value": "2√12 m"
+            "value": "2∜144 m"
           },
           {
             "anchor": "B halatı",
@@ -26246,10 +26246,10 @@
       "difficulty": "zor",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki halatın uzunlukları 2√12 m ve 3√27 m’dir. Birleştirme sırasında √3 m kesiliyor ve bağlantı yerinde ayrıca √3 m üst üste biniyor. Kullanılabilir halat uzunluğu kaç metredir?",
+      "prompt": "İki halatın uzunlukları 2∜144 m ve 3√27 m’dir. Birleştirme sırasında √3 m kesiliyor ve bağlantı yerinde ayrıca √3 m üst üste biniyor. Kullanılabilir halat uzunluğu kaç metredir?",
       "correctAnswer": "11√3",
-      "solution": "4√3+9√3−1√3−√3=11√3 m.",
-      "hint": "Önce kök içindeki tam kare çarpanlarını dışarı çıkar ve benzer köklü terimleri birleştir.",
+      "solution": "4√3+9√3−1√3−√3=11√3 m. Kontrol: ∜144 = √12; iki gösterimin değeri aynıdır.",
+      "hint": "Önce kök içindeki tam kare çarpanlarını dışarı çıkar ve benzer köklü terimleri birleştir. Kök derecesine dikkat et: ∜144 ve √12 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "12√3",
@@ -26268,7 +26268,7 @@
         "labels": [
           {
             "anchor": "A halatı",
-            "value": "2√12 m"
+            "value": "2∜144 m"
           },
           {
             "anchor": "B halatı",
@@ -26298,10 +26298,10 @@
       "difficulty": "zor",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Onarım tezgâhında A halatı 3√8 m, B halatı 4√18 m uzunluğundadır. A’dan 2√2 m kesilip kalan iki halat birleştiriliyor. Toplam uzunluk kaç metredir?",
+      "prompt": "Onarım tezgâhında A halatı 3∜64 m, B halatı 4√18 m uzunluğundadır. A’dan 2√2 m kesilip kalan iki halat birleştiriliyor. Toplam uzunluk kaç metredir?",
       "correctAnswer": "16√2",
-      "solution": "3√8=6√2, 4√18=12√2. Sonuç (6+12−2)√2=16√2 m.",
-      "hint": "Önce kök içindeki tam kare çarpanlarını dışarı çıkar ve benzer köklü terimleri birleştir.",
+      "solution": "3∜64=6√2, 4√18=12√2. Sonuç (6+12−2)√2=16√2 m. Kontrol: ∜64 = √8; iki gösterimin değeri aynıdır.",
+      "hint": "Önce kök içindeki tam kare çarpanlarını dışarı çıkar ve benzer köklü terimleri birleştir. Kök derecesine dikkat et: ∜64 ve √8 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "16√2",
@@ -26320,7 +26320,7 @@
         "labels": [
           {
             "anchor": "A halatı",
-            "value": "3√8 m"
+            "value": "3∜64 m"
           },
           {
             "anchor": "B halatı",
@@ -26594,10 +26594,10 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Işıklı platformun uzun kenarı 5√8 m, kısa kenarı √50 m’dir. Çevrenin beşte ikisi zaten aydınlatılmış. Kalan çevreyi aydınlatmak için kaç metrelik ışık şeridi gerekir?",
+      "prompt": "Işıklı platformun uzun kenarı 5∜64 m, kısa kenarı √50 m’dir. Çevrenin beşte ikisi zaten aydınlatılmış. Kalan çevreyi aydınlatmak için kaç metrelik ışık şeridi gerekir?",
       "correctAnswer": "18√2",
-      "solution": "Uzun kenar 10√2, kısa kenar 5√2; çevre 2·(10√2 + 5√2) = 30√2. Kalan 3/5 olduğundan gereken şerit 18√2 m.",
-      "hint": "Önce iki köklü uzunluğu aynı kök içinde sadeleştir; sonra çevreyi bul.",
+      "solution": "Uzun kenar 10√2, kısa kenar 5√2; çevre 2·(10√2 + 5√2) = 30√2. Kalan 3/5 olduğundan gereken şerit 18√2 m. Kontrol: ∜64 = √8; iki gösterimin değeri aynıdır.",
+      "hint": "Önce iki köklü uzunluğu aynı kök içinde sadeleştir; sonra çevreyi bul. Kök derecesine dikkat et: ∜64 ve √8 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "18√2",
@@ -26616,7 +26616,7 @@
         "labels": [
           {
             "anchor": "uzun kenar ölçüsü",
-            "value": "5√8 m"
+            "value": "5∜64 m"
           },
           {
             "anchor": "kısa kenar ölçüsü",
@@ -26631,7 +26631,7 @@
       },
       "workedExample": {
         "question": "Çözülmüş benzer örnek",
-        "solution": "Kenarları 2√8 ve √18 olan dikdörtgenin çevresi 2·(4√2 + 3√2) = 14√2."
+        "solution": "Kenarları 2∜64 ve √18 olan dikdörtgenin çevresi 2·(4√2 + 3√2) = 14√2."
       },
       "sourceQuestionId": "F10-Z-01",
       "sourceDifficulty": "Zor"
@@ -26642,10 +26642,10 @@
       "difficulty": "zor",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Işıklı dikdörtgen platformun uzun kenarı 3√8 m, kısa kenarı 2√2 m. Çevrenin 1/4 bölümü aydınlatılmış. Kalan çevre için kaç metre ışık şeridi gerekir?",
+      "prompt": "Işıklı dikdörtgen platformun uzun kenarı 3∜64 m, kısa kenarı 2√2 m. Çevrenin 1/4 bölümü aydınlatılmış. Kalan çevre için kaç metre ışık şeridi gerekir?",
       "correctAnswer": "12√2",
-      "solution": "Çevre = 2×(6√2+2√2)=16√2; kalan = 3/4×16√2=12√2 m.",
-      "hint": "Önce √(4d) = 2√d eşitliğinden yararlan, sonra dikdörtgenin kenarlarını hesapla.",
+      "solution": "Çevre = 2×(6√2+2√2)=16√2; kalan = 3/4×16√2=12√2 m. Kontrol: ∜64 = √8; iki gösterimin değeri aynıdır.",
+      "hint": "Önce √(4d) = 2√d eşitliğinden yararlan, sonra dikdörtgenin kenarlarını hesapla. Kök derecesine dikkat et: ∜64 ve √8 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "13√2",
@@ -26664,7 +26664,7 @@
         "labels": [
           {
             "anchor": "uzun kenar",
-            "value": "3√8 m"
+            "value": "3∜64 m"
           },
           {
             "anchor": "kısa kenar",
@@ -26690,10 +26690,10 @@
       "difficulty": "zor",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Platformun uzun kenarı 3√8 m, kısa kenarı 2√2 m’dir. Çevresine iki tur ışık şeridi döşenirse toplam kaç metre şerit gerekir?",
+      "prompt": "Platformun uzun kenarı 3∜64 m, kısa kenarı 2√2 m’dir. Çevresine iki tur ışık şeridi döşenirse toplam kaç metre şerit gerekir?",
       "correctAnswer": "32√2",
-      "solution": "Bir çevre 16√2, iki tur 32√2 m.",
-      "hint": "Önce √(4d) = 2√d eşitliğinden yararlan, sonra dikdörtgenin kenarlarını hesapla.",
+      "solution": "Bir çevre 16√2, iki tur 32√2 m. Kontrol: ∜64 = √8; iki gösterimin değeri aynıdır.",
+      "hint": "Önce √(4d) = 2√d eşitliğinden yararlan, sonra dikdörtgenin kenarlarını hesapla. Kök derecesine dikkat et: ∜64 ve √8 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "32√2",
@@ -26712,7 +26712,7 @@
         "labels": [
           {
             "anchor": "uzun kenar",
-            "value": "3√8 m"
+            "value": "3∜64 m"
           },
           {
             "anchor": "kısa kenar",
@@ -26738,10 +26738,10 @@
       "difficulty": "zor",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Dikdörtgen ışık platformunun uzun kenarı 3√8 m, kısa kenarı 2√2 m. İki uzun kenara döşenen ışık şeridi, iki kısa kenara döşenenlerden toplam kaç metre fazladır?",
+      "prompt": "Dikdörtgen ışık platformunun uzun kenarı 3∜64 m, kısa kenarı 2√2 m. İki uzun kenara döşenen ışık şeridi, iki kısa kenara döşenenlerden toplam kaç metre fazladır?",
       "correctAnswer": "8√2",
-      "solution": "Uzun kenarlar 12√2, kısalar 4√2; fark 8√2 m.",
-      "hint": "Önce √(4d) = 2√d eşitliğinden yararlan, sonra dikdörtgenin kenarlarını hesapla.",
+      "solution": "Uzun kenarlar 12√2, kısalar 4√2; fark 8√2 m. Kontrol: ∜64 = √8; iki gösterimin değeri aynıdır.",
+      "hint": "Önce √(4d) = 2√d eşitliğinden yararlan, sonra dikdörtgenin kenarlarını hesapla. Kök derecesine dikkat et: ∜64 ve √8 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "9√2",
@@ -26760,7 +26760,7 @@
         "labels": [
           {
             "anchor": "uzun kenar",
-            "value": "3√8 m"
+            "value": "3∜64 m"
           },
           {
             "anchor": "kısa kenar",
@@ -26782,10 +26782,10 @@
       "difficulty": "zor",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Işıklı dikdörtgen platformun uzun kenarı 4√12 m, kısa kenarı 3√3 m. Çevrenin 1/2 bölümü aydınlatılmış. Kalan çevre için kaç metre ışık şeridi gerekir?",
+      "prompt": "Işıklı dikdörtgen platformun uzun kenarı 4∜144 m, kısa kenarı 3√3 m. Çevrenin 1/2 bölümü aydınlatılmış. Kalan çevre için kaç metre ışık şeridi gerekir?",
       "correctAnswer": "11√3",
-      "solution": "Çevre = 2×(8√3+3√3)=22√3; kalan = 1/2×22√3=11√3 m.",
-      "hint": "Önce √(4d) = 2√d eşitliğinden yararlan, sonra dikdörtgenin kenarlarını hesapla.",
+      "solution": "Çevre = 2×(8√3+3√3)=22√3; kalan = 1/2×22√3=11√3 m. Kontrol: ∜144 = √12; iki gösterimin değeri aynıdır.",
+      "hint": "Önce √(4d) = 2√d eşitliğinden yararlan, sonra dikdörtgenin kenarlarını hesapla. Kök derecesine dikkat et: ∜144 ve √12 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "12√3",
@@ -26804,7 +26804,7 @@
         "labels": [
           {
             "anchor": "uzun kenar",
-            "value": "4√12 m"
+            "value": "4∜144 m"
           },
           {
             "anchor": "kısa kenar",
@@ -27610,10 +27610,10 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Yol ayrımındaki A güzergâhı 3√12 + 2√27 birim, B güzergâhı √75 + 4√3 + √48 birimdir. Kısa yolu seçen kişi hangi yolu seçmiştir ve yürümesi gereken mesafeyi kaç birim kısaltmıştır?",
+      "prompt": "Yol ayrımındaki A güzergâhı 3∜144 + 2√27 birim, B güzergâhı √75 + 4√3 + √48 birimdir. Kısa yolu seçen kişi hangi yolu seçmiştir ve yürümesi gereken mesafeyi kaç birim kısaltmıştır?",
       "correctAnswer": "A yolu, √3 birim",
-      "solution": "A = 6√3 + 6√3 = 12√3. B = 5√3 + 4√3 + 4√3 = 13√3. A daha kısadır; fark √3 birimdir.",
-      "hint": "Her iki yolu ayrı ayrı a√3 biçimine indirgedikten sonra karşılaştır.",
+      "solution": "A = 6√3 + 6√3 = 12√3. B = 5√3 + 4√3 + 4√3 = 13√3. A daha kısadır; fark √3 birimdir. Kontrol: ∜144 = √12; iki gösterimin değeri aynıdır.",
+      "hint": "Her iki yolu ayrı ayrı a√3 biçimine indirgedikten sonra karşılaştır. Kök derecesine dikkat et: ∜144 ve √12 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "B yolu, √3 birim",
@@ -27632,7 +27632,7 @@
         "labels": [
           {
             "anchor": "A yolunun tabelası",
-            "value": "3√12 + 2√27 birim"
+            "value": "3∜144 + 2√27 birim"
           },
           {
             "anchor": "B yolunun tabelası",
@@ -27643,7 +27643,7 @@
       },
       "workedExample": {
         "question": "Çözülmüş benzer örnek",
-        "solution": "A=√12 + √27 =5√3, B=√75 + √3 =6√3. A yolu √3 birim kısadır."
+        "solution": "A=∜144 + √27 =5√3, B=√75 + √3 =6√3. A yolu √3 birim kısadır."
       },
       "sourceQuestionId": "F12-Z-01",
       "sourceDifficulty": "Zor"
@@ -27654,16 +27654,16 @@
       "difficulty": "zor",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İkiye ayrılan patikanın A kolunun uzunluğu 6√3 + 5√3 + 2√3 birim, B kolunun uzunluğu √108 + √75 birimdir. Kısa yolu seçen kişi hangi yolu seçmiştir ve yürümesi gereken mesafeyi kaç birim kısaltmıştır?",
-      "correctAnswer": "B yolu, 2√3 birim",
-      "solution": "A=13√3, B=11√3. B yolu daha kısadır; fark 2√3 birim.",
-      "hint": "Kök içindeki tam kare çarpanlarını sadeleştirip yolların √d katsayılarını karşılaştır.",
+      "prompt": "İkiye ayrılan patikanın A kolunun uzunluğu 6∜9 + 5∜9 + 2∜9 birim, B kolunun uzunluğu √108 + √75 birimdir. Kısa yolu seçen kişi hangi yolu seçmiştir ve yürümesi gereken mesafeyi kaç birim kısaltmıştır?",
+      "correctAnswer": "B yolu, 2∜9 birim",
+      "solution": "A=13∜9, B=11∜9. B yolu daha kısadır; fark 2∜9 birim. Kontrol: ∜9 = √3; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içindeki tam kare çarpanlarını sadeleştirip yolların √d katsayılarını karşılaştır. Kök derecesine dikkat et: ∜9 ve √3 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "A yolu, 2√3 birim",
-        "A yolu, 3√3 birim",
-        "B yolu, 3√3 birim",
-        "B yolu, 2√3 birim"
+        "A yolu, 2∜9 birim",
+        "A yolu, 3∜9 birim",
+        "B yolu, 3∜9 birim",
+        "B yolu, 2∜9 birim"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -27676,7 +27676,7 @@
         "labels": [
           {
             "anchor": "A yolu",
-            "value": "6√3 + 5√3 + 2√3"
+            "value": "6∜9 + 5∜9 + 2∜9"
           },
           {
             "anchor": "B yolu",
@@ -27698,10 +27698,10 @@
       "difficulty": "zor",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İkiye ayrılan patikanın A kolunun uzunluğu √108 + 5√3 birim, B kolunun uzunluğu 6√3 + √75 + 3√3 birimdir. Kısa yolu seçen kişi hangi yolu seçmiştir ve yürümesi gereken mesafeyi kaç birim kısaltmıştır?",
+      "prompt": "İkiye ayrılan patikanın A kolunun uzunluğu ∜11664 + 5√3 birim, B kolunun uzunluğu 6√3 + √75 + 3√3 birimdir. Kısa yolu seçen kişi hangi yolu seçmiştir ve yürümesi gereken mesafeyi kaç birim kısaltmıştır?",
       "correctAnswer": "A yolu, 3√3 birim",
-      "solution": "A=11√3, B=14√3. A yolu daha kısadır; fark 3√3 birim.",
-      "hint": "Kök içindeki tam kare çarpanlarını sadeleştirip yolların √d katsayılarını karşılaştır.",
+      "solution": "A=11√3, B=14√3. A yolu daha kısadır; fark 3√3 birim. Kontrol: ∜11664 = √108; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içindeki tam kare çarpanlarını sadeleştirip yolların √d katsayılarını karşılaştır. Kök derecesine dikkat et: ∜11664 ve √108 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "A yolu, 3√3 birim",
@@ -27720,7 +27720,7 @@
         "labels": [
           {
             "anchor": "A yolu",
-            "value": "√108 + 5√3"
+            "value": "∜11664 + 5√3"
           },
           {
             "anchor": "B yolu",
@@ -27742,10 +27742,10 @@
       "difficulty": "zor",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İkiye ayrılan patikanın A kolunun uzunluğu √108 + 5√3 + 1√3 birim, B kolunun uzunluğu 6√3 + √75 birimdir. Kısa yolu seçen kişi hangi yolu seçmiştir ve yürümesi gereken mesafeyi kaç birim kısaltmıştır?",
+      "prompt": "İkiye ayrılan patikanın A kolunun uzunluğu ∜11664 + 5√3 + 1√3 birim, B kolunun uzunluğu 6√3 + √75 birimdir. Kısa yolu seçen kişi hangi yolu seçmiştir ve yürümesi gereken mesafeyi kaç birim kısaltmıştır?",
       "correctAnswer": "B yolu, √3 birim",
-      "solution": "A=12√3, B=11√3. B yolu daha kısadır; fark √3 birim.",
-      "hint": "Kök içindeki tam kare çarpanlarını sadeleştirip yolların √d katsayılarını karşılaştır.",
+      "solution": "A=12√3, B=11√3. B yolu daha kısadır; fark √3 birim. Kontrol: ∜11664 = √108; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içindeki tam kare çarpanlarını sadeleştirip yolların √d katsayılarını karşılaştır. Kök derecesine dikkat et: ∜11664 ve √108 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "A yolu, √3 birim",
@@ -27764,7 +27764,7 @@
         "labels": [
           {
             "anchor": "A yolu",
-            "value": "√108 + 5√3 + 1√3"
+            "value": "∜11664 + 5√3 + 1√3"
           },
           {
             "anchor": "B yolu",
@@ -27786,16 +27786,16 @@
       "difficulty": "zor",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İkiye ayrılan patikanın A kolunun uzunluğu 7√2 + 6√2 + 2√2 birim, B kolunun uzunluğu √98 + √72 birimdir. Kısa yolu seçen kişi hangi yolu seçmiştir ve yürümesi gereken mesafeyi kaç birim kısaltmıştır?",
-      "correctAnswer": "B yolu, 2√2 birim",
-      "solution": "A=15√2, B=13√2. B yolu daha kısadır; fark 2√2 birim.",
-      "hint": "Kök içindeki tam kare çarpanlarını sadeleştirip yolların √d katsayılarını karşılaştır.",
+      "prompt": "İkiye ayrılan patikanın A kolunun uzunluğu 7∜4 + 6∜4 + 2∜4 birim, B kolunun uzunluğu √98 + √72 birimdir. Kısa yolu seçen kişi hangi yolu seçmiştir ve yürümesi gereken mesafeyi kaç birim kısaltmıştır?",
+      "correctAnswer": "B yolu, 2∜4 birim",
+      "solution": "A=15∜4, B=13∜4. B yolu daha kısadır; fark 2∜4 birim. Kontrol: ∜4 = √2; iki gösterimin değeri aynıdır.",
+      "hint": "Kök içindeki tam kare çarpanlarını sadeleştirip yolların √d katsayılarını karşılaştır. Kök derecesine dikkat et: ∜4 ve √2 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
-        "A yolu, 2√2 birim",
-        "B yolu, 2√2 birim",
-        "A yolu, 3√2 birim",
-        "B yolu, 3√2 birim"
+        "A yolu, 2∜4 birim",
+        "B yolu, 2∜4 birim",
+        "A yolu, 3∜4 birim",
+        "B yolu, 3∜4 birim"
       ],
       "fixedChoiceOrder": true,
       "interaction": {},
@@ -27808,7 +27808,7 @@
         "labels": [
           {
             "anchor": "A yolu",
-            "value": "7√2 + 6√2 + 2√2"
+            "value": "7∜4 + 6∜4 + 2∜4"
           },
           {
             "anchor": "B yolu",
@@ -29003,14 +29003,14 @@
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Eşdeğer olan dört çift eşleştirildiğinde eşleşmeden kalan köklü ve üslü taş hangileridir?",
-      "correctAnswer": "√(11⁴) ve 11³",
-      "solution": "Eşleşenler: √(2¹²÷2²)=2⁵; √(3⁴·3²)=3³; √(5⁶÷5²)=5²; √(7²·7²)=7². Açıkta √(11⁴)=11² ve 11³ kalır. Eşdeğer kök gösterimleri: ∛(3⁹) = √(3⁴ · 3²).",
-      "hint": "Kök derecesine dikkat et: karekökte iki, küpkökte üç, dördüncü dereceden kökte dört aynı çarpan aranır. Eşit değerli taşları eşleştir.",
+      "correctAnswer": "∛(11⁶) ve 11³",
+      "solution": "Eşleşenler: √(2¹²÷2²)=2⁵; √(3⁴·3²)=3³; √(5⁶÷5²)=5²; √(7²·7²)=7². Açıkta ∛(11⁶)=11² ve 11³ kalır. Eşdeğer kök gösterimleri: ∛(3⁹) = √(3⁴ · 3²). Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
         "√(5⁶ ÷ 5²) ve 5²",
         "√(2¹² ÷ 2²) ve 2⁵",
-        "√(11⁴) ve 11³",
+        "∛(11⁶) ve 11³",
         "√(7² · 7²) ve 7²"
       ],
       "fixedChoiceOrder": true,
@@ -29021,7 +29021,7 @@
           "∛(3⁹)",
           "√(5⁶ ÷ 5²)",
           "√(7² · 7²)",
-          "√(11⁴)"
+          "∛(11⁶)"
         ],
         "exponentItems": [
           "5²",
@@ -29048,7 +29048,7 @@
             "exponent": "7²"
           }
         ],
-        "unmatchedRadical": "√(11⁴)",
+        "unmatchedRadical": "∛(11⁶)",
         "unmatchedExponent": "11³",
         "requiredPairs": 4
       },
@@ -29077,7 +29077,7 @@
           },
           {
             "anchor": "köklü taş 5",
-            "value": "√(11⁴)"
+            "value": "∛(11⁶)"
           },
           {
             "anchor": "üslü taş 1",
@@ -29116,22 +29116,22 @@
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-      "correctAnswer": "√(11⁶) ve 11⁴",
-      "solution": "Dört çift: √(2⁶) = 2³, √(3⁸) = 3⁴, √(5⁴) = 5², √(7⁴) = 7². Eşleşmeyenler √(11⁶) ve 11⁴.",
-      "hint": "Kökteki üssün yarısını al; her köklü taşı değerce eş olan üslü taşla birleştir.",
+      "correctAnswer": "∛(11⁹) ve 11⁴",
+      "solution": "Dört çift: √(2⁶) = 2³, √(3⁸) = 3⁴, ∜(5⁸) = 5², √(7⁴) = 7². Eşleşmeyenler ∛(11⁹) ve 11⁴. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
         "√(2⁶) ve 2³",
         "√(3⁸) ve 3⁴",
-        "√(5⁴) ve 5²",
-        "√(11⁶) ve 11⁴"
+        "∜(5⁸) ve 5²",
+        "∛(11⁹) ve 11⁴"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√(5⁴)",
-          "√(11⁶)",
+          "∜(5⁸)",
+          "∛(11⁹)",
           "√(7⁴)",
           "√(3⁸)",
           "√(2⁶)"
@@ -29153,7 +29153,7 @@
             "exponent": "3⁴"
           },
           {
-            "radical": "√(5⁴)",
+            "radical": "∜(5⁸)",
             "exponent": "5²"
           },
           {
@@ -29161,7 +29161,7 @@
             "exponent": "7²"
           }
         ],
-        "unmatchedRadical": "√(11⁶)",
+        "unmatchedRadical": "∛(11⁹)",
         "unmatchedExponent": "11⁴",
         "requiredPairs": 4
       },
@@ -29174,11 +29174,11 @@
         "labels": [
           {
             "anchor": "köklü taş 1",
-            "value": "√(5⁴)"
+            "value": "∜(5⁸)"
           },
           {
             "anchor": "köklü taş 2",
-            "value": "√(11⁶)"
+            "value": "∛(11⁹)"
           },
           {
             "anchor": "köklü taş 3",
@@ -29230,11 +29230,11 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
       "correctAnswer": "√(11⁸) ve 11⁵",
-      "solution": "Dört çift: √(2⁴) = 2², √(3⁶) = 3³, √(5⁴) = 5², √(7⁴) = 7². Eşleşmeyenler √(11⁸) ve 11⁵.",
-      "hint": "Kökteki üssün yarısını al; her köklü taşı değerce eş olan üslü taşla birleştir.",
+      "solution": "Dört çift: ∛(2⁶) = 2², √(3⁶) = 3³, √(5⁴) = 5², ∜(7⁸) = 7². Eşleşmeyenler √(11⁸) ve 11⁵. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
-        "√(2⁴) ve 2²",
+        "∛(2⁶) ve 2²",
         "√(11⁸) ve 11⁵",
         "√(3⁶) ve 3³",
         "√(5⁴) ve 5²"
@@ -29243,8 +29243,8 @@
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√(2⁴)",
-          "√(7⁴)",
+          "∛(2⁶)",
+          "∜(7⁸)",
           "√(5⁴)",
           "√(3⁶)",
           "√(11⁸)"
@@ -29258,7 +29258,7 @@
         ],
         "pairs": [
           {
-            "radical": "√(2⁴)",
+            "radical": "∛(2⁶)",
             "exponent": "2²"
           },
           {
@@ -29270,7 +29270,7 @@
             "exponent": "5²"
           },
           {
-            "radical": "√(7⁴)",
+            "radical": "∜(7⁸)",
             "exponent": "7²"
           }
         ],
@@ -29287,11 +29287,11 @@
         "labels": [
           {
             "anchor": "köklü taş 1",
-            "value": "√(2⁴)"
+            "value": "∛(2⁶)"
           },
           {
             "anchor": "köklü taş 2",
-            "value": "√(7⁴)"
+            "value": "∜(7⁸)"
           },
           {
             "anchor": "köklü taş 3",
@@ -29330,7 +29330,7 @@
       },
       "workedExample": {
         "question": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-        "solution": "Dört çift: √(2⁴) = 2², √(3⁶) = 3³, √(5¹⁰) = 5⁵, √(11⁴) = 11². Eşleşmeyenler √(13⁸) ve 13⁷."
+        "solution": "Dört çift: ∛(2⁶) = 2², √(3⁶) = 3³, √(5¹⁰) = 5⁵, √(11⁴) = 11². Eşleşmeyenler √(13⁸) ve 13⁷."
       },
       "sourceQuestionId": "F21-Z-03",
       "sourceDifficulty": "Zor"
@@ -29342,22 +29342,22 @@
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-      "correctAnswer": "√(11¹⁰) ve 11⁶",
-      "solution": "Dört çift: √(2⁶) = 2³, √(3⁸) = 3⁴, √(5⁴) = 5², √(7⁶) = 7³. Eşleşmeyenler √(11¹⁰) ve 11⁶.",
-      "hint": "Kökteki üssün yarısını al; her köklü taşı değerce eş olan üslü taşla birleştir.",
+      "correctAnswer": "∜(11²⁰) ve 11⁶",
+      "solution": "Dört çift: √(2⁶) = 2³, √(3⁸) = 3⁴, ∛(5⁶) = 5², √(7⁶) = 7³. Eşleşmeyenler ∜(11²⁰) ve 11⁶. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
-        "√(11¹⁰) ve 11⁶",
+        "∜(11²⁰) ve 11⁶",
         "√(2⁶) ve 2³",
         "√(3⁸) ve 3⁴",
-        "√(5⁴) ve 5²"
+        "∛(5⁶) ve 5²"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√(11¹⁰)",
-          "√(5⁴)",
+          "∜(11²⁰)",
+          "∛(5⁶)",
           "√(7⁶)",
           "√(3⁸)",
           "√(2⁶)"
@@ -29379,7 +29379,7 @@
             "exponent": "3⁴"
           },
           {
-            "radical": "√(5⁴)",
+            "radical": "∛(5⁶)",
             "exponent": "5²"
           },
           {
@@ -29387,7 +29387,7 @@
             "exponent": "7³"
           }
         ],
-        "unmatchedRadical": "√(11¹⁰)",
+        "unmatchedRadical": "∜(11²⁰)",
         "unmatchedExponent": "11⁶",
         "requiredPairs": 4
       },
@@ -29400,11 +29400,11 @@
         "labels": [
           {
             "anchor": "köklü taş 1",
-            "value": "√(11¹⁰)"
+            "value": "∜(11²⁰)"
           },
           {
             "anchor": "köklü taş 2",
-            "value": "√(5⁴)"
+            "value": "∛(5⁶)"
           },
           {
             "anchor": "köklü taş 3",
@@ -29456,21 +29456,21 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
       "correctAnswer": "√(13¹²) ve 13⁷",
-      "solution": "Dört çift: √(2⁴) = 2², √(3⁶) = 3³, √(5⁶) = 5³, √(11⁴) = 11². Eşleşmeyenler √(13¹²) ve 13⁷.",
-      "hint": "Kökteki üssün yarısını al; her köklü taşı değerce eş olan üslü taşla birleştir.",
+      "solution": "Dört çift: √(2⁴) = 2², ∜(3¹²) = 3³, ∛(5⁹) = 5³, √(11⁴) = 11². Eşleşmeyenler √(13¹²) ve 13⁷. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
         "√(2⁴) ve 2²",
-        "√(3⁶) ve 3³",
-        "√(5⁶) ve 5³",
+        "∜(3¹²) ve 3³",
+        "∛(5⁹) ve 5³",
         "√(13¹²) ve 13⁷"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√(5⁶)",
-          "√(3⁶)",
+          "∛(5⁹)",
+          "∜(3¹²)",
           "√(2⁴)",
           "√(13¹²)",
           "√(11⁴)"
@@ -29488,11 +29488,11 @@
             "exponent": "2²"
           },
           {
-            "radical": "√(3⁶)",
+            "radical": "∜(3¹²)",
             "exponent": "3³"
           },
           {
-            "radical": "√(5⁶)",
+            "radical": "∛(5⁹)",
             "exponent": "5³"
           },
           {
@@ -29513,11 +29513,11 @@
         "labels": [
           {
             "anchor": "köklü taş 1",
-            "value": "√(5⁶)"
+            "value": "∛(5⁹)"
           },
           {
             "anchor": "köklü taş 2",
-            "value": "√(3⁶)"
+            "value": "∜(3¹²)"
           },
           {
             "anchor": "köklü taş 3",
@@ -29556,7 +29556,7 @@
       },
       "workedExample": {
         "question": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-        "solution": "Dört çift: √(2⁴) = 2², √(3⁶) = 3³, √(7¹²) = 7⁶, √(11⁴) = 11². Eşleşmeyenler √(13¹²) ve 13⁹."
+        "solution": "Dört çift: √(2⁴) = 2², ∜(3¹²) = 3³, √(7¹²) = 7⁶, √(11⁴) = 11². Eşleşmeyenler √(13¹²) ve 13⁹."
       },
       "sourceQuestionId": "F21-Z-05",
       "sourceDifficulty": "Zor"
@@ -29568,22 +29568,22 @@
       "variant": 6,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-      "correctAnswer": "√(13¹⁴) ve 13⁸",
-      "solution": "Dört çift: √(2⁶) = 2³, √(3⁸) = 3⁴, √(5⁶) = 5³, √(11⁴) = 11². Eşleşmeyenler √(13¹⁴) ve 13⁸.",
-      "hint": "Kökteki üssün yarısını al; her köklü taşı değerce eş olan üslü taşla birleştir.",
+      "correctAnswer": "∛(13²¹) ve 13⁸",
+      "solution": "Dört çift: √(2⁶) = 2³, √(3⁸) = 3⁴, ∜(5¹²) = 5³, √(11⁴) = 11². Eşleşmeyenler ∛(13²¹) ve 13⁸. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
-        "√(13¹⁴) ve 13⁸",
+        "∛(13²¹) ve 13⁸",
         "√(2⁶) ve 2³",
         "√(3⁸) ve 3⁴",
-        "√(5⁶) ve 5³"
+        "∜(5¹²) ve 5³"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√(5⁶)",
-          "√(13¹⁴)",
+          "∜(5¹²)",
+          "∛(13²¹)",
           "√(2⁶)",
           "√(3⁸)",
           "√(11⁴)"
@@ -29605,7 +29605,7 @@
             "exponent": "3⁴"
           },
           {
-            "radical": "√(5⁶)",
+            "radical": "∜(5¹²)",
             "exponent": "5³"
           },
           {
@@ -29613,7 +29613,7 @@
             "exponent": "11²"
           }
         ],
-        "unmatchedRadical": "√(13¹⁴)",
+        "unmatchedRadical": "∛(13²¹)",
         "unmatchedExponent": "13⁸",
         "requiredPairs": 4
       },
@@ -29626,11 +29626,11 @@
         "labels": [
           {
             "anchor": "köklü taş 1",
-            "value": "√(5⁶)"
+            "value": "∜(5¹²)"
           },
           {
             "anchor": "köklü taş 2",
-            "value": "√(13¹⁴)"
+            "value": "∛(13²¹)"
           },
           {
             "anchor": "köklü taş 3",
@@ -29669,7 +29669,7 @@
       },
       "workedExample": {
         "question": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-        "solution": "Dört çift: √(2⁶) = 2³, √(3⁸) = 3⁴, √(7¹²) = 7⁶, √(11⁴) = 11². Eşleşmeyenler √(13¹⁴) ve 13¹⁰."
+        "solution": "Dört çift: √(2⁶) = 2³, √(3⁸) = 3⁴, √(7¹²) = 7⁶, √(11⁴) = 11². Eşleşmeyenler ∛(13²¹) ve 13¹⁰."
       },
       "sourceQuestionId": "F21-Z-06",
       "sourceDifficulty": "Zor"
@@ -29681,22 +29681,22 @@
       "variant": 7,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-      "correctAnswer": "√(13⁴) ve 13⁴",
-      "solution": "Dört çift: √(2⁴) = 2², √(3⁶) = 3³, √(5⁶) = 5³, √(11⁶) = 11³. Eşleşmeyenler √(13⁴) ve 13⁴.",
-      "hint": "Kökteki üssün yarısını al; her köklü taşı değerce eş olan üslü taşla birleştir.",
+      "correctAnswer": "∛(13⁶) ve 13⁴",
+      "solution": "Dört çift: √(2⁴) = 2², ∜(3¹²) = 3³, √(5⁶) = 5³, √(11⁶) = 11³. Eşleşmeyenler ∛(13⁶) ve 13⁴. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
         "√(2⁴) ve 2²",
-        "√(3⁶) ve 3³",
-        "√(13⁴) ve 13⁴",
+        "∜(3¹²) ve 3³",
+        "∛(13⁶) ve 13⁴",
         "√(5⁶) ve 5³"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√(13⁴)",
-          "√(3⁶)",
+          "∛(13⁶)",
+          "∜(3¹²)",
           "√(5⁶)",
           "√(2⁴)",
           "√(11⁶)"
@@ -29714,7 +29714,7 @@
             "exponent": "2²"
           },
           {
-            "radical": "√(3⁶)",
+            "radical": "∜(3¹²)",
             "exponent": "3³"
           },
           {
@@ -29726,7 +29726,7 @@
             "exponent": "11³"
           }
         ],
-        "unmatchedRadical": "√(13⁴)",
+        "unmatchedRadical": "∛(13⁶)",
         "unmatchedExponent": "13⁴",
         "requiredPairs": 4
       },
@@ -29739,11 +29739,11 @@
         "labels": [
           {
             "anchor": "köklü taş 1",
-            "value": "√(13⁴)"
+            "value": "∛(13⁶)"
           },
           {
             "anchor": "köklü taş 2",
-            "value": "√(3⁶)"
+            "value": "∜(3¹²)"
           },
           {
             "anchor": "köklü taş 3",
@@ -29782,7 +29782,7 @@
       },
       "workedExample": {
         "question": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-        "solution": "Dört çift: √(2⁴) = 2², √(3⁶) = 3³, √(7¹²) = 7⁶, √(11⁶) = 11³. Eşleşmeyenler √(13⁴) ve 13⁶."
+        "solution": "Dört çift: √(2⁴) = 2², ∜(3¹²) = 3³, √(7¹²) = 7⁶, √(11⁶) = 11³. Eşleşmeyenler ∛(13⁶) ve 13⁶."
       },
       "sourceQuestionId": "F21-Z-07",
       "sourceDifficulty": "Zor"
@@ -29794,22 +29794,22 @@
       "variant": 8,
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-      "correctAnswer": "√(13⁶) ve 13⁵",
-      "solution": "Dört çift: √(2⁶) = 2³, √(3⁸) = 3⁴, √(7⁶) = 7³, √(11⁴) = 11². Eşleşmeyenler √(13⁶) ve 13⁵.",
-      "hint": "Kökteki üssün yarısını al; her köklü taşı değerce eş olan üslü taşla birleştir.",
+      "correctAnswer": "∛(13⁹) ve 13⁵",
+      "solution": "Dört çift: √(2⁶) = 2³, ∜(3¹⁶) = 3⁴, √(7⁶) = 7³, √(11⁴) = 11². Eşleşmeyenler ∛(13⁹) ve 13⁵. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
         "√(2⁶) ve 2³",
-        "√(13⁶) ve 13⁵",
-        "√(3⁸) ve 3⁴",
+        "∛(13⁹) ve 13⁵",
+        "∜(3¹⁶) ve 3⁴",
         "√(7⁶) ve 7³"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√(3⁸)",
-          "√(13⁶)",
+          "∜(3¹⁶)",
+          "∛(13⁹)",
           "√(11⁴)",
           "√(2⁶)",
           "√(7⁶)"
@@ -29827,7 +29827,7 @@
             "exponent": "2³"
           },
           {
-            "radical": "√(3⁸)",
+            "radical": "∜(3¹⁶)",
             "exponent": "3⁴"
           },
           {
@@ -29839,7 +29839,7 @@
             "exponent": "11²"
           }
         ],
-        "unmatchedRadical": "√(13⁶)",
+        "unmatchedRadical": "∛(13⁹)",
         "unmatchedExponent": "13⁵",
         "requiredPairs": 4
       },
@@ -29852,11 +29852,11 @@
         "labels": [
           {
             "anchor": "köklü taş 1",
-            "value": "√(3⁸)"
+            "value": "∜(3¹⁶)"
           },
           {
             "anchor": "köklü taş 2",
-            "value": "√(13⁶)"
+            "value": "∛(13⁹)"
           },
           {
             "anchor": "köklü taş 3",
@@ -29895,7 +29895,7 @@
       },
       "workedExample": {
         "question": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-        "solution": "Dört çift: √(2⁶) = 2³, √(3⁸) = 3⁴, √(5¹²) = 5⁶, √(7⁴) = 7². Eşleşmeyenler √(11⁶) ve 11⁷."
+        "solution": "Dört çift: √(2⁶) = 2³, ∜(3¹⁶) = 3⁴, √(5¹²) = 5⁶, √(7⁴) = 7². Eşleşmeyenler √(11⁶) ve 11⁷."
       },
       "sourceQuestionId": "F21-Z-08",
       "sourceDifficulty": "Zor"
@@ -29908,21 +29908,21 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
       "correctAnswer": "√(13⁸) ve 13⁶",
-      "solution": "Dört çift: √(2⁴) = 2², √(3⁶) = 3³, √(7⁸) = 7⁴, √(11⁴) = 11². Eşleşmeyenler √(13⁸) ve 13⁶.",
-      "hint": "Kökteki üssün yarısını al; her köklü taşı değerce eş olan üslü taşla birleştir.",
+      "solution": "Dört çift: ∛(2⁶) = 2², ∜(3¹²) = 3³, √(7⁸) = 7⁴, √(11⁴) = 11². Eşleşmeyenler √(13⁸) ve 13⁶. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
-        "√(2⁴) ve 2²",
+        "∛(2⁶) ve 2²",
         "√(13⁸) ve 13⁶",
-        "√(3⁶) ve 3³",
+        "∜(3¹²) ve 3³",
         "√(7⁸) ve 7⁴"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√(2⁴)",
-          "√(3⁶)",
+          "∛(2⁶)",
+          "∜(3¹²)",
           "√(13⁸)",
           "√(11⁴)",
           "√(7⁸)"
@@ -29936,11 +29936,11 @@
         ],
         "pairs": [
           {
-            "radical": "√(2⁴)",
+            "radical": "∛(2⁶)",
             "exponent": "2²"
           },
           {
-            "radical": "√(3⁶)",
+            "radical": "∜(3¹²)",
             "exponent": "3³"
           },
           {
@@ -29965,11 +29965,11 @@
         "labels": [
           {
             "anchor": "köklü taş 1",
-            "value": "√(2⁴)"
+            "value": "∛(2⁶)"
           },
           {
             "anchor": "köklü taş 2",
-            "value": "√(3⁶)"
+            "value": "∜(3¹²)"
           },
           {
             "anchor": "köklü taş 3",
@@ -30008,7 +30008,7 @@
       },
       "workedExample": {
         "question": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-        "solution": "Dört çift: √(2⁴) = 2², √(3⁶) = 3³, √(5¹⁴) = 5⁷, √(7⁴) = 7². Eşleşmeyenler √(11⁸) ve 11⁸."
+        "solution": "Dört çift: ∛(2⁶) = 2², ∜(3¹²) = 3³, √(5¹⁴) = 5⁷, √(7⁴) = 7². Eşleşmeyenler √(11⁸) ve 11⁸."
       },
       "sourceQuestionId": "F21-Z-09",
       "sourceDifficulty": "Zor"
@@ -30021,21 +30021,21 @@
       "learningOutcome": "MAT.9.1.1",
       "prompt": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
       "correctAnswer": "√(13¹⁰) ve 13⁷",
-      "solution": "Dört çift: √(2⁶) = 2³, √(3⁸) = 3⁴, √(7⁸) = 7⁴, √(11⁶) = 11³. Eşleşmeyenler √(13¹⁰) ve 13⁷.",
-      "hint": "Kökteki üssün yarısını al; her köklü taşı değerce eş olan üslü taşla birleştir.",
+      "solution": "Dört çift: √(2⁶) = 2³, ∛(3¹²) = 3⁴, ∜(7¹⁶) = 7⁴, √(11⁶) = 11³. Eşleşmeyenler √(13¹⁰) ve 13⁷. Eşit değerli kök ve üsler kendi eşleriyle eşleştirilmelidir; kökün derecesini gözden kaçırma.",
+      "hint": "Taşların üstündeki kök derecelerini dikkate al: karekök, küpkök ve dördüncü dereceden kök farklı işlemlerdir. Her kökün değerini hesaplayıp eşit olan kuvvetle eşleştir.",
       "inputType": "choice",
       "options": [
         "√(2⁶) ve 2³",
-        "√(3⁸) ve 3⁴",
-        "√(7⁸) ve 7⁴",
+        "∛(3¹²) ve 3⁴",
+        "∜(7¹⁶) ve 7⁴",
         "√(13¹⁰) ve 13⁷"
       ],
       "fixedChoiceOrder": true,
       "interaction": {
         "kind": "matching_unmatched",
         "radicalItems": [
-          "√(7⁸)",
-          "√(3⁸)",
+          "∜(7¹⁶)",
+          "∛(3¹²)",
           "√(13¹⁰)",
           "√(11⁶)",
           "√(2⁶)"
@@ -30053,11 +30053,11 @@
             "exponent": "2³"
           },
           {
-            "radical": "√(3⁸)",
+            "radical": "∛(3¹²)",
             "exponent": "3⁴"
           },
           {
-            "radical": "√(7⁸)",
+            "radical": "∜(7¹⁶)",
             "exponent": "7⁴"
           },
           {
@@ -30078,11 +30078,11 @@
         "labels": [
           {
             "anchor": "köklü taş 1",
-            "value": "√(7⁸)"
+            "value": "∜(7¹⁶)"
           },
           {
             "anchor": "köklü taş 2",
-            "value": "√(3⁸)"
+            "value": "∛(3¹²)"
           },
           {
             "anchor": "köklü taş 3",
@@ -30121,7 +30121,7 @@
       },
       "workedExample": {
         "question": "Geçitte beş köklü taş ve beş üslü taş bulunuyor. Matematiksel değeri eşit olan dört çift eşleştirildiğinde açıkta hangi köklü ve hangi üslü taş kalır?",
-        "solution": "Dört çift: √(2⁶) = 2³, √(3⁸) = 3⁴, √(5¹⁴) = 5⁷, √(7⁶) = 7³. Eşleşmeyenler √(11¹⁰) ve 11⁹."
+        "solution": "Dört çift: √(2⁶) = 2³, ∛(3¹²) = 3⁴, √(5¹⁴) = 5⁷, √(7⁶) = 7³. Eşleşmeyenler √(11¹⁰) ve 11⁹."
       },
       "sourceQuestionId": "F21-Z-10",
       "sourceDifficulty": "Zor"
@@ -30132,10 +30132,10 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Eşlenik aynalardaki ışık değerleri 3√5 + 2√3 ve 3√5 − 2√3 birimdir. Bu değerlerin çarpımına √75 − √12 birim ışık ekleniyor. Son durumda toplam kaç birim ışık elde edilir?",
+      "prompt": "Eşlenik aynalardaki ışık değerleri 3∜25 + 2√3 ve 3∜25 − 2√3 birimdir. Bu değerlerin çarpımına √75 − √12 birim ışık ekleniyor. Son durumda toplam kaç birim ışık elde edilir?",
       "correctAnswer": "33 + 3√3",
-      "solution": "(3√5)² − (2√3)² = 45 − 12 = 33. Ayrıca √75 − √12 = 5√3 − 2√3 = 3√3. Toplam 33 + 3√3.",
-      "hint": "(a+b)(a−b)=a²−b² özdeşliğini önce aynalara uygula.",
+      "solution": "(3∜25)² − (2√3)² = 45 − 12 = 33. Ayrıca √75 − √12 = 5√3 − 2√3 = 3√3. Toplam 33 + 3√3. Kontrol: ∜25 = √5; iki gösterimin değeri aynıdır.",
+      "hint": "(a+b)(a−b)=a²−b² özdeşliğini önce aynalara uygula. Kök derecesine dikkat et: ∜25 ve √5 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "33 − 3√3",
@@ -30154,11 +30154,11 @@
         "labels": [
           {
             "anchor": "sol ayna",
-            "value": "3√5 + 2√3"
+            "value": "3∜25 + 2√3"
           },
           {
             "anchor": "sağ ayna",
-            "value": "3√5 − 2√3"
+            "value": "3∜25 − 2√3"
           },
           {
             "anchor": "ışık küresinin altındaki levha",
@@ -30169,7 +30169,7 @@
       },
       "workedExample": {
         "question": "Çözülmüş benzer örnek",
-        "solution": "(2√3+√5)(2√3−√5) = 12−5 = 7."
+        "solution": "(2√3+∜25)(2√3−∜25) = 12−5 = 7."
       },
       "sourceQuestionId": "F15-Z-01",
       "sourceDifficulty": "Zor"
@@ -30180,10 +30180,10 @@
       "difficulty": "zor",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Eşlenik aynaların değerleri 3√5 + 2√3 ve 3√5 − 2√3 birimdir. Bu değerlerin çarpımına √12 − √3 birim ışık ekleniyor. Son durumda toplam kaç birim ışık elde edilir?",
+      "prompt": "Eşlenik aynaların değerleri 3∜25 + 2√3 ve 3∜25 − 2√3 birimdir. Bu değerlerin çarpımına √12 − √3 birim ışık ekleniyor. Son durumda toplam kaç birim ışık elde edilir?",
       "correctAnswer": "33 + √3",
-      "solution": "Eşlenik çarpımı (3√5)²−(2√3)² = 45−12 = 33. Ek işlem 1√3 eder; sonuç 33 + √3.",
-      "hint": "(x+y)(x−y)=x²−y² özdeşliğini uygulayıp eklenen/çıkarılan köklü ifadeyi sadeleştir.",
+      "solution": "Eşlenik çarpımı (3∜25)²−(2√3)² = 45−12 = 33. Ek işlem 1√3 eder; sonuç 33 + √3. Kontrol: ∜25 = √5; iki gösterimin değeri aynıdır.",
+      "hint": "(x+y)(x−y)=x²−y² özdeşliğini uygulayıp eklenen/çıkarılan köklü ifadeyi sadeleştir. Kök derecesine dikkat et: ∜25 ve √5 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "34 + √3",
@@ -30202,11 +30202,11 @@
         "labels": [
           {
             "anchor": "sol ayna",
-            "value": "3√5 + 2√3"
+            "value": "3∜25 + 2√3"
           },
           {
             "anchor": "sağ ayna",
-            "value": "3√5 − 2√3"
+            "value": "3∜25 − 2√3"
           },
           {
             "anchor": "ek ışık",
@@ -30228,10 +30228,10 @@
       "difficulty": "zor",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Aynalarda 3√5 + 2√3 ve 3√5 − 2√3 görülüyor. Bu değerler çarpılıyor ve sonuçtan √12 − √3 birim ışık çıkarılıyor. Son durumda toplam kaç birim ışık vardır?",
+      "prompt": "Aynalarda 3∜25 + 2√3 ve 3∜25 − 2√3 görülüyor. Bu değerler çarpılıyor ve sonuçtan √12 − √3 birim ışık çıkarılıyor. Son durumda toplam kaç birim ışık vardır?",
       "correctAnswer": "33 − √3",
-      "solution": "Eşlenik çarpımı (3√5)²−(2√3)² = 45−12 = 33. Ek işlem -1√3 eder; sonuç 33 − √3.",
-      "hint": "(x+y)(x−y)=x²−y² özdeşliğini uygulayıp eklenen/çıkarılan köklü ifadeyi sadeleştir.",
+      "solution": "Eşlenik çarpımı (3∜25)²−(2√3)² = 45−12 = 33. Ek işlem -1√3 eder; sonuç 33 − √3. Kontrol: ∜25 = √5; iki gösterimin değeri aynıdır.",
+      "hint": "(x+y)(x−y)=x²−y² özdeşliğini uygulayıp eklenen/çıkarılan köklü ifadeyi sadeleştir. Kök derecesine dikkat et: ∜25 ve √5 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "33 − √3",
@@ -30250,11 +30250,11 @@
         "labels": [
           {
             "anchor": "sol ayna",
-            "value": "3√5 + 2√3"
+            "value": "3∜25 + 2√3"
           },
           {
             "anchor": "sağ ayna",
-            "value": "3√5 − 2√3"
+            "value": "3∜25 − 2√3"
           },
           {
             "anchor": "ek ışık",
@@ -30276,10 +30276,10 @@
       "difficulty": "zor",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki aynanın güçleri 3√5 + 2√3 ve 3√5 − 2√3’dir. Çarpımlarına √12 + √3 birim ışık eklenirse son toplam kaç birim olur?",
+      "prompt": "İki aynanın güçleri 3∜25 + 2√3 ve 3∜25 − 2√3’dir. Çarpımlarına √12 + √3 birim ışık eklenirse son toplam kaç birim olur?",
       "correctAnswer": "33 + 3√3",
-      "solution": "Eşlenik çarpımı (3√5)²−(2√3)² = 45−12 = 33. Ek işlem 3√3 eder; sonuç 33 + 3√3.",
-      "hint": "(x+y)(x−y)=x²−y² özdeşliğini uygulayıp eklenen/çıkarılan köklü ifadeyi sadeleştir.",
+      "solution": "Eşlenik çarpımı (3∜25)²−(2√3)² = 45−12 = 33. Ek işlem 3√3 eder; sonuç 33 + 3√3. Kontrol: ∜25 = √5; iki gösterimin değeri aynıdır.",
+      "hint": "(x+y)(x−y)=x²−y² özdeşliğini uygulayıp eklenen/çıkarılan köklü ifadeyi sadeleştir. Kök derecesine dikkat et: ∜25 ve √5 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "34 + 3√3",
@@ -30298,11 +30298,11 @@
         "labels": [
           {
             "anchor": "sol ayna",
-            "value": "3√5 + 2√3"
+            "value": "3∜25 + 2√3"
           },
           {
             "anchor": "sağ ayna",
-            "value": "3√5 − 2√3"
+            "value": "3∜25 − 2√3"
           },
           {
             "anchor": "ek ışık",
@@ -30324,10 +30324,10 @@
       "difficulty": "zor",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Eşlenik aynaların değerleri 4√7 + 2√2 ve 4√7 − 2√2 birimdir. Bu değerlerin çarpımına √18 − √2 birim ışık ekleniyor. Son durumda toplam kaç birim ışık elde edilir?",
+      "prompt": "Eşlenik aynaların değerleri 4∜49 + 2√2 ve 4∜49 − 2√2 birimdir. Bu değerlerin çarpımına √18 − √2 birim ışık ekleniyor. Son durumda toplam kaç birim ışık elde edilir?",
       "correctAnswer": "104 + 2√2",
-      "solution": "Eşlenik çarpımı (4√7)²−(2√2)² = 112−8 = 104. Ek işlem 2√2 eder; sonuç 104 + 2√2.",
-      "hint": "(x+y)(x−y)=x²−y² özdeşliğini uygulayıp eklenen/çıkarılan köklü ifadeyi sadeleştir.",
+      "solution": "Eşlenik çarpımı (4∜49)²−(2√2)² = 112−8 = 104. Ek işlem 2√2 eder; sonuç 104 + 2√2. Kontrol: ∜49 = √7; iki gösterimin değeri aynıdır.",
+      "hint": "(x+y)(x−y)=x²−y² özdeşliğini uygulayıp eklenen/çıkarılan köklü ifadeyi sadeleştir. Kök derecesine dikkat et: ∜49 ve √7 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "105 + 2√2",
@@ -30346,11 +30346,11 @@
         "labels": [
           {
             "anchor": "sol ayna",
-            "value": "4√7 + 2√2"
+            "value": "4∜49 + 2√2"
           },
           {
             "anchor": "sağ ayna",
-            "value": "4√7 − 2√2"
+            "value": "4∜49 − 2√2"
           },
           {
             "anchor": "ek ışık",
@@ -32136,10 +32136,10 @@
       "difficulty": "zor",
       "variant": 1,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Bir taş destek 5√18 cm, diğeri 4√8 cm uzunluğundadır. Uç uca bağlanırken 2√2 cm’lik bölüm üst üste biniyor. Ortaya çıkan destek 3√2 cm’lik eş parçalara ayrılırsa kaç parça elde edilir?",
+      "prompt": "Bir taş destek 5∜324 cm, diğeri 4√8 cm uzunluğundadır. Uç uca bağlanırken 2√2 cm’lik bölüm üst üste biniyor. Ortaya çıkan destek 3√2 cm’lik eş parçalara ayrılırsa kaç parça elde edilir?",
       "correctAnswer": "7",
-      "solution": "Toplam görünür uzunluk 5√18 + 4√8 − 2√2 = 15√2 + 8√2 − 2√2 = 21√2 cm. 21√2 ÷ 3√2 = 7 parça.",
-      "hint": "Birleştirilen iki taşın ortak kısmını yalnızca bir kez saymalısın.",
+      "solution": "Toplam görünür uzunluk 5∜324 + 4√8 − 2√2 = 15√2 + 8√2 − 2√2 = 21√2 cm. 21√2 ÷ 3√2 = 7 parça. Kontrol: ∜324 = √18; iki gösterimin değeri aynıdır.",
+      "hint": "Birleştirilen iki taşın ortak kısmını yalnızca bir kez saymalısın. Kök derecesine dikkat et: ∜324 ve √18 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "7",
@@ -32158,7 +32158,7 @@
         "labels": [
           {
             "anchor": "ilk taş desteğin boy ölçüsü",
-            "value": "5√18 cm"
+            "value": "5∜324 cm"
           },
           {
             "anchor": "ikinci desteğin boy ölçüsü",
@@ -32177,7 +32177,7 @@
       },
       "workedExample": {
         "question": "Çözülmüş benzer örnek",
-        "solution": "3√8 + 2√18 − √2 = 6√2 + 6√2 − √2 = 11√2."
+        "solution": "3√8 + 2∜324 − √2 = 6√2 + 6√2 − √2 = 11√2."
       },
       "sourceQuestionId": "F19-Z-01",
       "sourceDifficulty": "Zor"
@@ -32188,10 +32188,10 @@
       "difficulty": "zor",
       "variant": 2,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Platform desteğinin A taşı 4√18 cm, B taşı 3√8 cm uzunluğundadır. Uç uca birleştirilirken 2√2 cm üst üste biniyor. Toplam destek kaç santimetredir?",
+      "prompt": "Platform desteğinin A taşı 4∜324 cm, B taşı 3√8 cm uzunluğundadır. Uç uca birleştirilirken 2√2 cm üst üste biniyor. Toplam destek kaç santimetredir?",
       "correctAnswer": "16√2",
-      "solution": "12√2+6√2−2√2=16√2 cm.",
-      "hint": "Önce √(9d) = 3√d ve √(4d) = 2√d olarak sadeleştir. Örtüşen bölüm bir kez çıkarılır.",
+      "solution": "12√2+6√2−2√2=16√2 cm. Kontrol: ∜324 = √18; iki gösterimin değeri aynıdır.",
+      "hint": "Önce √(9d) = 3√d ve √(4d) = 2√d olarak sadeleştir. Örtüşen bölüm bir kez çıkarılır. Kök derecesine dikkat et: ∜324 ve √18 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "17√2",
@@ -32210,7 +32210,7 @@
         "labels": [
           {
             "anchor": "A taşı",
-            "value": "4√18 cm"
+            "value": "4∜324 cm"
           },
           {
             "anchor": "B taşı",
@@ -32236,10 +32236,10 @@
       "difficulty": "zor",
       "variant": 3,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki destek parçası 4√18 cm ve 3√8 cm’dir. Birleştirmede 3√2 cm örtüşüyor, ayrıca uçtan √2 cm kesiliyor. Son uzunluk kaç santimetredir?",
+      "prompt": "İki destek parçası 4∜324 cm ve 3√8 cm’dir. Birleştirmede 3√2 cm örtüşüyor, ayrıca uçtan √2 cm kesiliyor. Son uzunluk kaç santimetredir?",
       "correctAnswer": "14√2",
-      "solution": "(12+6−3−1)√2=14√2 cm.",
-      "hint": "Önce √(9d) = 3√d ve √(4d) = 2√d olarak sadeleştir. Örtüşen bölüm bir kez çıkarılır.",
+      "solution": "(12+6−3−1)√2=14√2 cm. Kontrol: ∜324 = √18; iki gösterimin değeri aynıdır.",
+      "hint": "Önce √(9d) = 3√d ve √(4d) = 2√d olarak sadeleştir. Örtüşen bölüm bir kez çıkarılır. Kök derecesine dikkat et: ∜324 ve √18 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "15√2",
@@ -32258,7 +32258,7 @@
         "labels": [
           {
             "anchor": "A taşı",
-            "value": "4√18 cm"
+            "value": "4∜324 cm"
           },
           {
             "anchor": "B taşı",
@@ -32288,10 +32288,10 @@
       "difficulty": "zor",
       "variant": 4,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "İki taşın uzunlukları 4√18 cm ve 3√8 cm’dir. Birleşme yerinde 2√2 cm üst üste geliyor. Ortaya çıkan desteğin yarısı kullanılırsa kullanılan uzunluk kaç santimetredir?",
+      "prompt": "İki taşın uzunlukları 4∜324 cm ve 3√8 cm’dir. Birleşme yerinde 2√2 cm üst üste geliyor. Ortaya çıkan desteğin yarısı kullanılırsa kullanılan uzunluk kaç santimetredir?",
       "correctAnswer": "8√2",
-      "solution": "Tam uzunluk 16√2 cm; bunun yarısı 8√2 cm.",
-      "hint": "Önce √(9d) = 3√d ve √(4d) = 2√d olarak sadeleştir. Örtüşen bölüm bir kez çıkarılır.",
+      "solution": "Tam uzunluk 16√2 cm; bunun yarısı 8√2 cm. Kontrol: ∜324 = √18; iki gösterimin değeri aynıdır.",
+      "hint": "Önce √(9d) = 3√d ve √(4d) = 2√d olarak sadeleştir. Örtüşen bölüm bir kez çıkarılır. Kök derecesine dikkat et: ∜324 ve √18 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "9√2",
@@ -32310,7 +32310,7 @@
         "labels": [
           {
             "anchor": "A taşı",
-            "value": "4√18 cm"
+            "value": "4∜324 cm"
           },
           {
             "anchor": "B taşı",
@@ -32340,10 +32340,10 @@
       "difficulty": "zor",
       "variant": 5,
       "learningOutcome": "MAT.9.1.1",
-      "prompt": "Platform desteğinin A taşı 5√27 cm, B taşı 4√12 cm uzunluğundadır. Uç uca birleştirilirken 2√3 cm üst üste biniyor. Toplam destek kaç santimetredir?",
+      "prompt": "Platform desteğinin A taşı 5∜729 cm, B taşı 4√12 cm uzunluğundadır. Uç uca birleştirilirken 2√3 cm üst üste biniyor. Toplam destek kaç santimetredir?",
       "correctAnswer": "21√3",
-      "solution": "15√3+8√3−2√3=21√3 cm.",
-      "hint": "Önce √(9d) = 3√d ve √(4d) = 2√d olarak sadeleştir. Örtüşen bölüm bir kez çıkarılır.",
+      "solution": "15√3+8√3−2√3=21√3 cm. Kontrol: ∜729 = √27; iki gösterimin değeri aynıdır.",
+      "hint": "Önce √(9d) = 3√d ve √(4d) = 2√d olarak sadeleştir. Örtüşen bölüm bir kez çıkarılır. Kök derecesine dikkat et: ∜729 ve √27 aynı sayıyı gösterir.",
       "inputType": "choice",
       "options": [
         "22√3",
@@ -32362,7 +32362,7 @@
         "labels": [
           {
             "anchor": "A taşı",
-            "value": "5√27 cm"
+            "value": "5∜729 cm"
           },
           {
             "anchor": "B taşı",
