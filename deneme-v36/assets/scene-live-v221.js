@@ -2,7 +2,8 @@
 (function(root){
 const api=(function buildAPI(root){
 "use strict";
-const deferred=Object.freeze(["F02","F03","F07","F10","F19"]);
+const specialIds=Object.freeze(["F02","F03","F07","F10","F19"]);
+const deferred=Object.freeze([]);
 const eligible=q=>/^F(?:0[1-9]|1[0-9]|2[01])$/.test(q?.obstacleId||"")&&!deferred.includes(q.obstacleId);
 let active=null;
 function reset(){
@@ -21,7 +22,8 @@ function mount(app,q,s,choices,run,save){
  const fallback=legacy?.mount(app,q,s,choices,run,save);
  if(!fallback||!raw||!eligible(q))return fallback;
  const api=root.MTKSceneLayoutV218,planAPI=root.MTKScenePlanV214,characterAPI=root.MTKCharacterLayerV215,plaqueAPI=root.MTKPlaqueTextV216,matchingAPI=root.MTKF21MatchingV217;
- if(!api||!planAPI?.plan(q)||!characterAPI||!plaqueAPI||(q.obstacleId==="F21"&&!matchingAPI))return fallback;
+ const specialAPI=root.MTKSpecialScenesV222;
+ if(!api||!planAPI?.plan(q)||!characterAPI||!plaqueAPI||(q.obstacleId==="F21"&&!matchingAPI)||(specialIds.includes(q.obstacleId)&&!specialAPI?.describe(q)))return fallback;
  const frame=app.querySelector(".mtk-frame");if(!frame)return fallback;
  const host=document.createElement("div");host.className="mtk-upgrade-host-v221";
  Object.assign(host.style,{position:"fixed",inset:"0",width:"100%",height:"100%",visibility:"hidden",opacity:"0",pointerEvents:"none",zIndex:"1"});
@@ -45,7 +47,7 @@ function mount(app,q,s,choices,run,save){
  function restoreChoices(){if(!matchingTouched)return;matchingTouched=false;for(const {b,disabled,locked} of choiceSnapshot){b.disabled=disabled;b.classList.toggle("match-locked",locked)}}
  function discard(){if(active===ticket){reset();restoreChoices()}}
  ticket.timer=setTimeout(discard,5000);
- api.mountScene({q,ui,sceneAPI:planAPI,characterAPI,plaqueAPI,matchingAPI:scopedMatching,run,save}).then(scene=>{
+ api.mountScene({q,ui,sceneAPI:planAPI,characterAPI,plaqueAPI,matchingAPI:scopedMatching,specialAPI,run,save}).then(scene=>{
   if(active!==ticket||!frame.isConnected){scene?.destroy();if(active===ticket)discard();return}
   if(!scene){discard();return}
   clearTimeout(ticket.timer);ticket.scene=scene;
