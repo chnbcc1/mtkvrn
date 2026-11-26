@@ -104,7 +104,9 @@
   ensureLauncher();
   const prompt=host.querySelector(".mtk-question-region .prompt")||host.querySelector(".prompt");
   if(!prompt)return;
-  prompt.insertBefore(launcher,prompt.firstChild);
+  const navigation=host.querySelector(".mtk-live-v221 .mtk-trail-navigation-v237");
+  if(navigation&&!navigation.hidden)navigation.appendChild(launcher);
+  else prompt.insertBefore(launcher,prompt.firstChild);
   launcher.hidden=false;
  }
  function hide(){
