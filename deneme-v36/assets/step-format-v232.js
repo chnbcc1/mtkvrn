@@ -34,7 +34,7 @@
     if(leading){prev.text+=leading;row.text=row.text.slice(leading.length).trim();}
     if(!row.text)continue;
    }
-   if(row.kind==="math"&&prev?.kind==="text"&&prev.text.length<=38&&/[:：]$/u.test(prev.text)){
+   if(row.kind==="math"&&prev?.kind==="text"&&prev.text.length<=38&&/[:：]$/u.test(prev.text)&&!s.includes(prev.text+"\n")){
     row.text=prev.text+" "+row.text;clean.pop();
    }
    clean.push(row);
