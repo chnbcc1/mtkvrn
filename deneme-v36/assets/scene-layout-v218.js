@@ -41,7 +41,7 @@ function geometry(w,h,iw,ih,{orientation="portrait",band=[0,100],verifiedCropBan
 }
 // v226: original artwork only. Fill width, anchor top, crop bottom only.
 // Reviewed per-scene foreground limits protect machinery and all plaque slots.
-const SAFE_BOTTOM=Object.freeze({F01:74,F02:81,F03:86,F04:77,F05:84,F06:86,F07:83,F08:82,F09:77,F10:78,F11:82,F12:78,F13:77,F14:80,F15:79,F16:78,F17:78,F18:80,F19:83,F20:83,F21:76});
+const SAFE_BOTTOM=Object.freeze({F01:74,F02:81,F03:72,F04:77,F05:84,F06:86,F07:83,F08:82,F09:77,F10:78,F11:82,F12:78,F13:77,F14:80,F15:79,F16:78,F17:78,F18:80,F19:83,F20:83,F21:76});
 function sceneGeometry(w,h,iw,ih,boxes,id){
  if(!finite(w,h,iw,ih)||Math.min(w,h,iw,ih)<=0||!Array.isArray(boxes)||!boxes.length)return null;
  const minBottom=Math.min(100,Math.max(SAFE_BOTTOM[id]||100,...boxes.map(b=>b[1]+b[3]/2+1.5)))/100;
@@ -119,11 +119,12 @@ async function mountScene({q,ui,sceneAPI,characterAPI,plaqueAPI,matchingAPI,spec
   if(plan.matching){
    const match=matchingAPI?.mount({q,plan,plane,readout:ui.readout,choices:ui.choices,run,save,plaqueAPI,documentRef,onWrong});
    if(!match){destroy();return null}clean.push(()=>match.destroy());
-  }else if(q.obstacleId==="F02"||!special?.description?.diagramOnly){
-   const panel=plaqueAPI.mountReadout(ui.readout,plan.labels,{documentRef});
-   if(!panel){destroy();return null}clean.push(()=>panel.destroy());
+  }else if(q.obstacleId==="F02"||q.obstacleId==="F03"||!special?.description?.diagramOnly){
+   // F03 question text contains every given. Never duplicate it below the choices.
+   const panel=q.obstacleId==="F03"?null:plaqueAPI.mountReadout(ui.readout,plan.labels,{documentRef});
+   if(!panel&&q.obstacleId!=="F03"){destroy();return null}if(panel)clean.push(()=>panel.destroy());
    for(const label of plan.labels){
-    const view=plaqueAPI.mount(plane,label,{documentRef,onFit:(l,r)=>panel.update(l,r)});
+    const view=plaqueAPI.mount(plane,label,{documentRef,onFit:(l,r)=>panel?.update(l,r)});
     if(!view){destroy();return null}clean.push(()=>view.destroy());
    }
   }
