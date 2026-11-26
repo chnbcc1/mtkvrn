@@ -61,7 +61,7 @@ function shell(container,{documentRef=typeof document!=="undefined"?document:nul
  question.setAttribute("aria-label","Soru ve seçenekler");question.tabIndex=0;
  for(const part of [content,readout,choices,actions])Object.assign(part.style,{minWidth:"0",flex:"0 0 auto"});
  for(const part of [choices,actions])Object.assign(part.style,{display:"grid",gridTemplateColumns:"repeat(2,minmax(0,1fr))",gap:"6px"});
- question.append(content,readout,choices,actions);el.append(visual,question);container.append(el);
+ const navigation=documentRef.createElement("div");navigation.className="mtk-trail-navigation-v237";navigation.hidden=true;question.append(navigation,content,choices,readout,actions);el.append(visual,question);container.append(el);
  let mode="portrait",callback=null;
  function refresh(){
   const w=el.clientWidth,h=el.clientHeight,p=split(w,h,orientation||((typeof matchMedia==="function")?matchMedia("(orientation:landscape)").matches?"landscape":"portrait":w>h?"landscape":"portrait"));
@@ -74,7 +74,7 @@ function shell(container,{documentRef=typeof document!=="undefined"?document:nul
  const observer=typeof ResizeObserver!=="undefined"?new ResizeObserver(refresh):null;observer?.observe(el);
  if(typeof window!=="undefined")window.addEventListener("resize",refresh);
  refresh();
- return {element:el,visual,question,content,readout,choices,actions,refresh,get orientation(){return mode},onLayout(fn){callback=fn;refresh()},destroy(){observer?.disconnect();if(typeof window!=="undefined")window.removeEventListener("resize",refresh);callback=null;el.remove()}};
+ return {element:el,visual,question,navigation,content,readout,choices,actions,refresh,get orientation(){return mode},onLayout(fn){callback=fn;refresh()},destroy(){observer?.disconnect();if(typeof window!=="undefined")window.removeEventListener("resize",refresh);callback=null;el.remove()}};
 }
 function loadImage(documentRef,src){
  return new Promise(resolve=>{
@@ -119,7 +119,7 @@ async function mountScene({q,ui,sceneAPI,characterAPI,plaqueAPI,matchingAPI,spec
   if(plan.matching){
    const match=matchingAPI?.mount({q,plan,plane,readout:ui.readout,choices:ui.choices,run,save,plaqueAPI,documentRef,onWrong});
    if(!match){destroy();return null}clean.push(()=>match.destroy());
-  }else if(!special?.description?.diagramOnly){
+  }else if(q.obstacleId==="F02"||!special?.description?.diagramOnly){
    const panel=plaqueAPI.mountReadout(ui.readout,plan.labels,{documentRef});
    if(!panel){destroy();return null}clean.push(()=>panel.destroy());
    for(const label of plan.labels){
