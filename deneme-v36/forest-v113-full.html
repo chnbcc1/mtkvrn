@@ -574,6 +574,10 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
   }
 }
 
+/* v237: fallback close is outside the iframe; shared question UI owns the normal return button. */
+#quizOverlay .quizBar{position:relative!important;inset:auto!important;width:100%!important;min-height:36px!important;flex:0 0 auto!important;display:flex!important;justify-content:flex-end!important;padding:3px 8px!important;background:#0a2824!important;pointer-events:auto!important}
+#quizOverlay iframe{height:auto!important;flex:1 1 0!important;min-height:0!important}
+#quizOverlay[data-trail-navigation="1"] .quizBar,#quizOverlay[data-notebook-open="1"] .quizBar{display:none!important}
 </style>
 </head>
 <body>
@@ -757,7 +761,7 @@ function confirmForestRestart(scope){
  action('Evet, Yeniden Başlat',()=>{
   suppressForestExitSave=true;
   if(!window.MTKGameUI.resetProgress(all?'game':'chapter','forest')){suppressForestExitSave=false;return}
-  location.replace(all?'./?scene=home&autostart=1&v=162':'./forest-v113-full.html?resume=1&v=236');
+  location.replace(all?'./?scene=home&autostart=1&v=162':'./forest-v113-full.html?resume=1&v=237');
  });
 }
 /* v139 forest settings; share the same saved preferences as the title screen. */
@@ -1190,8 +1194,9 @@ function prepareQuiz(id){
  const key=quizPreparationKey(id);
  if(quizPrepared.key===key)return quizPrepared.ready;
  quizPrepared={key,id,ready:false};
+ delete $("#quizOverlay").dataset.trailNavigation;
  const qs=new URLSearchParams({embedded:"1",obstacle:id,difficulty,session:RUN_TOKEN});
- $("#quizFrame").src="./forest-v70-quiz.html?v=236&"+qs;
+ $("#quizFrame").src="./forest-v70-quiz.html?v=237&"+qs;
  return false;
 }
 function warmUpcomingQuiz(){
@@ -1204,7 +1209,7 @@ function revealQuizIfMounted(){
  let ready=false;
  try{
   const frameDoc=$("#quizFrame").contentDocument;
-  ready=!!frameDoc?.body?.classList.contains("mtk-approved-active")&&!!frameDoc.querySelector(".mtk-frame");
+  ready=!!frameDoc?.body?.classList.contains("mtk-approved-active")&&!!frameDoc.querySelector(".mtk-frame,.mtk-live-v221");
  }catch(e){}
  // This is only a brief fail-open safety net; the normal path uses a preloaded, ready iframe.
  if(ready)quizPrepared.ready=true;
@@ -1241,6 +1246,12 @@ $("#quizClose").onclick=closeQuiz;
 window.addEventListener("message",e=>{
  if(e.origin!==location.origin||e.source!==$("#quizFrame").contentWindow)return;
  const d=e.data;if(!d||d.source!=="mathverse-v68-quiz"||d.difficulty!==difficulty)return;
+ if(d.event==="trail-navigation-ready"||d.event==="trail-navigation-unavailable"){
+  if(d.obstacle!==quizPrepared.id)return;
+  if(d.event==="trail-navigation-ready")$("#quizOverlay").dataset.trailNavigation="1";else delete $("#quizOverlay").dataset.trailNavigation;
+  return;
+ }
+ if(d.event==="return-to-trail"){if(d.obstacle===quizActiveId&&!$("#quizOverlay").hidden)closeQuiz();return;}
  if(d.event==="ready"||d.event==="load-error"){
   // A hidden, prewarmed iframe may finish before the magnifier is pressed.
   if(d.obstacle!==quizPrepared.id)return;
