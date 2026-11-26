@@ -41,6 +41,31 @@
   }
   return clean;
  }
+
+ // v234: semantic exponent groups and true stacked fractions; source remains unchanged.
+ const supers="⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ⁿᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐᵒᵖʳˢᵗᵘᵛʷˣʸᶻ";
+ const supMap=Object.fromEntries([...supers].map((c,i)=>[c,[..."0123456789+−=()nabcdefghijklmoprstuvwxyz"][i]]));
+ const escapeHTML=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+ const supRE=new RegExp("["+supers+"]+|\\^\\(([^()]+)\\)|\\^([−-]?\\d+)","gu");
+ function powers(input){
+  let out="",at=0;for(const m of String(input).matchAll(supRE)){
+   out+=escapeHTML(input.slice(at,m.index));
+   const exponent=m[1]??m[2]??[...m[0]].map(c=>supMap[c]??c).join("");
+   out+='<sup class="mtk-math-exp">'+escapeHTML(exponent)+'</sup>';at=m.index+m[0].length;
+  }return out+escapeHTML(input.slice(at));
+ }
+ const atom="(?:\\([0-9a-zA-Z√∛∜"+supers+"+−×÷·* .,-]+\\)|(?:[√∛∜]?\\d+(?:[,.]\\d+)?|[a-zA-Z])(?:["+supers+"]+|\\^\\([^()]+\\)|\\^[−-]?\\d+)?)";
+ const fractionRE=new RegExp("(?<![\\p{L}\\p{N}.,])("+atom+")\\s*/\\s*("+atom+")(?![\\p{L}\\p{N}])","gu");
+ function mathHTML(value,{fractions=true}={}){
+  const s=String(value??"");if(!fractions)return powers(s);
+  let out="",at=0;for(const m of s.matchAll(fractionRE)){
+   // Do not reinterpret unit strings such as L/sn or 10²/dk.
+   out+=powers(s.slice(at,m.index));
+   out+='<span class="mtk-math-frac"><span class="mtk-math-num">'+powers(m[1])+'</span><span class="mtk-math-den">'+powers(m[2])+'</span></span>';
+   at=m.index+m[0].length;
+  }return out+powers(s.slice(at));
+ }
+
  function render(element,input,{documentRef,htmlMath}){
   if(!element||!documentRef||typeof htmlMath!=="function")return element;
   element.classList.add("mtk-steps-v232");
@@ -53,5 +78,5 @@
   }
   return element;
  }
- return Object.freeze({lines,render});
+ return Object.freeze({lines,render,mathHTML});
 })();if(typeof module!=="undefined"&&module.exports)module.exports=api;else root.MTKStepFormatV232=api;})(typeof window!=="undefined"?window:globalThis);
