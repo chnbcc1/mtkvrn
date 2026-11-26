@@ -124,7 +124,7 @@ function node(tag,cl,text){const e=document.createElement(tag);if(cl)e.className
 function append(p,...items){items.forEach(x=>p.appendChild(x));return p}
 function btn(text,handler,secondary=false){let b=node("button","btn"+(secondary?" secondary":""),text);b.type="button";b.addEventListener("click",handler);return b}
 function read(key){if(QA_PREVIEW)return null;try{return JSON.parse(localStorage.getItem(key)||"null")}catch(e){return null}}
-function save(){if(QA_PREVIEW)return;try{localStorage.setItem(RUN_KEY,JSON.stringify(run));localStorage.setItem(HISTORY_KEY,JSON.stringify(history))}catch(e){}}
+function save(){if(QA_PREVIEW)return;if(run)run.f01Revision=window.MTKF01RevisionV229.version;try{localStorage.setItem(RUN_KEY,JSON.stringify(run));localStorage.setItem(HISTORY_KEY,JSON.stringify(history))}catch(e){}}
 function htmlMath(str){
  const escaped=String(str??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
  return escaped.replace(/\^\(([^)]+)\)|\^([−-]?\d+)/g,(all,group,plain)=>"<sup>"+(group||plain)+"</sup>");
