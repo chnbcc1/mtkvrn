@@ -18,3 +18,11 @@
 .mtk-live-v221 .mtk-teaching-actions-v224{flex:0 0 auto!important;gap:6px!important;padding-top:5px;border-top:1px solid #c69d5c;align-items:stretch}
 .mtk-live-v221 .mtk-teaching-actions-v224 > :only-child{grid-column:1/-1}
 .mtk-live-v221 .mtk-teaching-actions-v224 .btn{height:100%;min-height:44px!important}
+
+/* v237: the return control occupies its own row in the question half, never the illustration. */
+.mtk-live-v221 .mtk-trail-navigation-v237{display:flex;justify-content:flex-end;flex:0 0 auto;min-width:0;margin:0;padding:0 0 3px;border-bottom:1px solid #d2b685}
+.mtk-live-v221 .mtk-trail-button-v237{appearance:none;border:1px solid #9c875e;border-radius:9px;padding:5px 12px;min-height:34px;background:#225d50;color:#fff6df;font:750 clamp(12px,3.2vmin,15px) system-ui;cursor:pointer;white-space:nowrap}
+.mtk-live-v221 .mtk-trail-button-v237:focus-visible{outline:2px solid #bd8b40;outline-offset:2px}
+.mtk-live-v221 .prompt .mn-launcher{float:right!important;position:relative!important;inset:auto!important;margin:0 0 4px 9px!important;min-width:36px;min-height:36px}
+.mtk-live-v221 .mtk-trail-navigation-v237[hidden]{display:none!important}
+@media(orientation:landscape){.mtk-live-v221 .mtk-trail-button-v237{min-height:32px}}
