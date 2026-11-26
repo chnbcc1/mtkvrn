@@ -85,10 +85,12 @@
    return terms.slice(1).map((s,i)=>({kind:"math",text:terms[i]+" = "+s}));
   });
  }
+ // v236: only instructional text uses the multiplication middle dot.
+ function teachingNotation(input){return String(input??"").replace(/×/gu,"·");}
  function render(element,input,{documentRef,htmlMath}){
   if(!element||!documentRef||typeof htmlMath!=="function")return element;
   element.classList.add("mtk-steps-v232");
-  for(const item of displayRows(input)){
+  for(const item of displayRows(teachingNotation(input))){
    const row=documentRef.createElement("span");
    row.className=item.kind==="math"?"mtk-step-equation-v232":"mtk-step-prose-v232";
    if(item.kind==="math"){const formula=documentRef.createElement("span");formula.className="mtk-step-formula-v234";formula.innerHTML=htmlMath(item.text);row.appendChild(formula);}else row.innerHTML=htmlMath(item.text);
@@ -97,5 +99,5 @@
   }
   return element;
  }
- return Object.freeze({lines,displayRows,render,mathHTML});
+ return Object.freeze({lines,displayRows,render,mathHTML,teachingNotation});
 })();if(typeof module!=="undefined"&&module.exports)module.exports=api;else root.MTKStepFormatV232=api;})(typeof window!=="undefined"?window:globalThis);
