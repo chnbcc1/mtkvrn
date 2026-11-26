@@ -27,6 +27,47 @@
   const correctIndex=q.options.indexOf(q.correctAnswer),options=q.options.map((_,i)=>String(i===correctIndex?answer:distractors.shift()));
   return {...q,prompt,correctAnswer:String(answer),options,hint,solution,visual:{...q.visual,labels:[left,right,{...leftFraction,anchor:"sol kopan"},{...rightFraction,anchor:"sağ kopan"}]},workedExample:{question:"Duvardaki sarmaşığın sol kolunda 4², sağ kolunda 8² tomurcuk vardır. Soldakilerin yarısı ve sağdakilerin dörtte biri kopuyor. Geriye kalan toplam tomurcuk sayısı kaçtır?",solution:"4² = 16 ve 8² = 64. Solda 16 − 8 = 8, sağda 64 − 16 = 48 tomurcuk kalır. Toplam 8 + 48 = 56."},f01Guide:{first:[hint,"Kopan oranlar, geriye kalan oranlar değildir. Her koldaki kopan miktarı bul ve kendi başlangıç miktarından çıkar."],second:["Sol kolda başlangıçta "+left.value+" = "+a+" tomurcuk var. "+a+" ÷ "+x+" = "+lostA+" tomurcuk kopar.","Solda kalan miktarı çıkarma ile bul. Sağ kolda da "+right.value+" değerini hesaplayıp "+rightFraction.value+" oranında kopan tomurcukları çıkar. İki kalan miktarı topla."],solution}};
  }
+ function hardGuide(q){
+ if(q.obstacleId!=="F01"||q.difficulty!=="zor")return q;
+ const data=Object.fromEntries(q.visual.labels.map(l=>[l.anchor,l.value]));
+ const sup=n=>String(n).replace(/[-0-9]/g,c=>c==="-"?"⁻":"⁰¹²³⁴⁵⁶⁷⁸⁹"[Number(c)]);
+ const pow=(s)=>{const m=s.replace(/\s/g,"").match(/^(?:(\d+)·)?(\d+)([⁰¹²³⁴⁵⁶⁷⁸⁹]+)$/u);if(!m)throw Error(q.id+" power");return Number(m[1]||1)*Number(m[2])**Number([...m[3]].map(c=>"⁰¹²³⁴⁵⁶⁷⁸⁹".indexOf(c)).join(""));};
+ const frac=s=>{const m=s.match(/^1\/(\d+)$/);if(!m)throw Error(q.id+" fraction");return Number(m[1]);};
+ let first,second,steps,answer,example;
+ const left=data["sol kol"]||data["sol sarmaşık kolu"],right=data["sağ kol"]||data["sağ sarmaşık kolu"];
+ if(left?.includes("ⁿ")&&right?.includes("ⁿ")){
+  const parse=s=>{const m=s.match(/^(\d+)ⁿ(?:([⁺⁻])([⁰¹²³⁴⁵⁶⁷⁸⁹]+))?$/u);if(!m)throw Error(q.id+" exponent");return [Number(m[1]),(m[2]==="⁻"?-1:1)*Number([...(m[3]||"")].map(c=>"⁰¹²³⁴⁵⁶⁷⁸⁹".indexOf(c)).join(""))]};
+  const [b,x]=parse(left),[b2,y]=parse(right),sum=Number((data.toplam||data["iki kolun ortak sayacı"]).replace(/^Toplam:\s*/,""));
+  if(b!==b2||b<=1)throw Error(q.id+" base");
+  const common=b+"ⁿ",den=b**Math.max(0,-x,-y),num=b**(x+Math.max(0,-x,-y))+b**(y+Math.max(0,-x,-y)),value=sum*den/num;
+  let remaining=value,n=0;while(remaining>1&&remaining%b===0){remaining/=b;n++;}if(remaining!==1)throw Error(q.id+" non-integral power");
+  answer=n;
+  const exp=k=>k===0?common:k>0?common+" × "+b+sup(k):common+" ÷ "+b+sup(-k);
+  const coefficient=k=>k===0?"1":k>0?String(b**k):"1/"+b**(-k);
+  const c1=coefficient(x),c2=coefficient(y),c=den===1?String(num):num+"/"+den;
+  const equation=left+" + "+right+" = "+sum;
+  const expanded=exp(x)+" + "+exp(y)+" = "+sum;
+  const factored=common+" × ("+c1+" + "+c2+") = "+sum;
+  first=["Aynı tabanlı kuvvetlerde üsler toplanırken kuvvetler çarpılır; çıkarılırken bölünür.","Her iki terimi "+common+" cinsinden yaz ve ortak çarpanı parantez dışına al."];
+  second=["Verilen denklem:\n"+equation,"Üslü ifade kuralını uygula:\n"+expanded,"Ortak çarpanı ayır:\n"+factored,"Parantezi hesapla. Denklemin iki tarafında aynı işlemi yaparak "+common+" ifadesini yalnız bırak. Sonra tabanları eşitle."];
+  steps=["Verilen denklem:",equation,"Üslü ifadeleri açalım:",...(x!==0?[left+" = "+exp(x)]:[]),...(y!==0?[right+" = "+exp(y)]:[]),"Denklemde yerine yazalım:",expanded,"Ortak çarpanı parantez dışına alalım:",factored];
+  if(den>1){steps.push(common+" × ("+(b**(x+Math.max(0,-x,-y)))+"/"+den+" + "+(b**(y+Math.max(0,-x,-y)))+"/"+den+") = "+sum);}
+  steps.push(common+" × "+(den===1?c:"("+c+")")+" = "+sum,den===1?"Her iki tarafı "+num+" sayısına bölelim:":"Her iki tarafı "+den+"/"+num+" ile çarpalım:",common+" = "+(den===1?sum+" ÷ "+num:sum+" × "+den+"/"+num),common+" = "+value,"Tabanları eşitleyelim:",value+" = "+b+sup(n),common+" = "+b+sup(n),"Tabanlar eşit olduğu için üsler eşittir:","n = "+n);
+ }else if(data["kol A"]){
+  const p=[data["kol A"],data["kol B"],data["kol C"]],v=p.map(pow),sum=v.reduce((a,b)=>a+b,0),d=frac(data["sol geçit"]);answer=sum/d;
+  first=["Her kolun üslü ifadesini ayrı ayrı hesapla.","Üç miktarı topla; aktarılan pay toplamın 1/"+d+" kadarıdır."];
+  second=["İlk kol:\n"+p[0]+" = "+v[0],"Diğer iki kolu aynı biçimde hesapla, üçünü topla ve toplamı "+d+" sayısına böl."];
+  steps=["Her kolun tomurcuk sayısını hesaplayalım:",...p.map((s,i)=>s+" = "+v[i]),"Üç kolun toplamı:",v.join(" + ")+" = "+sum,"Toplamın 1/"+d+" kadarı aktarıldığı için "+d+" sayısına bölelim:",sum+" ÷ "+d+" = "+answer,"Sol geçide aktarılan: "+answer+" tomurcuk."];
+ }else if(data["sol kopan"]&&data["sağ kopan"]){
+  const l=pow(left),r=pow(right),dl=frac(data["sol kopan"]),dr=frac(data["sağ kopan"]),kl=l/dl,kr=r/dr,rl=l-kl,rr=r-kr;answer=Math.abs(rl-rr);
+  first=["İki kolun üslü başlangıç sayılarını ayrı ayrı hesapla.","Her koldan kendi kopan miktarını çıkar. Son olarak kalanların farkını bul."];
+  second=["Sol kol başlangıcı:\n"+left+" = "+l,"Solda kopan:\n"+l+" ÷ "+dl+" = "+kl,"Sağ kola da aynı yöntemi uygula; kalanları bulduktan sonra büyük miktardan küçüğü çıkar."];
+  steps=["Sol kol başlangıcı:",left+" = "+l,"Solda kopan:",l+" ÷ "+dl+" = "+kl,"Solda kalan:",l+" − "+kl+" = "+rl,"Sağ kol başlangıcı:",right+" = "+r,"Sağda kopan:",r+" ÷ "+dr+" = "+kr,"Sağda kalan:",r+" − "+kr+" = "+rr,"Kalanlar arasındaki fark için büyük sayıdan küçüğü çıkaralım:",Math.max(rl,rr)+" − "+Math.min(rl,rr)+" = "+answer,"Fark: "+answer+" tomurcuk."];
+ }else throw Error(q.id+" unsupported hard type");
+ if(String(answer)!==q.correctAnswer)throw Error(q.id+" computed answer mismatch "+answer);
+ const solution=steps.join("\n");
+ return {...q,hint:first[0],solution,f01Guide:{first,second,solution},f01AlgebraRevision:"v233"};
+}
  function revise(q){
   if(q.obstacleId!=="F01")return q;
   if(q.f01Revision===version)return q;
@@ -37,6 +78,7 @@
    n={...n,...replacement,visual:{...q.visual,labels:[{anchor:"sabah",value:"3²"},{anchor:"akşam_büyüme",value:"×3³"}]}};
   }
   if(lossIds.includes(q.id))n=reviseLoss(n);
+  if(n.difficulty==="zor")n=hardGuide(n);
   return n;
  }
  function apply(bank){
