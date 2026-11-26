@@ -12,6 +12,6 @@ console.log('PASS v222',(function checks(special,bank,check){
  class Element{constructor(){this.children=[];this.style={};this.attrs={};this.parent=null;this.textContent=""}append(...xs){for(const x of xs){x.parent=this;this.children.push(x)}}setAttribute(k,v){this.attrs[k]=v}remove(){if(this.parent){this.parent.children=this.parent.children.filter(x=>x!==this);this.parent=null}}}
  const doc={createElement:()=>new Element(),createElementNS:()=>new Element()};
  let rendered=0;
- for(const q of bank.questions.filter(q=>special.ids.includes(q.obstacleId))){const plane=new Element(),readout=new Element(),m=special.mount({q,plane,readout,documentRef:doc});check(m&&readout.children.length===1,q.id+" mount");m.destroy();check(!plane.children.length&&!readout.children.length,q.id+" cleanup");rendered++}
+ for(const q of bank.questions.filter(q=>special.ids.includes(q.obstacleId))){const plane=new Element(),readout=new Element(),m=special.mount({q,plane,readout,documentRef:doc});check(m&&readout.children.length===(["F02","F03"].includes(q.obstacleId)?0:1),q.id+" mount");if(q.obstacleId==="F03")check(m.description.diagramOnly===false,q.id+" plaques active");m.destroy();check(!plane.children.length&&!readout.children.length,q.id+" cleanup");rendered++}
  return {count,labels,diagramOnly,rendered,modes};
 })(special,bank,(x,m)=>assert.ok(x,m)));
