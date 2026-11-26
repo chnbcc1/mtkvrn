@@ -6,7 +6,7 @@ console.log('PASS v225',(function verify(html,notebook,qa,bank,check){
  const functions=[line(html,"function read(key)"),line(html,"function save()"),report].join("\n");
  let cases=0;
  for(const preview of [true,false]){
-  let reads=0,writes=0,events=[];const run={taskWrong:2,awaiting:false},storage={getItem(){reads++;return '{"old":true}'},setItem(){writes++}},window={parent:{postMessage(msg){events.push(msg)}}};
+  let reads=0,writes=0,events=[];const run={taskWrong:2,awaiting:false},storage={getItem(){reads++;return '{"old":true}'},setItem(){writes++}},window={MTKF01RevisionV229:{version:"f01-v229"},parent:{postMessage(msg){events.push(msg)}}};
   const api=new Function("QA_PREVIEW","localStorage","run","history","RUN_KEY","HISTORY_KEY","window","location",functions+"\nreturn {read,save,reportSolved}")(preview,storage,run,{},"run","history",window,{origin:"https://test.example"});
   const read=api.read("history");api.save();api.reportSolved({id:"F01"});
   check(preview?reads===0&&writes===0&&read===null&&!run.awaiting&&events[0].source==="mtk-qa-v225":reads===1&&writes===4&&read.old&&run.awaiting&&events[0].source==="mathverse-v68-quiz","preview storage and event "+preview);cases++;
