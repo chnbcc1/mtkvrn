@@ -23,7 +23,23 @@
    if(/^[\-+−*/=<>≤≥≠≈→×÷·]+$/u.test(text))continue;
    prose(s.slice(pos,match.index));result.push({kind:"math",text});pos=match.index+match[0].length;
   }
-  prose(s.slice(pos));return result;
+  prose(s.slice(pos));
+  // A label and its equation form one row; punctuation never occupies a row alone.
+  const clean=[];
+  for(const item of result){
+   let row={...item};
+   const prev=clean[clean.length-1];
+   if(prev&&row.kind==="text"){
+    const leading=row.text.match(/^[.,;:!?]+/u)?.[0];
+    if(leading){prev.text+=leading;row.text=row.text.slice(leading.length).trim();}
+    if(!row.text)continue;
+   }
+   if(row.kind==="math"&&prev?.kind==="text"&&prev.text.length<=38&&/[:：]$/u.test(prev.text)){
+    row.text=prev.text+" "+row.text;clean.pop();
+   }
+   clean.push(row);
+  }
+  return clean;
  }
  function render(element,input,{documentRef,htmlMath}){
   if(!element||!documentRef||typeof htmlMath!=="function")return element;
