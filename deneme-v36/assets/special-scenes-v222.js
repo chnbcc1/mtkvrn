@@ -55,6 +55,8 @@ function describe(q){
 function mount({q,plane,readout,documentRef}){
  const d=describe(q);if(!d||!plane||!readout||!documentRef)return null;
  const doc=documentRef,svgNS="http://www.w3.org/2000/svg";
+ // F02 prompts contain all givens. The existing scene plaques show the same data; no duplicate schematic card.
+ if(d.id==="F02")return {destroy(){},description:{...d,diagramOnly:false}};
  const panel=doc.createElement("section");panel.className="mtk-special-v222";
  Object.assign(panel.style,{border:"1px solid #ba9458",borderRadius:"9px",padding:"7px",fontSize:"14px",background:"#fff9e7",color:"#33291b"});
  const h=doc.createElement("strong");h.textContent=d.title;panel.append(h);
