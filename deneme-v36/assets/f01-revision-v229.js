@@ -42,17 +42,17 @@
   const common=b+"ⁿ",den=b**Math.max(0,-x,-y),num=b**(x+Math.max(0,-x,-y))+b**(y+Math.max(0,-x,-y)),value=sum*den/num;
   let remaining=value,n=0;while(remaining>1&&remaining%b===0){remaining/=b;n++;}if(remaining!==1)throw Error(q.id+" non-integral power");
   answer=n;
-  const exp=k=>k===0?common:k>0?common+" × "+b+sup(k):common+" ÷ "+b+sup(-k);
+  const exp=k=>k===0?common:k>0?common+" · "+b+(k===1?"":sup(k)):common+"/"+b+(-k===1?"":sup(-k));
   const coefficient=k=>k===0?"1":k>0?String(b**k):"1/"+b**(-k);
   const c1=coefficient(x),c2=coefficient(y),c=den===1?String(num):num+"/"+den;
   const equation=left+" + "+right+" = "+sum;
   const expanded=exp(x)+" + "+exp(y)+" = "+sum;
-  const factored=common+" × ("+c1+" + "+c2+") = "+sum;
-  first=["Aynı tabanlı kuvvetlerde üsler toplanırken kuvvetler çarpılır; çıkarılırken bölünür.","Her iki terimi "+common+" cinsinden yaz ve ortak çarpanı parantez dışına al."];
-  second=["Verilen denklem:\n"+equation,"Üslü ifade kuralını uygula:\n"+expanded,"Ortak çarpanı ayır:\n"+factored,"Parantezi hesapla. Denklemin iki tarafında aynı işlemi yaparak "+common+" ifadesini yalnız bırak. Sonra tabanları eşitle."];
+  const factored=common+" · ("+c1+" + "+c2+") = "+sum;
+  first=["Tabanları aynı olan üslü sayılar çarpılırken üsleri toplanır, bölünürken çıkarılır.","Her iki terimi "+common+" cinsinden yaz ve ortak çarpanı parantez dışına al."];
+  second=["Verilen denklem:\n"+equation,"Üslü ifade kuralını uygula:\n"+(x!==0?left+" = "+exp(x)+"\n":"")+(y!==0?right+" = "+exp(y)+"\n":"")+expanded,"Ortak çarpanı ayır:\n"+factored,"Parantezi hesapla. Denklemin iki tarafında aynı işlemi yaparak "+common+" ifadesini yalnız bırak. Sonra tabanları eşitle."];
   steps=["Verilen denklem:",equation,"Üslü ifadeleri açalım:",...(x!==0?[left+" = "+exp(x)]:[]),...(y!==0?[right+" = "+exp(y)]:[]),"Denklemde yerine yazalım:",expanded,"Ortak çarpanı parantez dışına alalım:",factored];
-  if(den>1){steps.push(common+" × ("+(b**(x+Math.max(0,-x,-y)))+"/"+den+" + "+(b**(y+Math.max(0,-x,-y)))+"/"+den+") = "+sum);}
-  steps.push(common+" × "+(den===1?c:"("+c+")")+" = "+sum,den===1?"Her iki tarafı "+num+" sayısına bölelim:":"Her iki tarafı "+den+"/"+num+" ile çarpalım:",common+" = "+(den===1?sum+" ÷ "+num:sum+" × "+den+"/"+num),common+" = "+value,"Tabanları eşitleyelim:",value+" = "+b+sup(n),common+" = "+b+sup(n),"Tabanlar eşit olduğu için üsler eşittir:","n = "+n);
+  if(den>1){steps.push("Paydaları eşitleyelim:",b+" = "+(b*den)+"/"+den,common+" · ("+(b**(x+Math.max(0,-x,-y)))+"/"+den+" + "+(b**(y+Math.max(0,-x,-y)))+"/"+den+") = "+sum);}
+  steps.push(common+" · "+(den===1?c:"("+c+")")+" = "+sum,den===1?"Her iki tarafı "+num+" sayısına bölelim:":"Her iki tarafı "+den+"/"+num+" ile çarpalım:",common+" = "+(den===1?sum+" ÷ "+num:sum+" · "+den+"/"+num),common+" = "+value,"Tabanları eşitleyelim:",value+" = "+b+sup(n),common+" = "+b+sup(n),"Tabanlar eşit olduğu için üsler eşittir:","n = "+n);
  }else if(data["kol A"]){
   const p=[data["kol A"],data["kol B"],data["kol C"]],v=p.map(pow),sum=v.reduce((a,b)=>a+b,0),d=frac(data["sol geçit"]);answer=sum/d;
   first=["Her kolun üslü ifadesini ayrı ayrı hesapla.","Üç miktarı topla; aktarılan pay toplamın 1/"+d+" kadarıdır."];
