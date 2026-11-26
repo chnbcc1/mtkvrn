@@ -10,3 +10,11 @@
 .mtk-live-v221 .mtk-teaching-step{margin:6px 0;line-height:1.45;font-size:14px}
 .mtk-live-v221 .mtk-example-data p{margin:3px 0}
 .mtk-live-v221 [hidden]{display:none!important}
+
+/* v224: the teaching card takes the full question half, with fixed actions
+   and independently scrollable explanation. The visual half stays unchanged. */
+.mtk-live-v221.mtk-teaching-open-v224 > div:nth-child(2){overflow:hidden!important;min-height:0;padding:8px!important;gap:6px!important}
+.mtk-live-v221 .mtk-teaching-body-v224{flex:1 1 0!important;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;touch-action:pan-y;padding:2px 3px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.mtk-live-v221 .mtk-teaching-actions-v224{flex:0 0 auto!important;gap:6px!important;padding-top:5px;border-top:1px solid #c69d5c;align-items:stretch}
+.mtk-live-v221 .mtk-teaching-actions-v224 > :only-child{grid-column:1/-1}
+.mtk-live-v221 .mtk-teaching-actions-v224 .btn{height:100%;min-height:44px!important}
