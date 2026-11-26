@@ -69,12 +69,13 @@ function mount(plane,label,{documentRef=typeof document!=="undefined"?document:n
   const tilted=rot&&Math.abs(Math.abs(rot)-90)>1;
   const ww=tilted?rect.height*.80:rot?rect.height:rect.width;
   const hh=tilted?rect.width*.45:rot?rect.width:rect.height;
-  const measure=(s,size)=>{ctx.font="700 "+size+"px Arial, system-ui, sans-serif";return ctx.measureText(s).width;};
+  const probe=documentRef.createElement("span");Object.assign(probe.style,{position:"absolute",visibility:"hidden",whiteSpace:"pre",width:"max-content",fontFamily:"Arial, system-ui, sans-serif",fontWeight:"700",lineHeight:String(LINE)});el.appendChild(probe);
+  const measure=(s,size)=>{ctx.font="700 "+size+"px Arial, system-ui, sans-serif";if(!root.MTKStepFormatV232||!/[⁰¹²³⁴⁵⁶⁷⁸⁹ⁿᵃ⁺⁻^]/u.test(s))return ctx.measureText(s).width;probe.style.fontSize=size+"px";probe.innerHTML=root.MTKStepFormatV232.mathHTML(s,{fractions:false});return Math.max(ctx.measureText(s).width,probe.getBoundingClientRect().width);};
   const opts={maxSize:Math.max(12,Math.min(32,plane.clientWidth*.075))};
   const r=label.caption?fitCaption(label.caption,label.displayValue??label.value,ww,hh,measure,{...opts,forceStack:!!label.forceStack}):fit(label.value,ww,hh,measure,opts);
-  if(!r)return null;
-  span.style.fontSize=r.size+"px";span.style.lineHeight=r.stacked?"1.10":String(LINE);span.textContent=r.lines.join("\n");
-  if(r.stacked){const heading=documentRef.createElement("span"),value=documentRef.createElement("span");heading.textContent=r.caption;value.textContent=r.value;Object.assign(heading.style,{display:"block",fontSize:r.captionSize+"px",color:"#f1d397",lineHeight:"1.10"});Object.assign(value.style,{display:"block",fontSize:r.size+"px",lineHeight:"1.10"});span.replaceChildren(heading,value)}
+  probe.remove();if(!r)return null;
+  span.style.fontSize=r.size+"px";span.style.lineHeight=r.stacked?"1.10":String(LINE);span.innerHTML=r.lines.map(s=>root.MTKStepFormatV232?.mathHTML(s,{fractions:false})??String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")).join("\n");
+  if(r.stacked){const heading=documentRef.createElement("span"),value=documentRef.createElement("span");heading.textContent=r.caption;if(root.MTKStepFormatV232)value.innerHTML=root.MTKStepFormatV232.mathHTML(r.value,{fractions:false});else value.textContent=r.value;Object.assign(heading.style,{display:"block",fontSize:r.captionSize+"px",color:"#f1d397",lineHeight:"1.10"});Object.assign(value.style,{display:"block",fontSize:r.size+"px",lineHeight:"1.10"});span.replaceChildren(heading,value)}
   el.dataset.readable=String(r.readable);
   if(typeof onFit==="function")onFit(label,r);
   return r;
@@ -106,7 +107,7 @@ function mountReadout(container,labels,{documentRef=typeof document!=="undefined
   results.set(label.slot,result);
   const rows=unreadableRows(labels,results);
   list.replaceChildren();panel.hidden=rows.length===0;
-  for(const row of rows){const k=documentRef.createElement("dt"),v=documentRef.createElement("dd");k.textContent=row.anchor;v.textContent=row.value;Object.assign(k.style,{overflowWrap:"anywhere"});Object.assign(v.style,{margin:"0",fontWeight:"700",whiteSpace:"normal",overflowWrap:"anywhere"});list.append(k,v);}
+  for(const row of rows){const k=documentRef.createElement("dt"),v=documentRef.createElement("dd");k.textContent=row.anchor;if(root.MTKStepFormatV232)v.innerHTML=root.MTKStepFormatV232.mathHTML(row.value);else v.textContent=row.value;Object.assign(k.style,{overflowWrap:"anywhere"});Object.assign(v.style,{margin:"0",fontWeight:"700",whiteSpace:"normal",overflowWrap:"anywhere"});list.append(k,v);}
  }
  return {element:panel,update,destroy(){panel.remove();}};
 }
