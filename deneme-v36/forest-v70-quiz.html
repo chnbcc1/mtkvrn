@@ -115,7 +115,7 @@ sup{font-size:.7em;line-height:0;vertical-align:super}
 .mtk-steps-v232 .mtk-step-equation-v232 sup{white-space:nowrap!important}
 .mtk-step-formula-v234{display:inline-block;min-width:100%;width:max-content;text-align:center;white-space:nowrap;}
 .mtk-steps-v232 .mtk-step-equation-v232{text-align:left;padding:.4em .35em;line-height:1.6;font-family:"STIX Two Math","Cambria Math","Times New Roman",serif;font-size:1.12em;font-weight:600;}
-</style><link rel="stylesheet" href="./assets/math-notebook-v187.css?v=189"><link rel="stylesheet" href="./assets/math-notebook-forest-v186.css?v=188"><link rel="stylesheet" href="./assets/math-notebook-premium-v190.css?v=190"><link rel="stylesheet" href="./assets/math-notebook-ui-v191.css?v=191"><link rel="stylesheet" href="./assets/math-notebook-fix-v192.css?v=192"><link rel="stylesheet" href="./assets/math-notebook-iphone-v193.css?v=193"><link rel="stylesheet" href="./assets/math-notebook-retina-v194.css?v=194"><link rel="stylesheet" href="./assets/math-notebook-question-v195.css?v=195"><link rel="stylesheet" href="./assets/math-notebook-layout-v196.css?v=196"><script src="./assets/math-notebook-v187.js?v=225"></script><script src="./assets/quiz-approved-frames-v145.js?v=145"></script><script src="./assets/quiz-f03-machine-v145.js?v=145"></script><script src="./assets/quiz-research-objects-v148.js?v=148"></script><script src="./assets/f01-approved-v159.js?v=163"></script><script src="./assets/f02-approved-v165.js?v=210"></script><script src="./assets/f03-approved-v197.js?v=203"></script><script src="./assets/f04-approved-v211.js?v=211"></script><link rel="stylesheet" href="./assets/scene-live-v221.css?v=237"><script src="./assets/f01-revision-v229.js?v=235"></script><script src="./assets/scene-plan-v214.js?v=229"></script><script src="./assets/character-layer-v215.js?v=226"></script><script src="./assets/plaque-text-v216.js?v=235"></script><script src="./assets/f21-matching-v217.js?v=224"></script><script src="./assets/special-scenes-v222.js?v=237"></script><script src="./assets/scene-layout-v218.js?v=237"></script><script src="./assets/scene-live-v221.js?v=237"></script><script src="./assets/teaching-v219.js?v=235"></script><script src="./assets/step-format-v232.js?v=236"></script><script src="./assets/approved-quiz-ui-v145.js?v=224"></script><script src="./assets/quiz-universal-layout-v176.js?v=179"></script><script src="./forest-levels-v65.js?v=65"></script></head>
+</style><link rel="stylesheet" href="./assets/math-notebook-v187.css?v=189"><link rel="stylesheet" href="./assets/math-notebook-forest-v186.css?v=188"><link rel="stylesheet" href="./assets/math-notebook-premium-v190.css?v=190"><link rel="stylesheet" href="./assets/math-notebook-ui-v191.css?v=191"><link rel="stylesheet" href="./assets/math-notebook-fix-v192.css?v=192"><link rel="stylesheet" href="./assets/math-notebook-iphone-v193.css?v=193"><link rel="stylesheet" href="./assets/math-notebook-retina-v194.css?v=194"><link rel="stylesheet" href="./assets/math-notebook-question-v195.css?v=195"><link rel="stylesheet" href="./assets/math-notebook-layout-v196.css?v=196"><script src="./assets/math-notebook-v187.js?v=225"></script><script src="./assets/quiz-approved-frames-v145.js?v=145"></script><script src="./assets/quiz-f03-machine-v145.js?v=145"></script><script src="./assets/quiz-research-objects-v148.js?v=148"></script><script src="./assets/f01-approved-v159.js?v=163"></script><script src="./assets/f02-approved-v165.js?v=210"></script><script src="./assets/f02-revision-v238.js?v=238"></script><script src="./assets/f03-approved-v197.js?v=203"></script><script src="./assets/f04-approved-v211.js?v=211"></script><link rel="stylesheet" href="./assets/scene-live-v221.css?v=237"><script src="./assets/f01-revision-v229.js?v=235"></script><script src="./assets/scene-plan-v214.js?v=238"></script><script src="./assets/character-layer-v215.js?v=226"></script><script src="./assets/plaque-text-v216.js?v=235"></script><script src="./assets/f21-matching-v217.js?v=224"></script><script src="./assets/special-scenes-v222.js?v=238"></script><script src="./assets/scene-layout-v218.js?v=237"></script><script src="./assets/scene-live-v221.js?v=237"></script><script src="./assets/teaching-v219.js?v=235"></script><script src="./assets/step-format-v232.js?v=236"></script><script src="./assets/approved-quiz-ui-v145.js?v=224"></script><script src="./assets/quiz-universal-layout-v176.js?v=179"></script><script src="./forest-levels-v65.js?v=65"></script></head>
 <body><main><nav><a href="./forest-v70-full.html?v=69">‹ Orman Patikasına dön</a><a href="./map-v70.html?v=69">🗺️ Macera Haritası</a></nav>
 <h1>🌲 Orman Patikası</h1><p class="subtitle">21 engelli matematik macerası · dört şıklı sorular · MAT.9.1.1 · Üslü ve köklü gösterimler. Dört seçenek arasından karar ver. Yanlışta ipucu, örnek çözüm ve pekiştirme adımları seni yönlendirecek. Fiziksel engellerin sahne entegrasyonu ayrı geliştirilir.</p>
 <div id="step" class="step" hidden></div><div id="bar" class="bar" hidden><span id="fill"></span></div><section id="app" class="panel" aria-live="polite"></section>
@@ -141,7 +141,7 @@ function node(tag,cl,text){const e=document.createElement(tag);if(cl)e.className
 function append(p,...items){items.forEach(x=>p.appendChild(x));return p}
 function btn(text,handler,secondary=false){let b=node("button","btn"+(secondary?" secondary":""),text);b.type="button";b.addEventListener("click",handler);return b}
 function read(key){if(QA_PREVIEW)return null;try{return JSON.parse(localStorage.getItem(key)||"null")}catch(e){return null}}
-function save(){if(QA_PREVIEW)return;if(run){run.f01Revision=window.MTKF01RevisionV229.version;run.f01LossRevision=window.MTKF01RevisionV229.lossVersion;}try{localStorage.setItem(RUN_KEY,JSON.stringify(run));localStorage.setItem(HISTORY_KEY,JSON.stringify(history))}catch(e){}}
+function save(){if(QA_PREVIEW)return;if(run){run.f02Revision="v238";run.f01Revision=window.MTKF01RevisionV229.version;run.f01LossRevision=window.MTKF01RevisionV229.lossVersion;}try{localStorage.setItem(RUN_KEY,JSON.stringify(run));localStorage.setItem(HISTORY_KEY,JSON.stringify(history))}catch(e){}}
 function htmlMath(str){
  return window.MTKStepFormatV232.mathHTML(str);
 }
@@ -482,6 +482,7 @@ function teachingSecondHint(q,defaultHint){
  ];
 }
 function teachingSolutionSteps(q,s){
+ if(q?.f02Revision==="v238")return q.solution.split("\n").filter(Boolean);
  if(q?.f01AlgebraRevision==="v233")return q.solution.split("\n").filter(Boolean);
   if(q?.obstacleId==="F03"&&Array.isArray(q.f03Guide?.solution))return q.f03Guide.solution;
  const growth=f01Growth(q);
@@ -664,7 +665,7 @@ async function init(){
  const standalone=EMBED&&window.top===window.self;
  const preview=QA_PREVIEW;
  if(standalone&&!preview){location.replace("./menu-v116.html?v=152");return}
- try{const r=await fetch(BANK_URL,{cache:"force-cache"});if(!r.ok)throw Error("630 soruluk kaynak dosyası yüklenemedi");bank=window.MTKF01RevisionV229.apply(await r.json());
+ try{const r=await fetch(BANK_URL,{cache:"force-cache"});if(!r.ok)throw Error("630 soruluk kaynak dosyası yüklenemedi");bank=window.MTKF02RevisionV238.apply(window.MTKF01RevisionV229.apply(await r.json()));
  if(bank.schema!=="forest-question-bank-v147"||bank.questions.length!==630||bank.obstacles.length!==21||bank.questionsPerObstaclePerDifficulty!==10||typeof window.FOREST_LEVELS_V65!=="function")throw Error("Onaylı 630 soruluk havuz doğrulanamadı");
  const exact=new Map();
  for(const item of bank.questions){
@@ -674,7 +675,7 @@ async function init(){
  }
  for(const id of bank.playOrder)for(const difficulty of ["kolay","orta","zor"])if(exact.get(id+"|"+difficulty)!==10)throw Error("Eksik veya fazla soru: "+id+" / "+difficulty);
  const old=read(HISTORY_KEY);if(old)history=old;
- const saved=(preview||FRESH_ATTEMPT)?null:window.MTKF01RevisionV229.migrateRun(read(RUN_KEY));
+ const saved=(preview||FRESH_ATTEMPT)?null:window.MTKF02RevisionV238.migrateRun(window.MTKF01RevisionV229.migrateRun(read(RUN_KEY)));
  if(EMBED){
   const idx=bank.playOrder.indexOf(FORCED);
   if(idx<0||!["kolay","orta","zor"].includes(FORCED_DIFFICULTY))throw Error("Geçersiz engel veya zorluk seviyesi");
