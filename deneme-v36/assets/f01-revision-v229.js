@@ -11,6 +11,22 @@
  workedExample:{question:"Duvardaki sarmaşıkta 2³ tomurcuk vardır. Sayı 2⁴ katına çıkarsa sonuç 2'nin hangi kuvvetidir?",solution:"2³ · 2⁴ = 2³⁺⁴ = 2⁷."},
  f01Guide:{first:["Tabanları aynı olan kuvvetleri çarparken tabanı koru ve üsleri topla.","Sabahki miktar ile büyüme çarpanının tabanları 3'tür."],second:["3² · 3³ işleminde taban 3 olarak kalır.","Yeni üssü bulmak için 2 ile 3'ü topla. Sonucu üslü biçimde seçeneklerle karşılaştır."],solution:"Sabah 3² tomurcuk vardır. Akşama kadar 3³ katına çıkar: 3² · 3³ = 3²⁺³ = 3⁵. Aynı tabanlı kuvvetler çarpılırken taban korunur, üsler toplanır."}
  };
+ const lossVersion="f01-loss-v231",lossIds=["F01-O-02","F01-O-05","F01-O-08"];
+ function reviseLoss(q){
+  const [left,right,leftFraction,rightFraction]=q.visual.labels;
+  if(leftFraction.anchor!=="sol korunma"||rightFraction.anchor!=="sağ korunma")throw Error("Kopan tomurcuk kaynak verisi: "+q.id);
+  const power=s=>{const m=s.match(/^(\d+)([⁰¹²³⁴⁵⁶⁷⁸⁹]+)$/u);return Number(m[1])**Number([...m[2]].map(c=>"⁰¹²³⁴⁵⁶⁷⁸⁹".indexOf(c)).join(""))};
+  const denominator=s=>Number(s.split("/")[1]);
+  const a=power(left.value),b=power(right.value),x=denominator(leftFraction.value),y=denominator(rightFraction.value);
+  const lostA=a/x,lostB=b/y,remainingA=a-lostA,remainingB=b-lostB,answer=remainingA+remainingB;
+  const prompt=q.prompt.replace(/korunuyor\./u,"kopuyor.").replace(/Korunan toplam tomurcuk sayısı kaçtır\?/u,"Geriye kalan toplam tomurcuk sayısı kaçtır?");
+  const hint="Önce "+left.value+" ve "+right.value+" üslü ifadelerinin değerlerini hesapla. Kopan tomurcukları başlangıç miktarlarından çıkarmalısın.";
+  const solution="Sol kol: "+left.value+" = "+a+". Kopan: "+a+" ÷ "+x+" = "+lostA+", kalan: "+a+" − "+lostA+" = "+remainingA+". Sağ kol: "+right.value+" = "+b+". Kopan: "+b+" ÷ "+y+" = "+lostB+", kalan: "+b+" − "+lostB+" = "+remainingB+". Geriye kalan toplam: "+remainingA+" + "+remainingB+" = "+answer+" tomurcuk.";
+  const distractors=[lostA+lostB,a+b-lostA,a+b-lostB].filter((n,i,all)=>n!==answer&&all.indexOf(n)===i);
+  for(let offset=1;distractors.length<3;offset++)if(!distractors.includes(answer+offset))distractors.push(answer+offset);
+  const correctIndex=q.options.indexOf(q.correctAnswer),options=q.options.map((_,i)=>String(i===correctIndex?answer:distractors.shift()));
+  return {...q,prompt,correctAnswer:String(answer),options,hint,solution,visual:{...q.visual,labels:[left,right,{...leftFraction,anchor:"sol kopan"},{...rightFraction,anchor:"sağ kopan"}]},workedExample:{question:"Duvardaki sarmaşığın sol kolunda 4², sağ kolunda 8² tomurcuk vardır. Soldakilerin yarısı ve sağdakilerin dörtte biri kopuyor. Geriye kalan toplam tomurcuk sayısı kaçtır?",solution:"4² = 16 ve 8² = 64. Solda 16 − 8 = 8, sağda 64 − 16 = 48 tomurcuk kalır. Toplam 8 + 48 = 56."},f01Guide:{first:[hint,"Kopan oranlar, geriye kalan oranlar değildir. Her koldaki kopan miktarı bul ve kendi başlangıç miktarından çıkar."],second:["Sol kolda başlangıçta "+left.value+" = "+a+" tomurcuk var. "+a+" ÷ "+x+" = "+lostA+" tomurcuk kopar.","Solda kalan miktarı çıkarma ile bul. Sağ kolda da "+right.value+" değerini hesaplayıp "+rightFraction.value+" oranında kopan tomurcukları çıkar. İki kalan miktarı topla."],solution}};
+ }
  function revise(q){
   if(q.obstacleId!=="F01")return q;
   if(q.f01Revision===version)return q;
@@ -20,6 +36,7 @@
    if(q.correctAnswer!=="45"||!q.prompt.includes("kuzey dalında"))throw Error("F01-K-09 kaynak sürümü beklenenden farklı");
    n={...n,...replacement,visual:{...q.visual,labels:[{anchor:"sabah",value:"3²"},{anchor:"akşam_büyüme",value:"×3³"}]}};
   }
+  if(lossIds.includes(q.id))n=reviseLoss(n);
   return n;
  }
  function apply(bank){
@@ -33,13 +50,15 @@
   return {caption,displayValue,...(l.anchor==="akşam_büyüme"?{forceStack:true}:{})};
  }
  function migrateRun(run){
-  if(!run||run.f01Revision===version)return run;
+  if(!run)return run;
+  const oldQuestion=run.f01Revision!==version,oldLoss=run.f01LossRevision!==lossVersion;
+  if(!oldQuestion&&!oldLoss)return run;
   const id=run.remediationId||run.practiceId||run.activeId;
   // Do not revoke earned completion or change accumulated task errors.
-  if(id==="F01-K-09"&&!run.awaiting&&!run.stageCorrect){
+  if(((oldQuestion&&id==="F01-K-09")||(oldLoss&&lossIds.includes(id)))&&!run.awaiting&&!run.stageCorrect){
    Object.assign(run,{stage:0,wrong:0,wrongChoices:[],revealed:false,helpView:false,feedback:""});
   }
-  run.f01Revision=version;return run;
+  run.f01Revision=version;run.f01LossRevision=lossVersion;return run;
  }
- return {version,apply,revise,label,migrateRun};
+ return {version,lossVersion,apply,revise,label,migrateRun};
 })();if(typeof module!=="undefined"&&module.exports)module.exports=api;else root.MTKF01RevisionV229=api;})(typeof window!=="undefined"?window:globalThis);
