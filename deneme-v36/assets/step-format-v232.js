@@ -58,7 +58,9 @@
  const fractionRE=new RegExp("(?<![\\p{L}\\p{N}.,])("+atom+")\\s*/\\s*("+atom+")(?![\\p{L}\\p{N}])","gu");
  function mathHTML(value,{fractions=true}={}){
   const s=String(value??"");if(!fractions)return powers(s);
+  const exponentRanges=[...s.matchAll(/\^\([^()]+\)/g)].map(m=>[m.index,m.index+m[0].length]);
   let out="",at=0;for(const m of s.matchAll(fractionRE)){
+   if(exponentRanges.some(([start,end])=>m.index>start&&m.index<end))continue;
    // Do not reinterpret unit strings such as L/sn or 10²/dk.
    out+=powers(s.slice(at,m.index));
    out+='<span class="mtk-math-frac"><span class="mtk-math-num">'+powers(m[1])+'</span><span class="mtk-math-den">'+powers(m[2])+'</span></span>';
@@ -66,17 +68,26 @@
   }return out+powers(s.slice(at));
  }
 
+ function displayRows(input){
+  return lines(input).flatMap(row=>{
+   // Break a pure chained equality into consecutive complete equations; do not split prose or inequality statements.
+   if(row.kind!=="math"||!/^[-+−0-9⁰¹²³⁴⁵⁶⁷⁸⁹ⁿᵃ⁺⁻√∛∜a-zA-Z×÷·*/=^()[\]{}|%., \t]+$/u.test(row.text)||/(?<![\d])[a-zA-Z]{2,}/u.test(row.text))return [row];
+   const terms=row.text.split("=").map(s=>s.trim());
+   if(terms.length<3||terms.some(s=>!s))return [row];
+   return terms.slice(1).map((s,i)=>({kind:"math",text:terms[i]+" = "+s}));
+  });
+ }
  function render(element,input,{documentRef,htmlMath}){
   if(!element||!documentRef||typeof htmlMath!=="function")return element;
   element.classList.add("mtk-steps-v232");
-  for(const item of lines(input)){
+  for(const item of displayRows(input)){
    const row=documentRef.createElement("span");
    row.className=item.kind==="math"?"mtk-step-equation-v232":"mtk-step-prose-v232";
-   row.innerHTML=htmlMath(item.text);
+   if(item.kind==="math"){const formula=documentRef.createElement("span");formula.className="mtk-step-formula-v234";formula.innerHTML=htmlMath(item.text);row.appendChild(formula);}else row.innerHTML=htmlMath(item.text);
    if(item.kind==="math"){row.tabIndex=0;row.setAttribute("aria-label",item.text);}
    element.appendChild(row);
   }
   return element;
  }
- return Object.freeze({lines,render,mathHTML});
+ return Object.freeze({lines,displayRows,render,mathHTML});
 })();if(typeof module!=="undefined"&&module.exports)module.exports=api;else root.MTKStepFormatV232=api;})(typeof window!=="undefined"?window:globalThis);
