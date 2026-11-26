@@ -54,6 +54,7 @@
  function load(){
   const key=keyFor(question.id);
   if(memory.has(key))return normalize(memory.get(key));
+  if(new URLSearchParams(location.search).get("preview")==="1")return blank();
   try{return normalize(JSON.parse(localStorage.getItem(key)||"null"))}catch(e){return blank()}
  }
  function status(message,error=false){
@@ -62,6 +63,7 @@
  function persist(){
   if(!question||!note)return;
   const key=keyFor(question.id);memory.set(key,note);
+  if(new URLSearchParams(location.search).get("preview")==="1"){saveError=false;status("Deneme notu · yalnızca bu oturum");return;}
   try{localStorage.setItem(key,JSON.stringify(note));saveError=false;status("✓ Kaydedildi")}
   catch(e){saveError=true;status("Depolama dolu; bu oturumdaki işlemler korundu.",true)}
  }
@@ -112,7 +114,7 @@
  }
  function notify(event){
   try{
-   if(global.parent===global)return;
+   if(global.parent===global||new URLSearchParams(location.search).get("preview")==="1")return;
    const url=new URLSearchParams(location.search);
    global.parent.postMessage({source:"mathverse-v68-quiz",event,
     obstacle:url.get("obstacle")||"",difficulty:url.get("difficulty")||"orta"},location.origin);
