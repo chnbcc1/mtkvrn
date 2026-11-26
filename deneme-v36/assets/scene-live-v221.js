@@ -6,6 +6,7 @@ const specialIds=Object.freeze(["F02","F03","F07","F10","F19"]);
 const deferred=Object.freeze([]);
 const eligible=q=>/^F(?:0[1-9]|1[0-9]|2[01])$/.test(q?.obstacleId||"")&&!deferred.includes(q.obstacleId);
 let active=null;
+function previewReport(event,q,extra={}){try{if(new URLSearchParams(location.search).get("preview")!=="1")return;root.parent.postMessage({source:"mtk-qa-v225",event,obstacle:q.obstacleId,question:q.id,...extra},location.origin)}catch(e){}}
 function reset(){
  const a=active;active=null;if(!a)return;
  clearTimeout(a.timer);a.scene?.destroy();a.ui?.destroy();a.host?.remove();
@@ -20,7 +21,7 @@ function mount(app,q,s,choices,run,save){
  reset();
  const raw=capture(app,choices),legacy=root.MTKApprovedQuizV145;
  const fallback=legacy?.mount(app,q,s,choices,run,save);
- if(!fallback||!raw||!eligible(q))return fallback;
+ if(!fallback||!raw||!eligible(q)){previewReport("fallback",q,{reason:"Eski ekran veya soru verisi"});return fallback;}
  const api=root.MTKSceneLayoutV218,planAPI=root.MTKScenePlanV214,characterAPI=root.MTKCharacterLayerV215,plaqueAPI=root.MTKPlaqueTextV216,matchingAPI=root.MTKF21MatchingV217;
  const specialAPI=root.MTKSpecialScenesV222;
  if(!api||!planAPI?.plan(q)||!characterAPI||!plaqueAPI||(q.obstacleId==="F21"&&!matchingAPI)||(specialIds.includes(q.obstacleId)&&!specialAPI?.describe(q)))return fallback;
@@ -45,7 +46,7 @@ function mount(app,q,s,choices,run,save){
   return result;
  }}:matchingAPI;
  function restoreChoices(){if(!matchingTouched)return;matchingTouched=false;for(const {b,disabled,locked} of choiceSnapshot){b.disabled=disabled;b.classList.toggle("match-locked",locked)}}
- function discard(){if(active===ticket){reset();restoreChoices()}}
+ function discard(){if(active===ticket){reset();restoreChoices();previewReport("fallback",q,{reason:"Sahne yüklenemedi veya süre aşıldı"});}}
  ticket.timer=setTimeout(discard,5000);
  api.mountScene({q,ui,sceneAPI:planAPI,characterAPI,plaqueAPI,matchingAPI:scopedMatching,specialAPI,run,save}).then(scene=>{
   if(active!==ticket||!frame.isConnected){scene?.destroy();if(active===ticket)discard();return}
@@ -82,6 +83,8 @@ function mount(app,q,s,choices,run,save){
    frame.remove();host.style.visibility="visible";host.style.opacity="1";host.inert=false;host.style.pointerEvents="auto";
    root.MTKMathNotebook?.placeButton(app);
    if(helpOpen){ui.question.scrollTop=0;extra.scrollTop=0;}
+   const character=scene.plane?.querySelector?.(".mtk-approved-character-v215");
+   previewReport("scene-ready",q,{orientation:ui.orientation,characterLoaded:!!character?.naturalWidth,characterWidth:character?.naturalWidth||0,characterHeight:character?.naturalHeight||0,labels:scene.plan?.labels?.length||0,helpOpen});
   }catch(error){
    // If commit failed after nodes moved, restore them through the original
    // renderer using the same nodes and their listeners.
