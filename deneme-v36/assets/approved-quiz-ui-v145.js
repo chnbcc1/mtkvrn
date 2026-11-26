@@ -282,15 +282,17 @@
     const rootCol=elem('div','mtk-matching-col'),expCol=elem('div','mtk-matching-col');
     const matched=()=>new Map(current.pairs||[]);
     let selected=null;
+    const locked=()=>!!(run?.stageCorrect||run?.revealed||run?.awaiting||(Number(run?.wrong)>0&&run?.helpView!==false));
     const rootButtons=[],expButtons=[];
     (data.radicalItems||[]).forEach(v=>{
       const b=elem('button');b.type='button';b.textContent=v;b.setAttribute('aria-label','Köklü taş '+v);
-      b.addEventListener('click',()=>{if(matched().has(v))return;selected=selected===v?null:v;paint()});
+      b.addEventListener('click',()=>{if(locked()||matched().has(v))return;selected=selected===v?null:v;paint()});
       rootCol.appendChild(b);rootButtons.push([v,b]);
     });
     (data.exponentItems||[]).forEach(v=>{
       const b=elem('button');b.type='button';b.textContent=v;b.setAttribute('aria-label','Üslü taş '+v);
       b.addEventListener('click',()=>{
+        if(locked())return;
         if(!selected){msg.textContent='Önce soldaki bir köklü taşa dokun.';return}
         const used=new Set(matched().values());if(used.has(v))return;
         if(expected.get(selected)===v){
@@ -304,8 +306,8 @@
     board.append(rootCol,expCol,msg,title);visual.appendChild(board);
     function paint(){
       const m=matched(),used=new Set(m.values()),ready=m.size>=Number(data.requiredPairs||4);
-      rootButtons.forEach(([v,b])=>{b.classList.toggle('paired',m.has(v));b.classList.toggle('selected',selected===v);b.disabled=m.has(v)});
-      expButtons.forEach(([v,b])=>{b.classList.toggle('paired',used.has(v));b.disabled=used.has(v)});
+      rootButtons.forEach(([v,b])=>{b.classList.toggle('paired',m.has(v));b.classList.toggle('selected',selected===v);b.disabled=locked()||m.has(v)});
+      expButtons.forEach(([v,b])=>{b.classList.toggle('paired',used.has(v));b.disabled=locked()||used.has(v)});
       title.textContent=ready?'Dört çift bulundu. Açıkta kalan iki taşı seç.':m.size+'/4 doğru çift · Önce soldan, sonra sağdan taşı seç.';
       if(choices)for(const b of choices.children){
         if(!run?.stageCorrect&&!run?.revealed){
