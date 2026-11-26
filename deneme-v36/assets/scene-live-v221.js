@@ -83,7 +83,7 @@ function mount(app,q,s,choices,run,save){
    frame.remove();host.style.visibility="visible";host.style.opacity="1";host.inert=false;host.style.pointerEvents="auto";
    root.MTKMathNotebook?.placeButton(app);
    if(helpOpen){ui.question.scrollTop=0;extra.scrollTop=0;}
-   const character=scene.plane?.querySelector?.(".mtk-approved-character-v215");
+   const character=scene.character?.image||scene.plane?.querySelector?.(".mtk-approved-character-v215");
    previewReport("scene-ready",q,{orientation:ui.orientation,characterLoaded:!!character?.naturalWidth,characterWidth:character?.naturalWidth||0,characterHeight:character?.naturalHeight||0,labels:scene.plan?.labels?.length||0,helpOpen});
   }catch(error){
    // If commit failed after nodes moved, restore them through the original
