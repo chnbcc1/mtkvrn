@@ -1,10 +1,10 @@
 /* v229: user-authorized F01 wording and K09 correction, applied to the immutable approved source bank. */
 (function(root){const api=(function build(){
  const version="f01-v229";
- const captions={"ilk_dal":"1. gün","büyüme":"Her gün","gün":"Hedef gün","sol_dal":"Sol kol","sağ_dal":"Sağ kol","bugün":"Bugün","gelişim":"Her gün","sabah":"Sabah","akşam_büyüme":"Akşam çarpanı","sol ilk gün":"Sol 1. gün","sağ ilk gün":"Sağ 1. gün","sol büyüme":"Sol / gün","sağ büyüme":"Sağ / gün","sol kol":"Sol kol","sağ kol":"Sağ kol","sol korunma":"Sol korunan","sağ korunma":"Sağ korunan","dökülen":"Dökülen","sol sarmaşık kolu":"Sol kol","sağ sarmaşık kolu":"Sağ kol","iki kolun ortak sayacı":"Toplam","toplam":"Toplam","kol A":"Sol kol","kol B":"Orta kol","kol C":"Sağ kol","sol geçit":"Aktarılan pay","sol kopan":"Sol kopan","sağ kopan":"Sağ kopan"};
+ const captions={"ilk_dal":"1. gün","büyüme":"Her gün","gün":"Hedef gün","sol_dal":"Sol kol","sağ_dal":"Sağ kol","bugün":"Bugün","gelişim":"Her gün","sabah":"Sabah","akşam_büyüme":"Akşam","sol ilk gün":"Sol 1. gün","sağ ilk gün":"Sağ 1. gün","sol büyüme":"Sol / gün","sağ büyüme":"Sağ / gün","sol kol":"Sol kol","sağ kol":"Sağ kol","sol korunma":"Sol korunan","sağ korunma":"Sağ korunan","dökülen":"Dökülen","sol sarmaşık kolu":"Sol kol","sağ sarmaşık kolu":"Sağ kol","iki kolun ortak sayacı":"Toplam","toplam":"Toplam","kol A":"Sol kol","kol B":"Orta kol","kol C":"Sağ kol","sol geçit":"Aktarılan pay","sol kopan":"Sol kopan","sağ kopan":"Sağ kopan"};
  function language(s){return String(s).replace(/Sarmaşık duvarında iki koldaki/gu,"Duvardaki sarmaşığın iki kolundaki").replace(/Sarmaşık duvarında sol kolda/gu,"Duvardaki sarmaşığın sol kolunda").replace(/Sarmaşık duvarında/gu,"Duvardaki sarmaşıkta").replace(/Duvarın sol sarmaşık kolunda/gu,"Duvardaki sarmaşığın sol kolunda").replace(/sağ sarmaşık kolunda/gu,"sağ kolunda").replace(/Duvarın sol kolunda/gu,"Duvardaki sarmaşığın sol kolunda").replace(/Duvarın iki kolunda/gu,"Duvardaki sarmaşığın iki kolunda").replace(/^Sol sarmaşık kolunda/u,"Duvardaki sarmaşığın sol kolunda").replace(/^Üç sarmaşık kolundaki tomurcuk sayıları /u,"Duvardaki sarmaşığın sol, orta ve sağ kollarındaki tomurcuk sayıları sırasıyla ").replace(/^Bir sarmaşık dalında/u,"Duvardaki sarmaşığın bir kolunda").replace(/Duvardaki sarmaşığın iki kolunda sırasıyla/gu,"Duvardaki sarmaşığın sol ve sağ kollarında sırasıyla").replace(/Duvardaki sarmaşığın iki kolundaki/gu,"Duvardaki sarmaşığın sol ve sağ kollarındaki").replace(/Sol kol her yeni gün (\d+), sağ kol ise (\d+) katına çıkıyor/gu,"Tomurcuk sayısı her yeni gün sol kolda $1, sağ kolda $2 katına çıkıyor").replace(/Sol kol her gün iki, sağ kol üç katına çıkıyor/gu,"Tomurcuk sayısı her gün sol kolda iki, sağ kolda üç katına çıkıyor");}
  const replacement={
- prompt:"Duvardaki sarmaşıkta sabah 3² tomurcuk vardır. Akşama kadar tomurcuk sayısı 3³ katına çıkıyor. Akşamki tomurcuk sayısının 3 tabanında üslü gösterimi hangisidir?",
+ prompt:"Duvardaki sarmaşıkta sabah 3² tomurcuk vardır. Akşama kadar tomurcuk sayısı 3³ katına çıkıyor. Akşamki tomurcuk sayısının üslü sayı gösterimi aşağıdakilerden hangisidir?",
  correctAnswer:"3⁵",options:["3⁵","3⁶","3⁴","3⁹"],topic:"Aynı tabanlı üslü ifadeleri çarpma",
  solution:"Sabah 3² tomurcuk vardır. Akşama kadar 3³ katına çıkar: 3² · 3³ = 3²⁺³ = 3⁵. Aynı tabanlı kuvvetler çarpılırken taban korunur, üsler toplanır.",
  hint:"Tabanları aynı olan kuvvetleri çarparken tabanı koru ve üsleri topla.",
@@ -30,7 +30,7 @@
   if(q.obstacleId!=="F01")return {};
   const caption=captions[l.anchor];if(!caption)throw Error("F01 levha açıklaması eksik: "+l.anchor);
   const displayValue=String(l.value).replace(/^Toplam:\s*/u,"").replace(/\s*\/\s*gün$/u,"").replace(/^her gün\s*/iu,"");
-  return {caption,displayValue};
+  return {caption,displayValue,...(l.anchor==="akşam_büyüme"?{forceStack:true}:{})};
  }
  function migrateRun(run){
   if(!run||run.f01Revision===version)return run;
