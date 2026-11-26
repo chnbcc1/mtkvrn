@@ -11,7 +11,7 @@ function describe(q){
  let mode="",title="",rows=[],art="none",diagramOnly=false;
  switch(q.obstacleId){
  case "F02":
-  if(key==="basamak sayısı|her basamak"){mode="side-by-side";title="Yan yana eş basamaklar";rows=[row("Basamak sayısı ve her basamak",0,1)];diagramOnly=true}
+  if(key==="basamak sayısı|her basamak"){mode="equal-stairs";title="Eş enerjili basamaklar";rows=[row("Basamak sayısı ve her basamak",0,1)];diagramOnly=true}
   else if(key==="ilk enerji|kapı tüketimi|uyarı|uyarı kullanımı"){mode="independent";title="İki bağımsız enerji deposu";rows=[row("Birinci basamak → kapı",0,1),row("İkinci basamak → uyarı lambası",2,3)];diagramOnly=true}
   else if(key==="sol|sağ|harcama"){mode="two-sources";title="İki kaynak ve kapı tüketimi";rows=[row("Bağımsız kaynaklar",0,1),row("Kapı tüketimi",2)];diagramOnly=true}
   else if(key==="ilk|orta|son|çalışma oranları"){mode="working";title="Basamakların çalışma oranları";rows=[row("Birinci, ikinci, üçüncü basamak",0,1,2),row("Aynı sıradaki çalışma oranları",3)]}
