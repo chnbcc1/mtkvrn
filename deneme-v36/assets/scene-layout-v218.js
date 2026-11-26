@@ -39,6 +39,16 @@ function geometry(w,h,iw,ih,{orientation="portrait",band=[0,100],verifiedCropBan
  const width=iw*scale,height=ih*scale,x=(w-width)/2;
  return {x,y,width,height,scale,cropTop:Math.max(0,-y),cropBottom:Math.max(0,y+height-h),fit:height>h+1e-7?"vertical-crop":"contain"};
 }
+// v226: original artwork only. Fill width, anchor top, crop bottom only.
+// Reviewed per-scene foreground limits protect machinery and all plaque slots.
+const SAFE_BOTTOM=Object.freeze({F01:74,F02:81,F03:86,F04:77,F05:84,F06:86,F07:83,F08:82,F09:77,F10:78,F11:82,F12:78,F13:77,F14:80,F15:79,F16:78,F17:78,F18:80,F19:83,F20:83,F21:76});
+function sceneGeometry(w,h,iw,ih,boxes,id){
+ if(!finite(w,h,iw,ih)||Math.min(w,h,iw,ih)<=0||!Array.isArray(boxes)||!boxes.length)return null;
+ const minBottom=Math.min(100,Math.max(SAFE_BOTTOM[id]||100,...boxes.map(b=>b[1]+b[3]/2+1.5)))/100;
+ const scale=Math.min(w/iw,h/(ih*minBottom));
+ const width=iw*scale,height=ih*scale,x=(w-width)/2,y=0;
+ return {x,y,width,height,scale,cropTop:0,cropBottom:Math.max(0,height-h),fit:Math.abs(width-w)<1e-6?"width-fill":"protected-fill",ambient:width<w-1e-6||height<h-1e-6,visibleFraction:Math.min(1,h/height),minBottom};
+}
 function project(box,g){const [x,y,w,h]=box;return {left:g.x+(x-w/2)*g.width/100,top:g.y+(y-h/2)*g.height/100,width:w*g.width/100,height:h*g.height/100};}
 function shell(container,{documentRef=typeof document!=="undefined"?document:null,orientation=null}={}){
  if(!container||!documentRef)return null;
@@ -77,7 +87,7 @@ function loadImage(documentRef,src){
 // first. This function never removes an existing live game or changes its DOM.
 async function mountScene({q,ui,sceneAPI,characterAPI,plaqueAPI,matchingAPI,specialAPI,run,save,onWrong,verifiedCropBand=null,documentRef=typeof document!=="undefined"?document:null}={}){
  const plan=sceneAPI?.plan(q),spec=sceneAPI?.scenes?.[q?.obstacleId],character=characterAPI?.plan(q?.obstacleId);
- if(!ui?.element?.isConnected||!documentRef||!plan||!spec||!character||!plaqueAPI||!characterAPI.fits(character,plan.labels))return null;
+ if(!ui?.element?.isConnected||!documentRef||!plan||!spec||!character||!plaqueAPI)return null;
  if(!/^[a-z0-9-]+\.webp$/i.test(plan.file))return null;
  const band=protectedBand(spec.boxes,character);if(!band)return null;
  const image=await loadImage(documentRef,"./assets/"+plan.file);
@@ -87,16 +97,21 @@ async function mountScene({q,ui,sceneAPI,characterAPI,plaqueAPI,matchingAPI,spec
  image.alt="Araştırma görevinin onaylı ana sahnesi";
  Object.assign(image.style,{position:"absolute",inset:"0",width:"100%",height:"100%",objectFit:"contain",pointerEvents:"none",userSelect:"none",zIndex:"0"});
  plane.append(image);ui.visual.append(plane);
- const clean=[];let closed=false;
+ const clean=[];let closed=false;let char=null;const ambient=documentRef.createElement("div");
+ Object.assign(ambient.style,{position:"absolute",inset:"0",backgroundImage:"url(\"./assets/"+plan.file+"\")",backgroundSize:"cover",backgroundPosition:"center bottom",filter:"blur(12px) brightness(.72)",transform:"scale(1.09)",pointerEvents:"none",zIndex:"0"});
+ ui.visual.insertBefore(ambient,plane);plane.style.zIndex="1";
+ const overlay=documentRef.createElement("div");overlay.className="mtk-character-overlay-v226";Object.assign(overlay.style,{position:"absolute",inset:"0",pointerEvents:"none",zIndex:"2",visibility:"hidden"});ui.visual.append(overlay);
  function refresh(){
-  const g=geometry(ui.visual.clientWidth,ui.visual.clientHeight,image.naturalWidth,image.naturalHeight,{orientation:ui.orientation,band,verifiedCropBand});
+  const g=sceneGeometry(ui.visual.clientWidth,ui.visual.clientHeight,image.naturalWidth,image.naturalHeight,spec.boxes,q.obstacleId);
   if(!g)return null;
-  Object.assign(plane.style,{left:g.x+"px",top:g.y+"px",width:g.width+"px",height:g.height+"px"});return g;
+  Object.assign(plane.style,{left:g.x+"px",top:g.y+"px",width:g.width+"px",height:g.height+"px"});ambient.hidden=!g.ambient;
+  if(char){const boxes=spec.boxes.map(b=>project(b,g));characterAPI.place(char,ui.visual.clientWidth,ui.visual.clientHeight,boxes);}
+  return g;
  }
- function destroy(){if(closed)return;closed=true;ui.onLayout(null);clean.forEach(f=>f());plane.remove()}
+ function destroy(){if(closed)return;closed=true;ui.onLayout(null);clean.forEach(f=>f());plane.remove();ambient.remove();overlay.remove()}
  try{
   if(!refresh()){destroy();return null}
-  const char=await characterAPI.mount(plane,q.obstacleId,plan,{documentRef});
+  char=await characterAPI.mountOverlay(overlay,q.obstacleId,plan,{documentRef});
   if(!char||closed||!ui.element.isConnected){destroy();return null}
   const special= specialAPI?.ids?.includes(q.obstacleId)?specialAPI.mount({q,plane,readout:ui.readout,documentRef}):null;
   if(specialAPI?.ids?.includes(q.obstacleId)&&!special){destroy();return null}
@@ -112,11 +127,11 @@ async function mountScene({q,ui,sceneAPI,characterAPI,plaqueAPI,matchingAPI,spec
     if(!view){destroy();return null}clean.push(()=>view.destroy());
    }
   }
-  ui.onLayout(refresh);plane.style.visibility="visible";
-  return {plane,refresh,destroy,plan,band};
+  ui.onLayout(refresh);plane.style.visibility="visible";overlay.style.visibility="visible";
+  return {plane,character:char,refresh,destroy,plan,band};
  }catch(e){destroy();return null}
 }
-return Object.freeze({split,protectedBand,geometry,project,shell,mountScene});
+return Object.freeze({split,protectedBand,geometry,sceneGeometry,SAFE_BOTTOM,project,shell,mountScene});
 })();
 if(typeof module!=="undefined"&&module.exports)module.exports=api;else root.MTKSceneLayoutV218=api;
 })(typeof window!=="undefined"?window:globalThis);
