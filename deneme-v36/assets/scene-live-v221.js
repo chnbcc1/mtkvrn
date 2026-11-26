@@ -47,7 +47,7 @@ function mount(app,q,s,choices,run,save){
  const ticket={host,ui,frame,scene:null,timer:null};active=ticket;
  // F21 old board has already locked choices. Recover original disabled state
  // only for the matching controller, while preserving wrong/revealed choices.
- const helpOpen=!run.stageCorrect&&Number(run.wrong)>0&&run.helpView!==false;
+ const helpOpen=!!(run.stageCorrect||run.awaiting)||(!run.stageCorrect&&Number(run.wrong)>0&&run.helpView!==false);
  const realChoices=[...choices.children];
  const choiceSnapshot=realChoices.map(b=>({b,disabled:b.disabled,locked:b.classList.contains("match-locked")}));
  let matchingTouched=false;
