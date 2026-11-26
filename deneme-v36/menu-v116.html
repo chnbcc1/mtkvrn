@@ -125,7 +125,7 @@ body{display:grid;place-items:center;min-height:100vh;min-height:100dvh}
 'use strict';
 const SAVE_KEY='mathverse-v40-investigation', FOREST_KEY='mathverse-v68-forest-full';
 const $=s=>document.querySelector(s), read=k=>{try{return JSON.parse(localStorage.getItem(k)||'null')||{}}catch(e){return {}}};
-const homeUrl='./?scene=home&autostart=1&v=152',forestUrl='./forest-v113-full.html?resume=1&v=226';
+const homeUrl='./?scene=home&autostart=1&v=152',forestUrl='./forest-v113-full.html?resume=1&v=229';
 const home=()=>read(SAVE_KEY), forest=()=>read(FOREST_KEY);
 let chapterAtlasView=null;
 function hasSave(){const h=home(),f=forest();return !!(h.introSeen||h.visitedStudy||h.complete||(Array.isArray(h.found)&&h.found.length)||f.token||(Array.isArray(f.solvedIds)&&f.solvedIds.length));}
