@@ -42,6 +42,7 @@ const api=(function buildAPI(){
     const stones=plan.labels.map(l=>({label:l,side:l.slot<5?"radical":"exponent",index:l.slot%5}));
     if(new Set(stones.map(s=>s.label.slot)).size!==10||stones.some(s=>!Number.isInteger(s.label.slot)||s.label.slot<0||s.label.slot>9||model.groups[s.side][s.index]!==s.label.value))return null;
     const disposers=[],views=[],measurements=new Map();
+    let wrongPair=null;
     const status=documentRef.createElement("p");status.setAttribute("role","status");status.setAttribute("aria-live","polite");
     Object.assign(status.style,{fontSize:"14px",margin:"4px 0",fontWeight:"700"});
     const panel=documentRef.createElement("section");panel.hidden=true;panel.setAttribute("aria-label","Büyük ve dokunulabilir taşlar");
@@ -49,7 +50,7 @@ const api=(function buildAPI(){
     const grid=documentRef.createElement("div");Object.assign(grid.style,{display:"grid",gridTemplateColumns:"repeat(2,minmax(0,1fr))",gap:"6px"});
     panel.append(header,grid);readout.append(status,panel);
     const initialDisabled=new Map([...choices?.children||[]].map(b=>[b,b.disabled]));
-    const locked=()=>!!(run?.stageCorrect||run?.revealed||run?.awaiting);
+    const locked=()=>!!(run?.stageCorrect||run?.revealed||run?.awaiting||(Number(run?.wrong)>0&&run?.helpView!==false));
     let destroyed=false;
     function persist(){
       if(run){run.matchingById||={};run.matchingById[q.id]={pairs:model.snapshot().pairs}}
@@ -67,9 +68,10 @@ const api=(function buildAPI(){
         v.button.disabled=locked()||st.ready||i>=0;
         v.button.setAttribute("aria-pressed",String(selected||i>=0));
         v.button.setAttribute("aria-label",(v.side==="radical"?"Köklü taş ":"Üslü taş ")+v.value+(i>=0?", eşleşme "+(i+1):selected?", seçili":""));
-        v.button.style.outline=i>=0?"3px solid "+palette[i]:selected?"3px solid #fff2a0":"";
+        const wrong=wrongPair?.[v.side]===v.value&&!locked();
+        v.button.style.outline=wrong?"3px solid #cf6254":i>=0?"3px solid "+palette[i]:selected?"3px solid #fff2a0":"";
         v.button.style.outlineOffset="-3px";
-        v.button.style.boxShadow=i>=0?"inset 0 0 12px "+palette[i]+", 0 0 8px "+palette[i]:"";
+        v.button.style.boxShadow=wrong?"inset 0 0 9px #cf6254":i>=0?"inset 0 0 12px "+palette[i]+", 0 0 8px "+palette[i]:"";
         v.mark.hidden=i<0;v.mark.textContent=i>=0?String(i+1):"";
         v.mark.style.backgroundColor=i>=0?palette[i]:"";
       }
@@ -80,7 +82,9 @@ const api=(function buildAPI(){
     }
     function choose(side,value){
       if(locked())return;
+      const before=model.snapshot().selected;
       const r=model.activate(side,value);
+      wrongPair=r.kind==="wrong"&&before?{[side]:value,[before.side]:before.value}:null;
       if(r.kind==="paired"||r.kind==="ready")persist();
       paint(r.kind==="wrong"?"Bu iki taş eşdeğer değil. Kök derecesi ve üs işlemini tekrar kontrol et.":undefined);
       if(r.kind==="wrong"&&typeof onWrong==="function")onWrong();
