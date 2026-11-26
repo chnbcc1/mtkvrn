@@ -66,8 +66,8 @@
  }else throw Error(q.id+" unsupported hard type");
  if(String(answer)!==q.correctAnswer)throw Error(q.id+" computed answer mismatch "+answer);
  const wording=s=>String(s).replace(/sol geçide/giu,m=>m[0]==="S"?"Geçide":"geçide").replace(/miktarlar arasındaki fark kaçtır/giu,"miktarlar arasındaki farkın pozitif değeri kaçtır").replace(/kalanların farkı nedir/giu,"kalan miktarlar arasındaki farkın pozitif değeri kaçtır").replace(/kalanlar arasındaki fark için/giu,"Kalan miktarlar arasındaki farkın pozitif değerini bulmak için").replace(/kalanların farkını bul/giu,"kalan miktarlar arasındaki farkın pozitif değerini bul");
- const isTransfer=!!data["kol A"],isDifference=!!data["sol kopan"]&&!!data["sağ kopan"];
- if(isDifference){first[1]="Her koldan kendi kopan miktarını çıkar. Kalan miktarlar arasındaki farkın pozitif değerini bulmak için büyük sayıdan küçük sayıyı çıkar.";second[1]=second[1];}
+ const isDifference=!!data["sol kopan"]&&!!data["sağ kopan"];
+ if(isDifference){first[1]="Her koldan kendi kopan miktarını çıkar. Kalan miktarlar arasındaki farkın pozitif değerini bulmak için büyük sayıdan küçük sayıyı çıkar.";}
  const solution=steps.map(wording).join("\n");
  return {...q,prompt:wording(q.prompt),hint:wording(first[0]),solution,workedExample:q.workedExample?{...q.workedExample,question:wording(q.workedExample.question),solution:wording(q.workedExample.solution)}:q.workedExample,f01Guide:{first:first.map(wording),second:second.map(wording),solution},f01AlgebraRevision:"v233"};
 }
