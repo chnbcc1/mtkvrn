@@ -757,7 +757,7 @@ function confirmForestRestart(scope){
  action('Evet, Yeniden Başlat',()=>{
   suppressForestExitSave=true;
   if(!window.MTKGameUI.resetProgress(all?'game':'chapter','forest')){suppressForestExitSave=false;return}
-  location.replace(all?'./?scene=home&autostart=1&v=162':'./forest-v113-full.html?resume=1&v=229');
+  location.replace(all?'./?scene=home&autostart=1&v=162':'./forest-v113-full.html?resume=1&v=230');
  });
 }
 /* v139 forest settings; share the same saved preferences as the title screen. */
@@ -1191,7 +1191,7 @@ function prepareQuiz(id){
  if(quizPrepared.key===key)return quizPrepared.ready;
  quizPrepared={key,id,ready:false};
  const qs=new URLSearchParams({embedded:"1",obstacle:id,difficulty,session:RUN_TOKEN});
- $("#quizFrame").src="./forest-v70-quiz.html?v=229&"+qs;
+ $("#quizFrame").src="./forest-v70-quiz.html?v=230&"+qs;
  return false;
 }
 function warmUpcomingQuiz(){
