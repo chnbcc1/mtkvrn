@@ -12,7 +12,8 @@ function eligible(q,p){
 }
 function similar(q,questions,{avoidAnswer=false,exclude=[]}={}){
  const pool=questions.filter(p=>eligible(q,p)&&!exclude.includes(p.id)&&(!avoidAnswer||norm(q.correctAnswer)!==norm(p.correctAnswer)));
- const related=pool.filter(p=>p.topic===q.topic);
+ const algebra=q.f01AlgebraRevision==="v233"&&labels(q).some(l=>l.value.includes("ⁿ"));
+ const related=pool.filter(p=>algebra? p.f01AlgebraRevision==="v233"&&labels(p).some(l=>l.value.includes("ⁿ")):p.topic===q.topic);
  const choice=related.length?related:pool;
  return choice.length?choice[(Number(q.variant)||0)%choice.length]:null;
 }
