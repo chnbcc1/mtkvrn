@@ -6,6 +6,19 @@ const specialIds=Object.freeze(["F02","F03","F07","F10","F19"]);
 const deferred=Object.freeze([]);
 const eligible=q=>/^F(?:0[1-9]|1[0-9]|2[01])$/.test(q?.obstacleId||"")&&!deferred.includes(q.obstacleId);
 let active=null;
+function trailMessage(event,q,extra={}){
+ try{if(root.parent===root)return;const params=new URLSearchParams(location.search);
+ if(params.get("embedded")!=="1")return;
+ const preview=params.get("preview")==="1";
+ root.parent.postMessage({source:preview?"mtk-qa-v225":"mathverse-v68-quiz",event,obstacle:q.obstacleId,difficulty:params.get("difficulty")||q.difficulty,...extra},location.origin);
+ }catch(e){}
+}
+function mountTrailNavigation(ui,q){
+ if(!ui?.navigation)return false;
+ const button=document.createElement("button");button.type="button";button.className="mtk-trail-button-v237";button.textContent="‹ Patikaya dön";
+ button.addEventListener("click",()=>trailMessage("return-to-trail",q));
+ ui.navigation.replaceChildren(button);ui.navigation.hidden=false;return true;
+}
 function previewReport(event,q,extra={}){try{if(new URLSearchParams(location.search).get("preview")!=="1")return;root.parent.postMessage({source:"mtk-qa-v225",event,obstacle:q.obstacleId,question:q.id,...extra},location.origin)}catch(e){}}
 function reset(){
  const a=active;active=null;if(!a)return;
@@ -21,16 +34,16 @@ function mount(app,q,s,choices,run,save){
  reset();
  const raw=capture(app,choices),legacy=root.MTKApprovedQuizV145;
  const fallback=legacy?.mount(app,q,s,choices,run,save);
- if(!fallback||!raw||!eligible(q)){previewReport("fallback",q,{reason:"Eski ekran veya soru verisi"});return fallback;}
+ if(!fallback||!raw||!eligible(q)){trailMessage("trail-navigation-unavailable",q);previewReport("fallback",q,{reason:"Eski ekran veya soru verisi"});return fallback;}
  const api=root.MTKSceneLayoutV218,planAPI=root.MTKScenePlanV214,characterAPI=root.MTKCharacterLayerV215,plaqueAPI=root.MTKPlaqueTextV216,matchingAPI=root.MTKF21MatchingV217;
  const specialAPI=root.MTKSpecialScenesV222;
- if(!api||!planAPI?.plan(q)||!characterAPI||!plaqueAPI||(q.obstacleId==="F21"&&!matchingAPI)||(specialIds.includes(q.obstacleId)&&!specialAPI?.describe(q)))return fallback;
- const frame=app.querySelector(".mtk-frame");if(!frame)return fallback;
+ if(!api||!planAPI?.plan(q)||!characterAPI||!plaqueAPI||(q.obstacleId==="F21"&&!matchingAPI)||(specialIds.includes(q.obstacleId)&&!specialAPI?.describe(q))){trailMessage("trail-navigation-unavailable",q);return fallback;}
+ const frame=app.querySelector(".mtk-frame");if(!frame){trailMessage("trail-navigation-unavailable",q);return fallback;}
  const host=document.createElement("div");host.className="mtk-upgrade-host-v221";
  Object.assign(host.style,{position:"fixed",inset:"0",width:"100%",height:"100%",visibility:"hidden",opacity:"0",pointerEvents:"none",zIndex:"1"});
  host.inert=true;app.append(host);
  const ui=api.shell(host);
- if(!ui){host.remove();return fallback}
+ if(!ui){host.remove();trailMessage("trail-navigation-unavailable",q);return fallback}
  const ticket={host,ui,frame,scene:null,timer:null};active=ticket;
  // F21 old board has already locked choices. Recover original disabled state
  // only for the matching controller, while preserving wrong/revealed choices.
@@ -46,7 +59,7 @@ function mount(app,q,s,choices,run,save){
   return result;
  }}:matchingAPI;
  function restoreChoices(){if(!matchingTouched)return;matchingTouched=false;for(const {b,disabled,locked} of choiceSnapshot){b.disabled=disabled;b.classList.toggle("match-locked",locked)}}
- function discard(){if(active===ticket){reset();restoreChoices();previewReport("fallback",q,{reason:"Sahne yüklenemedi veya süre aşıldı"});}}
+ function discard(){if(active===ticket){reset();restoreChoices();trailMessage("trail-navigation-unavailable",q);previewReport("fallback",q,{reason:"Sahne yüklenemedi veya süre aşıldı"});}}
  ticket.timer=setTimeout(discard,5000);
  api.mountScene({q,ui,sceneAPI:planAPI,characterAPI,plaqueAPI,matchingAPI:scopedMatching,specialAPI,run,save}).then(scene=>{
   if(active!==ticket||!frame.isConnected){scene?.destroy();if(active===ticket)discard();return}
@@ -54,6 +67,7 @@ function mount(app,q,s,choices,run,save){
   clearTimeout(ticket.timer);ticket.scene=scene;
   try{
    // Keep actual original DOM nodes and event listeners. Never clone buttons.
+   const hasTrailNavigation=mountTrailNavigation(ui,q);
    ui.content.append(raw.prompt);
    ui.choices.append(...realChoices);
    ui.actions.append(...raw.buttons);
@@ -82,6 +96,7 @@ function mount(app,q,s,choices,run,save){
    // Old frame is removed only after both images and all dynamic layers exist.
    frame.remove();host.style.visibility="visible";host.style.opacity="1";host.inert=false;host.style.pointerEvents="auto";
    root.MTKMathNotebook?.placeButton(app);
+   if(hasTrailNavigation)trailMessage("trail-navigation-ready",q);
    if(helpOpen){ui.question.scrollTop=0;extra.scrollTop=0;}
    const character=scene.character?.image||scene.plane?.querySelector?.(".mtk-approved-character-v215");
    previewReport("scene-ready",q,{orientation:ui.orientation,characterLoaded:!!character?.naturalWidth,characterWidth:character?.naturalWidth||0,characterHeight:character?.naturalHeight||0,labels:scene.plan?.labels?.length||0,helpOpen});
@@ -89,7 +104,7 @@ function mount(app,q,s,choices,run,save){
    // If commit failed after nodes moved, restore them through the original
    // renderer using the same nodes and their listeners.
    if(active!==ticket)return;
-   reset();restoreChoices();
+   reset();restoreChoices();trailMessage("trail-navigation-unavailable",q);
    const group=document.createElement("div");group.className="btnRow";group.append(...raw.buttons);
    choices.append(...realChoices);app.replaceChildren(raw.prompt,choices,...raw.extras);
    if(raw.buttons.length)app.append(group);
@@ -98,7 +113,7 @@ function mount(app,q,s,choices,run,save){
  }).catch(discard);
  return fallback;
 }
-return Object.freeze({mount,reset,eligible,deferred});
+return Object.freeze({mount,reset,eligible,deferred,mountTrailNavigation});
 })(root);
 if(typeof module!=="undefined"&&module.exports)module.exports=api;else root.MTKSceneLiveV221=api;
 })(typeof window!=="undefined"?window:globalThis);
