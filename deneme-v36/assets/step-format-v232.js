@@ -3,7 +3,7 @@
  "use strict";
  // Only split presentation, never calculate or modify any mathematical value.
  // Unicode mathematical tokens and single-letter variables; decimal punctuation is retained.
- const tokenRun=/(?:[0-9⁰¹²³⁴⁵⁶⁷⁸⁹ⁿ⁺⁻√∛∜×÷·−+*/=<>≤≥≠≈^()[\]{}|%→²³\-]+|[.,](?=\d)|(?<![\p{L}])[a-zA-Z](?![\p{L}])|[ \t])+/gu;
+ const tokenRun=/(?:[0-9⁰¹²³⁴⁵⁶⁷⁸⁹ⁿᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐᵒᵖʳˢᵗᵘᵛʷˣʸᶻ⁺⁻√∛∜×÷·−+*/=<>≤≥≠≈^()[\]{}|%→²³\-]+|[.,](?=\d)|(?<![\p{L}])[a-zA-Z](?![\p{L}])|[ \t])+/gu;
  const operation=/[=≤≥≠≈<>×÷·+−*/→]|(?<=\d)-(?=\d)/u;
  function lines(input){
   const s=String(input??"");
@@ -17,7 +17,7 @@
   let pos=0;
   for(const match of s.matchAll(tokenRun)){
    const text=match[0].trim();
-   if(!text||!operation.test(text)||!/[0-9⁰¹²³⁴⁵⁶⁷⁸⁹ⁿ√∛∜a-zA-Z]/u.test(text))continue;
+   if(!text||!operation.test(text)||!/[0-9⁰¹²³⁴⁵⁶⁷⁸⁹ⁿᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐᵒᵖʳˢᵗᵘᵛʷˣʸᶻ√∛∜a-zA-Z]/u.test(text))continue;
    // A bare fraction in prose is not an operation step.
    if(/^\d+\/\d+$/u.test(text))continue;
    if(/^[\-+−*/=<>≤≥≠≈→×÷·]+$/u.test(text))continue;
@@ -46,13 +46,21 @@
  const supers="⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ⁿᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐᵒᵖʳˢᵗᵘᵛʷˣʸᶻ";
  const supMap=Object.fromEntries([...supers].map((c,i)=>[c,[..."0123456789+−=()nabcdefghijklmoprstuvwxyz"][i]]));
  const escapeHTML=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
- const supRE=new RegExp("["+supers+"]+|\\^\\(([^()]+)\\)|\\^([−-]?\\d+)","gu");
+ const exponentPattern="["+supers+"]+|\\^\\(([^()]+)\\)|\\^([−-]?\\d+)";
+ const powerRE=new RegExp("(\\([^()\\n]+\\)|[√∛∜]?\\d+(?:[.,]\\d+)?|[a-zA-Z])("+exponentPattern+")","gu");
+ const supRE=new RegExp(exponentPattern,"gu");
  function powers(input){
-  let out="",at=0;for(const m of String(input).matchAll(supRE)){
-   out+=escapeHTML(input.slice(at,m.index));
+  const s=String(input);
+  function standalone(part){let out="",at=0;for(const m of part.matchAll(supRE)){
+   out+=escapeHTML(part.slice(at,m.index));
    const exponent=m[1]??m[2]??[...m[0]].map(c=>supMap[c]??c).join("");
    out+='<sup class="mtk-math-exp">'+escapeHTML(exponent)+'</sup>';at=m.index+m[0].length;
-  }return out+escapeHTML(input.slice(at));
+  }return out+escapeHTML(part.slice(at));}
+  let out="",at=0;for(const m of s.matchAll(powerRE)){
+   out+=standalone(s.slice(at,m.index));
+   out+='<span class="mtk-math-power">'+standalone(m[1])+standalone(m[2])+'</span>';
+   at=m.index+m[0].length;
+  }return out+standalone(s.slice(at));
  }
  const atom="(?:\\([0-9a-zA-Z√∛∜"+supers+"+−×÷·* .,-]+\\)|(?:[√∛∜]?\\d+(?:[,.]\\d+)?|[a-zA-Z])(?:["+supers+"]+|\\^\\([^()]+\\)|\\^[−-]?\\d+)?)";
  const fractionRE=new RegExp("(?<![\\p{L}\\p{N}.,])("+atom+")\\s*/\\s*("+atom+")(?![\\p{L}\\p{N}])","gu");
