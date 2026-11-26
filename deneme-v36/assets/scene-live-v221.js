@@ -60,8 +60,19 @@ function mount(app,q,s,choices,run,save){
    extra.append(...raw.extras);
    if(helpOpen){
     ui.question.insertBefore(extra,ui.choices);
+    // Only the teaching card and its actions occupy the question half.
+    // Original prompt, data and choice nodes survive for the return path.
+    ui.content.hidden=true;
+    ui.readout.hidden=true;
     ui.choices.hidden=true;
     ui.choices.style.display="none";
+    ui.element.classList.add("mtk-teaching-open-v224");
+    extra.classList.add("mtk-teaching-body-v224");
+    extra.setAttribute("role","region");
+    extra.setAttribute("aria-label","İpucu ve çözüm");
+    extra.tabIndex=0;
+    ui.actions.classList.add("mtk-teaching-actions-v224");
+    ui.visual.inert=true;
    }else{
     ui.question.insertBefore(extra,ui.actions);
     if(!raw.extras.length)extra.hidden=true;
@@ -70,7 +81,7 @@ function mount(app,q,s,choices,run,save){
    // Old frame is removed only after both images and all dynamic layers exist.
    frame.remove();host.style.visibility="visible";host.style.opacity="1";host.inert=false;host.style.pointerEvents="auto";
    root.MTKMathNotebook?.placeButton(app);
-   if(helpOpen)ui.question.scrollTop=Math.max(0,extra.offsetTop-ui.question.offsetTop);
+   if(helpOpen){ui.question.scrollTop=0;extra.scrollTop=0;}
   }catch(error){
    // If commit failed after nodes moved, restore them through the original
    // renderer using the same nodes and their listeners.
