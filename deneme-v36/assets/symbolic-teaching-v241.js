@@ -197,5 +197,75 @@ function groups(items){
  }}
  return out;
 }
-const api={apply,guide,supplemental,groups};if(typeof module!=="undefined"&&module.exports)module.exports=api;else root.MTKSymbolicV241=api;
+
+/* v243: student-facing hints only. Never change the approved full solution. */
+function plainHints(q,stage,source){
+ const l=Object.fromEntries(q.visual.labels.map(x=>[x.anchor,String(x.value)]));
+ const vals=q.visual.labels.map(x=>String(x.value));
+ const t=String(q.topic||"").toLocaleLowerCase("tr");
+ const second=stage===2;
+ if(q.obstacleId==="F01"&&l.ilk_dal&&l.büyüme&&l.gün){
+  const n=Number(l.gün),b=Number(l.büyüme.match(/\d+/)[0]),start=Number(l.ilk_dal);
+  return second?["1. günde "+start+" tomurcuk var. "+n+". güne kadar kaç kez "+b+" ile çarpmalıyız?\n"+n+" − 1 = "+(n-1),"Şimdi işlemi tamamla:\n"+start+" · "+pow(b,n-1)]:["1. günde "+start+" tomurcuk var. 2. güne geçince sayı "+b+" ile çarpılır.","Her yeni günde aynı işlemi yap. "+n+". güne kadar kaç kez "+b+" ile çarpman gerektiğini düşün."];
+ }
+ if(q.obstacleId==="F01"&&l.bugün&&l.gelişim){
+  const p=parse(l.bugün),b=Number(l.gelişim.match(/\d+/)?.[0]);
+  if(p&&b===p[0])return second?["Dünkü sayıyı bulmak için bugünkü sayıyı "+b+" ile böl.\n"+l.bugün+"/"+pow(b,1),quotientRule]:["Bugünkü sayı, dünkü sayının "+b+" katı. Dünü bulmak için "+b+" ile böl.",quotientRule];
+ }
+ if(q.obstacleId==="F01"&&l["sol ilk gün"]&&l["sağ ilk gün"]&&l.gün){
+  const n=Number(l.gün),a=Number(l["sol büyüme"].match(/\d+/)[0]),b=Number(l["sağ büyüme"].match(/\d+/)[0]);
+  return second?["Her kol "+(n-1)+" kez büyür.\n"+n+" − 1 = "+(n-1),"Sol kol:\n"+l["sol ilk gün"]+" · "+pow(a,n-1),"Sağ kol:\n"+l["sağ ilk gün"]+" · "+pow(b,n-1),"İki sonucu topla."]:["İlk gün iki kolda farklı sayıda tomurcuk var. Sol kol her gün "+a+", sağ kol "+b+" katına çıkar.","Her kolu ayrı hesapla. İlk gün büyüme yapılmadığını unutma. Sonra iki sonucu topla."];
+ }
+ if(q.obstacleId==="F03"){
+  const keys=q.visual.labels.map(x=>x.anchor);
+  if(keys[0]==="A borusu"){
+   const a=divisor(vals[2]),b=divisor(vals[3]);return second?["A borusundaki sis:\n"+vals[0]+"/"+a,"B borusundaki sis:\n"+vals[1]+"/"+b,quotientRule,"İki borudan geçen sisi topla."]:["A borusundaki sisi "+a+", B borusundaki sisi "+b+" ile böl. Sonra iki miktarı topla.",quotientRule];
+  }
+  const p=parse(vals[0]);if(p){
+   const ds=keys[1]==="filtre_sayısı"?Array(Number(vals[1])).fill(divisor(vals[2])):keys[1]==="ayrılan"?[divisor(vals[1])]:vals.slice(1).map(divisor);
+   const z=divide(p[0],p[1],ds[0]);
+   const next=keys[1]==="ayrılan"?"Bulduğun miktarı başlangıçtaki sisten çıkar.":ds.length>1?"Sonraki işlemlerde de kalan sisi belirtilen sayılara böl.":"Bölme işlemini tamamla.";
+   const first=keys[1]==="ayrılan"?"Yan kola ayrılan sisi bulmak için "+ds[0]+" ile böl. Bu miktarı başlangıçtaki sisten çıkar.":ds.length>1?"Sis sırayla "+ds.join(", ")+" ile bölünüyor. Her seferinde bir önceki işlemden kalan sisi kullan.":"Sis miktarını "+ds[0]+" ile böl.";
+   const divisorExp=expOf(z.b,ds[0]),initialExp=z.e+divisorExp;
+   return second?["İlk bölmede tabanları eşitle:\n"+pow(z.b,initialExp)+"/"+pow(z.b,divisorExp),quotientRule,next]:[first,quotientRule];
+  }
+ }
+ if(q.obstacleId==="F02"&&l.basamak_sayısı&&l.her_basamak){
+  return second?["Her basamakta "+l.her_basamak+" birim enerji var.","Toplam enerji için şu işlemi yap:\n"+l.basamak_sayısı+" · "+l.her_basamak]:["Bütün basamaklarda aynı miktarda enerji var.","Bir basamağın enerjisini bul. Sonra basamak sayısıyla çarp."];
+ }
+ if(q.obstacleId==="F02"&&l["ilk enerji"]&&l["kapı tüketimi"]&&l.uyarı&&l["uyarı kullanımı"]){
+  return second?["Birinci basamaktan harcanan güç:\n"+l["ilk enerji"]+" · "+l["kapı tüketimi"],"İkinci basamaktan harcanan güç:\n"+l.uyarı+" · "+l["uyarı kullanımı"],"Her basamakta harcananı kendi gücünden çıkar. Kalanları topla."]:["Her basamağın gücünü ayrı hesapla.","Kapı ve lamba için harcanan güçleri kendi basamaklarından çıkar. Kalan iki gücü topla."];
+ }
+ const input=(Array.isArray(source)?source:[source]).map(x=>String(x??"").trim()).filter(Boolean);
+ const edits=[
+ [/Aynı sayının tekrarlı çarpımı üslü olarak yazılabilir\./gu,"Aynı sayıyı birkaç kez kendisiyle çarparsan bunu üslü sayı olarak yazabilirsin."],
+ [/Tabanları aynı olan üslü sayılar çarpılırken üsleri toplanır\./gu,productRule],
+ [/Tabanları aynı olan üslü sayılar bölünürken üsleri çıkarılır\./gu,quotientRule],
+ [/Kök derecesi ve kök içi aynıysa toplama ve çıkarmada yalnız katsayılar işleme girer\. Tam sayıyla çarpma veya bölmede de katsayı işlem görür\./gu,"Kökün derecesi ve içindeki sayı aynıysa sadece kökün önündeki sayıları işle."],
+ [/Köklü kısmı ve katsayıyı ayrı değerlendir; sonucu kendin tamamla\./gu,"Kökün önündeki sayıları işle. Sonucu kendin bul."],
+ [/Ortak kuvveti ayırırken her terimin üssünden ortak üssü çıkar\./gu,"Ortak üslü sayıyı parantezin dışına al. Her terimin üssünden ortak üssü çıkar."],
+ [/Ortak (?:çarpanı|kuvveti) ayır/gu,"Ortak çarpanı parantezin dışına al"],
+ [/değerlendir/gu,"hesapla"],
+ [/uygun biçimde/gu,""],
+ [/nihai/gu,"son"],
+ [/işleme girer/gu,"işlem yapılır"],
+ [/Önce üslü ifadelerin değerlerini ayrı ayrı bul\. Sonra soruda istenen işlemi yap\./gu,"Önce her üslü sayının değerini bul. Sonra soruda istenen işlemi yap."],
+ [/Önce üsleri hesapla/gu,"Önce üslü sayıların değerlerini bul"],
+ [/Üslerin değerlerini ayrı ayrı bulup topla/gu,"Üslü sayıların değerlerini ayrı ayrı bul ve topla"],
+ [/Kök derecesine dikkat et; farklı derecedeki kökler eşit değeri gösterebilir\./gu,""],
+ [/Verilen değerlerle bu işlemi kur ve sonucu kendin tamamla\./gu,"Şimdi işlemi verilen sayılarla yap."],
+ [/Katsayı/gu,"Katsayı (kökün önündeki sayı)"]
+ ];
+ // Keep standard mathematical terminology in scientific notation and all formulas.
+ const out=[];
+ for(const s of input){
+  let z=s;
+  for(const [re,v] of edits){if((!/köklü|kök|eşlenik/.test(t)||/bilimsel/.test(t))&&/katsay|Katsayı/.test(re.source))continue;z=z.replace(re,v);}
+  z=z.replace(/[ \t]{2,}/g," ").trim();
+  if(z&&!out.includes(z))out.push(z);
+ }
+ return out;
+}
+
+const api={apply,guide,supplemental,groups,plainHints};if(typeof module!=="undefined"&&module.exports)module.exports=api;else root.MTKSymbolicV241=api;
 })(typeof window!=="undefined"?window:globalThis);
