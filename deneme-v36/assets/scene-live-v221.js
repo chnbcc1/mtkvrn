@@ -52,7 +52,7 @@ function mount(app,q,s,choices,run,save){
  if(!ui){host.remove();return errorScreen()}
  ui.element.style.visibility="hidden";ui.element.inert=true;document.body.classList.add("mtk-approved-active");
  const ticket={host,ui,scene:null,timer:null};active=ticket;
- // F21 old board has already locked choices. Recover original disabled state
+ // Preserve original disabled state
  // only for the matching controller, while preserving wrong/revealed choices.
  const helpOpen=!!(run.stageCorrect||run.awaiting)||(!run.stageCorrect&&Number(run.wrong)>0&&run.helpView!==false);
  const realChoices=[...choices.children];
@@ -100,7 +100,7 @@ function mount(app,q,s,choices,run,save){
     if(!raw.extras.length)extra.hidden=true;
    }
    ui.element.classList.add("mtk-live-v221");
-   // Old frame is removed only after both images and all dynamic layers exist.
+   // Reveal only after the approved images and dynamic layers exist.
    loading.remove();ui.element.style.visibility="visible";ui.element.inert=false;
    root.MTKMathNotebook?.placeButton(app);
    if(hasTrailNavigation)trailMessage("trail-navigation-ready",q);
