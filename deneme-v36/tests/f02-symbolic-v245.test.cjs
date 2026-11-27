@@ -8,3 +8,12 @@ for(const q of qs){const g=q.symbolicGuideV241;assert(q.f02SymbolicGuideV245&&g,
 const g=qs.find(q=>q.id==="F02-O-08").symbolicGuideV241;assert(g.solution.includes("2⁷/2² = 2^(7−2)"));assert(!g.solution.slice(0,g.solution.indexOf("2^(7−2) = 2⁵")).some(s=>s.includes("128")));
 const mixed=qs.find(q=>q.id==="F02-O-04").symbolicGuideV241;assert(mixed.solution.includes("(2 · 3)² = 2² · 3²"));
 console.log("F02 v245: 30 active questions, both hints, full solutions and example route verified.");
+
+const simple=qs.find(q=>q.id==="F02-O-01").symbolicGuideV241;
+assert(simple.solution.includes("2² + 2 + 2³ = 4 + 2 + 8"));assert(simple.solution.includes("4 + 2 + 8 = 14"));
+for(const q of qs.filter(q=>!q.visual.labels.some(l=>l.anchor==="güç sayacı"||l.anchor==="ilk basamak levhası")))assert(!/ortak (?:çarpan|kuvvet)|parantezin dışına/i.test([...q.symbolicGuideV241.first,...q.symbolicGuideV241.second,...q.symbolicGuideV241.solution].join(" ")),q.id);
+for(const q of qs.filter(q=>q.visual.labels.some(l=>l.anchor==="güç sayacı"||l.anchor==="ilk basamak levhası")))assert(q.symbolicGuideV241.solution.some(s=>/ortak kuvvet/i.test(s)),q.id);
+for(const q of effective.questions.filter(q=>q.obstacleId==="F03"&&q.visual.labels.some(l=>l.anchor==="ayrılan")))assert(!/ortak kuvvet|parantez/i.test(q.symbolicGuideV241.solution.join(" ")),q.id);
+assert(effective.questions.find(q=>q.id==="F08-K-01").symbolicGuideV241.solution.includes("25 − 5 = 20"));
+assert(effective.questions.find(q=>q.id==="F06-Z-01").symbolicGuideV241.solution.some(s=>/Ortak çarpan/.test(s)));
+console.log("v246: numeric final sums/differences simplified; unknown and radical rules preserved.");

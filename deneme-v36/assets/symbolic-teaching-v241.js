@@ -27,11 +27,10 @@ function f03(q){
   steps.push(x.text,y.text,"İki kolun toplamı:\n"+pow(x.b,x.e)+" + "+pow(y.b,y.e)+" = "+(x.b**x.e)+" + "+(y.b**y.e)+"\n"+(x.b**x.e)+" + "+(y.b**y.e)+" = "+result);
  }else if(a[1]==="ayrılan"){
   const [b,e]=parse(l[0]),x=divStep(b,e,divisor(l[1]),"Yan kola ayrılan sis");result=b**e-x.b**x.e;
-  first.push("Yan kola ayrılan miktarı üslü bölme ile bul. Ana hatta kalan için başlangıçtan çıkar; mümkünse ortak kuvveti ayır.");
+  first.push("Yan kola ayrılan miktarı üslü bölme ile bul. Ana hatta kalan için başlangıçtaki sis miktarından çıkar.");
   second.push(x.text,"Ana hatta kalan miktarı başlangıçtan bu kuvveti çıkararak bul.");
   steps.push(x.text);
-  if(b===x.b){steps.push("Ortak kuvveti parantezine alalım:\n"+pow(b,e)+" − "+pow(b,x.e)+" = "+pow(b,x.e)+" · ("+pow(b,e-x.e)+" − 1)\n"+pow(b,x.e)+" · ("+pow(b,e-x.e)+" − 1) = "+pow(b,x.e)+" · "+(b**(e-x.e)-1));}
-  steps.push("Son değeri hesaplayalım:\n"+(b**e)+" − "+(x.b**x.e)+" = "+result);
+  steps.push("Kalan sis miktarını bulalım:\n"+pow(b,e)+" − "+pow(x.b,x.e)+" = "+(b**e)+" − "+(x.b**x.e)+"\n"+(b**e)+" − "+(x.b**x.e)+" = "+result);
  }else{
   let [b,e]=parse(l[0]);const initial=pow(b,e);
   const ds=a[1]==="filtre_sayısı"?Array(Number(l[1])).fill(divisor(l[2])):l.slice(1).map(divisor);
@@ -114,9 +113,9 @@ function simplePower(q){
  const [p,z]=labels.map(parse);if(!p||!z)return null;const [b,e]=p,[c,f]=z;
  const addition=/topla|birlikte|sayma/.test(topic),subtraction=/fark|çıkar|eksik/.test(topic);if(addition===subtraction)return null;
  const sign=addition?"+":"−",ans=addition?b**e+c**f:b**e-c**f;if(String(ans)!==q.correctAnswer)return null;
- const base=baseOf(b)[0],k=expOf(base,b)*e,j=expOf(base,c);if(j===null)return null;const v=j*f,small=Math.min(k,v);
- const original=pow(b,e)+" "+sign+" "+pow(c,f),same=pow(base,k)+" "+sign+" "+pow(base,v),inner=pow(base,k-small)+" "+sign+" "+pow(base,v-small),coefficient=base**(k-small)+(addition?1:-1)*base**(v-small);
- return {first:["Toplama ve çıkarmada üsler doğrudan birleştirilmez.","Tabanları eşitle; ortak olan en küçük kuvveti parantez dışına al."],second:["İfadeleri aynı tabanda yaz:\n"+original+" = "+same,"Ortak kuvveti ayırırken her terimin üssünden ortak üssü çıkar. Parantezi ve çarpımı kendin tamamla."],solution:["Toplama ve çıkarmada üsler birleştirilmez; ortak çarpan kullanılır.","Tabanları eşitleyelim:\n"+original+" = "+same,"Ortak kuvveti ayıralım:\n"+same+" = "+pow(base,small)+" · ("+inner+")","Parantezi hesaplayalım:\n"+pow(base,small)+" · ("+inner+") = "+pow(base,small)+" · "+coefficient,"Sonuç:\n"+base**small+" · "+coefficient+" = "+ans]};
+ const original=pow(b,e)+" "+sign+" "+pow(c,f),numeric=(b**e)+" "+sign+" "+(c**f);
+ return {first:["Toplama ve çıkarmada üsler doğrudan birleştirilmez.","Her üslü sayının değerini bul, ardından "+(addition?"topla.":"çıkar.")],second:["İşlemi kur:\n"+original,"Kuvvetleri ayrı ayrı hesapla ve işlemi kendin tamamla."],solution:["Üslü sayıları "+(addition?"toplarken":"çıkarırken")+" üsler doğrudan birleştirilmez.","Kuvvetlerin değerlerini hesaplayalım:\n"+original+" = "+numeric,numeric+" = "+ans]};
+
 }
 
 

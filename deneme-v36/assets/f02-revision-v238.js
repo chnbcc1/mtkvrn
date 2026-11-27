@@ -53,7 +53,6 @@ function symbolicGuide(q){
  const rows=[],first=[],second=[],add=(...s)=>rows.push(...s),hint=(a,b)=>{first.push(a);second.push(b);};
  const signed=(ts,render=t=>t.text)=>ts.map((t,i)=>(i?(t.sign===-1?" − ":" + "):(t.sign===-1?"−":""))+render(t)).join("");
  const value=t=>val(t.f),neg=t=>({...t,sign:-1});
- const common=ts=>Object.fromEntries(Object.entries(ts[0].f).map(([p,e])=>[p,Math.min(e,...ts.slice(1).map(t=>t.f[p]||0))]));
  function normalize(t){const c=fmt(t.f);if(c===t.text)return c;
   if(t.b&&t.e>1){const base=factors(t.b),b=fmt(base);if(Object.keys(base).length===1&&Object.values(base)[0]>1){const [p,k]=Object.entries(base)[0];add(powerRule,t.text+" = ("+pw(p,k)+")"+sup(t.e),"("+pw(p,k)+")"+sup(t.e)+" = "+p+"^("+k+"·"+t.e+")",p+"^("+k+"·"+t.e+") = "+pw(p,k*t.e));return c;}
    if(Object.keys(base).length>1){add("Çarpımın kuvveti alınırken her çarpanın kuvveti alınır.",t.text+" = ("+b+")"+sup(t.e),"("+b+")"+sup(t.e)+" = "+c);return c;}
@@ -68,18 +67,14 @@ function symbolicGuide(q){
   if(Object.values(f).some(e=>e===0)){const z=Object.entries(f).map(([p,e])=>e===1?p:pw(p,e)).join(" · ");add(exp+" = "+z,"Sıfırdan farklı bir sayının sıfırıncı kuvveti 1'dir.",z+" = "+fmt(f));}else add(exp+" = "+fmt(f));
   return {f,text:fmt(f)};
  }
- function sum(ts,title){add(title+":",signed(ts));const f=common(ts),k=val(f),ans=ts.reduce((n,t)=>n+(t.sign||1)*value(t),0);
-  if(k>1&&ts.length>1){ts.forEach(normalize);const rest=ts.map(t=>({...t,text:fmt(change(t.f,f,-1)),f:change(t.f,f,-1)})),outside=fmt(f),inner=signed(rest);
-   add("Toplama ve çıkarmada üsler doğrudan birleştirilmez. Ortak çarpanı parantezin dışına alalım.",signed(ts,t=>fmt(t.f))+" = "+par(outside)+" · ("+inner+")");
-   const coefficient=rest.reduce((n,t)=>n+(t.sign||1)*value(t),0);add(par(outside)+" · ("+inner+") = "+par(outside)+" · "+coefficient);
-   if(coefficient>0){const cf=factors(coefficient),share=Object.keys(cf).some(p=>f[p]>0);if(share){if(String(coefficient)!==fmt(cf))add(coefficient+" = "+fmt(cf));const c=product(f,cf);add(fmt(c)+" = "+ans);}else add(par(outside)+" · "+coefficient+" = "+ans);}else add(par(outside)+" · "+coefficient+" = "+ans);
-  }else{
-   let pair=null;for(let i=0;i<ts.length&&!pair;i++)for(let j=i+1;j<ts.length;j++)if(ts[i].sign!==-1&&val(common([ts[i],ts[j]]))>1){pair=[i,j];break;}
-   if(pair&&ts.length>2){const [i,j]=pair,sub=sum([ts[i],ts[j]],"Ortak çarpanı olan iki terimi birlikte hesaplayalım"),others=ts.filter((_,idx)=>idx!==i&&idx!==j);add("Diğer terimleri de işleme katalım:",String(sub)+others.map(t=>(t.sign===-1?" − ":" + ")+value(t)).join("")+" = "+ans);}
-   else add("Bu terimleri üsleri toplayarak birleştiremeyiz. Değerlerini en son hesaplayalım.",signed(ts,t=>String(value(t)))+" = "+ans);
-  }return ans;
+ // v246: after the last exponent operation, evaluate numerical terms and add/subtract.
+ // Factoring remains necessary for the unknown-exponent equation branch below.
+ function sum(ts,title){
+  const expr=signed(ts),numbers=signed(ts,t=>String(value(t))),ans=ts.reduce((n,t)=>n+(t.sign||1)*value(t),0);
+  add(title+":",expr,"Üslü sayıların değerlerini bulup toplama veya çıkarma işlemini yapalım.",expr+" = "+numbers,numbers+" = "+ans);
+  return ans;
  }
- function setupSum(ts,title){const same=ts.some((t,i)=>ts.slice(i+1).some(u=>val(common([t,u]))>1));hint(title+" "+(same?"Toplama ve çıkarmada üsleri birleştirme; ortak üslü çarpanı bul.":"Farklı tabanlı kuvvetlerin üslerini toplama veya çıkarmada birleştiremezsin."),"İşlemi kur:\n"+signed(ts)+(same?"\nOrtak çarpanı olan terimleri birlikte düşün.":"\nİşlemi kendin tamamla."));}
+ function setupSum(ts,title){hint(title+" Üslü sayıların değerlerini hesapla; toplama veya çıkarmada üsleri birleştirme.","İşlemi kur:\n"+signed(ts)+"\nÜslü sayıların değerlerini bul ve işlemi kendin tamamla.");}
  // Hint never evaluates the last operation or supplies the answer. Show denominator as a power when it is a pure prime power.
  const hintDiv=(t,d)=>{const g=factors(d),den=fmt(g),num=fmt(t.f);return t.text+"/"+d+(num!==t.text||den!==String(d)?" = "+par(num)+"/"+par(den):"");};
  let ans;
