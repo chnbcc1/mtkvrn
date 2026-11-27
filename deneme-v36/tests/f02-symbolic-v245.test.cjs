@@ -17,3 +17,17 @@ for(const q of effective.questions.filter(q=>q.obstacleId==="F03"&&q.visual.labe
 assert(effective.questions.find(q=>q.id==="F08-K-01").symbolicGuideV241.solution.includes("25 − 5 = 20"));
 assert(effective.questions.find(q=>q.id==="F06-Z-01").symbolicGuideV241.solution.some(s=>/Ortak çarpan/.test(s)));
 console.log("v246: numeric final sums/differences simplified; unknown and radical rules preserved.");
+
+const fs=require("node:fs"),path=require("node:path");
+const base=path.resolve(__dirname,"..");
+const newF02=require("../assets/f02-teaching-v247.js"),newSym=require("../assets/symbolic-teaching-v247.js");
+assert.equal(newF02.version,"v247");assert.equal(newSym.version,"v247");
+const actual=newSym.apply(newF02.apply(f01.apply(bank))),active=actual.questions.find(q=>q.id==="F02-O-01"),example=actual.questions.find(q=>q.id==="F02-O-07");
+assert.equal(example.correctAnswer,"56");assert(example.symbolicGuideV241.solution.includes("16 + 8 + 32 = 56"));assert(!example.symbolicGuideV241.solution.some(s=>/ortak çarpan|parantez/i.test(s)));
+const selected=teach.workedExample(active,actual.questions),ref=actual.questions.find(q=>q.id===selected.id);
+assert(ref);assert.equal(ref.symbolicGuideV241.solution.at(-1),"Sonuç: "+ref.correctAnswer+" birim.");
+assert(!ref.symbolicGuideV241.solution.some(s=>/ortak çarpan|parantez/i.test(s)));
+for(const q of actual.questions.filter(q=>q.obstacleId==="F02"))assert.deepEqual(q.symbolicGuideV241,effective.questions.find(p=>p.id===q.id).symbolicGuideV241);
+const qa=fs.readFileSync(path.join(base,"scene-qa-v247.html"),"utf8"),quiz=fs.readFileSync(path.join(base,"forest-quiz-v247.html"),"utf8");
+assert(qa.includes('new URL("forest-quiz-v247.html"'));assert(qa.includes('d.teachingRelease!=="v247"'));assert(quiz.includes("f02-teaching-v247.js")&&quiz.includes("symbolic-teaching-v247.js")&&quiz.includes("scene-live-v247.js"));
+console.log("v247: F02-O-01 worked example "+selected.id+"; F02-O-07 = 56; distinct cache paths and release gate verified.");
