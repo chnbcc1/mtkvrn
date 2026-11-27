@@ -76,6 +76,36 @@
   }return out+powers(s.slice(at));
  }
 
+
+ // v244: all instructional division operators render as stacked fractions.
+ // Parenthesized operands, radical coefficients, and chained division retain their grouping.
+ const teachExp="(?:["+supers+"]+|\\^\\([^()]+\\)|\\^[−-]?\\d+)";
+ const teachBasic="(?:(?:\\d+(?:[.,]\\d+)?)?[√∛∜](?:\\([^()]+\\)|\\d+(?:[.,]\\d+)?)|\\d+(?:[.,]\\d+)?|[a-zA-Z])"+teachExp+"?";
+ const teachInner="(?:[^()\\n]|\\([^()\\n]*\\))*";
+ const teachAtom="(?:\\("+teachInner+"\\)"+teachExp+"?|"+teachBasic+")";
+ const teachDivision=new RegExp("(?<![\\p{L}\\p{N}.,])("+teachAtom+")(?:\\s*[÷/]\\s*"+teachAtom+")+(?![\\p{L}\\p{N}])","gu");
+ const teachParts=new RegExp("^("+teachAtom+")|\\s*[÷/]\\s*("+teachAtom+")","gu");
+ const frac=(n,d)=>'<span class="mtk-math-frac"><span class="mtk-math-num">'+n+'</span><span class="mtk-math-den">'+d+'</span></span>';
+ function instructionalHTML(value){
+  const s=String(value??"");
+  let out="",at=0;
+  for(const m of s.matchAll(teachDivision)){
+   // A fractional exponent belongs inside the exponent, not the baseline.
+   const before=s.slice(0,m.index);
+   if(/\^\([^()]*$/.test(before))continue;
+   const parts=[...m[0].matchAll(teachParts)].map(p=>p[1]||p[2]);
+   if(parts.length<2)continue;
+   out+=instructionalPlain(s.slice(at,m.index));
+   let n=instructionalHTML(parts[0]);for(const d of parts.slice(1))n=frac(n,instructionalHTML(d));
+   out+=n;at=m.index+m[0].length;
+  }
+  return out+instructionalPlain(s.slice(at));
+ }
+ function instructionalPlain(s){
+  // An isolated filter instruction (÷3) has no dividend; spell it out.
+  return mathHTML(s.replace(/(?<![\d\p{L}\p{N})])÷\s*(\d+)(?![\d⁰¹²³⁴⁵⁶⁷⁸⁹])/gu,"$1 ile böl"));
+ }
+
  function displayRows(input){
   return lines(input).flatMap(row=>{
    // Break a pure chained equality into consecutive complete equations; do not split prose or inequality statements.
@@ -93,11 +123,11 @@
   for(const item of displayRows(teachingNotation(input))){
    const row=documentRef.createElement("span");
    row.className=item.kind==="math"?"mtk-step-equation-v232":"mtk-step-prose-v232";
-   if(item.kind==="math"){const formula=documentRef.createElement("span");formula.className="mtk-step-formula-v234";formula.innerHTML=htmlMath(item.text);row.appendChild(formula);}else row.innerHTML=htmlMath(item.text);
+   if(item.kind==="math"){const formula=documentRef.createElement("span");formula.className="mtk-step-formula-v234";formula.innerHTML=instructionalHTML(item.text);row.appendChild(formula);}else row.innerHTML=instructionalHTML(item.text);
    if(item.kind==="math"){row.tabIndex=0;row.setAttribute("aria-label",item.text);}
    element.appendChild(row);
   }
   return element;
  }
- return Object.freeze({lines,displayRows,render,mathHTML,teachingNotation});
+ return Object.freeze({lines,displayRows,render,mathHTML,teachingNotation,instructionalHTML});
 })();if(typeof module!=="undefined"&&module.exports)module.exports=api;else root.MTKStepFormatV232=api;})(typeof window!=="undefined"?window:globalThis);
