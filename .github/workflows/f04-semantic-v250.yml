@@ -1,0 +1,15 @@
+name: F04 semantic plaques v250
+on:
+  push:
+    branches: [main]
+    paths: ['deneme-v36/assets/scene-plan-v250.js','deneme-v36/tests/f04-semantic-v250.test.cjs','.github/workflows/f04-semantic-v250.yml']
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node deneme-v36/tests/f04-semantic-v250.test.cjs
