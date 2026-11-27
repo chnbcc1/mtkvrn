@@ -1,0 +1,15 @@
+name: F03 equation diversity v249
+on:
+  push:
+    branches: [main]
+    paths: ['deneme-v36/assets/symbolic-teaching-v249.js','deneme-v36/assets/scene-plan-v249.js','deneme-v36/tests/f03-equation-v249.test.cjs','.github/workflows/f03-equation-v249.yml']
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node deneme-v36/tests/f03-equation-v249.test.cjs
