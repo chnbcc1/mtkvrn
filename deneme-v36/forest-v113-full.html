@@ -1192,7 +1192,7 @@ function quizPreparationKey(id){return RUN_TOKEN+"|"+difficulty+"|"+id}
 function prepareQuiz(id){
  if(!id||SOLVED.has(id))return false;
  const key=quizPreparationKey(id);
- if(quizPrepared.key===key)return quizPrepared.ready;
+ if(quizPrepared.key===key)return quizPrepared.ready||quizPrepared.failed;
  quizPrepared={key,id,ready:false};
  delete $("#quizOverlay").dataset.trailNavigation;
  const qs=new URLSearchParams({embedded:"1",obstacle:id,difficulty,session:RUN_TOKEN});
@@ -1206,7 +1206,7 @@ function warmUpcomingQuiz(){
 }
 function revealQuizIfMounted(){
  if($("#quizOverlay").hidden||!quizActiveId)return;
- if(quizPrepared.ready)$("#quizOverlay").removeAttribute("data-preparing");
+ if(quizPrepared.ready||quizPrepared.failed)$("#quizOverlay").removeAttribute("data-preparing");
 }
 
 function openQuiz(id){
@@ -1249,7 +1249,7 @@ window.addEventListener("message",e=>{
  if(d.event==="ready"||d.event==="load-error"){
   // A hidden, prewarmed iframe may finish before the magnifier is pressed.
   if(d.obstacle!==quizPrepared.id)return;
-  quizPrepared.ready=d.event==="ready";
+  quizPrepared.ready=d.event==="ready";quizPrepared.failed=d.event==="load-error";
   if(d.obstacle===quizActiveId&&!$("#quizOverlay").hidden){
    clearTimeout(quizRevealTimer);
    $("#quizOverlay").removeAttribute("data-preparing");
