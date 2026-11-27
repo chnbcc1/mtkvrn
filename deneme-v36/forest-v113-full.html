@@ -574,7 +574,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff0a8;outline-offset:3p
   }
 }
 
-/* v240: fallback close is outside the iframe; shared question UI owns the normal return button. */
+/* v241: fallback close is outside the iframe; shared question UI owns the normal return button. */
 #quizOverlay .quizBar{position:relative!important;inset:auto!important;width:100%!important;min-height:36px!important;flex:0 0 auto!important;display:flex!important;justify-content:flex-end!important;padding:3px 8px!important;background:#0a2824!important;pointer-events:auto!important}
 #quizOverlay iframe{height:auto!important;flex:1 1 0!important;min-height:0!important}
 #quizOverlay[data-trail-navigation="1"] .quizBar,#quizOverlay[data-notebook-open="1"] .quizBar{display:none!important}
@@ -761,7 +761,7 @@ function confirmForestRestart(scope){
  action('Evet, Yeniden Başlat',()=>{
   suppressForestExitSave=true;
   if(!window.MTKGameUI.resetProgress(all?'game':'chapter','forest')){suppressForestExitSave=false;return}
-  location.replace(all?'./?scene=home&autostart=1&v=162':'./forest-v113-full.html?resume=1&v=240');
+  location.replace(all?'./?scene=home&autostart=1&v=162':'./forest-v113-full.html?resume=1&v=241');
  });
 }
 /* v139 forest settings; share the same saved preferences as the title screen. */
@@ -1196,7 +1196,7 @@ function prepareQuiz(id){
  quizPrepared={key,id,ready:false};
  delete $("#quizOverlay").dataset.trailNavigation;
  const qs=new URLSearchParams({embedded:"1",obstacle:id,difficulty,session:RUN_TOKEN});
- $("#quizFrame").src="./forest-v70-quiz.html?v=240&"+qs;
+ $("#quizFrame").src="./forest-v70-quiz.html?v=241&"+qs;
  return false;
 }
 function warmUpcomingQuiz(){
