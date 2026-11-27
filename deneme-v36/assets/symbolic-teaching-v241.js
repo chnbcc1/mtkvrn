@@ -100,33 +100,7 @@ function rootWork(q){
  }
  return out;
 }
-function supplemental(q){
- const topic=String(q.topic).toLocaleLowerCase("tr"),raw=q.visual.labels.map(l=>String(l.value)).join(" "),hasRoot=/[√∛∜]/.test(raw),hasPower=/[⁰¹²³⁴⁵⁶⁷⁸⁹ⁿᵃ]|\^/.test(raw);
- if(!hasRoot&&!hasPower)return null;
- const rules=[],prep=[];
- if(hasRoot){
-  rules.push(rootRule);
-  if(/eşlenik/.test(topic))rules.push("Eşlenik çarpımında (a+b) · (a−b) = a²−b² özdeşliği kullanılır.");
-  if(/topla|fark|çıkar|karşılaştır|örtüş|birleş|çevre/.test(topic))rules.push("Kök derecesi ve kök içi aynı olan ifadelerde yalnız katsayılar toplanır veya çıkarılır.");
-  if(/kare|alan/.test(topic))rules.push("Katsayılı köklü ifadenin karesinde katsayının da karesi alınır; kökün derecesi korunarak sadeleştirilir.");
-  const rw=rootWork(q);if(rw.length)prep.push("Verilen kökleri derecelerine göre sadeleştirelim:\n"+rw.join("\n"));
-  if(/eşleştir|şifre/.test(topic))rules.push("Kökün derecesi ile kuvvetin üssünü ilişkilendir; örneğin √(a²) = |a|.");
- }
- if(hasPower&&!hasRoot){
-  if(/çarp|büyü|katman|debi|süre|yüz|bilimsel|diz|üs|kuvvet/.test(topic))rules.push(productRule);
-  if(/böl|oran|kesir|pay|azal|negatif|üs|kuvvet|parça/.test(topic))rules.push(quotientRule);
-  if(/negatif|sıfır/.test(topic))rules.push("Sıfırdan farklı a için a⁻ⁿ = 1/aⁿ ve a⁰ = 1.");
-  if(/topla|fark|çıkar|karşılaştır|toplam/.test(topic))rules.push("Toplama ve çıkarmada üsler doğrudan birleştirilmez; uygun olduğunda ortak kuvvet parantezine alınır.");
-  if(/bilimsel/.test(topic))rules.push("10'un kuvvetlerini eşitle, katsayıları topla veya çıkar; sonunda katsayıyı 1 ile 10 arasına getir (10 hariç).");
-  const seen=new Set(),conversions=[];
-  for(const m of raw.matchAll(/(\d+)([⁻⁰¹²³⁴⁵⁶⁷⁸⁹]+)/gu)){
-   const b=+m[1],e=unsup(m[2]),[x,k]=baseOf(b);if(x!==b&&!seen.has(m[0])){seen.add(m[0]);conversions.push(m[0]+" = "+pow(x,k*e));}
-  }
-  if(conversions.length&&/üs|kuvvet|böl|çarp|oran|kesir|pay|bilimsel|azal|parça|fark|topla/.test(topic))prep.push(powerRule+"\n"+conversions.join("\n"));
- }
- if(!rules.length)return null;
- return {rules:[...new Set(rules)],prep};
-}
+function supplemental(q){return null;} // v242: no speculative topic-wide rule injection.
 
 function simplePower(q){
  const labels=q.visual.labels.map(x=>String(x.value)),topic=String(q.topic).toLocaleLowerCase("tr");
@@ -182,12 +156,42 @@ function exactRoot(q){
  return {first:[rule,method],second:[rule,formula?"İşlemi kur:\n"+formula:"Kenarın karesini kur:\n("+A+")²","Köklü kısmı ve katsayıyı ayrı değerlendir; sonucu kendin tamamla."],solution:[rule,...steps,"Sonuç: "+q.correctAnswer]};
 }
 
-function guide(q){return q.obstacleId==="F03"?f03(q):algebra(q)||exactPower(q)||simplePower(q)||exactRoot(q);}
+
+function growthGuide(q){
+ if(q.obstacleId!=="F01")return null;
+ const l=Object.fromEntries(q.visual.labels.map(x=>[x.anchor,String(x.value)]));
+ if(l.ilk_dal&&l.büyüme&&l.gün){
+  const start=Number(l.ilk_dal),b=Number(l.büyüme.match(/\d+/)?.[0]),day=Number(l.gün),e=day-1,ans=start*b**e;
+  if(String(ans)!==q.correctAnswer)return null;
+  const same=expOf(b,start),expr=start+" · "+pow(b,e);
+  const rule=same!==null&&same>0?productRule:"Aynı sayının tekrarlı çarpımı üslü olarak yazılabilir.";
+  return {first:["İlk gün başlangıçtır. Her yeni gün için bir kez "+b+" ile çarpılır.",rule],second:["Büyüme sayısını bul:\n"+day+" − 1 = "+e,"Başlangıç miktarını büyüme çarpanının "+e+". kuvvetiyle çarp:\n"+expr],solution:["İlk gün "+start+" tomurcuk vardır. "+day+". güne kadar büyüme sayısı:\n"+day+" − 1 = "+e,"Tekrarlı çarpmayı üslü olarak yazalım:\n"+expr,...(same!==null&&same>0?[productRule+"\n"+expr+" = "+pow(b,same)+" · "+pow(b,e)+"\n"+pow(b,same)+" · "+pow(b,e)+" = "+pow(b,same+e)]:[]),"Sonucu hesaplayalım:\n"+(same!==null&&same>0?pow(b,same+e):expr)+" = "+ans,"Sonuç: "+ans+" tomurcuk."]};
+ }
+ if(l.bugün&&l.gelişim){
+  const p=parse(l.bugün),d=Number(l.gelişim.match(/\d+/)?.[0]);if(!p||expOf(p[0],d)===null)return null;
+  const [b,e]=p,z=divide(b,e,d),ans=z.b**z.e;if(String(ans)!==q.correctAnswer)return null;
+  return {first:["Düne dönmek için günlük büyüme çarpanına böl.",quotientRule],second:["Bölmeyi aynı tabanda kur:\n"+pow(b,e)+"/"+pow(b,expOf(b,d)),"Üsleri çıkar ve sonucu kendin hesapla."],solution:["Bugünkü miktarı günlük büyüme çarpanına bölelim.",quotientRule,...z.rows,"Sonucu bul:\n"+pow(z.b,z.e)+" = "+ans,"Sonuç: "+ans+" tomurcuk."]};
+ }
+ return null;
+}
+function relevantGuide(q,g){
+ if(!g)return null;
+ const all=g.solution.join("\n");
+ const usesProduct=all.includes(productRule)&&g.solution.some(s=>/[⁰¹²³⁴⁵⁶⁷⁸⁹ⁿᵃ]\s*·\s*\d+[⁰¹²³⁴⁵⁶⁷⁸⁹ⁿᵃ]/u.test(s)||/·\s*\d+[⁰¹²³⁴⁵⁶⁷⁸⁹]\s*=/u.test(s));
+ const usesQuotient=g.solution.some(s=>/[⁰¹²³⁴⁵⁶⁷⁸⁹ⁿᵃ]\s*(?:÷|\/)\s*\d/u.test(s));
+ const usesPower=g.solution.some(s=>s.startsWith(powerRule)&&s.includes("\n"));
+ const keep=s=>s!==productRule||usesProduct;
+ const filter=xs=>xs.filter(s=>keep(s)&&(s!==quotientRule||usesQuotient)&&(s!==powerRule||usesPower));
+ return {...g,first:filter(g.first),second:filter(g.second),solution:filter(g.solution)};
+}
+
+function guide(q){return relevantGuide(q,q.obstacleId==="F03"?f03(q):growthGuide(q)||algebra(q)||exactPower(q)||simplePower(q)||exactRoot(q));}
 function apply(bank){return {...bank,questions:bank.questions.map(q=>{const g=guide(q);return g?{...q,symbolicGuideV241:g,...(q.obstacleId==="F03"?{f03Guide:g,hint:g.first.join("\n"),solution:g.solution.join("\n")}: {})}:q})};}
 function groups(items){
  const out=[];
  for(const item of items){for(const part of String(item??"").split("\n").map(s=>s.trim()).filter(Boolean)){
    const clean=part.replace(/^\d+\.\s*(?:Adım\s*[:.–-]?\s*|(?=[A-ZÇĞİÖŞÜ]))/u,"");
+   if(!clean||/^\d+\.$/.test(clean))continue;
    const math=/^[\d(√∛∜a-zA-Zⁿᵃ⁻+−]/u.test(clean)&&(/[=÷·×]/u.test(clean)||/^\d+[⁰¹²³⁴⁵⁶⁷⁸⁹]+$/u.test(clean))&&!/[a-zçğıöşü]{3,}/iu.test(clean);
    if(math&&out.length)out[out.length-1].push(clean);else out.push([clean]);
  }}
