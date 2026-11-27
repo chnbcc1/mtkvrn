@@ -761,7 +761,7 @@ function confirmForestRestart(scope){
  action('Evet, Yeniden Başlat',()=>{
   suppressForestExitSave=true;
   if(!window.MTKGameUI.resetProgress(all?'game':'chapter','forest')){suppressForestExitSave=false;return}
-  location.replace(all?'./?scene=home&autostart=1&v=162':'./forest-v113-full.html?resume=1&v=243');
+  location.replace(all?'./?scene=home&autostart=1&v=162':'./forest-v113-full.html?resume=1&v=244');
  });
 }
 /* v139 forest settings; share the same saved preferences as the title screen. */
@@ -1196,7 +1196,7 @@ function prepareQuiz(id){
  quizPrepared={key,id,ready:false};
  delete $("#quizOverlay").dataset.trailNavigation;
  const qs=new URLSearchParams({embedded:"1",obstacle:id,difficulty,session:RUN_TOKEN});
- $("#quizFrame").src="./forest-v70-quiz.html?v=243&"+qs;
+ $("#quizFrame").src="./forest-v70-quiz.html?v=244&"+qs;
  return false;
 }
 function warmUpcomingQuiz(){
@@ -1206,15 +1206,9 @@ function warmUpcomingQuiz(){
 }
 function revealQuizIfMounted(){
  if($("#quizOverlay").hidden||!quizActiveId)return;
- let ready=false;
- try{
-  const frameDoc=$("#quizFrame").contentDocument;
-  ready=!!frameDoc?.body?.classList.contains("mtk-approved-active")&&!!frameDoc.querySelector(".mtk-frame,.mtk-live-v221");
- }catch(e){}
- // This is only a brief fail-open safety net; the normal path uses a preloaded, ready iframe.
- if(ready)quizPrepared.ready=true;
- $("#quizOverlay").removeAttribute("data-preparing");
+ if(quizPrepared.ready)$("#quizOverlay").removeAttribute("data-preparing");
 }
+
 function openQuiz(id){
  const gate=GATES.find(g=>g.id===id);if(!gate||SOLVED.has(id))return;
  const wasReady=prepareQuiz(id);
@@ -1227,7 +1221,7 @@ function openQuiz(id){
  }else{
   $("#quizOverlay").dataset.preparing="1";
   // The question has already begun loading before this click; do not wait 2.2 seconds.
-  quizRevealTimer=setTimeout(revealQuizIfMounted,450);
+  quizRevealTimer=setTimeout(revealQuizIfMounted,15000);
  }
 }
 function closeQuiz(){
@@ -1255,7 +1249,7 @@ window.addEventListener("message",e=>{
  if(d.event==="ready"||d.event==="load-error"){
   // A hidden, prewarmed iframe may finish before the magnifier is pressed.
   if(d.obstacle!==quizPrepared.id)return;
-  quizPrepared.ready=true;
+  quizPrepared.ready=d.event==="ready";
   if(d.obstacle===quizActiveId&&!$("#quizOverlay").hidden){
    clearTimeout(quizRevealTimer);
    $("#quizOverlay").removeAttribute("data-preparing");
