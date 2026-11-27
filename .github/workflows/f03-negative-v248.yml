@@ -1,0 +1,15 @@
+name: F03 negative exponent teaching v248
+on:
+  push:
+    branches: [main]
+    paths: ['deneme-v36/assets/symbolic-teaching-v248.js','deneme-v36/assets/f02-teaching-v248.js','deneme-v36/tests/f03-negative-v248.test.cjs','.github/workflows/f03-negative-v248.yml']
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node deneme-v36/tests/f03-negative-v248.test.cjs
