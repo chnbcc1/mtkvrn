@@ -200,6 +200,7 @@ function groups(items){
 
 /* v243: student-facing hints only. Never change the approved full solution. */
 function plainHints(q,stage,source){
+ if(q?.f02SymbolicGuideV245)return stage===2?q.symbolicGuideV241.second:q.symbolicGuideV241.first;
  const l=Object.fromEntries(q.visual.labels.map(x=>[x.anchor,String(x.value)]));
  const vals=q.visual.labels.map(x=>String(x.value));
  const t=String(q.topic||"").toLocaleLowerCase("tr");

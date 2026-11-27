@@ -36,45 +36,81 @@ function revise(q){
  if(new Set(options).size!==4||!options.includes(correctAnswer))throw Error(q.id+" seçenekler");
  return {...q,prompt,options,correctAnswer,solution,hint,workedExample,visual:{...q.visual,labels},f02Revision:"v238"};
 }
-function apply(bank){if(bank.questions?.length!==630)throw Error("F02 kaynak banka");return {...bank,questions:bank.questions.map(revise)};}
+function apply(bank){if(bank.questions?.length!==630)throw Error("F02 kaynak banka");return {...bank,questions:bank.questions.map(original=>{const q=revise(original),g=symbolicGuide(q);return g?{...q,symbolicGuideV241:g,f02SymbolicGuideV245:true}:q;})};}
 function migrateRun(run){if(!run||run.f02Revision==="v238")return run;const id=run.remediationId||run.practiceId||run.activeId;if(changedAnswers.has(id)&&!run.awaiting&&!run.stageCorrect)Object.assign(run,{stage:0,wrong:0,wrongChoices:[],revealed:false,helpView:false,feedback:""});run.f02Revision="v238";return run;}
 
-function detailedSolution(q){
+function symbolicGuide(q){
  if(q?.obstacleId!=="F02")return null;
  const m=Object.fromEntries(q.visual.labels.map(l=>[l.anchor,String(l.value)]));
- const rows=[];const add=(...s)=>rows.push(...s);
- const calc=(key,title)=>{const p=m[key],v=power(p);const match=p.match(/^(\d+)([⁰¹²³⁴⁵⁶⁷⁸⁹]+)$/u);const exponent=Number([...match[2]].map(c=>"⁰¹²³⁴⁵⁶⁷⁸⁹".indexOf(c)).join(""));add(title+":",p+" = "+(exponent>1?Array(exponent).fill(match[1]).join(" · ")+" = ":"")+v);return v;};
- const portion=(v,key,title)=>{const [n,d]=m[key].split("/").map(Number);if(n!==1||!Number.isInteger(d)||d<1)throw Error(q.id+" oran");const result=v/d;add(title+":",v+" · "+m[key]+" = "+result);return result;};
+ const digits="⁰¹²³⁴⁵⁶⁷⁸⁹",sup=e=>String(e).replace(/[-0-9]/g,c=>c==="-"?"⁻":digits[+c]),pw=(b,e)=>String(b)+sup(e);
+ const productRule="Tabanları aynı olan üslü sayılar çarpılırken üsleri toplanır.",quotientRule="Tabanları aynı olan üslü sayılar bölünürken üsleri çıkarılır.",powerRule="Bir üslü sayının kuvveti alınırken üsler çarpılır.";
+ const factors=n=>{if(!Number.isSafeInteger(n)||n<1)throw Error(q.id+" çarpan "+n);const out={};for(let p=2;p*p<=n;p++)while(n%p===0){out[p]=(out[p]||0)+1;n/=p;}if(n>1)out[n]=(out[n]||0)+1;return out;};
+ const fmt=f=>Object.entries(f).filter(([,e])=>e>0).map(([b,e])=>e===1?b:pw(b,e)).join(" · ")||"1";
+ const val=f=>Object.entries(f).reduce((v,[b,e])=>v*Number(b)**e,1);
+ const change=(f,g,sign)=>{const r={...f};for(const [p,e] of Object.entries(g))r[p]=(r[p]||0)+sign*e;return r;};
+ const pterm=s=>{const z=String(s).match(/^(\d+)([⁰¹²³⁴⁵⁶⁷⁸⁹]+)$/u);if(!z)throw Error(q.id+" üslü ifade "+s);const b=+z[1],e=Number([...z[2]].map(c=>digits.indexOf(c)).join(""));return {b,e,f:Object.fromEntries(Object.entries(factors(b)).map(([p,k])=>[p,k*e])),text:s};};
+ const term=k=>pterm(m[k]),par=s=>s.includes(" · ")?"("+s+")":s;
+ const rows=[],first=[],second=[],add=(...s)=>rows.push(...s),hint=(a,b)=>{first.push(a);second.push(b);};
+ const signed=(ts,render=t=>t.text)=>ts.map((t,i)=>(i?(t.sign===-1?" − ":" + "):(t.sign===-1?"−":""))+render(t)).join("");
+ const value=t=>val(t.f),neg=t=>({...t,sign:-1});
+ const common=ts=>Object.fromEntries(Object.entries(ts[0].f).map(([p,e])=>[p,Math.min(e,...ts.slice(1).map(t=>t.f[p]||0))]));
+ function normalize(t){const c=fmt(t.f);if(c===t.text)return c;
+  if(t.b&&t.e>1){const base=factors(t.b),b=fmt(base);if(Object.keys(base).length===1&&Object.values(base)[0]>1){const [p,k]=Object.entries(base)[0];add(powerRule,t.text+" = ("+pw(p,k)+")"+sup(t.e),"("+pw(p,k)+")"+sup(t.e)+" = "+p+"^("+k+"·"+t.e+")",p+"^("+k+"·"+t.e+") = "+pw(p,k*t.e));return c;}
+   if(Object.keys(base).length>1){add("Çarpımın kuvveti alınırken her çarpanın kuvveti alınır.",t.text+" = ("+b+")"+sup(t.e),"("+b+")"+sup(t.e)+" = "+c);return c;}
+  }return c;
+ }
+ function product(f,g){const c=change(f,g,1);const middle=Object.entries(c).filter(([,e])=>e>0).map(([p,e])=>f[p]>0&&g[p]>0?p+"^("+f[p]+"+"+g[p]+")":e===1?p:pw(p,e)).join(" · ");add(productRule,par(fmt(f))+" · "+par(fmt(g))+" = "+middle,middle+" = "+fmt(c));return c;}
+ function part(t,d,title){const g=factors(d),f=change(t.f,g,-1);if(Object.values(f).some(e=>e<0))throw Error(q.id+" kesir sonucu tam sayı değil");
+  add(title+":",t.text+" · 1/"+d+" = "+t.text+"/"+d);
+  const nt=normalize(t),den=fmt(g);if(String(d)!==den)add(d+" = "+den);
+  const exp=Object.entries(t.f).map(([p,e])=>g[p]?p+"^("+e+"−"+g[p]+")":e===1?p:pw(p,e)).join(" · ");
+  add(quotientRule,par(nt)+"/"+par(den)+" = "+exp);
+  if(Object.values(f).some(e=>e===0)){const z=Object.entries(f).map(([p,e])=>e===1?p:pw(p,e)).join(" · ");add(exp+" = "+z,"Sıfırdan farklı bir sayının sıfırıncı kuvveti 1'dir.",z+" = "+fmt(f));}else add(exp+" = "+fmt(f));
+  return {f,text:fmt(f)};
+ }
+ function sum(ts,title){add(title+":",signed(ts));const f=common(ts),k=val(f),ans=ts.reduce((n,t)=>n+(t.sign||1)*value(t),0);
+  if(k>1&&ts.length>1){ts.forEach(normalize);const rest=ts.map(t=>({...t,text:fmt(change(t.f,f,-1)),f:change(t.f,f,-1)})),outside=fmt(f),inner=signed(rest);
+   add("Toplama ve çıkarmada üsler doğrudan birleştirilmez. Ortak çarpanı parantezin dışına alalım.",signed(ts,t=>fmt(t.f))+" = "+par(outside)+" · ("+inner+")");
+   const coefficient=rest.reduce((n,t)=>n+(t.sign||1)*value(t),0);add(par(outside)+" · ("+inner+") = "+par(outside)+" · "+coefficient);
+   if(coefficient>0){const cf=factors(coefficient),share=Object.keys(cf).some(p=>f[p]>0);if(share){if(String(coefficient)!==fmt(cf))add(coefficient+" = "+fmt(cf));const c=product(f,cf);add(fmt(c)+" = "+ans);}else add(par(outside)+" · "+coefficient+" = "+ans);}else add(par(outside)+" · "+coefficient+" = "+ans);
+  }else{
+   let pair=null;for(let i=0;i<ts.length&&!pair;i++)for(let j=i+1;j<ts.length;j++)if(ts[i].sign!==-1&&val(common([ts[i],ts[j]]))>1){pair=[i,j];break;}
+   if(pair&&ts.length>2){const [i,j]=pair,sub=sum([ts[i],ts[j]],"Ortak çarpanı olan iki terimi birlikte hesaplayalım"),others=ts.filter((_,idx)=>idx!==i&&idx!==j);add("Diğer terimleri de işleme katalım:",String(sub)+others.map(t=>(t.sign===-1?" − ":" + ")+value(t)).join("")+" = "+ans);}
+   else add("Bu terimleri üsleri toplayarak birleştiremeyiz. Değerlerini en son hesaplayalım.",signed(ts,t=>String(value(t)))+" = "+ans);
+  }return ans;
+ }
+ function setupSum(ts,title){const same=ts.some((t,i)=>ts.slice(i+1).some(u=>val(common([t,u]))>1));hint(title+" "+(same?"Toplama ve çıkarmada üsleri birleştirme; ortak üslü çarpanı bul.":"Farklı tabanlı kuvvetlerin üslerini toplama veya çıkarmada birleştiremezsin."),"İşlemi kur:\n"+signed(ts)+(same?"\nOrtak çarpanı olan terimleri birlikte düşün.":"\nİşlemi kendin tamamla."));}
+ // Hint never evaluates the last operation or supplies the answer. Show denominator as a power when it is a pure prime power.
+ const hintDiv=(t,d)=>{const g=factors(d),den=fmt(g),num=fmt(t.f);return t.text+"/"+d+(num!==t.text||den!==String(d)?" = "+par(num)+"/"+par(den):"");};
  let ans;
- if(m["basamak_sayısı"]){
-  const v=calc("her_basamak","Bir basamağın enerjisini hesaplayalım"),n=Number(m["basamak_sayısı"]);ans=n*v;add("Her basamak eşit enerjiye sahip. Basamak sayısıyla çarpalım:",n+" · "+v+" = "+ans);
- }else if(m["giriş"]&&m["hasarlı_taş"]){
-  const a=calc("giriş","Girişte depolanan enerji"),b=calc("hasarlı_taş","Hasarlı taşın çalışması için harcanan enerji");ans=a-b;add("Harcanan enerjiyi başlangıç miktarından çıkaralım:",a+" − "+b+" = "+ans);
- }else if(m["ilk enerji"]){
-  const a=calc("ilk enerji","Birinci basamakta depolanan güç"),x=portion(a,"kapı tüketimi","Kapıyı açmak için harcanan güç");add("Birinci basamakta kalan güç:",a+" − "+x+" = "+(a-x));
-  const b=calc("uyarı","İkinci basamakta depolanan güç"),y=portion(b,"uyarı kullanımı","Uyarı lambası için harcanan güç");add("İkinci basamakta kalan güç:",b+" − "+y+" = "+(b-y));ans=a-x+b-y;add("İki basamakta kalan güçleri toplayalım:",(a-x)+" + "+(b-y)+" = "+ans);
- }else if(m["çalışma oranları"]){
-  const a=calc("ilk","Birinci basamak tamamen çalışıyor"),b=calc("orta","İkinci basamağın toplam enerjisi"),z=calc("son","Üçüncü basamağın toplam enerjisi");
-  const ratios=m["çalışma oranları"].split(",").map(x=>x.trim());if(ratios.join(",")!=="1,1/4,1/2")throw Error(q.id+" oran");
-  add("İkinci basamağın dörtte biri çalışıyor:",b+" · 1/4 = "+b/4,"Üçüncü basamağın yarısı çalışıyor:",z+" · 1/2 = "+z/2);ans=a+b/4+z/2;add("Yalnızca çalışan enerjileri toplayalım:",a+" + "+b/4+" + "+z/2+" = "+ans);
- }else if(m["sol"]&&m["harcama"]){
-  const a=calc("sol","Birinci basamağın gücü"),b=calc("sağ","İkinci basamağın gücü"),v=calc("harcama","Kapı için tüketilen güç");add("Başlangıçtaki toplam güç:",a+" + "+b+" = "+(a+b));ans=a+b-v;add("Kapı için tüketilen gücü toplamdan çıkaralım:",(a+b)+" − "+v+" = "+ans);
- }else if(m["ilk basamak levhası"]||m["güç sayacı"]){
-  const first=m["ilk basamak levhası"]||m["ilk basamak"],second=m["orta basamak levhası"]||m["orta basamak"],third=m["son basamak levhası"]||m["son basamak"];
-  const total=Number((m["üst sayaç"]||m["güç sayacı"]).match(/\d+/)[0]);const v=total/21;
-  if(second!==first+"⁺²"||third!==first+"⁺⁴"||!Number.isInteger(v))throw Error(q.id+" ortak çarpan");
-  add("Üç basamağın toplam enerjisini denklemle yazalım:",first+" + "+second+" + "+third+" = "+total,"Tabanları aynı olan üslü sayılar çarpılırken üsleri toplanır. İkinci ve üçüncü ifadeyi ilk kuvvet cinsinden açalım:",second+" = "+first+" · 2²",third+" = "+first+" · 2⁴","Denklemde yerlerine yazalım:",first+" + "+first+" · 4 + "+first+" · 16 = "+total,"Ortak kuvveti parantezine alalım:",first+" · (1 + 4 + 16) = "+total,first+" · 21 = "+total,"Denklemin iki tarafını 21'e bölelim:",first+" = "+total+"/21",first+" = "+v);
-  ans=v;if(/ortadaki/i.test(q.prompt)){ans=4*v;add("Ortadaki basamağın enerjisi ilk basamağın dört katıdır:",second+" = "+first+" · 2²",v+" · 4 = "+ans);}
- }else if(m["basamak 4"]){
-  const n=[1,2,3,4].map(i=>calc("basamak "+i,i+". basamağın enerjisi"));const first=n[0]+n[1],last=n[2]+n[3];ans=last-first;add("İlk iki basamağın toplamı:",n[0]+" + "+n[1]+" = "+first,"Son iki basamağın toplamı:",n[2]+" + "+n[3]+" = "+last,"Son iki basamağın toplamından ilk ikisinin toplamını çıkaralım:",last+" − "+first+" = "+ans);
- }else if(m["aktarım"]){
-  const a=calc("alt basamak","Alt basamağın enerjisi"),b=calc("üst basamak","Üst basamağın enerjisi");add("İki basamağın toplam enerjisi:",a+" + "+b+" = "+(a+b));ans=portion(a+b,"aktarım","Yedek lambalara aktarılan enerji");
- }else if(m["basamak_1"]||m["basamak_A"]){
-  const keys=m["basamak_1"]?["basamak_1","basamak_2"]:["basamak_A","basamak_B","basamak_C"];const n=keys.map((k,i)=>calc(k,(i+1)+". basamağın gücü"));ans=n.reduce((a,b)=>a+b,0);add("Basamaklar birlikte çalıştığı için güçlerini toplayalım:",n.join(" + ")+" = "+ans);
+ if(m.basamak_sayısı){const t=term("her_basamak"),n=+m.basamak_sayısı,g=factors(n),expr=n+" · "+t.text,share=Object.keys(g).some(p=>t.f[p]>0);
+  hint("Her basamakta "+t.text+" enerji var. "+n+" basamağın enerjisini bulmak için çarp."+(share?" Çarpanları aynı tabanda yaz.":""),"İşlemi kur:\n"+expr+(share?"\nAynı tabanda çarparken üsleri topla.":""));add("Basamak sayısı ile bir basamağın enerjisini çarpalım:",expr);
+  if(share){normalize(t);if(String(n)!==fmt(g))add(n+" = "+fmt(g));const c=product(g,t.f);ans=val(c);add(fmt(c)+" = "+ans);}else{ans=n*value(t);add(expr+" = "+ans);}
+ }else if(m.giriş&&m.hasarlı_taş){const ts=[term("giriş"),neg(term("hasarlı_taş"))];setupSum(ts,"Harcanan enerjiyi girişteki enerjiden çıkar.");ans=sum(ts,"Kalan enerji");
+ }else if(m["ilk enerji"]){const a=term("ilk enerji"),b=term("uyarı"),d=+m["kapı tüketimi"].split("/")[1],e=+m["uyarı kullanımı"].split("/")[1];
+  hint("Kapı için birinci gücü "+d+" ile, lamba için ikinci gücü "+e+" ile böl. Aynı tabanda bölme yaparken üsleri çıkar.","Harcanan güçleri üslü biçimde bul:\n"+hintDiv(a,d)+"\n"+hintDiv(b,e)+"\nHer harcamayı kendi gücünden çıkar; kalanları topla.");
+  const x=part(a,d,"Kapıyı açmak için harcanan güç"),y=part(b,e,"Lambaya harcanan güç");ans=sum([a,neg(x),b,neg(y)],"İki basamakta kalan toplam güç");
+ }else if(m["çalışma oranları"]){const a=term("ilk"),b=term("orta"),c=term("son"),r=m["çalışma oranları"].split(",").map(s=>s.trim());if(r.join(",")!=="1,1/4,1/2")throw Error(q.id+" oran");
+  hint("İlk basamağın tümü, ikincinin dörtte biri ve üçüncünün yarısı çalışıyor. Bölmede tabanları eşitleyip üsleri çıkar.","Çalışan enerjiler:\n"+a.text+"\n"+hintDiv(b,4)+"\n"+hintDiv(c,2)+"\nBölmeleri üslü biçimde yap; üç miktarı topla.");
+  const x=part(b,4,"İkinci basamağın çalışan enerjisi"),y=part(c,2,"Üçüncü basamağın çalışan enerjisi");ans=sum([a,x,y],"Üç basamağın çalışan toplam enerjisi");
+ }else if(m.sol&&m.harcama){const ts=[term("sol"),term("sağ"),neg(term("harcama"))];setupSum(ts,"İki basamağın güçlerini topla; kapının harcadığı gücü çıkar.");ans=sum(ts,"Kapıdan sonra kalan güç");
+ }else if(m["ilk basamak levhası"]||m["güç sayacı"]){const a=m["ilk basamak levhası"]||m["ilk basamak"],b=m["orta basamak levhası"]||m["orta basamak"],c=m["son basamak levhası"]||m["son basamak"],total=Number((m["üst sayaç"]||m["güç sayacı"]).match(/\d+/)[0]),v=total/21;
+  if(b!==a+"⁺²"||c!==a+"⁺⁴"||!Number.isInteger(v))throw Error(q.id+" ortak çarpan");
+  hint("İkinci ve üçüncü kuvveti ilk kuvvetin katı biçiminde yaz. Aynı tabanda çarpma yapılırken üsler toplanır.","Toplam denklem:\n"+a+" + "+b+" + "+c+" = "+total+"\n"+b+" = "+a+" · 2²\n"+c+" = "+a+" · 2⁴\nOrtak kuvveti parantezin dışına al.");
+  add("Üç basamağın toplamını denklemle yazalım:",a+" + "+b+" + "+c+" = "+total,productRule,b+" = "+a+" · 2²",c+" = "+a+" · 2⁴","Ortak kuvveti parantezin dışına alalım:",a+" · (1 + 2² + 2⁴) = "+total,a+" · (1 + 4 + 16) = "+total,a+" · 21 = "+total,"Denklemin iki tarafını 21'e bölelim:",a+" = "+total+"/21",a+" = "+v);
+  ans=v;if(/ortadaki/i.test(q.prompt)){ans=4*v;const vf=factors(v);add("Ortadaki basamağın gücü:",b+" = "+a+" · 2²",a+" = "+fmt(vf));const c=product(vf,factors(4));add(fmt(c)+" = "+ans);}
+ }else if(m["basamak 4"]){const ts=[term("basamak 3"),term("basamak 4"),neg(term("basamak 1")),neg(term("basamak 2"))];setupSum(ts,"Son iki basamağın toplamından ilk iki basamağın toplamını çıkar.");ans=sum(ts,"Son iki basamak ile ilk iki basamak arasındaki fark");
+ }else if(m.aktarım){const a=term("alt basamak"),b=term("üst basamak"),d=+m.aktarım.split("/")[1];
+  hint("Toplam enerjinin dörtte birini bulmak için iki basamağın her birini "+d+" ile bölüp sonuçları topla. Aynı tabanda bölmede üsleri çıkar.","Önce şu iki bölmeyi üslü biçimde yap:\n"+hintDiv(a,d)+"\n"+hintDiv(b,d)+"\nBulduğun iki miktarı topla.");
+  add("Toplamın belirtilen payını her basamağa ayrı uygulayabiliriz:","("+a.text+" + "+b.text+")/"+d+" = "+a.text+"/"+d+" + "+b.text+"/"+d);
+  const x=part(a,d,"Alt basamaktan aktarılan enerji"),y=part(b,d,"Üst basamaktan aktarılan enerji");ans=sum([x,y],"Toplam aktarılan enerji");
+ }else if(m.basamak_1||m.basamak_A){const keys=m.basamak_1?["basamak_1","basamak_2"]:["basamak_A","basamak_B","basamak_C"],ts=keys.map(term);setupSum(ts,"Basamaklardaki güçleri topla.");ans=sum(ts,"Basamakların toplam gücü");
  }else throw Error(q.id+" çözüm türü");
- if(String(ans)!==q.correctAnswer)throw Error(q.id+" hesaplanan "+ans+" beklenen "+q.correctAnswer);
- add("Sonuç: "+ans+" birim.");return rows;
+ if(String(ans)!==String(q.correctAnswer))throw Error(q.id+" hesaplanan "+ans+" beklenen "+q.correctAnswer);
+ add("Sonuç: "+ans+" birim.");
+ return {first,second,solution:rows};
 }
+function detailedSolution(q){return symbolicGuide(q)?.solution||null;}
 
-const api={apply,revise,migrateRun,detailedSolution};if(typeof module!=="undefined"&&module.exports)module.exports=api;else root.MTKF02RevisionV238=api;
+const api={apply,revise,migrateRun,detailedSolution,symbolicGuide};if(typeof module!=="undefined"&&module.exports)module.exports=api;else root.MTKF02RevisionV238=api;
 })(typeof window!=="undefined"?window:globalThis);

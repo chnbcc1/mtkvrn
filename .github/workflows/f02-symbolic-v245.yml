@@ -1,0 +1,15 @@
+name: F02 symbolic teaching v245
+on:
+  push:
+    branches: [main]
+    paths: ['deneme-v36/assets/f02-revision-v238.js','deneme-v36/assets/symbolic-teaching-v241.js','deneme-v36/forest-questions-v147.json','deneme-v36/tests/f02-symbolic-v245.test.cjs','.github/workflows/f02-symbolic-v245.yml']
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node deneme-v36/tests/f02-symbolic-v245.test.cjs
