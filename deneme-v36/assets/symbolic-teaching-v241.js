@@ -77,11 +77,11 @@ function exactPower(q){
  const ans=String(q.correctAnswer),frac=exponent<0?"1/"+base**(-exponent):String(v);
  if(answerMode==="slot"){const slot=l.find(x=>x.startsWith(ans.split(".")[0]+":"));const p=slot&&parse(slot.split(":")[1].trim());if(!p||p[0]**p[1]!==v)return null;}
  else if(answerMode==="exponent"){if(ans!==String(exponent))return null;}
- else if(![String(v),frac,pow(base,exponent),String(exponent)].includes(ans))return null;
+ else if(![String(v),frac,pow(base,exponent),String(exponent)].includes(ans)){const equivalent=parse(ans);if(!equivalent||equivalent[0]**equivalent[1]!==v)return null;}
  const normalized=changes.map(t=>(t.op?" "+t.op+" ":"")+pow(base,t.k)).join("");
  const arithmetic=changes.map(t=>(t.op?(t.op==="÷"?"−":"+"):"")+(t.k<0?"("+t.k+")":t.k)).join("");
  const conversions=changes.filter(t=>t.b!==base).map(t=>pow(t.b,t.e)+" = "+pow(base,t.k));
- const final=answerMode==="exponent"?"İstenen üs: "+exponent:answerMode==="slot"?"Bu değer "+ans+" ile eşleşir.":pow(base,exponent)+" = "+frac;
+ const final=answerMode==="exponent"?"İstenen üs: "+exponent:answerMode==="slot"?"Bu değer "+ans+" ile eşleşir.":parse(ans)&&ans!==pow(base,exponent)?pow(base,exponent)+" = "+ans:pow(base,exponent)+" = "+frac;
  return {first:[productRule,quotientRule,powerRule,"Bütün çarpanları mümkünse "+base+" tabanında yaz; işlem işaretlerine göre üsleri birleştir."],second:[powerRule,...(conversions.length?["Tabanları eşitleyelim:\n"+conversions.join("\n")]:["Tabanlar zaten eşit."]), "Üs işlemini kur:\n"+arithmetic,"İşlemi tamamlayıp sorunun istediği gösterimi seç."],solution:[productRule,quotientRule,...(conversions.length?[powerRule+"\n"+conversions.join("\n")]:[]),"İfadeyi aynı tabanda yaz:\n"+normalized,"Üsleri birleştir:\n"+normalized+" = "+base+"^("+arithmetic+")\n"+base+"^("+arithmetic+") = "+pow(base,exponent),final]};
 }
 function rootWork(q){
@@ -145,7 +145,44 @@ function simplePower(q){
  return {first:["Toplama ve çıkarmada üsler doğrudan birleştirilmez.","Tabanları eşitle; ortak olan en küçük kuvveti parantez dışına al."],second:["İfadeleri aynı tabanda yaz:\n"+original+" = "+same,"Ortak kuvveti ayırırken her terimin üssünden ortak üssü çıkar. Parantezi ve çarpımı kendin tamamla."],solution:["Toplama ve çıkarmada üsler birleştirilmez; ortak çarpan kullanılır.","Tabanları eşitleyelim:\n"+original+" = "+same,"Ortak kuvveti ayıralım:\n"+same+" = "+pow(base,small)+" · ("+inner+")","Parantezi hesaplayalım:\n"+pow(base,small)+" · ("+inner+") = "+pow(base,small)+" · "+coefficient,"Sonuç:\n"+base**small+" · "+coefficient+" = "+ans]};
 }
 
-function guide(q){return q.obstacleId==="F03"?f03(q):algebra(q)||exactPower(q)||simplePower(q);}
+
+function exactRoot(q){
+ if(!["F07","F09","F10","F19"].includes(q.obstacleId))return null;
+ const t=String(q.topic).toLocaleLowerCase("tr"),l=q.visual.labels.map(x=>String(x.value));
+ function parseRoot(s){const z=s.trim().match(/^(\d*)([√∛∜])(?:\((\d+)\)|(\d+))(?:\s*(?:m|cm|birim))?$/u);return z?{c:Number(z[1]||1),s:z[2],n:Number(z[3]||z[4]),d:{"√":2,"∛":3,"∜":4}[z[2]]}:null;}
+ const fmt=(c,s,n)=>n===1?String(c):(c===1?"":c===0?"0":String(c))+s+n;
+ const value=x=>x.c*x.n**(1/x.d);
+ function valid(expr){const ans=String(q.correctAnswer).trim().replace(/\s*(?:m²|cm²|m|cm|birim|taş)$/u,"");const p=parseRoot(expr),z=parseRoot(ans);const a=p?value(p):Number(expr),b=z?value(z):Number(ans);return Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<1e-8*Math.max(1,Math.abs(b));}
+ const x=parseRoot(l[0]),y=parseRoot(l[1]||"");if(!x)return null;
+ const r=x.s+x.n,A=fmt(x.c,x.s,x.n);
+ let c,formula,rule,method,steps;
+ if(q.obstacleId==="F07"&&/karesi/.test(t)&&l.length===1){
+  if(x.d!==2&&x.d!==4)return null;
+  const n=x.d===2?x.n:Math.sqrt(x.n);if(!Number.isInteger(n))return null;
+  c=x.c*x.c*n;if(!valid(String(c)))return null;
+  const square=x.d===2?String(x.n):"√"+x.n;
+  rule="Çarpımın karesi alınırken her çarpanın karesi alınır. Kök derecesi ile üs sadeleştirilir.";
+  method="Karenin alanı için kenar uzunluğunun karesini al. Katsayının karesini ve köklü kısmın karesini ayrı hesapla.";
+  steps=["Alanı kenarın karesi olarak yaz:\n("+A+")²", "Çarpımın karesini dağıt:\n("+A+")² = "+x.c+"² · ("+r+")²","Köklü kısmın karesi:\n("+r+")² = "+square,...(x.d===4?["Karekökü sadeleştir:\n"+square+" = "+n]:[]),"Alanı hesapla:\n"+x.c+"² · "+n+" = "+(x.c*x.c)+" · "+n+"\n"+(x.c*x.c)+" · "+n+" = "+c];
+ }else if(q.obstacleId==="F07"&&/çevre/.test(t)&&l.length===1){
+  c=4*x.c;formula="4 · "+A;rule="Köklü ifadeyi tam sayıyla çarparken katsayı çarpılır, köklü kısım değişmez.";method="Karenin dört eşit kenarı vardır. Bir kenarı dörtle çarp.";steps=[method+"\n"+formula,"Katsayıları çarp:\n"+formula+" = (4 · "+x.c+") · "+r+"\n(4 · "+x.c+") · "+r+" = "+fmt(c,x.s,x.n)];if(!valid(fmt(c,x.s,x.n)))return null;
+ }else{
+  if(!y)return null;const z=l.length>=3?parseRoot(l[2]):null;
+  if(x.d!==y.d||x.n!==y.n||z&&(z.d!==x.d||z.n!==x.n))return null;
+  const B=fmt(y.c,y.s,y.n);
+  if(q.obstacleId==="F10"&&/çevre/.test(t)&&l.length===2){c=2*(x.c+y.c);formula="2 · ("+A+" + "+B+")";method="Dikdörtgenin çevresi için uzun ve kısa kenarı topla, toplamın iki katını al.";steps=[method+"\n"+formula,"Ortak köklü kısmı ayır:\n"+formula+" = 2 · ("+x.c+" + "+y.c+") · "+r,"\n2 · ("+x.c+" + "+y.c+") · "+r+" = "+fmt(c,x.s,x.n)];}
+  else if(q.obstacleId==="F10"&&/kenar uzunluğu farkı/.test(t)&&l.length===2){c=2*(x.c-y.c);formula="2 · ("+A+" − "+B+")";method="İki uzun kenarın toplamından iki kısa kenarın toplamını çıkar.";steps=[method+"\n"+formula,"Köklü kısım ortak:\n"+formula+" = 2 · ("+x.c+" − "+y.c+") · "+r,"\n2 · ("+x.c+" − "+y.c+") · "+r+" = "+fmt(c,x.s,x.n)];}
+  else if(q.obstacleId==="F09"&&/paylaştırma/.test(t)&&/^\d+ eş parça$/.test(l[2]||"")){const n=Number(l[2].split(" ")[0]);c=(x.c-y.c)/n;formula="("+A+" − "+B+") ÷ "+n;method="Önce kesilen kısmı çıkar, kalan uzunluğu eş parçalara böl.";steps=[method+"\n"+formula,"Ortak köklü kısmı ayır:\n"+formula+" = ("+x.c+" − "+y.c+") · "+r+" ÷ "+n,"Katsayıyı böl:\n"+(x.c-y.c)+" · "+r+" ÷ "+n+" = "+fmt(c,x.s,x.n)];}
+  else if((q.obstacleId==="F09"||q.obstacleId==="F19")&&z&&l.length===3&&/birleş|örtüş|destek toplamı/.test(t)){c=x.c+y.c-z.c;const C=fmt(z.c,z.s,z.n);formula=A+" + "+B+" − "+C;method="İki uzunluğu topla; ortak veya belirtilen çıkarılacak kısmı yalnız bir kez çıkar.";steps=[method+"\n"+formula,"Ortak köklü kısmı ayır:\n"+formula+" = ("+x.c+" + "+y.c+" − "+z.c+") · "+r,"\n("+x.c+" + "+y.c+" − "+z.c+") · "+r+" = "+fmt(c,x.s,x.n)];}
+  else if(l.length===2&&/topla|fark|çıkar/.test(t)){const subtract=/fark|çıkar/.test(t),op=subtract?"−":"+";c=subtract?x.c-y.c:x.c+y.c;formula=A+" "+op+" "+B;method=subtract?"Aynı köklü uzunlukların farkını bul.":"Aynı köklü uzunlukları topla.";steps=[method+"\n"+formula,"Köklü kısmı ortak çarpan olarak yaz:\n"+formula+" = ("+x.c+" "+op+" "+y.c+") · "+r,"\n("+x.c+" "+op+" "+y.c+") · "+r+" = "+fmt(c,x.s,x.n)];}
+  else return null;
+  if(!Number.isInteger(c)||c<1||!valid(fmt(c,x.s,x.n)))return null;
+  rule="Kök derecesi ve kök içi aynıysa toplama ve çıkarmada yalnız katsayılar işleme girer. Tam sayıyla çarpma veya bölmede de katsayı işlem görür.";
+ }
+ return {first:[rule,method],second:[rule,formula?"İşlemi kur:\n"+formula:"Kenarın karesini kur:\n("+A+")²","Köklü kısmı ve katsayıyı ayrı değerlendir; sonucu kendin tamamla."],solution:[rule,...steps,"Sonuç: "+q.correctAnswer]};
+}
+
+function guide(q){return q.obstacleId==="F03"?f03(q):algebra(q)||exactPower(q)||simplePower(q)||exactRoot(q);}
 function apply(bank){return {...bank,questions:bank.questions.map(q=>{const g=guide(q);return g?{...q,symbolicGuideV241:g,...(q.obstacleId==="F03"?{f03Guide:g,hint:g.first.join("\n"),solution:g.solution.join("\n")}: {})}:q})};}
 function groups(items){
  const out=[];
