@@ -79,7 +79,7 @@ function shell(container,{documentRef=typeof document!=="undefined"?document:nul
 function loadImage(documentRef,src){
  return new Promise(resolve=>{
   const img=documentRef.createElement("img");
-  img.onload=()=>resolve(img.naturalWidth&&img.naturalHeight?img:null);
+  img.onload=async()=>{if(!img.naturalWidth||!img.naturalHeight){resolve(null);return;}try{if(typeof img.decode==="function")await img.decode();}catch(e){}resolve(img);};
   img.onerror=()=>resolve(null);img.decoding="async";img.draggable=false;img.src=src;
  });
 }
