@@ -225,7 +225,7 @@ function plainHints(q,stage,source){
    const ds=keys[1]==="filtre_sayısı"?Array(Number(vals[1])).fill(divisor(vals[2])):keys[1]==="ayrılan"?[divisor(vals[1])]:vals.slice(1).map(divisor);
    const z=divide(p[0],p[1],ds[0]);
    const next=keys[1]==="ayrılan"?"Bulduğun miktarı başlangıçtaki sisten çıkar.":ds.length>1?"Sonraki işlemlerde de kalan sisi belirtilen sayılara böl.":"Bölme işlemini tamamla.";
-   const first=keys[1]==="ayrılan"?"Yan kola ayrılan sisi bulmak için "+ds[0]+" ile böl. Bu miktarı başlangıçtaki sisten çıkar.":ds.length>1?"Sis sırayla "+ds.join(", ")+" ile bölünüyor. Her seferinde bir önceki işlemden kalan sisi kullan.":"Sis miktarını "+ds[0]+" ile böl.";
+   const first=keys[1]==="ayrılan"?"Yan kola ayrılan sisi bulmak için "+ds[0]+" ile böl. Bu miktarı başlangıçtaki sisten çıkar.":ds.length>1?(ds.every(d=>d===ds[0])?"Sis "+ds.length+" kez "+ds[0]+" ile bölünüyor.":"Sis sırasıyla "+ds.slice(0,-1).join(", ")+" ve "+ds.at(-1)+" ile bölünüyor.")+" Her seferinde bir önceki işlemden kalan sisi kullan.":"Sis miktarını "+ds[0]+" ile böl.";
    const divisorExp=expOf(z.b,ds[0]),initialExp=z.e+divisorExp;
    return second?["İlk bölmede tabanları eşitle:\n"+pow(z.b,initialExp)+"/"+pow(z.b,divisorExp),quotientRule,next]:[first,quotientRule];
   }
