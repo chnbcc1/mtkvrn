@@ -32,19 +32,26 @@ function capture(app,choices){
 }
 function mount(app,q,s,choices,run,save){
  reset();
- const raw=capture(app,choices),legacy=root.MTKApprovedQuizV145;
- const fallback=legacy?.mount(app,q,s,choices,run,save);
- if(!fallback||!raw||!eligible(q)){trailMessage("trail-navigation-unavailable",q);previewReport("fallback",q,{reason:"Eski ekran veya soru verisi"});return fallback;}
+ const raw=capture(app,choices);
+ function errorScreen(){
+  const box=document.createElement("div");Object.assign(box.style,{position:"fixed",inset:"0",background:"#123d32",color:"#fff6df",display:"grid",placeContent:"center",gap:"12px",padding:"24px",textAlign:"center",zIndex:"2"});
+  const message=document.createElement("p");message.textContent="Onaylı soru görseli yüklenemedi.";
+  const retry=document.createElement("button");retry.className="btn";retry.textContent="Tekrar dene";retry.onclick=()=>location.reload();
+  const back=document.createElement("button");back.className="btn";back.textContent="Patikaya dön";back.onclick=()=>trailMessage("return-to-trail",q);
+  box.append(message,retry,back);app.replaceChildren(box);trailMessage("trail-navigation-ready",q);trailMessage("load-error",q);previewReport("error",q,{message:"Onaylı soru görseli yüklenemedi."});return false;
+ }
+ if(!raw||!eligible(q))return errorScreen();
  const api=root.MTKSceneLayoutV218,planAPI=root.MTKScenePlanV214,characterAPI=root.MTKCharacterLayerV215,plaqueAPI=root.MTKPlaqueTextV216,matchingAPI=root.MTKF21MatchingV217;
  const specialAPI=root.MTKSpecialScenesV222;
- if(!api||!planAPI?.plan(q)||!characterAPI||!plaqueAPI||(q.obstacleId==="F21"&&!matchingAPI)||(specialIds.includes(q.obstacleId)&&!specialAPI?.describe(q))){trailMessage("trail-navigation-unavailable",q);return fallback;}
- const frame=app.querySelector(".mtk-frame");if(!frame){trailMessage("trail-navigation-unavailable",q);return fallback;}
+ if(!api||!planAPI?.plan(q)||!characterAPI||!plaqueAPI||(q.obstacleId==="F21"&&!matchingAPI)||(specialIds.includes(q.obstacleId)&&!specialAPI?.describe(q))){return errorScreen();}
  const host=document.createElement("div");host.className="mtk-upgrade-host-v221";
- Object.assign(host.style,{position:"fixed",inset:"0",width:"100%",height:"100%",visibility:"hidden",opacity:"0",pointerEvents:"none",zIndex:"1"});
- host.inert=true;app.append(host);
+ Object.assign(host.style,{position:"fixed",inset:"0",width:"100%",height:"100%",background:"#123d32",zIndex:"1"});
+ const loading=document.createElement("div");loading.textContent="Soru görseli hazırlanıyor…";Object.assign(loading.style,{position:"absolute",inset:"0",display:"grid",placeItems:"center",color:"#fff6df",background:"#123d32",zIndex:"4",fontWeight:"700"});
+ host.append(loading);app.replaceChildren(host);
  const ui=api.shell(host);
- if(!ui){host.remove();trailMessage("trail-navigation-unavailable",q);return fallback}
- const ticket={host,ui,frame,scene:null,timer:null};active=ticket;
+ if(!ui){host.remove();return errorScreen()}
+ ui.element.style.visibility="hidden";ui.element.inert=true;document.body.classList.add("mtk-approved-active");
+ const ticket={host,ui,scene:null,timer:null};active=ticket;
  // F21 old board has already locked choices. Recover original disabled state
  // only for the matching controller, while preserving wrong/revealed choices.
  const helpOpen=!!(run.stageCorrect||run.awaiting)||(!run.stageCorrect&&Number(run.wrong)>0&&run.helpView!==false);
@@ -59,10 +66,10 @@ function mount(app,q,s,choices,run,save){
   return result;
  }}:matchingAPI;
  function restoreChoices(){if(!matchingTouched)return;matchingTouched=false;for(const {b,disabled,locked} of choiceSnapshot){b.disabled=disabled;b.classList.toggle("match-locked",locked)}}
- function discard(){if(active===ticket){reset();restoreChoices();trailMessage("trail-navigation-unavailable",q);previewReport("fallback",q,{reason:"Sahne yüklenemedi veya süre aşıldı"});}}
- ticket.timer=setTimeout(discard,5000);
+ function discard(){if(active===ticket){reset();restoreChoices();errorScreen();}}
+ ticket.timer=setTimeout(discard,15000);
  api.mountScene({q,ui,sceneAPI:planAPI,characterAPI,plaqueAPI,matchingAPI:scopedMatching,specialAPI,run,save}).then(scene=>{
-  if(active!==ticket||!frame.isConnected){scene?.destroy();if(active===ticket)discard();return}
+  if(active!==ticket||!host.isConnected){scene?.destroy();if(active===ticket)discard();return}
   if(!scene){discard();return}
   clearTimeout(ticket.timer);ticket.scene=scene;
   try{
@@ -94,24 +101,18 @@ function mount(app,q,s,choices,run,save){
    }
    ui.element.classList.add("mtk-live-v221");
    // Old frame is removed only after both images and all dynamic layers exist.
-   frame.remove();host.style.visibility="visible";host.style.opacity="1";host.inert=false;host.style.pointerEvents="auto";
+   loading.remove();ui.element.style.visibility="visible";ui.element.inert=false;
    root.MTKMathNotebook?.placeButton(app);
    if(hasTrailNavigation)trailMessage("trail-navigation-ready",q);
+   trailMessage("ready",q);
    if(helpOpen){ui.question.scrollTop=0;extra.scrollTop=0;}
    const character=scene.character?.image||scene.plane?.querySelector?.(".mtk-approved-character-v215");
    previewReport("scene-ready",q,{orientation:ui.orientation,characterLoaded:!!character?.naturalWidth,characterWidth:character?.naturalWidth||0,characterHeight:character?.naturalHeight||0,labels:scene.plan?.labels?.length||0,helpOpen});
   }catch(error){
-   // If commit failed after nodes moved, restore them through the original
-   // renderer using the same nodes and their listeners.
-   if(active!==ticket)return;
-   reset();restoreChoices();trailMessage("trail-navigation-unavailable",q);
-   const group=document.createElement("div");group.className="btnRow";group.append(...raw.buttons);
-   choices.append(...realChoices);app.replaceChildren(raw.prompt,choices,...raw.extras);
-   if(raw.buttons.length)app.append(group);
-   legacy.mount(app,q,s,choices,run,save);root.MTKMathNotebook?.placeButton(app);
+   discard();
   }
  }).catch(discard);
- return fallback;
+ return true;
 }
 return Object.freeze({mount,reset,eligible,deferred,mountTrailNavigation});
 })(root);
