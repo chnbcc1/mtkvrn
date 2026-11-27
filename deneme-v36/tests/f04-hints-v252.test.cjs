@@ -1,0 +1,7 @@
+"use strict";
+const assert=require("node:assert/strict");
+const bank=require("../forest-questions-v147.json"),f01=require("../assets/f01-revision-v229.js"),f02=require("../assets/f02-teaching-v252.js"),sym=require("../assets/symbolic-teaching-v252.js"),plan=require("../assets/scene-plan-v252.js"),oldPlan=require("../assets/scene-plan-v251.js");
+const old=require("../assets/symbolic-teaching-v251.js").apply(require("../assets/f02-teaching-v251.js").apply(f01.apply(bank))),eff=sym.apply(f02.apply(f01.apply(bank)));
+assert.equal(eff.questions.length,630);let n=0;
+for(let i=0;i<630;i++){const q=eff.questions[i],o=old.questions[i];assert.deepEqual(plan.plan(q),oldPlan.plan(o));if(q.obstacleId!=="F04"){assert.deepEqual(q,o);continue;}n++;assert.equal(q.prompt,o.prompt);assert.equal(q.correctAnswer,o.correctAnswer);assert.deepEqual(q.options,o.options);assert.equal(q.solution,o.solution);assert.deepEqual(q.visual,o.visual);const g=q.symbolicGuideV241;assert.deepEqual(g.solution,o.symbolicGuideV241.solution);assert(g.first.length>=2&&g.second.length>=2);assert(!/yanan payı|uygun tabanları/.test(g.first.join(" ")));assert.deepEqual(sym.plainHints(q,1,[]),g.first);assert.deepEqual(sym.plainHints(q,2,[]),g.second);assert(!g.second.some(s=>new RegExp("= "+q.correctAnswer+"(?:$|\\n)").test(s)));}
+assert.equal(n,30);console.log("v252: 30 clearer F04 hints; all solutions, answers, visuals and other questions unchanged.");
