@@ -1,0 +1,15 @@
+name: F04 hard diversity v254
+on:
+  push:
+    branches: [main]
+    paths: ['deneme-v36/assets/symbolic-teaching-v254.js','deneme-v36/tests/f04-hard-v254.test.cjs','.github/workflows/f04-hard-v254.yml']
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node deneme-v36/tests/f04-hard-v254.test.cjs
