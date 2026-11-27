@@ -94,6 +94,10 @@ function rootWork(q){
   }
   let d=Math.floor(n**(1/degree)+1e-8);while(d>1&&n%d**degree)d--;if(d>1){const rem=n/d**degree;out.push(key+" = "+sym+"("+pow(d,degree)+" · "+rem+")\n"+key+" = "+(rem===1?d:d+sym+rem));}
  }
+ for(const m of raw.matchAll(/([√∛∜])\((\d+)([⁰¹²³⁴⁵⁶⁷⁸⁹]+)\)/gu)){
+  const sym=m[1],b=+m[2],e=unsup(m[3]),n={"√":2,"∛":3,"∜":4}[sym];
+  if(e%n===0&&!seen.has(m[0])){seen.add(m[0]);out.push(m[0]+" = "+b+"^("+e+"/"+n+")\n"+m[0]+" = "+pow(b,e/n));}
+ }
  return out;
 }
 function supplemental(q){
@@ -123,13 +127,31 @@ function supplemental(q){
  if(!rules.length)return null;
  return {rules:[...new Set(rules)],prep};
 }
-function guide(q){return q.obstacleId==="F03"?f03(q):algebra(q)||exactPower(q);}
+
+function simplePower(q){
+ const labels=q.visual.labels.map(x=>String(x.value)),topic=String(q.topic).toLocaleLowerCase("tr");
+ if(q.obstacleId==="F01"||q.obstacleId==="F02")return null;
+ if(q.obstacleId==="F05"&&labels.length===1){
+  const p=parse(labels[0]);if(!p||p[1]>=0)return null;const [b,e]=p,den=b**(-e),result="1/"+den;
+  if(q.correctAnswer!==result)return null;
+  return {first:["Negatif üs işaretin negatif olduğu anlamına gelmez. Sıfırdan farklı a için a⁻ⁿ = 1/aⁿ."],second:["Verilen "+labels[0]+" ifadesinde üssün işaretini değiştirerek kuvveti paydada yaz. Pay 1 olmalı."],solution:["Negatif üs kuralı:\na⁻ⁿ = 1/aⁿ","Verilen ifadeyi dönüştür:\n"+labels[0]+" = 1/"+pow(b,-e),"Paydadaki kuvveti hesapla:\n"+labels[0]+" = "+result]};
+ }
+ if(labels.length!==2||!labels.every(x=>/^\d+[⁰¹²³⁴⁵⁶⁷⁸⁹]+(?:\s*(?:m|L|cm))?$/u.test(x)))return null;
+ const [p,z]=labels.map(parse);if(!p||!z)return null;const [b,e]=p,[c,f]=z;
+ const addition=/topla|birlikte|sayma/.test(topic),subtraction=/fark|çıkar|eksik/.test(topic);if(addition===subtraction)return null;
+ const sign=addition?"+":"−",ans=addition?b**e+c**f:b**e-c**f;if(String(ans)!==q.correctAnswer)return null;
+ const base=baseOf(b)[0],k=expOf(base,b)*e,j=expOf(base,c);if(j===null)return null;const v=j*f,small=Math.min(k,v);
+ const original=pow(b,e)+" "+sign+" "+pow(c,f),same=pow(base,k)+" "+sign+" "+pow(base,v),inner=pow(base,k-small)+" "+sign+" "+pow(base,v-small),coefficient=base**(k-small)+(addition?1:-1)*base**(v-small);
+ return {first:["Toplama ve çıkarmada üsler doğrudan birleştirilmez.","Tabanları eşitle; ortak olan en küçük kuvveti parantez dışına al."],second:["İfadeleri aynı tabanda yaz:\n"+original+" = "+same,"Ortak kuvveti ayırırken her terimin üssünden ortak üssü çıkar. Parantezi ve çarpımı kendin tamamla."],solution:["Toplama ve çıkarmada üsler birleştirilmez; ortak çarpan kullanılır.","Tabanları eşitleyelim:\n"+original+" = "+same,"Ortak kuvveti ayıralım:\n"+same+" = "+pow(base,small)+" · ("+inner+")","Parantezi hesaplayalım:\n"+pow(base,small)+" · ("+inner+") = "+pow(base,small)+" · "+coefficient,"Sonuç:\n"+base**small+" · "+coefficient+" = "+ans]};
+}
+
+function guide(q){return q.obstacleId==="F03"?f03(q):algebra(q)||exactPower(q)||simplePower(q);}
 function apply(bank){return {...bank,questions:bank.questions.map(q=>{const g=guide(q);return g?{...q,symbolicGuideV241:g,...(q.obstacleId==="F03"?{f03Guide:g,hint:g.first.join("\n"),solution:g.solution.join("\n")}: {})}:q})};}
 function groups(items){
  const out=[];
  for(const item of items){for(const part of String(item??"").split("\n").map(s=>s.trim()).filter(Boolean)){
    const clean=part.replace(/^\d+\.\s*(?:Adım\s*[:.–-]?\s*|(?=[A-ZÇĞİÖŞÜ]))/u,"");
-   const math=/^[\d(√∛∜a-zA-Zⁿᵃ⁻+−]/u.test(clean)&&/[=÷·×]/u.test(clean)&&!/[a-zçğıöşü]{3,}/iu.test(clean);
+   const math=/^[\d(√∛∜a-zA-Zⁿᵃ⁻+−]/u.test(clean)&&(/[=÷·×]/u.test(clean)||/^\d+[⁰¹²³⁴⁵⁶⁷⁸⁹]+$/u.test(clean))&&!/[a-zçğıöşü]{3,}/iu.test(clean);
    if(math&&out.length)out[out.length-1].push(clean);else out.push([clean]);
  }}
  return out;
